@@ -139,6 +139,8 @@
 }
 .insight__tag { margin: 0 0 8px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; color: var(--talk-accent); }
 .insight__text { margin: 0; }
+.insight__text p { margin: 0; }
+.insight__text p + p { margin-top: 0.8em; }
 .insight__tldr { margin: 16px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--talk-bg); border: 1px dashed var(--talk-line); }
 .insight__tldr span { display: block; margin-bottom: 2px; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; color: var(--talk-accent); }
 .insight__tldr p { margin: 0; font-weight: 600; }

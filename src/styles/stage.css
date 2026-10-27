@@ -8,6 +8,8 @@
 }
 .actor__art { position: relative; width: 100%; height: 100%; display: block; object-fit: contain; }
 .actor .tone2 { color: color-mix(in srgb, var(--sil-ink) 90%, var(--act-accent)); }
+.actor .tongue { stroke: color-mix(in srgb, var(--act-accent) 70%, #b0402a); opacity: 0.85; }
+.actor .glint { fill: var(--act-accent); opacity: 0.7; }
 .actor .detail { stroke: var(--sil-ink); opacity: 0.8; }
 .actor__rimcolor { flood-color: var(--act-accent); flood-opacity: 0.8; }
 .actor__backlight {
@@ -24,3 +26,9 @@
 .actor.is-dim .actor__backlight { opacity: 0.2; }
 
 .stage { position: relative; height: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 4%; }
+/* 여럿이 서면 폭이 모자라지 않게, 한 사람당 쓸 수 있는 폭(--slot)에 맞춰 키를 줄인다. 발은 늘 땅에 붙어 있다 */
+.stage { container-type: size; --slot: 100cqw; }
+.stage[data-count='2'] { --slot: 46cqw; }
+.stage[data-count='3'] { --slot: 30cqw; }
+.stage[data-count='4'] { --slot: 23cqw; }
+.stage > .actor { flex: none; height: min(calc(100% * var(--h, 1)), calc(var(--slot) * var(--ar, 2.1) * var(--h, 1))); }

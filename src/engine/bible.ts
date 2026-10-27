@@ -87,16 +87,7 @@ export async function getPassage(ref: string): Promise<Passage> {
   return { ref, book: r.book, verses };
 }
 
-/** ref가 처음부터 끝까지 다 덮는 장들 ("GEN:1" 형식). "창 1:1-2:3"이면 1장만. */
-export async function fullChapters(ref: string): Promise<string[]> {
-  const r = parseRef(ref);
-  const data = await loadBook(r.book);
-  const out: string[] = [];
-  for (let c = r.startChapter; c <= r.endChapter; c++) {
-    const len = data.chapters[c - 1]?.length ?? 0;
-    const from = c === r.startChapter && r.startVerse != null ? r.startVerse : 1;
-    const to = c === r.endChapter && r.endVerse != null ? r.endVerse : len;
-    if (len && from <= 1 && to >= len) out.push(`${r.book.code}:${c}`);
-  }
-  return out;
+/** 그 장이 몇 절까지 있는지 */
+export async function chapterLength(book: Book, chapter: number): Promise<number> {
+  return (await loadBook(book)).chapters[chapter - 1]?.length ?? 0;
 }

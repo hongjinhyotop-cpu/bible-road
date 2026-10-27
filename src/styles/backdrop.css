@@ -1,0 +1,48 @@
+/* ── 장면 배경 (fx/backdrop.ts, engine/moods.ts) ──
+   멀수록 하늘색, 가까울수록 어두운 잉크. 잎은 아주 천천히 흔들리고, 열매와 강물은 은은하게 반짝인다. */
+.scene__backdrop { position: absolute; left: 0; right: 0; bottom: 4%; height: 94%; pointer-events: none; transition: filter 2.4s var(--ease-out); }
+.scene__backdrop .backdrop { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.bd-far  { --bd: color-mix(in srgb, var(--act-b) 72%, #070914); }
+.bd-mid  { --bd: color-mix(in srgb, var(--act-b) 36%, #04050b); }
+.bd-near { --bd: color-mix(in srgb, var(--act-a) 46%, #020205); }
+.bd-far, .bd-mid, .bd-near { fill: var(--bd); color: var(--bd); }
+.bd-far { opacity: 0.9; }
+
+.bd-halo { fill: url(#bd-halo-g); }
+.bd-halo__c { stop-color: var(--act-accent); stop-opacity: 0.32; }
+.bd-halo__e { stop-color: var(--act-accent); stop-opacity: 0; }
+.bd-fruit { fill: var(--act-accent); opacity: 0.55; animation: bd-twinkle 4.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes bd-twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.95; } }
+
+.bd-sway { animation: bd-sway 7.5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bd-sway { from { transform: rotate(-0.7deg); } to { transform: rotate(0.7deg); } }
+
+.bd-river {
+  fill: none; stroke: var(--act-accent); stroke-width: 1.1; opacity: 0.32;
+  stroke-dasharray: 5 11; animation: bd-flow 7s linear infinite;
+}
+@keyframes bd-flow { to { stroke-dashoffset: -64; } }
+
+/* 두루 도는 화염검 (창 3:24): 칼날이 제자리에서 빙글 돌고, 불빛이 일렁인다 */
+.bd-flame__glow { fill: url(#bd-flame-g); animation: bd-flicker 2.2s ease-in-out infinite; transform-origin: 118px 190px; }
+.bd-flame__sword { fill: #ffe3b0; stroke: #ffe3b0; animation: bd-turn 3.2s linear infinite; transform-origin: 118px 187px; }
+@keyframes bd-flicker { 0%, 100% { opacity: 0.8; transform: scale(1); } 40% { opacity: 1; transform: scale(1.08); } 70% { opacity: 0.7; transform: scale(0.96); } }
+@keyframes bd-turn { 0% { transform: scaleX(1); } 25% { transform: scaleX(0.1); } 50% { transform: scaleX(-1); } 75% { transform: scaleX(-0.1); } 100% { transform: scaleX(1); } }
+
+/* 저녁 (창 3:8 "날이 서늘할 때"): 하늘빛이 식고, 지평선에만 남은 빛 */
+.play__dusk {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  background:
+    linear-gradient(180deg, rgba(10, 14, 40, 0.55) 0%, rgba(20, 22, 60, 0.25) 55%, rgba(214, 140, 90, 0.16) 78%, transparent 92%);
+  transition: opacity 2.6s var(--ease-out);
+}
+.play[data-tone='dusk'] .play__dusk { opacity: 1; }
+.play[data-tone='dusk'] .play__halo { opacity: 0.4; }
+.play[data-tone='dusk'] .scene__backdrop { filter: brightness(0.72) saturate(0.85); }
+
+:root[data-reduced-motion='true'] .bd-sway,
+:root[data-reduced-motion='true'] .bd-fruit,
+:root[data-reduced-motion='true'] .bd-river,
+:root[data-reduced-motion='true'] .bd-flame__glow,
+:root[data-reduced-motion='true'] .bd-flame__sword { animation: none; }

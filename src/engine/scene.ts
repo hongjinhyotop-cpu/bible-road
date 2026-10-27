@@ -1,6 +1,6 @@
 // 플레이 장면(scene) 형식과 재생 순서. 화면 그리기는 screens/scene.ts가 맡고,
 // 여기서는 "다음에 무엇을 보여줄지"만 정한다 (CLAUDE.md 6번).
-import type { Pose } from '../ui/actor';
+import type { Facing, Pose } from '../ui/actor';
 import { loadContent } from './content';
 
 /** 장면 연출 효과 */
@@ -20,6 +20,10 @@ interface BeatBase {
   exit?: string[];
   /** 인물별 자세 { "adam": "slump" } */
   pose?: Record<string, Pose>;
+  /** 인물이 바라보는 쪽 { "eve": "left" }. 새로 선 인물은 자동으로 먼저 선 사람 쪽(왼쪽)을 본다 */
+  face?: Record<string, Facing>;
+  /** 배경 분위기를 바꾼다 (engine/moods.ts). 예: "eden-dusk" */
+  mood?: string;
   fx?: SceneFx | SceneFx[];
 }
 

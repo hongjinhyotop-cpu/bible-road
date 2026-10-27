@@ -6,6 +6,7 @@ import type { CharacterDef, Part } from '../characters';
 import { reducedMotion } from '../engine/settings';
 
 export type Pose = 'neutral' | 'slump' | 'lift' | 'tremble';
+export type Facing = 'left' | 'right';
 
 let uid = 0;
 
@@ -26,6 +27,8 @@ export class Actor {
   private loops: gsap.core.Animation[] = [];
   private shiver: gsap.core.Tween | null = null;
   private poseName: Pose = 'neutral';
+  private facing: Facing;
+  private art: Element;
 
   constructor(readonly def: CharacterDef) {
     this.el = document.createElement('div');
@@ -34,17 +37,20 @@ export class Actor {
     this.el.setAttribute('role', 'img');
     this.el.setAttribute('aria-label', def.name);
     const art = def.art;
+    this.facing = def.faces ?? 'right';
+    if (def.height && def.height !== 1) this.el.style.setProperty('--h', String(def.height));
 
     if (art.kind === 'svg') {
       const id = `rim-${def.id}-${++uid}`;
       const [w, h] = art.viewBox;
       this.el.style.aspectRatio = `${w} / ${h}`;
+      this.el.style.setProperty('--ar', String(h / w));
       this.el.innerHTML = `
         <div class="actor__backlight" aria-hidden="true"></div>
-        <svg class="actor__art" viewBox="0 0 ${w} ${h}" aria-hidden="true" overflow="visible">
+        <svg class="actor__art" viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMax meet" aria-hidden="true" overflow="visible">
           <defs>
             <filter id="${id}" x="-25%" y="-10%" width="150%" height="125%" color-interpolation-filters="sRGB">
-              <feOffset in="SourceAlpha" dx="5" dy="4" result="off"/>
+              <feOffset class="actor__paper" in="SourceAlpha" dx="5" dy="4" result="off"/>
               <feGaussianBlur in="off" stdDeviation="1.6" result="offb"/>
               <feFlood flood-color="#000" flood-opacity="0.5"/>
               <feComposite in2="offb" operator="in" result="paper"/>
@@ -67,9 +73,36 @@ export class Actor {
     } else {
       // 일러스트로 바꿔 끼운 인물: 부위가 없으니 몸 전체에만 모션을 준다
       this.el.style.aspectRatio = `${art.width} / ${art.height}`;
+      this.el.style.setProperty('--ar', String(art.height / art.width));
       this.el.innerHTML = `<div class="actor__backlight" aria-hidden="true"></div><img class="actor__art" src="${art.src}" alt="" />`;
       this.body = this.el.querySelector('.actor__art')!;
     }
+    this.art = this.el.querySelector('.actor__art')!;
+  }
+
+  get faces(): Facing {
+    return this.facing;
+  }
+
+  /**
+   * 바라보는 쪽을 바꾼다. 그림을 좌우로 뒤집되, 가운데에서 몸이 얇아졌다 다시 펴지는
+   * 짧은 "돌아서기"로 보여 준다. 종이 그림자는 늘 오른쪽 아래로 떨어지게 같이 뒤집는다.
+   */
+  face(dir: Facing, animate = true): void {
+    if (dir === this.facing) return;
+    this.facing = dir;
+    const flip = dir !== (this.def.faces ?? 'right');
+    const sx = flip ? -1 : 1;
+    this.el.querySelector('.actor__paper')?.setAttribute('dx', String(5 * sx));
+    gsap.killTweensOf(this.art, 'scaleX');
+    if (!animate || reducedMotion()) {
+      gsap.set(this.art, { scaleX: sx, transformOrigin: '50% 50%' });
+      return;
+    }
+    gsap.timeline()
+      .to(this.art, { scaleX: 0.06 * -sx, duration: 0.22, ease: 'power2.in', transformOrigin: '50% 50%' })
+      .set(this.art, { scaleX: 0.06 * sx })
+      .to(this.art, { scaleX: sx, duration: 0.34, ease: 'power2.out' });
   }
 
   /** 늘 흐르는 아주 작은 움직임: 숨쉬기, 옷자락, 머리카락 */
@@ -86,6 +119,7 @@ export class Actor {
       loop(p.upper, { scaleY: 1.014, scaleX: 1.004 }, 2.6);
       loop(p.cloth, { rotation: 1.6, skewX: 2.5 }, 3.3);
       loop(p.hair, { rotation: -2.2 }, 4.1);
+      loop(p.sway, { rotation: 2.6, x: 1.5 }, 3.7);
     } else {
       gsap.set(this.body, { transformOrigin: '50% 100%' });
       loop(this.body, { scaleY: 1.01 }, 2.6);
@@ -151,7 +185,9 @@ export class Stage {
     this.el.className = 'stage';
   }
 
+  /** 새로 선 인물은 이미 서 있는 사람들 쪽(왼쪽)을 보게 한다. 장면의 "face"로 바꿀 수 있다 */
   add(actor: Actor): Actor {
+    if (this.actors.size) actor.face('left', false);
     this.actors.set(actor.def.id, actor);
     this.el.append(actor.el);
     this.el.dataset.count = String(this.actors.size);

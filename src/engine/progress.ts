@@ -7,6 +7,8 @@ export interface Progress {
   scenes: Record<string, true>;
   /** 끝낸 읽기 구간 id → 퀴즈 최고 점수 */
   readings: Record<string, number>;
+  /** 읽다 만 읽기 구간 id → 읽던 자리 ("2:15" = 2장 15절, "insight" = 해설, "quiz" = 퀴즈) */
+  readingSpots: Record<string, string>;
   /** 만난 인물 id (인물 도감) */
   characters: Record<string, true>;
   /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "read/gen-5" */
@@ -18,6 +20,7 @@ export const progress = new Store<Progress>('progress', {
   chapters: {},
   scenes: {},
   readings: {},
+  readingSpots: {},
   characters: {},
   last: null,
   startedAt: null,
@@ -65,8 +68,10 @@ export function readingDone(id: string): boolean {
 export function completeReading(id: string, chapters: string[], score: number): void {
   const p = progress.get();
   const best = Math.max(score, p.readings[id] ?? 0);
+  const { [id]: _, ...spots } = p.readingSpots;
   progress.set({
     readings: { ...p.readings, [id]: best },
+    readingSpots: spots,
     chapters: { ...p.chapters, ...Object.fromEntries(chapters.map((c) => [c, true as const])) },
     startedAt: p.startedAt ?? Date.now(),
   });
@@ -76,4 +81,16 @@ export function completeReading(id: string, chapters: string[], score: number): 
 export function continuePath(): string {
   const last = progress.get().last;
   return last && /^(scene|read)\//.test(last) ? `/${last}` : '/map';
+}
+
+/** 읽기 구간에서 읽던 자리. 없으면 null */
+export function readingSpot(id: string): string | null {
+  return progress.get().readingSpots[id] ?? null;
+}
+
+/** 읽던 자리를 기억한다 (null이면 지움 = 맨 위) */
+export function setReadingSpot(id: string, spot: string | null): void {
+  const { [id]: old, ...rest } = progress.get().readingSpots;
+  if ((old ?? null) === spot) return;
+  progress.set({ readingSpots: spot ? { ...rest, [id]: spot } : rest });
 }

@@ -6,7 +6,8 @@
 //  - image : 나중에 일러스트로 바꿔 끼울 때. 인물 파일의 art만 바꾸면 장면은 그대로 동작한다.
 
 /** 움직일 수 있는 부위. SVG 안의 <g data-part="..."> 와 이름이 같다. */
-export type Part = 'head' | 'upper' | 'armL' | 'armR' | 'cloth' | 'hair' | 'legs';
+/** sway = 몸 전체가 천천히 흔들리는 부위 (뱀처럼 팔다리가 없는 인물) */
+export type Part = 'head' | 'upper' | 'armL' | 'armR' | 'cloth' | 'hair' | 'legs' | 'sway';
 
 export interface SvgArt {
   kind: 'svg';
@@ -29,6 +30,10 @@ export interface CharacterDef {
   name: string;
   /** 실루엣만 봐도 알아보게 하는 특징 (소품·체형) — 문서용 메모 */
   traits: string;
+  /** 그림이 바라보는 쪽. 장면에서 "face"로 돌려 세울 때 기준이 된다 (기본 right) */
+  faces?: 'left' | 'right';
+  /** 무대 높이 대비 키 (기본 1). 하와 0.95처럼 인물 사이 키 차이를 준다 */
+  height?: number;
   art: SvgArt | ImageArt;
 }
 
