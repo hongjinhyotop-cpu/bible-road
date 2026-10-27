@@ -1,0 +1,183 @@
+/* ── 성막 기구 (fx/tabernacle.ts): beat의 "item"으로 무대 가운데 떠오르는 기구 하나 ──
+   역광 실루엣 + 금빛 테두리. 위에서 내려오는 금빛 조명 속에 떠오르고, 테두리가 그어지고, 이름표가 나타난다.
+   색은 막 테마 변수(--act-a/b/accent)에서 나온다. 모션 줄이기면 짧은 페이드. */
+
+.scene__items { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+
+.ti {
+  --ti-gold: color-mix(in srgb, var(--act-accent) 55%, #d9a948);
+  --ti-ink: color-mix(in srgb, var(--act-a) 45%, #030306);
+  --ti-bronze: color-mix(in srgb, #b0683a 72%, var(--act-a));
+  --ti-blue: color-mix(in srgb, #3556a6 82%, var(--act-a));
+  --ti-purple: color-mix(in srgb, #7a3a92 82%, var(--act-a));
+  --ti-scarlet: color-mix(in srgb, #b4343a 82%, var(--act-a));
+  --ti-linen: color-mix(in srgb, #e9dfc6 78%, var(--act-a));
+  position: absolute; left: 50%; top: 8%; width: min(60%, 46vh);
+  translate: -50% 0;
+  opacity: 0; transform: translateY(7%) scale(0.97);
+  transition: opacity 1.3s var(--ease-out), transform 2s var(--ease-out);
+  will-change: opacity, transform;
+}
+.ti.is-on { opacity: 1; transform: none; }
+.ti.is-out { opacity: 0; transform: translateY(9%) scale(0.96); transition: opacity 0.9s ease-in, transform 1.1s cubic-bezier(0.55, 0, 0.8, 0.4); }
+
+/* 위에서 내려오는 금빛 조명 + 기구 뒤의 빛 번짐 */
+.ti__light {
+  position: absolute; left: 50%; bottom: 14%; width: 150%; height: 260%; translate: -50% 0;
+  filter: blur(14px); mix-blend-mode: screen; opacity: 0;
+  transition: opacity 1.8s var(--ease-out);
+}
+/* 빛줄기 모양은 안쪽에서 자르고, 흐림은 바깥에서 (가장자리가 칼같이 잘리지 않게) */
+.ti__light::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--act-accent) 40%, transparent) 45%, color-mix(in srgb, var(--act-accent) 55%, #fff1cf 12%) 78%, transparent);
+  clip-path: polygon(44% 0, 56% 0, 86% 100%, 14% 100%);
+}
+.ti::before {
+  content: ''; position: absolute; left: 50%; top: 46%; width: 110%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 36%, transparent), color-mix(in srgb, var(--act-accent) 10%, transparent) 55%, transparent);
+  opacity: 0; transition: opacity 2s var(--ease-out) 0.3s;
+}
+.ti__floor {
+  position: absolute; left: 50%; top: 82%; width: 86%; height: 12%; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 34%, transparent), transparent);
+  opacity: 0; transition: opacity 2s var(--ease-out) 0.4s;
+}
+.ti.is-on .ti__light { opacity: 0.32; animation: ti-breathe 7s ease-in-out 2.4s infinite; }
+.ti.is-on::before, .ti.is-on .ti__floor { opacity: 1; }
+@keyframes ti-breathe { 0%, 100% { opacity: 0.32; } 50% { opacity: 0.44; } }
+
+.ti__art { position: relative; display: block; width: 100%; height: auto; overflow: visible;
+  filter: drop-shadow(0 0 5px color-mix(in srgb, var(--act-accent) 30%, transparent)); }
+
+/* 이름표: 작은 글씨, 넓은 자간 */
+.ti__label {
+  position: relative; margin: -2% 0 0; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: var(--font-ui); text-align: center; white-space: nowrap;
+  text-shadow: 0 1px 8px rgba(3, 3, 8, 0.9);
+  opacity: 0; transform: translateY(6px);
+  transition: opacity 1s var(--ease-out) 1.5s, transform 1.2s var(--ease-out) 1.5s;
+}
+.ti__label b { font-weight: 600; font-size: 0.75rem; letter-spacing: 0.32em; margin-right: -0.32em; color: var(--gold-bright); }
+.ti__label span { font-size: 0.6875rem; letter-spacing: 0.12em; color: var(--ivory-soft); }
+.ti__label i { font-family: var(--font-display); font-size: 0.8125rem; letter-spacing: 0.14em; color: var(--act-accent); opacity: 0.8; }
+.ti.is-on .ti__label { opacity: 1; transform: none; }
+.ti.is-out .ti__label { transition-delay: 0s; transition-duration: 0.5s; }
+
+/* ── 그림 ── */
+.ti-body { opacity: 0; transition: opacity 1.6s var(--ease-out) 0.35s; }
+.ti.is-on .ti-body { opacity: 1; }
+.ti-line {
+  fill: none; stroke: color-mix(in srgb, var(--act-accent) 45%, #ffe9b0); stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1 1; stroke-dashoffset: 1;
+  transition: stroke-dashoffset 1.7s cubic-bezier(0.6, 0, 0.2, 1) calc(0.45s + var(--i, 0) * 0.055s);
+}
+.ti.is-on .ti-line { stroke-dashoffset: 0; }
+.ti.is-on .ti-edges { animation: ti-shimmer 6s ease-in-out 3.6s infinite; }
+@keyframes ti-shimmer { 0%, 100% { opacity: 1; } 50% { opacity: 0.62; } }
+.ti-live { opacity: 0; transition: opacity 1.4s var(--ease-out) 1.4s; }
+.ti.is-on .ti-live { opacity: 1; }
+
+.ti-s-gold-hi { stop-color: color-mix(in srgb, var(--ti-gold) 78%, #fff3d2); }
+.ti-s-gold { stop-color: color-mix(in srgb, var(--ti-gold) 52%, #1a1206); }
+.ti-s-gold-lo { stop-color: color-mix(in srgb, var(--ti-gold) 16%, #060408); }
+.ti-s-bronze-hi { stop-color: color-mix(in srgb, var(--ti-bronze) 80%, #f2c08a); }
+.ti-s-bronze { stop-color: color-mix(in srgb, var(--ti-bronze) 55%, #140a06); }
+.ti-s-bronze-lo { stop-color: color-mix(in srgb, var(--ti-bronze) 14%, #050306); }
+.ti-s-blue { stop-color: var(--ti-blue); }
+.ti-s-purple { stop-color: var(--ti-purple); }
+.ti-s-scarlet { stop-color: var(--ti-scarlet); }
+.ti-s-linen { stop-color: var(--ti-linen); }
+.ti-s-light { stop-color: color-mix(in srgb, var(--act-accent) 60%, #fff4d6); stop-opacity: 0.6; }
+.ti-s-light-mid { stop-color: color-mix(in srgb, var(--act-accent) 60%, #fff4d6); stop-opacity: 0.2; }
+.ti-s-light-0 { stop-color: color-mix(in srgb, var(--act-accent) 60%, #fff4d6); stop-opacity: 0; }
+.ti-s-horn-hi { stop-color: color-mix(in srgb, #e9d6ae 80%, var(--act-a)); }
+.ti-s-horn { stop-color: color-mix(in srgb, #b98a52 75%, var(--act-a)); }
+.ti-s-horn-lo { stop-color: color-mix(in srgb, #5a3a20 70%, var(--act-a)); }
+.ti-ridge { fill: none; stroke: color-mix(in srgb, #4a2e18 70%, var(--act-a)); stroke-width: 0.9; opacity: 0.7; }
+
+.ti-shade { filter: brightness(0.6); }
+.ti-back { filter: brightness(0.5); }
+.ti-top { filter: brightness(1.25); }
+.ti-gold-hi { fill: color-mix(in srgb, var(--ti-gold) 80%, #fff3d2); opacity: 0.75; }
+.ti-ink { fill: var(--ti-ink); }
+.ti-blue { fill: var(--ti-blue); }
+.ti-purple { fill: var(--ti-purple); }
+.ti-scarlet { fill: var(--ti-scarlet); }
+.ti-linen { fill: var(--ti-linen); }
+.ti-silver { fill: color-mix(in srgb, #c9ccd6 70%, var(--act-a)); }
+.ti-bread { fill: color-mix(in srgb, #d9a865 70%, var(--act-a)); stroke: color-mix(in srgb, #5a3a1c 70%, var(--act-a)); stroke-width: 0.6; }
+.ti-grate { fill: color-mix(in srgb, var(--ti-bronze) 30%, #050306); opacity: 0.85; }
+.ti-water { fill: color-mix(in srgb, var(--act-accent) 30%, #8fb4c8); opacity: 0.75; }
+.ti-gem { fill: var(--c); stroke: color-mix(in srgb, var(--ti-gold) 70%, #fff); stroke-width: 0.5; }
+.ti-onyx { fill: #3a3644; stroke: #a9a4b8; stroke-width: 0.4; }
+.ti-plate { font-family: var(--font-serif); font-size: 5px; font-weight: 700; letter-spacing: 0.4px; fill: color-mix(in srgb, var(--ti-gold) 25%, #1a1006); }
+.ti-weave { opacity: 0.95; }
+.ti-goat { fill: color-mix(in srgb, #3a3029 80%, var(--act-a)); }
+.ti-ram { fill: color-mix(in srgb, #8e2e28 75%, var(--act-a)); }
+.ti-skin { fill: color-mix(in srgb, var(--act-b) 45%, #0d0a0c); }
+.ti-sand { fill: color-mix(in srgb, var(--act-accent) 16%, var(--act-b)); }
+.ti-cloud { opacity: 0.8; filter: blur(4px); }
+.ti-stone { fill: color-mix(in srgb, var(--act-b) 45%, #2a2830); }
+.ti-cane rect { fill: color-mix(in srgb, #9a6a3a 65%, var(--act-a)); }
+.ti-myrrh path { fill: color-mix(in srgb, #b8642c 70%, var(--act-a)); }
+
+/* 살아 있는 것: 불꽃, 연기, 물빛, 반짝임 */
+.ti-flame__halo { fill: #f6b85a; opacity: 0.22; }
+.ti-flame__out { fill: #f2a24c; }
+.ti-flame__in { fill: #fff0c4; }
+.ti-flame > * { transform-box: fill-box; transform-origin: 50% 100%; animation: ti-flame 1.5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ti-flame__halo { transform-origin: 50% 50%; animation-name: ti-halo; }
+@keyframes ti-flame { 0% { transform: scale(1, 1) skewX(0deg); } 50% { transform: scale(0.9, 1.14) skewX(5deg); } 100% { transform: scale(1.05, 0.9) skewX(-4deg); } }
+@keyframes ti-halo { 0% { transform: scale(1); opacity: 0.2; } 100% { transform: scale(1.18); opacity: 0.3; } }
+.ti-ember { fill: #f08a3a; opacity: 0.5; filter: blur(1.5px); animation: ti-ember 3s ease-in-out infinite alternate; }
+@keyframes ti-ember { to { opacity: 0.8; } }
+.ti-shine { animation: ti-ember 5s ease-in-out infinite alternate; opacity: 0.6; }
+.ti-wisp, .ti-smoke path {
+  fill: none; stroke: color-mix(in srgb, var(--ivory) 70%, var(--act-accent)); stroke-width: 2; stroke-linecap: round;
+  stroke-dasharray: 0.3 0.7; opacity: 0.45; filter: blur(0.6px);
+  animation: ti-rise 5s linear infinite; animation-delay: calc(var(--d, 0s) * -1);
+}
+.ti-smoke path { stroke-width: 2.6; stroke-dasharray: 0.55 0.45; opacity: 0.5; animation-duration: 7s; }
+.ti-smoke path.is-thin { stroke-width: 1.2; opacity: 0.3; animation-duration: 9s; }
+@keyframes ti-rise { from { stroke-dashoffset: 1; } to { stroke-dashoffset: -0; } }
+.ti-smoke { transform-box: fill-box; transform-origin: 50% 100%; animation: ti-sway 9s ease-in-out infinite alternate; }
+.ti-sway { transform-box: fill-box; transform-origin: 50% 0; animation: ti-sway 8s ease-in-out infinite alternate; }
+@keyframes ti-sway { from { transform: skewX(-1.2deg); } to { transform: skewX(1.2deg); } }
+.ti-spark { fill: #fffbe8; opacity: 0; animation: ti-spark 3.6s ease-in-out infinite; animation-delay: calc(var(--d, 0s) * -1); }
+@keyframes ti-spark { 0%, 100% { opacity: 0; } 50% { opacity: 0.85; } }
+.ti-drop { fill: color-mix(in srgb, var(--act-accent) 60%, #fff3c8); animation: ti-drop 4.5s ease-in infinite; }
+@keyframes ti-drop { 0%, 40% { opacity: 0; transform: translateY(0); } 50% { opacity: 1; transform: translateY(0); } 90% { opacity: 0.8; transform: translateY(26px); } 100% { opacity: 0; transform: translateY(30px); } }
+.ti-glint { fill: #fff8e0; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ti-glint 5.5s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes ti-glint { 0%, 70%, 100% { opacity: 0; scale: 0.3; } 80% { opacity: 1; scale: 1; } 90% { opacity: 0.2; scale: 0.6; } }
+
+/* 하나님의 목소리가 무대 가운데 뜰 때는 기구를 물린다 */
+.scene:has(.play__voice:not([hidden])) .ti.is-on { opacity: 0.22; }
+
+/* ── 기구가 떠 있으면 인물은 양옆으로 비켜선다 (제단 배경의 spread와 같은 방식) ── */
+@media (max-width: 767px) {
+  .play[data-item] .stage { justify-content: space-between; --slot: 34cqw; }
+  .play[data-item] .stage[data-count='1'] { justify-content: flex-end; --slot: 40cqw; }
+  .play[data-item] .stage[data-count='3'] { --slot: 30cqw; }
+  .play[data-item] .stage[data-count='4'] { --slot: 23cqw; }
+  .play[data-item] .stage[data-count='5'] { --slot: 18.5cqw; }
+  .play[data-item] .stage[data-count='6'] { --slot: 15.5cqw; }
+}
+@media (min-width: 768px) {
+  .ti { width: min(36%, 50vh); top: 6%; }
+  .play[data-item] .stage[data-count='1'] { justify-content: flex-end; padding-right: 12%; }
+  .play[data-item] .stage[data-count='2'] { gap: 40%; }
+  .play[data-item] .stage[data-count='3'] { gap: 14%; }
+}
+
+/* 장면 처음·다시 보기·화면 전환 뒤: 연출 없이 바로 */
+.ti.is-instant, .ti.is-instant * { transition: none !important; }
+
+/* 모션 줄이기: 짧은 페이드만. 테두리는 처음부터 그어져 있고, 불꽃·연기·반짝임은 멈춘다 */
+:root[data-reduced-motion='true'] .ti { transform: none; transition: opacity 0.4s; }
+:root[data-reduced-motion='true'] .ti.is-out { transition: opacity 0.3s; }
+:root[data-reduced-motion='true'] .ti :is(.ti-body, .ti-live, .ti__label, .ti__light, .ti__floor) { transition: opacity 0.4s; transform: none; }
+:root[data-reduced-motion='true'] .ti::before { transition: opacity 0.4s; }
+:root[data-reduced-motion='true'] .ti .ti-line { stroke-dasharray: none; transition: none; }
+:root[data-reduced-motion='true'] .ti :is(.ti-edges, .ti__light, .ti-flame > *, .ti-ember, .ti-shine, .ti-wisp, .ti-smoke, .ti-smoke path, .ti-sway, .ti-spark, .ti-drop, .ti-glint) { animation: none !important; }
+:root[data-reduced-motion='true'] .ti :is(.ti-glint, .ti-drop) { opacity: 0; }

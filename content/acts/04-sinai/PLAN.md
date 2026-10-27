@@ -35,7 +35,12 @@
 | exo-39-garments | 출 39 | 다 만들고 모세가 보니 |
 | exo-40-glory | 출 40 | 구름이 회막을 덮고 |
 
-- **성막 장(출 25–31, 35–40)**: 성막 기구를 하나씩 보여 주는 연출 (`fx`의 성막 기구 그림 — 엔진에 추가).
+- **성막 장(출 25–31, 35–40)**: 성막 기구를 하나씩 보여 주는 연출 — 엔진에 추가됨 (CLAUDE.md 6번 "성막 기구").
+  - beat에 `"item": "ark"` → 금빛 조명 속에 그 기구가 떠오름(이름표 포함). 다른 이름을 쓰면 바뀌고, `"item": null`이면 걷힘. `"fx": "fade"`·에피소드 끝에서 저절로 걷힘.
+  - 이름: `ark` `table` `lampstand` `altar` `laver` `incense` `tent` `veil` `garments` `court` `tablets` `oil`
+  - 장별 추천: 25 → ark·table·lampstand / 26 → tent·veil / 27 → altar·court / 28·39 → garments / 30 → incense·laver·oil / 31 → tablets(31:18) / 37–38 → 만드는 순서대로 / 40 → court → tent
+  - 기구가 떠 있는 동안 인물은 2명까지. 기구 하나에 beat 2~4개(설명 서술 + 본문 카드) 머무르게.
+  - 미리 보기: `#/items/<이름>`
 
 ## 레위기 (다음 차례)
 - 27장 전부 B급 + A급 후보: 레 10(나답·아비후의 다른 불), 레 16(속죄일, 아사셀 염소).

@@ -4,7 +4,7 @@
 //  - ref가 실제 본문에 있는 구절인지, 그 막의 범위 안인지
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
 //  - 에피소드: 선택지 canon 하나, goto 대상, 인물 파일(또는 extras), 본문 구절 1개 이상, mood·bg 이름, fx 이름,
-//    face 방향, outfit 옷 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름,
+//    face 방향, outfit 옷 이름, 성막 기구(item) 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름,
 //    해설·한 줄 요약, 품질 기준(본문 카드 2~4개 + 한 줄 번역, 동작·배경 변화, 글만 이어지는 구간) — 퀴즈는 없음
 //  - B급: 선택지 최대 1개, 품질 기준은 오류로(A급은 주의), 새 인물 파일 없이(키트 extras·기존 인물만) — CLAUDE.md 6번
 //  - 도감(data/characters.json): 인물 파일, first·verse 구절, scene, unlocks 인물이 도감에 있는지
@@ -15,6 +15,7 @@ import { BOOKS, findBook } from '../src/engine/books.ts';
 import { ACTS } from '../src/engine/acts.ts';
 import { FX, MOODS } from '../src/engine/moods.ts';
 import { ACTIONS, PLACE_NAMES } from '../src/engine/actions.ts';
+import { ITEMS } from '../src/engine/items.ts';
 import { BASES, BEARDS, HAIRS, PROPS, TINTS } from '../src/characters/_kit.ts';
 
 const root = new URL('..', import.meta.url).pathname;
@@ -183,7 +184,7 @@ function checkScene(s, where) {
   if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
-  const scenery = (b) => b.bg || b.mood || b.fx;
+  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined;
   const motion = main.filter(moves).length;
   const changes = main.filter(scenery).length;
   let still = 0;
@@ -206,7 +207,7 @@ function checkScene(s, where) {
   checkOutfit(s.outfit);
   for (const b of all) {
     if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
-    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg) warn(where, 'type도 act도 없는 빈 beat');
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined) warn(where, 'type도 act도 없는 빈 beat');
     checkMood(b.mood);
     checkMood(b.bg);
     checkOutfit(b.outfit);
@@ -228,6 +229,7 @@ function checkScene(s, where) {
       if (info.needs === 'two' && who.length + (st.to ? 1 : 0) < 2) err(where, `동작 "${st.act}"는 두 사람이 필요함 (who 둘, 또는 who + to)`);
     }
     for (const f of b.fx == null ? [] : [b.fx].flat()) if (!FX.includes(f)) err(where, `fx "${f}"가 src/engine/moods.ts FX 목록에 없음`);
+    if (b.item !== undefined && b.item !== null && b.item !== 'none' && !(b.item in ITEMS)) err(where, `성막 기구 item "${b.item}"가 src/engine/items.ts에 없음 (${Object.keys(ITEMS).join('/')}, 걷기는 null 또는 "none")`);
     for (const [c, dir] of Object.entries(b.face ?? {})) {
       people.add(c);
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);

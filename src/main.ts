@@ -12,6 +12,7 @@ import './styles/title.css';
 import './styles/map.css';
 import './styles/play.css';
 import './styles/library.css';
+import './styles/tabernacle.css';
 import './styles/codex.css';
 
 import { applySettings, settings } from './engine/settings';
@@ -22,6 +23,7 @@ import { mapScreen } from './screens/map';
 import { sceneScreen } from './screens/scene';
 import { finaleScreen } from './screens/finale';
 import { peopleScreen } from './screens/people';
+import { itemsScreen } from './screens/items';
 import { closeSheet } from './ui/sheet';
 
 applySettings();
@@ -41,6 +43,9 @@ route('/scene/:id', sceneScreen);
 route('/finale/:act', finaleScreen);
 route('/people', peopleScreen);
 route('/people/:id', peopleScreen);
+// 숨은 확인용: 성막 기구 라이브러리 미리 보기 (지도에 연결 안 함)
+route('/items', itemsScreen);
+route('/items/:id', itemsScreen);
 // 다른 화면으로 넘어가면 열려 있던 패널은 닫는다
 window.addEventListener('hashchange', closeSheet);
 // 예전 읽기 구간 주소(#/read/gen-5)는 같은 id의 에피소드(#/scene/gen-5)로 바꿔 연다
