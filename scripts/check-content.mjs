@@ -178,7 +178,9 @@ function checkScene(s, where) {
   const main = s.beats ?? [];
   const cards = main.filter((b) => b.type === 'scripture');
   if (cards.length < 2) err(where, `본문 카드(scripture)가 ${cards.length}개 — 2~4개`);
-  if (cards.length > 4) warn(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
+  // 1막 A급 10개는 기준 전에 만들어서 카드가 더 많음 — 그대로 둠 (CLAUDE.md 6-1)
+  const legacy = !B && s.act === 1;
+  if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
   const scenery = (b) => b.bg || b.mood || b.fx;

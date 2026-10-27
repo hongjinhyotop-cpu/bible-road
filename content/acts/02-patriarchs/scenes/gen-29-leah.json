@@ -10,10 +10,10 @@
     "shepherd1": { "name": "하란 목자", "base": "man", "hair": "hood", "beard": "short", "props": ["crook"], "tint": "brown" },
     "shepherd2": { "name": "젊은 목자", "base": "youth", "hair": "short", "props": ["crook", "lamb"], "tint": "gray" },
     "laban": { "name": "라반", "base": "old-man", "hair": "tied", "beard": "gray", "tint": "gold" },
-    "reuben": { "name": "르우벤", "base": "child", "tint": "red" },
+    "baby-reuben": { "name": "르우벤", "base": "child", "tint": "red" },
     "simeon": { "name": "시므온", "base": "child", "tint": "brown" },
     "levi": { "name": "레위", "base": "child", "tint": "white" },
-    "judah": { "name": "유다", "base": "child", "tint": "gold" }
+    "baby-judah": { "name": "유다", "base": "child", "tint": "gold" }
   },
   "beats": [
     { "type": "narration", "act": "travel", "from": "bethel", "via": ["damascus"], "to": "haran", "text": "야곱은 다시 발을 떼었다. 동방 사람의 땅으로. 베개 삼았던 돌을 기둥으로 세워 두고 온 길이었다." },
@@ -26,7 +26,6 @@
     { "type": "line", "who": "shepherd1", "act": "turn", "text": "“그렇게는 못 하오. 떼가 다 모이고, 돌을 같이 옮겨야 물을 먹이지.”" },
     { "type": "narration", "act": "walk-in", "who": "rachel", "text": "그 말이 끝나기 전에, 라헬이 아버지의 양 떼를 몰고 왔다. 그녀는 양 치는 사람이었다." },
     { "type": "narration", "act": "approach", "who": "jacob", "to": "rachel", "fx": "shake", "text": "야곱은 나아갔다. 그리고 그 돌을 굴렸다. 혼자서. 목자들이 다 같이 굴린다던 돌이었다. 사랑은 사람을 힘세게 만든다. 적어도, 보는 사람이 있을 때는." },
-    { "type": "scripture", "ref": "창 29:10", "gloss": "라헬 보자마자 야곱이 우물 뚜껑 돌을 혼자 굴려 버리고 외삼촌 양들한테 물 먹임. 다들 모여야 옮기는 돌이었는데 ㅋㅋ 첫눈에 반하면 헬스 3대 500 됨." },
     { "type": "narration", "act": "cry", "who": "jacob", "text": "그는 라헬에게 입 맞추고, 소리 내어 울었다. 형을 피해 도망친 사람이었다. 지팡이 하나로 온 길 끝에서, 처음으로 피붙이를 만난 것이었다." },
     { "type": "line", "who": "jacob", "act": "stand", "text": "“나는 그대 아버지의 생질이오. 리브가의 아들이오.”" },
     { "type": "narration", "act": "walk-out", "who": "rachel", "exit": ["shepherd1", "shepherd2"], "text": "라헬은 달려갔다. 그리고 라반이 달려왔다. 이 집안 사람들은 손님이 오면 늘 달린다. 오래전, 누이의 손목에서 금고리를 보았을 때도 라반은 우물로 달려 나갔었다." },
@@ -61,11 +60,11 @@
     { "type": "narration", "act": "stand", "who": "jacob", "text": "야곱은 그대로 했다. 이레를 채웠고, 라헬도 아내로 맞았다. 라반은 여종 빌하를 라헬에게 시녀로 주었다. 그리고 야곱은 칠 년을 더 섬겼다. 이번 칠 년에는, 며칠 같았다는 말이 없다." },
     { "type": "narration", "bg": "tent", "fx": ["fade", "glory"], "exit": ["laban"], "enter": ["leah", "rachel"], "text": "야곱은 레아보다 라헬을 더 사랑했다. 그 장막 사이를, 여호와께서 보고 계셨다." },
     { "type": "scripture", "ref": "창 29:31", "gloss": "하나님은 사랑 못 받는 레아를 보시고 아이를 주심. 남편은 안 봐 줘도 하나님은 보고 계셨음. 반대로 사랑받는 라헬은 아이가 없었음." },
-    { "type": "line", "who": "leah", "exit": ["jacob"], "acts": [{ "act": "walk-in", "who": "reuben" }], "text": "“르우벤. 여호와께서 내 괴로움을 돌아보셨어. 이제는 내 남편이 나를 사랑하겠지.”" },
+    { "type": "line", "who": "leah", "exit": ["jacob"], "acts": [{ "act": "walk-in", "who": "baby-reuben" }], "text": "“르우벤. 여호와께서 내 괴로움을 돌아보셨어. 이제는 내 남편이 나를 사랑하겠지.”" },
     { "type": "line", "who": "leah", "acts": [{ "act": "walk-in", "who": "simeon" }], "text": "“시므온. 내가 사랑받지 못하는 걸 여호와께서 들으셨어. 그래서 이 아이도 주셨어.”" },
     { "type": "line", "who": "leah", "acts": [{ "act": "walk-in", "who": "levi" }], "text": "“레위. 아들을 셋이나 낳았으니까, 이제는 남편이 나랑 붙어 있겠지.”" },
     { "type": "narration", "act": "look-up", "who": "leah", "text": "넷째가 태어났을 때, 레아는 처음으로 남편 이야기를 하지 않았다." },
-    { "type": "line", "who": "leah", "acts": [{ "act": "walk-in", "who": "judah" }], "text": "“유다. 이제는… 내가 여호와를 찬송하리라.”" },
+    { "type": "line", "who": "leah", "acts": [{ "act": "walk-in", "who": "baby-judah" }], "text": "“유다. 이제는… 내가 여호와를 찬송하리라.”" },
     { "type": "scripture", "ref": "창 29:35", "gloss": "앞의 세 아들 이름은 전부 ‘이제 남편이 날 봐 주겠지’였는데, 넷째 유다에서 처음으로 남편 얘기가 빠짐. “이제는 여호와를 찬송할래.” 읽씹 기다리다가 결국 폰 내려놓은 느낌." },
     { "type": "narration", "act": "bow-head", "who": "rachel", "text": "보다, 듣다, 붙다, 찬송하다. 네 아이의 이름이 한 여자의 몇 해를 그대로 적고 있었다. 마지막 이름에 이르러서야, 그녀는 기다리기를 그쳤다. 적어도 그때는. 그리고 그 곁에서, 사랑받는 동생의 장막은 조용했다." }
   ],

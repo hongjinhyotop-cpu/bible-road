@@ -16,7 +16,6 @@
     { "type": "narration", "act": "travel", "from": "egypt", "via": ["beersheba", "hebron"], "to": "bethel", "text": "아브람은 남방을 거쳐 벧엘까지 올라갔다. 벧엘과 아이 사이, 전에 장막을 쳤던 그 자리였다." },
     { "bg": "tent", "fx": "fade", "act": "pray", "who": "abraham" },
     { "type": "narration", "fx": "fire", "text": "처음으로 단을 쌓았던 곳이었다. 그는 거기서 다시 여호와의 이름을 불렀다. 길을 잃은 사람이 할 수 있는 가장 현명한 일은, 마지막으로 길이 보였던 곳으로 돌아가는 것이다." },
-    { "type": "scripture", "ref": "창 13:3-4", "gloss": "아브람이 애굽 사건 이후 처음 단 쌓았던 벧엘로 돌아가서 다시 여호와 이름을 부름. 망한 판 끝나고 초심으로 돌아가는 거임. 리셋." },
     { "type": "narration", "act": "stand", "who": "abraham", "exit": ["sarah"], "text": "문제는 신앙이 아니라 숫자였다. 아브람에게도 가축이 많았고, 롯에게도 양과 소와 장막이 많았다. 땅은 하나였다. 풀은 그만큼 넉넉하지 않았다." },
     { "bg": "pasture", "fx": "fade", "exit": ["abraham", "lot"], "enter": ["herder1", "herder2"] },
     { "type": "line", "who": "herder2", "act": "approach", "to": "herder1", "text": "“이 우물은 우리 쪽 양이 먼저 마시는 거요.”" },

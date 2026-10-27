@@ -34,7 +34,7 @@
     { "type": "line", "who": "ham", "enter": ["ham", "shem", "japheth"], "text": "“이걸… 진짜 우리 식구끼리 다 짓는 거야?”" },
     { "type": "line", "who": "shem", "text": "“못 지을 건 또 뭐야.”" },
     { "type": "line", "who": "ham", "text": "“동네에서 우리 집을 뭐라고 부르는지 알아? 마른 땅에서 노 젓는 집.”" },
-    { "type": "line", "who": "japheth", "text": "“…노는 없잖아.”" },
+    { "type": "line", "who": "japheth", "act": "face", "to": "ham", "text": "“…노는 없잖아.”" },
     { "type": "line", "who": "ham", "text": "“그러니까 더 웃기다는 거지.”" },
     { "type": "narration", "text": "방주에는 노도 돛도 키도 없었다. 받은 설계에 그런 건 없었다. 어디로 갈지는, 짓는 사람이 정하는 배가 아니었다." },
     {
