@@ -58,7 +58,8 @@ let base = '';
 function mapArt(): string {
   if (base) return base;
   const sea = [at(29, 36.4), at(31, 36.6), at(33, 36.2), at(34.6, 36.8), at(36.1, 36.6), at(35.8, 35.6), at(35.9, 35.0), at(35.5, 34.1), at(35.1, 33.1), at(34.95, 32.6), at(34.6, 31.8), at(34.25, 31.3), at(33.2, 31.15), at(32.3, 31.25), at(31.6, 31.55), at(30.6, 31.45), at(29.6, 31.15), at(29, 31.0)];
-  const seaPath = `M0 0 L${sea.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(' L')} L0 ${at(29, 31)[1]} Z`;
+  // 바다는 지도 왼쪽 끝 너머(-300)까지 이어 그린다 (넓은 화면에서 끝이 보이지 않게)
+  const seaPath = `M-300 ${at(29, 36.4)[1]} L${sea.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(' L')} L-300 ${at(29, 31)[1]} Z`;
   const line = (pts: [number, number][]) => `M${pts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join(' L')}`;
   const nile = line([at(31.25, 31.4), at(31.2, 30.6), at(31.25, 30.0), at(31.0, 29.0), at(30.8, 27.8), at(31.3, 26.6), at(32.6, 25.6)]);
   const delta = `${line([at(31.25, 30.6), at(30.4, 31.4)])} ${line([at(31.25, 30.6), at(32.0, 31.35)])}`;

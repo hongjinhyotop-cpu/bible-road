@@ -7,8 +7,8 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **Phase 1 끝 — 1막 태초 완성** (11 / 11장, 장면 10개 + 읽기 3개, 피날레·도감까지). 2막 읽기 구간 일부는 다른 채팅이 먼저 만들어 둠 |
-| 다음 세션 할 일 | **Phase 2 — 2막 족장들: 여정 지도 mechanic + 첫 장면 `gen-12-call`** (아래 "다음 할 일" 1번, `content/acts/02-patriarchs/PLAN.md`) |
+| 현재 단계 | **방향 전환 완료 (아홉 번째 채팅): 애니메이션 최대·속도 최대.** 읽기 구간·막별 게임 방식 없앰 → 모든 장 = 캐릭터 에피소드(A급/B급). 연출 라이브러리 완성. 1막 13개(A 10·B 3), 2막 B급 15개 |
+| 다음 세션 할 일 | **2막 채우기:** ① B급 창 31–50 남은 장 10~20개를 도우미로 한 번에 ② A급 `gen-12-call`부터 (아래 "다음 할 일") |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
 | 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) |
@@ -270,16 +270,48 @@
 
 ---
 
-## 다음 할 일
+## 아홉 번째 채팅 (2026-10-27): 방향 전환 — 연출 라이브러리 + B급 에피소드
 
-### 1. Phase 2 — 2막 족장들 ← 다음 세션은 이것부터
-- 계획서: `content/acts/02-patriarchs/PLAN.md` (장면 15개 목록·ref, 읽기 구간은 상당수 이미 있음).
-- **여정 지도 mechanic** (`src/mechanics/journey`): 우르 → 하란 → 가나안 … 이동 경로를 고지도 위에 그리는 방식. `act.json mechanic: "journey"`.
-- 첫 장면 `gen-12-call` 「떠나라」(창 12:1-9). 아브람·사래·롯 인물. 1막 피날레 후 지도의 다음 별(창 12–50)이 여기로 이어짐.
-- 2막 테마 색(양피지·장막·별밤) 배경 그림 새로.
-- 하나님은 인물로 그리지 않는다 (빛·불꽃·구름·화면 진동·목소리 텍스트로만).
+사용자 요청: "애니메이션 최대, 속도 최대". 모든 장을 캐릭터가 나오는 에피소드로, 읽기 구간·막별 게임 방식 삭제, 인터랙션 최소(탭·선택지 최대 1개·끝 퀴즈 1~2), 본문은 핵심 구절 카드 + "본문 전체 보기". CLAUDE.md 1·2·4·6·8-1·9·10·11번을 새 방향으로 고침 (작업 속도 규칙 포함).
+
+### 엔진
+- **에피소드 하나로 통일**: 읽기 화면(`screens/reading.ts`, `engine/reading.ts`, `reading.css`) 삭제. 예전 주소 `#/read/<id>`는 `#/scene/<id>`로 이어짐. 예전에 읽기를 끝낸 기록(`progress.readings`)도 같은 id 에피소드 완료로 인정. `act.json`·`acts.ts`의 mechanic 삭제 (지도 막 제목 아래엔 막 분위기 문구).
+- **B급 형식** (`engine/scene.ts`, CLAUDE.md 6번): `grade`, `bg`(=mood), `extras`(키트 조연), `names`(이름표 바꾸기), `quiz`, beat의 `act`/`who`/`to`/`from`/`via`/`acts`, type 없는 beat = 동작만 하고 저절로 넘어감(탭하면 바로).
+- **동작 라이브러리** `engine/actions.ts` (이름·설명·누가 필요한지·기다리는 시간) → 구현 `ui/actor.ts`
+  - 한 사람: kneel, pray, prostrate, bow-head, look-up, bless, cry(들썩임 계속), sleep, fall(절제), step-back, turn, stand. 무릎 꿇기 = 다리를 아래에서 접고 상체를 내림.
+  - 두 사람·무대: walk-in/walk-out(옆에서 걸어 들어옴/나감, 걸음마다 살짝 오르내림), leave(지평선 쪽으로 작아지며 멀어짐), face, approach, embrace, part, argue.
+  - 누가 들어오고 나가면 남은 사람들이 새 자리로 미끄러지듯 옮겨 감 (FLIP, 전엔 순간이동).
+  - B급은 `enter` = 걸어 들어옴, `exit` = 걸어 나감이 기본.
+- **군중** `fx/crowd.ts`: crowd / crowd-cheer / crowd-murmur / crowd-bow / crowd-away.
+- **여정 지도** `fx/travel.ts`: 옛 지도(지중해·나일·유브라데·티그리스·요단·사해)가 무대 위로 펼쳐지고 from → via → to 금빛 길이 그어지며 작은 불빛이 따라감. 경로에 맞춰 확대, 화면 비율에 맞춰 범위 조정, 이름표 겹치면 경유지 이름은 생략. 장소 40여 개(`PLACE_NAMES`).
+- **배경 라이브러리** `fx/places.ts` + `moods.ts PLACES`: tent, well, wilderness, town, palace, temple, sea, starfield, mountain, road, river, house, prison, oaks, cave, ruins, pasture, egypt — 각각 `-dusk`/`-night`/`-dawn`. 막 색을 따라가서 막마다 다른 색. 폰에서 보이는 가운데(x 110~290)에 장소를 알아볼 것을 둠. 새 색조 `night`(어두운 하늘 + 별 입자). 막 기본 배경 `ACT_BG`.
+- **효과 라이브러리** (FX 추가): glory(하나님 임재 금빛), fire, stars, dust, fade(화면 전환 — 까맣게 닫힌 사이 배경·인물 교체), thunder, rain-start/stop.
+- **인물 키트** `characters/_kit.ts`: base 10종 × 머리 11 × 수염 4 × 소품 15 × 옷 색 8. `person({...})` 한 줄로 인물 파일, 장면 `extras`로 그 자리 조연. `CharacterDef.tint`, 왕관·흉패 금빛(`.crown`).
+- **끝 퀴즈** `ui/quiz.ts`: 마지막 beat 뒤 독 안에서 1~2문제 → 해설 카드에 점수. 숫자키 OK.
+- **본문 전체 보기** `ui/passage.ts`: 머리줄 책 아이콘 + 끝 카드 버튼. 에피소드 ref 전체(개역한글)를 패널로, 카드로 나온 구절은 금빛.
+- **검사기** `check-content.mjs`: readings 폴더 남아 있으면 오류, 동작 이름·대상·여정 장소, 배경, extras 키트 이름, 퀴즈, B급 규칙(선택지 ≤1, 퀴즈 필수, 새 인물 파일 금지 → extras), 막별 A/B 개수.
+
+### 콘텐츠
+- **읽기 18개 → B급 에피소드** (도우미 5명 동시): 1막 `gen-5`, `gen-10-nations`, `gen-11-shem-to-abram` / 2막 `gen-12-egypt`, `gen-13-lot`, `gen-14-melchizedek`, `gen-16-hagar`, `gen-17-covenant`, `gen-19-cave`, `gen-20-gerar`, `gen-21-isaac`, `gen-23-machpelah`, `gen-24-rebekah`(표본, 직접 씀), `gen-25-abraham-dies`, `gen-26-wells`, `gen-28-sent`, `gen-29-leah`, `gen-30-sons`. 각 20~45 beat, 본문 카드 3~6장, 퀴즈 2문제.
+- **1막 A급 10개에 끝 퀴즈 2문제씩** 추가 (도우미). A급의 선택지 2~3개는 그대로 둠 (방향 전환 전에 완성된 것).
+- **2막 기본 인물 9명** (키트, 임시): abraham(두건·센 수염·겉옷·지팡이), sarah(너울·보라), lot(봇짐·청색), isaac(두건·목자 지팡이), rebekah(어깨 항아리), jacob(묶은 머리·지팡이·초록), esau(덥수룩·활·붉은 옷), rachel(풀어 내린 머리·목자 지팡이), leah(너울·등잔). 도감 `data/characters.json`에도 추가.
+- 2막 `PLAN.md`를 A급/B급 기준으로 고침.
+
+### 확인
+- 폰 390px: `gen-24-rebekah` 끝까지(지도·우물·포옹·퀴즈), `gen-29-leah`(6명 무대), `gen-17-covenant`(엎드림), `gen-5`, 1막 `gen-7-flood`(회귀 확인). 배경 18종 갤러리. PC 1440px: `gen-24-rebekah` 여정 지도. 콘솔 에러 없음. `npm run build` 통과 (검사기 오류 0, 주의 0).
 
 ---
+
+## 다음 할 일
+
+### 1. 2막 채우기 ← 다음 세션
+- **B급 창 31–50** (PLAN.md "나중에 만들 것" 목록) — 도우미 여러 명으로 한 세션에. 도우미 지시문은 이번 세션 방식 그대로: CLAUDE.md 6·7·7-1 + 표본 `gen-24-rebekah.json` + 개역한글 직접 읽기 + 검사기 통과.
+- **A급** `gen-12-call` 「떠나라」부터 (PLAN.md 표 15개). 키트 인물(아브라함 등)을 A급에서 공들여 다시 그림 (그림 수정 2번까지).
+- A급을 만들 때 그 앞 B급에 bridge 넣기 (PLAN.md 메모).
+
+### 2. 라이브러리 다듬기 (필요할 때)
+- 엎드림·잠듦·쓰러짐은 긴 옷이 상체에 붙어 있어서 크게 못 숙임 → 지금은 "깊이 숙인 절" 정도. 제대로 하려면 옷을 허리 위/아래로 나눠야 함.
+- 여정 지도는 근동 지도 하나뿐. 사도행전(로마까지)은 지도 범위를 넓혀야 함.
 
 ## 알려진 문제 / 다듬을 것
 
@@ -300,14 +332,15 @@
 
 ### 기능 빈칸
 - **소리 없음.** 설정 스위치만 있음. Howler.js·소리 파일은 아직 안 넣음.
-- 장면 중간에 나갔다 오면 그 장면 **처음부터** 다시 시작함 (beat 위치는 저장 안 함).
-- 읽기 구간은 읽던 절은 기억하지만, 퀴즈를 풀다 나가면 퀴즈는 1번부터 다시.
+- 에피소드 중간에 나갔다 오면 그 에피소드 **처음부터** 다시 시작함 (beat 위치는 저장 안 함). 퀴즈 점수도 저장 안 함.
+- 키트 인물은 임시 그림 — 같은 몸틀이라 비슷해 보임 (소품·머리·옷 색으로만 구별).
+- B급 배경은 실루엣이라 어둡고 은은함. 폰에서는 가운데만 보임.
 - 장면을 끝내도 지도의 별은 안 켜짐(별은 그 구간 장이 전부 끝나야 켜짐 — 1막은 별이 하나라 1막을 다 끝내야 켜짐).
 - 이 기능 전에 장면을 끝낸 사람은, 나눠 덮인 장(창 2장)이 다음 장면을 끝낼 때 같이 계산됨 (이미 둘 다 끝냈으면 하나를 다시 끝내야 켜짐).
-- `act.json`의 `mechanic`은 아직 읽는 화면이 없음 (mechanic 모듈 만들 때 씀). `keyVerse`·`finale`은 피날레가 씀. **2막 `act.json`엔 아직 `finale` 문장이 없음** — 2막 끝낼 때 넣기.
+- **2막 `act.json`엔 아직 `finale` 문장이 없음** — 2막 끝낼 때 넣기.
 - 피날레는 막을 다 끝낸 순간 한 번 나옴. 다시 보려면 주소 `#/finale/1` (따로 버튼은 없음).
 - 이미 1막을 다 끝낸 사람(예: 다른 채팅 콘텐츠로 먼저 끝낸 경우)은 다음에 장면·읽기 하나를 끝낼 때 피날레 버튼이 뜸.
-- `content/glosses.json` 한 줄 번역은 70개 구절에만 있음 (장면은 beat마다 `gloss`를 직접 씀).
+- `content/glosses.json` 한 줄 번역은 70개 구절에만 있음 (에피소드는 beat마다 `gloss`를 직접 씀).
 - 지도 패널의 막 분위기 문구(예: "깊은 남색 속에 생겨나는 빛")는 디자인 메모 같은 말투라, 친구 말투로 바꿀지 다음에 결정.
 
 ### 확인 못 한 것
@@ -319,7 +352,7 @@
 
 ## 작업 환경 메모 (다음 Claude에게)
 
-- **스크린샷 확인:** `npm run build && npx vite preview --port 4173`로 띄운 뒤 Playwright로 찍는다. Google Fonts를 받으려면 `chromium.launch({ proxy: { server: process.env.HTTPS_PROXY, bypass: 'localhost' } })`. (cdn.jsdelivr.net은 작업 환경에서 막혀 있어서 Pretendard를 npm으로 넣었음)
+- **스크린샷 확인:** `npm run build && npx vite preview --port 4173`로 띄운 뒤 Playwright로 찍는다. (dev 서버 `npx vite`로 찍어도 됨. Playwright는 `/opt/node22/lib/node_modules/playwright/index.mjs`에서 import. 도우미가 파일을 고치는 중이면 dev 서버가 페이지를 새로고침하니, `@vite/client`를 빈 함수로 바꿔치기(`page.route`)하면 안 흔들림) Google Fonts를 받으려면 `chromium.launch({ proxy: { server: process.env.HTTPS_PROXY, bypass: 'localhost' } })`. (cdn.jsdelivr.net은 작업 환경에서 막혀 있어서 Pretendard를 npm으로 넣었음)
 - **preview 서버 끄기:** `pkill -f "vite preview"`는 쓰지 마. 자기 셸까지 죽는다. 대신 `ps -eo pid,args | grep "[v]ite" | awk '{print $1}' | xargs -r kill`.
 - **기다리기:** `sleep`이 막혀 있음. `timeout 45 tail -f /dev/null` 사용.
 - **preview 주소:** `npx vite preview`는 `http://localhost:4173/#/...`로 열림 (`/bible-road/` 아님 — 빌드가 상대 경로라서). preview를 백그라운드로 띄울 땐 Bash의 run_in_background를 쓰는 게 안전함.
