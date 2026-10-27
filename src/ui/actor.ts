@@ -183,15 +183,16 @@ export class Actor {
       case 'prostrate':
         settle();
         this.kneel(true);
-        to(p.upper, { rotation: 62 }, 1.4);
-        to(p.head, { rotation: 14 }, 1.4);
+        // 긴 옷이 상체에 붙어 있어서 크게 숙이면 옷자락이 들린다 → 상체는 조금, 고개는 깊게
+        to(p.upper, { rotation: 22 }, 1.4);
+        to(p.head, { rotation: 34 }, 1.4);
         to(p.armL, { rotation: -40, y: 0 }, 1.4);
         return true;
       case 'sleep':
         settle();
         this.kneel(true);
-        to(p.upper, { rotation: 74 }, 1.8);
-        to(p.head, { rotation: -6 }, 1.8);
+        to(p.upper, { rotation: 18 }, 1.8);
+        to(p.head, { rotation: 30 }, 1.8);
         to(p.armL, { rotation: -20, y: 0 }, 1.8);
         gsap.to(this.el, { filter: 'brightness(0.7)', duration: d(1.8) });
         return true;
@@ -199,8 +200,8 @@ export class Actor {
         // 절제된 쓰러짐: 무릎이 꺾이고, 상체가 앞으로 기울고, 빛이 빠진다. 바닥에 나뒹굴지 않는다
         settle();
         this.kneel(true, 1.4);
-        to(p.upper, { rotation: 38 }, 2);
-        to(p.head, { rotation: 26 }, 2);
+        to(p.upper, { rotation: 20 }, 2);
+        to(p.head, { rotation: 30 }, 2);
         to(p.armL, { rotation: 6, y: 4 }, 2);
         gsap.to(this.el, { filter: 'brightness(0.38)', duration: d(2.2), ease: 'power2.in' });
         return true;

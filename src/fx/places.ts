@@ -1,7 +1,8 @@
 // B급 에피소드용 배경 라이브러리 (장소 유형). 목록·설명은 engine/moods.ts의 PLACES.
 // 1막 배경과 같은 종이 오려낸 그림자극 말투: 멀수록 하늘색(bd-far), 가까울수록 어두운 잉크(bd-near).
 // 색은 전부 막 테마 변수에서 나오므로, 같은 그림이 막마다 다른 색으로 재사용된다.
-// 가운데(x 130~270)는 인물이 서는 자리라 낮게 비워 두고, 큰 것은 양옆이나 멀리 둔다.
+// 폰(세로 화면)에서는 그림 가운데 x 110~290만 보인다 → 장소를 알아볼 것(장막·산·우물 …)은 이 안에 두고,
+// 인물이 서는 가운데 아래는 낮게 비워 둔다. PC(가로 화면)에서는 양옆(-400~800)까지 보이니 거기도 채운다.
 // 주의: backdrop.ts와 서로 불러오므로, 여기서는 맨 위에서 그림 함수를 바로 부르지 않는다 (함수 안에서만).
 import type { PlaceArt } from '../engine/moods';
 import { H, W, WIDE_SIDES, city, hills, palm, reeds, rng, sheep, smoke, tent, thorns, tree, treeline } from './backdrop';
@@ -125,15 +126,15 @@ const SIDE_OAKS = () => `
 export const PLACE_ART: Record<PlaceArt, () => string> = {
   tent: () => `
     ${hills(204, 'bd-far', 401)}
-    ${tree(334, 206, 46, 'bd-far', 402, { sway: true })}
-    ${sheep(90, 205, 403)}${sheep(-160, 207, 404)}
-    ${hills(224, 'bd-mid', 405)}
-    ${tent(300, 226, 0.9)}
-    ${bigTent(46, 246, 1.25)}
-    ${bigTent(-150, 238, 0.9, 'bd-mid')}
-    ${tent(500, 240, 1.2)}
-    ${stones([150, 200, 262, 330], 252, 'bd-near', 406)}
-    ${tree(560, 262, 170, 'bd-near', 407, { lean: -0.2, sway: true })}`,
+    ${tree(258, 206, 40, 'bd-far', 402, { sway: true })}
+    ${sheep(160, 205, 403)}${sheep(-160, 207, 404)}${sheep(520, 206, 408)}
+    ${hills(222, 'bd-mid', 405)}
+    ${bigTent(205, 224, 1.05, 'bd-mid')}
+    ${bigTent(-120, 238, 1.1, 'bd-mid')}${tent(560, 232, 1.1)}
+    ${tent(126, 246, 1.15)}
+    ${bigTent(312, 254, 1.35)}
+    ${stones([170, 236], 254, 'bd-near', 406)}
+    ${tree(-40, 262, 190, 'bd-near', 407, { lean: 0.2, sway: true })}${tree(600, 262, 170, 'bd-near', 409, { lean: -0.2, sway: true })}`,
   well: () => `
     ${hills(206, 'bd-far', 411)}
     ${palm(300, 214, 44, 'bd-far', 412)}${palm(320, 216, 36, 'bd-far', 413)}
@@ -149,12 +150,13 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     <g class="bd-near"><path d="M232 240 L236 230 L270 230 L274 240 Z"/></g>
     ${palm(-80, 262, 120, 'bd-near', 416)}${palm(480, 262, 126, 'bd-near', 417)}`,
   wilderness: () => `
-    ${mesa(60, 212, 70, 34, 'bd-far')}${mesa(330, 214, 90, 26, 'bd-far')}${mesa(-200, 210, 80, 40, 'bd-far')}${mesa(560, 212, 70, 30, 'bd-far')}
+    ${mesa(150, 212, 46, 40, 'bd-far')}${mesa(268, 214, 52, 28, 'bd-far')}${mesa(-120, 210, 80, 40, 'bd-far')}${mesa(520, 212, 70, 30, 'bd-far')}
     ${dunes(226, 'bd-mid', 421)}
-    ${thorns(40, 248, 18, 'bd-near', 422)}${thorns(360, 250, 20, 'bd-near', 423)}${thorns(-90, 246, 22, 'bd-near', 424)}${thorns(500, 248, 20, 'bd-near', 425)}
-    ${stones([110, 290, 20, 420, -140], 254, 'bd-near', 426)}
-    <path class="bd-near" d="M-800 260 L-800 250 C-600 244 -420 252 -300 248 L-240 236 L-200 248 C-60 254 60 250 120 256 L120 260 Z"/>
-    <path class="bd-near" d="M300 260 L300 254 C380 250 440 252 470 238 L520 230 L560 246 C700 252 900 248 1200 250 L1200 260 Z"/>`,
+    ${thorns(122, 250, 18, 'bd-near', 422)}${thorns(284, 252, 20, 'bd-near', 423)}${thorns(-90, 246, 22, 'bd-near', 424)}${thorns(500, 248, 20, 'bd-near', 425)}
+    ${stones([150, 250, 20, 420, -140], 256, 'bd-near', 426)}
+    <path class="bd-near" d="M-800 260 L-800 250 C-600 244 -420 252 -300 248 L-240 236 L-200 248 C-60 254 40 250 112 256 L112 260 Z"/>
+    <path class="bd-near" d="M288 260 L288 254 C330 250 360 252 380 240 L420 232 L460 246 C700 252 900 248 1200 250 L1200 260 Z"/>`
+  + `<path class="bd-ridge" d="M126 182 L170 182 M243 186 L294 186"/>`,
   town: () => `
     ${hills(200, 'bd-far', 431)}
     ${houses(70, 330, 196, 'bd-far', 432)}
@@ -168,10 +170,10 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     ${room('bd-wall', 236)}
     <path class="bd-curtain" d="M${-W * 2} 0 H${W * 3} V18 ${Array.from({ length: 30 }, (_, i) => `Q${-W * 2 + i * 40 + 20} 40 ${-W * 2 + i * 40 + 40} 18`).join(' ')} Z"/>
     ${[-160, -80, 0, 80, 320, 400, 480, 560].map((x) => column(x, 30, 236, 18, 'bd-mid')).join('')}
-    ${column(110, 30, 236, 14, 'bd-far')}${column(290, 30, 236, 14, 'bd-far')}
+    ${column(122, 30, 236, 14, 'bd-mid')}${column(278, 30, 236, 14, 'bd-mid')}
     <g class="bd-mid"><rect x="150" y="196" width="100" height="8"/><path d="M168 196 L168 160 C168 150 232 150 232 160 L232 196 Z"/></g>
     <g class="bd-near"><rect x="${-W * 2}" y="240" width="${W * 5}" height="6"/><rect x="${-W * 2}" y="250" width="${W * 5}" height="6"/></g>
-    ${brazier(40, 240, 1.2)}${brazier(360, 240, 1.2)}`,
+    ${brazier(146, 240, 1)}${brazier(254, 240, 1)}${brazier(-40, 240, 1.2)}${brazier(440, 240, 1.2)}`,
   temple: () => `
     ${hills(212, 'bd-far', 441)}
     <g class="bd-far">
@@ -198,10 +200,10 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     ${stones([40, 360, 20, 380], 258, 'bd-near', 452)}`,
   starfield: () => `
     ${starfield(140, 190, 461)}
-    <circle class="bd-moon" cx="320" cy="46" r="7"/>
+    <circle class="bd-moon" cx="262" cy="40" r="7"/>
     ${hills(214, 'bd-far', 462)}
     ${hills(234, 'bd-mid', 463)}
-    ${tent(60, 236, 0.9)}`,
+    ${tent(150, 238, 0.9)}`,
   mountain: () => `
     <path class="bd-far" d="M-800 260 L-800 200 L-500 180 L-300 196 L-120 176 L40 198 L360 196 L520 172 L700 192 L1200 186 L1200 260 Z"/>
     <path class="bd-mid" d="M-200 260 L60 214 C110 176 150 120 190 70 C196 63 204 63 210 70 C250 120 290 176 340 214 L600 260 Z"/>
@@ -212,20 +214,21 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     ${thorns(30, 252, 16, 'bd-near', 473)}${thorns(380, 252, 18, 'bd-near', 474)}`,
   road: () => `
     ${hills(206, 'bd-far', 481)}
-    ${tree(80, 210, 30, 'bd-far', 482, { sway: true })}${tree(340, 212, 36, 'bd-far', 483, { sway: true })}
+    ${tree(132, 208, 30, 'bd-far', 482, { sway: true })}${tree(286, 210, 36, 'bd-far', 483, { sway: true })}${tree(-60, 210, 34, 'bd-far', 488, { sway: true })}
     ${hills(226, 'bd-mid', 484)}
-    <path class="bd-path" d="M120 262 C150 246 190 236 196 226 C202 216 230 212 250 206 L254 206 C236 212 210 218 206 228 C200 240 180 250 280 262 Z"/>
-    <g class="bd-near"><ellipse cx="320" cy="248" rx="9" ry="4"/><ellipse cx="320" cy="242" rx="7" ry="3.4"/><ellipse cx="320" cy="237" rx="5" ry="2.8"/></g>
+    <path class="bd-path" d="M150 262 C176 248 204 238 210 228 C216 218 236 212 252 206 L256 206 C242 212 226 220 222 230 C216 242 214 252 262 262 Z"/>
+    <path class="bd-ridge" d="M176 250 C196 240 208 232 212 226 M246 256 C228 246 222 238 224 230"/>
+    <g class="bd-near"><ellipse cx="282" cy="250" rx="10" ry="4.4"/><ellipse cx="282" cy="243" rx="7.6" ry="3.6"/><ellipse cx="282" cy="237" rx="5.2" ry="2.8"/><ellipse cx="282" cy="232" rx="3" ry="2"/></g>
     ${tree(-80, 262, 160, 'bd-near', 485, { lean: 0.2, sway: true })}${tree(500, 262, 170, 'bd-near', 486, { lean: -0.2, sway: true })}
-    ${stones([60, 380, 10], 256, 'bd-near', 487)}`,
+    ${stones([120, 300, 10], 256, 'bd-near', 487)}`,
   river: () => `
     ${hills(200, 'bd-far', 491)}
     ${treeline(212, 14, 'bd-mid', 492)}
     <path class="bd-riverbed" d="M${-W * 2} 222 C-200 218 0 226 200 222 C400 218 600 226 ${W * 3} 222 L${W * 3} 240 C600 244 400 236 200 240 C0 244 -200 236 ${-W * 2} 240 Z"/>
     <path class="bd-river" d="M-600 228 C-420 224 -260 232 -100 228 C40 224 160 232 300 227 C440 222 600 230 900 226"/>
     <path class="bd-river" d="M-600 234 C-420 230 -260 238 -100 234 C40 230 160 238 300 233 C440 228 600 236 900 232" style="animation-duration: 9s"/>
-    ${stones([170, 190, 212, 232], 236, 'bd-mid', 493)}
-    ${reeds(60, 262, 46, 'bd-near', 494)}${reeds(340, 262, 50, 'bd-near', 495)}${reeds(-120, 262, 52, 'bd-near', 496)}${reeds(520, 262, 52, 'bd-near', 497)}`,
+    ${stones([180, 196, 214, 230], 236, 'bd-mid', 493)}
+    ${reeds(124, 262, 46, 'bd-near', 494)}${reeds(282, 262, 50, 'bd-near', 495)}${reeds(-120, 262, 52, 'bd-near', 496)}${reeds(520, 262, 52, 'bd-near', 497)}`,
   house: () => `
     ${room('bd-wall', 232)}
     <rect class="bd-window-frame" x="250" y="70" width="34" height="40" rx="2"/>
@@ -264,29 +267,31 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
   ruins: () => `
     ${hills(206, 'bd-far', 521)}
     <g class="bd-mid">
-      <path d="M40 220 L40 186 L52 180 L56 196 L70 192 L72 220 Z"/>
-      <path d="M310 222 L310 176 L322 170 L326 188 L346 184 L350 200 L362 196 L362 222 Z"/>
+      <path d="M118 220 L118 182 L130 176 L134 194 L148 190 L150 220 Z"/>
+      <path d="M252 222 L252 172 L264 166 L268 186 L286 182 L290 198 L298 194 L298 222 Z"/>
       <path d="M-120 220 L-120 194 L-100 190 L-96 220 Z"/><path d="M480 222 L480 190 L500 196 L504 222 Z"/>
     </g>
-    ${smoke(56, 180, 522, 6)}${smoke(330, 170, 523, 6)}${smoke(-110, 188, 524, 5)}
+    ${smoke(134, 178, 522, 6)}${smoke(272, 166, 523, 6)}${smoke(-110, 188, 524, 5)}
     <path class="bd-ash" d="M-800 260 L-800 226 C-500 222 -200 232 100 228 C300 224 500 232 800 226 L1200 230 L1200 260 Z"/>
-    ${stones([90, 140, 260, 300, -40, 420], 250, 'bd-near', 525)}
-    ${thorns(20, 254, 14, 'bd-near', 526)}${thorns(390, 254, 16, 'bd-near', 527)}`,
+    ${stones([120, 160, 240, 285, -40, 420], 250, 'bd-near', 525)}
+    ${thorns(110, 254, 14, 'bd-near', 526)}${thorns(296, 254, 16, 'bd-near', 527)}`,
   pasture: () => `
     ${hills(196, 'bd-far', 531)}
-    ${sheep(60, 199, 532)}${sheep(300, 197, 533)}
+    ${sheep(200, 199, 532)}${sheep(-60, 197, 533)}${sheep(460, 198, 541)}
     ${hills(214, 'bd-mid', 534)}
-    ${sheep(130, 218, 535)}${sheep(-120, 216, 536)}${sheep(470, 218, 537)}
-    <g class="bd-mid"><path d="M290 232 C290 220 350 220 350 232 Z"/><path class="detail" d="M296 228 H344 M300 224 H340" fill="none" stroke-width="0.8"/></g>
-    ${tree(-60, 262, 140, 'bd-near', 538, { lean: 0.2, sway: true })}${tree(480, 262, 150, 'bd-near', 539, { lean: -0.2, sway: true })}
-    ${stones([70, 160, 250, 380], 254, 'bd-near', 540)}`,
+    ${sheep(150, 218, 535)}${sheep(-120, 216, 536)}${sheep(470, 218, 537)}
+    <g class="bd-mid"><path d="M236 232 C236 220 296 220 296 232 Z"/><path class="detail" d="M242 228 H290 M246 224 H286" fill="none" stroke-width="0.8"/></g>
+    ${tree(112, 262, 120, 'bd-near', 538, { lean: 0.15, sway: true })}${tree(300, 262, 130, 'bd-near', 539, { lean: -0.15, sway: true })}
+    ${tree(-120, 262, 150, 'bd-near', 542, { lean: 0.2, sway: true })}${tree(540, 262, 150, 'bd-near', 543, { lean: -0.2, sway: true })}
+    ${stones([170, 250], 256, 'bd-near', 540)}`,
   egypt: () => `
-    <g class="bd-far"><path d="M40 212 L80 160 L120 212 Z"/><path d="M110 212 L136 178 L162 212 Z"/><path d="M-120 212 L-90 174 L-60 212 Z"/></g>
+    <g class="bd-far"><path d="M128 212 L168 158 L208 212 Z"/><path d="M196 212 L222 178 L248 212 Z"/><path d="M-120 212 L-90 174 L-60 212 Z"/></g>
+    <path class="bd-ridge" d="M168 158 L208 212 M222 178 L248 212"/>
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
-    ${column(300, 160, 214, 9, 'bd-mid')}${column(330, 160, 214, 9, 'bd-mid')}${column(360, 160, 214, 9, 'bd-mid')}
-    <g class="bd-mid"><rect x="286" y="154" width="90" height="8"/></g>
+    ${column(262, 166, 216, 8, 'bd-mid')}${column(286, 166, 216, 8, 'bd-mid')}${column(-40, 166, 216, 8, 'bd-mid')}
+    <g class="bd-mid"><rect x="250" y="160" width="48" height="7"/></g>
     <path class="bd-river" d="M-600 224 C-420 220 -260 228 -100 224 C40 220 160 228 300 223 C440 218 600 226 900 222"/>
     <path class="bd-mid" d="M-800 260 L-800 232 C-560 228 -300 236 -40 232 C180 228 420 236 700 230 L1200 234 L1200 260 Z"/>
-    ${palm(30, 262, 116, 'bd-near', 551)}${palm(-80, 262, 130, 'bd-near', 552)}${palm(380, 262, 124, 'bd-near', 553)}${palm(500, 262, 130, 'bd-near', 554)}
-    ${reeds(110, 262, 34, 'bd-near', 555)}${reeds(300, 262, 38, 'bd-near', 556)}`,
+    ${palm(116, 262, 110, 'bd-near', 551)}${palm(-80, 262, 130, 'bd-near', 552)}${palm(298, 262, 118, 'bd-near', 553)}${palm(500, 262, 130, 'bd-near', 554)}
+    ${reeds(150, 262, 30, 'bd-near', 555)}${reeds(260, 262, 34, 'bd-near', 556)}`,
 };

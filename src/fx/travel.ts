@@ -13,6 +13,7 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   'paddan-aram': at(39.03, 36.87),
   nineveh: at(43.15, 36.36),
   babylon: at(44.42, 32.54),
+  babel: at(44.42, 32.54),
   shinar: at(44.6, 32.2),
   damascus: at(36.3, 33.51),
   canaan: at(35.1, 31.95),

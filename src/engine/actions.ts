@@ -50,6 +50,7 @@ export const PLACE_NAMES = {
   'paddan-aram': '밧단아람',
   nineveh: '니느웨',
   babylon: '바벨론',
+  babel: '바벨',
   shinar: '시날',
   damascus: '다메섹',
   canaan: '가나안',
