@@ -393,7 +393,7 @@ export function readingScreen({ id }: Params): Screen {
         <p class="quiz__line voice-talk"></p>
         <p class="quiz__done ui">${chapters.length ? `${chapters.length}장 읽음 표시 완료` : '읽기 완료'} · 지도에 기록됐음</p>
         <div class="insight__actions">
-          ${next ? nextButton(next) : ''}
+          ${next ? nextButton(next, reading.bridge) : ''}
           <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
           ${total ? '<button class="btn" data-again>퀴즈 다시</button>' : ''}
         </div>

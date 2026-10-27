@@ -23,6 +23,8 @@ export interface Reading {
   insight: string;
   /** 한 줄 요약 */
   tldr?: string;
+  /** 결과 카드의 "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 한 줄 */
+  bridge?: string;
   quiz: QuizItem[];
 }
 
