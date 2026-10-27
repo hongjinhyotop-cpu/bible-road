@@ -311,8 +311,8 @@
 - [x] 2단계 품질 기준 CLAUDE.md 6-1 + 검사기 — PR #14
 - [x] 3단계 1막 확인 — 바벨탑·피날레·도감 이미 완성, 1막 13개 검사기 통과 (할 것 없음)
 - [x] 4단계 2막 B급 15개 — PR #15
-- [ ] 5단계 2막 A급 — gen-12-call 「떠나라」 머지(PR #18, 아브라함 새 그림). gen-22-moriah 진행 중
-- [ ] 6단계 3막 출애굽 — PLAN.md·B급 8개 머지(PR #16). A급 exo-2-basket 진행 중(모세 새 그림)
+- [ ] 5단계 2막 A급 — 머지: gen-12-call(#18), gen-22-moriah(#22), gen-25-stew·gen-27-blessing·gen-28-ladder(#23). 진행 중: gen-32-wrestle·gen-33-esau. 남음: gen-37-coat, gen-44-45-joseph (+ PLAN의 나머지 15·18·19·39·41·50)
+- [ ] 6단계 3막 출애굽 — B급 8개(#16), A급 exo-2-basket(#22), exo-3-bush(#23). 진행 중: exo-7-plagues. 남음: exo-12-passover, exo-14-sea, exo-16-manna, 3막 피날레 문장
 - [ ] 7단계 4막 시내산 — PLAN.md, B급 17개 전부 머지(PR #19, #21), 성막 기구 연출 라이브러리(PR #20). A급 2개 남음
 
 ## 다음 할 일
