@@ -143,9 +143,9 @@
 }
 
 /* ── 별을 누르면 뜨는 패널 ── */
-.stop__meta { color: var(--ivory-faint); margin: -6px 0 18px; }
+.stop__meta { color: color-mix(in srgb, var(--talk-ink) 60%, transparent); font-size: var(--fs-small); margin: -6px 0 18px; }
 .stop__card { min-height: 120px; }
-.stop__empty { text-align: center; color: var(--ivory-soft); margin: 22px 0 24px; font-size: 0.95rem; line-height: 1.8; }
+.stop__empty { text-align: center; margin: 26px 0 24px; font-size: 0.9375rem; }
 .stop__chapters {
   list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px;

@@ -92,5 +92,6 @@
 }
 .seg button[aria-pressed='true'] { color: var(--gold-bright); border-color: var(--line-strong); background: rgba(217, 178, 106, 0.1); box-shadow: 0 0 20px -6px rgba(217, 178, 106, 0.5); }
 .setting__hint { margin: 8px 0 0; font-family: var(--font-ui); font-size: 0.75rem; color: var(--ivory-faint); }
+.setting__hint.voice-talk { color: color-mix(in srgb, var(--talk-ink) 62%, transparent); line-height: 1.55; }
 .danger { color: #e7a08b; border-color: rgba(231, 160, 139, 0.35); }
 .danger:hover:not(:disabled) { color: #ffbfa9; border-color: rgba(231, 160, 139, 0.7); }

@@ -31,7 +31,7 @@ export function mapScreen(): Screen {
   el.dataset.act = '1';
   el.innerHTML = `
     <header class="map__header">
-      <button class="icon-btn" data-back aria-label="타이틀로">${icons.back}</button>
+      <button class="icon-btn" data-back aria-label="타이틀로 가기">${icons.back}</button>
       <div class="map__heading">
         <h1>성경 지도</h1>
         <p class="ui map__count"></p>
@@ -124,7 +124,7 @@ export function mapScreen(): Screen {
         b.innerHTML = `
           <span class="star__glow" aria-hidden="true"></span>
           <span class="star__core" aria-hidden="true"></span>
-          <span class="star__label" aria-hidden="true"><b>${book.name}</b><small>${range}${state === 'next' ? ' · 여기서 시작' : ''}</small></span>`;
+          <span class="star__label" aria-hidden="true"><b>${book.name}</b><small>${range}${state === 'next' ? ' · 여기서 시작!' : ''}</small></span>`;
         road.append(b);
         const p: PlacedStop = { stop, act, index: k, x, y, el: b, state };
         b.addEventListener('click', () => openStop(p));
@@ -269,10 +269,10 @@ export function mapScreen(): Screen {
     const whole = p.stop.from === 1 && p.stop.to === book.chapters;
     const chapters = Array.from({ length: p.stop.to - p.stop.from + 1 }, (_, i) => p.stop.from + i);
     sheet.body.innerHTML = `
-      <p class="stop__meta ui">${whole ? `전체 ${book.chapters}장` : `${p.stop.from}–${p.stop.to}장 (전체 ${book.chapters}장 중)`} · ${p.act.mood}</p>
+      <p class="stop__meta voice-talk">${whole ? `전체 ${book.chapters}장` : `${p.stop.from}–${p.stop.to}장 (전체 ${book.chapters}장 중에)`} · ${p.act.mood}</p>
       <div class="stop__card"></div>
-      <p class="stop__empty">이 길은 아직 준비 중입니다.<br />곧 별이 하나씩 켜질 거예요.</p>
-      <p class="setting__label">장</p>
+      <p class="stop__empty voice-talk">여긴 아직 공사 중임.<br />곧 별 하나씩 켜질 거니까 조금만 기다려 줘.</p>
+      <p class="setting__label">장 목록</p>
       <ol class="stop__chapters">${chapters.map((c) => `<li class="${countDone(book.code, c, c) ? 'done' : ''}">${c}</li>`).join('')}</ol>`;
     try {
       const card = await scriptureCard(`${book.abbr} ${p.stop.from}:1`);

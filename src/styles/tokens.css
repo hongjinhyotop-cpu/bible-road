@@ -16,6 +16,16 @@
   --line-strong: rgba(217, 178, 106, 0.55);
   --glass: rgba(14, 16, 32, 0.72);
 
+  /* 두 목소리 (CLAUDE.md 7-1)
+     이야기 = 명조 + 따뜻한 상아색 / 설명 = 고딕 + 차가운 박하색 */
+  --story-font: var(--font-serif);
+  --story-ink: var(--ivory);
+  --talk-font: var(--font-ui);
+  --talk-ink: #d8ece6;
+  --talk-accent: #8fd3c1;
+  --talk-bg: rgba(143, 211, 193, 0.07);
+  --talk-line: rgba(143, 211, 193, 0.32);
+
   /* 막별 테마가 덮어쓰는 값 */
   --act-a: #0b1030;
   --act-b: #1a1f4a;

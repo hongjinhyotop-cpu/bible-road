@@ -7,7 +7,7 @@ type Option<K extends keyof Settings> = { value: Settings[K]; label: string };
 function segment<K extends keyof Settings>(key: K, label: string, options: Option<K>[], hint?: string): HTMLElement {
   const wrap = document.createElement('div');
   wrap.className = 'setting';
-  wrap.innerHTML = `<span class="setting__label" id="lbl-${key}">${label}</span><div class="seg" role="group" aria-labelledby="lbl-${key}"></div>${hint ? `<p class="setting__hint">${hint}</p>` : ''}`;
+  wrap.innerHTML = `<span class="setting__label" id="lbl-${key}">${label}</span><div class="seg" role="group" aria-labelledby="lbl-${key}"></div>${hint ? `<p class="setting__hint voice-talk">${hint}</p>` : ''}`;
   const seg = wrap.querySelector('.seg')!;
   const sync = () =>
     seg.querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(options[i].value === settings.get()[key])));
@@ -31,7 +31,7 @@ export function openSettings(onReset?: () => void): void {
     segment('sound', '소리', [
       { value: false, label: '끄기' },
       { value: true, label: '켜기' },
-    ], '배경음과 효과음은 다음 단계에서 들어옵니다.'),
+    ], '배경음이랑 효과음은 다음 업데이트 때 들어옴. 지금은 켜도 조용함 ㅋㅋ'),
     segment('textSpeed', '글자 속도', [
       { value: 'slow', label: '느리게' },
       { value: 'normal', label: '보통' },
@@ -47,35 +47,35 @@ export function openSettings(onReset?: () => void): void {
       { value: 'system', label: '기기 설정' },
       { value: 'reduce', label: '줄이기' },
       { value: 'full', label: '모두 보기' },
-    ], '‘줄이기’를 고르면 움직임이 부드러운 페이드로 바뀝니다.'),
+    ], '움직이는 거 어지러우면 ‘줄이기’ 눌러. 연출이 스르륵 페이드로만 나옴.'),
   );
 
   const reset = document.createElement('div');
   reset.className = 'setting';
-  reset.innerHTML = `<span class="setting__label">진도 초기화</span><button class="btn danger" type="button" style="width:100%">처음부터 다시 걷기</button><p class="setting__hint">켜진 별과 인물 카드가 모두 사라집니다.</p>`;
+  reset.innerHTML = `<span class="setting__label">진도 초기화</span><button class="btn danger" type="button" style="width:100%">진도 싹 지우기</button><p class="setting__hint voice-talk">켜진 별이랑 인물 카드 전부 날아감. 되돌리기 없음 주의.</p>`;
   const btn = reset.querySelector('button')!;
   let armed = false;
   btn.addEventListener('click', () => {
     if (!armed) {
       armed = true;
-      btn.textContent = '정말 지울까요? 한 번 더 누르세요';
+      btn.textContent = 'ㄹㅇ 지움? 한 번 더 누르면 끝';
       setTimeout(() => {
         armed = false;
-        btn.textContent = '처음부터 다시 걷기';
+        btn.textContent = '진도 싹 지우기';
       }, 4000);
       return;
     }
     progress.reset();
-    btn.textContent = '초기화했습니다';
+    btn.textContent = '싹 지웠음. 새로 시작 ㄱㄱ';
     btn.disabled = true;
     onReset?.();
   });
   sheet.body.append(reset);
 
   const src = document.createElement('p');
-  src.className = 'setting__hint';
+  src.className = 'setting__hint voice-talk';
   src.style.textAlign = 'center';
   src.style.marginTop = '20px';
-  src.textContent = '본문: 성경전서 개역한글판 (대한성서공회) · 퍼블릭 도메인';
+  src.textContent = '성경 본문은 성경전서 개역한글판 (대한성서공회) 그대로 씀. 저작권 끝난 공개 자료임.';
   sheet.body.append(src);
 }

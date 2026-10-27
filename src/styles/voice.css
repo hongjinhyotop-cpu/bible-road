@@ -1,0 +1,50 @@
+/* 두 목소리를 한눈에 구분한다 (CLAUDE.md 7-1).
+   - .voice-story : 이야기 (이영도풍) — 명조, 상아색, 넉넉한 행간
+   - .voice-talk  : 설명 (친구 말투) — 고딕, 박하색, 짧고 또렷하게
+   - 성경 본문은 .scripture 카드 (금빛) — 셋은 절대 한 문단에 섞지 않는다. */
+
+.voice-story {
+  font-family: var(--story-font);
+  color: var(--story-ink);
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+}
+
+.voice-talk {
+  font-family: var(--talk-font);
+  color: var(--talk-ink);
+  line-height: 1.6;
+  letter-spacing: -0.005em;
+}
+
+/* 한 줄 번역: 본문 카드 바로 아래 붙는 말풍선 */
+.scripture-block { display: flex; flex-direction: column; }
+.scripture-block .scripture { margin: 0; }
+
+.gloss {
+  position: relative;
+  margin: 14px 10px 0;
+  padding: 12px 16px 13px;
+  border-radius: 14px;
+  /* 꼬리와 몸통이 같은 색이어야 해서 불투명하게 섞는다. --surface = 놓인 바탕색 */
+  background: color-mix(in srgb, var(--talk-accent) 8%, var(--surface, #10132a));
+  border: 1px solid var(--talk-line);
+  font-size: calc(0.9375rem * var(--text-scale));
+}
+.gloss::before {
+  /* 카드 쪽을 가리키는 말풍선 꼬리 */
+  content: '';
+  position: absolute; top: -6px; left: 26px;
+  width: 10px; height: 10px;
+  background: inherit;
+  border-left: 1px solid var(--talk-line);
+  border-top: 1px solid var(--talk-line);
+  transform: rotate(45deg);
+}
+.gloss__tag {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em;
+  color: var(--talk-accent);
+}
+.gloss__text { margin: 0; }

@@ -32,10 +32,10 @@ export function titleScreen(): Screen {
       <p class="title__name">말씀의 길<span class="latin">The Long Road</span></p>
     </main>
     <nav class="title__actions">
-      <button class="btn btn--primary" data-start>처음부터</button>
-      <button class="btn" data-continue>이어하기</button>
+      <button class="btn btn--primary" data-start>처음부터 시작</button>
+      <button class="btn" data-continue>이어서 하기</button>
     </nav>
-    <p class="title__skip ui">화면을 누르면 건너뜁니다</p>
+    <p class="title__skip ui">아무 데나 누르면 스킵</p>
     <footer class="title__credit ui">본문 · 성경전서 개역한글판 (대한성서공회)</footer>`;
 
   const $ = <T extends HTMLElement>(s: string) => el.querySelector<T>(s)!;
@@ -60,7 +60,7 @@ export function titleScreen(): Screen {
 
   const syncContinue = () => {
     continueBtn.disabled = !hasSave();
-    continueBtn.title = hasSave() ? '' : '아직 저장된 여정이 없습니다';
+    continueBtn.title = hasSave() ? '' : '아직 저장된 거 없음. 처음부터 ㄱㄱ';
   };
   syncContinue();
 
@@ -154,7 +154,8 @@ export function titleScreen(): Screen {
       .to($('.title__ref'), { opacity: 1, duration: 1.2 }, '>-0.4')
       .to($('.title__rule'), { scaleX: 1, duration: 1.4, ease: 'expo.inOut' }, '>-0.3')
       .fromTo($('.title__name'), { opacity: 0, y: 14, filter: 'blur(6px)' }, { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.4, ease: 'expo.out', clearProps: 'filter' }, '<0.5')
-      .fromTo($('.title__actions'), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out' }, '>-0.6')
+      .to($('.title__skip'), { opacity: 0, duration: 0.4 }, '>-0.8')
+      .fromTo($('.title__actions'), { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 1.2, ease: 'expo.out' }, '<0.2')
       .to([$('.title__credit'), $('.title__toolbar')], { opacity: 1, duration: 1.2 }, '<0.3');
   }
 

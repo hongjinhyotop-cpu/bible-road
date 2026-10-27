@@ -3,6 +3,7 @@ import './styles/tokens.css';
 import './styles/acts.css';
 import './styles/base.css';
 import './styles/ui.css';
+import './styles/voice.css';
 import './styles/title.css';
 import './styles/map.css';
 
@@ -11,6 +12,7 @@ import { route, startRouter } from './engine/router';
 import { mountField, restartField } from './fx/particles';
 import { titleScreen } from './screens/title';
 import { mapScreen } from './screens/map';
+import { closeSheet } from './ui/sheet';
 
 applySettings();
 settings.subscribe(restartField);
@@ -24,4 +26,6 @@ mountField();
 
 route('/', titleScreen);
 route('/map', mapScreen);
+// 다른 화면으로 넘어가면 열려 있던 패널은 닫는다
+window.addEventListener('hashchange', closeSheet);
 startRouter();
