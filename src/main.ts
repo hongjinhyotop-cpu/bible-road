@@ -29,6 +29,8 @@ import './styles/manna.css';
 import './styles/covenant.css';
 import './styles/mamre.css';
 import './styles/calf.css';
+import './styles/sodom.css';
+import './styles/egypt-court.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

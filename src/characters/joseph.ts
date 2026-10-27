@@ -7,8 +7,10 @@
 //  - "coat"   : 채색옷 (창 37:3). 발목까지 오고 소매가 손목까지 내려오는 긴 옷에 여러 빛깔의 띠.
 //               (히브리어 '케토네트 파심'은 "여러 색 옷"으로도 "긴 소매 옷"으로도 읽힌다 — 둘 다 보이게 그림.)
 //               일하는 사람은 입을 수 없는 옷. 띠 색은 막 테마색에 섞여 막마다 톤이 바뀐다 (styles/joseph.css)
+//  - "prison" : 옥살이 이 년 (창 41:1, 14 "수염을 깎고"). plain 그대로에 덥수룩하게 자란 머리와 수염, 해진 옷단 — gen-41-pharaoh
+//  - "clean"  : 수염을 깎고 갈아입은 옷 (창 41:14). 정강이까지 오는 흰 세마포 옷 + 천 띠. 보디발 집 총무 때도 이 옷 (창 39) — gen-39·41
 //  - "vizier" : 이집트 총리 (창 41:42 "세마포 옷을 입히고 금사슬을 목에 걸고"). 흰 세마포 옷, 넓은 금 목깃과 사슬,
-//               이집트식 단발 가발. 41–50장용 (아직 쓰는 에피소드 없음)
+//               이집트식 단발 가발. 41–50장용 (gen-41-pharaoh에서 처음 입음)
 import type { CharacterDef } from './index';
 import { BACK_ARM, FACE_MAN, LEGS_SLIM, TORSO_SLIM, ARM_DOWN } from './_parts.ts';
 
@@ -94,6 +96,30 @@ const ARM_L_COAT = `
   <path d="${SLEEVE_L_OUTLINE}"/>
   <g clip-path="url(#joseph-sleeve-l)">${bands(60, 100, 100, 214, 0.8, 3)}<path class="jc-shade" d="M60 100 H100 V214 H60 Z"/></g>`;
 
+// ── 옥살이 · 바로 앞에 서는 옷 ──
+/** 이 년 동안 자란 머리(목덜미 아래까지 덥수룩)와 수염 — 머리 부위 안에 같이 둔다 */
+const HAIR_PRISON = `
+  <path d="M101 13 C87 11 75 19 72 33 C69 46 70 60 72 72 C73 80 76 86 81 90 C84 86 86 81 88 76 C85 66 85 54 87 45 C90 37 98 31 110 30 C116 29 122 31 125 35 C123 21 113 14 101 13 Z"/>
+  <path d="M72 70 C68 78 69 88 74 94 C77 96 80 94 81 90 C77 86 74 80 74 72 Z"/>
+  <circle cx="72" cy="58" r="4.4"/><circle cx="73" cy="72" r="4.2"/><circle cx="78" cy="84" r="4"/><circle cx="84" cy="22" r="4"/>
+  <path d="M95 56 C102 61 111 64 119 66 L122 68 C125 76 124 84 120 90 L114 88 L110 94 L106 87 L101 91 C96 85 93 78 92 70 C91 64 92 59 95 56 Z"/>
+  <path class="detail" d="M82 30 Q94 22 112 22 M78 44 Q82 34 96 28 M100 70 Q104 80 104 88 M110 70 Q114 80 113 88" fill="none" stroke-width="0.7"/>`;
+
+/** 해진 옷단과 기운 자국 (plain 위에) */
+const RAGS = `
+  ${ROPE_BELT}
+  <path class="tone2" d="M75 283 L79 290 L84 284 L90 292 L95 285 L101 291 L106 285 L113 292 L119 284 L126 290 L133 282 Z"/>
+  <path class="detail" d="M90 120 L98 126 M88 230 L96 236 M112 238 L118 230" fill="none" stroke-width="0.8"/>`;
+
+/** 흰 세마포 옷: 정강이까지, 가는 주름, 허리에 감아 늘어뜨린 천 띠 */
+const CLEAN_OUTLINE = 'M84 97 C89 93 95 91 101 92 C107 93 111 96 114 100 C120 105 124 111 125 119 C126 129 122 139 119 149 C117 159 117 169 119 179 C123 206 129 248 133 290 C135 306 136 318 138 330 Q127 335 116 331 Q104 336 92 331 Q82 334 76 330 C76 296 77 262 79 234 C80 210 81 190 83 172 C79 152 77 130 79 116 C80 108 81 102 84 97 Z';
+const CLEAN = `
+  <path class="linen" d="${CLEAN_OUTLINE}"/>
+  <path class="detail" d="M86 104 Q82 150 82 172 M90 196 Q86 260 86 328 M98 196 Q97 262 100 330 M106 196 Q108 262 113 330 M114 198 Q122 262 128 328" fill="none" stroke-width="0.45"/>
+  <path class="linen-belt" d="M80 172 Q100 180 121 173 L121 181 Q100 189 80 180 Z"/>
+  <path class="linen-belt" d="M108 182 L117 181 L121 226 L112 228 Z"/>
+  <path class="detail" d="M86 96 C93 102 105 104 114 99" fill="none" stroke-width="0.8"/>`;
+
 // ── 이집트 총리 ────────────────────────────────
 /** 흰 세마포 긴 옷 + 넓은 금 목깃(우세크) + 금사슬 (창 41:42) */
 const VIZIER = `
@@ -132,7 +158,11 @@ const joseph: CharacterDef = {
     outfits: {
       plain: { markup: ROPE_BELT, parts: { hair: HAIR, armR: ARM_DOWN, armL: BACK_ARM } },
       coat: { markup: COAT, parts: { hair: HAIR, armR: ARM_COAT, armL: ARM_L_COAT } },
+      prison: { markup: RAGS, parts: { hair: HAIR_PRISON, armR: ARM_DOWN, armL: BACK_ARM } },
+      clean: { markup: CLEAN, parts: { hair: HAIR, armR: ARM_DOWN, armL: BACK_ARM } },
       vizier: { markup: VIZIER, parts: { hair: WIG, armR: ARM_VIZIER, armL: BACK_ARM } },
+      // 백십 세 (창 50:22-26): 세마포 옷 그대로, 가발을 벗은 센 머리와 짧은 흰 수염 — gen-50-good
+      old: { markup: VIZIER, parts: { hair: `<g class="gray">${HAIR}<path d="M95 56 C102 61 111 64 119 66 L122 68 C125 74 125 80 122 85 L117 84 L113 89 L109 84 L104 87 C98 82 94 76 93 70 C92 64 93 59 95 56 Z"/></g>`, armR: ARM_VIZIER, armL: BACK_ARM } },
     },
     markup: `
       <g data-part="legs">${LEGS_SLIM}</g>

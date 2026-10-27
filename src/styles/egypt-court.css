@@ -1,0 +1,153 @@
+/* ── 요셉의 애굽 (창 39·41, A급 gen-39-potiphar · gen-41-pharaoh) ──
+   인물: 바로의 네메스 줄무늬·금 장식 (characters/pharaoh.ts)
+   배경(fx/egypt-court.ts): 보디발의 집, 왕의 옥, 바로의 꿈(일곱 암소·일곱 이삭), 바로의 궁, 버금 수레, 곳간
+   효과 signet: 인장 반지와 금사슬의 반짝임 */
+
+/* ── 바로 ── */
+.actor .ph-stripe { stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 1.5; opacity: 0.55; }
+.actor .ph-gold { stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 1; opacity: 0.6; }
+.actor .ph-band { stroke: var(--sil-ink); stroke-width: 1.4; opacity: 0.55; }
+.actor .ph-pleat { stroke: color-mix(in srgb, var(--act-accent) 40%, #efe6d2); stroke-width: 0.5; opacity: 0.32; }
+.actor .ph-flail { color: color-mix(in srgb, var(--sil-ink) 55%, var(--act-accent)); fill: currentColor; }
+.sil .ph-stripe, .sil .ph-gold { stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 1.2; opacity: 0.5; }
+.sil .ph-pleat, .sil .ph-band { stroke: currentColor; stroke-width: 0.5; opacity: 0.3; }
+
+/* ── 보디발의 집 ── */
+.ec-frieze { fill: color-mix(in srgb, var(--act-accent) 45%, #6a9a8a); opacity: 0.4; }
+.ec-court-sky { fill: color-mix(in srgb, var(--act-accent) 30%, #fff0d0); opacity: 0.82; }
+.ec-court { fill: color-mix(in srgb, var(--act-accent) 30%, #8a9a70); color: color-mix(in srgb, var(--act-accent) 30%, #8a9a70); opacity: 0.6; }
+.ec-pool { fill: color-mix(in srgb, #6aa0b0 60%, var(--act-accent)); opacity: 0.5; }
+.ec-ripple { fill: none; stroke: #fff8e0; stroke-width: 0.8; opacity: 0.5; animation: ec-ripple 4s ease-in-out infinite alternate; }
+@keyframes ec-ripple { from { opacity: 0.2; transform: translateX(-2px); } to { opacity: 0.6; transform: translateX(2px); } }
+.ec-inner { fill: #050403; opacity: 0.85; }
+.ec-mote { fill: #fff0c8; opacity: 0; animation: dt-mote 10s ease-in-out infinite; animation-delay: calc(var(--d) * -1); --x: -10px; }
+/* 버려진 옷: 바닥에 놓인 세마포, 은은하게 빛을 받는다 */
+.ec-cloak__glow { fill: url(#bd-halo-g); opacity: 0.9; }
+.ec-cloak__cloth { fill: color-mix(in srgb, #efe6d2 70%, var(--act-b)); filter: drop-shadow(0 0 2px rgba(255, 236, 200, 0.6)); }
+.ec-cloak__fold { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.3; }
+.ec-cloak { animation: ec-cloak 1.6s ease-out both; }
+@keyframes ec-cloak { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── 왕의 옥 ── */
+.ec-courses { fill: none; stroke: color-mix(in srgb, var(--act-accent) 16%, #3a3026); stroke-width: 0.9; opacity: 0.6; }
+.ec-window { fill: color-mix(in srgb, var(--act-accent) 40%, #fff2d0); opacity: 0.9; }
+.ec-shaftwrap { transform-origin: 236px 28px; animation: ec-shaft-move 26s ease-in-out infinite alternate; }
+@keyframes ec-shaft-move { from { transform: rotate(-3deg); } to { transform: rotate(4deg); } }
+.ec-shaft { fill: color-mix(in srgb, var(--act-accent) 45%, #fff2d0); opacity: 0.14; mix-blend-mode: screen; filter: blur(1.5px); }
+.ec-pool-light { fill: color-mix(in srgb, var(--act-accent) 45%, #fff2d0); opacity: 0.16; filter: blur(3px); }
+.ec-keys { stroke: color-mix(in srgb, var(--act-accent) 60%, #c8a060); opacity: 0.7; fill: none; }
+.ec-straw { fill: none; stroke: color-mix(in srgb, var(--act-accent) 40%, #9a8050); stroke-width: 0.7; opacity: 0.35; }
+
+/* ── 바로의 꿈: 안개 낀 나일, 빛이 번지는 꿈속 ── */
+.dc-halo { fill: url(#bd-halo-g); opacity: 0.7; animation: dt-breathe 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.dc-far { fill: color-mix(in srgb, var(--act-b) 40%, #3a3428); opacity: 0.55; }
+.dc-river { fill: color-mix(in srgb, #8ab0b8 45%, var(--act-b)); opacity: 0.4; }
+.dc-shine { fill: none; stroke: #fff6e0; stroke-width: 0.7; opacity: 0.4; animation: ec-ripple 5s ease-in-out infinite alternate; }
+.dc-bank { fill: color-mix(in srgb, var(--act-a) 50%, #0a0806); }
+.dc-reeds { color: color-mix(in srgb, var(--act-a) 40%, #141008); fill: currentColor; opacity: 0.85; }
+.dc-grass { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #141008); stroke-width: 1; }
+.dc-mist { fill: #f4ecdc; opacity: 0.1; filter: blur(5px); animation: dc-drift 18s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes dc-drift { from { transform: translateX(-24px); } to { transform: translateX(24px); } }
+/* 살진 소: 따뜻한 금빛이 도는 흰 소. 파리한 소: 잿빛 잉크에 갈비만 희미하게 */
+.dc-cow { transform-box: fill-box; transform-origin: 50% 100%; }
+.dc-cow--fat { color: color-mix(in srgb, var(--act-accent) 45%, #f0e2c4); fill: currentColor; filter: drop-shadow(0 0 3px color-mix(in srgb, var(--act-accent) 70%, transparent)); animation: dc-rise 2.6s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d) both; }
+.dc-cow--lean { color: color-mix(in srgb, #2a2622 85%, var(--act-accent)); fill: currentColor; animation: dc-rise 2.4s cubic-bezier(0.3, 0.6, 0.3, 1) var(--d) both; }
+.dc-ribs { fill: none; stroke: #c8bca8; stroke-width: 0.6; opacity: 0.55; }
+@keyframes dc-rise { from { opacity: 0; transform: translateY(-14px) scale(0.78); } 40% { opacity: 0.7; } to { opacity: 1; transform: none; } }
+/* 꿈 1 뒤: 살진 소는 처음부터 서 있다가, 하나씩 어둠에 삼켜진다 */
+.dc-cow--fat.dc-cow--eaten { animation: dc-eaten 1.8s ease-in var(--d) both; }
+@keyframes dc-eaten { from { opacity: 1; filter: none; } 50% { opacity: 0.8; filter: brightness(0.35); } to { opacity: 0; transform: scale(0.84, 0.7); filter: brightness(0.2); } }
+
+/* ── 바로의 꿈 2: 이삭 ── */
+.de-stem { stroke: color-mix(in srgb, var(--act-accent) 55%, #b89a50); }
+.de-leaf { fill: color-mix(in srgb, var(--act-accent) 45%, #8a7a40); opacity: 0.85; }
+.de-full { color: color-mix(in srgb, var(--act-accent) 60%, #f0d48a); fill: currentColor; filter: drop-shadow(0 0 3px color-mix(in srgb, var(--act-accent) 80%, transparent)); }
+.de-awn { fill: none; stroke: currentColor; stroke-width: 0.5; opacity: 0.8; }
+.de-glow { fill: url(#bd-halo-g); opacity: 0.8; animation: dt-breathe 6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.de-grow { transform-box: fill-box; transform-origin: 50% 100%; animation: de-grow 3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s both; }
+@keyframes de-grow { from { transform: scaleY(0.08); opacity: 0.3; } to { transform: none; opacity: 1; } }
+.de-ear > g { transform-box: fill-box; transform-origin: 50% 100%; }
+.de-full .de-ear { animation: de-ear 1.2s ease-out both; animation-delay: calc(1.6s + var(--k) * 0.22s); }
+@keyframes de-ear { from { opacity: 0; } to { opacity: 1; } }
+/* 마른 이삭: 검게 탄 듯한 가는 이삭, 동풍에 왼쪽으로 휜다 */
+.de-thin { color: color-mix(in srgb, #3a2a1a 80%, var(--act-accent)); fill: currentColor; }
+.de-thin .de-stem { stroke: color-mix(in srgb, #4a3a24 80%, var(--act-accent)); }
+.de-thin .de-leaf { fill: color-mix(in srgb, #3a2a1a 85%, var(--act-accent)); }
+.de-grow--thin { animation-delay: 0.8s; }
+.de-thin .de-ear { animation: de-ear 1s ease-out both; animation-delay: calc(2.4s + var(--k) * 0.2s); }
+.de-bend { transform-box: fill-box; transform-origin: 50% 100%; animation: de-bend 2.6s ease-in-out infinite alternate; }
+@keyframes de-bend { from { transform: skewX(4deg); } to { transform: skewX(10deg); } }
+.de-wind { fill: none; stroke: color-mix(in srgb, var(--act-accent) 30%, #d8c8a8); stroke-width: 0.8; stroke-dasharray: 30 90; opacity: 0; animation: de-wind 3.2s linear infinite; animation-delay: var(--d); }
+@keyframes de-wind { from { stroke-dashoffset: 0; opacity: 0; } 20% { opacity: 0.45; } to { stroke-dashoffset: -120; opacity: 0; } }
+/* 꿈 2 뒤: 찬 이삭은 처음부터 서 있다가, 마른 이삭이 다 난 뒤 시들어 꺼진다 ("삼킨지라") */
+.de--thin .de-full .de-grow, .de--thin .de-full .de-ear { animation: none; }
+.de--thin .de-full { animation: de-wither 2.6s ease-in 4.6s both; }
+@keyframes de-wither { from { opacity: 1; } to { opacity: 0.1; filter: brightness(0.3); transform: translateY(6px); } }
+
+/* ── 바로의 궁 ── */
+.ec-sun { fill: color-mix(in srgb, var(--act-accent) 70%, #e8c070); opacity: 0.75; }
+.ec-sun__glow { fill: url(#bd-halo-g); opacity: 0.8; }
+.ec-sun__line { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
+.ec-niche { fill: color-mix(in srgb, var(--act-a) 30%, #050403); opacity: 0.55; }
+.ec-throne-gild { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 1; opacity: 0.55; }
+.ec-fan { animation: ec-fan 6s ease-in-out infinite alternate; }
+@keyframes ec-fan { from { transform: rotate(-1.6deg); } to { transform: rotate(1.6deg); } }
+
+/* ── 버금 수레: 수레가 지나가는 자리마다 사람들이 엎드린다 ── */
+.ec-road { fill: color-mix(in srgb, var(--act-accent) 25%, #6a5638); opacity: 0.35; }
+.ec-chariot { color: color-mix(in srgb, var(--act-b) 30%, #050404); fill: currentColor; animation: ec-ride var(--t) linear 0.3s both; }
+@keyframes ec-ride { from { transform: translateX(470px); } to { transform: translateX(-80px); } }
+.ec-chariot__gild { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 0.9; opacity: 0.8; }
+.ec-plume { fill: color-mix(in srgb, var(--act-accent) 70%, #e8c070); opacity: 0.8; }
+.ec-leg { transform-box: fill-box; transform-origin: 50% 0; animation: ec-gallop 0.42s ease-in-out infinite alternate; }
+.ec-leg--b { animation-delay: -0.21s; }
+@keyframes ec-gallop { from { transform: rotate(-22deg); } to { transform: rotate(22deg); } }
+.ec-wheel { animation: ec-spin 0.7s linear infinite reverse; }
+@keyframes ec-spin { to { transform: rotate(360deg); } }
+.ec-dust { fill: color-mix(in srgb, var(--act-accent) 40%, #d8c4a0); opacity: 0.3; filter: blur(3px); }
+
+/* ── 곳간 ── */
+.ec-silo-door { fill: #050403; opacity: 0.8; }
+.ec-silo-door--open { fill: color-mix(in srgb, var(--act-accent) 50%, #ffcf80); opacity: 0.65; filter: drop-shadow(0 0 3px #ffb860); }
+.ec-heap { fill: color-mix(in srgb, var(--act-accent) 55%, #d8b060); opacity: 0.85; animation: ec-heap 7s cubic-bezier(0.2, 0.6, 0.3, 1) var(--d) both; }
+.ec-heap path { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--act-accent) 60%, transparent)); }
+@keyframes ec-heap { from { transform: scaleY(0.25) scaleX(0.7); } to { transform: none; } }
+.ec-heaps--low .ec-heap { animation: none; transform: scaleY(0.3) scaleX(0.6); opacity: 0.6; }
+.ec-glint { fill: #fff4d0; opacity: 0; animation: ec-glint 3.4s ease-in-out infinite; animation-delay: var(--d); }
+@keyframes ec-glint { 0%, 100% { opacity: 0; } 50% { opacity: 0.9; } }
+.ec-heaps--low .ec-glint { display: none; }
+.ec-porter { fill: color-mix(in srgb, var(--act-b) 30%, #050404); animation: ec-climb 6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes ec-climb { from { transform: translate(var(--dx), var(--y0)); } to { transform: translate(calc(var(--dx) - 8px), var(--y1)); } }
+.ec-cracks { fill: none; stroke: #000; stroke-width: 0.8; opacity: 0.4; }
+.ec-deadpalm { filter: grayscale(1) brightness(0.8); }
+.ec-queue { fill: color-mix(in srgb, var(--act-b) 30%, #050404); animation: ec-plod 1.8s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes ec-plod { from { translate: 0 0; } to { translate: 0 -0.8px; } }
+
+/* ── 효과 signet ── */
+.fx-signet { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 0.9s; }
+.fx-signet.is-out { opacity: 0; }
+.fx-signet i {
+  position: absolute; width: 120px; height: 120px; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 50%, #fff0c0 50%), transparent);
+  mix-blend-mode: screen; opacity: 0; animation: fx-signet-glow 3s ease-in-out var(--d) both;
+}
+@keyframes fx-signet-glow { 0% { opacity: 0; scale: 0.4; } 35% { opacity: 0.8; scale: 1; } 100% { opacity: 0.2; scale: 1.3; } }
+.fx-signet b { position: absolute; z-index: 1; width: 44px; height: 44px; translate: -50% -50%; opacity: 0; animation: fx-signet-star 2.4s ease-out var(--d) both; }
+.fx-signet b::before, .fx-signet b::after {
+  content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 100%; translate: -50% 0; border-radius: 2px;
+  background: linear-gradient(transparent, #fff6d8 45%, #fff6d8 55%, transparent);
+  box-shadow: 0 0 6px #ffd890;
+}
+.fx-signet b::after { rotate: 90deg; }
+@keyframes fx-signet-star { 0% { opacity: 0; scale: 0.2; rotate: -30deg; } 25% { opacity: 1; scale: 1.15; } 60% { opacity: 0.9; scale: 0.9; } 100% { opacity: 0; scale: 0.6; rotate: 20deg; } }
+
+/* ── 모션 줄이기 ── */
+:root[data-reduced-motion='true'] :is(.ec-ripple, .ec-mote, .ec-shaftwrap, .dc-halo, .dc-shine, .dc-mist, .de-glow, .de-bend, .de-wind, .ec-fan, .ec-leg, .ec-wheel, .ec-porter, .ec-glint, .ec-queue) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.dc-cow, .de-grow, .de-ear, .de--thin .de-full, .ec-heap, .ec-cloak, .ec-stand, .ec-prone > *) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+:root[data-reduced-motion='true'] .ec-chariot { animation: none; transform: translateX(150px); }
+/* 길가의 사람들: 가장자리에만 옅은 빛 (어두운 하늘 앞에서도 보이게) */
+.ec-people :is(.ec-stand, .ec-prone) { stroke: color-mix(in srgb, var(--act-accent) 60%, #f0d8a0); stroke-width: 0.4; stroke-opacity: 0.3; }
+.ec-stand { transform-box: fill-box; transform-origin: 50% 100%; animation: ec-stand-down 0.8s cubic-bezier(0.4, 0, 0.2, 1) var(--d) both; }
+@keyframes ec-stand-down { from { transform: none; opacity: 1; } to { transform: scaleY(0.45); opacity: 0; } }
+.ec-prone > * { opacity: 0; animation: ec-prone-in 0.9s ease-out calc(var(--d) + 0.35s) both; }
+@keyframes ec-prone-in { from { opacity: 0; translate: 0 2px; } to { opacity: 1; translate: 0 0; } }

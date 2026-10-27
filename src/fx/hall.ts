@@ -11,7 +11,7 @@ import { W, H, rng } from './backdrop';
 const FLOOR = 238;
 
 /** 파피루스 기둥: 묶은 줄기 무늬의 몸통, 목에 감은 띠 다섯 줄, 위로 벌어진 종 모양 머리 */
-function papyrus(x: number, top: number, bottom: number, w: number, cls: string): string {
+export function papyrus(x: number, top: number, bottom: number, w: number, cls: string): string {
   const capH = w * 1.5;
   const neck = top + capH;
   const flare = w * 1.05;
@@ -30,7 +30,7 @@ function papyrus(x: number, top: number, bottom: number, w: number, cls: string)
 }
 
 /** 그림 글자 같은 무늬 줄: 작은 네모·둥근 꼴·세로 막대가 띄엄띄엄 (실제 글자 아님) */
-function glyphBand(x0: number, x1: number, y: number, h: number, seed: number): string {
+export function glyphBand(x0: number, x1: number, y: number, h: number, seed: number): string {
   const r = rng(seed);
   const out: string[] = [];
   for (let x = x0; x < x1; ) {
@@ -45,7 +45,7 @@ function glyphBand(x0: number, x1: number, y: number, h: number, seed: number): 
 }
 
 /** 높은 받침 위의 화로: 가는 세 다리, 넓은 놋 대접, 불꽃과 불빛 */
-function brazierStand(x: number, ground: number, s: number, low: boolean): string {
+export function brazierStand(x: number, ground: number, s: number, low: boolean): string {
   const flame = low
     ? 'M-6 -46 Q-4 -54 0 -57 Q2 -52 5 -50 Q6 -48 6 -46 Z'
     : 'M-7 -46 Q-6 -62 0 -70 Q2 -60 7 -57 Q8 -51 7 -46 Z';
@@ -94,7 +94,7 @@ function door(shut: boolean): string {
 }
 
 /** 매달린 세마포 휘장 (아주 천천히 흔들림) */
-function linen(x: number, w: number, h: number, d: number): string {
+export function linen(x: number, w: number, h: number, d: number): string {
   return `<path class="jh-linen" style="--d:${d}s" d="M${x} 22 L${x + w} 22 C${x + w + 2} ${22 + h * 0.5} ${x + w - 3} ${22 + h * 0.8} ${x + w - 1} ${22 + h} Q${x + w / 2} ${22 + h + 6} ${x + 1} ${22 + h} C${x + 3} ${22 + h * 0.8} ${x - 2} ${22 + h * 0.5} ${x} 22 Z"/>`;
 }
 

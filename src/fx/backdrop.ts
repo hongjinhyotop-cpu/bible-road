@@ -13,11 +13,14 @@ import { dothanArt } from './dothan';
 import { egyptLampsArt, goshenArt } from './passover';
 import { redSeaArt } from './sea';
 import { josephHallArt } from './hall';
+import { josephCoffinArt } from './coffin';
 import { sinaiArt } from './sinai';
 import { sinArt } from './manna';
 import { covenantArt } from './covenant';
 import { mamreArt } from './mamre';
 import { calfArt } from './calf';
+import { sodomArt } from './sodom';
+import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
 export const W = 400;
 export const H = 260;
@@ -471,6 +474,8 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   // 나는 요셉이라 (창 45, fx/hall.ts)
   'joseph-hall': () => josephHallArt('open'),
   'joseph-hall-shut': () => josephHallArt('shut'),
+  // 선으로 바꾸사 (창 50:26, fx/coffin.ts)
+  'joseph-coffin': josephCoffinArt,
   // 시내산 (출 19–20, fx/sinai.ts)
   'sinai-camp': () => sinaiArt('camp'),
   'sinai-bound': () => sinaiArt('bound'),
@@ -502,6 +507,28 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'mamre-laugh': () => mamreArt('laugh'),
   'mamre-start': () => mamreArt('start'),
   'sodom-view': () => mamreArt('sodom'),
+  // 뒤돌아보지 말라 (창 19:1-29, fx/sodom.ts)
+  'sodom-gate': () => sodomArt('gate'),
+  'sodom-gate-grey': () => sodomArt('gate-grey'),
+  'lot-house': () => sodomArt('house'),
+  'lot-door': () => sodomArt('door'),
+  'sodom-mob': () => sodomArt('mob'),
+  'sodom-plain': () => sodomArt('plain'),
+  'sodom-fire': () => sodomArt('fire'),
+  'salt-pillar': () => sodomArt('salt'),
+  'sodom-smoke': () => sodomArt('smoke'),
+  // 요셉의 애굽 (창 39·41, fx/egypt-court.ts)
+  potiphar: () => potipharArt(false),
+  'potiphar-cloak': () => potipharArt(true),
+  'round-prison': roundPrisonArt,
+  'dream-cows': () => dreamCowsArt(false),
+  'dream-cows-lean': () => dreamCowsArt(true),
+  'dream-ears': () => dreamEarsArt(false),
+  'dream-ears-thin': () => dreamEarsArt(true),
+  'pharaoh-court': courtArt,
+  chariot: chariotArt,
+  granary: () => granaryArt(false),
+  'granary-famine': () => granaryArt(true),
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
