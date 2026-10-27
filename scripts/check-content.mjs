@@ -4,8 +4,9 @@
 //  - ref가 실제 본문에 있는 구절인지, 그 막의 범위 안인지
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
 //  - 에피소드: 선택지 canon 하나, goto 대상, 인물 파일(또는 extras), 본문 구절 1개 이상, mood·bg 이름, fx 이름,
-//    face 방향, outfit 옷 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름, 퀴즈 1~2문제·answer 번호
-//  - B급: 선택지 최대 1개, 퀴즈 필수, 새 인물 파일 없이(키트 extras·기존 인물만) — CLAUDE.md 6번
+//    face 방향, outfit 옷 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름,
+//    해설·한 줄 요약, 품질 기준(본문 카드 2~4개 + 한 줄 번역, 동작·배경 변화, 글만 이어지는 구간) — 퀴즈는 없음
+//  - B급: 선택지 최대 1개, 품질 기준은 오류로(A급은 주의), 새 인물 파일 없이(키트 extras·기존 인물만) — CLAUDE.md 6번
 //  - 도감(data/characters.json): 인물 파일, first·verse 구절, scene, unlocks 인물이 도감에 있는지
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -169,15 +170,29 @@ function checkScene(s, where) {
   const checkMood = (m) => m != null && !MOODS[m] && (B ? err : warn)(where, `배경 "${m}"가 src/engine/moods.ts에 없음 (기본 무대로 보임)`);
   checkMood(s.mood);
   checkMood(s.bg);
-  // 퀴즈 (에피소드 끝 1~2문제)
-  const quiz = s.quiz ?? [];
-  if (!quiz.length) (B ? err : warn)(where, '끝 퀴즈(quiz)가 없음 — 1~2문제');
-  if (quiz.length > 2) warn(where, `퀴즈는 1~2문제 (지금 ${quiz.length}개)`);
-  quiz.forEach((q, i) => {
-    if (!q.q || !Array.isArray(q.options) || q.options.length < 2) err(where, `퀴즈 ${i + 1}번: q·options(2개 이상)가 필요함`);
-    if (!(q.answer >= 0 && q.answer < q.options?.length)) err(where, `퀴즈 ${i + 1}번: answer 번호가 보기 밖임`);
-    if (!q.why) warn(where, `퀴즈 ${i + 1}번: why(설명)가 없음`);
-  });
+  // 퀴즈는 없앰 (2026-10-28). 끝 구성 = 해설 → 한 줄 요약 → 다음 버튼
+  if ('quiz' in s) err(where, '퀴즈(quiz)는 없어졌음 — 지우기 (끝 구성: 해설 → 한 줄 요약 → 다음)');
+  if (!s.insight) err(where, '해설(insight)이 없음');
+  if (!s.tldr) err(where, '한 줄 요약(tldr)이 없음');
+  // 품질 기준 (CLAUDE.md 6-1): 핵심 구절 카드 2~4개, 정적인 화면 금지
+  const main = s.beats ?? [];
+  const cards = main.filter((b) => b.type === 'scripture');
+  if (cards.length < 2) err(where, `본문 카드(scripture)가 ${cards.length}개 — 2~4개`);
+  if (cards.length > 4) warn(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
+  for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
+  const moves = (b) => b.act || b.acts || b.enter || b.exit;
+  const scenery = (b) => b.bg || b.mood || b.fx;
+  const motion = main.filter(moves).length;
+  const changes = main.filter(scenery).length;
+  let still = 0;
+  let longest = 0;
+  for (const b of main) {
+    still = moves(b) || scenery(b) || b.pose || b.type === 'scripture' || b.type === 'choice' ? 0 : still + 1;
+    longest = Math.max(longest, still);
+  }
+  if (B && motion < 8) err(where, `캐릭터 동작이 있는 beat가 ${motion}개 — 정적인 화면 금지 (8개 이상)`);
+  if (B && changes < 2) err(where, `배경·효과 변화가 ${changes}번 — 2번 이상`);
+  if (longest > 4) (B ? err : warn)(where, `글만 넘어가는 beat가 ${longest}개 연속 — 4개까지 (사이에 동작·배경·효과를 넣기)`);
   const choices = all.filter((b) => b.type === 'choice').length;
   if (B && choices > 1) err(where, `B급은 선택지가 에피소드당 최대 1개 (지금 ${choices}개)`);
   const checkOutfit = (o) => {

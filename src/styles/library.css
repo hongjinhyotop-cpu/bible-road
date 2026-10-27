@@ -1,4 +1,4 @@
-/* ── 연출 라이브러리: B급 배경(fx/places.ts) · 효과(fx) · 군중 · 여정 지도 · 퀴즈·본문 패널 ──
+/* ── 연출 라이브러리: B급 배경(fx/places.ts) · 효과(fx) · 군중 · 여정 지도 · 본문 패널 ──
    색은 전부 막 테마 변수(--act-a/b/accent)에서 나온다. 모션 줄이기면 멈추거나 짧은 페이드. */
 
 /* ── 배경 라이브러리 ── */
@@ -179,37 +179,6 @@
 /* ── 머리줄: 뒤로 / 제목 / 본문 / 설정 ── */
 .play__head { grid-template-columns: 44px 1fr 44px 44px; }
 
-/* ── 에피소드 끝 퀴즈 (독 안) ── */
-.quiz { margin-top: 40px; cursor: default; }
-.quiz--dock { margin-top: 0; }
-.quiz__head { display: flex; align-items: center; justify-content: space-between; margin: 0 4px 12px; }
-.quiz__tag { margin: 0; color: var(--talk-accent); font-weight: 600; letter-spacing: 0.08em; }
-.quiz__dots { display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
-.quiz__dots li { width: 8px; height: 8px; border-radius: 50%; border: 1px solid var(--line-strong); transition: background 0.5s, box-shadow 0.5s, border-color 0.5s; }
-.quiz__dots li.now { border-color: var(--gold-bright); }
-.quiz__dots li.done, .quiz__dots li.right { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 8px rgba(244, 214, 150, 0.6); }
-.quiz__dots li.wrong { background: var(--ivory-faint); border-color: transparent; }
-.quiz__card { padding: 18px 18px 16px; border-radius: var(--radius); background: linear-gradient(180deg, rgba(14, 16, 32, 0.86), rgba(10, 10, 20, 0.92)); border: 1px solid var(--line); }
-.quiz__q { margin: 0 2px 14px; font-size: calc(1.0625rem * var(--text-scale)); font-weight: 600; }
-.quiz__no { color: var(--act-accent); font-weight: 400; margin-right: 0.15em; }
-.quiz__options { display: flex; flex-direction: column; gap: 10px; }
-.quiz__option { font-family: var(--talk-font); letter-spacing: 0; }
-.quiz__option:disabled { opacity: 1; cursor: default; }
-.quiz__option.is-right { border-color: var(--gold-bright); color: var(--gold-bright); }
-.quiz__option.is-right::before { opacity: 1; }
-.quiz__option.is-right .choice__key { background: var(--gold); color: var(--void); border-color: var(--gold); }
-.quiz__option.is-wrong { color: var(--ivory-faint); border-color: rgba(239, 230, 210, 0.18); }
-.quiz__option.is-wrong .choice__label { text-decoration: line-through; text-decoration-color: rgba(239, 230, 210, 0.35); }
-.quiz__why { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--talk-bg); border: 1px dashed var(--talk-line); font-size: calc(0.9375rem * var(--text-scale)); }
-.quiz__verdict { margin: 0 0 4px; font-weight: 700; color: var(--talk-accent); }
-.quiz__why[data-ok='1'] .quiz__verdict { color: var(--gold-bright); }
-.quiz__why-text { margin: 0; }
-.quiz__next { display: flex; margin-top: 14px; }
-.quiz__next[hidden] { display: none; }
-.quiz__next .btn { flex: 1; min-height: 48px; font-size: 0.9375rem; }
-.insight__score { margin: 12px 0 0; font-size: 0.875rem; color: color-mix(in srgb, var(--talk-ink) 80%, transparent); }
-.insight__score b { color: var(--gold-bright); font-size: 1.15em; font-weight: 400; }
-@media (min-width: 768px) { .quiz__card { padding: 22px 26px; } }
 
 /* ── 본문 전체 보기 패널 ── */
 .sheet--passage { max-height: 88vh; }

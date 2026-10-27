@@ -2,7 +2,6 @@
 // 여기서는 "다음에 무엇을 보여줄지"만 정한다 (CLAUDE.md 6번).
 // 모든 장은 에피소드다. A급 = 큰 사건(전용 그림·연출), B급 = 라이브러리(동작·배경·키트 인물) 조립.
 import type { Facing, Pose } from '../ui/actor';
-import type { QuizItem } from '../ui/quiz';
 import type { Base, Beard, Hair, Prop, Tint } from '../characters/_kit';
 import type { ActionName, PlaceName } from './actions';
 import { loadContent } from './content';
@@ -140,11 +139,8 @@ export interface Scene {
   /** 끝 카드의 "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 한 줄 (이야기 목소리) */
   bridge?: string;
   unlocks?: { characters?: string[] };
-  /** 끝 확인 퀴즈 1~2문제 */
-  quiz?: QuizItem[];
 }
 
-export type { QuizItem };
 
 // ── 불러오기 ──────────────────────────────────
 // 파일 찾기·목록·순서는 content.ts가 맡는다. 여기서는 형식 검사만.
