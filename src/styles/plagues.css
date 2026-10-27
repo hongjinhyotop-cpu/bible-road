@@ -1,0 +1,38 @@
+/* ── 애굽의 재앙 (출 7–10, fx/plagues.ts · fx/nile.ts 'blood' · goshenDarkArt) ──
+   재앙은 무섭지만 선정적이지 않게: 색은 가라앉히고, 움직임은 무겁고 느리게. 모션 줄이기면 멈춘 한 장면. */
+
+/* 효과 층: 무대 전체를 덮고, 끝날 때 흐려진다 */
+.fx-plague { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s var(--ease-out); animation: fx-plague-in 1.2s var(--ease-out) both; }
+.fx-plague.is-out { opacity: 0; }
+.fx-plague canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+@keyframes fx-plague-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* 개구리: 무대 아래 땅 위를 폴짝폴짝 */
+.fx-frogs i { position: absolute; left: 0; width: var(--s); aspect-ratio: 40 / 26; }
+.fx-frogs b { display: block; width: 100%; height: 100%; }
+.fx-frogs.is-out i { transition: none; }
+.fx-frogs i.is-left b svg { transform: scaleX(-1); }
+.fx-frogs svg { display: block; width: 100%; height: 100%; overflow: visible; fill: color-mix(in srgb, var(--act-a) 40%, #0b0d06); stroke: color-mix(in srgb, var(--act-accent) 70%, #f3c98c); stroke-width: 0.9; stroke-opacity: 0.75; paint-order: stroke; }
+.fx-frogs .frog-eye { fill: color-mix(in srgb, var(--act-accent) 60%, #e8d9a0); opacity: 0.7; }
+
+/* 피로 변한 나일 (출 7:20): 강물은 검붉게, 흐르던 빛줄기도 붉게. 짙은 소용돌이가 아주 천천히 돈다 */
+.bd-nile--blood { fill: color-mix(in srgb, #8a161a 82%, var(--act-b)); }
+.bd-river--blood { stroke: #e0705e; opacity: 0.45; }
+.bd-blood-swirl {
+  fill: none; stroke: #3a0608; stroke-width: 1.6; opacity: 0.6; stroke-dasharray: 18 10;
+  animation: bd-blood-swirl 16s linear infinite; animation-delay: var(--d);
+}
+@keyframes bd-blood-swirl { to { stroke-dashoffset: -112; } }
+.bd-deadfish { fill: color-mix(in srgb, #c8b8a8 50%, var(--act-b)); opacity: 0.5; animation: bd-drift 22s linear infinite; animation-delay: var(--d); }
+@keyframes bd-drift { from { transform: translateX(-24px); } to { transform: translateX(30px); } }
+
+/* 흑암 (출 10:21-23): 더듬을 만한 어둠. 고센에만 빛 */
+.bd-dark { fill: #020104; opacity: 0.97; }
+.bd-murk ellipse { fill: #000; opacity: 0.6; filter: blur(10px); animation: bd-murk 26s ease-in-out infinite alternate; animation-delay: var(--d); }
+@keyframes bd-murk { from { transform: translateX(-30px); } to { transform: translateX(34px); } }
+.bd-goshen-halo { fill: url(#bd-flame-g); opacity: 0.55; animation: bd-breathe 5s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.bd-goshen-wall { fill: color-mix(in srgb, #a87648 45%, #1a120c); }
+.bd-goshen-ground { fill: color-mix(in srgb, #a87648 25%, #0c0806); }
+.bd-goshen-door { fill: #f6c97a; opacity: 0.9; filter: drop-shadow(0 0 2px #f6a640); }
+
+:root[data-reduced-motion='true'] :is(.fx-plague, .bd-blood-swirl, .bd-deadfish, .bd-murk ellipse, .bd-goshen-halo) { animation: none; }

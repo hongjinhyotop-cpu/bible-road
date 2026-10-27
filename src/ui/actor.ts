@@ -132,6 +132,7 @@ export class Actor {
       return;
     }
     this.outfitName = name;
+    this.el.dataset.outfit = name;
     const pivot = next.pivot ?? art.pivots.cloth;
     const swap = () => {
       if (next.markup != null) cloth.innerHTML = next.markup;
@@ -260,6 +261,48 @@ export class Actor {
         return true;
     }
     return false;
+  }
+
+  /**
+   * 여러 번 땅에 엎드려 절하며 나아간다 (창 33:3 "몸을 일곱번 땅에 굽히며 … 가까이 하니").
+   * 한 번마다: 무릎을 접고 깊이 숙임 → 일어남 → dx만큼 한 걸음. 마지막엔 반쯤 숙인 채로 선다.
+   */
+  bowTimes(n: number, dx: number): gsap.core.Timeline {
+    const tl = gsap.timeline();
+    const p = this.parts;
+    if (reducedMotion() || this.def.art.kind !== 'svg' || !p.legs || !p.upper) {
+      this.perform('prostrate');
+      return tl;
+    }
+    this.actLoop?.kill();
+    this.actLoop = null;
+    const [w, h] = this.def.art.viewBox;
+    const foot = h * 0.974;
+    const hip = this.def.art.pivots.upper?.[1] ?? h * 0.495;
+    const k = 0.56;
+    gsap.set(p.legs, { svgOrigin: `${w / 2} ${foot}` });
+    for (let i = 0; i < n; i++) {
+      const t = i * 1.2;
+      tl.to(p.legs, { scaleY: k, duration: 0.42, ease: 'power2.inOut' }, t)
+        .to(p.upper, { y: (foot - hip) * (1 - k), rotation: 22, duration: 0.42, ease: 'power2.inOut' }, t)
+        .to(p.head ?? {}, { rotation: 34, duration: 0.42, ease: 'power2.inOut' }, t)
+        .to(p.armL ?? {}, { rotation: -40, duration: 0.42, ease: 'power2.inOut' }, t)
+        .to(p.legs, { scaleY: 1, duration: 0.4, ease: 'power2.inOut' }, t + 0.6)
+        .to(p.upper, { y: 0, rotation: 6, duration: 0.4, ease: 'power2.inOut' }, t + 0.6)
+        .to(p.head ?? {}, { rotation: 14, duration: 0.4, ease: 'power2.inOut' }, t + 0.6)
+        .to(p.armL ?? {}, { rotation: 0, duration: 0.4, ease: 'power2.inOut' }, t + 0.6)
+        .to(this.el, { x: `+=${dx}`, duration: 0.3, ease: 'power1.inOut' }, t + 0.86);
+    }
+    this.low = false;
+    this.bowing = tl;
+    return tl;
+  }
+
+  /** 절하던 중이면 그 동작을 바로 끝낸다 (다른 사람 동작이 이어질 때 몸이 기운 채 멈추지 않게) */
+  private bowing: gsap.core.Timeline | null = null;
+  finishBow(): void {
+    if (this.bowing?.isActive()) this.bowing.progress(1);
+    this.bowing = null;
   }
 
   /** 무릎 꿇기 / 일어서기: 다리를 아래에서부터 접고, 상체를 그만큼 내린다 */
@@ -437,9 +480,11 @@ export class Stage {
       const r = a.el.getBoundingClientRect();
       const off = a.faces === 'right' ? box.right - r.left + 24 : -(r.right - box.left + 24);
       const dur = Math.min(2.6, 1.2 + Math.abs(off) / 600);
+      const limp = a.el.dataset.outfit === 'limp';
+      const span = limp ? dur * 1.8 : dur;
       await gsap.timeline()
-        .to(a.el, { x: `+=${off}`, duration: dur, ease: 'power1.in' })
-        .to(a.el, { y: -4, duration: 0.26, ease: 'sine.inOut', yoyo: true, repeat: Math.max(1, Math.round(dur / 0.26) - 1) }, 0);
+        .to(a.el, { x: `+=${off}`, duration: span, ease: limp ? 'none' : 'power1.in' })
+        .add(limp ? this.limp(a, span) : gsap.to(a.el, { y: -4, duration: 0.26, ease: 'sine.inOut', yoyo: true, repeat: Math.max(1, Math.round(dur / 0.26) - 1) }), 0);
     }
     this.recount();
     this.flip(() => a.destroy());
@@ -451,11 +496,72 @@ export class Stage {
     if (!a) return;
     this.actors.delete(id);
     const rm = reducedMotion();
+    if (!rm && a.el.dataset.outfit === 'limp') this.limp(a, 3.4, a.el.querySelector('.actor__art')!);
     await gsap.to(a.el, rm
       ? { opacity: 0, duration: 0.4 }
       : { scale: 0.32, y: -a.el.offsetHeight * 0.16, opacity: 0, filter: 'brightness(0.6)', duration: 3.4, ease: 'power1.in' });
     this.recount();
     this.flip(() => a.destroy());
+  }
+
+  /**
+   * 절뚝이는 걸음 (창 32:31 "그 환도뼈로 인하여 절었더라"): 고르지 않게, 한 걸음은 짧게 내려앉고 한 걸음은 지팡이에 기대 일어선다.
+   * target = 흔들 대상 (기본은 인물 상자. leave처럼 상자를 다른 데 쓰면 그림만)
+   */
+  private limp(a: Actor, dur: number, target: Element = a.el): gsap.core.Timeline {
+    const n = Math.max(1, Math.round(dur / 0.9));
+    const tl = gsap.timeline();
+    for (let i = 0; i < n; i++) {
+      tl.to(target, { y: 5, rotation: a.faces === 'right' ? 2.4 : -2.4, transformOrigin: '50% 100%', duration: 0.36, ease: 'power2.in' })
+        .to(target, { y: -2, rotation: 0, duration: 0.54, ease: 'power2.out' });
+    }
+    return tl.set(target, { y: 0, rotation: 0 });
+  }
+
+  /** 씨름 중인 두 사람의 흔들림 (part로 푼다) */
+  private holds = new Map<Actor, gsap.core.Animation>();
+
+  /**
+   * 씨름 (창 32:24): 두 사람이 마주 붙어 어깨를 맞대고, 서로 밀고 버티며 천천히 이쪽저쪽으로 쏠린다. part로 푼다.
+   * 바닥에 나뒹굴지 않는다 — 맞붙은 채 버티는 두 그림자로만 (CLAUDE.md 7번: 무게감 있게).
+   */
+  wrestle(a: Actor, b: Actor): void {
+    this.faceEachOther(a, b);
+    const g = this.gap(a, b);
+    const dir = Math.sign(g) || 1;
+    const w = (a.el.offsetWidth + b.el.offsetWidth) / 2;
+    const each = (g - dir * w * 0.58) / 2;
+    const rm = reducedMotion();
+    gsap.to(a.el, { x: `+=${each}`, duration: rm ? 0.3 : 1.1, ease: 'power3.in' });
+    gsap.to(b.el, { x: `-=${each}`, duration: rm ? 0.3 : 1.1, ease: 'power3.in' });
+    for (const p of [a, b]) {
+      const parts = p.partsFor();
+      const at = { duration: rm ? 0.01 : 0.9, delay: rm ? 0 : 0.7, ease: 'power3.out', overwrite: 'auto' as const };
+      if (parts.upper) gsap.to(parts.upper, { rotation: 16, ...at });
+      if (parts.head) gsap.to(parts.head, { rotation: 20, ...at });
+      if (parts.armL) gsap.to(parts.armL, { rotation: -74, ...at });
+      if (parts.armR) gsap.to(parts.armR, { rotation: -26, ...at });
+    }
+    if (rm) return;
+    const ua = a.partsFor().upper;
+    const ub = b.partsFor().upper;
+    // 밀고(a 쪽이 밀어붙임) → 되밀리고 → 버팀. 끝나면 제자리라 계속 되풀이된다
+    const tl = gsap.timeline({ repeat: -1, delay: 1.7 });
+    tl.to([a.el, b.el], { x: `+=${dir * 9}`, duration: 1.3, ease: 'sine.inOut' })
+      .to(a.el, { rotation: dir * 3, transformOrigin: '50% 100%', duration: 1.3, ease: 'sine.inOut' }, 0)
+      .to(b.el, { rotation: dir * 1.5, transformOrigin: '50% 100%', duration: 1.3, ease: 'sine.inOut' }, 0)
+      .to(ua ?? {}, { rotation: 21, duration: 1.3, ease: 'sine.inOut' }, 0)
+      .to(ub ?? {}, { rotation: 11, duration: 1.3, ease: 'sine.inOut' }, 0)
+      .to([a.el, b.el], { x: `-=${dir * 17}`, duration: 1.7, ease: 'sine.inOut' })
+      .to(a.el, { rotation: -dir * 1.5, duration: 1.7, ease: 'sine.inOut' }, '<')
+      .to(b.el, { rotation: -dir * 3, duration: 1.7, ease: 'sine.inOut' }, '<')
+      .to(ua ?? {}, { rotation: 11, duration: 1.7, ease: 'sine.inOut' }, '<')
+      .to(ub ?? {}, { rotation: 22, duration: 1.7, ease: 'sine.inOut' }, '<')
+      .to([a.el, b.el], { x: `+=${dir * 8}`, rotation: 0, duration: 1.2, ease: 'sine.inOut' })
+      .to([ua, ub].filter(Boolean) as Element[], { rotation: 16, duration: 1.2, ease: 'sine.inOut' }, '<');
+    this.holds.set(a, tl);
+    this.holds.set(b, tl);
+    if (!this.el.querySelector('.fx-grapple')) this.el.insertAdjacentHTML('beforeend', '<div class="fx-grapple" aria-hidden="true"><i></i><i></i><i></i></div>');
   }
 
   /** a가 b 쪽을 본다 */
@@ -480,6 +586,8 @@ export class Stage {
 
   /** a가 b 쪽으로 몇 걸음 다가간다 */
   approach(a: Actor, b: Actor): void {
+    a.finishBow();
+    b.finishBow();
     this.faceToward(a, b);
     const g = this.gap(a, b);
     const step = g * 0.34;
@@ -488,6 +596,8 @@ export class Stage {
 
   /** 포옹: 두 사람이 마주 보고 다가가 겹친다 */
   embrace(a: Actor, b: Actor): void {
+    a.finishBow();
+    b.finishBow();
     this.faceEachOther(a, b);
     const g = this.gap(a, b);
     const w = (a.el.offsetWidth + b.el.offsetWidth) / 2;
@@ -504,10 +614,23 @@ export class Stage {
     }
   }
 
-  /** 포옹·다가감을 풀고 제자리로 */
+  /** 포옹·다가감·씨름을 풀고 제자리로 */
   part(a: Actor): void {
-    gsap.to(a.el, { x: 0, duration: reducedMotion() ? 0.3 : 1.2, ease: 'power2.inOut' });
+    const hold = this.holds.get(a);
+    if (hold) {
+      hold.kill();
+      for (const [k, v] of this.holds) if (v === hold) this.holds.delete(k);
+      if (!this.holds.size) this.el.querySelector('.fx-grapple')?.remove();
+    }
+    gsap.to(a.el, { x: 0, rotation: 0, duration: reducedMotion() ? 0.3 : 1.2, ease: 'power2.inOut' });
     a.perform('stand');
+  }
+
+  /** 일곱 번 땅에 엎드려 절하며 b 쪽으로 나아간다 (창 33:3) */
+  bowSeven(a: Actor, b?: Actor): void {
+    if (b) this.faceToward(a, b);
+    const reach = b ? this.gap(a, b) * 0.4 : (a.faces === 'right' ? 1 : -1) * a.el.offsetWidth * 0.6;
+    a.bowTimes(7, reach / 7);
   }
 
   /** 다툼: 두 사람이 번갈아 몸을 들이밀며 맞선다 */
@@ -548,6 +671,8 @@ export class Stage {
   }
 
   destroy(): void {
+    this.holds.forEach((h) => h.kill());
+    this.holds.clear();
     this.actors.forEach((a) => a.destroy());
     this.actors.clear();
     this.el.remove();

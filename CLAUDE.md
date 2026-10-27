@@ -161,6 +161,8 @@ PROGRESS.md      ← 진행 기록
 | `bow-head` · `look-up` · `bless` | 고개 숙임 · 고개 듦 · 손을 들어 축복 | who |
 | `argue` · `embrace` · `part` | 다툼(번갈아 들이밂) · 포옹 · 포옹·다가감 풀기 | 둘 / 둘 / who |
 | `cry` · `sleep` · `fall` · `stand` | 울기(stand까지 계속) · 잠듦 · 쓰러짐(절제: 주저앉으며 어두워짐) · 원래 자세로 | who |
+| `wrestle` | 씨름: 맞붙어 밀고 버티며 쏠림 (`part`로 풂) | 둘 |
+| `bow-seven` | 일곱 번 엎드려 절하며 상대 쪽으로 나아감 | who (+ to) |
 | `crowd` · `crowd-cheer` · `crowd-murmur` · `crowd-bow` · `crowd-away` | 군중이 뒤에 모임 · 환호 · 웅성 · 엎드림 · 흩어짐 | (없음) |
 | `travel` | 여정 지도: `from` → `via`[] → `to` 길을 옛 지도에 그음. 다음 beat에서 접힘(다음 beat에도 travel이면 이어 그림) | 장소 이름 |
 - 여정 지도 장소 이름은 `actions.ts`의 `PLACE_NAMES` (ur, haran, canaan, shechem, bethel, hebron, mamre, sodom, gerar, beersheba, moriah, egypt, goshen, peniel, dothan, sinai, jericho, jerusalem, galilee …). 새 장소는 `PLACE_NAMES` + `src/fx/travel.ts PLACE_XY`(경도·위도)에 추가.
@@ -175,6 +177,7 @@ PROGRESS.md      ← 진행 기록
 ### 효과 라이브러리 (`fx`, `src/engine/moods.ts` FX)
 - `glory`(하나님의 임재: 위에서 금빛 — 인물로 안 그림) `fire`(무대 가운데 불길) `stars`(별이 쏟아지듯 켜짐) `dust`(모래바람) `fade`(화면 전환: 까맣게 닫혔다 열림, 그 사이 배경·인물이 바뀜 = 시간이 흐름) `thunder`(번개) `rain-start` / `rain-stop`
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
+- 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
 - 긴 카메라 연출은 탭하면 빨리 감긴다 (`screens/scene.ts`의 `CAMERA` 목록). 긴 연출은 15초 안으로.
 

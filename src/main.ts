@@ -10,6 +10,7 @@ import './styles/flood.css';
 import './styles/babel.css';
 import './styles/nile.css';
 import './styles/bush.css';
+import './styles/plagues.css';
 import './styles/twins.css';
 import './styles/title.css';
 import './styles/map.css';
@@ -18,6 +19,7 @@ import './styles/library.css';
 import './styles/tabernacle.css';
 import './styles/codex.css';
 import './styles/ladder.css';
+import './styles/jabbok.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

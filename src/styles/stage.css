@@ -34,6 +34,8 @@
 .stage[data-count='2'] { --slot: 46cqw; }
 .stage[data-count='3'] { --slot: 30cqw; }
 .stage[data-count='4'] { --slot: 23cqw; }
+.stage[data-count='5'] { --slot: 18.5cqw; }
+.stage[data-count='6'] { --slot: 15.5cqw; }
 .stage > .actor { flex: none; height: min(calc(100% * var(--h, 1)), calc(var(--slot) * var(--slots, 1) * var(--ar, 2.1) * var(--h, 1))); }
 
 /* 죄 (창 4:7): 역광 없이, 더 짙은 잉크. 테두리는 식은 불빛, 눈은 희미한 불씨 */
@@ -46,6 +48,7 @@
 
 /* 센 머리·수염 (노아처럼 나이 든 인물): 실루엣 잉크보다 한 톤 밝은 잿빛 */
 .actor .gray { color: color-mix(in srgb, var(--sil-ink) 62%, #a7abbd); }
+.stage[data-count='4'] { gap: 1.5%; }
 .stage[data-count='5'] { --slot: 18.5cqw; gap: 1.5%; }
 .stage[data-count='6'] { --slot: 15.5cqw; gap: 1%; }
 

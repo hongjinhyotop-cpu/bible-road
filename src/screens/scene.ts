@@ -22,6 +22,7 @@ import type { CharacterDef } from '../characters';
 import { backdropSvg, bowSvg, fitBackdrops } from '../fx/backdrop';
 import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
+import { playPlague } from '../fx/plagues';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -262,7 +263,10 @@ export function sceneScreen({ id }: Params): Screen {
     if (fade) setItem(el, items, null, true);
     else if (beat.item !== undefined) setItem(el, items, beat.item);
     fx.filter((f) => f !== 'fade').forEach(playFx);
+    const had = new Set(stage.actors.keys());
     for (const st of all) await perform(st, beat);
+    // 이번 beat의 동작(walk-in)으로 막 들어온 인물도 그 옷을 입고 나온다
+    for (const [who, name] of Object.entries(beat.outfit ?? {})) if (!had.has(who)) stage.actors.get(who)?.outfit(name, false);
     if (fade && beat.item) setItem(el, items, beat.item);
     if (fade) await fadeScreen(false);
   }
@@ -304,11 +308,15 @@ export function sceneScreen({ id }: Params): Screen {
         if (actors[0] && (other ?? actors[1])) stage.approach(actors[0], (other ?? actors[1])!);
         return;
       case 'embrace':
-      case 'argue': {
+      case 'argue':
+      case 'wrestle': {
         const pair = other ? [actors[0], other] : actors.slice(0, 2);
         if (pair.length === 2 && pair[0] && pair[1]) stage[st.act](pair[0], pair[1]);
         return;
       }
+      case 'bow-seven':
+        actors.forEach((a) => stage.bowSeven(a, other));
+        return;
       case 'part':
         actors.forEach((a) => stage.part(a));
         return;
@@ -403,6 +411,15 @@ export function sceneScreen({ id }: Params): Screen {
         return;
       case 'rain-stop':
         rain.set(0);
+        return;
+      case 'frogs':
+      case 'gnats':
+      case 'flies':
+      case 'ash':
+      case 'hail':
+      case 'locusts':
+        // 애굽의 재앙 (fx/plagues.ts): 무대 위에 잠깐 깔렸다 사라지는 층
+        playPlague($('.scene'), fx, rm);
         return;
       case 'glory':
       case 'fire':

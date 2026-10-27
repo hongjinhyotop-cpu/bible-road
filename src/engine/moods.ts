@@ -9,9 +9,11 @@ export type BackdropArt =
   | 'moreh' | 'moreh-altar' | 'bethel-ai'
   | 'moriah-far' | 'moriah' | 'moriah-altar' | 'moriah-thicket' | 'moriah-fire'
   | 'nile' | 'nile-basket' | 'nile-basket-side' | 'nile-found'
+  | 'nile-blood' | 'goshen-dark'
   | 'horeb' | 'bush' | 'bush-snake'
   | 'stew-tent' | 'cook-tent' | 'isaac-tent'
   | 'luz' | 'luz-ladder' | 'luz-pillar'
+  | 'jabbok' | 'jabbok-cross' | 'jabbok-grey' | 'jabbok-sun' | 'seir-road' | 'seir-host' | 'seir-near'
   | PlaceArt;
 
 /**
@@ -104,6 +106,13 @@ export const FX = [
   'thunder', // 번개: 번쩍 + 진동
   'rain-start', // 비가 내리기 시작 (rain-stop까지)
   'rain-stop', // 비 그침
+  // ── 애굽의 재앙 (출 7–10, fx/plagues.ts) — 다른 재앙·심판 장면에서도 쓸 수 있다 ──
+  'frogs', // 작은 개구리들이 무대 아래를 폴짝폴짝 가로지름
+  'gnats', // 땅의 티끌이 작은 점(이)으로 일어나 낮게 떼 지어 일렁임
+  'flies', // 파리 떼: 큰 점 몇 무리가 윙윙 맴돌며 화면을 채움
+  'ash', // 무대 가운데서 재가 하늘로 흩날려 퍼졌다가 내려앉음 (독종)
+  'hail', // 우박: 쏟아지는 얼음 줄기 + 불덩이, 땅에 닿은 불이 번졌다 꺼짐 (thunder와 같이 쓰면 좋음)
+  'locusts', // 메뚜기 떼 구름이 몰려와 하늘·땅을 어둡게 덮고 지나감
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -217,6 +226,14 @@ export const MOODS: Record<string, Mood> = {
   /** 건져 올려 연 상자, 우는 아이 (출 2:6). 상자는 가운데에서 조금 오른쪽 */
   'nile-found': { light: true, land: true, art: 'nile-found', spread: true },
 
+  // ── 애굽의 재앙 (출 7–10, fx/nile.ts · fx/plagues.ts) ──
+  /** 피로 변한 나일: 붉게 물든 강, 천천히 도는 짙은 소용돌이, 떠내려가는 죽은 고기 (출 7:20-21) */
+  'nile-blood': { light: true, land: true, art: 'nile-blood' },
+  /** 우박이 내리는 들: 이삭 팬 보리밭, 잿빛 폭풍 하늘 (출 9:23-31). fx hail · thunder와 함께 */
+  'hail-field': { light: true, land: true, art: 'field', tone: 'storm' },
+  /** 흑암: 더듬을 만한 어둠. 멀리 고센의 집 몇 채에만 등잔 불빛 (출 10:21-23) */
+  darkness: { light: false, land: false, art: 'goshen-dark' },
+
   // ── 호렙산의 떨기나무 (출 3:1-4:17, fx/bush.ts) ──
   /** 하나님의 산 호렙, 비탈의 이드로 양 떼, 왼쪽 앞에 떨기나무 (아직 불 없음) (출 3:1) */
   horeb: { light: true, land: false, art: 'horeb', spread: true },
@@ -250,6 +267,26 @@ export const MOODS: Record<string, Mood> = {
   ladder: { light: true, land: true, art: 'luz-ladder', tone: 'night', spread: true },
   /** 아침: 베개였던 돌을 세운 기둥, 위에 부은 기름이 반짝인다 (창 28:18) */
   'bethel-pillar': { light: true, land: true, art: 'luz-pillar', tone: 'clear', spread: true },
+
+  // ── 얍복 나루 (창 32, fx/jabbok.ts) ──
+  /** 길르앗 골짜기의 얍복 여울, 해 질 녘. 징검돌, 양쪽 가파른 산 (창 32:22) */
+  'jabbok-dusk': { light: true, land: false, art: 'jabbok', tone: 'dusk' },
+  /** 같은 여울, 달 없는 밤. 별만 (창 32:24 "야곱은 홀로 남았더니") */
+  'jabbok-night': { light: true, land: false, art: 'jabbok', tone: 'night' },
+  /** 밤에 등불 하나를 앞세운 행렬이 징검돌을 따라 건너간다 (창 32:22-23) */
+  'jabbok-cross': { light: true, land: false, art: 'jabbok-cross', tone: 'night' },
+  /** 골짜기 동쪽 틈으로 새벽의 첫 잿빛 (창 32:26 "날이 새려 하니") */
+  'jabbok-grey': { light: true, land: false, art: 'jabbok-grey', tone: 'night' },
+  /** 해가 돋았다. 물에 빛이 깔린다 (창 32:31) */
+  'jabbok-dawn': { light: true, land: false, art: 'jabbok-sun', tone: 'clear' },
+
+  // ── 세일 들 (창 33, fx/jabbok.ts) ──
+  /** 얍복 남쪽 넓은 들, 아침. 지평선까지 굽은 길 (창 33:1) */
+  'seir-road': { light: true, land: false, art: 'seir-road', tone: 'clear' },
+  /** 같은 들, 먼 마루를 따라 늘어선 사백 인. 창끝이 반짝이고 먼지가 인다 (창 33:1) */
+  'seir-host': { light: true, land: false, art: 'seir-host', tone: 'clear' },
+  /** 사백 인이 바로 뒤 비탈까지 와 섰다 (창 33:4) */
+  'seir-near': { light: true, land: false, art: 'seir-near', tone: 'clear' },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...
