@@ -139,6 +139,7 @@ PROGRESS.md      ← 진행 기록
 - **새 인물 파일 금지.** 이미 있는 인물(`src/characters/*.ts`)을 쓰고, 나머지 조연은 `extras`(키트)로 그 자리에서 만든다. extras는 도감(`unlocks`)에 못 넣는다.
 - `cast` = 처음부터 무대에 선 사람(조용히 떠오름). 장면 중간 `enter` = **옆에서 걸어 들어옴**(B급 기본), `exit` = **보는 쪽으로 걸어 나감**. 무대에는 한 번에 2~3명이 보기 좋다(최대 6).
 - `names`: 이 에피소드에서만 이름표를 바꿔 부를 때 (창 17 전의 아브람·사래, 창 32 뒤의 이스라엘 등).
+  - beat에도 `"names"`를 쓸 수 있다: 그 beat부터 이름표가 바뀐다 (예: 창 45:3 `{ "joseph": "요셉" }` — 그 전까지는 장면 names의 "총리").
 
 ### beat 종류 (`src/engine/scene.ts`)
 - `narration` 이야기 서술 · `line` 대사(`"who"` = 말하는 사람, 강조됨) · `voice` 하나님의 목소리(인물 없이 빛나는 글자) · `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
@@ -146,6 +147,7 @@ PROGRESS.md      ← 진행 기록
 - 모든 beat에 붙일 수 있는 것:
   - `"act"` + `"who"`(한 명 또는 배열) + `"to"`(상대): 동작 라이브러리. line beat에서는 who 생략 = 말하는 사람이 함. 여러 동작을 동시에: `"acts": [{ "act": "embrace", "who": ["jacob", "esau"] }, { "act": "cry", "who": "esau" }]`
   - `"bg"`(= `"mood"`): 배경 바꾸기 · `"fx"`: 효과 (한 개 또는 배열)
+  - `"names"`: 그 beat부터 이름표를 바꿔 부름 (위 `names`와 같은 형식)
   - `"enter"`, `"exit"`, `"pose"`(neutral/slump/lift/tremble), `"face"`({"eve": "left"}), `"outfit"`(인물 파일의 outfits)
   - `"item"`: 성막 기구 하나를 무대 가운데 띄움 (아래 "성막 기구") · `"item": null`(또는 `"none"`)이면 걷힘
 
@@ -178,6 +180,7 @@ PROGRESS.md      ← 진행 기록
 - `glory`(하나님의 임재: 위에서 금빛 — 인물로 안 그림) `fire`(무대 가운데 불길) `stars`(별이 쏟아지듯 켜짐) `dust`(모래바람) `fade`(화면 전환: 까맣게 닫혔다 열림, 그 사이 배경·인물이 바뀜 = 시간이 흐름) `thunder`(번개) `rain-start` / `rain-stop`
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
 - 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
+- `weep`(큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 — 창 45:2, `src/fx/hall.ts`). 이집트 고관의 홀 배경 `joseph-hall`(열린 큰 문·파피루스 기둥·화로) / `joseph-hall-shut`(모두 물러가고 문이 닫힘) / `joseph-hall-dusk` — 창 41–50의 요셉 궁·바로 궁 장면에서 재사용 가능.
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
 - 긴 카메라 연출은 탭하면 빨리 감긴다 (`screens/scene.ts`의 `CAMERA` 목록). 긴 연출은 15초 안으로.
 

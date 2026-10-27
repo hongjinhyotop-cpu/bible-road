@@ -1,0 +1,177 @@
+/* ── 바다가 갈라지다 (출 14, fx/sea.ts) ──
+   밤의 물벽은 차가운 청록, 등 뒤 불 기둥의 빛은 따뜻한 주황. 두 빛이 만나는 곳이 길이다.
+   애굽 군대가 덮이는 장면은 사람을 그리지 않는다: 벽이 무너지고, 물이 덮고, 잠잠해질 뿐. */
+
+/* 밤·새벽 그림은 자기 하늘색을 직접 칠한다 → 막 공통의 밤 어둡게 하기는 끈다 */
+.play .scene__backdrop:has(> .backdrop:last-child:is([data-art='redsea-pillar'], [data-art='redsea-wind'], [data-art='redsea-part'], [data-art='redsea-crossing'], [data-art='redsea-chase'], [data-art='redsea-return'], [data-art='redsea-sunrise'])) { filter: none; }
+
+/* 별 */
+.rs-star { fill: #e8ecf4; opacity: 0.5; }
+.rs-star.is-big { opacity: 0.9; animation: rs-twinkle 6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* 멀리서 본 바다 */
+.rs-water { fill: #557582; }
+.rs-wave { fill: none; stroke: #e6eef0; stroke-width: 0.6; opacity: 0.32; animation: rs-roll 9s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-roll { to { transform: translateX(var(--dx)); } }
+.rs-sea--night .rs-water { fill: #0a1824; }
+.rs-sea--night .rs-wave { stroke: #8fb4c4; opacity: 0.28; }
+.rs-sea--wind .rs-wave { stroke-width: 0.9; opacity: 0.45; animation-duration: 2.6s; animation-direction: reverse; }
+.rs-sea--grey .rs-water { fill: #2a3540; }
+.rs-sea--grey .rs-wave { stroke: #d6dee2; opacity: 0.5; stroke-width: 0.9; animation-duration: 3.4s; }
+.rs-sea--dawn .rs-water { fill: #5a5468; }
+.rs-sea--dawn .rs-wave { stroke: #f6d8b0; opacity: 0.3; animation-duration: 14s; }
+.rs-farshore { opacity: 0.85; }
+.rs-slit { fill: #f2b766; opacity: 0.5; }
+.rs-sand { fill: color-mix(in srgb, var(--act-a) 60%, #3a2a1c); }
+.rs-sand--lit { fill: color-mix(in srgb, #6a4428 55%, var(--act-a)); }
+.rs-sand--dawn { fill: #4a3a3a; }
+.rs-shore { fill: #0c0a0c; }
+.rs-camp.is-lit .bd-tent { --bd: #1c120c; }
+.rs-campfire { fill: #ffbe78; filter: drop-shadow(0 0 2px #f08a3c); animation: rs-flicker 2.4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-flicker { 0%, 100% { opacity: 0.9; } 40% { opacity: 0.55; } 70% { opacity: 1; } }
+
+/* 병거의 줄 (출 14:9-10): 아주 천천히 다가온다. 창끝이 해를 받아 반짝인다 */
+.rs-sun { fill: #ffe6b8; filter: drop-shadow(0 0 6px #f5b26a); }
+.rs-sun--low { fill: #f6b070; opacity: 0.9; }
+.rs-host { animation: rs-advance 40s linear both; }
+@keyframes rs-advance { from { transform: translateX(-26px); } to { transform: translateX(30px); } }
+.rs-ch__body { animation: rs-jolt 0.5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-jolt { to { transform: translateY(-0.6px); } }
+.rs-glint { fill: #ffe0a8; opacity: 0.2; animation: rs-glint 4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-glint { 0%, 70%, 100% { opacity: 0.15; } 80% { opacity: 1; } }
+.rs-dust ellipse { fill: #c89070; opacity: 0.3; filter: blur(3px); animation: rs-dust 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: center; }
+@keyframes rs-dust { to { transform: translateX(14px) scale(1.25); opacity: 0.32; } }
+
+/* 불 기둥 (출 14:19-20) */
+.rs-pillar__glow { mix-blend-mode: screen; animation: rs-breathe 4.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.rs-pillar__body { mix-blend-mode: screen; opacity: 0.85; animation: rs-pillar-sway 3.2s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+.rs-pillar__core { fill: #fff6dc; opacity: 0.75; filter: blur(1.4px); }
+.rs-pillar__foot { fill: #ffd59a; opacity: 0.5; filter: blur(3px); }
+.rs-pillar__tongue {
+  fill: #ffc070; opacity: 0; mix-blend-mode: screen; filter: blur(0.8px);
+  transform-box: fill-box; transform-origin: center;
+  animation: rs-tongue 6.4s linear infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes rs-tongue {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.8); }
+  10% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(var(--x), -240px) scale(1.6, 2.6); }
+}
+@keyframes rs-pillar-sway { from { transform: skewX(-1.2deg) scaleX(0.96); } to { transform: skewX(1.2deg) scaleX(1.04); } }
+@keyframes rs-breathe { 0%, 100% { opacity: 0.8; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+
+/* 구름과 흑암: 애굽 진 쪽. 구름 덩이가 아주 느리게 굽이친다 */
+.rs-darkness__puffs ellipse { fill: #0d0c14; stroke: #2a1c18; stroke-width: 0.8; opacity: 0.92; animation: rs-roil 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: center; }
+@keyframes rs-roil { to { transform: translate(8px, -4px) scale(1.12); } }
+.rs-efire { fill: #c0503a; opacity: 0.35; filter: blur(0.6px); }
+
+/* 동풍의 밤 (출 14:21) */
+.rs-scud ellipse { fill: #1a2232; opacity: 0.8; filter: blur(2px); animation: rs-scud 7s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-scud { from { transform: translateX(160px); opacity: 0; } 15%, 85% { opacity: 0.8; } to { transform: translateX(-200px); opacity: 0; } }
+.rs-gust path { fill: none; stroke: #b8cad6; stroke-width: 0.6; stroke-linecap: round; opacity: 0; animation: rs-gust var(--s) linear infinite; animation-delay: var(--d); }
+@keyframes rs-gust { 0% { opacity: 0; transform: translateX(60px); } 30% { opacity: 0.5; } 100% { opacity: 0; transform: translateX(-120px); } }
+/* 등 뒤의 불 기둥 빛이 앞쪽 땅·물벽 발치에 닿는다 */
+.rs-behind { fill: #f0a050; opacity: 0.13; filter: blur(14px); mix-blend-mode: screen; animation: rs-warm 4.4s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes rs-warm { 0%, 100% { opacity: 0.11; transform: scale(1); } 50% { opacity: 0.16; transform: scale(1.04); } }
+
+/* ── 물벽 ── */
+.rs-vp { fill: #b9d6e0; opacity: 0.12; filter: blur(8px); }
+.backdrop[data-art='redsea-chase'] .rs-vp, .backdrop[data-art='redsea-return'] .rs-vp { fill: #f3d6b6; opacity: 0.35; }
+.rs-wall__mass { opacity: 0.94; }
+.rs-wall__depth { mix-blend-mode: screen; }
+.rs-wall__strata path { fill: none; stroke: #c8ecf2; stroke-width: 0.5; opacity: 0.16; stroke-dasharray: 60 140; animation: rs-strata 16s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-strata { to { stroke-dashoffset: -200; } }
+.rs-shaft { fill: none; stroke: #bfe6ee; stroke-width: var(--w); opacity: 0.06; filter: blur(1px); animation: rs-shaft 7s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-shaft { 0%, 100% { opacity: 0.04; } 50% { opacity: 0.16; } }
+.rs-wall__edge { fill: none; stroke: #e4f6f8; stroke-width: 1.4; opacity: 0.55; filter: blur(0.6px); }
+.rs-foam { fill: none; stroke: #eef8f8; stroke-linecap: round; opacity: 0.4; filter: blur(0.5px); stroke-dasharray: 3 5 9 4; animation: rs-foam 5s linear infinite; }
+@keyframes rs-foam { to { stroke-dashoffset: -42; } }
+.rs-wall__foot { fill: none; stroke: #dff2f2; stroke-width: 1.2; opacity: 0.35; }
+.rs-crest ellipse { fill: #e8f6f6; opacity: 0.32; filter: blur(0.9px); animation: rs-crest 3s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: center; }
+@keyframes rs-crest { from { transform: translate(0, 0) scale(1, 1); } to { transform: translate(-1.5px, -1px) scale(1.18, 1.3); opacity: 0.5; } }
+.rs-spray circle { fill: #eef8f8; opacity: 0; animation: rs-spray 4s ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-spray { 0% { opacity: 0; transform: translate(0, 0); } 20% { opacity: 0.8; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+/* 새벽 잿빛: 물벽이 식은 회청색 */
+.backdrop:is([data-art='redsea-chase'], [data-art='redsea-return']) .rs-wall__mass { filter: saturate(0.55) brightness(1.15); }
+.backdrop:is([data-art='redsea-chase'], [data-art='redsea-return']) .rs-wall__depth { opacity: 0.4; }
+
+/* 바다 가운데 마른 길 */
+.rs-path__ripples path { fill: none; stroke: #b39572; stroke-width: 0.5; opacity: 0.32; }
+.rs-path__pools ellipse { fill: #7fa4b0; opacity: 0.12; animation: rs-twinkle 7s ease-in-out infinite; }
+
+/* 백성의 행렬: 길을 따라 소실점으로 작아지며 멀어진다 (출 14:22) */
+.rs-walker { color: #0b0a0c; fill: #0b0a0c; animation: rs-walk 24s cubic-bezier(0.12, 0.62, 0.3, 1) infinite both; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-walk {
+  0% { transform: translate(calc(200px + var(--lane) * 44px), 274px) scale(1.15); opacity: 0; }
+  4% { opacity: 1; }
+  88% { opacity: 1; }
+  100% { transform: translate(calc(200px + var(--lane) * 0.5px), 151px) scale(0.025); opacity: 0; }
+}
+.rs-walker__bob { animation: rs-bob var(--b) ease-in-out infinite alternate; }
+@keyframes rs-bob { to { transform: translateY(-1.4px); } }
+.rs-walker__lamp { fill: #ffd08a; filter: drop-shadow(0 0 2px #f6a046); }
+
+/* 길에 들어온 병거들: 바퀴가 빠지고 비틀거린다 (출 14:24-25) */
+.rs-chariots { --bd: #0c0c10; }
+.rs-stuck { transform-box: fill-box; transform-origin: 50% 100%; animation: rs-stuck 2.6s ease-in-out infinite; animation-delay: calc(var(--i) * -0.7s); }
+@keyframes rs-stuck {
+  0%, 100% { transform: rotate(0deg); }
+  20% { transform: rotate(-4deg) translateY(0.6px); }
+  32% { transform: rotate(3deg); }
+  44% { transform: rotate(-1.5deg) translateY(1px); }
+  60% { transform: rotate(0.5deg); }
+}
+.rs-wheel-off { transform-box: fill-box; transform-origin: center; animation: rs-wheel-off 3.4s cubic-bezier(0.4, 0, 0.7, 1) both; animation-delay: calc(2.6s + var(--i) * 0.9s); }
+@keyframes rs-wheel-off { 0% { transform: none; opacity: 1; } 60% { opacity: 1; } 100% { transform: translate(14px, 3px) rotate(80deg) scale(1.2, 0.6); opacity: 0; } }
+.rs-horse { animation: rs-rear 1.7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes rs-rear { to { transform: translateY(-1.4px) rotate(-3deg); } }
+
+/* ── 갈라짐 (sea-part): 가운데가 꺼지고, 좌우로 물벽이 솟는다. 끝 상태가 기본값 → 모션 줄이기면 바로 끝 상태 ── */
+.backdrop[data-art='redsea-part'] .rs-side { transform-origin: 200px 262px; animation: sea-rise 7.6s cubic-bezier(0.55, 0.05, 0.25, 1) 1.4s both; }
+@keyframes sea-rise {
+  0% { transform: translate(60px, 0) scaleY(0.04); opacity: 0; }
+  18% { opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+.backdrop[data-art='redsea-part'] .rs-flat { animation: sea-drain 6s ease-in 2s both; }
+@keyframes sea-drain { 0% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(16px); } }
+.backdrop[data-art='redsea-part'] .rs-spray circle { animation-duration: 1.6s; }
+
+/* ── 다시 덮임 (sea-return): 물벽이 안쪽으로 무너지고, 길이 물에 덮인다 ── */
+.backdrop[data-art='redsea-return'] .rs-side { transform-origin: 200px 262px; animation: sea-fall 5.4s cubic-bezier(0.5, 0, 0.8, 0.5) 1.6s both; }
+@keyframes sea-fall {
+  0% { transform: none; opacity: 1; }
+  70% { opacity: 1; }
+  100% { transform: translate(70px, 26px) scaleY(0.06); opacity: 0; }
+}
+.rs-churn { animation: sea-cover 3.6s ease-out 4.6s both; }
+@keyframes sea-cover { from { opacity: 0; } to { opacity: 1; } }
+.rs-burst { fill: #eef6f6; opacity: 0; filter: blur(4px); transform-box: fill-box; transform-origin: center; animation: sea-burst 4.4s ease-out 4.6s both; }
+@keyframes sea-burst { 0% { opacity: 0; transform: scale(0.1, 0.4); } 25% { opacity: 0.75; } 100% { opacity: 0; transform: scale(1.6, 2.2) translateY(-6px); } }
+
+/* 해 돋는 아침 */
+.rs-sunhalo { fill: url(#bd-halo-g); opacity: 1; }
+.backdrop[data-art='redsea-sunrise'] .rs-sun { animation: rs-sunrise 12s ease-out both; }
+@keyframes rs-sunrise { from { transform: translateY(8px); } to { transform: none; } }
+.rs-shimmer path { stroke: #ffe2b4; stroke-width: 1; opacity: 0.4; animation: rs-twinkle 3.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.rs-foamline { fill: none; stroke: #f4e2cc; stroke-width: 0.6; opacity: 0.25; animation: rs-lap 6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes rs-lap { 0%, 100% { transform: translateY(0); opacity: 0.12; } 50% { transform: translateY(2px); opacity: 0.4; } }
+.rs-wheel { color: #1a1414; fill: #1a1414; }
+.rs-wheel__rim { stroke: #ffd9a8; opacity: 0.2; animation: rs-glint 6s ease-in-out infinite; }
+
+/* fx "east-wind": 동풍 줄기 (출 14:21) */
+.fx-eastwind { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s; }
+.fx-eastwind.is-out { opacity: 0; }
+.fx-eastwind i {
+  position: absolute; right: 0; top: var(--y); width: var(--w); height: 1px;
+  background: linear-gradient(270deg, transparent, rgba(210, 226, 236, 0.45), transparent);
+  transform: translateX(110cqw); animation: rs-eastwind var(--s) linear infinite; animation-delay: var(--d);
+}
+@keyframes rs-eastwind { to { transform: translateX(-140cqw); } }
+
+:root[data-reduced-motion='true'] :is(.rs-star, .rs-wave, .rs-host, .rs-ch__body, .rs-glint, .rs-dust ellipse, .rs-pillar__glow, .rs-pillar__body, .rs-darkness__puffs ellipse, .rs-scud ellipse, .rs-behind, .rs-wall__strata path, .rs-shaft, .rs-crest ellipse, .rs-walker__bob, .rs-stuck, .rs-horse, .rs-shimmer path, .rs-foamline, .rs-wheel__rim, .rs-path__pools ellipse, .rs-campfire) { animation: none; }
+:root[data-reduced-motion='true'] :is(.rs-pillar__tongue, .rs-spray circle, .rs-gust path, .rs-walker, .rs-burst) { animation: none; opacity: 0; }
+:root[data-reduced-motion='true'] .backdrop :is(.rs-side, .rs-flat, .rs-churn, .rs-sun, .rs-wheel-off) { animation: none; }
+:root[data-reduced-motion='true'] .backdrop[data-art='redsea-part'] .rs-flat { opacity: 0; }
+:root[data-reduced-motion='true'] .backdrop[data-art='redsea-return'] .rs-side { opacity: 0; }

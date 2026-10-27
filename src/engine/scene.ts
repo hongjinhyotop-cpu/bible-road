@@ -23,6 +23,8 @@ interface BeatBase {
   pose?: Record<string, Pose>;
   /** 인물이 바라보는 쪽 { "eve": "left" }. 새로 선 인물은 자동으로 먼저 선 사람 쪽(왼쪽)을 본다 */
   face?: Record<string, Facing>;
+  /** 이 beat부터 이름표를 바꿔 부른다 { "joseph": "요셉" } (장면의 names를 덮어씀) */
+  names?: Record<string, string>;
   /** 옷을 갈아입힌다 { "adam": "skins" }. 옷 이름은 인물 파일의 outfits */
   outfit?: Record<string, string>;
   /** 배경 분위기를 바꾼다 (engine/moods.ts). 예: "eden-dusk" */

@@ -24,6 +24,8 @@ import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
 import { playPlague } from '../fx/plagues';
 import { playPassover } from '../fx/passover';
+import { playEastWind } from '../fx/sea';
+import { playWeep } from '../fx/hall';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -40,7 +42,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -107,6 +109,8 @@ export function sceneScreen({ id }: Params): Screen {
 
   let scene: Scene | null = null;
   let cursor: SceneCursor | null = null;
+  /** 지금 이름표 (장면의 names에서 시작, beat의 names로 그 beat부터 바뀜) */
+  let names: Record<string, string> = {};
   let stage = new Stage();
   let mode: Mode = 'loading';
   /** 지금 진행 중인 연출. 탭하면 먼저 이걸 끝까지 보여준다 */
@@ -206,7 +210,7 @@ export function sceneScreen({ id }: Params): Screen {
       case 'narration':
       case 'line': {
         stage.setSpeaker(beat.type === 'line' ? beat.who : null);
-        const name = beat.type === 'line' ? (scene?.names?.[beat.who] ?? stage.actors.get(beat.who)?.def.name ?? (await castDef(beat.who)).name) : '';
+        const name = beat.type === 'line' ? (names[beat.who] ?? stage.actors.get(beat.who)?.def.name ?? (await castDef(beat.who)).name) : '';
         await showText(beat.text, name);
         break;
       }
@@ -246,6 +250,8 @@ export function sceneScreen({ id }: Params): Screen {
     const fade = fx.includes('fade');
     if (fade) await fadeScreen(true);
     const all = steps(beat);
+    // 이름표: 이 beat부터 바꿔 부른다 (예: 총리 → 요셉)
+    if (beat.names) Object.assign(names, beat.names);
     // 여정 지도: 이번 beat에 travel이 없으면 접는다
     const trip = all.find((st) => st.act === 'travel');
     if (!trip && travel) {
@@ -253,7 +259,7 @@ export function sceneScreen({ id }: Params): Screen {
       travel = null;
     }
     for (const who of beat.exit ?? []) void (isB() ? stage.walkOut(who) : stage.remove(who));
-    await Promise.all((beat.enter ?? []).map((who) => addActor(who, true)));
+    await addInOrder(beat.enter ?? []);
     // 이번에 막 들어온 인물은 처음부터 그 옷을 입고 나온다
     for (const [who, name] of Object.entries(beat.outfit ?? {})) stage.actors.get(who)?.outfit(name, !beat.enter?.includes(who));
     for (const [who, pose] of Object.entries(beat.pose ?? {})) stage.actors.get(who)?.pose(pose);
@@ -341,6 +347,12 @@ export function sceneScreen({ id }: Params): Screen {
     return loadCharacter(who);
   }
 
+  /** 여럿을 한꺼번에 세울 때: 그림은 동시에 불러오되, 무대에는 적힌 순서대로 선다 (불러오는 속도에 따라 자리가 바뀌지 않게) */
+  async function addInOrder(list: string[]) {
+    await Promise.all(list.map((who) => castDef(who).catch(() => undefined)));
+    for (const who of list) await addActor(who, true);
+  }
+
   async function addActor(who: string, animate: boolean, how?: 'walk'): Promise<Actor | undefined> {
     if (stage.actors.has(who)) return stage.actors.get(who);
     const actor = stage.add(new Actor(await castDef(who)));
@@ -425,6 +437,14 @@ export function sceneScreen({ id }: Params): Screen {
       case 'passover':
         // 유월절 밤 (fx/passover.ts): 어두운 바람이 쓸고 지나가고, 피 바른 문만 불빛이 남는다
         playPassover($('.scene'), rm);
+        return;
+      case 'east-wind':
+        // 홍해 (fx/sea.ts): 큰 동풍이 화면을 가로질러 몰아친다
+        playEastWind($('.scene'), rm);
+        return;
+      case 'weep':
+        // 나는 요셉이라 (fx/hall.ts): 요셉의 울음이 고리처럼 퍼져 벽 너머로 (창 45:2)
+        playWeep($('.scene'), rm);
         return;
       case 'glory':
       case 'fire':
@@ -657,7 +677,8 @@ export function sceneScreen({ id }: Params): Screen {
     gsap.set($('.play__fade'), { opacity: 0 });
     setMode('loading');
     cursor = new SceneCursor(scene);
-    await Promise.all((scene.cast ?? []).map((c) => addActor(c, true)));
+    names = { ...(scene.names ?? {}) };
+    await addInOrder(scene.cast ?? []);
     for (const [who, name] of Object.entries(scene.outfit ?? {})) stage.actors.get(who)?.outfit(name, false);
     await intro(scene);
     if (alive) await step();

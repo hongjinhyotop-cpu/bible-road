@@ -16,6 +16,8 @@ export type BackdropArt =
   | 'jabbok' | 'jabbok-cross' | 'jabbok-grey' | 'jabbok-sun' | 'seir-road' | 'seir-host' | 'seir-near'
   | 'sheaves' | 'eleven-stars' | 'dothan' | 'dothan-caravan' | 'cistern'
   | 'goshen-house' | 'goshen-blood' | 'passover-night' | 'egypt-lamps'
+  | 'redsea-camp' | 'redsea-chariots' | 'redsea-pillar' | 'redsea-wind' | 'redsea-part' | 'redsea-crossing' | 'redsea-chase' | 'redsea-return' | 'redsea-sunrise'
+  | 'joseph-hall' | 'joseph-hall-shut'
   | PlaceArt;
 
 /**
@@ -117,6 +119,10 @@ export const FX = [
   'locusts', // 메뚜기 떼 구름이 몰려와 하늘·땅을 어둡게 덮고 지나감
   // ── 유월절 (출 12, fx/passover.ts) ──
   'passover', // 어두운 바람이 무대를 쓸고 지나감. 피 바른 문(mood passover-night)만 비켜 가 불빛이 남는다 (출 12:23)
+  // ── 홍해 (출 14, fx/sea.ts) ──
+  'east-wind', // 큰 동풍: 바람 줄기가 화면을 가로질러 몰아침 (약 9초, 출 14:21)
+  // ── 나는 요셉이라 (창 45, fx/hall.ts) ──
+  'weep', // 큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 나간다 (약 9초, 창 45:2)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -315,6 +321,36 @@ export const MOODS: Record<string, Mood> = {
   'passover-night': { light: false, land: false, art: 'passover-night', spread: true },
   /** 멀리 애굽 성읍의 밤: 등불이 가운데 왕궁부터 하나씩 꺼져 변두리 옥까지 (출 12:29) */
   'egypt-lamps': { light: false, land: false, art: 'egypt-lamps' },
+
+  // ── 바다가 갈라지다 (출 14, fx/sea.ts) ──
+  /** 비하히롯 앞 바닷가 진: 바다 건너 바알스본 산, 왼쪽 믹돌 망대, 물가의 장막들 (출 14:2) */
+  'sea-camp': { light: true, land: false, art: 'redsea-camp' },
+  /** 같은 진, 해 질 녘 */
+  'sea-camp-dusk': { light: true, land: false, art: 'redsea-camp', tone: 'dusk' },
+  /** 해 질 녘 서쪽 마루를 따라 먼지를 일으키며 다가오는 병거의 줄, 반짝이는 창끝 (출 14:9-10) */
+  'sea-chariots': { light: true, land: false, art: 'redsea-chariots' },
+  /** 밤: 두 진 사이에 선 불 기둥. 왼쪽 애굽 진은 구름과 흑암, 오른쪽 이스라엘 진은 불빛 (출 14:19-20) */
+  'sea-pillar': { light: true, land: false, art: 'redsea-pillar', tone: 'night', spread: true },
+  /** 밤바다에 큰 동풍: 물결이 일어서고 구름이 달린다 (출 14:21). fx east-wind와 함께 */
+  'sea-wind': { light: true, land: false, art: 'redsea-wind', tone: 'night', spread: true },
+  /** 물이 갈라진다: 가운데가 꺼지며 길이 열리고 좌우로 물벽이 솟는다 (약 9초, 탭하면 빨리 감김) (출 14:21) */
+  'sea-part': { light: true, land: false, art: 'redsea-part', tone: 'night', spread: true },
+  /** 물벽 사이 마른 길: 백성이 긴 줄로 바다 가운데를 걸어 멀어진다 (출 14:22) */
+  'sea-crossing': { light: true, land: false, art: 'redsea-crossing', tone: 'night', spread: true },
+  /** 새벽 잿빛, 같은 길에 들어온 병거들이 비틀거리고 바퀴가 빠진다 (출 14:23-25) */
+  'sea-chase': { light: true, land: false, art: 'redsea-chase', tone: 'storm', spread: true },
+  /** 물벽이 안쪽으로 무너지고 길이 물에 덮인다 (약 9초, 탭하면 빨리 감김). 사람은 그리지 않는다 (출 14:27-28) */
+  'sea-return': { light: true, land: false, art: 'redsea-return', tone: 'storm', spread: true },
+  /** 해 돋는 잔잔한 바다, 물가 모래에 반쯤 묻힌 병거 바퀴 하나 (출 14:30-31) */
+  'sea-sunrise': { light: true, land: false, art: 'redsea-sunrise', tone: 'clear' },
+
+  // ── 나는 요셉이라 (창 44:18–45:15, fx/hall.ts) ──
+  /** 요셉의 집 큰 방: 파피루스 기둥, 그림 글자 띠, 화로, 열린 큰 문 너머 이집트 한낮 */
+  'joseph-hall': { light: true, land: false, art: 'joseph-hall' },
+  /** 같은 방, 모두 물러가고 문이 닫힘: 문틈으로만 빛, 화로는 낮게 (창 45:1) */
+  'joseph-hall-shut': { light: true, land: false, art: 'joseph-hall-shut' },
+  /** 같은 방, 저녁 */
+  'joseph-hall-dusk': { light: true, land: false, art: 'joseph-hall-shut', tone: 'dusk' },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...

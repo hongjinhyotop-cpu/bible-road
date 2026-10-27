@@ -94,5 +94,7 @@ export const PLACE_NAMES = {
   capernaum: '가버나움',
   rameses: '라암셋',
   'succoth-egypt': '숙곳',
+  'pi-hahiroth': '비하히롯',
+  'red-sea': '홍해',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;

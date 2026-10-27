@@ -1,0 +1,53 @@
+/* ── 요셉의 홀 (창 44:18–45:15, A급 gen-44-45-joseph) ──
+   배경(fx/hall.ts): 파피루스 기둥, 그림 글자 띠, 열린/닫힌 큰 문, 화로, 세마포 휘장
+   효과 weep: 우는 사람에게서 퍼져 나가는 소리의 고리 */
+
+.jh-band { fill: color-mix(in srgb, var(--act-accent) 22%, #2a1e12); opacity: 0.7; }
+.jh-glyphs { fill: color-mix(in srgb, var(--act-accent) 55%, #c89a50); opacity: 0.32; }
+.jh-glyphs path { fill: none; stroke: color-mix(in srgb, var(--act-accent) 55%, #c89a50); stroke-width: 0.8; }
+.jh-paint { fill: none; stroke: color-mix(in srgb, var(--act-accent) 40%, #6a8a9a); stroke-width: 0.7; opacity: 0.35; }
+.jh-gild { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 0.9; opacity: 0.5; }
+.bd-near .jh-paint, .bd-near.jh-paint { opacity: 0.22; }
+
+/* 열린 문 너머: 하얗게 바랜 이집트 한낮 */
+.jh-sun { fill: color-mix(in srgb, var(--act-accent) 35%, #fff2d4); opacity: 0.8; }
+.jh-outside { fill: color-mix(in srgb, var(--act-accent) 40%, #b89a70); opacity: 0.55; }
+.jh-spill { fill: color-mix(in srgb, var(--act-accent) 40%, #fff0cc); opacity: 0.12; mix-blend-mode: screen; }
+/* 닫힌 문: 문짝은 어둡고, 틈새로만 빛이 숨 쉬듯 샌다 */
+.jh-leaf { fill: color-mix(in srgb, var(--act-a) 40%, #0b0806); }
+.jh-seam { fill: color-mix(in srgb, var(--act-accent) 40%, #fff0cc); opacity: 0.75; animation: jh-seam 5s ease-in-out infinite alternate; }
+.jh-spill--thin { opacity: 0.1; }
+@keyframes jh-seam { from { opacity: 0.55; } to { opacity: 0.9; } }
+
+/* 휘장: 아주 천천히 흔들린다 */
+.jh-linen { fill: color-mix(in srgb, #efe6d2 30%, var(--act-b)); opacity: 0.22; transform-box: fill-box; transform-origin: 50% 0; animation: jh-sway 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes jh-sway { from { transform: skewX(-1.6deg); } to { transform: skewX(1.6deg); } }
+
+/* 문이 닫히면 방이 한 겹 어두워지고, 창빛도 줄어든다 */
+.jh--shut .jh-shaft { opacity: 0.05; animation: none; }
+.jh--shut .jh-firelight { opacity: 0.85; }
+
+/* ── 효과 weep ── */
+.fx-weep { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; transition: opacity 1.4s; --x: 50%; --y: 45%; }
+.fx-weep.is-out { opacity: 0; }
+.fx-weep b {
+  position: absolute; left: var(--x); top: var(--y); width: 60vmax; height: 60vmax; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 40%, #fff2d8 60%), transparent);
+  opacity: 0; mix-blend-mode: screen; animation: fx-weep-glow 4.4s ease-in-out 0.2s 2 alternate both;
+}
+@keyframes fx-weep-glow { from { opacity: 0; } to { opacity: 0.16; } }
+.fx-weep i {
+  position: absolute; left: var(--x); top: var(--y); width: 30px; height: 22px; translate: -50% -50%; border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--act-accent) 45%, #fff2d8);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--act-accent) 60%, transparent), inset 0 0 8px color-mix(in srgb, var(--act-accent) 50%, transparent);
+  filter: blur(0.6px);
+  opacity: 0; animation: fx-weep-ring 5.4s cubic-bezier(0.2, 0.6, 0.3, 1) var(--d) both;
+}
+@keyframes fx-weep-ring {
+  0% { opacity: 0; width: 20px; height: 14px; }
+  12% { opacity: 0.4; }
+  100% { opacity: 0; width: 240vmax; height: 170vmax; border-width: 0.5px; }
+}
+
+:root[data-reduced-motion='true'] :is(.jh-seam, .jh-linen) { animation: none; }
+:root[data-reduced-motion='true'] .fx-weep i { animation: fx-weep-glow 1s ease-in-out 2 alternate both; width: 60vmin; height: 42vmin; }
