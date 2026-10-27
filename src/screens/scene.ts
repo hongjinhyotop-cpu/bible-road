@@ -11,7 +11,7 @@ import { bindNext, nextButton } from '../ui/next-button';
 import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
 import { moodOf } from '../engine/moods';
-import { backdropSvg } from '../fx/backdrop';
+import { backdropSvg, fitBackdrops } from '../fx/backdrop';
 import { loadCharacter } from '../characters';
 import { inkReveal } from '../fx/ink';
 import { getFieldIntensity, setFieldIntensity, setFieldMode } from '../fx/particles';
@@ -69,6 +69,8 @@ export function sceneScreen({ id }: Params): Screen {
   let busy = false;
   let alive = true;
   const tweens: gsap.core.Animation[] = [];
+  // PC 넓은 화면에서는 배경 높이를 다 보여 준다 (큰 나무 윗부분이 잘리지 않게)
+  const fit = new ResizeObserver(() => fitBackdrops($('.scene__backdrop')));
 
   // ── 진행 ──────────────────────────────────────
   function setMode(m: Mode) {
@@ -141,6 +143,8 @@ export function sceneScreen({ id }: Params): Screen {
   async function stageChanges(beat: Beat) {
     for (const who of beat.exit ?? []) void stage.remove(who);
     await Promise.all((beat.enter ?? []).map((who) => addActor(who, true)));
+    // 이번에 막 들어온 인물은 처음부터 그 옷을 입고 나온다
+    for (const [who, name] of Object.entries(beat.outfit ?? {})) stage.actors.get(who)?.outfit(name, !beat.enter?.includes(who));
     for (const [who, pose] of Object.entries(beat.pose ?? {})) stage.actors.get(who)?.pose(pose);
     for (const [who, dir] of Object.entries(beat.face ?? {})) stage.actors.get(who)?.face(dir);
     if (beat.mood) applyMood(beat.mood, true);
@@ -293,7 +297,7 @@ export function sceneScreen({ id }: Params): Screen {
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
       <div class="insight__actions">
-        ${next ? nextButton(next) : ''}
+        ${next ? nextButton(next, scene.bridge) : ''}
         <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
         <button class="btn" data-again>다시 보기</button>
       </div>`;
@@ -337,6 +341,7 @@ export function sceneScreen({ id }: Params): Screen {
     }
     if (m.art) {
       box.insertAdjacentHTML('beforeend', backdropSvg(m.art));
+      fitBackdrops(box);
       const svg = box.lastElementChild!;
       if (animate) tweens.push(gsap.fromTo(svg, { opacity: 0, y: rm ? 0 : 10 }, { opacity: 1, y: 0, duration: rm ? 0.4 : 2.4, ease: 'power2.out' }));
     }
@@ -356,6 +361,7 @@ export function sceneScreen({ id }: Params): Screen {
     applyMood(scene.mood, false);
     cursor = new SceneCursor(scene);
     await Promise.all((scene.cast ?? []).map((c) => addActor(c, true)));
+    for (const [who, name] of Object.entries(scene.outfit ?? {})) stage.actors.get(who)?.outfit(name, false);
     await intro(scene);
     if (alive) await step();
   }
@@ -411,6 +417,7 @@ export function sceneScreen({ id }: Params): Screen {
     setFieldMode('dust');
     document.addEventListener('keydown', onKey);
     el.addEventListener('click', onClick);
+    fit.observe($('.scene__backdrop'));
     $('[data-back]').addEventListener('click', () => go('/map'));
     $('[data-settings]').addEventListener('click', () => openSettings());
     try {
@@ -436,6 +443,7 @@ export function sceneScreen({ id }: Params): Screen {
     leave() {
       alive = false;
       document.removeEventListener('keydown', onKey);
+      fit.disconnect();
       anim?.kill();
       tweens.forEach((t) => t.kill());
       stage.destroy();

@@ -46,3 +46,33 @@
 :root[data-reduced-motion='true'] .bd-river,
 :root[data-reduced-motion='true'] .bd-flame__glow,
 :root[data-reduced-motion='true'] .bd-flame__sword { animation: none; }
+
+/* ── 창 4: 들판·제단·놋 땅 ── */
+.bd-sheep { fill: color-mix(in srgb, var(--act-accent) 30%, #d9d2c0); opacity: 0.55; }
+.bd-furrow { fill: none; stroke: color-mix(in srgb, var(--act-b) 20%, #000); stroke-width: 1; opacity: 0.35; }
+.bd-road { fill: none; stroke: color-mix(in srgb, var(--act-accent) 40%, #6b5a48); stroke-width: 1.4; opacity: 0.3; stroke-dasharray: 2 5; }
+
+/* 제단의 연기: 작은 연기 덩이가 피어올라 퍼지며 사라진다. 덩이 경계는 흐리게 */
+.bd-smoke { filter: blur(1.6px); }
+.bd-smoke__puff {
+  fill: color-mix(in srgb, var(--act-b) 30%, #9a9aa6); opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+  animation: bd-rise 6.6s linear infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes bd-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  15% { opacity: 0.45; }
+  100% { opacity: 0; transform: translate(var(--dx), -110px) scale(3.2); }
+}
+.bd-ember { fill: #f0a050; opacity: 0.55; animation: bd-flicker 2.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+/* 열납: 그 제단 위에만 머무는 금빛. 연기도 빛을 머금는다 */
+.bd-regard { fill: url(#bd-halo-g); transform-box: fill-box; transform-origin: center; animation: bd-breathe 5s ease-in-out infinite; }
+.bd-altar.is-lit .bd-smoke__puff { fill: color-mix(in srgb, var(--act-accent) 60%, #fff4d8); }
+@keyframes bd-breathe { 0%, 100% { opacity: 0.75; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+
+.bd-window { fill: #f3c27a; opacity: 0.4; animation: bd-twinkle 5.2s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+
+:root[data-reduced-motion='true'] .bd-smoke__puff { animation: none; opacity: 0.25; transform: translate(0, -30px) scale(1.6); }
+:root[data-reduced-motion='true'] .bd-ember,
+:root[data-reduced-motion='true'] .bd-regard,
+:root[data-reduced-motion='true'] .bd-window { animation: none; }

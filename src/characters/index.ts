@@ -16,6 +16,15 @@ export interface SvgArt {
   markup: string;
   /** 부위별 회전·흔들림 기준점 (viewBox 좌표) */
   pivots: Partial<Record<Part, [number, number]>>;
+  /** 갈아입을 수 있는 옷들 (예: 창 3:21 가죽옷) */
+  outfits?: Record<string, Outfit>;
+}
+
+/** 갈아입을 옷: cloth 부위 안의 그림만 바꾼다. 장면 beat의 "outfit": {"adam": "skins"} */
+export interface Outfit {
+  markup: string;
+  /** 옷자락 흔들림 기준점. 없으면 원래 cloth 기준점 */
+  pivot?: [number, number];
 }
 
 export interface ImageArt {

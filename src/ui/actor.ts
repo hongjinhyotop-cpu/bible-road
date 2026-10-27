@@ -29,6 +29,7 @@ export class Actor {
   private poseName: Pose = 'neutral';
   private facing: Facing;
   private art: Element;
+  private outfitName = '';
 
   constructor(readonly def: CharacterDef) {
     this.el = document.createElement('div');
@@ -103,6 +104,40 @@ export class Actor {
       .to(this.art, { scaleX: 0.06 * -sx, duration: 0.22, ease: 'power2.in', transformOrigin: '50% 50%' })
       .set(this.art, { scaleX: 0.06 * sx })
       .to(this.art, { scaleX: sx, duration: 0.34, ease: 'power2.out' });
+  }
+
+  /**
+   * 옷을 갈아입는다 (예: 창 3:21 가죽옷). cloth 부위 안의 그림만 바꾼다.
+   * 옛 옷이 스러지고, 역광이 한 번 부드럽게 밝아지며 새 옷이 내려앉는다.
+   */
+  outfit(name: string, animate = true): void {
+    const art = this.def.art;
+    const cloth = this.parts.cloth;
+    if (art.kind !== 'svg' || !cloth || name === this.outfitName) return;
+    const next = art.outfits?.[name];
+    if (!next) {
+      console.warn(`[${this.def.id}] 옷 없음: ${name}`);
+      return;
+    }
+    this.outfitName = name;
+    const pivot = next.pivot ?? art.pivots.cloth;
+    const swap = () => {
+      cloth.innerHTML = next.markup;
+      if (pivot) gsap.set(cloth, { svgOrigin: `${pivot[0]} ${pivot[1]}` });
+    };
+    if (!animate || reducedMotion()) {
+      gsap.killTweensOf(cloth, 'opacity,y');
+      swap();
+      if (animate) gsap.fromTo(cloth, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+      return;
+    }
+    const glow = this.el.querySelector('.actor__backlight');
+    gsap.timeline()
+      .to(cloth, { opacity: 0, duration: 0.7, ease: 'power2.in' })
+      .to(glow, { opacity: 1, scale: 1.12, duration: 0.9, ease: 'power2.out' }, 0.2)
+      .add(swap)
+      .fromTo(cloth, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out' })
+      .to(glow, { opacity: 0.75, scale: 1, duration: 1.4, ease: 'power2.inOut', clearProps: 'opacity,scale' }, '<0.3');
   }
 
   /** 늘 흐르는 아주 작은 움직임: 숨쉬기, 옷자락, 머리카락 */

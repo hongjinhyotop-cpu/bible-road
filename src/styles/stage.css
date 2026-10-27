@@ -32,3 +32,11 @@
 .stage[data-count='3'] { --slot: 30cqw; }
 .stage[data-count='4'] { --slot: 23cqw; }
 .stage > .actor { flex: none; height: min(calc(100% * var(--h, 1)), calc(var(--slot) * var(--ar, 2.1) * var(--h, 1))); }
+
+/* 죄 (창 4:7): 역광 없이, 더 짙은 잉크. 테두리는 식은 불빛, 눈은 희미한 불씨 */
+.actor[data-id='sin'] { --sil-ink: #040306; }
+.actor[data-id='sin'] .actor__backlight { display: none; }
+.actor[data-id='sin'] .actor__rimcolor { flood-color: #a2412c; flood-opacity: 0.45; }
+.actor[data-id='sin'] .sin-eye { fill: #e0703a; opacity: 0.75; animation: sin-blink 5.5s ease-in-out infinite; }
+@keyframes sin-blink { 0%, 44%, 52%, 100% { opacity: 0.75; } 48% { opacity: 0.05; } }
+:root[data-reduced-motion='true'] .actor[data-id='sin'] .sin-eye { animation: none; }

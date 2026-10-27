@@ -180,5 +180,9 @@
   flex-basis: 100%; min-height: 60px; padding: 8px 1.2em;
   flex-direction: column; gap: 2px; letter-spacing: 0.04em;
 }
+.insight__actions .next-bridge {
+  flex-basis: 100%; margin: 0 0 2px; text-align: center;
+  font-size: 0.9375rem; line-height: 1.7; opacity: 0.82; text-wrap: balance;
+}
 .btn--next__eyebrow { font-size: 0.6875rem; letter-spacing: 0.12em; opacity: 0.72; }
 .btn--next__title { font-family: var(--font-serif); font-size: 1rem; }

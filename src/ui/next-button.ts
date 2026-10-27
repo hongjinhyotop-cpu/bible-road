@@ -2,12 +2,18 @@
 import type { ContentItem } from '../engine/content';
 import { go } from '../engine/router';
 
-export function nextButton(next: ContentItem): string {
+/** bridge = 다음 이야기로 넘어가는 한 줄 (장면·읽기 파일의 "bridge"). 버튼 위에 이야기 목소리로 놓인다 */
+export function nextButton(next: ContentItem, bridge?: string): string {
   const kind = next.kind === 'scene' ? '플레이' : '읽기';
-  return `<button class="btn btn--primary btn--next" data-go-next="${next.path}">
+  const line = bridge ? `<p class="next-bridge voice-story">${escape(bridge)}</p>` : '';
+  return `${line}<button class="btn btn--primary btn--next" data-go-next="${next.path}">
     <span class="btn--next__eyebrow ui">다음 · ${kind}</span>
     <span class="btn--next__title">${next.title}</span>
   </button>`;
+}
+
+function escape(t: string): string {
+  return t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
 }
 
 export function bindNext(root: HTMLElement): void {

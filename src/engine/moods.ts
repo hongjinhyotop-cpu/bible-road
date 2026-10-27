@@ -2,7 +2,7 @@
 // 배경 그림(art)·밝기(light)·땅(land)·색조(tone)를 한 이름으로 묶는다. 그림은 fx/backdrop.ts.
 // 목록에 없는 이름은 기본값(밝고, 언덕만 있는 무대)으로 처리한다. 검사 스크립트도 이 목록을 본다.
 
-export type BackdropArt = 'garden' | 'tree' | 'gate';
+export type BackdropArt = 'garden' | 'tree' | 'gate' | 'field' | 'altar' | 'altar-lit' | 'nod';
 
 export interface Mood {
   /** false면 태초의 어둠 (하늘이 거의 꺼짐) */
@@ -27,6 +27,16 @@ export const MOODS: Record<string, Mood> = {
   'eden-dusk': { light: true, land: true, art: 'tree', tone: 'dusk' },
   /** 동산 동쪽 바깥: 메마른 땅, 멀리 두루 도는 화염검의 빛 (창 3:24) */
   'east-of-eden': { light: true, land: true, art: 'gate', tone: 'dusk' },
+  /** 동산 바깥의 들판: 밭고랑, 앞쪽 이삭, 먼 언덕의 양 떼 (창 4:2) */
+  field: { light: true, land: true, art: 'field' },
+  /** 해 질 녘 들판 (창 4:8 "그들이 들에 있을 때에") */
+  'field-dusk': { light: true, land: true, art: 'field', tone: 'dusk' },
+  /** 두 제단, 두 줄기 연기 (창 4:3-4) */
+  altar: { light: true, land: true, art: 'altar' },
+  /** 한쪽 제단에만 은은한 빛 — "열납하셨으나" (창 4:4-5) */
+  'altar-regard': { light: true, land: true, art: 'altar-lit' },
+  /** 에덴 동편 놋 땅: 메마른 언덕, 떠도는 길, 멀리 가인이 쌓은 성 (창 4:16-17) */
+  nod: { light: true, land: true, art: 'nod', tone: 'dusk' },
 };
 
 const DEFAULT: Mood = { light: true, land: true };

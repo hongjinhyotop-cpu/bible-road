@@ -22,6 +22,8 @@ interface BeatBase {
   pose?: Record<string, Pose>;
   /** 인물이 바라보는 쪽 { "eve": "left" }. 새로 선 인물은 자동으로 먼저 선 사람 쪽(왼쪽)을 본다 */
   face?: Record<string, Facing>;
+  /** 옷을 갈아입힌다 { "adam": "skins" }. 옷 이름은 인물 파일의 outfits */
+  outfit?: Record<string, string>;
   /** 배경 분위기를 바꾼다 (engine/moods.ts). 예: "eden-dusk" */
   mood?: string;
   fx?: SceneFx | SceneFx[];
@@ -78,6 +80,8 @@ export interface Scene {
   mood?: string;
   /** 처음부터 무대에 서 있는 인물 */
   cast?: string[];
+  /** 처음부터 입고 있는 옷 { "adam": "skins" } */
+  outfit?: Record<string, string>;
   beats: Beat[];
   /** "만약" 장면들. 다 보면 실제 본문 경로(canon)로 돌아간다 */
   branches?: Record<string, Beat[]>;
@@ -85,6 +89,8 @@ export interface Scene {
   insight: string;
   /** 한 줄 요약 */
   tldr?: string;
+  /** 끝 카드의 "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 한 줄 (이야기 목소리) */
+  bridge?: string;
   unlocks?: { characters?: string[] };
 }
 
