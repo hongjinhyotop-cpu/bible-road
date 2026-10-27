@@ -60,7 +60,9 @@ function basket(x: number, y: number, open: boolean): string {
     : '';
   // 건져 놓은 상자는 무대 앞으로 가까이 왔으니 조금 크게
   const near = open ? ` transform="translate(${x} ${y}) scale(1.35) translate(${-x} ${-y})"` : '';
-  return `<g class="bd-basket${open ? '' : ' bd-basket--float'}" style="transform-origin:${x}px ${y}px"${near}>
+  // (떠 있는 상자만 CSS로 까딱인다. CSS transform-origin은 transform 속성에도 걸리므로 건져 놓은 상자에는 주지 않는다)
+  const bob = open ? '' : ` style="transform-origin:${x}px ${y}px"`;
+  return `<g class="bd-basket${open ? '' : ' bd-basket--float'}"${bob}${near}>
     ${baby}
     <g class="bd-near">
       ${lid}

@@ -31,7 +31,7 @@
     {"type": "scripture", "ref": "출 2:3-4", "gloss": "더 못 숨기니까 갈대 바구니에 방수 칠(역청) 해서 아기를 넣고 나일강 갈대 사이에 둠. 누나는 어떻게 되나 보려고 멀찍이 서서 지켜봄. 엄마는 떠나고 누나는 남음."},
     {"type": "narration", "acts": [{"act": "stand", "who": "mother"}, {"act": "walk-out", "who": "mother"}, {"act": "step-back", "who": "miriam"}], "text": "어미는 돌아섰다. 거기 더 서 있으면 다시 안아 올릴 것 같아서였다. 누이는 남았다. 멀리 섰다. 어떻게 되는지 알려고. 기다림을 맡는 것은 늘 집에서 가장 작은 사람이다."},
     {"type": "narration", "bg": "nile-basket-day", "fx": "dawn", "enter": ["princess", "maid"], "acts": [{"act": "walk-in", "who": "princess"}, {"act": "face", "who": "miriam", "to": "princess"}], "text": "해가 높아졌다. 바로의 딸이 목욕하러 강으로 내려왔다. 시녀들은 강가를 거닐었다. 하필 그 강가였고, 하필 그 시각이었다. 기록은 ‘하필’이라는 말을 쓰지 않는다. 쓸 필요가 없다는 듯이."},
-    {"type": "line", "who": "princess", "acts": [{"act": "look-up", "who": "princess"}, {"act": "approach", "who": "maid", "to": "princess"}], "text": "“저기, 갈대 사이에. 저게 뭐냐. 가져오너라.”"},
+    {"type": "line", "who": "princess", "acts": [{"act": "look-up", "who": "princess"}, {"act": "face", "who": "maid", "to": "princess"}], "text": "“저기, 갈대 사이에. 저게 뭐냐. 가져오너라.”"},
     {"type": "narration", "bg": "nile-found", "acts": [{"act": "kneel", "who": "princess"}, {"act": "kneel", "who": "maid"}], "text": "시녀가 상자를 건져 왔다. 뚜껑을 열었다. 아이가 울고 있었다."},
     {"type": "line", "who": "princess", "act": "bow-head", "text": "“…이는 히브리 사람의 아이로다.”"},
     {"type": "narration", "act": "step-back", "who": "maid", "text": "그 한마디에 판결이 다 들어 있었다. 그녀는 아버지의 명령을 알았다. 그런데 아이를 내려놓지 않았다. 불쌍히 여겼다고, 기록은 적는다. 왕의 법도 우는 아이 앞에서는 목소리가 작아진다."},
