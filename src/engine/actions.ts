@@ -86,6 +86,7 @@ export const PLACE_NAMES = {
   shur: '술 광야',
   paran: '바란 광야',
   sinai: '시내산',
+  rephidim: '르비딤',
   midian: '미디안',
   kadesh: '가데스',
   jericho: '여리고',
@@ -94,5 +95,7 @@ export const PLACE_NAMES = {
   capernaum: '가버나움',
   rameses: '라암셋',
   'succoth-egypt': '숙곳',
+  'pi-hahiroth': '비하히롯',
+  'red-sea': '홍해',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;

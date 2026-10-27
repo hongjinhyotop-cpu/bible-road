@@ -11,6 +11,9 @@ import { ladderArt } from './ladder';
 import { jabbokArt, seirArt } from './jabbok';
 import { dothanArt } from './dothan';
 import { egyptLampsArt, goshenArt } from './passover';
+import { redSeaArt } from './sea';
+import { josephHallArt } from './hall';
+import { sinaiArt } from './sinai';
 
 export const W = 400;
 export const H = 260;
@@ -451,6 +454,25 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'goshen-blood': () => goshenArt('blood'),
   'passover-night': () => goshenArt('night'),
   'egypt-lamps': egyptLampsArt,
+  // 바다가 갈라지다 (출 14, fx/sea.ts)
+  'redsea-camp': () => redSeaArt('camp'),
+  'redsea-chariots': () => redSeaArt('chariots'),
+  'redsea-pillar': () => redSeaArt('pillar'),
+  'redsea-wind': () => redSeaArt('wind'),
+  'redsea-part': () => redSeaArt('part'),
+  'redsea-crossing': () => redSeaArt('crossing'),
+  'redsea-chase': () => redSeaArt('chase'),
+  'redsea-return': () => redSeaArt('return'),
+  'redsea-sunrise': () => redSeaArt('sunrise'),
+  // 나는 요셉이라 (창 45, fx/hall.ts)
+  'joseph-hall': () => josephHallArt('open'),
+  'joseph-hall-shut': () => josephHallArt('shut'),
+  // 시내산 (출 19–20, fx/sinai.ts)
+  'sinai-camp': () => sinaiArt('camp'),
+  'sinai-bound': () => sinaiArt('bound'),
+  'sinai-storm': () => sinaiArt('storm'),
+  'sinai-fire': () => sinaiArt('fire'),
+  'sinai-dark': () => sinaiArt('dark'),
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>

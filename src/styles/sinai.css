@@ -1,0 +1,120 @@
+/* ── 시내산 (출 19–20, A급 exo-19-20-sinai, fx/sinai.ts) ──
+   붉은 화강암 산, 산 둘레의 지경(말뚝과 줄), 빽빽한 먹구름과 번개, 꼭대기의 불과 연기 기둥, 떨리는 산.
+   효과 trumpet: 꼭대기에서 퍼지는 금빛 소리의 고리 (부를 때마다 커진다) */
+
+.sn-mount { opacity: 0.97; }
+.sn--camp .sn-mount, .sn--bound .sn-mount { fill: color-mix(in srgb, #6a3428 30%, var(--bd)); }
+.sn-shoulder { opacity: 0.9; }
+.sn-summit { fill: none; }
+
+/* 지경: 말뚝 사이 줄이 아주 옅게 숨 쉬듯 빛난다 — "넘지 말라" */
+.sn-cord { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #f4e2b8); stroke-width: 0.6; opacity: 0.6; }
+.sn-cord-glow { fill: none; stroke: var(--act-accent); stroke-width: 3; opacity: 0.12; filter: blur(1.4px); animation: sn-cord 5s ease-in-out infinite alternate; }
+@keyframes sn-cord { from { opacity: 0.06; } to { opacity: 0.26; } }
+
+/* 먹구름: 덩이마다 천천히 부풀고 흘러간다 */
+.sn-band { fill: color-mix(in srgb, var(--act-b) 25%, #121219); opacity: 0.9; filter: blur(2px); }
+.sn-puff {
+  fill: color-mix(in srgb, var(--act-b) 30%, #2a2734); opacity: 0.95;
+  transform-box: fill-box; transform-origin: center;
+  animation: sn-roll 14s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
+}
+.sn-puff--hi { fill: color-mix(in srgb, var(--act-accent) 12%, #6a6478); opacity: 0.5; filter: blur(2.4px); }
+.sn-cloud { filter: blur(0.8px); }
+@keyframes sn-roll { from { transform: translateX(calc(var(--dx) * -1)) scale(0.96); } to { transform: translateX(var(--dx)) scale(1.06); } }
+/* 구름 속 빛: 번개가 칠 때마다 구름 안쪽이 밝아진다 */
+.sn-inner { fill: color-mix(in srgb, var(--act-accent) 50%, #dfe4ff); opacity: 0; filter: blur(12px); animation: sn-inner 7.3s linear infinite; }
+@keyframes sn-inner { 0%, 100% { opacity: 0; } 5% { opacity: 0.32; } 6% { opacity: 0.06; } 8% { opacity: 0.4; } 13% { opacity: 0; } 41% { opacity: 0; } 43% { opacity: 0.22; } 47% { opacity: 0; } 70% { opacity: 0; } 71% { opacity: 0.3; } 75% { opacity: 0; } }
+.sn-bolt {
+  fill: none; stroke: #f6efd8; stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round; opacity: 0;
+  filter: drop-shadow(0 0 2px #fff6d6) drop-shadow(0 0 6px color-mix(in srgb, var(--act-accent) 70%, transparent));
+  animation: sn-bolt 7.3s linear infinite; animation-delay: var(--d);
+}
+@keyframes sn-bolt { 0%, 100% { opacity: 0; } 1% { opacity: 1; } 2% { opacity: 0.2; } 3% { opacity: 0.9; } 5% { opacity: 0; } }
+.sn-rim { fill: none; stroke: var(--act-accent); stroke-width: 2; opacity: 0; filter: blur(3px); }
+
+/* 불 가운데 강림: 꼭대기의 불빛이 숨 쉬고, 구름 아랫배가 불빛을 받는다 */
+.sn-fireglow { fill: url(#bd-flame-g); transform-box: fill-box; transform-origin: center; animation: sn-glow 3.2s ease-in-out infinite alternate; mix-blend-mode: screen; }
+@keyframes sn-glow { from { opacity: 0.75; transform: scale(0.94); } to { opacity: 1; transform: scale(1.08); } }
+.sn-tongues { mix-blend-mode: screen; filter: blur(0.6px); }
+/* 불의 한가운데: 희게 달아오른 빛이 일렁인다 */
+.sn-core { fill: #fff0cc; opacity: 0.7; filter: blur(5px); mix-blend-mode: screen; animation: sn-core 1.7s ease-in-out infinite alternate; }
+@keyframes sn-core { from { opacity: 0.5; } to { opacity: 0.85; } }
+.sn--fire .sn-puff { fill: color-mix(in srgb, #4a2a20 35%, #25212b); }
+.sn--fire .sn-puff--hi { fill: color-mix(in srgb, #ffa860 30%, #5e4a50); opacity: 0.55; }
+/* 구름 아랫배가 꼭대기의 불빛을 받는다 */
+.sn-underglow { fill: #f4924a; opacity: 0.32; filter: blur(14px); mix-blend-mode: screen; animation: sn-under 4.2s ease-in-out infinite alternate; }
+@keyframes sn-under { from { opacity: 0.2; } to { opacity: 0.4; } }
+.sn-fire.is-dark .sn-underglow { fill: var(--act-accent); animation: none; opacity: 0.14; }
+.sn--fire .sn-inner { fill: color-mix(in srgb, #ffb060 60%, var(--act-accent)); }
+.sn--fire .sn-rim { opacity: 0.18; stroke: #f0a050; }
+/* 옹기 가마 같은 연기 기둥: 덩이가 꼭대기에서 솟아 커지며 하늘로 */
+.sn-smoke {
+  fill: color-mix(in srgb, var(--act-b) 20%, #4a4450); opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+  animation: sn-rise 8.6s cubic-bezier(0.3, 0.5, 0.5, 1) infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes sn-rise {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.6); }
+  10% { opacity: 0.9; }
+  70% { opacity: 0.7; }
+  100% { opacity: 0; transform: translate(var(--dx), -150px) scale(4.2); }
+}
+.sn-column { filter: blur(1.6px); }
+
+/* 온 산이 크게 진동하며 (19:18): 몇 초에 한 번, 짧게 떤다 */
+.sn--fire .sn-quake { animation: sn-quake 4.6s linear infinite; }
+@keyframes sn-quake {
+  0%, 16%, 100% { transform: translate(0, 0); }
+  2% { transform: translate(-1.2px, 0.4px); } 4% { transform: translate(1.1px, -0.3px); }
+  6% { transform: translate(-0.9px, 0.2px); } 8% { transform: translate(0.8px, 0.3px); }
+  10% { transform: translate(-0.5px, -0.2px); } 12% { transform: translate(0.4px, 0.1px); } 14% { transform: translate(-0.2px, 0); }
+}
+
+/* 흑암 (20:21): 꼭대기를 덮은 짙은 어둠. 가장자리만 금빛, 번개는 멀어졌다 */
+.sn--dark .sn-puff { fill: color-mix(in srgb, var(--act-a) 40%, #07070b); opacity: 0.97; }
+.sn--dark .sn-puff--hi { fill: color-mix(in srgb, var(--act-accent) 25%, #2a2630); opacity: 0.4; }
+.sn--dark .sn-band { fill: color-mix(in srgb, var(--act-a) 40%, #08080d); }
+.sn--dark .sn-inner { animation-duration: 13s; fill: var(--act-accent); }
+.sn--dark .sn-rim { opacity: 0.32; animation: sn-rim 6s ease-in-out infinite alternate; }
+.sn-fire.is-dark .sn-fireglow { opacity: 0.5; animation-duration: 6s; }
+@keyframes sn-rim { from { opacity: 0.16; } to { opacity: 0.4; } }
+
+/* 폭풍 하늘 아래에서도 산과 불빛은 보이게 (기본 storm 필터를 약하게) */
+.play[data-tone='storm'] .scene__backdrop:has(> .backdrop[data-art^='sinai']) { filter: brightness(0.85) saturate(0.75); }
+
+/* 산 기슭의 백성(동작 crowd)이 떤다 (19:16 "진중 모든 백성이 다 떨더라") */
+.play:has(.backdrop:is([data-art='sinai-storm'], [data-art='sinai-fire'])) .crowd:not([data-state='bow'], [data-state='away']) .crowd__body {
+  animation: sn-tremble 0.34s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -0.07s);
+}
+@keyframes sn-tremble { from { transform: translateX(-0.6px) rotate(-1.2deg); } to { transform: translateX(0.6px) rotate(1.2deg); } }
+
+/* ── 효과 trumpet: 금빛 소리의 고리. --lv(1~4)가 클수록 고리가 크고 밝고 많다 ── */
+.fx-trumpet { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; transition: opacity 1.4s; --x: 50%; --y: 16%; --lv: 1; }
+.fx-trumpet.is-out { opacity: 0; }
+.fx-trumpet b {
+  position: absolute; left: var(--x); top: var(--y); width: calc(30vmax + var(--lv) * 14vmax); aspect-ratio: 1.6; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 70%, #fff4d6), transparent);
+  opacity: 0; mix-blend-mode: screen; animation: fx-trumpet-glow 3.4s ease-in-out 0.1s 2 alternate both;
+}
+@keyframes fx-trumpet-glow { from { opacity: 0; } to { opacity: calc(0.08 + var(--lv) * 0.06); } }
+.fx-trumpet i {
+  position: absolute; left: var(--x); top: var(--y); width: 24px; height: 14px; translate: -50% -50%; border-radius: 50%;
+  border: calc(0.6px + var(--lv) * 0.35px) solid color-mix(in srgb, var(--act-accent) 75%, #fff4d6);
+  box-shadow: 0 0 calc(4px + var(--lv) * 3px) color-mix(in srgb, var(--act-accent) 80%, transparent), inset 0 0 calc(4px + var(--lv) * 3px) color-mix(in srgb, var(--act-accent) 60%, transparent);
+  opacity: 0; animation: fx-trumpet-ring calc(5.4s - var(--lv) * 0.4s) cubic-bezier(0.15, 0.55, 0.35, 1) var(--d) both;
+}
+@keyframes fx-trumpet-ring {
+  0% { opacity: 0; width: 16px; height: 10px; }
+  8% { opacity: calc(0.5 + var(--lv) * 0.12); }
+  100% { opacity: 0; width: calc(90vmax + var(--lv) * 50vmax); height: calc(56vmax + var(--lv) * 32vmax); }
+}
+/* 소리가 커지면 무대가 함께 울린다 (translate만 써서 gsap의 shake와 겹치지 않게) */
+.scene.is-blast { animation: sn-blast 0.11s linear infinite alternate; }
+@keyframes sn-blast { from { translate: -1px 0.5px; } to { translate: 1px -0.5px; } }
+
+:root[data-reduced-motion='true'] :is(.sn-puff, .sn-smoke, .sn-underglow, .sn-core, .sn-bolt, .sn-inner, .sn-cord-glow, .sn-fireglow, .sn-quake, .sn-rim, .bd-flame) { animation: none !important; }
+:root[data-reduced-motion='true'] .sn-smoke { opacity: 0.5; }
+:root[data-reduced-motion='true'] .play .crowd__body { animation: none !important; }
+:root[data-reduced-motion='true'] .scene.is-blast { animation: none; }
+:root[data-reduced-motion='true'] .fx-trumpet i { animation: fx-trumpet-glow 1s ease-in-out 2 alternate both; width: 60vmin; height: 36vmin; }

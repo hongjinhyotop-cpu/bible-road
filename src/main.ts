@@ -22,6 +22,9 @@ import './styles/ladder.css';
 import './styles/jabbok.css';
 import './styles/joseph.css';
 import './styles/passover.css';
+import './styles/sea.css';
+import './styles/hall.css';
+import './styles/sinai.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

@@ -234,7 +234,7 @@ function checkScene(s, where) {
       people.add(c);
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
     }
-    for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...(b.who ? [b.who].flat() : [])]) people.add(c);
+    for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...Object.keys(b.names ?? {}), ...(b.who ? [b.who].flat() : [])]) people.add(c);
     if (b.type === 'scripture') try { parseRef(b.ref); } catch (e) { err(where, `scripture ${e.message}`); }
     if (b.type === 'choice') {
       if (b.options.filter((o) => o.canon).length !== 1) err(where, `선택지에 canon이 정확히 하나여야 함: "${b.prompt}"`);
