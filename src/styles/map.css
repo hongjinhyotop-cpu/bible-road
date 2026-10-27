@@ -167,3 +167,10 @@
 .stop__scene-ref { color: var(--ivory-faint); letter-spacing: 0.04em; }
 .stop__scene.is-done { border-color: var(--line-strong); }
 .stop__scene.is-done .stop__scene-ref { color: var(--gold); }
+/* 장면/읽기 구분 꼬리표 */
+.stop__kind {
+  display: inline-block; margin-right: 0.6em; padding: 0 0.55em; border-radius: 999px;
+  font-size: 0.6875rem; line-height: 1.6; letter-spacing: 0.04em;
+  border: 1px solid var(--line-strong); color: var(--gold);
+}
+.stop__kind--read { border-color: var(--talk-line); color: var(--talk-accent); }

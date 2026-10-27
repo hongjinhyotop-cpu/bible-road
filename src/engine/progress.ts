@@ -5,9 +5,11 @@ export interface Progress {
   chapters: Record<string, true>;
   /** 끝낸 장면 id */
   scenes: Record<string, true>;
+  /** 끝낸 읽기 구간 id → 퀴즈 최고 점수 */
+  readings: Record<string, number>;
   /** 만난 인물 id (인물 도감) */
   characters: Record<string, true>;
-  /** 마지막으로 머문 곳 (이어하기). "map" 또는 "scene/gen-1-light" */
+  /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "read/gen-5" */
   last: string | null;
   startedAt: number | null;
 }
@@ -15,6 +17,7 @@ export interface Progress {
 export const progress = new Store<Progress>('progress', {
   chapters: {},
   scenes: {},
+  readings: {},
   characters: {},
   last: null,
   startedAt: null,
@@ -54,8 +57,23 @@ export function completeScene(id: string, chapters: string[], characters: string
   });
 }
 
+export function readingDone(id: string): boolean {
+  return progress.get().readings[id] != null;
+}
+
+/** 읽기 구간을 끝냈다: 퀴즈 점수(최고 기록)와 장을 기록한다 */
+export function completeReading(id: string, chapters: string[], score: number): void {
+  const p = progress.get();
+  const best = Math.max(score, p.readings[id] ?? 0);
+  progress.set({
+    readings: { ...p.readings, [id]: best },
+    chapters: { ...p.chapters, ...Object.fromEntries(chapters.map((c) => [c, true as const])) },
+    startedAt: p.startedAt ?? Date.now(),
+  });
+}
+
 /** "이어서 하기"가 갈 주소 */
 export function continuePath(): string {
   const last = progress.get().last;
-  return last && last.startsWith('scene/') ? `/${last}` : '/map';
+  return last && /^(scene|read)\//.test(last) ? `/${last}` : '/map';
 }
