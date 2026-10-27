@@ -294,7 +294,15 @@ export class Actor {
         .to(this.el, { x: `+=${dx}`, duration: 0.3, ease: 'power1.inOut' }, t + 0.86);
     }
     this.low = false;
+    this.bowing = tl;
     return tl;
+  }
+
+  /** 절하던 중이면 그 동작을 바로 끝낸다 (다른 사람 동작이 이어질 때 몸이 기운 채 멈추지 않게) */
+  private bowing: gsap.core.Timeline | null = null;
+  finishBow(): void {
+    if (this.bowing?.isActive()) this.bowing.progress(1);
+    this.bowing = null;
   }
 
   /** 무릎 꿇기 / 일어서기: 다리를 아래에서부터 접고, 상체를 그만큼 내린다 */
@@ -578,6 +586,8 @@ export class Stage {
 
   /** a가 b 쪽으로 몇 걸음 다가간다 */
   approach(a: Actor, b: Actor): void {
+    a.finishBow();
+    b.finishBow();
     this.faceToward(a, b);
     const g = this.gap(a, b);
     const step = g * 0.34;
@@ -586,6 +596,8 @@ export class Stage {
 
   /** 포옹: 두 사람이 마주 보고 다가가 겹친다 */
   embrace(a: Actor, b: Actor): void {
+    a.finishBow();
+    b.finishBow();
     this.faceEachOther(a, b);
     const g = this.gap(a, b);
     const w = (a.el.offsetWidth + b.el.offsetWidth) / 2;

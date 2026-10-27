@@ -73,7 +73,7 @@ function river(glow: 'none' | 'grey' | 'sun'): string {
     .map(([x, y, w]) => `<path d="M${x - w} ${y} C${x - w} ${y - w * 0.55} ${x - w * 0.3} ${y - w * 0.7} ${x} ${y - w * 0.7} C${x + w * 0.5} ${y - w * 0.7} ${x + w} ${y - w * 0.4} ${x + w} ${y} Z"/>`)
     .join('');
   return `
-    <path class="jab-water" d="M-800 ${RIVER} C-400 ${RIVER - 2} -100 ${RIVER + 2} 120 ${RIVER - 1} C200 ${RIVER - 3} 260 ${RIVER - 4} 330 ${RIVER - 2} C600 ${RIVER} 900 ${RIVER - 2} 1200 ${RIVER} L1200 ${RIVER + 16} L-800 ${RIVER + 16} Z"/>
+    <path class="jab-water" d="M-800 ${RIVER} C-400 ${RIVER - 2} -100 ${RIVER + 2} 120 ${RIVER - 1} C200 ${RIVER - 3} 260 ${RIVER - 4} 330 ${RIVER - 2} C600 ${RIVER} 900 ${RIVER - 2} 1200 ${RIVER} L1200 ${RIVER + 36} L-800 ${RIVER + 36} Z"/>
     ${glow !== 'none' ? `<path class="jab-sheen jab-sheen--${glow}" d="M150 ${RIVER} C190 ${RIVER - 2} 260 ${RIVER - 2} 300 ${RIVER} L292 ${RIVER + 12} C250 ${RIVER + 10} 200 ${RIVER + 10} 160 ${RIVER + 12} Z"/>` : ''}
     <path class="jab-starlight" d="M-200 ${RIVER + 3} C0 ${RIVER + 1} 200 ${RIVER + 4} 600 ${RIVER + 2} L600 ${RIVER + 5} C200 ${RIVER + 7} 0 ${RIVER + 4} -200 ${RIVER + 6} Z"/>
     <g class="jab-ripples">${ripples}</g>
