@@ -15,10 +15,11 @@
 /* 먹구름: 덩이마다 천천히 부풀고 흘러간다 */
 .sn-band { fill: color-mix(in srgb, var(--act-b) 25%, #121219); opacity: 0.9; filter: blur(2px); }
 .sn-puff {
-  fill: color-mix(in srgb, var(--act-b) 28%, #1b1b24); opacity: 0.94;
+  fill: color-mix(in srgb, var(--act-b) 30%, #2a2734); opacity: 0.95;
   transform-box: fill-box; transform-origin: center;
   animation: sn-roll 14s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
 }
+.sn-puff--hi { fill: color-mix(in srgb, var(--act-accent) 12%, #6a6478); opacity: 0.5; filter: blur(2.4px); }
 .sn-cloud { filter: blur(0.8px); }
 @keyframes sn-roll { from { transform: translateX(calc(var(--dx) * -1)) scale(0.96); } to { transform: translateX(var(--dx)) scale(1.06); } }
 /* 구름 속 빛: 번개가 칠 때마다 구름 안쪽이 밝아진다 */
@@ -35,13 +36,21 @@
 /* 불 가운데 강림: 꼭대기의 불빛이 숨 쉬고, 구름 아랫배가 불빛을 받는다 */
 .sn-fireglow { fill: url(#bd-flame-g); transform-box: fill-box; transform-origin: center; animation: sn-glow 3.2s ease-in-out infinite alternate; mix-blend-mode: screen; }
 @keyframes sn-glow { from { opacity: 0.75; transform: scale(0.94); } to { opacity: 1; transform: scale(1.08); } }
-.sn-tongues { mix-blend-mode: screen; }
-.sn--fire .sn-puff { fill: color-mix(in srgb, #3a1f18 35%, #1d1a22); }
+.sn-tongues { mix-blend-mode: screen; filter: blur(0.6px); }
+/* 불의 한가운데: 희게 달아오른 빛이 일렁인다 */
+.sn-core { fill: #fff0cc; opacity: 0.7; filter: blur(5px); mix-blend-mode: screen; animation: sn-core 1.7s ease-in-out infinite alternate; }
+@keyframes sn-core { from { opacity: 0.5; } to { opacity: 0.85; } }
+.sn--fire .sn-puff { fill: color-mix(in srgb, #4a2a20 35%, #25212b); }
+.sn--fire .sn-puff--hi { fill: color-mix(in srgb, #ffa860 30%, #5e4a50); opacity: 0.55; }
+/* 구름 아랫배가 꼭대기의 불빛을 받는다 */
+.sn-underglow { fill: #f4924a; opacity: 0.32; filter: blur(14px); mix-blend-mode: screen; animation: sn-under 4.2s ease-in-out infinite alternate; }
+@keyframes sn-under { from { opacity: 0.2; } to { opacity: 0.4; } }
+.sn-fire.is-dark .sn-underglow { fill: var(--act-accent); animation: none; opacity: 0.14; }
 .sn--fire .sn-inner { fill: color-mix(in srgb, #ffb060 60%, var(--act-accent)); }
 .sn--fire .sn-rim { opacity: 0.18; stroke: #f0a050; }
 /* 옹기 가마 같은 연기 기둥: 덩이가 꼭대기에서 솟아 커지며 하늘로 */
 .sn-smoke {
-  fill: color-mix(in srgb, var(--act-b) 25%, #2a2630); opacity: 0;
+  fill: color-mix(in srgb, var(--act-b) 20%, #4a4450); opacity: 0;
   transform-box: fill-box; transform-origin: center;
   animation: sn-rise 8.6s cubic-bezier(0.3, 0.5, 0.5, 1) infinite; animation-delay: calc(var(--d) * -1);
 }
@@ -64,6 +73,7 @@
 
 /* 흑암 (20:21): 꼭대기를 덮은 짙은 어둠. 가장자리만 금빛, 번개는 멀어졌다 */
 .sn--dark .sn-puff { fill: color-mix(in srgb, var(--act-a) 40%, #07070b); opacity: 0.97; }
+.sn--dark .sn-puff--hi { fill: color-mix(in srgb, var(--act-accent) 25%, #2a2630); opacity: 0.4; }
 .sn--dark .sn-band { fill: color-mix(in srgb, var(--act-a) 40%, #08080d); }
 .sn--dark .sn-inner { animation-duration: 13s; fill: var(--act-accent); }
 .sn--dark .sn-rim { opacity: 0.32; animation: sn-rim 6s ease-in-out infinite alternate; }
@@ -96,14 +106,14 @@
 }
 @keyframes fx-trumpet-ring {
   0% { opacity: 0; width: 16px; height: 10px; }
-  8% { opacity: calc(0.35 + var(--lv) * 0.15); }
+  8% { opacity: calc(0.5 + var(--lv) * 0.12); }
   100% { opacity: 0; width: calc(90vmax + var(--lv) * 50vmax); height: calc(56vmax + var(--lv) * 32vmax); }
 }
 /* 소리가 커지면 무대가 함께 울린다 (translate만 써서 gsap의 shake와 겹치지 않게) */
 .scene.is-blast { animation: sn-blast 0.11s linear infinite alternate; }
 @keyframes sn-blast { from { translate: -1px 0.5px; } to { translate: 1px -0.5px; } }
 
-:root[data-reduced-motion='true'] :is(.sn-puff, .sn-smoke, .sn-bolt, .sn-inner, .sn-cord-glow, .sn-fireglow, .sn-quake, .sn-rim, .bd-flame) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.sn-puff, .sn-smoke, .sn-underglow, .sn-core, .sn-bolt, .sn-inner, .sn-cord-glow, .sn-fireglow, .sn-quake, .sn-rim, .bd-flame) { animation: none !important; }
 :root[data-reduced-motion='true'] .sn-smoke { opacity: 0.5; }
 :root[data-reduced-motion='true'] .play .crowd__body { animation: none !important; }
 :root[data-reduced-motion='true'] .scene.is-blast { animation: none; }

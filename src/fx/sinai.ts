@@ -87,34 +87,38 @@ function cloud(state: SinaiState): string {
   </g>`;
 }
 
-/** 불 가운데 강림 (19:18): 꼭대기의 불빛과 불꽃, 옹기 가마 연기처럼 오르는 연기 기둥 */
-function fire(dark: boolean): string {
+/** 불 가운데 강림 (19:18): 꼭대기의 불빛과 불꽃(구름 앞, 빛으로 번짐), 옹기 가마 연기처럼 오르는 연기 기둥(구름 뒤) */
+function fire(dark: boolean): { back: string; front: string } {
   const r = rng(4401);
   const puffs = Array.from({ length: dark ? 8 : 14 }, (_, i) => `<circle class="sn-smoke" style="--d:${f(i * 0.62 + r() * 0.4)}s; --dx:${f((r() - 0.5) * 60)}px" cx="${f(SX + (r() - 0.5) * 16)}" cy="${SY + 8}" r="${f(9 + r() * 6)}"/>`).join('');
   const tongues = dark ? '' : Array.from({ length: 7 }, (_, i) => {
-    const x = SX - 26 + i * 8.6 + (r() - 0.5) * 3;
+    const x = SX - 34 + i * 11.4 + (r() - 0.5) * 3;
     const h = 16 + r() * 18;
-    return `<g class="bd-flame bd-flame--back" style="--d:${f(r() * 2)}s; --t:${f(1 + r() * 0.8)}s" transform="translate(${f(x)} ${SY + 14}) scale(1.4)">
+    return `<g class="bd-flame bd-flame--back" style="--d:${f(r() * 2)}s; --t:${f(1 + r() * 0.8)}s" transform="translate(${f(x)} ${SY + 22}) scale(2)">
       <path class="bd-flame__out" d="M-4 0 Q-5 ${f(-h * 0.5)} 0 ${f(-h)} Q5 ${f(-h * 0.5)} 4 0 Z"/>
       <path class="bd-flame__core" d="M-1.6 0 Q-2 ${f(-h * 0.35)} 0 ${f(-h * 0.6)} Q2 ${f(-h * 0.35)} 1.6 0 Z"/>
     </g>`;
   }).join('');
-  return `<g class="sn-fire${dark ? ' is-dark' : ''}">
-    <g class="sn-column">${puffs}</g>
+  return {
+    back: `<g class="sn-column">${puffs}</g>`,
+    front: `<g class="sn-fire${dark ? ' is-dark' : ''}">
     <ellipse class="sn-underglow" cx="${SX}" cy="${SY + 40}" rx="${dark ? 90 : 150}" ry="${dark ? 40 : 60}"/>
     <circle class="sn-fireglow" cx="${SX}" cy="${SY + 10}" r="${dark ? 50 : 84}"/>
+    ${dark ? '' : `<ellipse class="sn-core" cx="${SX}" cy="${SY + 14}" rx="30" ry="14"/>`}
     <g class="sn-tongues">${tongues}</g>
-  </g>`;
+  </g>`,
+  };
 }
 
 export function sinaiArt(state: SinaiState): string {
   const storm = state === 'storm' || state === 'fire' || state === 'dark';
-  const burning = state === 'fire' || state === 'dark';
+  const burning = state === 'fire' || state === 'dark' ? fire(state === 'dark') : null;
   return `<g class="sn sn--${state}">
     <g class="sn-quake">
       ${massif()}
-      ${burning ? fire(state === 'dark') : ''}
+      ${burning ? burning.back : ''}
       ${storm ? cloud(state) : `<g class="bd-cloud"><ellipse cx="${SX + 30}" cy="${SY + 10}" rx="44" ry="7"/><ellipse cx="${SX - 20}" cy="${SY + 20}" rx="28" ry="5"/></g>`}
+      ${burning ? burning.front : ''}
     </g>
     <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 226 C-400 222 -100 230 100 224 C200 221 300 226 500 222 C700 220 900 226 ${W * 3} 224 L${W * 3} ${H} Z"/>
     ${state !== 'camp' ? boundary() : ''}
