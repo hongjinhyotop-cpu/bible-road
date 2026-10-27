@@ -8,7 +8,7 @@
 //    mamre-start : 같은 그림자가 움찔 물러선다 (18:13-15 "사라가 왜 웃으며" → "두려워서")
 //  - sodom-view  : 헤브론 동쪽 산마루 길. 발아래 멀리 깊이 꺼진 요단 들과 사해, 아지랑이 속 작은 성들 (18:16)
 // 폰(세로 화면)에서는 x 100~300만 보인다 → 장막 문은 x 120~170, 큰 나무는 x 260~320에 둔다.
-import { H, rng, hills, tree, treeline, city, smoke } from './backdrop';
+import { H, rng, hills, tree, treeline, city } from './backdrop';
 
 const G = 238;
 
@@ -65,7 +65,7 @@ function bigTent(x: number, ground: number, s: number, shadow: 'listen' | 'laugh
 
 /** 나무 그늘 아래 차린 음식 (18:8): 깐 자리, 떡, 버터와 우유 그릇, 송아지 요리. 김이 오른다 */
 function meal(x: number, ground: number): string {
-  return `<g class="mam-meal" transform="translate(${x} ${ground})">
+  return `<g class="mam-meal" transform="translate(${x} ${ground}) scale(1.55)">
     <ellipse class="mam-mat" cx="0" cy="0" rx="34" ry="5"/>
     <path class="mam-mat__edge" d="M-34 0 Q0 6 34 0" fill="none"/>
     <g class="mam-food">
@@ -90,8 +90,8 @@ function grove(meal_: boolean, shadow: 'listen' | null): string {
     <path class="bd-mid" d="M-800 ${H} L-800 228 C-500 224 -200 232 40 228 C160 226 260 232 380 229 C600 224 900 232 1200 228 L1200 ${H} Z"/>
     ${bigTent(126, 236, 1.05, shadow)}
     ${tree(292, 246, 178, 'bd-near', 1806, { lean: -0.12, sway: true })}
-    <ellipse class="mam-shade" cx="282" cy="247" rx="70" ry="6"/>
-    ${meal_ ? meal(262, 246) : ''}
+    <ellipse class="mam-shade" cx="262" cy="248" rx="86" ry="6"/>
+    ${meal_ ? meal(168, 244) : ''}
     <path class="bd-near" d="M-800 ${H} L-800 246 C-500 244 -200 250 60 248 C200 247 320 252 460 248 C700 244 1000 250 1200 248 L1200 ${H} Z"/>
     ${tree(-180, 262, 200, 'bd-near', 1807, { lean: 0.15, sway: true })}${tree(560, 262, 190, 'bd-near', 1808, { lean: -0.15, sway: true })}`;
 }
@@ -101,7 +101,7 @@ function doorClose(state: 'listen' | 'laugh' | 'start'): string {
   const r = rng(1811);
   const stripes = Array.from({ length: 16 }, (_, i) => {
     const x = -400 + i * 75 + r() * 10;
-    return `M${x} 0 L${x - 6} ${H}`;
+    return `M${x} 32 L${x - 5} ${H}`;
   }).join(' ');
   return `
     <path class="mam-wall" d="M-800 ${H} L-800 30 C-400 20 0 34 200 26 C400 18 800 30 1200 24 L1200 ${H} Z"/>
@@ -118,26 +118,32 @@ function doorClose(state: 'listen' | 'laugh' | 'start'): string {
     <path class="bd-near" d="M-800 ${H} L-800 ${G + 12} C-300 ${G + 10} 100 ${G + 14} 200 ${G + 12} C400 ${G + 10} 800 ${G + 14} 1200 ${G + 12} L1200 ${H} Z"/>`;
 }
 
-/** 헤브론 동쪽 산마루: 발아래 멀리 깊이 꺼진 요단 들, 사해의 흐린 물빛, 아지랑이 속 작은 성들 */
+/** 헤브론 동쪽 산마루: 발아래 멀리 깊이 꺼진 요단 들과 사해, 그 너머 모압 산줄기. 들 위의 작은 성들에 불빛 */
 function sodomView(): string {
   const r = rng(1821);
+  const lights = (x: number, y: number, n: number) =>
+    Array.from({ length: n }, () => `<circle class="mam-citylight" style="--d:${(r() * 5).toFixed(2)}s" cx="${(x + (r() - 0.5) * 22).toFixed(1)}" cy="${(y - r() * 4).toFixed(1)}" r="${(0.5 + r() * 0.5).toFixed(2)}"/>`).join('');
   return `
     <g class="mam-plain">
-      <path class="bd-far" d="M-800 ${H} L-800 168 C-400 164 0 170 200 166 C400 162 800 170 1200 166 L1200 ${H} Z"/>
-      <path class="mam-sea" d="M-200 192 C0 186 140 190 260 186 C380 182 520 190 700 188 L700 198 C500 200 300 196 100 200 C-60 202 -160 200 -200 198 Z"/>
-      ${city(150, 194, 1822, 0.55)}${city(236, 192, 1823, 0.5)}${city(-60, 194, 1824, 0.5)}
-      ${smoke(150, 176, 1825, 3)}${smoke(236, 175, 1826, 3)}
-      <path class="mam-haze" d="M-800 200 C-300 190 300 196 1200 190 L1200 214 L-800 214 Z"/>
+      <path class="bd-far mam-moab" d="M-800 ${H} L-800 150 C-500 146 -300 154 -100 148 C40 144 120 152 220 146 C320 140 420 150 560 146 C800 140 1000 148 1200 146 L1200 ${H} Z"/>
+      <path class="mam-sea" d="M-300 170 C-100 166 60 168 200 165 C340 162 500 168 760 166 L760 176 C520 178 340 175 200 177 C60 179 -100 178 -300 177 Z"/>
+      <path class="mam-sea__sheen" d="M120 169 L260 167 M40 172 L150 171 M280 171 L400 170"/>
+      <path class="mam-kikkar" d="M-800 ${H} L-800 178 C-400 176 0 180 200 178 C400 176 800 180 1200 178 L1200 ${H} Z"/>
+      <g class="mam-cities">
+        ${city(132, 190, 1822, 0.42, 'mam-town')}${city(258, 188, 1823, 0.38, 'mam-town')}${city(-40, 190, 1824, 0.4, 'mam-town')}${city(430, 189, 1828, 0.4, 'mam-town')}
+        ${lights(132, 188, 7)}${lights(258, 186, 6)}${lights(-40, 188, 5)}${lights(430, 187, 5)}
+      </g>
+      <path class="mam-haze" d="M-800 184 C-300 176 300 182 1200 176 L1200 198 L-800 198 Z"/>
     </g>
-    <path class="bd-mid" d="M-800 ${H} L-800 206 C-500 204 -300 214 -60 216 C60 218 120 226 200 228 C280 230 360 222 460 214 C700 206 1000 210 1200 208 L1200 ${H} Z"/>
-    <path class="mam-road" d="M-40 ${H} C40 248 120 240 180 236 C230 233 270 228 330 222 C380 217 440 214 520 212"/>
+    <path class="bd-mid" d="M-800 ${H} L-800 200 C-500 200 -300 208 -100 212 C20 214 120 222 200 224 C290 226 380 218 480 210 C700 202 1000 206 1200 204 L1200 ${H} Z"/>
+    <path class="mam-road" d="M-40 ${H} C40 250 120 242 180 238 C230 235 270 231 330 226 C380 222 440 218 520 216"/>
     <g class="bd-mid">${Array.from({ length: 9 }, () => {
       const x = 60 + r() * 300;
-      const y = 232 + r() * 10;
+      const y = 234 + r() * 10;
       return `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(3 + r() * 6).toFixed(1)}" ry="${(1.6 + r() * 2).toFixed(1)}"/>`;
     }).join('')}</g>
-    <path class="bd-near" d="M-800 ${H} L-800 244 C-500 242 -200 250 40 248 C200 247 320 252 460 248 C700 244 1000 250 1200 246 L1200 ${H} Z"/>
-    ${tree(70, 250, 90, 'bd-near', 1827, { lean: 0.1, sway: true })}`;
+    <path class="bd-near" d="M-800 ${H} L-800 246 C-500 244 -200 252 40 250 C200 249 320 254 460 250 C700 246 1000 252 1200 248 L1200 ${H} Z"/>
+    ${tree(40, 252, 92, 'bd-near', 1827, { lean: 0.1, sway: true })}`;
 }
 
 export function mamreArt(kind: 'grove' | 'meal' | 'door' | 'laugh' | 'start' | 'sodom'): string {

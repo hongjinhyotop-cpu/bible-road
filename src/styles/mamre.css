@@ -45,12 +45,22 @@
 @keyframes mam-steam { 0% { opacity: 0; transform: translateY(2px); } 30% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-6px); } }
 
 /* 소돔이 내려다보이는 산마루 */
-.mam-sea { fill: color-mix(in srgb, var(--act-accent) 30%, #8a9aa0); opacity: 0.4; }
-.mam-haze { fill: color-mix(in srgb, var(--act-accent) 40%, #e8b890); opacity: 0.18; filter: blur(4px); }
+.mam-moab { opacity: 0.75; }
+.mam-sea { fill: color-mix(in srgb, var(--act-accent) 45%, #b8c4c8); opacity: 0.55; }
+.mam-sea__sheen { fill: none; stroke: #fff2d8; stroke-width: 0.6; stroke-linecap: round; opacity: 0.5; animation: mam-breathe 6s ease-in-out infinite; }
+.mam-kikkar { fill: color-mix(in srgb, var(--act-b) 60%, #2a2018); opacity: 0.85; }
+.mam-town { fill: color-mix(in srgb, var(--act-b) 40%, #120c08); }
+.mam-town .bd-window { display: none; }
+.mam-citylight { fill: #ffc070; opacity: 0.55; filter: drop-shadow(0 0 1.2px #ffb050); animation: mam-flick 4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.play[data-tone='night'] .mam-citylight { opacity: 1; }
+@keyframes mam-flick { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.95; } }
+.mam-haze { fill: color-mix(in srgb, var(--act-accent) 40%, #e8a070); opacity: 0.2; filter: blur(4px); }
+/* 밤에도 먼 들의 불빛과 사해 물빛은 보이게: 배경 전체 어둡게 하는 필터 대신 땅만 */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop:last-child[data-art='sodom-view']) { filter: brightness(0.75) saturate(0.7); }
 .mam-road { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, var(--act-b)); stroke-width: 7; stroke-linecap: round; opacity: 0.45; }
 .mam-plain { opacity: 0.95; }
 
-:root[data-reduced-motion='true'] :is(.mam-heat, .mam-far, .mam-curtain__glow ellipse, .mam-shadow__body, .mam-steam path) { animation: none; }
+:root[data-reduced-motion='true'] :is(.mam-citylight, .mam-sea__sheen, .mam-heat, .mam-far, .mam-curtain__glow ellipse, .mam-shadow__body, .mam-steam path) { animation: none; }
 :root[data-reduced-motion='true'] .mam-shadow--start { animation: none; opacity: 0.55; }
 
 /* ── 세 사람 (characters/visitors.ts): 얼굴을 가린 나그네 셋. 가장자리에만 따뜻한 빛 ── */
@@ -60,3 +70,6 @@
 .actor[data-id='visitors'] .edge { fill: none; stroke: #fff1cf; stroke-width: 1; opacity: 0.5; animation: vis-edge 5.2s ease-in-out infinite; }
 @keyframes vis-edge { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.75; } }
 :root[data-reduced-motion='true'] .actor[data-id='visitors'] .edge { animation: none; }
+
+/* ── 사라 (characters/sarah.ts): 어깨의 숄은 옷보다 한 톤 밝게 ── */
+.actor[data-id='sarah'] .shawl { color: color-mix(in srgb, var(--sil-ink) 62%, color-mix(in srgb, var(--tint, var(--act-accent)) 70%, #d8c0a0)); }
