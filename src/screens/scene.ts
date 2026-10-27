@@ -26,10 +26,12 @@ import { playPlague } from '../fx/plagues';
 import { playPassover } from '../fx/passover';
 import { playEastWind } from '../fx/sea';
 import { playWeep } from '../fx/hall';
+import { playSignet } from '../fx/egypt-court';
 import { playTrumpet } from '../fx/sinai';
 import { playQuail, playStink } from '../fx/manna';
 import { playKites, playTorchPass } from '../fx/covenant';
 import { playTabletsBreak } from '../fx/calf';
+import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -446,6 +448,10 @@ export function sceneScreen({ id }: Params): Screen {
         // 홍해 (fx/sea.ts): 큰 동풍이 화면을 가로질러 몰아친다
         playEastWind($('.scene'), rm);
         return;
+      case 'signet':
+        // 요셉의 애굽 (fx/egypt-court.ts): 인장 반지와 금사슬이 반짝인다 (창 41:42)
+        playSignet($('.scene'), rm);
+        return;
       case 'weep':
         // 나는 요셉이라 (fx/hall.ts): 요셉의 울음이 고리처럼 퍼져 벽 너머로 (창 45:2)
         playWeep($('.scene'), rm);
@@ -473,6 +479,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'torch-pass':
         // 별을 세어 보라 (fx/covenant.ts): 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이로 지나간다 (창 15:17)
         playTorchPass($('.scene'), rm);
+        return;
+      case 'blind':
+        // 뒤돌아보지 말라 (fx/sodom.ts): 문 쪽에서 흰빛이 터져 무리의 눈을 어둡게 한다 (창 19:11)
+        playBlind($('.scene'), rm);
         return;
       case 'glory':
       case 'fire':

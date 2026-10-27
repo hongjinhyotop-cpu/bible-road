@@ -17,12 +17,14 @@ export type BackdropArt =
   | 'sheaves' | 'eleven-stars' | 'dothan' | 'dothan-caravan' | 'cistern'
   | 'goshen-house' | 'goshen-blood' | 'passover-night' | 'egypt-lamps'
   | 'redsea-camp' | 'redsea-chariots' | 'redsea-pillar' | 'redsea-wind' | 'redsea-part' | 'redsea-crossing' | 'redsea-chase' | 'redsea-return' | 'redsea-sunrise'
-  | 'joseph-hall' | 'joseph-hall-shut'
+  | 'joseph-hall' | 'joseph-hall-shut' | 'joseph-coffin'
   | 'sinai-camp' | 'sinai-bound' | 'sinai-storm' | 'sinai-fire' | 'sinai-dark'
   | 'sin-camp' | 'sin-glory' | 'sin-quail' | 'sin-dew' | 'sin-manna' | 'sin-melt'
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
+  | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
+  | 'potiphar' | 'potiphar-cloak' | 'round-prison' | 'dream-cows' | 'dream-cows-lean' | 'dream-ears' | 'dream-ears-thin' | 'pharaoh-court' | 'chariot' | 'granary' | 'granary-famine'
   | PlaceArt;
 
 /**
@@ -138,6 +140,10 @@ export const FX = [
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
+  // ── 뒤돌아보지 말라 (창 19, fx/sodom.ts) ──
+  'blind', // 눈을 어둡게 함: 문 쪽에서 흰빛이 터져 화면을 덮었다가 천천히 걷힘 (약 5초, 창 19:11)
+  // ── 요셉의 애굽 (창 39·41, fx/egypt-court.ts) ──
+  'signet', // 인장 반지와 금사슬: 요셉의 손과 목에서 차례로 금빛이 반짝임 (약 4초, 창 41:42)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -366,6 +372,8 @@ export const MOODS: Record<string, Mood> = {
   'joseph-hall-shut': { light: true, land: false, art: 'joseph-hall-shut' },
   /** 같은 방, 저녁 */
   'joseph-hall-dusk': { light: true, land: false, art: 'joseph-hall-shut', tone: 'dusk' },
+  /** 요셉의 관: 어두운 돌방, 등잔 하나, 낮은 상 위의 이집트식 사람 모양 관과 향 재료 항아리 (창 50:26, fx/coffin.ts) */
+  'joseph-coffin': { light: true, land: false, art: 'joseph-coffin' },
 
   // ── 시내산 (출 19–20, fx/sinai.ts) ──
   /** 시내 광야: 가운데 우뚝 선 붉은 화강암 산, 발치에 늘어선 장막 (출 19:1-2) */
@@ -442,6 +450,57 @@ export const MOODS: Record<string, Mood> = {
   'sodom-view': { light: true, land: false, art: 'sodom-view', tone: 'dusk' },
   /** 같은 산마루, 밤 */
   'sodom-view-night': { light: true, land: false, art: 'sodom-view', tone: 'night' },
+
+  // ── 뒤돌아보지 말라 (창 19:1-29, fx/sodom.ts) ──
+  /** 해 질 녘 소돔 성문: 두 망대 사이 아치문, 문 너머 성 안의 불빛, 문 곁 돌 의자, 종려 (창 19:1) */
+  'sodom-gate': { light: true, land: false, art: 'sodom-gate', tone: 'dusk' },
+  /** 같은 성문, 동틀 녘 잿빛 (창 19:15) */
+  'sodom-grey': { light: true, land: false, art: 'sodom-gate-grey', tone: 'dusk' },
+  /** 롯의 집 안, 밤: 흙벽, 벽감의 등잔, 낮은 상 위 무교병, 빗장 지른 널문 (창 19:3) */
+  'lot-house': { light: true, land: false, art: 'lot-house', tone: 'night', spread: true },
+  /** 같은 방: 문틈과 높은 창으로 바깥 횃불빛이 일렁이고 문이 떨린다 (창 19:4-9) */
+  'lot-door': { light: true, land: false, art: 'lot-door', tone: 'night', spread: true },
+  /** 바깥, 밤: 롯의 집을 사방에서 에워싼 무리 — 얼굴 없는 어두운 덩어리와 횃불 (창 19:4) */
+  'sodom-mob': { light: true, land: false, art: 'sodom-mob', tone: 'night' },
+  /** 동틀 녘의 들: 왼쪽 멀리 소돔, 오른쪽 산자락의 작은 성 소알, 그 사이 길 (창 19:17-23) */
+  'plain-dawn': { light: true, land: false, art: 'sodom-plain', tone: 'clear' },
+  /** 같은 들: 붉게 내려앉은 하늘, 먼 성들 위로 비같이 떨어지는 유황과 불 (창 19:24-25) */
+  'sodom-fire': { light: true, land: false, art: 'sodom-fire' },
+  /** 같은 들, 불은 멀리서 타고 길 위에 뒤를 돌아본 채 선 창백한 소금 기둥 (창 19:26) */
+  'salt-pillar': { light: true, land: false, art: 'salt-pillar', spread: true },
+  /** 헤브론 동쪽 산마루, 아침: 발아래 들에서 옹기 가마 같은 연기가 치밀어 오른다 (창 19:27-28) */
+  'sodom-smoke': { light: true, land: false, art: 'sodom-smoke', tone: 'clear' },
+  // ── 보디발의 집과 왕의 옥 (창 39, fx/egypt-court.ts) ──
+  /** 보디발의 집 안: 연꽃 기둥, 연꽃 띠 벽화, 가운데 넓은 문 너머 해 드는 뜰(못·무화과·야자), 안채 휘장 문, 항아리 (창 39:2-6) */
+  potiphar: { light: true, land: false, art: 'potiphar' },
+  /** 같은 집, 해 질 녘 */
+  'potiphar-dusk': { light: true, land: false, art: 'potiphar', tone: 'dusk' },
+  /** 같은 집, 바닥 가운데 버려진 옷 한 벌 (창 39:12-16). 폰에서 인물은 양옆으로 */
+  'potiphar-cloak': { light: true, land: false, art: 'potiphar-cloak', spread: true },
+  /** 같은 옷, 해 질 녘 (주인이 돌아오기를 기다림, 창 39:16) */
+  'potiphar-cloak-dusk': { light: true, land: false, art: 'potiphar-cloak', tone: 'dusk', spread: true },
+  /** 왕의 죄수를 가두는 옥: 둥근 돌벽, 아주 높은 창 하나에서 천천히 옮겨 가는 빛기둥, 열쇠 꾸러미 (창 39:20-23, 41:14) */
+  'round-prison': { light: true, land: false, art: 'round-prison' },
+  /** 같은 옥, 밤 */
+  'round-prison-night': { light: true, land: false, art: 'round-prison', tone: 'night' },
+
+  // ── 바로의 꿈과 총리 (창 41, fx/egypt-court.ts) ──
+  /** 꿈 1: 안개 낀 나일, 아름답고 살진 일곱 암소가 물에서 하나씩 올라온다 (창 41:2) */
+  'dream-cows': { light: true, land: false, art: 'dream-cows', tone: 'dusk', spread: true },
+  /** 꿈 1 뒤: 흉하고 파리한 일곱 암소가 올라오고, 살진 소들이 하나씩 어둠에 삼켜진다 (약 8초, 창 41:3-4) */
+  'dream-cows-lean': { light: true, land: false, art: 'dream-cows-lean', tone: 'dusk', spread: true },
+  /** 꿈 2: 한 줄기에서 무성하고 충실한 일곱 이삭이 금빛으로 자란다 (창 41:5) */
+  'dream-ears': { light: true, land: false, art: 'dream-ears', tone: 'dusk', spread: true },
+  /** 꿈 2 뒤: 동풍에 마른 일곱 이삭이 나고, 찬 이삭이 시들어 꺼진다 (약 7초, 창 41:6-7) */
+  'dream-ears-thin': { light: true, land: false, art: 'dream-ears-thin', tone: 'dusk', spread: true },
+  /** 바로의 궁: 파피루스 기둥, 날개 달린 해 원반, 계단 단 위 사자 다리 보좌, 깃털 부채 (창 41:8-45) */
+  'pharaoh-court': { light: true, land: false, art: 'pharaoh-court' },
+  /** 버금 수레: 먼 탑문, 길가의 사람들, 수레가 지나가는 자리마다 사람들이 엎드린다 (약 13초, 창 41:43) */
+  chariot: { light: true, land: false, art: 'chariot', tone: 'clear' },
+  /** 일곱 해 풍년: 둥근 곳간들, 사다리를 오르내리는 일꾼, 바다 모래같이 자라는 곡식 더미 (창 41:47-49) */
+  granary: { light: true, land: false, art: 'granary', spread: true },
+  /** 흉년: 갈라진 땅, 열린 곳간 문의 불빛, 자루와 나귀를 끌고 줄 선 사람들 (창 41:54-57) */
+  'granary-famine': { light: true, land: false, art: 'granary-famine', tone: 'dusk', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...

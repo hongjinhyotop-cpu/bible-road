@@ -1,0 +1,42 @@
+/* ── 요셉의 관 (창 50:26, A급 gen-50-good) ──
+   배경(fx/coffin.ts): 어두운 돌방, 등잔 하나, 낮은 상 위의 사람 모양 관, 향 재료 항아리.
+   빛은 등잔 하나뿐. 불빛이 아주 천천히 숨 쉬고, 연기가 가늘게 흔들리고, 먼지 몇 알이 떠돈다. */
+
+.cf-wall { fill: color-mix(in srgb, var(--act-b) 22%, #070508); }
+.cf-band { opacity: 0.35; }
+.cf-glyphs { opacity: 0.5; }
+.cf-niche { opacity: 0.6; }
+
+/* 등잔 불빛: 방 전체를 데우는 넓은 빛 + 불꽃 둘레의 진한 빛 */
+.cf-glow__c { stop-color: #f6c27a; stop-opacity: 0.42; }
+.cf-glow__m { stop-color: #d98a42; stop-opacity: 0.12; }
+.cf-glow__e { stop-color: #d98a42; stop-opacity: 0; }
+.cf-glow { fill: url(#cf-glow-g); transform-box: fill-box; transform-origin: center; animation: cf-breathe 6s ease-in-out infinite; }
+.cf-glow--core { animation-duration: 2.6s; opacity: 0.9; }
+@keyframes cf-breathe { 0%, 100% { opacity: 0.82; transform: scale(1); } 50% { opacity: 1; transform: scale(1.04); } }
+.cf-smoke {
+  fill: none; stroke: #d8cbb4; stroke-width: 0.7; stroke-linecap: round; opacity: 0.16;
+  stroke-dasharray: 6 9; animation: cf-smoke 7s linear infinite;
+}
+@keyframes cf-smoke { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -60; } }
+
+/* 관: 짙은 나무 위에 등잔 쪽(왼쪽)부터 데워진 빛, 금빛 띠 */
+.cf-wood { fill: color-mix(in srgb, var(--act-a) 40%, #0c0806); }
+.cf-lit { fill: color-mix(in srgb, #c88a4a 22%, transparent); mix-blend-mode: screen; }
+.cf-gild { fill: none; stroke: color-mix(in srgb, var(--act-accent) 55%, #e8bf72); stroke-width: 1; opacity: 0.7; }
+.cf-gild--thin { stroke-width: 0.7; opacity: 0.5; }
+.cf-wig { fill: color-mix(in srgb, var(--act-a) 30%, #060405); }
+.cf-face { fill: color-mix(in srgb, var(--act-accent) 45%, #d8a860); opacity: 0.55; }
+
+.cf-pool { fill: #f0b468; opacity: 0.07; }
+.cf-mote { fill: #f8dfb0; opacity: 0; animation: cf-mote 12s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes cf-mote {
+  0% { opacity: 0; transform: translate(0, 0); }
+  30% { opacity: 0.55; }
+  70% { opacity: 0.4; }
+  100% { opacity: 0; transform: translate(var(--x), -18px); }
+}
+
+:root[data-reduced-motion='true'] :is(.cf-glow, .cf-smoke, .cf-mote) { animation: none; }
+:root[data-reduced-motion='true'] .cf-mote { opacity: 0.35; }
+@media (prefers-reduced-motion: reduce) { :is(.cf-glow, .cf-smoke, .cf-mote) { animation: none; } }

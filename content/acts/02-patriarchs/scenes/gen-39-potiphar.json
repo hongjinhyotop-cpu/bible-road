@@ -1,0 +1,293 @@
+{
+  "id": "gen-39-potiphar",
+  "act": 2,
+  "grade": "A",
+  "title": "보디발의 집",
+  "ref": "창 39",
+  "pov": "요셉",
+  "bg": "egypt",
+  "cast": ["joseph", "merchant"],
+  "outfit": { "joseph": "plain" },
+  "extras": {
+    "merchant": { "name": "이스마엘 상인", "base": "man", "hair": "hood", "beard": "long", "tint": "purple", "props": ["bundle", "staff"] },
+    "potiphar": { "name": "보디발", "base": "man", "hair": "bald", "beard": "none", "tint": "gold", "props": ["staff"], "height": 1.04 },
+    "wife": { "name": "주인의 아내", "base": "woman", "hair": "loose", "tint": "white" },
+    "jailer": { "name": "전옥", "base": "old-man", "hair": "bald", "beard": "none", "tint": "brown", "props": ["lamp"] }
+  },
+  "beats": [
+    {
+      "type": "narration",
+      "acts": [{ "act": "bow-head", "who": "joseph" }],
+      "pose": { "joseph": "slump" },
+      "text": "요셉은 애굽으로 끌려 내려갔다. 강이 하나 있었고, 신은 많았고, 사람은 팔렸다. 은 이십 개에 산 물건은 그보다 비싸게 팔아야 장사다. 이스마엘 사람들은 장사를 할 줄 알았다."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-in", "who": "potiphar" }, { "act": "approach", "who": "potiphar", "to": "joseph" }],
+      "text": "그를 산 사람은 바로의 신하, 시위대장, 애굽 사람 보디발이었다. 기록은 그에게 직함을 셋 붙인다. 요셉에게는 아무것도 붙이지 않는다. 그날 요셉은 이름이 아니라 값이었다."
+    },
+    {
+      "type": "line",
+      "who": "potiphar",
+      "act": "face",
+      "to": "merchant",
+      "text": "“말은 하느냐?”"
+    },
+    {
+      "type": "line",
+      "who": "merchant",
+      "act": "bow-head",
+      "text": "“가나안 말을 합니다. 애굽 말은 곧 배울 겁니다. 아직 젊으니까요.”"
+    },
+    {
+      "type": "line",
+      "who": "potiphar",
+      "text": "“젊은 것은 흠이다. 오래 먹여야 하니까.”",
+      "acts": [{ "act": "leave", "who": "merchant" }, { "act": "face", "who": "potiphar", "to": "joseph" }]
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar",
+      "fx": ["fade", "glory"],
+      "exit": ["potiphar"],
+      "outfit": { "joseph": "clean" },
+      "pose": { "joseph": "neutral" },
+      "acts": [{ "act": "look-up", "who": "joseph" }],
+      "text": "여호와께서 요셉과 함께하셨다. 그래서 그는 형통한 자가 되었다. 종이었다. 남의 나라, 남의 집에 있었다. 그런데 기록은 이것을 형통이라고 부른다."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 39:2-3",
+      "gloss": "하나님이 요셉이랑 같이 계셔서 요셉이 하는 일마다 잘 풀림. 신분은 여전히 노예인데 ‘형통’이라고 씀. 주인(이집트 사람)도 눈치챔. ‘얘 뒤에 뭔가 있다.’"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-in", "who": "potiphar" }, { "act": "face", "who": ["potiphar", "joseph"] }],
+      "text": "주인은 보았다. 그 히브리 종의 하나님 이름은 몰랐어도, 장부는 읽을 줄 알았다. 이 종이 손댄 곳간은 차고, 이 종이 맡은 밭은 났다."
+    },
+    {
+      "type": "line",
+      "who": "potiphar",
+      "act": "approach",
+      "to": "joseph",
+      "text": "“오늘부터 이 집 열쇠는 네가 든다. 곳간도, 밭도, 종들도.”"
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "act": "bow-head",
+      "text": "“주인께서 드실 것은요?”"
+    },
+    {
+      "type": "line",
+      "who": "potiphar",
+      "acts": [{ "act": "turn", "who": "potiphar" }],
+      "text": "“그건 내가 고른다. 사람이 하나쯤은 직접 해야지.”"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-out", "who": "potiphar" }],
+      "text": "그날부터 여호와의 복이 그 애굽 사람의 집과 밭에 미쳤다. 히브리 종 하나 때문에. 오래전 갈대아에서 떠난 한 노인이 들은 약속이 있었다. 너로 말미암아 복을 얻으리라. 그 약속이 지금, 남의 집 곳간에서 셈해지고 있었다."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "look-up", "who": "joseph" }],
+      "text": "주인은 자기가 먹는 음식 외에는 아무것도 간섭하지 않았다. 한 사람을 그만큼 믿게 되면, 남는 걱정은 저녁 메뉴뿐이다. 그리고 요셉은 용모가 준수하고 아담했다. 기록이 사람의 생김새를 말할 때는, 대개 그다음에 일이 생긴다."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-in", "who": "wife" }, { "act": "face", "who": "wife", "to": "joseph" }],
+      "text": "주인의 아내가 그를 보았다. 한 번 보았고, 또 보았다. 보는 것이 길어지면, 그것은 이미 말이다."
+    },
+    {
+      "type": "line",
+      "who": "wife",
+      "act": "approach",
+      "to": "joseph",
+      "text": "“나와 동침하자.”"
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "act": "step-back",
+      "text": "“주인은 이 집 일을 아무것도 간섭하지 않고 다 내 손에 맡겼습니다. 이 집에 나보다 큰 이가 없습니다. 주인이 내게 금한 것은 하나도 없습니다. 당신 하나뿐입니다. 당신은 그의 아내이니까요.”"
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "act": "turn",
+      "text": "“그런즉 내가 어찌 이 큰 악을 행하여 하나님께 득죄하리이까.”"
+    },
+    {
+      "type": "scripture",
+      "ref": "창 39:8-9",
+      "gloss": "‘주인이 나 믿고 다 맡겼는데, 안 된다고 한 건 딱 하나, 당신임. 그리고 이건 주인한테 미안한 거 이전에 하나님한테 죄 짓는 거임.’ 거절 이유 1순위가 ‘들키면 끝남’이 아니라 ‘하나님’."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-out", "who": "joseph" }, { "act": "bow-head", "who": "wife" }],
+      "text": "그는 들킬 것이라고 말하지 않았다. 주인이 무섭다고도 말하지 않았다. 하나님께, 라고 말했다. 이 집에서 그 이름을 입에 올리는 사람은 그 하나뿐이었다."
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar-dusk",
+      "fx": "fade",
+      "acts": [{ "act": "walk-in", "who": "joseph" }, { "act": "face", "who": "wife", "to": "joseph" }],
+      "outfit": { "joseph": "clean" },
+      "text": "이튿날도."
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar",
+      "fx": "fade",
+      "acts": [{ "act": "approach", "who": "wife", "to": "joseph" }, { "act": "turn", "who": "joseph" }],
+      "text": "그다음 날도."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-out", "who": "joseph" }, { "act": "part", "who": "wife" }],
+      "text": "날마다. 여인은 날마다 청했다. 요셉은 날마다 듣지 않았다. 함께 있지도 않았다. 유혹을 이기는 방법은 대개 이기는 것이 아니라, 그 자리에 없는 것이다."
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar-dusk",
+      "fx": "fade",
+      "exit": ["wife"],
+      "acts": [{ "act": "walk-in", "who": "joseph" }],
+      "outfit": { "joseph": "clean" },
+      "text": "그러던 어느 날, 요셉이 일을 보러 집에 들어갔다. 집 사람은 하나도 거기 없었다. 날마다 같은 날이었는데, 그날만 달랐다."
+    },
+    {
+      "type": "line",
+      "who": "wife",
+      "acts": [{ "act": "walk-in", "who": "wife" }, { "act": "approach", "who": "wife", "to": "joseph" }],
+      "text": "“나와 동침하자.”"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "step-back", "who": "joseph" }],
+      "text": "여인이 그의 옷을 잡았다. 요셉은 옷을 빼내려 하지 않았다. 옷을 그 손에 버렸다. 그리고 달아났다. 옷 한 벌과 자기 자신 가운데서, 그는 고민하지 않았다."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 39:12",
+      "gloss": "옷 잡히니까 옷을 그냥 버리고 튐. 맞서서 버틴 게 아니라 도망침. 근데 이게 정답이었음. 문제는 그 옷이 곧 증거물이 된다는 거.",
+      "outfit": { "joseph": "plain" },
+      "acts": [{ "act": "walk-out", "who": "joseph" }]
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar-cloak",
+      "fx": "fade",
+      "acts": [{ "act": "crowd" }, { "act": "step-back", "who": "wife" }],
+      "text": "옷이 남았다. 옷은 말을 하지 못한다. 그래서 누구든 옷 대신 말할 수 있다."
+    },
+    {
+      "type": "line",
+      "who": "wife",
+      "act": "crowd-murmur",
+      "text": "“보라. 주인이 히브리 사람을 우리에게 데려다가 우리를 희롱하게 하는도다. 그가 내게로 들어오기로 내가 크게 소리 질렀더니, 그 옷을 내게 버려두고 도망하여 나갔느니라.”"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "turn", "who": "wife" }],
+      "text": "그녀는 ‘히브리 사람’이라고 했다. 이름은 부르지 않았다. 그리고 ‘주인이 데려다가’라고 했다. 거짓말 한 문장에 과녁이 둘이었다. 종, 그리고 남편."
+    },
+    {
+      "type": "narration",
+      "bg": "potiphar-cloak-dusk",
+      "fx": "fade",
+      "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "potiphar" }],
+      "text": "그녀는 그 옷을 곁에 두고 주인이 돌아오기를 기다렸다. 몇 해 전 가나안에서도 옷 한 벌이 한 남자의 귀가를 기다린 적이 있었다. 그때는 염소 피가 묻어 있었다."
+    },
+    {
+      "type": "line",
+      "who": "wife",
+      "act": "approach",
+      "to": "potiphar",
+      "text": "“당신이 우리에게 데려온 그 히브리 종이 나를 희롱하려고 내게로 들어왔기에, 내가 소리를 질렀더니 이 옷을 내게 버려두고 도망하였나이다.”"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-in", "who": "joseph" }, { "act": "step-back", "who": "potiphar" }],
+      "text": "주인은 그 말을 들었다. 그리고 심히 노했다. 집 안의 모든 것을 맡겼던 사람에게서, 집 안의 하나를 빼앗겼다는 말이었다."
+    },
+    {
+      "type": "choice",
+      "prompt": "주인이 노하여 다가온다. 요셉, 무슨 말을 할까?",
+      "options": [
+        { "label": "“주인님, 들어 주십시오. 그 옷은 제가 버리고 달아난 겁니다.”", "goto": "b-plead" },
+        { "label": "(아무 말도 하지 않는다)", "canon": true }
+      ]
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "approach", "who": "potiphar", "to": "joseph" }, { "act": "bow-head", "who": "joseph" }],
+      "text": "기록은 그날 요셉이 한 말을 한 마디도 적지 않는다. 주인은 그를 잡아 옥에 넣었다. 왕의 죄수를 가두는 옥이었다. 시위대장의 아내를 범하려 했다는 종에게, 그것은 어쩌면 가벼운 벌이었다."
+    },
+    {
+      "type": "narration",
+      "bg": "round-prison",
+      "fx": "fade",
+      "exit": ["potiphar", "wife"],
+      "pose": { "joseph": "slump" },
+      "acts": [{ "act": "kneel", "who": "joseph" }],
+      "text": "요셉은 옥에 갇혔다. 구덩이에서 끌려 나온 지 몇 해 만에, 그는 다시 돌벽 안에 있었다. 이번 구덩이에는 창이 하나 있었다. 아주 높이."
+    },
+    {
+      "type": "narration",
+      "fx": "glory",
+      "acts": [{ "act": "look-up", "who": "joseph" }],
+      "text": "그러나. 기록은 여기에 이 말을 놓는다. 요셉이 옥에 갇혔으나, 여호와께서 요셉과 함께하셨다. 집에서 쓰던 그 문장 그대로였다. 장소가 바뀌었다고 문장을 바꾸지는 않았다."
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "walk-in", "who": "jailer" }, { "act": "approach", "who": "jailer", "to": "joseph" }],
+      "pose": { "joseph": "neutral" },
+      "text": "그에게 인자를 더하셨다. 전옥의 눈에 은혜를 입게 하셨다. 하나님은 옥문을 열지 않으셨다. 대신 옥 안에 그의 자리를 만드셨다."
+    },
+    {
+      "type": "line",
+      "who": "jailer",
+      "acts": [{ "act": "stand", "who": "joseph" }, { "act": "face", "who": ["jailer", "joseph"] }],
+      "text": "“네가 오늘부터 여기 있는 사람들을 맡아라. 다 맡아라. 나는, 좀 앉아 있겠다.”"
+    },
+    {
+      "type": "narration",
+      "acts": [{ "act": "bow-head", "who": "joseph" }, { "act": "turn", "who": "jailer" }],
+      "text": "전옥은 요셉의 손에 맡긴 것을 무엇이든 돌아보지 않았다. 보디발이 그랬던 것처럼. 요셉에게 일을 맡긴 사람은 모두 같은 병에 걸렸다. 걱정하는 법을 잊어버리는 병."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 39:21-23",
+      "gloss": "감옥에서도 똑같음. 하나님이 같이 계시니까 간수장이 요셉을 좋게 보고 감옥 일을 통째로 맡김. 그리고 신경도 안 씀. 39장 처음이랑 끝에 같은 문장이 반복됨. ‘여호와께서 요셉과 함께하심이라.’",
+      "acts": [{ "act": "walk-out", "who": "jailer" }]
+    },
+    {
+      "type": "narration",
+      "bg": "round-prison-night",
+      "fx": "fade",
+      "acts": [{ "act": "look-up", "who": "joseph" }],
+      "text": "집에서도 함께, 옥에서도 함께. 형통은 문이 열리는 것이 아니었다. 닫힌 문 안에 누가 같이 있느냐였다. 요셉은 아직 몰랐다. 이곳이 왕의 죄수를 가두는 옥이라는 사실이, 언젠가 그에게 무슨 뜻이 될지."
+    }
+  ],
+  "branches": {
+    "b-plead": [
+      {
+        "type": "line",
+        "who": "joseph",
+        "act": "approach",
+        "to": "potiphar",
+        "text": "“주인님, 들어 주십시오. 그 옷은 제가 버리고 달아난 겁니다.”"
+      },
+      {
+        "type": "narration",
+        "acts": [{ "act": "turn", "who": "potiphar" }, { "act": "bow-head", "who": "joseph" }],
+        "text": "그가 그렇게 말했다 해도. 저울 한쪽에는 아내의 말과 옷 한 벌이, 다른 쪽에는 사 온 종의 말이 놓였을 것이다. 증거는 스스로 말하지 않는다. 그 증거를 누가 들고 있느냐가 말한다."
+      }
+    ]
+  },
+  "insight": "창세기 39장 = 요셉 2화. 이집트 노예로 팔려 감 → 주인 보디발 집에서 승진(가정 총무 = 집 관리 총책임자) → 주인 아내가 날마다 들이댐 → 거절 → 누명 → 감옥 → 감옥에서도 승진. 바닥 찍고 올라갔다가 또 바닥 찍고 또 올라감.\n\n먼저 이 장의 뼈대. ‘여호와께서 요셉과 함께하시므로’라는 문장이 장 처음(2, 3절)과 끝(21, 23절)에 반복됨. 액자처럼 앞뒤를 감싸고 있음. 중요한 건, 요셉이 잘나갈 때도(보디발 집) 바닥일 때도(감옥) 같은 문장이 붙는다는 거. 그러니까 이 장에서 ‘형통’은 연봉이나 직급 얘기가 아님. 노예 신분 그대로인데 형통하다고 함. 형통 = 상황이 풀리는 게 아니라, 하나님이 같이 계신 거. 게임으로 치면 맵이 바뀌어도 파티원이 안 빠짐.\n\n유혹 장면. 요셉의 거절 이유가 포인트임. ‘주인이 나 믿고 다 맡겼는데 안 된다’(사람에 대한 의리) + ‘하나님께 죄 짓는 거다’(진짜 이유). ‘들키면 큰일’이 아님. 아무도 안 보는 집에서도 하나님 앞에 있다고 생각한 거. 그리고 ‘날마다’라는 말이 중요함. 유혹은 한 방이 아니라 매일 오는 거였음. 요셉은 매일 거절했고, ‘함께 있지도 않았다’(10절). 버티는 것보다 자리를 피하는 게 기술임. 마지막엔 옷까지 버리고 튐. 신약에서도 ‘청년의 정욕을 피하라’(딤후 2:22)고 함. 싸우라가 아니라 피하라.\n\n옷 모티프 소름 포인트. 37~39장에서 ‘옷과 소지품’이 연달아 증거로 쓰임. 37장: 형들이 요셉의 채색옷에 염소 피 묻혀서 아빠를 속임(가짜 증거). 38장: 다말이 유다의 도장·끈·지팡이를 증거로 내밀어 진실을 밝힘(진짜 증거). 39장: 주인 아내가 요셉의 옷으로 누명을 씌움(또 가짜 증거). 옷은 스스로 말을 못 해서, 들고 있는 사람 맘대로 말하게 됨. 그리고 38장 유다(창녀인 줄 알고 감)와 39장 요셉(주인 아내를 거절)이 바로 붙어 있는 것도 일부러 대비시킨 배치라고 보는 해석이 많음.\n\n억울함. 요셉은 잘못한 게 하나도 없는데 감옥 감. 본문은 요셉의 해명도, 원망도 안 적음. 근데 하나 재밌는 디테일. 시위대장 아내를 겁탈하려 한 노예면 보통 죽였을 텐데, 보디발은 ‘왕의 죄수’ 감옥에 넣고 끝냄. 그래서 보디발이 아내 말을 100% 믿진 않았다는 해석도 있고, 그냥 본문이 거기까지 말하지 않는다는 해석도 있음. 여러 해석이 있음. 확실한 건, 이 감옥이 ‘왕의 죄수’ 가두는 곳이었다는 거. 다음 장에서 왕의 관원장 두 명이 여기 들어옴. 억울한 자리가 다음 길목이었던 거.\n\n근데 이게 왜 중요하냐면, 열심히 바르게 살았는데 결과가 감옥인 시즌, 다들 한 번은 있잖아. 39장은 그때도 ‘함께하심’은 안 끊긴다고 말함. 상황 말고 동행으로 형통을 재는 법.\n\n한 줄 요약: 집에서도 감옥에서도 같은 문장. 여호와께서 요셉과 함께하셨다.",
+  "tldr": "보디발 집에서 잘나가던 요셉, 주인 아내의 유혹을 ‘하나님께 죄 짓는 일’이라며 끝까지 거절하고 옷까지 버리고 도망침. 그 옷 때문에 누명 쓰고 감옥행. 근데 감옥에서도 하나님이 함께하셔서 또 인정받음.",
+  "bridge": "왕의 죄수를 가두는 옥이었다. 머지않아, 왕의 식탁 가장 가까이 서던 사람 둘이 그 문으로 들어왔다."
+}
