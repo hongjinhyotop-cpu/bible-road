@@ -1,0 +1,41 @@
+{
+  "id": "gen-50-burial",
+  "act": 2,
+  "grade": "B",
+  "title": "이집트의 애곡",
+  "ref": "창 50:1-14",
+  "bg": "house-night",
+  "cast": ["jacob", "joseph"],
+  "extras": {
+    "physician": { "name": "의원", "base": "priest", "hair": "bald", "props": ["jar"], "tint": "white" },
+    "courtier": { "name": "바로의 신하", "base": "man", "hair": "turban", "props": ["scroll"], "tint": "gold", "height": 0.98 }
+  },
+  "beats": [
+    { "acts": [{ "act": "sleep", "who": "jacob" }, { "act": "kneel", "who": "joseph" }] },
+    { "type": "narration", "act": "cry", "who": "joseph", "text": "요셉은 아버지의 얼굴에 엎드렸다. 울었다. 입을 맞추었다. 이집트를 다스리는 사람이었다. 그 밤에는 아무것도 다스리지 못했다." },
+    { "type": "scripture", "ref": "창 50:1", "gloss": "요셉이 아빠 얼굴에 엎드려서 울고 뽀뽀함. 총리고 뭐고 없음. 그냥 아들." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "joseph" }, { "act": "walk-in", "who": "physician" }], "text": "그리고 그는 일어섰다. 울음을 그친 사람은, 해야 할 일부터 한다. 그는 자기를 섬기는 의원들을 불렀다." },
+    { "type": "line", "who": "joseph", "act": "face", "to": "physician", "text": "“아버지의 몸에 향 재료를 넣어 모셔라.”" },
+    { "type": "narration", "act": "bow-head", "who": "physician", "text": "의원들은 이스라엘의 몸을 이집트의 방식대로 모셨다. 사십 일이 걸렸다. 그 일에는 그만한 날이 드는 법이었다. 평생 장막에서 살던 목자가, 이집트의 귀인처럼 누웠다." },
+    { "type": "narration", "bg": "egypt-dusk", "fx": "fade", "exit": ["physician", "jacob"], "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }], "text": "그리고 이집트 사람들이 그를 위해 칠십 일을 곡했다. 목자라면 질색하던 사람들이었다. 슬픔은 가끔, 미움보다 넓다." },
+    { "type": "narration", "bg": "palace", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "courtier" }], "text": "곡하는 기한이 지나자, 요셉은 바로의 궁에 말을 넣었다. 바로에게 직접이 아니라, 궁의 사람들을 통해서." },
+    { "type": "line", "who": "joseph", "act": "approach", "to": "courtier", "text": "“내가 너희에게 은혜를 입었다면, 바로께 아뢰어 다오. ‘아버지가 내게 맹세하게 하셨습니다. 가나안 땅에 파 두신 묘실에 묻어 달라고. 올라가서 아버지를 장사하고, 다시 오겠습니다.’”" },
+    { "type": "narration", "acts": [{ "act": "walk-out", "who": "courtier" }, { "act": "walk-in", "who": "pharaoh" }], "text": "다시 오겠습니다. 그 말을 굳이 덧붙였다. 떠나는 사람이 돌아오겠다고 말하는 것은, 남는 사람이 그걸 걱정할 줄 알기 때문이다." },
+    { "type": "line", "who": "pharaoh", "act": "face", "to": "joseph", "text": "“그가 네게 시킨 맹세대로, 올라가서 네 아비를 장사하라.”" },
+    { "type": "narration", "act": "bow-head", "who": "joseph", "text": "짧은 허락이었다. 왕의 허락은 대개 짧다. 길어지는 것은, 그다음의 행렬이다." },
+    { "type": "narration", "bg": "road-dawn", "fx": ["fade", "dust"], "exit": ["pharaoh"], "enter": ["reuben", "judah", "benjamin"], "act": "crowd", "text": "요셉이 아버지를 장사하러 올라갔다. 바로의 모든 신하, 궁의 장로들, 애굽 땅의 모든 장로가 함께 갔다. 요셉의 온 집과 형제들과 아버지의 집이 갔다. 고센에는 어린아이들과 양 떼와 소 떼만 남았다." },
+    { "type": "narration", "act": "travel", "from": "goshen", "to": "hebron", "text": "병거와 기병이 뒤를 따랐다. 아주 큰 무리였다. 지팡이 하나만 들고 요단을 건너 도망쳤던 사람이, 병거에 둘러싸여 고향으로 돌아가고 있었다." },
+    { "type": "narration", "bg": "field-dusk", "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }, { "act": "kneel", "who": "joseph" }], "text": "요단 강 건너편, 아닷의 타작마당. 곡식을 떨던 너른 마당에 행렬이 멈췄다. 거기서 그들은 크게 울었다." },
+    { "type": "narration", "acts": [{ "act": "cry", "who": "joseph" }, { "act": "cry", "who": "judah" }, { "act": "bow-head", "who": "reuben" }], "text": "요셉은 아버지를 위해 칠 일 동안 애곡했다. 칠십 일은 이집트의 울음이었다. 칠 일은 아들의 울음이었다." },
+    { "type": "scripture", "ref": "창 50:10-11", "gloss": "아닷 타작마당에서 7일 동안 대성통곡. 그걸 본 가나안 사람들이 ‘와, 이집트 사람들 엄청 슬퍼한다’ 해서 그 동네 이름이 ‘아벨미스라임’(= 이집트의 애곡)이 됨." },
+    { "type": "narration", "act": "crowd-murmur", "text": "가나안 사람들은 그 울음을 보고 땅에 이름을 붙였다. 아벨미스라임, 이집트 사람의 애곡. 그들 눈에는 이집트 옷을 입고, 이집트 병거를 타고, 이집트 사람처럼 우는 무리였다. 그 한가운데 누운 노인이 가나안에 묻히러 왔다는 것을, 그들은 몰랐다." },
+    { "type": "narration", "bg": "cave-dusk", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "stand", "who": "joseph" }, { "act": "stand", "who": "judah" }], "text": "야곱의 아들들은 아버지가 명한 대로 했다. 그를 메고 가나안 땅으로 들어가, 마므레 앞 막벨라 밭의 굴에 장사했다." },
+    { "type": "scripture", "ref": "창 50:13", "gloss": "아들들이 아빠 유언 그대로 막벨라 굴에 묻음. 23장에서 아브라함이 돈 주고 산 그 가족묘. 47장 맹세 클리어." },
+    { "type": "narration", "acts": [{ "act": "prostrate", "who": "joseph" }, { "act": "bow-head", "who": "benjamin" }], "text": "아브라함이 은 사백 세겔을 달아 주고 산 굴이었다. 약속의 땅에서 이 집안이 제 것이라 부를 수 있는 땅은, 아직 그 굴 하나였다. 그 굴에 이제 여섯이 누웠다. 아브라함과 사라, 이삭과 리브가, 레아, 그리고 야곱." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "joseph" }, { "act": "face", "who": ["joseph", "judah"] }], "text": "약속은 아직 굴 하나만 했다. 그러나 그들은 매번 거기로 돌아왔다. 묻힐 곳을 정하는 것은, 돌아갈 곳을 정하는 일이다." },
+    { "type": "narration", "act": "travel", "from": "hebron", "to": "goshen", "text": "장사를 마치고, 요셉은 형제들과 함께 온 무리를 데리고 애굽으로 돌아갔다. 다시 오겠다던 말 그대로." },
+    { "type": "narration", "bg": "road-dusk", "fx": "fade", "acts": [{ "act": "walk-out", "who": "reuben" }, { "act": "leave", "who": "joseph" }, { "act": "bow-head", "who": "judah" }], "text": "돌아가는 길은 조용했다. 아버지가 없는 길이었다. 형들 몇은 걸으면서 다른 것을 세고 있었다. 아버지가 없는 지금, 동생이 무엇을 할지." }
+  ],
+  "insight": "야곱 장례식 편임. 스케일이 미쳤음. 요셉이 이집트 방식대로 시신에 향 재료를 넣게 했는데(이게 미라 만드는 작업이랑 이어지는 이집트 장례 방식임) 40일이 걸리고, 이집트 사람들이 70일이나 곡을 함. 목자 싫어하던 이집트 사람들이 히브리 목자 할아버지 장례에 이만큼 함. 그만큼 요셉 위상이 컸다는 거.\n\n요셉이 바로한테 직접 안 가고 궁 사람들을 통해서 부탁하는 것도 눈에 띔. 왜 그랬는지 본문은 설명 안 함. 상중이라 왕 앞에 바로 서기 어려웠다는 해석, 아버지 시신을 국외로 옮기는 예민한 일이라 공식 루트를 밟았다는 해석 등이 있음. 그리고 ‘다시 오겠습니다’를 굳이 붙인 거. 바로 입장에선 총리가 가족 전부 데리고 안 돌아오면 큰일이니까.\n\n‘아닷 타작마당’, ‘요단 강 건너편’이 정확히 어디인지는 학자들 사이에서도 의견이 갈림. 확실한 건 가나안 사람들이 그 울음을 보고 땅 이름을 ‘아벨미스라임’(이집트의 애곡)으로 붙였다는 거. 웃픈 포인트는, 가나안 사람들 눈엔 그냥 ‘이집트 사람들 장례’로 보였다는 거임. 근데 실은 가나안에 묻히고 싶어서 이집트에서 올라온 사람의 장례였음.\n\n근데 이게 왜 중요하냐면, 막벨라 굴이 이 집안이 약속의 땅에서 가진 유일한 땅이었거든(23장). 아브라함, 이삭, 야곱 3대가 다 거기 묻힘. 땅 전체를 준다는 약속은 아직 안 이뤄졌는데, 다들 ‘나는 그 약속 믿는다’를 묻힐 자리로 보여 준 거임. 그리고 이 장례가 끝나고 돌아가는 길에, 형들 머릿속엔 걱정이 하나 생김. 그다음 이야기에서 터짐.",
+  "tldr": "이집트가 70일을 울고, 병거 행렬이 가나안 막벨라까지 올라가 야곱을 묻음."
+}

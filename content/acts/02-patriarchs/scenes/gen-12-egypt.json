@@ -8,7 +8,6 @@
   "cast": ["abraham", "sarah"],
   "names": { "abraham": "아브람", "sarah": "사래" },
   "extras": {
-    "pharaoh": { "name": "바로", "base": "king", "hair": "crown", "props": ["scepter"], "tint": "gold" },
     "official": { "name": "바로의 대신", "base": "man", "hair": "turban", "tint": "white" }
   },
   "beats": [
