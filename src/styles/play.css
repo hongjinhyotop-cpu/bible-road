@@ -172,3 +172,11 @@
 :root[data-reduced-motion='true'] .play__sky,
 :root[data-reduced-motion='true'] .play__halo,
 :root[data-reduced-motion='true'] .scene__land { transition-duration: 0.4s; }
+
+/* 끝 카드의 "다음" 버튼: 한 줄을 다 차지하고, 무엇이 다음인지 두 줄로 */
+.insight__actions .btn--next {
+  flex-basis: 100%; min-height: 60px; padding: 8px 1.2em;
+  flex-direction: column; gap: 2px; letter-spacing: 0.04em;
+}
+.btn--next__eyebrow { font-size: 0.6875rem; letter-spacing: 0.12em; opacity: 0.72; }
+.btn--next__title { font-family: var(--font-serif); font-size: 1rem; }

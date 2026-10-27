@@ -7,6 +7,8 @@ import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
 import { fullChapters } from '../engine/bible';
 import { completeScene, progress } from '../engine/progress';
+import { nextItem } from '../engine/content';
+import { bindNext, nextButton } from '../ui/next-button';
 import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
 import { loadCharacter } from '../characters';
@@ -272,7 +274,9 @@ export function sceneScreen({ id }: Params): Screen {
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await fullChapters(scene.ref).catch(() => []);
     completeScene(scene.id, chapters, scene.unlocks?.characters ?? []);
-    progress.set({ last: 'map' });
+    const next = await nextItem('scene', scene.id).catch(() => null);
+    // "이어서 하기"는 다음 장면/읽기로 바로 간다
+    progress.set({ last: next ? next.path.slice(1) : 'map' });
     const names = await Promise.all(fresh.map((c) => loadCharacter(c).then((d) => d.name).catch(() => c)));
 
     const card = document.createElement('article');
@@ -283,7 +287,8 @@ export function sceneScreen({ id }: Params): Screen {
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
       <div class="insight__actions">
-        <button class="btn btn--primary" data-map>지도로 돌아가기</button>
+        ${next ? nextButton(next) : ''}
+        <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
         <button class="btn" data-again>다시 보기</button>
       </div>`;
     card.querySelector('.insight__text')!.textContent = scene.insight;
@@ -291,13 +296,14 @@ export function sceneScreen({ id }: Params): Screen {
     if (tldr) tldr.textContent = scene.tldr!;
     card.querySelector('[data-map]')!.addEventListener('click', (e) => go('/map', { x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY }));
     card.querySelector('[data-again]')!.addEventListener('click', () => void restart());
+    bindNext(card);
     await swapDock(card);
     setMode('end');
     const rm = reducedMotion();
     anim = gsap.timeline()
       .fromTo(card, { opacity: 0, y: rm ? 0 : 20 }, { opacity: 1, y: 0, duration: 0.9, ease: 'expo.out' })
       .fromTo(card.querySelectorAll(':scope > *'), { opacity: 0 }, { opacity: 1, duration: 0.6, stagger: 0.18 }, 0.2);
-    card.querySelector<HTMLButtonElement>('[data-map]')!.focus({ preventScroll: true });
+    card.querySelector<HTMLButtonElement>('[data-go-next], [data-map]')!.focus({ preventScroll: true });
   }
 
   // ── 시작 ──────────────────────────────────────

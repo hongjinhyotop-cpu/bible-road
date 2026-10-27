@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "build": "node --experimental-strip-types scripts/check-content.mjs && tsc --noEmit && vite build",
     "preview": "vite preview",
-    "bible:import": "node scripts/import-bible.mjs"
+    "bible:import": "node scripts/import-bible.mjs",
+    "check:content": "node --experimental-strip-types scripts/check-content.mjs"
   },
   "dependencies": {
     "gsap": "^3.15.0",

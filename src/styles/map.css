@@ -150,12 +150,26 @@
   list-style: none; margin: 0; padding: 0;
   display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px;
 }
-.stop__chapters li {
-  aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px;
+.stop__chapters li { aspect-ratio: 1; }
+.stop__chapters li > * {
+  width: 100%; height: 100%; display: grid; place-items: center; border-radius: 8px;
   font-family: var(--font-display); font-size: 1rem; color: var(--ivory-faint);
   border: 1px solid rgba(239, 230, 210, 0.08);
 }
-.stop__chapters li.done { color: var(--gold-bright); border-color: var(--line-strong); }
+.stop__chapters li > span { opacity: 0.55; }
+/* 장면·읽기 구간으로 이어지는 장: 누를 수 있음 */
+.stop__chapters button {
+  background: rgba(239, 230, 210, 0.03); color: var(--ivory-soft); cursor: pointer;
+  border-color: rgba(239, 230, 210, 0.2);
+  transition: color 0.4s var(--ease-out), border-color 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out), background 0.4s var(--ease-out);
+}
+.stop__chapters button:hover, .stop__chapters button:focus-visible {
+  color: var(--gold-bright); border-color: var(--line-strong);
+  background: rgba(217, 178, 106, 0.08); box-shadow: 0 0 18px rgba(217, 178, 106, 0.2);
+  outline: none;
+}
+.stop__chapters li.done > * { color: var(--gold-bright); border-color: var(--line-strong); opacity: 1; }
+.stop__hint { margin: 10px 0 0; color: var(--ivory-faint); font-size: 0.75rem; letter-spacing: 0.04em; }
 
 /* 패널의 장면 목록 */
 .stop__scenes { list-style: none; margin: 4px 0 22px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
