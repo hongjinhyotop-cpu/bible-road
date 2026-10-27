@@ -20,6 +20,8 @@ import './styles/tabernacle.css';
 import './styles/codex.css';
 import './styles/ladder.css';
 import './styles/jabbok.css';
+import './styles/joseph.css';
+import './styles/passover.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

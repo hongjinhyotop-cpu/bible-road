@@ -54,6 +54,10 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   galilee: at(35.58, 32.82),
   nazareth: at(35.3, 32.7),
   capernaum: at(35.57, 32.88),
+  // 라암셋: 나일 삼각주 동쪽, 지금의 칸티르 근처 (출 12:37 출발지)
+  rameses: at(31.83, 30.8),
+  // 애굽의 숙곳: 와디 투밀랏 동쪽 끝, 텔 엘마스쿠타 근처 (출 12:37). 야곱의 숙곳(succoth, 요단 동편)과 다른 곳
+  'succoth-egypt': at(32.1, 30.55),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

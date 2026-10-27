@@ -92,5 +92,7 @@ export const PLACE_NAMES = {
   galilee: '갈릴리',
   nazareth: '나사렛',
   capernaum: '가버나움',
+  rameses: '라암셋',
+  'succoth-egypt': '숙곳',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;

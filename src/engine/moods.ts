@@ -14,6 +14,8 @@ export type BackdropArt =
   | 'stew-tent' | 'cook-tent' | 'isaac-tent'
   | 'luz' | 'luz-ladder' | 'luz-pillar'
   | 'jabbok' | 'jabbok-cross' | 'jabbok-grey' | 'jabbok-sun' | 'seir-road' | 'seir-host' | 'seir-near'
+  | 'sheaves' | 'eleven-stars' | 'dothan' | 'dothan-caravan' | 'cistern'
+  | 'goshen-house' | 'goshen-blood' | 'passover-night' | 'egypt-lamps'
   | PlaceArt;
 
 /**
@@ -113,6 +115,8 @@ export const FX = [
   'ash', // 무대 가운데서 재가 하늘로 흩날려 퍼졌다가 내려앉음 (독종)
   'hail', // 우박: 쏟아지는 얼음 줄기 + 불덩이, 땅에 닿은 불이 번졌다 꺼짐 (thunder와 같이 쓰면 좋음)
   'locusts', // 메뚜기 떼 구름이 몰려와 하늘·땅을 어둡게 덮고 지나감
+  // ── 유월절 (출 12, fx/passover.ts) ──
+  'passover', // 어두운 바람이 무대를 쓸고 지나감. 피 바른 문(mood passover-night)만 비켜 가 불빛이 남는다 (출 12:23)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -287,6 +291,30 @@ export const MOODS: Record<string, Mood> = {
   'seir-host': { light: true, land: false, art: 'seir-host', tone: 'clear' },
   /** 사백 인이 바로 뒤 비탈까지 와 섰다 (창 33:4) */
   'seir-near': { light: true, land: false, art: 'seir-near', tone: 'clear' },
+
+  // ── 요셉의 꿈과 도단의 구덩이 (창 37, fx/dothan.ts) ──
+  /** 꿈 1: 밭 한가운데 요셉의 단이 일어서고, 둘러선 열한 단이 차례로 그 단에 절한다 (창 37:7) */
+  'dream-sheaves': { light: true, land: false, art: 'sheaves', spread: true },
+  /** 꿈 2: 밤하늘의 해와 달과 열한 별이 하나씩 내려앉으며 고개를 숙인다 (창 37:9) */
+  'dream-stars': { light: true, land: false, art: 'eleven-stars', tone: 'night', spread: true },
+  /** 도단 들: 먼 언덕의 도단 성, 양 떼, 길르앗에서 애굽으로 가는 대상로, 가운데 물 없는 구덩이 (창 37:17, 24) */
+  dothan: { light: true, land: false, art: 'dothan', spread: true },
+  /** 같은 들, 해 질 녘 */
+  'dothan-dusk': { light: true, land: false, art: 'dothan', tone: 'dusk', spread: true },
+  /** 같은 들 + 향품 실은 이스마엘 사람들의 낙타 떼가 길을 따라 애굽 쪽으로 지나간다 (창 37:25) */
+  'dothan-caravan': { light: true, land: false, art: 'dothan-caravan', spread: true },
+  /** 구덩이 안: 둥근 돌벽, 머리 위로 동그란 하늘 한 조각, 비스듬한 빛 (창 37:24 "물이 없었더라") */
+  'dothan-pit': { light: true, land: false, art: 'cistern' },
+
+  // ── 유월절 밤 (출 11–12, fx/passover.ts) ──
+  /** 고센의 흙벽돌 집, 해 질 녘. 가운데 열린 문 안에 등잔 불빛. 아직 피는 없다 (출 12:3-6) */
+  'goshen-house': { light: true, land: false, art: 'goshen-house', tone: 'dusk', spread: true },
+  /** 같은 집: 문 인방과 좌우 설주에 피가 우슬초 자국으로 그어진다. 문 앞에 피 담은 그릇과 우슬초 (출 12:7, 12:22) */
+  'goshen-blood': { light: true, land: false, art: 'goshen-blood', tone: 'dusk', spread: true },
+  /** 보름달 밤. 피 바른 문 안에서 식구들이 선 채로, 지팡이를 짚고 급히 먹는다 (출 12:8-11). fx passover와 함께 */
+  'passover-night': { light: false, land: false, art: 'passover-night', spread: true },
+  /** 멀리 애굽 성읍의 밤: 등불이 가운데 왕궁부터 하나씩 꺼져 변두리 옥까지 (출 12:29) */
+  'egypt-lamps': { light: false, land: false, art: 'egypt-lamps' },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...
