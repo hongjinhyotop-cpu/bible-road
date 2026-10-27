@@ -1,0 +1,227 @@
+/* ── 노아 (창 6–9): 방주·물·비·새·무지개 (fx/ark.ts, fx/rain.ts, fx/backdrop.ts bowSvg) ──
+   크기는 무대(.scene) 높이 기준 단위(cqh)로 잡는다. 배경 그림도 높이에 맞춰 그려지니까
+   폰이든 PC든 "산꼭대기에 놓인 방주"가 같은 자리에 온다. */
+.scene { container-type: size; }
+/* 장면 첫 화면은 연출 없이 바로 그 상태로 */
+.play.is-instant .scene *, .play.is-instant .scene *::before { transition: none !important; }
+
+/* ── 방주 ── */
+.scene__ark {
+  position: absolute; left: 50%; bottom: 9cqh; width: max(170cqh, 130cqw); translate: -50% 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 1.6s, visibility 0s 1.6s;
+}
+.scene__ark[data-state] { opacity: 1; visibility: visible; transition: opacity 1.6s; }
+/* 상태가 바뀔 때만(.is-moving) 크기·높이가 천천히 바뀐다. 독 크기 때문에 무대 높이가 바뀔 때는 바로 따라간다 */
+.play.is-moving .scene__ark[data-state] { transition: width 6s var(--ease-out), bottom 6s var(--ease-out), opacity 1.6s; }
+/* 물 위: 멀리서 본 작은 방주. 물이 차오르면 같이 떠오른다 */
+.scene__ark[data-state='float'] { width: min(84cqw, 120cqh); bottom: calc(var(--water, 0) * 70cqh - 2.6cqh); }
+.play.is-moving .scene__ark[data-state='float'] { transition: width 6s var(--ease-out), bottom 7s cubic-bezier(0.45, 0, 0.3, 1), opacity 1.6s; }
+/* 아라랏 산꼭대기 (배경 가운데 봉우리 y=150 → 무대 아래에서 43.8%) */
+.scene__ark[data-state='rest'] { width: 30cqh; bottom: 43.2cqh; }
+
+.ark-body { transform-origin: 50% 100%; }
+.ark-svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 0.5cqh color-mix(in srgb, var(--act-accent) 45%, transparent)); }
+.scene__ark[data-state='frame'] .ark-body { animation: ark-pullback 9s cubic-bezier(0.3, 0, 0.2, 1) both; }
+.scene__ark:is([data-state='built'], [data-state='boarding'], [data-state='shut']) .ark-body { animation: ark-pan 46s ease-in-out infinite alternate; }
+.scene__ark[data-state='float'] .ark-body { animation: ark-bob 6.5s ease-in-out infinite; }
+/* 가까이서 갈빗대 하나를 보다가, 천천히 물러나며 전체 크기가 드러난다 */
+@keyframes ark-pullback { from { transform: scale(2.6) translateX(14%); } to { transform: scale(1) translateX(0); } }
+/* 다 지은 방주는 화면에 다 안 들어온다. 아주 느리게 끝에서 끝까지 훑는다 */
+@keyframes ark-pan { from { transform: translateX(30%); } to { transform: translateX(-30%); } }
+@keyframes ark-bob { 0%, 100% { transform: translateY(0) rotate(-0.8deg); } 50% { transform: translateY(-0.8cqh) rotate(0.8deg); } }
+
+.ark-ink { fill: color-mix(in srgb, var(--act-a) 42%, #040306); }
+.ark-plank { fill: none; stroke: color-mix(in srgb, var(--act-accent) 22%, #1a1626); stroke-width: 0.7; opacity: 0.55; }
+.ark-deck { fill: none; stroke: color-mix(in srgb, var(--act-accent) 30%, #1a1626); stroke-width: 1.4; opacity: 0.6; }
+/* 창 한 줄 (창 6:16): 안에서 등잔 불빛이 샌다 */
+.ark-window { fill: #f3c27a; opacity: 0.5; animation: ark-lamp 5s ease-in-out infinite; }
+@keyframes ark-lamp { 0%, 100% { opacity: 0.42; } 50% { opacity: 0.68; } }
+.ark-doorway { fill: #f3c27a; opacity: 0.55; }
+.ark-door { transition: transform 0.55s cubic-bezier(0.6, 0, 0.9, 0.4), opacity 0.3s; transform: translateX(-46px); opacity: 0; }
+.scene__ark:is([data-state='shut'], [data-state='float'], [data-state='rest']) .ark-door { transform: none; opacity: 1; }
+
+/* 짓는 중 ↔ 다 지음: 뼈대와 선체가 겹쳐 바뀐다 */
+.ark-frame, .ark-hull { transition: opacity 2.4s var(--ease-out); }
+.ark-frame { opacity: 0; }
+.scene__ark[data-state='frame'] .ark-frame { opacity: 1; }
+.scene__ark[data-state='frame'] .ark-hull { opacity: 0; }
+.ark-rib { fill: none; stroke: color-mix(in srgb, var(--act-a) 42%, #040306); stroke-width: 3.4; stroke-linecap: round; }
+.ark-rib--top { stroke-width: 2; }
+.ark-plankrow { fill: none; stroke: color-mix(in srgb, var(--act-a) 42%, #040306); stroke-width: 7; }
+.ark-scaffold { fill: none; stroke: color-mix(in srgb, var(--act-b) 40%, #0a0910); stroke-width: 1.3; }
+
+/* 짐승들: 둘씩 문으로 (창 7:8-9) */
+.ark-animals { opacity: 0; transition: opacity 1.4s; }
+.scene__ark[data-state='boarding'] .ark-animals { opacity: 1; }
+.ark-animal, .ark-pair-birds {
+  fill: color-mix(in srgb, var(--act-b) 35%, #07070c);
+  stroke: color-mix(in srgb, var(--act-accent) 60%, transparent); stroke-width: 0.5;
+}
+.scene__ark[data-state='boarding'] .ark-animal { animation: ark-walk var(--walk) linear infinite; }
+.scene__ark[data-state='boarding'] .ark-pair-birds { animation: ark-birds-in 9s ease-in-out infinite; }
+@keyframes ark-walk {
+  0% { transform: translateX(840px); opacity: 0; }
+  5% { opacity: 1; }
+  88% { transform: translateX(318px); opacity: 1; }
+  95%, 100% { transform: translateX(304px); opacity: 0; }
+}
+@keyframes ark-birds-in {
+  0% { transform: translate(760px, 10px); opacity: 0; }
+  10% { opacity: 1; }
+  80% { transform: translate(330px, 52px); opacity: 1; }
+  90%, 100% { transform: translate(320px, 56px); opacity: 0; }
+}
+
+/* ── 새: 방주 창(지붕 아래 한 줄)에서 날아 나간다 (창 8:7-12) ── */
+.ark-birds { position: absolute; inset: 0; pointer-events: none; }
+.ark-bird { position: absolute; left: 50%; top: 34%; width: 6cqh; margin-left: -3cqh; margin-top: -2cqh; opacity: 0; }
+.ark-bird svg { display: block; width: 100%; overflow: visible; }
+.ark-bird__wing { transform-origin: 0 0; animation: bird-flap 0.42s ease-in-out infinite alternate; }
+.ark-bird__wing--back { animation-delay: -0.1s; opacity: 0.7; }
+@keyframes bird-flap { from { transform: scaleY(1); } to { transform: scaleY(-0.55); } }
+.ark-bird--raven { fill: #07070b; }
+.ark-bird--raven svg { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--act-accent) 70%, transparent)); }
+.ark-bird:not(.ark-bird--raven) { fill: #efe9da; }
+.ark-bird:not(.ark-bird--raven) svg { filter: drop-shadow(0 0 4px rgba(255, 246, 220, 0.7)); }
+.ark-bird__leaf { fill: #a6cf72; filter: drop-shadow(0 0 3px rgba(190, 230, 140, 0.9)); }
+/* 까마귀: 나가서 이리저리 오락가락하다가 멀리 사라진다 ("물이 땅에서 마르기까지 날아 왕래하였더라") */
+.ark-bird--raven { animation: fly-raven 10s ease-in-out forwards; }
+@keyframes fly-raven {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+  8% { opacity: 1; transform: translate(4cqw, -4cqh) scale(0.6); }
+  26% { transform: translate(26cqw, -20cqh) scale(1); }
+  27% { transform: translate(26cqw, -20cqh) scale(-1, 1); }
+  48% { transform: translate(-22cqw, -28cqh) scale(-1, 1); }
+  49% { transform: translate(-22cqw, -28cqh) scale(1); }
+  70% { transform: translate(30cqw, -16cqh) scale(1); }
+  71% { transform: translate(30cqw, -16cqh) scale(-1, 1); }
+  86% { opacity: 1; transform: translate(-8cqw, -34cqh) scale(-0.8, 0.8); }
+  100% { opacity: 0; transform: translate(-60cqw, -40cqh) scale(-0.5, 0.5); }
+}
+/* 비둘기: 나갔다가 앉을 곳을 못 찾고 돌아온다 */
+.ark-bird--dove { animation: fly-dove 9s ease-in-out forwards; }
+@keyframes fly-dove {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+  8% { opacity: 1; transform: translate(5cqw, -5cqh) scale(0.6); }
+  34% { transform: translate(34cqw, -18cqh) scale(0.9); }
+  35% { transform: translate(34cqw, -18cqh) scale(-0.9, 0.9); }
+  62% { transform: translate(-26cqw, -24cqh) scale(-0.9, 0.9); }
+  63% { transform: translate(-26cqw, -24cqh) scale(0.9); }
+  90% { opacity: 1; transform: translate(-2cqw, -3cqh) scale(0.5); }
+  100% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+}
+/* 저녁에 올리브 잎을 물고 돌아온다 */
+.ark-bird--dove-leaf { animation: fly-leaf 8s ease-in-out forwards; }
+@keyframes fly-leaf {
+  0% { opacity: 0; transform: translate(48cqw, -30cqh) scale(-0.4, 0.4); }
+  14% { opacity: 1; }
+  55% { transform: translate(18cqw, -22cqh) scale(-1.1, 1.1); }
+  88% { opacity: 1; transform: translate(1cqw, -2cqh) scale(-0.6, 0.6); }
+  100% { opacity: 0; transform: translate(0, 0) scale(-0.35, 0.35); }
+}
+/* 다시 나가서, 이번엔 돌아오지 않는다 */
+.ark-bird--dove-away { animation: fly-away 8s ease-in forwards; }
+@keyframes fly-away {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.3); }
+  10% { opacity: 1; transform: translate(5cqw, -6cqh) scale(0.7); }
+  50% { transform: translate(22cqw, -24cqh) scale(0.8); }
+  100% { opacity: 0; transform: translate(46cqw, -46cqh) scale(0.15); }
+}
+
+/* ── 물: 뒤쪽 물(방주 뒤) + 앞쪽 물(방주 아랫부분을 덮음). 윗면은 물결 모양 ── */
+.scene__water {
+  position: absolute; left: 0; right: 0; bottom: 0; pointer-events: none;
+  height: calc(var(--water, 0) * 70cqh);
+  --wave: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 20' preserveAspectRatio='none'%3E%3Cpath d='M0 10 C20 2 40 2 60 10 C80 18 100 18 120 10 L120 20 L0 20 Z'/%3E%3C/svg%3E");
+}
+.scene__water::before {
+  content: ''; position: absolute; left: 0; right: 0; top: -1.8cqh; height: 2cqh;
+  background: inherit; background-size: 100% 100cqh;
+  -webkit-mask: var(--wave) 0 0 / 22cqh 100% repeat-x; mask: var(--wave) 0 0 / 22cqh 100% repeat-x;
+  animation: wave-roll 11s linear infinite;
+  transition: opacity 1.5s;
+}
+.scene__water--back {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--act-b) 60%, #1a2a40) 0, color-mix(in srgb, var(--act-a) 75%, #01030a) 60cqh);
+}
+.scene__water--back::after {
+  /* 물 위에 비치는 빛 한 줄 */
+  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3cqh;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--act-accent) 22%, transparent), transparent);
+}
+.scene__water--front {
+  height: max(0px, calc(var(--water, 0) * 70cqh - 1.8cqh));
+  background: linear-gradient(180deg, rgba(16, 30, 54, 0.72) 0, rgba(3, 6, 14, 0.95) 40cqh);
+}
+.scene__water--front::before { animation-duration: 7s; animation-direction: reverse; }
+.play.is-moving .scene__water { transition: height 7s cubic-bezier(0.45, 0, 0.3, 1); }
+/* 물 위·산 위의 방주가 있을 때는 하나님의 목소리 글자를 하늘 위쪽으로 올려, 방주를 가리지 않게 */
+.play:is([data-ark='float'], [data-ark='rest']) .play__voice { top: 12%; }
+@keyframes wave-roll { to { -webkit-mask-position: 22cqh 0; mask-position: 22cqh 0; } }
+.play[data-water='0'] .scene__water::before, .play[data-water='0'] .scene__water::after { opacity: 0; }
+
+/* ── 비 ── */
+.scene__rain { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+/* ── 하늘 색조: 폭풍(잿빛 비구름), 갬(씻긴 빛) ── */
+.play__storm, .play__clear { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 3s var(--ease-out); }
+.play__storm {
+  background:
+    radial-gradient(120% 50% at 50% 0%, rgba(6, 7, 12, 0.9), transparent 75%),
+    linear-gradient(180deg, rgba(14, 16, 24, 0.82) 0%, rgba(26, 30, 42, 0.6) 55%, rgba(10, 12, 20, 0.55) 100%);
+}
+.play[data-tone='storm'] .play__storm { opacity: 1; }
+.play[data-tone='storm'] .play__halo { opacity: 0.12; }
+.play[data-tone='storm'] .scene__backdrop { filter: brightness(0.6) saturate(0.5); }
+.play__clear {
+  background: radial-gradient(90% 55% at 50% 18%, rgba(255, 242, 210, 0.2), transparent 72%),
+    linear-gradient(180deg, rgba(120, 150, 200, 0.12), transparent 60%);
+}
+.play[data-tone='clear'] .play__clear { opacity: 1; }
+.play[data-tone='clear'] .play__halo { opacity: 1; }
+
+/* ── 무지개 (창 9:13): 일곱 띠가 왼쪽 끝에서부터 하나씩 그어진다. 산이 그 앞에 선다 ── */
+.bow { position: absolute; inset: 0; width: 100%; height: 100%; }
+.bow__bands { filter: blur(1.1px); mix-blend-mode: screen; }
+.bow__band {
+  fill: none; stroke-width: 3.8; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0.6;
+  transition: stroke-dashoffset 6s cubic-bezier(0.5, 0, 0.2, 1) calc(0.6s + var(--i) * 0.12s);
+}
+.bow__glow {
+  fill: none; stroke: #fff4dc; stroke-width: 34; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0;
+  filter: blur(10px);
+  transition: stroke-dashoffset 6s cubic-bezier(0.5, 0, 0.2, 1) 0.4s, opacity 3s 0.4s;
+}
+.play[data-bow='1'] .bow__band { stroke-dashoffset: 0; }
+.play[data-bow='1'] .bow__glow { stroke-dashoffset: 0; opacity: 0.16; }
+.play[data-bow='1'] .bow__bands { animation: bow-breathe 7s ease-in-out 7s infinite; }
+@keyframes bow-breathe { 0%, 100% { opacity: 1; } 50% { opacity: 0.72; } }
+
+/* ── 배경 소품 (backdrop.ts): 산등성이, 포도, 장막, 먼 방주 ── */
+.bd-ridge { fill: none; stroke: color-mix(in srgb, var(--act-accent) 30%, transparent); stroke-width: 0.8; opacity: 0.6; }
+.bd-grape { fill: color-mix(in srgb, var(--act-accent) 25%, #4a2a50); opacity: 0.8; }
+.bd-tent__door { fill: #f3c27a; opacity: 0.45; animation: ark-lamp 5s ease-in-out infinite; }
+
+/* ── 제단처럼 가운데 소품이 있는 배경: 폰에서 인물을 양옆으로 벌려 세운다 (가인·아벨 제단, 노아의 제단) ── */
+@media (max-width: 767px) {
+  .play[data-spread='1'] .stage { justify-content: space-between; --slot: 36cqw; }
+  .play[data-spread='1'] .stage[data-count='1'] { justify-content: flex-end; --slot: 46cqw; }
+}
+@media (min-width: 768px) {
+  .play[data-spread='1'] .stage[data-count='2'] { gap: 22%; }
+}
+
+:root[data-reduced-motion='true'] .scene__ark .ark-body,
+:root[data-reduced-motion='true'] .scene__water::before,
+:root[data-reduced-motion='true'] .ark-window,
+:root[data-reduced-motion='true'] .bd-tent__door,
+:root[data-reduced-motion='true'] .ark-bird__wing,
+:root[data-reduced-motion='true'] .play[data-bow='1'] .bow__bands { animation: none; }
+:root[data-reduced-motion='true'] .scene__ark[data-state='boarding'] :is(.ark-animal, .ark-pair-birds) { animation: none; opacity: 0; }
+:root[data-reduced-motion='true'] .ark-bird { animation: bird-still 3s ease-in-out forwards; }
+@keyframes bird-still { 0%, 100% { opacity: 0; transform: translate(10cqw, -14cqh); } 30%, 70% { opacity: 1; transform: translate(10cqw, -14cqh); } }
+:root[data-reduced-motion='true'] .scene__ark,
+:root[data-reduced-motion='true'] .scene__water,
+:root[data-reduced-motion='true'] .bow__band,
+:root[data-reduced-motion='true'] .bow__glow { transition-duration: 0.6s !important; transition-delay: 0s !important; }
