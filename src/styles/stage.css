@@ -1,0 +1,81 @@
+/* ── 인물 (CLAUDE.md 8-1): 역광 실루엣, 막 색에 따라 톤이 바뀐다 ── */
+.actor {
+  --sil-ink: color-mix(in srgb, var(--act-a) 45%, #030306);
+  position: relative;
+  height: 100%;
+  color: var(--sil-ink);
+  transform-origin: 50% 100%;
+}
+.actor__art { position: relative; width: 100%; height: 100%; display: block; object-fit: contain; }
+.actor .tone2 { color: color-mix(in srgb, var(--sil-ink) 90%, var(--act-accent)); }
+.actor .detail { stroke: var(--sil-ink); opacity: 0.8; }
+.actor__rimcolor { flood-color: var(--act-accent); flood-opacity: 0.8; }
+.actor__backlight {
+  position: absolute; left: 50%; top: 34%; width: 210%; aspect-ratio: 1; translate: -50% -50%;
+  border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side,
+    color-mix(in srgb, var(--act-accent) 55%, transparent) 0%,
+    color-mix(in srgb, var(--act-accent) 16%, transparent) 38%,
+    transparent 70%);
+  opacity: 0.75;
+  transition: opacity 0.7s var(--ease-out);
+}
+.actor.is-speaking .actor__backlight { opacity: 1; }
+.actor.is-dim .actor__backlight { opacity: 0.2; }
+
+.stage { position: relative; height: 100%; display: flex; align-items: flex-end; justify-content: center; gap: 4%; }
+
+/* ── 시험 화면 ── */
+.stage-test {
+  display: flex; flex-direction: column;
+  padding: max(8px, env(safe-area-inset-top)) 0 calc(14px + var(--safe-bottom));
+  background:
+    radial-gradient(80% 55% at 50% 38%, color-mix(in srgb, var(--act-b) 90%, transparent), transparent 75%),
+    linear-gradient(180deg, var(--act-a), color-mix(in srgb, var(--act-a) 50%, #000));
+  transition: background 0.8s;
+}
+.stage-test__head { display: flex; align-items: center; justify-content: space-between; padding: 0 12px; position: relative; z-index: 2; }
+.stage-test__head p { margin: 0; font-size: 0.875rem; color: var(--talk-ink); }
+.stage-test__head p span { margin-left: 6px; padding: 2px 8px; border-radius: 999px; font-size: 0.6875rem; color: var(--talk-accent); border: 1px solid var(--talk-line); }
+
+.scene { position: relative; flex: 1; min-height: 0; }
+.scene__land { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 26%; }
+.scene__land .far { fill: color-mix(in srgb, var(--act-b) 50%, #05060c); }
+.scene__land .near { fill: color-mix(in srgb, var(--act-a) 40%, #020205); }
+.scene__stage { position: absolute; left: 0; right: 0; top: 6%; bottom: 7%; }
+
+.textbox {
+  position: relative; z-index: 2;
+  margin: 0 16px; padding: 18px 20px 26px; min-height: 148px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(12, 12, 24, 0.82), rgba(8, 8, 16, 0.92));
+  border: 1px solid var(--line);
+  box-shadow: 0 -20px 60px -30px rgba(0, 0, 0, 0.9);
+  cursor: pointer;
+}
+.textbox__name {
+  position: absolute; top: -14px; left: 18px; margin: 0;
+  padding: 2px 14px; border-radius: 999px;
+  font-size: 0.875rem; font-weight: 600; letter-spacing: 0.14em;
+  color: var(--void); background: var(--act-accent);
+}
+.textbox__text { margin: 0; font-size: calc(1.0625rem * var(--text-scale)); }
+.textbox__next { position: absolute; right: 16px; bottom: 8px; color: var(--ivory-faint); font-size: 0.6875rem; }
+
+.stage-test__controls { padding: 12px 16px 0; display: flex; flex-direction: column; gap: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.chips button {
+  min-height: 36px; padding: 0 14px; border-radius: 999px;
+  font-family: var(--talk-font); font-size: 0.8125rem; color: var(--talk-ink);
+  border: 1px solid var(--talk-line); background: var(--talk-bg);
+  transition: all var(--t-fast) var(--ease-out);
+}
+.chips button[aria-pressed='true'] { color: var(--void); background: var(--talk-accent); border-color: var(--talk-accent); }
+
+@media (min-width: 768px) {
+  .textbox, .stage-test__controls { width: min(760px, 92vw); margin-left: auto; margin-right: auto; }
+  .textbox { padding: 22px 28px 30px; }
+}
+
+/* 지도 패널의 미리보기 링크 */
+.stop__preview { display: block; width: 100%; margin: 18px 0 0; }

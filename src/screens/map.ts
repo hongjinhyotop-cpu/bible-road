@@ -272,8 +272,10 @@ export function mapScreen(): Screen {
       <p class="stop__meta voice-talk">${whole ? `전체 ${book.chapters}장` : `${p.stop.from}–${p.stop.to}장 (전체 ${book.chapters}장 중에)`} · ${p.act.mood}</p>
       <div class="stop__card"></div>
       <p class="stop__empty voice-talk">여긴 아직 공사 중임.<br />곧 별 하나씩 켜질 거니까 조금만 기다려 줘.</p>
+      ${p.act.no === 1 ? '<button class="btn stop__preview" data-preview>아담 실루엣 미리보기 (시험용)</button>' : ''}
       <p class="setting__label">장 목록</p>
       <ol class="stop__chapters">${chapters.map((c) => `<li class="${countDone(book.code, c, c) ? 'done' : ''}">${c}</li>`).join('')}</ol>`;
+    sheet.body.querySelector('[data-preview]')?.addEventListener('click', () => go('/stage-test'));
     try {
       const card = await scriptureCard(`${book.abbr} ${p.stop.from}:1`);
       if (!sheet.el.isConnected) return;
