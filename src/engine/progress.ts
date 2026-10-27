@@ -11,7 +11,11 @@ export interface Progress {
   readingSpots: Record<string, string>;
   /** 만난 인물 id (인물 도감) */
   characters: Record<string, true>;
-  /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "read/gen-5" */
+  /** 피날레를 본 막 번호 ("1") */
+  finales: Record<string, true>;
+  /** 지도에서 점등 연출을 이미 보여 준 별 ("GEN:1-11") */
+  litStops: Record<string, true>;
+  /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "read/gen-5", "finale/1" */
   last: string | null;
   startedAt: number | null;
 }
@@ -22,6 +26,8 @@ export const progress = new Store<Progress>('progress', {
   readings: {},
   readingSpots: {},
   characters: {},
+  finales: {},
+  litStops: {},
   last: null,
   startedAt: null,
 });
@@ -80,7 +86,7 @@ export function completeReading(id: string, chapters: string[], score: number): 
 /** "이어서 하기"가 갈 주소 */
 export function continuePath(): string {
   const last = progress.get().last;
-  return last && /^(scene|read)\//.test(last) ? `/${last}` : '/map';
+  return last && /^(scene|read|finale)\//.test(last) ? `/${last}` : '/map';
 }
 
 /** 읽기 구간에서 읽던 자리. 없으면 null */
@@ -93,4 +99,15 @@ export function setReadingSpot(id: string, spot: string | null): void {
   const { [id]: old, ...rest } = progress.get().readingSpots;
   if ((old ?? null) === spot) return;
   progress.set({ readingSpots: spot ? { ...rest, [id]: spot } : rest });
+}
+
+/** 막 피날레를 봤다 */
+export function markFinale(act: number): void {
+  progress.set({ finales: { ...progress.get().finales, [act]: true } });
+}
+
+/** 지도에서 이 별들의 점등 연출을 보여 줬다 */
+export function markLit(keys: string[]): void {
+  if (!keys.length) return;
+  progress.set({ litStops: { ...progress.get().litStops, ...Object.fromEntries(keys.map((k) => [k, true as const])) } });
 }

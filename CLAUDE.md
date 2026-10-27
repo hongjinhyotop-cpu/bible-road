@@ -127,19 +127,29 @@ PROGRESS.md      ← 진행 기록
 ### 장면 beat 종류 (엔진에 구현됨 — `src/engine/scene.ts`)
 - `narration` 이야기 서술 · `line` 대사(`"who": "adam"`, 말하는 사람 강조) · `voice` 하나님의 목소리(인물 없이 빛나는 글자)
 - `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
-- 모든 beat에 붙일 수 있는 것: `"enter": ["adam"]`(등장), `"exit"`(퇴장), `"pose": {"adam": "slump"}`(자세: neutral/slump/lift/tremble), `"face": {"eve": "left"}`(바라보는 쪽, 나중에 선 인물은 자동으로 왼쪽을 봄), `"mood"`(배경 바꾸기), `"fx"`(flash/dawn/dark/land/shake, 방주 새: raven/dove/dove-leaf/dove-away — 목록은 `src/engine/moods.ts` FX), `"outfit": {"adam": "skins"}`(옷 갈아입기 — 인물 파일의 `outfits`. 그 beat에 막 등장하는 인물은 처음부터 그 옷으로 나옴)
+- 모든 beat에 붙일 수 있는 것: `"enter": ["adam"]`(등장), `"exit"`(퇴장), `"pose": {"adam": "slump"}`(자세: neutral/slump/lift/tremble), `"face": {"eve": "left"}`(바라보는 쪽, 나중에 선 인물은 자동으로 왼쪽을 봄), `"mood"`(배경 바꾸기), `"fx"`(flash/dawn/dark/land/shake, 방주 새: raven/dove/dove-leaf/dove-away, 바벨: descend(빛기둥)/babble(말이 뒤섞임)/scatter(흩어짐) — 목록은 `src/engine/moods.ts` FX), `"outfit": {"adam": "skins"}`(옷 갈아입기 — 인물 파일의 `outfits`. 그 beat에 막 등장하는 인물은 처음부터 그 옷으로 나옴)
 - 장면 맨 위 `"outfit"`: 처음부터 무대에 선(`cast`) 인물이 입고 있는 옷. 예: 창 4부터 아담·하와는 `"skins"`(가죽옷)
-- `"mood"` 이름은 `src/engine/moods.ts` 목록 (void, bare-earth, eden, eden-tree, eden-dusk, east-of-eden, field, field-dusk, altar, altar-regard, nod, cities, ark-frame, ark-built, ark-boarding, ark-shut, deluge, deluge-high, waters, ararat, ararat-low, dry-earth, noah-altar, overcast, rainbow, vineyard …). 그림은 `src/fx/backdrop.ts`. 새 배경이 필요하면 둘 다에 추가.
+- `"mood"` 이름은 `src/engine/moods.ts` 목록 (void, bare-earth, eden, eden-tree, eden-dusk, east-of-eden, field, field-dusk, altar, altar-regard, nod, cities, ark-frame, ark-built, ark-boarding, ark-shut, deluge, deluge-high, waters, ararat, ararat-low, dry-earth, noah-altar, overcast, rainbow, vineyard, shinar, brickworks, tower-base, tower-rising, tower-high, tower-far, tower-left …). 그림은 `src/fx/backdrop.ts`. 새 배경이 필요하면 둘 다에 추가.
   - mood에는 배경 그림 말고도 방주(`ark`), 물 높이(`water`), 비(`rain`), 무지개(`bow`), 하늘 색조(`tone`: dusk/storm/clear), 가운데 소품용 인물 벌리기(`spread`)를 묶을 수 있다. 방주·물·새는 `src/fx/ark.ts`, 비는 `src/fx/rain.ts`, 모양은 `src/styles/flood.css`.
+  - 바벨탑(`tower`: base/rising/high/far/left)도 mood로 세운다. 층이 하나씩 솟음. `src/fx/tower.ts` + `src/styles/babel.css`.
+  - 방주 훑기·탑 물러나기처럼 긴 카메라 연출은 **탭하면 빨리 감긴다** (`screens/scene.ts`의 `CAMERA` 목록에 CSS 키프레임 이름을 넣으면 됨). 긴 연출은 15초 안으로.
 - 선택지의 "만약" 장면은 `"branches": { "b-ask-where": [beats...] }`에 넣는다. 다 보면 자동으로 `canon` 길로 돌아온다.
 - 장면 끝 카드: `"insight"`(해설) + `"tldr"`(한 줄 요약) + `"bridge"`(선택: "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 이야기 목소리 한 줄. 읽기 구간에도 쓸 수 있음). `"mood": "void"`면 깜깜한 데서 시작.
 - 파일 이름 = 장면 id. 예: `content/acts/01-beginning/scenes/gen-1-light.json` → 주소 `#/scene/gen-1-light`
 
 ### 막 정보 (act.json)
 ```json
-{ "act": 1, "title": "태초", "mechanic": "adventure", "keyVerse": "창 1:1" }
+{ "act": 1, "title": "태초", "mechanic": "adventure", "keyVerse": "창 1:1", "finale": ["이야기 목소리 한 줄", "..."] }
 ```
-- 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `mechanic` = `src/mechanics`의 모듈 이름, `keyVerse` = 막 피날레 핵심 구절.
+- 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `mechanic` = `src/mechanics`의 모듈 이름, `keyVerse` = 막 피날레 핵심 구절, `finale` = 피날레에서 한 줄씩 탭으로 나오는 이야기 목소리(이영도풍) 문장들.
+- **막 피날레** `#/finale/N` (`src/screens/finale.ts`): 그 막의 장을 전부 끝내면, 마지막으로 끝낸 장면·읽기의 "다음" 버튼이 피날레로 바뀜 → finale 문장들 → keyVerse 카드 → 그 막 인물 카드 → "지도에서 별 켜기"(지도에서 그 막 별이 점등되고 다음 별까지 길이 이어짐).
+
+### 인물 도감 (`data/characters.json`)
+```json
+{ "adam": { "act": 1, "first": "창 2:7", "scene": "gen-2-eden", "intro": "친구 말투 소개", "verse": "창 2:7", "gloss": "핵심 구절 한 줄 번역" } }
+```
+- 키 = 인물 파일 이름(`src/characters/adam.ts`). 파일에 적은 순서 = 도감 순서. 장면 `unlocks.characters`로 카드를 얻는다. 화면은 `#/people` (`src/screens/people.ts`).
+- 사람이 아닌 것(뱀, 죄 그림자)이나 무리(시날의 사람들)는 도감에 넣지 않는다. 새 인물에 `unlocks`를 걸면 여기에도 꼭 추가 (검사 스크립트가 알려 줌).
 - 장면·읽기 목록·순서·"다음"은 `src/engine/content.ts`가 ref를 보고 자동으로 정한다 (본문 순서). 순서를 따로 적지 않는다.
 - **콘텐츠를 만들거나 고친 뒤 `npm run check:content`** — id·act·ref·겹침·canon·퀴즈 번호 등을 검사한다. `npm run build`도 이걸 먼저 돌리고, 오류가 있으면 빌드가 멈춘다.
 

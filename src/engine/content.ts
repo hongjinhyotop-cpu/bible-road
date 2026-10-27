@@ -14,6 +14,8 @@ export interface ActContent {
   mechanic: string;
   /** 막 피날레에 쓸 핵심 구절 */
   keyVerse?: string;
+  /** 막 피날레의 이야기 목소리 몇 줄 (한 줄씩 탭으로). 마지막 줄 다음에 keyVerse 카드가 나온다 */
+  finale?: string[];
 }
 
 /** 지도·목록에 필요한 만큼만 추린 장면/읽기 구간 정보 */

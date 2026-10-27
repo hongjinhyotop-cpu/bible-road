@@ -1,0 +1,101 @@
+/* ── 바벨탑 (창 11:1–9): 탑·흩어짐·뒤섞인 말·빛기둥 (fx/tower.ts, fx/babble.ts) ──
+   방주처럼 크기는 무대(.scene) 높이 기준 단위(cqh)로 잡는다. */
+
+.scene__tower {
+  position: absolute; left: 50%; bottom: 10cqh; width: min(96cqw, 100cqh); translate: -50% 0;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 1.6s, visibility 0s 1.6s;
+}
+.scene__tower[data-state] { opacity: 1; visibility: visible; transition: opacity 1.6s; }
+
+/* 카메라: 처음엔 가까이(아래층 작업장), 쌓일수록 물러나며 탑 전체가 들어온다 */
+.tower-body { transform-origin: 50% 100%; transition: transform 6s cubic-bezier(0.3, 0, 0.2, 1); }
+.play.is-instant .tower-body { transition: none; }
+.scene__tower[data-state='base'] .tower-body { transform: scale(1.7); }
+.scene__tower[data-state='rising'] .tower-body { transform: scale(1.22); }
+.scene__tower[data-state='high'] .tower-body,
+.scene__tower[data-state='left'] .tower-body { transform: scale(1); }
+/* 하늘에서 보면 (창 11:5): 하늘에 닿겠다던 탑이 점만 해진다. 탭하면 빨리 감김 */
+.scene__tower[data-state='far'] .tower-body { animation: tower-pullback 7s cubic-bezier(0.45, 0, 0.2, 1) both; }
+@keyframes tower-pullback { from { transform: none; } to { transform: translateY(-11cqh) scale(0.2); } }
+
+.tower-svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 0.5cqh color-mix(in srgb, var(--act-accent) 40%, transparent)); }
+.tw-ink { fill: color-mix(in srgb, var(--act-a) 42%, #040306); }
+.tw-ink2 { fill: color-mix(in srgb, var(--act-a) 55%, #120c10); }
+.tw-niche { fill: #050307; opacity: 0.55; }
+.tw-course { fill: none; stroke: color-mix(in srgb, var(--act-accent) 20%, #1a1626); stroke-width: 0.6; opacity: 0.6; }
+.tw-edge { fill: none; stroke: var(--act-accent); stroke-width: 0.9; opacity: 0.55; }
+.tw-scaffold { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #2a2030); stroke-width: 1.1; }
+
+/* 층이 하나씩 아래에서 솟는다 (지연은 tower.ts가 층마다 준다) */
+.tw-tier { transform-box: fill-box; transform-origin: 50% 100%; transform: scaleY(0); opacity: 0; transition: transform 1.1s var(--ease-out), opacity 0.6s; }
+.tw-tier.is-built { transform: none; opacity: 1; }
+.tw-work { opacity: 0; transition: opacity 1s; }
+.tw-work.is-on { opacity: 1; }
+/* 쌓다 만 탑: 비계만 남고 사람은 없다 */
+.scene__tower[data-state='left'] .tw-people { display: none; }
+.scene__tower[data-state='left'] .tw-scaffold { opacity: 0.6; }
+.scene__tower:is([data-state='base'], [data-state='rising'], [data-state='high']) .tw-people > g { animation: tw-busy 2.4s ease-in-out infinite; }
+.tw-people > g:nth-child(2n) { animation-delay: -1.2s !important; }
+@keyframes tw-busy { 0%, 100% { translate: 0 0; } 50% { translate: 1.5px -0.6px; } }
+
+/* 구름 띠: 꼭대기가 하늘에 닿았을 때만 */
+.tw-clouds { opacity: 0; transition: opacity 3s; }
+.scene__tower:is([data-state='high'], [data-state='far'], [data-state='left']) .tw-clouds { opacity: 1; }
+.tw-cloud { fill: color-mix(in srgb, var(--act-b) 45%, #d8c9b0); opacity: 0.32; filter: blur(2px); animation: tw-drift 18s ease-in-out infinite alternate; animation-delay: var(--d); }
+@keyframes tw-drift { from { translate: -14px 0; } to { translate: 14px 0; } }
+.play[data-tone='dusk'] .tw-cloud { fill: color-mix(in srgb, #e59a6a 40%, #6a5070); opacity: 0.4; }
+
+/* 흩어짐 (창 11:8) */
+.tw-walker { animation: tw-walk-away var(--t) ease-in var(--delay) both; }
+@keyframes tw-walk-away {
+  0% { transform: translateX(0); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateX(var(--dx)); opacity: 0; }
+}
+
+/* 빛기둥 (창 11:5): 하늘에서 탑이 있는 땅까지 내려와 머물다 스러진다 */
+.fx-descend {
+  position: absolute; left: 50%; top: -10%; bottom: 10cqh; width: 18cqw; translate: -50% 0;
+  pointer-events: none; z-index: 1; transform-origin: 50% 0;
+  background:
+    radial-gradient(60% 6% at 50% 100%, rgba(255, 244, 214, 0.75), transparent),
+    linear-gradient(90deg, transparent, rgba(255, 240, 200, 0.22) 30%, rgba(255, 248, 228, 0.5) 50%, rgba(255, 240, 200, 0.22) 70%, transparent);
+  filter: blur(4px);
+  mix-blend-mode: screen;
+  animation: fx-descend 6s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+@keyframes fx-descend {
+  0% { transform: scaleY(0); opacity: 0; }
+  10% { opacity: 1; }
+  45% { transform: scaleY(1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* 뒤섞인 말 (창 11:7) */
+.babble { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.babble span {
+  position: absolute; white-space: nowrap;
+  font-family: var(--font-serif); font-size: clamp(0.95rem, 3.6vw, 1.3rem); letter-spacing: 0.08em;
+  color: var(--ivory-soft);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--act-accent) 60%, transparent);
+}
+
+/* 시날의 사람들(무리): 탑·가마를 가리지 않게 오른쪽 끝에 작게 */
+.stage > .actor[data-id='builders'] { margin-left: auto; margin-right: 2%; }
+
+/* 하늘에서 본 탑: 빛기둥은 지평선의 작은 탑 위에서 멈추고, 하나님의 목소리는 하늘 가운데 */
+.play[data-tower='far'] .fx-descend { bottom: 23cqh; }
+.play[data-tower='far'] .play__voice { top: 22%; }
+
+:root[data-reduced-motion='true'] .tower-body { transition-duration: 0.6s; }
+:root[data-reduced-motion='true'] .scene__tower[data-state='far'] .tower-body { animation-duration: 0.8s; }
+:root[data-reduced-motion='true'] :is(.tw-cloud, .tw-people > g) { animation: none; }
+:root[data-reduced-motion='true'] .tw-tier { transition-duration: 0.4s; transition-delay: 0s !important; }
+:root[data-reduced-motion='true'] .tw-walker { animation-duration: 1.5s; }
+:root[data-reduced-motion='true'] .fx-descend { animation-duration: 2.5s; }
+
+/* 바벨 배경 소품 (backdrop.ts): 가마 아궁이 불빛, 말리는 벽돌 */
+.bd-kiln-fire { fill: #f08a3c; opacity: 0.7; animation: ark-lamp 4s ease-in-out infinite; animation-delay: var(--d); }
+.bd-bricks { opacity: 0.85; }
+:root[data-reduced-motion='true'] .bd-kiln-fire { animation: none; }

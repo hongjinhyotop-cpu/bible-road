@@ -23,12 +23,13 @@
 .ark-body { transform-origin: 50% 100%; }
 .ark-svg { display: block; width: 100%; height: auto; overflow: visible; filter: drop-shadow(0 0 0.5cqh color-mix(in srgb, var(--act-accent) 45%, transparent)); }
 .scene__ark[data-state='frame'] .ark-body { animation: ark-pullback 9s cubic-bezier(0.3, 0, 0.2, 1) both; }
-.scene__ark:is([data-state='built'], [data-state='boarding'], [data-state='shut']) .ark-body { animation: ark-pan 46s ease-in-out infinite alternate; }
+.scene__ark:is([data-state='built'], [data-state='boarding'], [data-state='shut']) .ark-body { animation: ark-pan 13s cubic-bezier(0.45, 0, 0.35, 1) both; }
 .scene__ark[data-state='float'] .ark-body { animation: ark-bob 6.5s ease-in-out infinite; }
 /* 가까이서 갈빗대 하나를 보다가, 천천히 물러나며 전체 크기가 드러난다 */
 @keyframes ark-pullback { from { transform: scale(2.6) translateX(14%); } to { transform: scale(1) translateX(0); } }
-/* 다 지은 방주는 화면에 다 안 들어온다. 아주 느리게 끝에서 끝까지 훑는다 */
-@keyframes ark-pan { from { transform: translateX(30%); } to { transform: translateX(-30%); } }
+/* 다 지은 방주는 화면에 다 안 들어온다. 한쪽 끝에서 다른 끝까지 한 번 훑고, 문이 보이는 가운데로 돌아와 멈춘다.
+   (탭하면 남은 부분을 빨리 감는다 — screens/scene.ts skipCamera) */
+@keyframes ark-pan { 0% { transform: translateX(30%); } 72% { transform: translateX(-30%); } 100% { transform: translateX(0); } }
 @keyframes ark-bob { 0%, 100% { transform: translateY(0) rotate(-0.8deg); } 50% { transform: translateY(-0.8cqh) rotate(0.8deg); } }
 
 .ark-ink { fill: color-mix(in srgb, var(--act-a) 42%, #040306); }

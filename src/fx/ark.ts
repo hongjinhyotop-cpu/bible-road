@@ -20,7 +20,7 @@ const DECK = 64;
 const DOOR = { x: 300, w: 34, top: 92 };
 
 /** 개미만 한 사람 (일꾼). 키 ≈ 15 (방주 높이의 1/9쯤) */
-function worker(x: number, y: number, pose: 'stand' | 'carry' | 'reach' = 'stand', flip = false): string {
+export function worker(x: number, y: number, pose: 'stand' | 'carry' | 'reach' = 'stand', flip = false): string {
   const arm =
     pose === 'carry'
       ? `<path d="M-1 -11 L-6 -14 L-6 -13 L-1 -10 Z"/><rect x="-11" y="-16.2" width="16" height="1.6" rx="0.6"/>`
