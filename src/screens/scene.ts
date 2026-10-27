@@ -11,7 +11,9 @@ import { bindNext, nextButton } from '../ui/next-button';
 import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
 import { moodOf } from '../engine/moods';
-import { backdropSvg, fitBackdrops } from '../fx/backdrop';
+import { backdropSvg, bowSvg, fitBackdrops } from '../fx/backdrop';
+import { createArk, flyBird, setArkState } from '../fx/ark';
+import { Rain } from '../fx/rain';
 import { loadCharacter } from '../characters';
 import { inkReveal } from '../fx/ink';
 import { getFieldIntensity, setFieldIntensity, setFieldMode } from '../fx/particles';
@@ -32,6 +34,8 @@ export function sceneScreen({ id }: Params): Screen {
     <div class="play__sky" aria-hidden="true"></div>
     <div class="play__halo" aria-hidden="true"></div>
     <div class="play__dusk" aria-hidden="true"></div>
+    <div class="play__storm" aria-hidden="true"></div>
+    <div class="play__clear" aria-hidden="true"></div>
     <header class="play__head">
       <button class="icon-btn" data-back aria-label="지도로 가기">${icons.back}</button>
       <p class="play__title"><span class="latin play__numeral"></span><span class="play__name"></span></p>
@@ -44,6 +48,8 @@ export function sceneScreen({ id }: Params): Screen {
         <path class="far" d="M0 70 C60 40 110 62 170 48 C240 30 300 58 400 40 L400 120 L0 120 Z"/>
         <path class="near" d="M0 92 C80 78 150 96 220 86 C290 76 340 92 400 84 L400 120 L0 120 Z"/>
       </svg>
+      <div class="scene__water scene__water--back" aria-hidden="true"></div>
+      <div class="scene__water scene__water--front" aria-hidden="true"></div>
       <div class="scene__stage"></div>
       <p class="play__voice" aria-live="polite"></p>
     </div>
@@ -59,6 +65,13 @@ export function sceneScreen({ id }: Params): Screen {
   const $ = <T extends HTMLElement>(s: string) => el.querySelector<T>(s)!;
   const dock = $('.dock');
   const voice = $('.play__voice');
+  // 노아 (창 6–9): 방주는 물 앞뒤 사이에 끼워서, 물이 차오르면 방주 아랫부분이 물에 잠겨 보이게
+  const ark = createArk();
+  $('.scene__water--back').after(ark);
+  const rain = new Rain();
+  let movingTimer = 0;
+  $('.scene__stage').after(rain.el);
+  $('.scene__backdrop').innerHTML = bowSvg();
 
   let scene: Scene | null = null;
   let cursor: SceneCursor | null = null;
@@ -189,6 +202,12 @@ export function sceneScreen({ id }: Params): Screen {
         return;
       case 'shake':
         if (!rm) tweens.push(gsap.fromTo($('.scene'), { x: -6 }, { x: 0, duration: 0.6, ease: 'elastic.out(1.2, 0.2)' }));
+        return;
+      case 'raven':
+      case 'dove':
+      case 'dove-leaf':
+      case 'dove-away':
+        flyBird(ark, fx);
         return;
     }
   }
@@ -329,6 +348,26 @@ export function sceneScreen({ id }: Params): Screen {
     el.dataset.land = m.land ? '1' : '0';
     if (m.tone) el.dataset.tone = m.tone;
     else delete el.dataset.tone;
+    // 방주·물·비·무지개 (창 6–9). 장면 처음엔 연출 없이 바로 그 상태로
+    if (!animate) {
+      el.classList.add('is-instant');
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-instant')));
+    }
+    // 방주·물이 실제로 바뀔 때만 천천히 움직인다 (독 크기가 바뀌어 무대 높이가 달라질 때는 바로 따라가게)
+    const arkMoves = (ark.dataset.state ?? '') !== (m.ark ?? '') || el.style.getPropertyValue('--water') !== String(m.water ?? 0);
+    if (animate && arkMoves) {
+      el.classList.add('is-moving');
+      clearTimeout(movingTimer);
+      movingTimer = setTimeout(() => el.classList.remove('is-moving'), 7600);
+    }
+    setArkState(ark, m.ark);
+    if (m.ark) el.dataset.ark = m.ark;
+    else delete el.dataset.ark;
+    el.style.setProperty('--water', String(m.water ?? 0));
+    el.dataset.water = m.water ? '1' : '0';
+    el.dataset.bow = m.bow ? '1' : '0';
+    el.dataset.spread = m.spread ? '1' : '0';
+    rain.set(m.rain ?? 0);
 
     const box = $('.scene__backdrop');
     if (!animate) box.querySelectorAll('.backdrop').forEach((b, i, all) => i < all.length - 1 && b.remove());
@@ -447,6 +486,8 @@ export function sceneScreen({ id }: Params): Screen {
       anim?.kill();
       tweens.forEach((t) => t.kill());
       stage.destroy();
+      rain.destroy();
+      clearTimeout(movingTimer);
       setFieldIntensity(1);
     },
   };

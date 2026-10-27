@@ -3,13 +3,10 @@
 import type { Facing, Pose } from '../ui/actor';
 import { loadContent } from './content';
 
-/** 장면 연출 효과 */
-export type SceneFx =
-  | 'flash' // 빛이 번쩍
-  | 'dawn' // 어둠이 걷히고 하늘이 밝아짐
-  | 'dark' // 다시 어두워짐
-  | 'land' // 땅(언덕)이 떠오름
-  | 'shake'; // 화면 진동
+import type { SceneFx } from './moods';
+
+/** 장면 연출 효과 — 목록은 engine/moods.ts의 FX */
+export type { SceneFx };
 
 interface BeatBase {
   /** goto로 찾아올 때 쓰는 이름 */

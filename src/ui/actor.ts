@@ -40,6 +40,7 @@ export class Actor {
     const art = def.art;
     this.facing = def.faces ?? 'right';
     if (def.height && def.height !== 1) this.el.style.setProperty('--h', String(def.height));
+    if (def.slots && def.slots !== 1) this.el.style.setProperty('--slots', String(def.slots));
 
     if (art.kind === 'svg') {
       const id = `rim-${def.id}-${++uid}`;
@@ -225,7 +226,7 @@ export class Stage {
     if (this.actors.size) actor.face('left', false);
     this.actors.set(actor.def.id, actor);
     this.el.append(actor.el);
-    this.el.dataset.count = String(this.actors.size);
+    this.recount();
     actor.start();
     return actor;
   }
@@ -235,9 +236,16 @@ export class Stage {
     const a = this.actors.get(id);
     if (!a) return;
     this.actors.delete(id);
-    this.el.dataset.count = String(this.actors.size);
+    this.recount();
     await gsap.to(a.el, { opacity: 0, y: 10, duration: reducedMotion() ? 0.2 : 0.9, ease: 'power2.in' });
     a.destroy();
+  }
+
+  /** 무대 폭을 몇 사람 몫으로 나눌지 (무리 그림은 2명 몫) */
+  private recount(): void {
+    let n = 0;
+    this.actors.forEach((a) => (n += a.def.slots ?? 1));
+    this.el.dataset.count = String(n);
   }
 
   /** id = 말하는 인물. null이면 내레이션(모두 보통 밝기). */

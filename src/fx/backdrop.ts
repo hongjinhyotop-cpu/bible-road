@@ -161,22 +161,82 @@ function altarArt(lit: boolean): string {
     ${sheep(250, 199, 92)}
     ${hills(220, 'bd-mid', 23)}
     ${furrows(220)}
-    ${altar(118, 238, false, 71)}
-    ${altar(282, 238, lit, 72)}
+    ${altar(166, 236, false, 71)}
+    ${altar(234, 236, lit, 72)}
     ${grain(-120, 262, 70, 103)}
     ${grain(520, 262, 74, 104)}`;
 }
 
 /** 놋 땅의 성 (창 4:16-17): 낮은 성벽, 망대 하나, 창마다 작은 불빛 */
-function city(x: number, ground: number): string {
-  const r = rng(81);
+function city(x: number, ground: number, seed = 81, scale = 1.5, cls = 'bd-far'): string {
+  const r = rng(seed);
   const lights = Array.from({ length: 6 }, () =>
     `<rect class="bd-window" style="--d:${(r() * 4).toFixed(2)}s" x="${(x - 26 + r() * 50).toFixed(1)}" y="${(ground - 9 - r() * 5).toFixed(1)}" width="1.6" height="2"/>`,
   ).join('');
-  return `<g class="bd-far bd-city" transform="translate(${x} ${ground}) scale(1.5) translate(${-x} ${-ground})">
+  return `<g class="${cls} bd-city" transform="translate(${x} ${ground}) scale(${scale}) translate(${-x} ${-ground})">
     <path d="M${x - 34} ${ground} L${x - 34} ${ground - 14} L${x - 12} ${ground - 16} L${x - 10} ${ground - 30} L${x - 2} ${ground - 30} L${x} ${ground - 17} L${x + 30} ${ground - 15} L${x + 32} ${ground} Z"/>
     ${lights}
     <rect class="bd-window" style="--d:1.3s" x="${x - 7}" y="${ground - 26}" width="1.8" height="2.4"/>
+  </g>`;
+}
+
+
+/** 피어오르는 연기 기둥 (제단의 연기와 같은 덩이들) */
+function smoke(x: number, top: number, seed: number, n = 6): string {
+  const r = rng(seed);
+  return `<g class="bd-smoke">${Array.from({ length: n }, (_, i) =>
+    `<circle class="bd-smoke__puff" style="--d:${(i * 1.1 + r()).toFixed(1)}s; --dx:${((r() - 0.5) * 16).toFixed(1)}px" cx="${x}" cy="${top}" r="${(4 + r() * 2).toFixed(1)}"/>`,
+  ).join('')}</g>`;
+}
+
+/** 잘려 나간 나무 그루터기 (방주 목재, 창 6:14 "잣나무") */
+function stumps(xs: number[], ground: number, cls: string): string {
+  return `<g class="${cls}">${xs.map((x, i) => {
+    const w = 4 + (i % 3);
+    const h = 5 + (i % 2) * 3;
+    return `<path d="M${x - w} ${ground} L${x - w + 0.6} ${ground - h} L${x + w - 0.6} ${ground - h - 1.4} L${x + w} ${ground} Z"/>`;
+  }).join('')}</g>`;
+}
+
+/** 쌓아 둔 통나무 */
+function logs(x: number, ground: number, cls: string): string {
+  const rows = [[4, 0], [3, 1], [2, 2]];
+  return `<g class="${cls}">${rows.map(([n, row]) =>
+    Array.from({ length: n }, (_, i) => `<circle cx="${x + (i - (n - 1) / 2) * 9}" cy="${ground - 4.5 - row * 7.6}" r="4.4"/>`).join(''),
+  ).join('')}</g>`;
+}
+
+/** 산맥. 가운데 봉우리(x=200)는 꼭대기가 y=150에서 살짝 평평하다 — 방주가 머무는 자리 (창 8:4) */
+function peaks(green: boolean): string {
+  const far = `<path class="bd-far" d="M-800 260 L-800 190 L-640 150 L-520 176 L-380 128 L-250 170 L-120 140 L-20 172 L70 120 L150 160 L250 116 L330 158 L430 124 L540 170 L650 132 L780 168 L900 140 L1200 180 L1200 260 Z"/>`;
+  const main = `<path class="bd-mid" d="M-800 260 L-800 230 L-600 206 L-440 222 L-300 196 L-160 220 L-40 200 L60 214 C110 196 150 170 182 152 C190 149 210 149 218 152 C250 170 290 196 340 212 L450 198 L560 222 L700 200 L860 224 L1200 210 L1200 260 Z"/>
+    <path class="bd-ridge" d="M182 152 C190 149 210 149 218 152 M120 186 L150 172 M250 172 L282 190" />`;
+  const grass = green
+    ? `${grain(70, 262, 34, 111)}${grain(330, 262, 38, 112)}${grain(-60, 262, 40, 113)}${grain(470, 262, 36, 114)}
+       <g class="bd-near">${Array.from({ length: 9 }, (_, i) => `<ellipse cx="${-40 + i * 60}" cy="${258 - (i % 2) * 3}" rx="22" ry="5"/>`).join('')}</g>`
+    : '';
+  return `${far}${main}${grass}`;
+}
+
+/** 포도나무 한 줄: 받침 막대, 덩굴, 잎 덩이, 포도송이 (창 9:20) */
+function vines(y: number, from: number, to: number, size: number, cls: string, seed: number): string {
+  const r = rng(seed);
+  const parts: string[] = [];
+  for (let x = from; x <= to; x += size * 2.4) {
+    parts.push(`<path d="M${x} ${y} L${x} ${y - size * 1.6}" fill="none" stroke="currentColor" stroke-width="${(size * 0.12).toFixed(1)}"/>`);
+    for (let k = 0; k < 4; k++) parts.push(`<circle cx="${(x + (r() - 0.5) * size * 1.6).toFixed(1)}" cy="${(y - size * (1.2 + r() * 0.6)).toFixed(1)}" r="${(size * (0.32 + r() * 0.22)).toFixed(1)}"/>`);
+    if (r() < 0.7) parts.push(`<ellipse class="bd-grape" cx="${(x + size * 0.4).toFixed(1)}" cy="${(y - size * 0.9).toFixed(1)}" rx="${(size * 0.14).toFixed(1)}" ry="${(size * 0.24).toFixed(1)}"/>`);
+  }
+  parts.push(`<path d="M${from - size} ${y - size * 1.4} L${to + size} ${y - size * 1.4}" fill="none" stroke="currentColor" stroke-width="${(size * 0.06).toFixed(1)}"/>`);
+  return `<g class="${cls}">${parts.join('')}</g>`;
+}
+
+/** 장막 (창 9:21 "장막 안에서"). 입구 틈으로 등잔 불빛이 새어 나온다 */
+function tent(x: number, ground: number, s: number): string {
+  return `<g class="bd-near bd-tent" transform="translate(${x} ${ground}) scale(${s})">
+    <path d="M-40 0 L-30 -24 L-4 -34 L0 -40 L4 -34 L30 -24 L40 0 Z"/>
+    <path class="bd-tent__door" d="M-6 0 L0 -26 L6 0 Z"/>
+    <path d="M-44 0 L-30 -24 M44 0 L30 -24" fill="none" stroke="currentColor" stroke-width="1"/>
   </g>`;
 }
 
@@ -231,9 +291,47 @@ const ART: Record<BackdropArt, () => string> = {
     ${thorns(352, 250, 24, 'bd-near', 67)}
     ${thorns(-80, 248, 22, 'bd-near', 68)}
     ${thorns(500, 246, 24, 'bd-near', 69)}`,
+  cities: () => `
+    ${hills(204, 'bd-far', 37)}
+    ${city(92, 208, 82, 1.2)}
+    ${city(300, 206, 83, 1.4)}
+    ${city(-120, 210, 84, 1.3)}
+    ${city(520, 208, 85, 1.2)}
+    ${smoke(92, 190, 121, 5)}
+    ${smoke(300, 186, 122, 5)}
+    ${smoke(-120, 192, 123, 5)}
+    ${hills(226, 'bd-mid', 39)}
+    ${thorns(40, 248, 22, 'bd-near', 124)}
+    ${thorns(370, 250, 24, 'bd-near', 125)}`,
+  yard: () => `
+    ${treeline(200, 30, 'bd-far', 41)}
+    ${treeline(214, 18, 'bd-mid', 43)}
+    ${stumps([30, 52, 76, 330, 352, 374, -60, -30, 450, 480], 240, 'bd-mid')}
+    ${logs(-10, 252, 'bd-near')}
+    ${logs(420, 252, 'bd-near')}
+    ${tree(-140, 262, 180, 'bd-near', 131, { lean: 0.2, sway: true })}
+    ${tree(560, 262, 190, 'bd-near', 132, { lean: -0.2, sway: true })}`,
+  peaks: () => peaks(false),
+  'peaks-green': () => peaks(true),
+  'altar-one': () => `
+    ${peaks(false)}
+    <g class="bd-far bd-ark-far"><path d="M186 152 L214 152 L213 148 L187 148 Z M188 148 L212 148 L210 146 L190 146 Z"/></g>
+    ${altar(150, 240, true, 73)}
+    ${grain(-40, 262, 40, 115)}
+    ${grain(440, 262, 40, 116)}
+    ${grain(330, 262, 34, 117)}`,
+  vineyard: () => `
+    ${hills(206, 'bd-far', 51)}
+    ${vines(214, -300, 700, 8, 'bd-mid', 141)}
+    ${vines(236, -360, 760, 12, 'bd-near', 142)}
+    ${tent(268, 250, 1.3)}
+    ${vines(262, -400, 160, 17, 'bd-near', 143)}
+    ${vines(262, 420, 800, 17, 'bd-near', 144)}`,
 };
 
 const cache = new Map<BackdropArt, string>();
+
+
 
 /** 배경 SVG 한 장 */
 export function backdropSvg(art: BackdropArt): string {
@@ -250,6 +348,24 @@ export function backdropSvg(art: BackdropArt): string {
 }
 
 /**
+ * 구름 속의 무지개 (창 9:13). 배경 상자 맨 뒤에 한 번만 깔아 두고, mood의 bow가 켜지면
+ * 일곱 띠가 왼쪽 끝에서부터 그어지며 나타난다 (styles/flood.css). 산은 무지개 앞에 선다.
+ */
+export function bowSvg(): string {
+  const colors = ['#e2654f', '#ec9a4e', '#f1d27a', '#8fcf8a', '#6fb4d8', '#6f7fd0', '#9a78c8'];
+  const bands = colors
+    .map((c, i) => {
+      const r = 176 - i * 3.4;
+      return `<path class="bow__band" style="--i:${i}" pathLength="1" d="M${200 - r} 250 A${r} ${r} 0 0 1 ${200 + r} 250" stroke="${c}"/>`;
+    })
+    .join('');
+  return `<svg class="bow" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path class="bow__glow" pathLength="1" d="M34 250 A166 166 0 0 1 366 250"/>
+    <g class="bow__bands">${bands}</g>
+  </svg>`;
+}
+
+/**
  * 배경을 상자에 맞춘다. 폰처럼 세로로 긴 화면은 높이에 맞춰 양옆을 자르고(slice),
  * PC처럼 가로로 넓은 화면은 높이를 다 보여 준다(meet) — 그래야 큰 나무 윗부분이 안 잘린다.
  * 넓은 화면에서 남는 양옆은 그림 바깥까지 이어 그려 둔 숲·언덕·나무가 채운다.
@@ -258,5 +374,5 @@ export function fitBackdrops(box: HTMLElement): void {
   const { width, height } = box.getBoundingClientRect();
   if (!width || !height) return;
   const mode = width / height > W / H ? 'xMidYMax meet' : 'xMidYMax slice';
-  box.querySelectorAll('svg.backdrop').forEach((svg) => svg.setAttribute('preserveAspectRatio', mode));
+  box.querySelectorAll('svg.backdrop, svg.bow').forEach((svg) => svg.setAttribute('preserveAspectRatio', mode));
 }

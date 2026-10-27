@@ -43,10 +43,12 @@ export interface CharacterDef {
   faces?: 'left' | 'right';
   /** 무대 높이 대비 키 (기본 1). 하와 0.95처럼 인물 사이 키 차이를 준다 */
   height?: number;
+  /** 무대에서 차지하는 사람 수 (기본 1). 여럿을 한 그림에 묶은 무리(세 며느리)는 2 */
+  slots?: number;
   art: SvgArt | ImageArt;
 }
 
-const files = import.meta.glob<CharacterDef>(['./*.ts', '!./index.ts'], { import: 'default' });
+const files = import.meta.glob<CharacterDef>(['./*.ts', '!./index.ts', '!./_*.ts'], { import: 'default' });
 
 export async function loadCharacter(id: string): Promise<CharacterDef> {
   const loader = files[`./${id}.ts`];

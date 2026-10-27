@@ -3,14 +3,14 @@
 //  - 파일 이름 = id, 폴더 번호 = act, act.json 있음
 //  - ref가 실제 본문에 있는 구절인지, 그 막의 범위 안인지
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
-//  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상, mood 이름, face 방향, outfit 옷 이름
+//  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상, mood 이름, fx 이름, face 방향, outfit 옷 이름
 //  - 읽기: 퀴즈 1~3문항, answer 번호
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { BOOKS, findBook } from '../src/engine/books.ts';
 import { ACTS } from '../src/engine/acts.ts';
-import { MOODS } from '../src/engine/moods.ts';
+import { FX, MOODS } from '../src/engine/moods.ts';
 
 const root = new URL('..', import.meta.url).pathname;
 const errors = [];
@@ -62,7 +62,7 @@ const readJson = (file, where) => {
   }
 };
 
-const characters = new Set(readdirSync(join(root, 'src/characters')).filter((f) => f.endsWith('.ts') && f !== 'index.ts').map((f) => f.replace(/\.ts$/, '')));
+const characters = new Set(readdirSync(join(root, 'src/characters')).filter((f) => f.endsWith('.ts') && f !== 'index.ts' && !f.startsWith('_')).map((f) => f.replace(/\.ts$/, '')));
 // 인물 파일의 옷 목록 (beat의 "outfit" 검사용)
 const outfits = new Map();
 for (const c of characters) {
@@ -150,6 +150,7 @@ function checkScene(s, where) {
   for (const b of all) {
     checkMood(b.mood);
     checkOutfit(b.outfit);
+    for (const f of b.fx == null ? [] : [b.fx].flat()) if (!FX.includes(f)) err(where, `fx "${f}"가 src/engine/moods.ts FX 목록에 없음`);
     for (const [c, dir] of Object.entries(b.face ?? {})) {
       people.add(c);
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
