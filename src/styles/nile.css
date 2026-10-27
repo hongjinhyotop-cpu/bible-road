@@ -1,0 +1,26 @@
+/* ── 나일강 갈대밭 (출 2:3-6, fx/nile.ts) ──
+   강물은 막 색(석회암·붉은 강)을 따라가는 넓은 띠. 상자는 물결 따라 천천히 까딱이고, 둘레로 둥근 물결이 번진다.
+   건져 연 상자에서는 은은한 빛이 번지고, 작은 팔이 허우적댄다. */
+.bd-nile { fill: color-mix(in srgb, var(--act-b) 52%, #0d1a2a); }
+.bd-weave { fill: none; stroke: color-mix(in srgb, var(--act-accent) 35%, #5a4630); stroke-width: 0.7; opacity: 0.75; }
+.bd-basket-glint { fill: var(--act-accent); opacity: 0.6; }
+.bd-basket--float { animation: bd-bob 4.8s ease-in-out infinite; }
+@keyframes bd-bob {
+  0%, 100% { transform: translateY(0) rotate(-2.4deg); }
+  50% { transform: translateY(1.3px) rotate(2deg); }
+}
+.bd-ripple {
+  fill: none; stroke: color-mix(in srgb, var(--act-accent) 60%, #cfe2f0); stroke-width: 0.6; opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+  animation: bd-ripple 4.8s ease-out infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes bd-ripple { 0% { opacity: 0.55; transform: scale(0.55); } 100% { opacity: 0; transform: scale(1.5); } }
+.bd-basket-glow { fill: url(#bd-halo-g); animation: bd-breathe 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes bd-breathe { 0%, 100% { opacity: 0.75; transform: scale(0.94); } 50% { opacity: 1; transform: scale(1.06); } }
+.bd-basket-light { fill: var(--act-accent); opacity: 0.35; filter: blur(4px); animation: bd-breathe 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.bd-baby { fill: color-mix(in srgb, var(--act-a) 46%, #020205); }
+.bd-baby-arm { animation: bd-wave-arm 1.1s ease-in-out infinite alternate; }
+@keyframes bd-wave-arm { from { transform: rotate(-22deg); } to { transform: rotate(18deg); } }
+
+:root[data-reduced-motion='true'] :is(.bd-basket--float, .bd-ripple, .bd-basket-glow, .bd-basket-light, .bd-baby-arm) { animation: none; }
+:root[data-reduced-motion='true'] .bd-ripple { opacity: 0.3; }

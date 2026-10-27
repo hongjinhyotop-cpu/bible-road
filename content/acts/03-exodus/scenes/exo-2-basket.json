@@ -1,0 +1,93 @@
+{
+  "id": "exo-2-basket",
+  "act": 3,
+  "grade": "A",
+  "title": "갈대 상자",
+  "ref": "출 2",
+  "bg": "house-night",
+  "cast": ["father", "mother"],
+  "names": {"miriam": "누이"},
+  "extras": {
+    "father": {"name": "레위 사람", "base": "man", "hair": "short", "beard": "short", "tint": "brown"},
+    "mother": {"name": "어머니", "base": "woman", "hair": "veil", "tint": "blue"},
+    "princess": {"name": "바로의 딸", "base": "woman", "hair": "long", "tint": "gold", "height": 0.96},
+    "maid": {"name": "시녀", "base": "woman", "hair": "tied", "props": ["jar"], "tint": "white", "height": 0.9},
+    "taskmaster": {"name": "애굽 감독", "base": "soldier", "hair": "helmet", "props": ["staff"], "tint": "red", "height": 1.06},
+    "hebrew": {"name": "히브리 사람", "base": "man", "hair": "short", "beard": "short", "props": ["basket"], "tint": "gray"},
+    "brawler": {"name": "히브리 사람", "base": "man", "hair": "shaggy", "beard": "short", "tint": "brown", "height": 1.02},
+    "zipporah": {"name": "십보라", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "red"},
+    "sister": {"name": "르우엘의 딸", "base": "girl", "hair": "veil", "props": ["crook"], "tint": "green"},
+    "shepherd": {"name": "목자", "base": "man", "hair": "shaggy", "beard": "long", "props": ["crook"], "tint": "gray", "height": 1.04},
+    "reuel": {"name": "르우엘", "base": "old-man", "hair": "turban", "beard": "gray", "props": ["staff"], "tint": "white"},
+    "son": {"name": "게르솜", "base": "child", "hair": "short", "tint": "brown"}
+  },
+  "beats": [
+    {"type": "narration", "act": "embrace", "who": ["father", "mother"], "text": "레위 집안의 한 남자가 레위 집안의 한 여자에게 장가들었다. 기록은 두 사람의 이름을 적지 않는다. 사내아이는 강에 던지라는 명령이 내려진 땅에서도, 사람들은 여전히 결혼을 했고, 아이를 낳았다."},
+    {"type": "narration", "fx": "fade", "acts": [{"act": "part", "who": "mother"}, {"act": "kneel", "who": "mother"}, {"act": "bow-head", "who": "father"}], "text": "아들이었다. 어미는 그 아이가 준수한 것을 보았다. 세상의 모든 어미가 제 아이를 그렇게 본다. 이 어미는 그 눈 때문에 왕의 법을 어기기로 했다. 석 달을 숨겼다. 골목에 발소리가 날 때마다, 그 집은 다 같이 숨을 참았다."},
+    {"type": "narration", "bg": "house-dawn", "fx": "fade", "exit": ["father"], "enter": ["miriam"], "outfit": {"miriam": "girl"}, "act": "kneel", "who": "mother", "text": "아이는 자랐고, 목청도 같이 자랐다. 더는 숨길 수 없게 되었다. 어미는 갈대를 엮어 상자를 만들고, 역청과 나무 진을 칠했다. 배를 짓는 일이었다. 다만 이번에는, 한 사람만 태울."},
+    {"type": "line", "who": "miriam", "act": "approach", "to": "mother", "text": "“강에 가요? 왕이 아기들을 던지라고 한, 그 강에?”"},
+    {"type": "line", "who": "mother", "acts": [{"act": "stand", "who": "mother"}, {"act": "face", "who": "mother", "to": "miriam"}], "text": "“던지라고 했지. 띄우지 말라고는 안 했다.”"},
+    {"type": "narration", "bg": "nile-basket", "fx": "fade", "acts": [{"act": "kneel", "who": "mother"}, {"act": "bow-head", "who": "miriam"}], "text": "새벽의 나일은 조용했다. 어미는 상자를 하숫가 갈대 사이에 두었다. 물살이 데려가지 못하게, 갈대가 붙잡아 주는 자리였다. 왕이 무덤으로 정한 강에, 작은 배 하나가 떴다."},
+    {"type": "scripture", "ref": "출 2:3-4", "gloss": "더 못 숨기니까 갈대 바구니에 방수 칠(역청) 해서 아기를 넣고 나일강 갈대 사이에 둠. 누나는 어떻게 되나 보려고 멀찍이 서서 지켜봄. 엄마는 떠나고 누나는 남음."},
+    {"type": "narration", "acts": [{"act": "stand", "who": "mother"}, {"act": "walk-out", "who": "mother"}, {"act": "step-back", "who": "miriam"}], "text": "어미는 돌아섰다. 거기 더 서 있으면 다시 안아 올릴 것 같아서였다. 누이는 남았다. 멀리 섰다. 어떻게 되는지 알려고. 기다림을 맡는 것은 늘 집에서 가장 작은 사람이다."},
+    {"type": "narration", "bg": "nile-basket-day", "fx": "dawn", "enter": ["princess", "maid"], "acts": [{"act": "walk-in", "who": "princess"}, {"act": "face", "who": "miriam", "to": "princess"}], "text": "해가 높아졌다. 바로의 딸이 목욕하러 강으로 내려왔다. 시녀들은 강가를 거닐었다. 하필 그 강가였고, 하필 그 시각이었다. 기록은 ‘하필’이라는 말을 쓰지 않는다. 쓸 필요가 없다는 듯이."},
+    {"type": "line", "who": "princess", "acts": [{"act": "look-up", "who": "princess"}, {"act": "face", "who": "maid", "to": "princess"}], "text": "“저기, 갈대 사이에. 저게 뭐냐. 가져오너라.”"},
+    {"type": "narration", "bg": "nile-found", "acts": [{"act": "kneel", "who": "princess"}, {"act": "kneel", "who": "maid"}], "text": "시녀가 상자를 건져 왔다. 뚜껑을 열었다. 아이가 울고 있었다."},
+    {"type": "line", "who": "princess", "act": "bow-head", "text": "“…이는 히브리 사람의 아이로다.”"},
+    {"type": "narration", "act": "step-back", "who": "maid", "text": "그 한마디에 판결이 다 들어 있었다. 그녀는 아버지의 명령을 알았다. 그런데 아이를 내려놓지 않았다. 불쌍히 여겼다고, 기록은 적는다. 왕의 법도 우는 아이 앞에서는 목소리가 작아진다."},
+    {
+      "type": "choice",
+      "prompt": "멀리서 지켜보던 누이. 공주가 아이를 안았다. 어떻게 할까?",
+      "options": [
+        {
+          "label": "숨은 채로 끝까지 지켜본다",
+          "goto": "b-hide"
+        },
+        {
+          "label": "다가가서 말을 건넨다",
+          "canon": true
+        }
+      ]
+    },
+    {"type": "line", "who": "miriam", "act": "approach", "to": "princess", "text": "“제가 가서, 히브리 여인 중에 젖 먹일 유모를 불러다 드릴까요?”"},
+    {"type": "narration", "exit": ["miriam"], "enter": ["mother"], "acts": [{"act": "stand", "who": "princess"}, {"act": "approach", "who": "mother", "to": "princess"}], "text": "멀리 서 있던 소녀가 어느새 가까이 와 있었다. 때라는 것은 대개, 멀리서 오래 지켜본 사람에게 온다. 바로의 딸은 짧게 말했다. 가라. 소녀가 달려가 데려온 사람은, 아이의 어미였다."},
+    {"type": "line", "who": "princess", "text": "“이 아이를 데려다가 나를 위하여 젖을 먹이라. 내가 그 삯을 주리라.”"},
+    {"type": "narration", "act": "bow-head", "who": "mother", "text": "어미는 고개를 숙였다. 울음을 감추느라 그랬는지, 웃음을 감추느라 그랬는지는 기록에 없다. 어제까지 숨겨야 했던 아이를, 오늘부터는 왕의 집 삯을 받으며 키우게 되었다."},
+    {"type": "narration", "bg": "palace", "fx": "fade", "exit": ["maid", "mother"], "act": "look-up", "who": "princess", "text": "아이가 자랐다. 어미는 젖 뗀 아이를 바로의 딸에게 데려갔다. 아이는 그녀의 아들이 되었다. 그녀가 이름을 지었다. 모세. 내가 그를 물에서 건져 내었으니."},
+    {"type": "scripture", "ref": "출 2:10", "gloss": "공주가 아기를 아들로 들이고 ‘모세’라고 이름 붙임. 뜻은 ‘물에서 건져 냄’. 바로가 강에 던지라던 히브리 아이가, 바로네 집 호적에 올라감."},
+    {"type": "narration", "fx": "fade", "exit": ["princess"], "enter": ["moses"], "outfit": {"moses": "prince"}, "act": "look-up", "who": "moses", "text": "세월이 갔다. 모세는 장성했다. 왕궁의 옷을 입고, 왕궁의 말을 했다. 그러나 피가 어느 쪽인지는, 옷이 정하지 않는다."},
+    {"type": "narration", "bg": "brickworks", "fx": ["fade", "dust"], "enter": ["taskmaster", "hebrew"], "acts": [{"act": "approach", "who": "taskmaster", "to": "hebrew"}, {"act": "kneel", "who": "hebrew"}], "text": "한번은 자기 형제들에게 나갔다. 그들이 지는 짐을 보았다. 그리고 한 애굽 사람이 한 히브리 사람을 치는 것을 보았다. 자기 형제였다."},
+    {"type": "narration", "face": {"moses": "left"}, "act": "turn", "who": "moses", "text": "좌우를 살폈다. 아무도 없었다. 좌우를 살피는 사람은 많다. 위를 살피는 사람은 드물다."},
+    {"type": "narration", "fx": "shake", "acts": [{"act": "approach", "who": "moses", "to": "taskmaster"}, {"act": "fall", "who": "taskmaster"}], "text": "그는 그 애굽 사람을 쳐 죽였다. 그리고 모래에 감추었다. 모래는 많은 것을 덮는다. 다만 오래 덮지는 못한다."},
+    {"type": "narration", "fx": ["fade", "dust"], "exit": ["taskmaster", "hebrew"], "enter": ["hebrew", "brawler"], "act": "argue", "who": ["brawler", "hebrew"], "text": "이튿날 다시 나갔다. 이번에는 히브리 사람 둘이 서로 싸우고 있었다."},
+    {"type": "line", "who": "moses", "act": "approach", "to": "brawler", "text": "“네가 어찌하여 동포를 치느냐.”"},
+    {"type": "line", "who": "brawler", "act": "face", "to": "moses", "text": "“누가 너를 우리의 주재와 법관으로 세웠느냐. 어제 애굽 사람을 죽인 것처럼, 나도 죽이려느냐.”"},
+    {"type": "scripture", "ref": "출 2:14", "gloss": "“누가 너보고 우리 반장 하래? 어제 이집트 사람 죽인 것처럼 나도 죽일 거냐?” 편들어 준 형제한테 오히려 들이받힘. 아무도 못 봤다고 생각한 일이 이미 다 퍼져 있었음."},
+    {"type": "line", "who": "moses", "act": "step-back", "pose": {"moses": "tremble"}, "text": "“…일이 탄로되었구나.”"},
+    {"type": "narration", "bg": "palace-dusk", "fx": "fade", "exit": ["hebrew", "brawler", "moses"], "enter": ["pharaoh"], "act": "look-up", "who": "pharaoh", "text": "바로가 이 일을 들었다. 그리고 모세를 죽이려고 찾았다. 어제의 왕자가 오늘의 수배자가 되는 데는, 소문 하나로 충분했다."},
+    {"type": "narration", "fx": "dust", "exit": ["pharaoh"], "act": "travel", "from": "egypt", "to": "midian", "via": ["shur"], "text": "모세는 바로의 낯을 피해 달아났다. 동쪽으로. 광야를 건너, 미디안 땅까지. 궁에서 자란 사람이 처음으로, 아무것도 아닌 사람이 되었다."},
+    {"type": "narration", "bg": "well-dusk", "fx": "fade", "enter": ["moses"], "outfit": {"moses": "prince"}, "acts": [{"act": "kneel", "who": "moses"}, {"act": "bow-head", "who": "moses"}], "text": "하루는 우물 곁에 앉았다. 도망치는 사람이 앉을 수 있는 곳은 많지 않다. 우물은 그중 하나다. 물은 누가 마시는지 묻지 않으니까."},
+    {"type": "narration", "enter": ["zipporah", "sister"], "acts": [{"act": "walk-in", "who": "zipporah"}, {"act": "walk-in", "who": "sister"}], "text": "미디안 제사장에게 일곱 딸이 있었다. 딸들이 와서 물을 길어 구유에 채웠다. 아버지의 양 떼에게 먹이려고."},
+    {"type": "narration", "enter": ["shepherd"], "acts": [{"act": "approach", "who": "shepherd", "to": "zipporah"}, {"act": "step-back", "who": "zipporah"}, {"act": "step-back", "who": "sister"}], "text": "목자들이 와서 그들을 쫓아냈다. 힘센 쪽이 먼저 마시는 것. 우물가에도 법은 있었다. 왕궁의 법보다 짧을 뿐이다."},
+    {"type": "line", "who": "moses", "acts": [{"act": "stand", "who": "moses"}, {"act": "approach", "who": "moses", "to": "shepherd"}], "text": "“먼저 길은 사람이 먼저 먹이는 거요.”"},
+    {"type": "narration", "acts": [{"act": "step-back", "who": "shepherd"}, {"act": "walk-out", "who": "shepherd"}], "text": "모세가 일어나 그들을 도왔다. 그리고 그 양 떼에게 물을 먹였다. 애굽 사람을 쳐 죽인 그 손이, 이번에는 남의 양에게 물을 길어 주었다. 같은 의분이었다. 다만 이번에는 아무도 죽지 않았다."},
+    {"type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["moses", "shepherd"], "enter": ["reuel"], "act": "face", "who": "reuel", "to": "zipporah", "text": "딸들이 여느 날보다 일찍 장막에 돌아왔다. 아버지 르우엘이 까닭을 물었다."},
+    {"type": "line", "who": "zipporah", "act": "approach", "to": "reuel", "text": "“한 애굽 사람이 우리를 목자들 손에서 건져 주고, 물까지 길어 양 떼에게 먹였어요.”"},
+    {"type": "line", "who": "reuel", "act": "look-up", "text": "“그 사람이 어디 있느냐. 어찌 그 사람을 두고 왔느냐. 가서 불러다 음식을 대접하라.”"},
+    {"type": "narration", "fx": "fade", "exit": ["sister"], "enter": ["moses"], "outfit": {"moses": "prince"}, "acts": [{"act": "part", "who": "zipporah"}, {"act": "face", "who": "moses", "to": "reuel"}, {"act": "bow-head", "who": "zipporah"}], "text": "한 애굽 사람. 딸들은 그를 그렇게 불렀다. 옷이 그랬고, 말씨가 그랬다. 그는 애굽에서는 히브리 사람이었고, 미디안에서는 애굽 사람이었다. 어디서도 제 이름으로 불리지 않았다."},
+    {"type": "narration", "outfit": {"moses": "shepherd"}, "acts": [{"act": "bless", "who": "reuel"}, {"act": "face", "who": "moses", "to": "zipporah"}], "text": "모세는 그 집에 머물기를 기뻐했다. 르우엘은 딸 십보라를 그에게 주었다. 왕궁의 두건은 접혀 장막 구석으로 들어갔다. 대신 손에 막대기 하나가 들렸다. 양 치는 막대기였다. 그것이 장차 무엇이 될지는, 아직 아무도 몰랐다."},
+    {"type": "line", "who": "moses", "enter": ["son"], "exit": ["reuel"], "acts": [{"act": "approach", "who": "zipporah", "to": "moses"}, {"act": "bow-head", "who": "moses"}], "text": "“이름을 게르솜이라 하자. 내가 타국에서 객이 되었으니.”"},
+    {"type": "narration", "bg": "brickworks", "fx": ["fade", "dust"], "exit": ["moses", "zipporah", "son"], "acts": [{"act": "crowd"}, {"act": "crowd-murmur"}], "text": "여러 해 뒤, 애굽 왕이 죽었다. 왕은 바뀌었고, 벽돌은 바뀌지 않았다. 이스라엘 자손은 고역 때문에 탄식하며 부르짖었다. 누구에게 닿을지 모르고 지른 소리였다. 그래도, 닿았다."},
+    {"type": "scripture", "ref": "출 2:24-25", "fx": "glory", "act": "crowd-bow", "gloss": "하나님이 신음 소리를 들으시고, 아브라함·이삭·야곱이랑 한 약속을 기억하시고, 이스라엘을 마음에 두고 돌보심(권념). 수백 년 조용하던 하나님 쪽 채팅창에 드디어 ‘읽음’이 뜬 순간."},
+    {"type": "narration", "bg": "wilderness-dusk", "fx": "fade", "acts": [{"act": "crowd-away"}, {"act": "walk-in", "who": "moses"}, {"act": "look-up", "who": "moses"}], "text": "그 무렵 미디안 광야에서, 한 목자가 양 떼를 몰고 있었다. 자기가 그 부르짖음의 대답이라는 것을, 그는 아직 몰랐다."}
+  ],
+  "branches": {
+    "b-hide": [
+      {"type": "narration", "act": "bow-head", "who": "miriam", "text": "만약 그랬다면. 아이는 왕궁으로 갔을 것이다. 이집트 유모의 젖을 먹고, 자기가 누구의 아들인지 끝내 모른 채로."},
+      {"type": "narration", "act": "look-up", "who": "miriam", "text": "그러나 소녀는 오래 지켜본 끝에, 한 걸음을 내디뎠다. 지켜보는 것은 다가가기 위해서다."}
+    ]
+  },
+  "insight": "방금 그거 모세 탄생 이야기임. 출애굽기, 아니 성경 전체에서 손꼽히는 주인공이 이렇게 등장함. 근데 장면 잘 보면 이 장의 앞부분은 거의 여자들이 끌고 감. 산파들(1장), 엄마, 누나, 공주, 시녀들. 바로가 ‘딸은 살려 둬라’ 했잖아. 별것 아니라고 살려 둔 바로 그 딸들이 바로의 계획을 통째로 엎어 버림 ㅋㅋ\n\n‘갈 상자’에서 ‘상자’로 번역된 히브리어 단어가 ‘테바’인데, 성경에서 딱 두 군데에만 나옴. 하나가 여기, 하나가 노아의 방주. 둘 다 역청을 칠해서 물을 막았고, 둘 다 물의 심판 한가운데서 한 생명(들)을 살려 냄. 작가가 일부러 노린 연결이라고 보는 사람이 많음. 미니 방주인 거임.\n\n아이러니도 미쳤음. 바로는 ‘아들은 나일강에 던져라’ 했는데, 그 강에서 바로의 딸이 히브리 아기를 건져서 바로의 집에서 키움. 거기다 친엄마는 제 아들 젖 먹이면서 바로 집에서 월급까지 받음. 바로 입장에선 자기 돈으로 자기 적을 키운 셈.\n\n‘모세’라는 이름은 히브리어로 ‘건져 내다(마샤)’랑 소리가 비슷해서 본문이 그렇게 풀어 줌. 근데 이집트 말에도 ‘모세(메스)’가 ‘아들, 태어난 자’라는 뜻이라 투트모세·람세스 같은 왕 이름에 들어감. 그래서 이집트 공주가 이집트식으로 지은 이름에 히브리식 뜻이 겹친 거라고 보는 해석도 있음. 여러 해석이 있는데, 어느 쪽이든 이름 하나에 두 정체성이 같이 들어 있다는 게 포인트.\n\n애굽 사람 죽인 장면은 해석이 갈림. 억울한 동족을 위한 정의였다고 보는 사람도 있고, 좌우만 살피고 하나님 뜻은 안 물은 성급한 혈기였다고 보는 사람도 있음. 신약에서 스데반은 “형제들이 하나님이 자기 손으로 구원해 주실 걸 깨달을 줄 알았는데 못 깨달았다”고 말함(행 7:25). 확실한 건, 모세가 자기 힘으로 하려던 구원은 하루 만에 실패했다는 거. 진짜 구원은 40년 뒤에 시작됨.\n\n장인 이름이 여기선 ‘르우엘’, 3장부터는 ‘이드로’임. 한 사람이 이름을 둘 가졌다거나, 하나는 칭호라거나, 여러 해석이 있음. 같은 사람으로 보는 게 일반적.\n\n그리고 마지막 세 절(23–25) 꼭 봐 둬. 하나님이 ‘들으시고, 기억하사, 권념하셨더라’. 권념 = 마음에 두고 돌봐 주신다는 뜻. 근데 이게 왜 중요하냐면, 이스라엘이 부르짖던 그 시간에 하나님은 이미 답을 미디안 광야에 키워 놓으셨거든. 왕자 출신 도망자를 40년짜리 양치기 훈련소에 넣어서. 군대 짬처럼, 그 시간이 버려진 시간처럼 보여도 그게 다 다음 판의 준비였던 거임.",
+  "tldr": "강에 던져질 뻔한 아기가 강에서 건져져 왕궁에서 자랐고, 사람을 죽이고 광야로 도망가 양치기가 됨. 그동안 하나님은 노예들의 신음을 다 듣고 계셨음.",
+  "unlocks": {"characters": ["moses"]}
+}
