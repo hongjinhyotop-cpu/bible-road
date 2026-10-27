@@ -88,23 +88,37 @@ function pylon(x: number, ground: number, s: number, cls: string): string {
   </g>`;
 }
 
-export function nileArt(state: 'reeds' | 'basket' | 'basket-side' | 'found'): string {
+/** 피로 변한 강 (출 7:20-21, exo-7-plagues): 강물 위에 천천히 도는 짙은 소용돌이와 배를 뒤집고 떠내려가는 고기 몇 마리 */
+function bloodRiver(): string {
+  const swirl = (x: number, y: number, rx: number, d: number) =>
+    `<ellipse class="bd-blood-swirl" style="--d:${d}s; transform-origin:${x}px ${y}px" cx="${x}" cy="${y}" rx="${rx}" ry="${(rx * 0.16).toFixed(1)}"/>`;
+  const fish = (x: number, y: number, s: number, d: number) =>
+    `<g class="bd-deadfish" style="--d:${d}s"><path transform="translate(${x} ${y}) scale(${s})" d="M-6 0 C-3 -2.4 3 -2.4 5 0 L8 -2 L8 2 L5 0 C3 2.2 -3 2.2 -6 0 Z"/></g>`;
+  return `<g class="bd-blood">
+    ${swirl(150, 208, 34, 0)}${swirl(250, 214, 42, -6)}${swirl(196, 222, 28, -11)}${swirl(-60, 212, 50, -3)}${swirl(470, 210, 46, -9)}
+    ${fish(176, 212, 0.9, 0)}${fish(232, 219, 0.75, -9)}${fish(420, 214, 0.9, -4)}
+  </g>`;
+}
+
+export function nileArt(state: 'reeds' | 'basket' | 'basket-side' | 'found' | 'blood'): string {
   const r = rng(271);
+  const blood = state === 'blood';
   // 강물 위에 흐르는 빛줄기 몇 가닥
   const flows = [204, 211, 218, 225]
-    .map((y, i) => `<path class="bd-river" style="animation-duration:${(7 + i * 1.7).toFixed(1)}s" d="M${-W * 2} ${y} C-300 ${y - 3} -100 ${y + 3} 100 ${y} C${200 + r() * 40} ${y - 3} 400 ${y + 3} 600 ${y} C800 ${y - 3} 1000 ${y + 2} ${W * 3} ${y}"/>`)
+    .map((y, i) => `<path class="bd-river${blood ? ' bd-river--blood' : ''}" style="animation-duration:${(7 + i * 1.7).toFixed(1)}s" d="M${-W * 2} ${y} C-300 ${y - 3} -100 ${y + 3} 100 ${y} C${200 + r() * 40} ${y - 3} 400 ${y + 3} 600 ${y} C800 ${y - 3} 1000 ${y + 2} ${W * 3} ${y}"/>`)
     .join('');
   return `
     <path class="bd-far" d="M${-W * 2} 200 L${-W * 2} 192 C-500 189 -200 194 60 191 C240 189 420 194 ${W * 3} 190 L${W * 3} 200 Z"/>
     ${pylon(262, 192, 0.62, 'bd-far')}${pylon(-210, 192, 0.8, 'bd-far')}
     ${palm(150, 193, 26, 'bd-far', 701)}${palm(168, 194, 20, 'bd-far', 702)}${palm(318, 193, 24, 'bd-far', 703)}${palm(-60, 193, 30, 'bd-far', 704)}${palm(520, 193, 28, 'bd-far', 705)}
-    <path class="bd-nile" d="M${-W * 2} 196 C-400 194 -100 198 200 195 C500 193 700 197 ${W * 3} 195 L${W * 3} ${H} L${-W * 2} ${H} Z"/>
+    <path class="bd-nile${blood ? ' bd-nile--blood' : ''}" d="M${-W * 2} 196 C-400 194 -100 198 200 195 C500 193 700 197 ${W * 3} 195 L${W * 3} ${H} L${-W * 2} ${H} Z"/>
     ${flows}
     ${papyrus(132, 206, 40, 'bd-mid', 711, 4)}${papyrus(244, 205, 34, 'bd-mid', 712, 4)}${papyrus(284, 207, 44, 'bd-mid', 713, 5)}
     ${papyrus(-40, 206, 46, 'bd-mid', 714, 5)}${papyrus(40, 206, 40, 'bd-mid', 715, 4)}${papyrus(440, 206, 44, 'bd-mid', 716, 5)}${papyrus(560, 206, 40, 'bd-mid', 717, 4)}
     ${state === 'basket' ? `${ripples(200, 222)}${papyrus(176, 226, 46, 'bd-mid', 718, 4)}${basket(200, 222, false)}${papyrus(224, 228, 40, 'bd-mid', 719, 3)}` : ''}
     ${state === 'basket-side' ? `${ripples(236, 222)}${papyrus(212, 226, 44, 'bd-mid', 718, 4)}${basket(236, 222, false)}${papyrus(262, 228, 38, 'bd-mid', 719, 3)}${papyrus(172, 228, 40, 'bd-mid', 720, 3)}` : ''}
-    ${state === 'reeds' ? `${papyrus(186, 226, 44, 'bd-mid', 718, 4)}${papyrus(216, 228, 38, 'bd-mid', 719, 3)}` : ''}
+    ${blood ? bloodRiver() : ''}
+    ${state === 'reeds' || blood ? `${papyrus(186, 226, 44, 'bd-mid', 718, 4)}${papyrus(216, 228, 38, 'bd-mid', 719, 3)}` : ''}
     ${state === 'found' ? `${papyrus(196, 226, 44, 'bd-mid', 718, 4)}${papyrus(272, 228, 38, 'bd-mid', 719, 3)}${basket(236, 220, true)}` : ''}
     ${papyrus(112, 262, 124, 'bd-near', 721, 6)}${papyrus(298, 262, 132, 'bd-near', 722, 6)}
     ${papyrus(-30, 262, 150, 'bd-near', 723, 7)}${papyrus(440, 262, 150, 'bd-near', 724, 7)}${papyrus(560, 262, 120, 'bd-near', 725, 6)}`;

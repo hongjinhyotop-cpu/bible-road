@@ -1,0 +1,102 @@
+/* ── 얍복 나루와 세일 들 (창 32–33, A급 gen-32-wrestle · gen-33-esau, fx/jabbok.ts) ──
+   밤에는 무대가 배경 전체를 어둡게 덮는데(library.css), 새벽빛·등불까지 어두워지면 안 되므로
+   얍복 그림(jabbok*)에서는 그 필터를 끄고 땅(.jab-dim)만 따로 어둡게 한다. */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop[data-art^='jabbok']) { filter: none; }
+.jab-dim { transition: filter 2.4s var(--ease-out); }
+.play[data-tone='night'] .jab-dim { filter: brightness(0.66) saturate(0.6); }
+
+/* 달 없는 밤의 별 */
+.jab-star { fill: #e8e4d8; opacity: 0; transition: opacity 3s; }
+.play[data-tone='night'] .jab-star { opacity: 0.5; }
+.play[data-tone='night'] .jab-star.is-big { opacity: 0.85; animation: jab-twinkle 6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+/* 새벽: 별이 하나씩 꺼져 간다 */
+.backdrop[data-art='jabbok-grey'] .jab-star { opacity: 0.22 !important; }
+.backdrop[data-art='jabbok-sun'] .jab-star { opacity: 0 !important; }
+@keyframes jab-twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.95; } }
+
+/* 골짜기 바위 능선에 남은 아주 옅은 하늘빛 */
+.jab-ledge { stroke: color-mix(in srgb, var(--act-accent) 30%, #9aa4b8); stroke-width: 0.6; opacity: 0.25; }
+
+/* 시내 */
+.jab-water { fill: color-mix(in srgb, var(--act-b) 30%, #0b1018); }
+/* 밤: 물 위에 별빛이 가늘게 깔린다 */
+.play[data-tone='night'] .jab-ripple { stroke: #dfe6f0; }
+.jab-starlight { fill: #c8d2e2; opacity: 0.14; filter: blur(1.2px); }
+.jab-strata { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, #8a8070); stroke-width: 0.5; opacity: 0.22; }
+.jab-ripple { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, #c9d2dc); stroke-width: 0.6; stroke-linecap: round; opacity: 0.25; animation: jab-ripple 5s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes jab-ripple { 0%, 100% { opacity: 0.12; transform: translateX(0); } 50% { opacity: 0.45; transform: translateX(3px); } }
+.jab-foam { stroke: #d8dee6; stroke-width: 0.5; opacity: 0.35; }
+.jab-sheen { opacity: 0.4; filter: blur(1.5px); animation: jab-sheen 6s ease-in-out infinite; }
+.jab-sheen--grey { fill: #aab4c6; }
+.jab-sheen--sun { fill: #f2c58a; opacity: 0.55; }
+@keyframes jab-sheen { 0%, 100% { opacity: 0.28; } 50% { opacity: 0.55; } }
+
+/* 새벽빛: 골짜기 동쪽 틈으로 */
+.jab-dawn { animation: jab-dawn-in 6s ease-out both; }
+.jab-dawn__c { stop-color: #d0d6e2; stop-opacity: 0.8; }
+.jab-dawn__m { stop-color: #8a92a8; stop-opacity: 0.32; }
+.jab-dawn__e { stop-color: #5a6278; stop-opacity: 0; }
+#jab-dawn-sun .jab-dawn__c { stop-color: #ffe2b0; stop-opacity: 0.9; }
+#jab-dawn-sun .jab-dawn__m { stop-color: #f0a868; stop-opacity: 0.35; }
+#jab-dawn-sun .jab-dawn__e { stop-color: #f0a868; stop-opacity: 0; }
+.jab-sun { fill: #fff0cc; filter: drop-shadow(0 0 6px rgba(255, 220, 160, 0.95)); animation: jab-rise 7s cubic-bezier(0.2, 0.6, 0.3, 1) both; }
+@keyframes jab-dawn-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes jab-rise { from { transform: translateY(16px); opacity: 0.4; } to { transform: translateY(0); opacity: 1; } }
+
+/* 밤에 여울을 건너는 행렬: 등불 하나를 앞세우고, 징검돌을 따라 맞은편 어둠으로 */
+.jab-walker {
+  fill: color-mix(in srgb, var(--act-b) 25%, #05060a);
+  stroke: #9aa6bc; stroke-width: 0.35; stroke-opacity: 0.55; paint-order: stroke;
+  opacity: 0;
+  animation: jab-cross 15s linear infinite;
+  animation-delay: var(--d);
+}
+@keyframes jab-cross {
+  0% { opacity: 0; transform: translate(118px, 244px) scale(1.15); }
+  6% { opacity: 1; }
+  45% { transform: translate(196px, 231px) scale(0.95); }
+  80% { opacity: 0.9; transform: translate(256px, 224px) scale(0.78); }
+  92%, 100% { opacity: 0; transform: translate(276px, 221px) scale(0.72); }
+}
+.jab-lamp { fill: #ffd890; stroke: none; }
+.jab-lamp__glow { fill: #ffcf80; stroke: none; opacity: 0.3; filter: blur(2px); animation: jab-flicker 1.6s ease-in-out infinite alternate; }
+@keyframes jab-flicker { from { opacity: 0.16; } to { opacity: 0.32; } }
+
+/* ── 세일 들 ── */
+.jab-road { fill: color-mix(in srgb, var(--act-accent) 22%, var(--act-b)); opacity: 0.32; }
+.jab-host { animation: jab-advance 26s ease-in-out both; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes jab-advance { from { transform: translateY(-3px) scale(0.92); } to { transform: translateY(0) scale(1); } }
+.jab-host__men { animation: jab-march 0.9s ease-in-out infinite alternate; }
+@keyframes jab-march { from { transform: translateY(0); } to { transform: translateY(-0.4px); } }
+.jab-spear { fill: none; stroke: currentColor; stroke-width: 0.45; }
+.jab-tip { fill: #f6e2b0; opacity: 0.5; animation: jab-glint 4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes jab-glint { 0%, 100% { opacity: 0.25; } 45% { opacity: 0.25; } 50% { opacity: 1; } 55% { opacity: 0.25; } }
+.jab-dust { fill: color-mix(in srgb, var(--act-accent) 40%, #d8c4a0); opacity: 0.22; filter: blur(4px); animation: jab-dust 7s ease-in-out infinite alternate; }
+.jab-dust--b { opacity: 0.16; animation-duration: 9s; }
+@keyframes jab-dust { from { transform: translateX(-6px); } to { transform: translateX(6px); } }
+
+/* ── 어떤 사람 (창 32:24, characters/jabbok-man.ts) ──
+   하나님(혹은 하나님의 사자)일 수 있는 그 사람: 얼굴 없는 어둠 덩어리, 가장자리만 차가운 새벽빛으로 빛난다 */
+.actor[data-id='jabbok-man'] { --sil-ink: #030407; }
+.actor[data-id='jabbok-man'] .actor__rimcolor { flood-color: #e6ecff; flood-opacity: 0.95; }
+.actor[data-id='jabbok-man'] .actor__backlight { opacity: 0.9; filter: hue-rotate(160deg) saturate(0.4) brightness(1.15); }
+.actor[data-id='jabbok-man'] .tone2 { color: #07080d; }
+.actor[data-id='jabbok-man'] .edge { fill: none; stroke: #eef2ff; stroke-width: 0.9; opacity: 0.55; animation: jab-edge 4.6s ease-in-out infinite; }
+@keyframes jab-edge { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.8; } }
+
+/* 씨름 중에는 야곱(밝은 쪽)이 앞에 서서, 두 그림자가 하나로 뭉개지지 않게 */
+.stage:has(> .fx-grapple) > .actor { z-index: 2; }
+.stage:has(> .fx-grapple) > .actor[data-id='jabbok-man'] { z-index: 1; }
+
+/* 씨름 (동작 wrestle): 맞붙은 두 사람 아래 흙먼지가 인다 */
+.fx-grapple { position: absolute; left: 50%; bottom: 4%; width: 46%; height: 10%; transform: translateX(-50%); pointer-events: none; z-index: 3; }
+.fx-grapple i { position: absolute; bottom: 0; width: 30%; height: 70%; border-radius: 50%; background: radial-gradient(closest-side, rgba(200, 190, 170, 0.28), transparent); filter: blur(4px); animation: jab-scuff 2.6s ease-in-out infinite; }
+.fx-grapple i:nth-child(1) { left: 6%; }
+.fx-grapple i:nth-child(2) { left: 36%; animation-delay: -0.9s; }
+.fx-grapple i:nth-child(3) { left: 64%; animation-delay: -1.7s; }
+@keyframes jab-scuff { 0%, 100% { opacity: 0.15; transform: scaleX(0.8); } 50% { opacity: 0.7; transform: scaleX(1.3) translateY(-4px); } }
+
+:root[data-reduced-motion='true'] :is(.jab-star, .jab-ripple, .jab-sheen, .jab-lamp__glow, .jab-host, .jab-host__men, .jab-tip, .jab-dust, .fx-grapple i) { animation: none !important; }
+:root[data-reduced-motion='true'] .jab-walker { animation-play-state: paused; }
+:root[data-reduced-motion='true'] :is(.jab-dawn, .jab-sun) { animation-duration: 0.01s; }
+:root[data-reduced-motion='true'] .actor[data-id='jabbok-man'] .edge { animation: none; }

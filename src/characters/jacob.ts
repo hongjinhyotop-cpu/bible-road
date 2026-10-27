@@ -8,6 +8,7 @@
 //  - "plain"    : 기본 (겉옷 + 지팡이)
 //  - "bowl"     : 지팡이 대신 김이 오르는 붉은 죽 그릇을 든다 (창 25:29-34)
 //  - "disguise" : 형의 좋은 옷(붉은 겉옷)을 입고, 염소 새끼 가죽으로 손과 목을 덮었다. 손에는 별미 그릇 (창 27:15-17)
+//  - "limp"     : 얍복 나루 뒤 (창 32:31). 지팡이를 앞으로 짚고 기대어 선다. 걸음은 절뚝인다 (A급 gen-32-wrestle)
 import type { CharacterDef } from './index';
 import { BACK_ARM, FACE_MAN, LEGS_SLIM, TORSO_SLIM, ARM_BENT } from './_parts.ts';
 
@@ -50,10 +51,25 @@ const GOAT_HAND = `
 const GOAT_HAND_BACK = `
   <path class="goat" d="M62 212 L66 208 L70 212 L75 209 L77 216 L81 220 L77 225 L79 231 L73 233 L69 239 L64 235 L59 238 L60 230 L56 226 L60 221 Z"/>`;
 
+/**
+ * 절뚝이는 야곱 (창 32:25, 31 "환도뼈가 위골되었더라 … 그 환도뼈로 인하여 절었더라"):
+ * 지팡이를 앞으로 더 멀리 짚고, 앞팔을 쭉 뻗어 거기에 몸을 기댄다. 앞발은 뒤꿈치를 들어 땅을 겨우 디딘다.
+ * 걸을 때는 무대(actor.ts Stage.limp)가 고르지 않은 걸음으로 흔든다.
+ */
+const STAFF_LEAN = `
+  <path d="M151 409 L146.6 138 L152 138 L157 409 Z"/>
+  <ellipse cx="149.3" cy="138" rx="3.6" ry="4.2"/>`;
+const LEGS_LIMP = LEGS_SLIM.replace(
+  'L116 408 L152 409 C152 404 146 401 139 399 C132 396 129 388 129 378',
+  'L119 399 L148 409 C148 405 143 401 138 398 C133 394 130 386 129 376',
+);
+const ARM_LEAN = `
+  <path d="M92 106 C90 98 98 93 105 94 C112 95 117 101 119 110 C125 130 136 158 146 182 C150 188 151 196 148 200 C144 204 138 203 136 197 C126 174 108 144 98 124 Z"/>`;
+
 const jacob: CharacterDef = {
   id: 'jacob',
   name: '야곱',
-  traits: '옆모습, 가늘고 곧은 몸, 뒤로 단정히 묶어 늘어뜨린 머리, 짧게 다듬은 수염, 발목까지 오는 줄무늬 긴 옷과 겉옷, 앞손에 쥔 지팡이. 옷 bowl = 붉은 죽 그릇, disguise = 형의 붉은 옷 + 손·목의 염소 가죽',
+  traits: '옆모습, 가늘고 곧은 몸, 뒤로 단정히 묶어 늘어뜨린 머리, 짧게 다듬은 수염, 발목까지 오는 줄무늬 긴 옷과 겉옷, 앞손에 쥔 지팡이. 옷 bowl = 붉은 죽 그릇, disguise = 형의 붉은 옷 + 손·목의 염소 가죽, limp = 지팡이에 기대 절뚝임',
   faces: 'right',
   height: 0.98,
   tint: '#4d6a6a',
@@ -70,6 +86,7 @@ const jacob: CharacterDef = {
     },
     outfits: {
       plain: { markup: MANTLE, parts: { legs: STAFF + LEGS, armR: ARM_BENT, armL: BACK_ARM } },
+      limp: { markup: MANTLE, parts: { legs: STAFF_LEAN + LEGS_LIMP, armR: ARM_LEAN, armL: BACK_ARM } },
       bowl: { markup: MANTLE, parts: { legs: LEGS, armR: ARM_BOWL, armL: BACK_ARM } },
       disguise: { markup: ESAU_ROBE + GOAT_NECK, parts: { legs: LEGS, armR: ARM_BOWL + GOAT_HAND, armL: BACK_ARM + GOAT_HAND_BACK } },
     },

@@ -4,9 +4,11 @@
 import type { BackdropArt } from '../engine/moods';
 import { PLACE_ART } from './places';
 import { nileArt } from './nile';
+import { goshenDarkArt } from './plagues';
 import { bushArt } from './bush';
 import { stewTentArt } from './stew';
 import { ladderArt } from './ladder';
+import { jabbokArt, seirArt } from './jabbok';
 
 export const W = 400;
 export const H = 260;
@@ -413,6 +415,9 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'nile-basket': () => nileArt('basket'),
   'nile-basket-side': () => nileArt('basket-side'),
   'nile-found': () => nileArt('found'),
+  // 애굽의 재앙 (출 7–10, fx/nile.ts · fx/plagues.ts)
+  'nile-blood': () => nileArt('blood'),
+  'goshen-dark': () => goshenDarkArt(),
   // 호렙산의 떨기나무 (출 3–4, fx/bush.ts)
   horeb: () => bushArt('horeb'),
   bush: () => bushArt('bush'),
@@ -425,6 +430,14 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   luz: () => ladderArt('luz'),
   'luz-ladder': () => ladderArt('ladder'),
   'luz-pillar': () => ladderArt('pillar'),
+  // 얍복 나루와 세일 들 (창 32–33, fx/jabbok.ts)
+  jabbok: () => jabbokArt('night'),
+  'jabbok-cross': () => jabbokArt('cross'),
+  'jabbok-grey': () => jabbokArt('grey'),
+  'jabbok-sun': () => jabbokArt('sun'),
+  'seir-road': () => seirArt(false),
+  'seir-host': () => seirArt('far'),
+  'seir-near': () => seirArt('near'),
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
