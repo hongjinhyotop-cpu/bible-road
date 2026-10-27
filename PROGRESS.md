@@ -7,11 +7,11 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **Phase 1 — 1막 태초, 4번 중 3번째 끝** (노아). 다음은 4번째: 바벨탑 + 1막 피날레 + 인물 도감 |
-| 다음 세션 할 일 | **Phase 1-4 바벨탑 (창 10–11) + 1막 피날레 + 인물 도감** (아래 "다음 할 일" 1번) |
+| 현재 단계 | **Phase 1 끝 — 1막 태초 완성** (11 / 11장, 장면 10개 + 읽기 3개, 피날레·도감까지). 2막 읽기 구간 일부는 다른 채팅이 먼저 만들어 둠 |
+| 다음 세션 할 일 | **Phase 2 — 2막 족장들: 여정 지도 mechanic + 첫 장면 `gen-12-call`** (아래 "다음 할 일" 1번, `content/acts/02-patriarchs/PLAN.md`) |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
-| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · Phase 1-3 노아 PR(일곱 번째 채팅) |
+| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) |
 
 ---
 
@@ -233,12 +233,50 @@
 
 ---
 
+## 여덟 번째 채팅 (2026-10-27): Phase 1-4 — 바벨탑 + 1막 피날레 + 인물 도감
+
+(같은 날 다른 채팅이 창 10 `gen-10-nations`, 창 11:10–32 `gen-11-shem-to-abram`, 2막 읽기 15개 + `02-patriarchs/act.json`·`PLAN.md`를 만들어 먼저 머지함 → 이번 PR에서 main을 받아 합침, 충돌 없음.)
+
+### 방주 훑기 줄임 (사용자 요청)
+- 다 지은 방주 훑기: 46초 무한 왕복 → **13초에 한 번** 끝에서 끝까지 훑고 문이 보이는 가운데에서 멈춤 (`flood.css ark-pan`).
+- **탭하면 빨리 감기**: 긴 카메라 연출(방주 훑기·뼈대 물러나기·탑 물러나기)이 도는 중에 탭하면 남은 부분을 0.8초에 감음. 그 탭은 다음으로 안 넘어감 (글 번짐을 먼저 끝내는 것과 같은 규칙). `screens/scene.ts`의 `CAMERA` 목록 + `skipCamera()`.
+
+### 바벨탑 장면 `gen-11-babel` 「우리 이름을 내자」 창 11:1–9
+- 말이 하나인 세계("나쁜 생각도 오해 없이 퍼진다") → 시날 평지 → 벽돌·역청("대단한 발명은 대단한 계획을 데리고 온다") → 탑이 쌓여 올라감(일꾼 티키타카, "말이 하나인 곳에서는 질문이 잘 생기지 않는다") → 선택지(같이 쌓을 거지? / 이름은 왜? / 흩어지면 안 돼?) → 구름에 닿은 탑 → **카메라가 하늘로 물러나며 탑이 점만 해짐 + 빛기둥이 내려옴** "하늘에 닿겠다던 탑이었다. 그것을 보시려고, 하나님은 내려오셔야 했다." → 하나님 목소리 → **말이 뒤섞임**(사람들 말이 떠오르다 글자가 히브리·그리스·아랍 글자 등으로 바뀌며 흩어짐) → 흩어짐 → 쌓다 만 탑, 빈 비계의 바람 → 바벨 = 뒤섞다 → 다음(셈의 족보 → 아브람)으로 bridge.
+- 해설: 지구라트·벽돌·역청 배경, 바벨(아카드어 '신의 문') vs 발랄(뒤섞다) 말장난, 잘못이 뭐였냐는 3가지 해석, 12:2 "네 이름을 창대케" 대비, 행 2 오순절.
+- 새 인물은 **무리 하나만**: `builders.ts` 「시날의 사람들」 — 같은 일꾼 실루엣 셋 반복(벽돌 판·흙 바구니). 작게, 무대 오른쪽 끝에 서서 탑을 봄. 도감에는 안 넣음.
+- 탑 `src/fx/tower.ts` + `styles/babel.css`: 계단식 지구라트 7층 + 앞 계단. mood로 상태를 바꾸면 층이 아래에서부터 하나씩 솟음. 비계·개미만 한 일꾼·구름 띠.
+  - mood: `shinar`(시날 평지·강·대추야자·갈대) / `brickworks`(벽돌 가마·말리는 벽돌) / `tower-base` / `tower-rising` / `tower-high` / `tower-far`(하늘에서 본 점만 한 탑) / `tower-left`(쌓다 만 탑).
+  - fx: `descend`(빛기둥) / `babble`(말 뒤섞임, `src/fx/babble.ts`) / `scatter`(작은 사람들이 사방으로 걸어 나감).
+
+### 1막 피날레 `#/finale/1` (`src/screens/finale.ts`)
+- 막의 장을 **전부** 끝내면, 마지막으로 끝낸 장면·읽기의 "다음" 버튼이 금빛 **"제1막 끝 · 피날레"** 버튼으로 바뀜 (`engine/codex.ts finaleDue`). "이어서 하기"도 피날레로.
+- 순서: 어둠 속 빛 → 큰 "I" + "제1막 · In Principio" + "태초, 끝" → `act.json`의 `finale` 문장 4줄(탭으로 한 줄씩, 이영도풍) → 핵심 구절 창 1:1 카드 → "이번 막에서 만난 사람들" 인물 카드 10장이 한 장씩 뒤집히며 놓임 → "지도에서 별 켜기" / "인물 도감 보기".
+- 저장: `progress.finales`(본 피날레), `progress.litStops`(점등 연출을 보여 준 별).
+
+### 지도: 별 점등 + 길 잇기 (`screens/map.ts celebrate`)
+- 피날레를 보고 지도에 오면: 새로 켜질 별이 꺼진 채로 있다가 → 금빛 길이 그 별까지 차오름 → 별이 터지듯 켜지고 금빛 고리 두 겹 → "I · 태초 완료 · 별이 켜졌음" 꼬리표 → **다음 별(창 12–50)까지 가는 가는 금빛 길이 그어짐** → 다음 별이 점등. 한 번만 나옴. 모션 줄이기면 연출 없이 바로 켜진 상태.
+- 마지막 켜진 별 → 다음 별 사이 금빛 길은 늘 보임 (`map__path--trail`).
+
+### 인물 도감 `#/people` (`src/screens/people.ts`)
+- 지도 위쪽 오른쪽 **카드 아이콘**으로 들어감. 막별로 인물 카드 격자(폰 3줄, PC 4~5줄). 만난 사람 수 표시.
+- 카드 = 막 색 하늘 + 역광 실루엣 + 이름 + 핵심 구절 위치. 못 만난 인물은 검은 그림자 + "???" + "창 6장쯤".
+- 카드를 누르면 패널: 큰 실루엣, 처음 나오는 곳, 친구 말투 소개, 핵심 구절 카드(+한 줄 번역), "그 장면 다시 보기".
+- 데이터: `data/characters.json` (형식은 CLAUDE.md 6번). 그림은 인물 파일 그대로(`ui/silhouette.ts`가 움직임 없는 그림으로 그림).
+- 검사 스크립트: 도감의 인물 파일·구절·장면이 있는지, 장면 `unlocks` 인물이 도감에 다 있는지, `act.json finale` 형식.
+
+### 확인
+- 폰 390px: 바벨탑 장면 끝까지 3번(일반·모션 줄이기), 장면 끝 → 피날레 버튼 → 피날레 → 지도 별 점등 → 도감 → 인물 패널, 마지막 읽기(창 11:10–32) 끝 → 피날레 버튼, 방주 장면 탭 빨리감기. PC 1440px: 바벨탑 장면 한 번. 콘솔 에러 없음, `npm run build` 통과. **1막 진척: 11 / 11장.**
+
+---
+
 ## 다음 할 일
 
-### 1. Phase 1-4 — 바벨탑 (창 10–11) + 1막 피날레 + 인물 도감 ← 다음 세션은 이것부터
-- 창 10(민족 목록)은 읽기 구간이 어울림. 창 11:1–9 바벨탑 장면, 11:10–32 셈의 족보(아브람까지)는 읽기 구간으로 나눌지 결정.
-- `gen-9-vineyard`에는 아직 `bridge`가 없음(다음 콘텐츠가 없어서). 창 10 만들 때 한 줄 넣기.
-- 막 피날레 시퀀스(`act.json keyVerse` + 인물 카드), 인물 도감 화면, 새 별이 켜지며 길이 이어지는 연출.
+### 1. Phase 2 — 2막 족장들 ← 다음 세션은 이것부터
+- 계획서: `content/acts/02-patriarchs/PLAN.md` (장면 15개 목록·ref, 읽기 구간은 상당수 이미 있음).
+- **여정 지도 mechanic** (`src/mechanics/journey`): 우르 → 하란 → 가나안 … 이동 경로를 고지도 위에 그리는 방식. `act.json mechanic: "journey"`.
+- 첫 장면 `gen-12-call` 「떠나라」(창 12:1-9). 아브람·사래·롯 인물. 1막 피날레 후 지도의 다음 별(창 12–50)이 여기로 이어짐.
+- 2막 테마 색(양피지·장막·별밤) 배경 그림 새로.
 - 하나님은 인물로 그리지 않는다 (빛·불꽃·구름·화면 진동·목소리 텍스트로만).
 
 ---
@@ -250,7 +288,9 @@
 - 하와·아담은 동산 장면에선 처음부터 잎 옷을 입고 있음(실루엣 표현상).
 - 옷은 인물이 무대에서 나갔다 다시 들어오면 기본 옷으로 돌아감 → 다시 들어올 때 beat에 `outfit`을 같이 적어야 함.
 - 제단 돌은 어두운 색이라 폰에서는 불씨·연기 위주로 보임 (가려지던 문제는 고침).
-- 다 지은 방주(`built`)는 가까이서 보면 긴 띠처럼 보임. 46초에 걸쳐 끝에서 끝까지 훑어야 양 끝 모양이 보임.
+- 다 지은 방주(`built`)는 가까이서 보면 긴 띠처럼 보임. 13초 동안 한 번 훑으며 양 끝을 보여 줌(탭하면 빨리 감김).
+- 바벨탑: 일꾼 무리는 한 그림이라 따로 안 움직임. 흩어지는 작은 사람들(`scatter`)은 폰에서는 아주 작게 보임. 무리가 서 있으면 탑 오른쪽 아랫부분이 조금 가려짐.
+- 말 뒤섞임(`babble`)의 히브리·아랍 글자는 기기에 그 글꼴이 없으면 네모로 보일 수 있음 (보통 폰엔 다 있음).
 - 무대에 인물이 서 있으면 방주(짓는 터)의 아랫부분은 인물 뒤에 가려짐. 방주를 보여 주고 싶은 beat에서는 인물을 내보내는 식으로 씀.
 - 세 며느리는 한 그림이라 따로 움직이지 않음.
 - 독(아래 카드)이 커지면 무대 높이가 줄어서 배경·방주가 같이 작아짐 (원래 있던 방식, 크게 거슬리진 않음).
@@ -262,10 +302,11 @@
 - **소리 없음.** 설정 스위치만 있음. Howler.js·소리 파일은 아직 안 넣음.
 - 장면 중간에 나갔다 오면 그 장면 **처음부터** 다시 시작함 (beat 위치는 저장 안 함).
 - 읽기 구간은 읽던 절은 기억하지만, 퀴즈를 풀다 나가면 퀴즈는 1번부터 다시.
-- 장면을 끝내도 지도의 별은 아직 안 켜짐(별은 그 구간 장이 전부 끝나야 켜짐).
+- 장면을 끝내도 지도의 별은 안 켜짐(별은 그 구간 장이 전부 끝나야 켜짐 — 1막은 별이 하나라 1막을 다 끝내야 켜짐).
 - 이 기능 전에 장면을 끝낸 사람은, 나눠 덮인 장(창 2장)이 다음 장면을 끝낼 때 같이 계산됨 (이미 둘 다 끝냈으면 하나를 다시 끝내야 켜짐).
-- `act.json`의 `mechanic`·`keyVerse`는 아직 읽는 화면이 없음 (mechanic 모듈·막 피날레 만들 때 씀).
-- 인물 도감 화면 없음. 막 피날레 없음.
+- `act.json`의 `mechanic`은 아직 읽는 화면이 없음 (mechanic 모듈 만들 때 씀). `keyVerse`·`finale`은 피날레가 씀. **2막 `act.json`엔 아직 `finale` 문장이 없음** — 2막 끝낼 때 넣기.
+- 피날레는 막을 다 끝낸 순간 한 번 나옴. 다시 보려면 주소 `#/finale/1` (따로 버튼은 없음).
+- 이미 1막을 다 끝낸 사람(예: 다른 채팅 콘텐츠로 먼저 끝낸 경우)은 다음에 장면·읽기 하나를 끝낼 때 피날레 버튼이 뜸.
 - `content/glosses.json` 한 줄 번역은 70개 구절에만 있음 (장면은 beat마다 `gloss`를 직접 씀).
 - 지도 패널의 막 분위기 문구(예: "깊은 남색 속에 생겨나는 빛")는 디자인 메모 같은 말투라, 친구 말투로 바꿀지 다음에 결정.
 
@@ -281,6 +322,7 @@
 - **스크린샷 확인:** `npm run build && npx vite preview --port 4173`로 띄운 뒤 Playwright로 찍는다. Google Fonts를 받으려면 `chromium.launch({ proxy: { server: process.env.HTTPS_PROXY, bypass: 'localhost' } })`. (cdn.jsdelivr.net은 작업 환경에서 막혀 있어서 Pretendard를 npm으로 넣었음)
 - **preview 서버 끄기:** `pkill -f "vite preview"`는 쓰지 마. 자기 셸까지 죽는다. 대신 `ps -eo pid,args | grep "[v]ite" | awk '{print $1}' | xargs -r kill`.
 - **기다리기:** `sleep`이 막혀 있음. `timeout 45 tail -f /dev/null` 사용.
+- **preview 주소:** `npx vite preview`는 `http://localhost:4173/#/...`로 열림 (`/bible-road/` 아님 — 빌드가 상대 경로라서). preview를 백그라운드로 띄울 땐 Bash의 run_in_background를 쓰는 게 안전함.
 - **브랜치:** PR이 머지되면 같은 브랜치 이름으로 main에서 다시 시작한다: `git fetch origin main && git checkout -B <브랜치> origin/main`. 그다음 일반 push. force push는 막혀 있고, 필요도 없음.
 - **머지:** GitHub MCP의 `create_pull_request` → `merge_pull_request`(`expectedHeadSha`는 40자 전체). 그다음 `actions_list`로 배포가 성공했는지 확인.
 - **14막 범위 검사:** `node --experimental-strip-types`로 `src/engine/acts.ts`를 불러와서 1,189장이 다 덮이는지 확인할 수 있음.
