@@ -24,6 +24,7 @@ import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
+import { createItemLayer, setItem } from '../fx/tabernacle';
 import { loadCharacter } from '../characters';
 import { inkReveal } from '../fx/ink';
 import { getFieldIntensity, setFieldIntensity, setFieldMode } from '../fx/particles';
@@ -94,6 +95,9 @@ export function sceneScreen({ id }: Params): Screen {
   // 군중 (동작 crowd-*): 언덕 위, 인물들 뒤
   const crowd = createCrowd();
   $('.scene__stage').before(crowd);
+  // 성막 기구 (beat "item"): 인물 앞, 글 상자 뒤
+  const items = createItemLayer();
+  $('.scene__stage').after(items);
   /** 펼쳐 둔 여정 지도 (동작 travel) */
   let travel: TravelMap | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
@@ -171,7 +175,7 @@ export function sceneScreen({ id }: Params): Screen {
           return;
         }
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
-        await hold(Math.max(0.4, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
+        await hold(Math.max(beat.item ? 2.4 : 0.4, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
         if (!alive) return;
       }
     } catch (err) {
@@ -254,8 +258,12 @@ export function sceneScreen({ id }: Params): Screen {
     for (const [who, dir] of Object.entries(beat.face ?? {})) stage.actors.get(who)?.face(dir);
     const mood = beat.bg ?? beat.mood;
     if (mood) applyMood(mood, !fade);
+    // 성막 기구: 화면 전환(fade)이면 어둠 속에서 걷히고, 그 beat에 item이 있으면 화면이 열리며 새로 떠오른다
+    if (fade) setItem(el, items, null, true);
+    else if (beat.item !== undefined) setItem(el, items, beat.item);
     fx.filter((f) => f !== 'fade').forEach(playFx);
     for (const st of all) await perform(st, beat);
+    if (fade && beat.item) setItem(el, items, beat.item);
     if (fade) await fadeScreen(false);
   }
 
@@ -508,6 +516,7 @@ export function sceneScreen({ id }: Params): Screen {
       travel = null;
     }
     stage.actors.forEach((a) => a.setDim(true));
+    setItem(el, items, null);
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
@@ -620,6 +629,7 @@ export function sceneScreen({ id }: Params): Screen {
     gsap.set($('.play__bar span'), { scaleX: 0 });
     applyMood(scene.bg ?? scene.mood ?? ACT_BG[scene.act], false);
     setCrowd(crowd, null);
+    setItem(el, items, null, true);
     travel?.el.remove();
     travel = null;
     gsap.set($('.play__fade'), { opacity: 0 });

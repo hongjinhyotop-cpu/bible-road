@@ -7,6 +7,7 @@ import type { ActionName, PlaceName } from './actions';
 import { loadContent } from './content';
 
 import type { SceneFx } from './moods';
+import type { ItemValue } from './items';
 
 /** 장면 연출 효과 — 목록은 engine/moods.ts의 FX */
 export type { SceneFx };
@@ -29,6 +30,8 @@ interface BeatBase {
   /** mood와 같음 (B급 배경 라이브러리 이름: "tent-night", "well" …) */
   bg?: string;
   fx?: SceneFx | SceneFx[];
+  /** 성막 기구 (engine/items.ts): 무대 가운데 금빛 조명 속에 하나 띄운다. null / "none" = 걷기 */
+  item?: ItemValue;
   /** 동작 라이브러리 (engine/actions.ts). 예: "kneel". 누가 = who (line이면 말하는 사람) */
   act?: ActionName;
   /** 동작하는 사람 (한 명 또는 여럿). line beat에서는 말하는 사람 */

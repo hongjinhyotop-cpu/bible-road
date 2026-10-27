@@ -147,6 +147,7 @@ PROGRESS.md      ← 진행 기록
   - `"act"` + `"who"`(한 명 또는 배열) + `"to"`(상대): 동작 라이브러리. line beat에서는 who 생략 = 말하는 사람이 함. 여러 동작을 동시에: `"acts": [{ "act": "embrace", "who": ["jacob", "esau"] }, { "act": "cry", "who": "esau" }]`
   - `"bg"`(= `"mood"`): 배경 바꾸기 · `"fx"`: 효과 (한 개 또는 배열)
   - `"enter"`, `"exit"`, `"pose"`(neutral/slump/lift/tremble), `"face"`({"eve": "left"}), `"outfit"`(인물 파일의 outfits)
+  - `"item"`: 성막 기구 하나를 무대 가운데 띄움 (아래 "성막 기구") · `"item": null`(또는 `"none"`)이면 걷힘
 
 ### 동작 라이브러리 (`src/engine/actions.ts` — 검사기가 이름·대상을 확인함)
 | 동작 | 뜻 | 누구 |
@@ -176,6 +177,14 @@ PROGRESS.md      ← 진행 기록
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
 - 긴 카메라 연출은 탭하면 빨리 감긴다 (`screens/scene.ts`의 `CAMERA` 목록). 긴 연출은 15초 안으로.
+
+### 성막 기구 (`item`, `src/engine/items.ts` — 그림 `src/fx/tabernacle.ts`, 모양 `styles/tabernacle.css`)
+- 출 25–31·35–40처럼 "기구를 하나씩 보여 주는" 장에 쓴다. beat에 `"item": "ark"` → 위에서 금빛 조명이 내려오고, 기구가 떠오르며 금빛 테두리가 그어지고, 이름표(이름 · 한마디 · 구절)가 나타남. 다른 `item`을 쓰면 앞의 것은 가라앉고 새것이 떠오름. `"item": null` 또는 `"none"` = 걷힘.
+- 이름: `ark`(증거궤+속죄소+두 그룹 날개) `table`(진설병 상, 떡 열두 개) `lampstand`(순금 등대, 일곱 불꽃) `altar`(번제단, 네 뿔·놋) `laver`(물두멍, 물빛) `incense`(분향단, 향 연기) `tent`(성막 전체: 널판·네 겹 덮개·동쪽 문·뜰 포장) `veil`(지성소 휘장: 청·자·홍색 실, 그룹 무늬) `garments`(대제사장 옷: 관 "여호와께 성결"·흉패 열두 보석·에봇·방울과 석류) `court`(뜰 전경: 위에서 비스듬히) `tablets`(두 돌판) `oil`(관유 뿔병·향품)
+- 기구가 떠 있는 동안 인물들은 양옆으로 비켜선다 (폰: 둘이면 양끝, 혼자면 오른쪽). 무대엔 2명까지가 보기 좋다. 하나님의 목소리(voice)가 뜨면 기구는 잠깐 흐려짐.
+- **저절로 걷히는 때:** 화면 전환 `"fx": "fade"`(어둠 속에서 걷힘 — 그 beat에 `item`을 같이 쓰면 화면이 열리며 새로 떠오름), 에피소드 끝(해설 카드). 그냥 `bg`만 바꾸면 남아 있다.
+- `item`만 있는 beat(글 없이)는 떠오르는 걸 2.4초 보여 주고 넘어간다. `item`도 배경·효과 변화로 쳐서 "글만 이어지는 구간" 검사를 끊는다. 이름 오타는 검사기 오류.
+- 미리 보기(숨은 화면): `#/items`, `#/items/lampstand` — 기구·막 색·인물 수를 바꿔 볼 수 있다.
 
 ### 인물 키트 (`src/characters/_kit.ts`) — 조연·B급 인물
 - `base`: `old-man` `man` `youth` `woman` `old-woman` `girl` `child` `soldier` `king` `priest`
