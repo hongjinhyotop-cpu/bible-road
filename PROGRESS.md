@@ -2,7 +2,8 @@
 
 > 세션을 시작할 때 `CLAUDE.md`와 이 파일을 먼저 읽는다. 끝날 때 이 파일을 업데이트한다.
 
-- **사이트 주소:** https://hongjinhyotop-cpu.github.io/bible-road/
+- **사이트 주소:** https://hongjinhyotop-cpu.github.io/bible-road/ (2026-10-27 첫 배포 완료. GitHub Pages 켜짐)
+- **머지:** Claude가 PR 만들고 직접 main에 머지한다 (사용자 허락함)
 - **현재 단계:** Phase 0 — 기반 (타이틀·지도·설정·본문 데이터·배포 완료 / 장면 재생기 남음)
 
 ---
