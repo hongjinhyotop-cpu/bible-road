@@ -1,6 +1,7 @@
 // 플레이 장면(scene) 형식과 재생 순서. 화면 그리기는 screens/scene.ts가 맡고,
 // 여기서는 "다음에 무엇을 보여줄지"만 정한다 (CLAUDE.md 6번).
 import type { Pose } from '../ui/actor';
+import { loadContent } from './content';
 
 /** 장면 연출 효과 */
 export type SceneFx =
@@ -84,32 +85,9 @@ export interface Scene {
 }
 
 // ── 불러오기 ──────────────────────────────────
-// 파일 이름 = 장면 id. content/acts/01-beginning/scenes/gen-1-light.json → "gen-1-light"
-const files = import.meta.glob<Scene>('/content/acts/*/scenes/*.json', { import: 'default' });
-
-const idOf = (path: string) => path.replace(/^.*\/|\.json$/g, '');
-const pathById = new Map(Object.keys(files).map((p) => [idOf(p), p]));
-
-export interface SceneInfo {
-  id: string;
-  title: string;
-  ref: string;
-}
-
-/** 한 막의 장면 목록 (지도 패널). 막 폴더 이름이 "01-..." 처럼 번호로 시작한다. */
-export async function scenesOfAct(act: number): Promise<SceneInfo[]> {
-  const prefix = `/content/acts/${String(act).padStart(2, '0')}-`;
-  const paths = Object.keys(files).filter((p) => p.startsWith(prefix));
-  return Promise.all(paths.map(async (p) => {
-    const s = await files[p]();
-    return { id: s.id, title: s.title, ref: s.ref };
-  }));
-}
-
+// 파일 찾기·목록·순서는 content.ts가 맡는다. 여기서는 형식 검사만.
 export async function loadScene(id: string): Promise<Scene> {
-  const path = pathById.get(id);
-  if (!path) throw new Error(`장면 없음: ${id}`);
-  const scene = await files[path]();
+  const scene = await loadContent<Scene>('scene', id);
   validate(scene);
   return scene;
 }

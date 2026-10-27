@@ -1,5 +1,6 @@
 // 읽기 구간(reading) 형식과 불러오기 (CLAUDE.md 6번).
 // 큰 사건이 아닌 장들: 본문 전체 + 요약 + 해설 + 퀴즈 1~3문항. 화면은 screens/reading.ts.
+import { loadContent } from './content';
 
 export interface QuizItem {
   q: string;
@@ -25,32 +26,9 @@ export interface Reading {
   quiz: QuizItem[];
 }
 
-// 파일 이름 = 읽기 id. content/acts/01-beginning/readings/gen-5.json → "gen-5"
-const files = import.meta.glob<Reading>('/content/acts/*/readings/*.json', { import: 'default' });
-
-const idOf = (path: string) => path.replace(/^.*\/|\.json$/g, '');
-const pathById = new Map(Object.keys(files).map((p) => [idOf(p), p]));
-
-export interface ReadingInfo {
-  id: string;
-  title?: string;
-  ref: string;
-}
-
-/** 한 막의 읽기 구간 목록 (지도 패널) */
-export async function readingsOfAct(act: number): Promise<ReadingInfo[]> {
-  const prefix = `/content/acts/${String(act).padStart(2, '0')}-`;
-  const paths = Object.keys(files).filter((p) => p.startsWith(prefix));
-  return Promise.all(paths.map(async (p) => {
-    const r = await files[p]();
-    return { id: r.id, title: r.title, ref: r.ref };
-  }));
-}
-
+// 파일 찾기·목록·순서는 content.ts가 맡는다. 여기서는 형식 검사만.
 export async function loadReading(id: string): Promise<Reading> {
-  const path = pathById.get(id);
-  if (!path) throw new Error(`읽기 구간 없음: ${id}`);
-  const reading = await files[path]();
+  const reading = await loadContent<Reading>('read', id);
   validate(reading);
   return reading;
 }

@@ -8,6 +8,8 @@ import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
 import { fullChapters, getPassage, type Passage } from '../engine/bible';
 import { completeReading, progress } from '../engine/progress';
+import { nextItem } from '../engine/content';
+import { bindNext, nextButton } from '../ui/next-button';
 import { loadReading, type Reading } from '../engine/reading';
 import { reducedMotion } from '../engine/settings';
 import { inkReveal } from '../fx/ink';
@@ -316,7 +318,9 @@ export function readingScreen({ id }: Params): Screen {
     const total = reading.quiz.length;
     const chapters = await fullChapters(reading.ref).catch(() => []);
     completeReading(reading.id, chapters, correct);
-    progress.set({ last: 'map' });
+    const next = await nextItem('read', reading.id).catch(() => null);
+    // "이어서 하기"는 다음 장면/읽기로 바로 간다
+    progress.set({ last: next ? next.path.slice(1) : 'map' });
     if (!alive) return;
 
     const box = page.querySelector<HTMLElement>('.quiz')!;
@@ -332,18 +336,20 @@ export function readingScreen({ id }: Params): Screen {
         <p class="quiz__line voice-talk"></p>
         <p class="quiz__done ui">${chapters.length ? `${chapters.length}장 읽음 표시 완료` : '읽기 완료'} · 지도에 기록됐음</p>
         <div class="insight__actions">
-          <button class="btn btn--primary" data-map>지도로 돌아가기</button>
+          ${next ? nextButton(next) : ''}
+          <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
           ${total ? '<button class="btn" data-again>퀴즈 다시</button>' : ''}
         </div>
       </div>`;
     box.querySelector('.quiz__line')!.textContent = line;
     box.querySelector('[data-map]')!.addEventListener('click', (e) => go('/map', { x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY }));
+    bindNext(box);
     box.querySelector('[data-again]')?.addEventListener('click', () => {
       qIndex = 0;
       correct = 0;
       renderQuestion(true);
     });
-    box.querySelector<HTMLButtonElement>('[data-map]')!.focus({ preventScroll: true });
+    box.querySelector<HTMLButtonElement>('[data-go-next], [data-map]')!.focus({ preventScroll: true });
 
     // 다 읽은 표시: 금빛 고리가 한 바퀴 그어지고 가운데 별이 켜진다 (지도의 별과 같은 말)
     const rm = reducedMotion();

@@ -132,6 +132,14 @@ PROGRESS.md      ← 진행 기록
 - 장면 끝 카드: `"insight"`(해설) + `"tldr"`(한 줄 요약). `"mood": "void"`면 깜깜한 데서 시작.
 - 파일 이름 = 장면 id. 예: `content/acts/01-beginning/scenes/gen-1-light.json` → 주소 `#/scene/gen-1-light`
 
+### 막 정보 (act.json)
+```json
+{ "act": 1, "title": "태초", "mechanic": "adventure", "keyVerse": "창 1:1" }
+```
+- 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `mechanic` = `src/mechanics`의 모듈 이름, `keyVerse` = 막 피날레 핵심 구절.
+- 장면·읽기 목록·순서·"다음"은 `src/engine/content.ts`가 ref를 보고 자동으로 정한다 (본문 순서). 순서를 따로 적지 않는다.
+- **콘텐츠를 만들거나 고친 뒤 `npm run check:content`** — id·act·ref·겹침·canon·퀴즈 번호 등을 검사한다. `npm run build`도 이걸 먼저 돌리고, 오류가 있으면 빌드가 멈춘다.
+
 ### 읽기 구간 (reading)
 ```json
 {

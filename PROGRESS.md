@@ -7,11 +7,11 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **Phase 0 — 기반** 거의 끝. 남은 것: 콘텐츠 로더 (읽기 구간 화면은 세 번째 채팅에서 완료) |
-| 다음 세션 할 일 | **콘텐츠 폴더와 로더** (아래 "다음 할 일" 1번) |
+| 현재 단계 | **Phase 0 — 기반 끝.** 다음은 Phase 1 (1막 태초 콘텐츠) |
+| 다음 세션 할 일 | **Phase 1 — 1막 태초** (아래 "다음 할 일" 1번) |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
-| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · 읽기 구간 화면 PR(세 번째 채팅) |
+| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · 콘텐츠 로더 PR(네 번째 채팅) |
 
 ---
 
@@ -115,14 +115,32 @@
 
 ---
 
+## 네 번째 채팅 (2026-10-27): 콘텐츠 폴더와 로더
+
+- **공통 로더** `src/engine/content.ts` — 장면·읽기 구간 파일 찾기를 한곳으로 합침 (전엔 `scene.ts`/`reading.ts`에 비슷한 코드가 따로 있었음).
+  - `contentOfAct(막)`: 그 막의 장면+읽기를 **본문 순서**(막의 책 순서 → 장 → 절)로. 막별로 한 번만 불러와서 기억함.
+  - `nextItem(kind, id)`: 본문 순서로 바로 다음 것. 막 끝이면 다음 막의 처음. 없으면 null.
+  - `itemForChapter(막, 책, 장)`: 그 장을 덮는 장면/읽기.
+  - `actContent(막)`: `act.json`. 파일 id≠파일 이름, act≠폴더 번호, 막 범위 밖 ref, 서로 겹치는 구간은 콘솔 경고.
+  - `scene.ts`/`reading.ts`엔 형식(타입)과 형식 검사만 남음.
+- **`content/acts/01-beginning/act.json`** — `{ act, title, mechanic: "adventure", keyVerse: "창 1:1" }`. 형식은 CLAUDE.md 6번.
+- **"다음" 버튼** `src/ui/next-button.ts` — 장면 해설 카드·읽기 결과 카드 맨 위에 "다음 · 플레이/읽기 + 제목" 큰 버튼. 엔터로 바로 넘어감. 다음이 없으면 예전처럼 "지도로 돌아가기"가 주 버튼.
+  - 끝내면 "이어서 하기"가 **다음 것**으로 가게 저장(`last`).
+- **지도 패널 장 번호** — 장면/읽기로 이어지는 장은 눌러짐(테두리 밝음, 촛불 빛). 없는 장은 흐리게. 목록도 `content.ts`에서 받아옴.
+- **콘텐츠 검사** `scripts/check-content.mjs` = `npm run check:content`. `npm run build`가 먼저 돌림(오류면 빌드 멈춤 → 배포도 안 됨).
+  - 검사: id=파일 이름, act=폴더, act.json, ref가 실제 있는 절인지·막 범위 안인지, 겹침, scripture beat 1개 이상, canon 하나, goto, 인물 파일(없으면 주의), 퀴즈 1~3·answer 번호, glosses.json ref.
+  - 마지막에 막별로 "장면·읽기 N개 · 덮은 장 / 전체 장" 표시 → 1,189장 채워 가는 진척표로 쓰면 됨.
+- 확인: 390px·1440px — 지도 패널 → 장 번호 2 → 장면 끝까지 → "다음: 그리고 죽었더라" → 읽기 → 퀴즈 → 결과(1막 마지막이라 다음 없음) → 지도에서 완료 표시. 콘솔 에러 없음. 일부러 틀린 파일로 검사 스크립트가 잡는 것도 확인.
+
+---
+
 ## 다음 할 일
 
-### 1. 콘텐츠 폴더와 로더 ← 다음 세션은 이것부터
-- `content/acts/01-beginning/act.json` (scenes·readings 폴더는 이미 됨)
-- 지도 패널의 장 번호를 실제 장면·읽기 구간과 연결. 장면·읽기가 끝나면 "다음"으로 이어지게 (지금은 둘 다 지도로만 돌아감).
-- 장면 목록·읽기 목록을 막마다 한 번에 불러오는 공통 로더로 합치기 (지금은 `scene.ts`/`reading.ts`에 비슷한 코드가 따로 있음).
+### 1. Phase 1 — 1막 태초 (창 1–11) ← 다음 세션은 이것부터
+- 창 1–11 전체를 장면/읽기로 채우기. 지금 있는 것: `gen-1-light`(창 1:1–2:3 장면), `gen-5`(읽기). **창 2:4부터 이어서.** `npm run check:content`로 덮은 장 수 확인.
+- 콘텐츠 원칙(CLAUDE.md 7번)·말투(7-1) 다시 읽고 시작.
 
-### 2. Phase 1 — 1막 태초 (창 1–11)
+### 2. Phase 1 나머지 (1막 연출)
 - 창조, 에덴, 가인과 아벨, 노아, 바벨탑. 인물: 하와, 가인, 아벨, 노아 등 실루엣.
 - **하나님은 인물로 그리지 않는다** (빛·불꽃·구름·화면 진동·목소리 텍스트로만).
 - 첫 막 피날레 시퀀스, 인물 도감 화면, 새 별이 켜지며 길이 이어지는 연출.
@@ -146,9 +164,10 @@
 ### 기능 빈칸
 - **소리 없음.** 설정 스위치만 있음. Howler.js·소리 파일은 아직 안 넣음.
 - 장면 중간에 나갔다 오면 그 장면 **처음부터** 다시 시작함 (beat 위치는 저장 안 함).
-- 장면·읽기가 끝나면 지도로만 돌아감. "다음" 버튼은 콘텐츠 로더(다음 할 일 1번) 때.
 - 읽기 구간도 중간에 나갔다 오면 처음부터(스크롤 위치·퀴즈 진행 저장 안 함).
-- 지도 패널의 장 번호는 눌러도 아무 일 없음. 장면을 끝내도 지도의 별은 아직 안 켜짐(별은 그 구간 장이 전부 끝나야 켜짐).
+- 장면을 끝내도 지도의 별은 아직 안 켜짐(별은 그 구간 장이 전부 끝나야 켜짐).
+- 장면이 장 일부만 덮으면(예: 창 1:1–2:3의 2장) 그 장은 완료 표시가 안 됨. 나머지 절을 덮는 콘텐츠가 생겨도 지금은 "장 하나를 여러 파일이 나눠 덮는" 경우를 합쳐서 완료 처리하지 않음 → Phase 1에서 2장을 채울 때 같이 고치기.
+- `act.json`의 `mechanic`·`keyVerse`는 아직 읽는 화면이 없음 (mechanic 모듈·막 피날레 만들 때 씀).
 - 인물 도감 화면 없음. 막 피날레 없음.
 - 한 줄 번역은 70개 구절에만 있음.
 - 지도 패널의 막 분위기 문구(예: "깊은 남색 속에 생겨나는 빛")는 디자인 메모 같은 말투라, 친구 말투로 바꿀지 다음에 결정.
