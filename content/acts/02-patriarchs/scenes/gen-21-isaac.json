@@ -62,7 +62,6 @@
     { "type": "line", "who": "abimelech", "act": "step-back", "text": "“누가 그랬는지 나는 모르오. 그대도 말해 주지 않았고, 나도 듣지 못했소. 오늘 처음 듣소.”" },
     { "type": "narration", "text": "모른다는 말은 세 번 반복되었다. 한 번이면 해명이고, 세 번이면 외교다." },
     { "type": "line", "who": "abraham", "text": "“이 암양 새끼 일곱 마리를 내 손에서 받으시오. 이 우물을 내가 팠다는 증거로.”" },
-    { "type": "scripture", "ref": "창 21:30-31", "gloss": "아브라함: “이 어린 암양 일곱 받아. 이 우물 내가 판 거라는 증거임.” 둘이 거기서 맹세해서 그곳 이름이 브엘세바(맹세의 우물 / 일곱의 우물). 사막 버전 등기부등본." },
     { "type": "narration", "exit": ["abimelech", "phicol"], "act": "kneel", "who": "abraham", "text": "왕과 장관은 블레셋 땅으로 돌아갔다. 아브라함은 브엘세바에 에셀나무를 심었다. 떠돌던 사람이 나무를 심는 것은, 오래 머물겠다는 말을 땅에게 하는 것이다." },
     { "type": "narration", "fx": "glory", "act": "pray", "who": "abraham", "text": "그리고 거기서, 영생하시는 하나님 여호와의 이름을 불렀다." },
     { "fx": "fade", "bg": "tent-dusk", "exit": ["abraham"], "enter": ["isaac"] },

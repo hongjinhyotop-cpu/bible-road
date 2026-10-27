@@ -54,8 +54,7 @@
     { "type": "narration", "act": "leave", "who": "hagar", "text": "그녀는 왔던 길을 되짚었다. 도망치는 길보다 돌아가는 길이 더 멀다. 거리는 같아도 그렇다." },
     { "bg": "tent-dawn", "fx": "fade", "enter": ["abraham", "hagar"] },
     { "type": "narration", "enter": ["ishmael"], "text": "하갈은 아들을 낳았다. 아브람은 그 아이를 이스마엘이라 이름했다. 광야에서 들은 그 이름 그대로." },
-    { "type": "narration", "act": "bless", "who": "abraham", "text": "아브람은 여든여섯이었다. 아들이 생겼다. 약속의 아들인지는, 아직 아무도 묻지 않았다." },
-    { "type": "scripture", "ref": "창 16:15-16", "gloss": "하갈이 아들 낳고, 아브람이 이름을 이스마엘이라 지음. 이때 아브람 86세. 하갈이 광야에서 들은 이름을 그대로 전했다는 뜻임." }
+    { "type": "narration", "act": "bless", "who": "abraham", "text": "아브람은 여든여섯이었다. 아들이 생겼다. 약속의 아들인지는, 아직 아무도 묻지 않았다." }
   ],
   "branches": {
     "b-why": [
