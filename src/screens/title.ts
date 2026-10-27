@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import type { Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { getPassage } from '../engine/bible';
-import { hasSave, progress } from '../engine/progress';
+import { continuePath, hasSave, progress } from '../engine/progress';
 import { reducedMotion, settings } from '../engine/settings';
 import { inkReveal } from '../fx/ink';
 import { setFieldIntensity, setFieldMode } from '../fx/particles';
@@ -93,7 +93,7 @@ export function titleScreen(): Screen {
       progress.set({ startedAt: progress.get().startedAt ?? Date.now(), last: 'map' });
       go('/map', from(e));
     });
-    continueBtn.addEventListener('click', (e) => go('/map', from(e)));
+    continueBtn.addEventListener('click', (e) => go(continuePath(), from(e)));
 
     // 본문은 데이터에서 가져온다: "태초에" 다음 부분이 이어서 번진다.
     let rest = '하나님이 천지를 창조하시니라';

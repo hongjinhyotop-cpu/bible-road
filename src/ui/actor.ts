@@ -159,6 +159,16 @@ export class Stage {
     return actor;
   }
 
+  /** 무대에서 내보낸다 (천천히 흐려지며 사라짐) */
+  async remove(id: string): Promise<void> {
+    const a = this.actors.get(id);
+    if (!a) return;
+    this.actors.delete(id);
+    this.el.dataset.count = String(this.actors.size);
+    await gsap.to(a.el, { opacity: 0, y: 10, duration: reducedMotion() ? 0.2 : 0.9, ease: 'power2.in' });
+    a.destroy();
+  }
+
   /** id = 말하는 인물. null이면 내레이션(모두 보통 밝기). */
   setSpeaker(id: string | null): void {
     for (const [key, a] of this.actors) {

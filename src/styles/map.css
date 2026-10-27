@@ -156,3 +156,14 @@
   border: 1px solid rgba(239, 230, 210, 0.08);
 }
 .stop__chapters li.done { color: var(--gold-bright); border-color: var(--line-strong); }
+
+/* 패널의 장면 목록 */
+.stop__scenes { list-style: none; margin: 4px 0 22px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.stop__scene {
+  width: 100%; min-height: 60px; padding: 10px 20px; border-radius: 16px;
+  flex-direction: column; align-items: flex-start; gap: 0; text-align: left; letter-spacing: 0.06em;
+}
+.stop__scene-title { font-size: 1.0625rem; }
+.stop__scene-ref { color: var(--ivory-faint); letter-spacing: 0.04em; }
+.stop__scene.is-done { border-color: var(--line-strong); }
+.stop__scene.is-done .stop__scene-ref { color: var(--gold); }
