@@ -1,0 +1,94 @@
+{
+  "id": "gen-21-isaac",
+  "act": 2,
+  "grade": "B",
+  "title": "하나님이 나로 웃게 하시니",
+  "ref": "창 21",
+  "bg": "tent-dawn",
+  "cast": ["abraham", "sarah"],
+  "extras": {
+    "isaac-boy": { "name": "이삭", "base": "child", "tint": "white" },
+    "hagar": { "name": "하갈", "base": "woman", "hair": "tied", "tint": "white", "props": ["bundle"] },
+    "ishmael": { "name": "이스마엘", "base": "youth", "hair": "short" },
+    "ishmael-grown": { "name": "이스마엘", "base": "man", "hair": "shaggy", "beard": "short", "props": ["bow"], "tint": "brown" },
+    "abimelech": { "name": "아비멜렉", "base": "king", "hair": "crown", "beard": "short", "tint": "purple" },
+    "phicol": { "name": "비골", "base": "soldier", "hair": "helmet", "props": ["spear", "shield"] }
+  },
+  "beats": [
+    { "type": "narration", "text": "기록은 이 장을 아주 담담하게 시작한다. 여호와께서 그 말씀대로 사라를 돌아보셨다고. 이십오 년 걸린 일을, 한 줄로." },
+    { "type": "scripture", "ref": "창 21:1-2", "gloss": "하나님이 말씀하신 대로 사라를 찾아오심. 사라가 임신해서, 딱 말씀하신 그 시기에 늙은 아브라함한테 아들을 낳아 줌. 약속 그대로. 오차 0." },
+    { "type": "narration", "act": "look-up", "who": "sarah", "text": "아브라함은 백 살이었다. 사라는 아흔이었다. 그 나이에 아기 울음소리가 나는 장막은, 근방에 하나뿐이었다." },
+    { "type": "narration", "text": "아이의 이름은 이삭이었다. ‘그가 웃는다’는 뜻이다. 이름은 하나님이 미리 정해 두셨다. 일 년 전 장막 뒤에서 몰래 웃던 사람에게, 하나님은 그 웃음을 이름으로 돌려주셨다." },
+    { "type": "line", "who": "sarah", "act": "bless", "text": "“사라가 젖을 먹이겠다고, 누가 아브라함에게 말이나 했겠어요. 그런데 내가, 이 늙은 영감에게 아들을 낳아 줬어요.”" },
+    { "type": "line", "who": "abraham", "text": "“늙은 영감이라니. 아흔 먹은 산모가 할 소리는 아니지.”" },
+    { "type": "scripture", "ref": "창 21:6", "gloss": "사라: “하나님이 나를 웃게 하셨어. 이 소식 듣는 사람 다 나랑 같이 웃을 거야.” 18장에서 ‘말이 되냐ㅋ’ 하고 비웃던 그 웃음이, 이제 기뻐서 터지는 웃음이 됨." },
+    { "bg": "tent", "fx": "fade", "enter": ["isaac-boy", "hagar", "ishmael"] },
+    { "type": "narration", "act": "crowd", "text": "아이가 자라 젖을 떼는 날, 아브라함은 큰 잔치를 열었다. 고기가 구워지고 사람들이 모였다. 잔치는 대개 웃음으로 시작한다. 끝이 어떨지는, 시작할 때 아무도 모른다." },
+    { "type": "narration", "act": "face", "who": "ishmael", "to": "isaac-boy", "text": "열여섯 살 남짓 된 소년이 있었다. 이집트 여종 하갈이 낳은 아브라함의 맏아들. 그가 어린 이삭을 두고 웃었다. 기록은 그 웃음이 어떤 웃음이었는지 길게 말하지 않는다. 사라가 그것을 보았다는 것만 말한다." },
+    { "type": "line", "who": "sarah", "act": "approach", "to": "abraham", "text": "“이 여종과 그 아들을 내보내세요. 이 종의 아들은 내 아들 이삭과 함께 유업을 받을 수 없어요.”" },
+    { "type": "narration", "act": "crowd-away", "text": "잔치는 거기서 식었다." },
+    { "type": "narration", "bg": "tent-night", "fx": "fade", "exit": ["sarah", "isaac-boy", "hagar", "ishmael"], "act": "bow-head", "who": "abraham", "text": "그날 밤 아브라함은 혼자 앉아 있었다. 깊이 근심했다고 기록은 적는다. 내보내라는 그 아이도, 그의 아들이었다." },
+    { "type": "voice", "fx": "glory", "text": "네 아이나 네 여종을 위하여 근심치 말고 사라가 네게 이른 말을 다 들으라" },
+    { "type": "voice", "text": "여종의 아들도 네 씨니 내가 그로 한 민족을 이루게 하리라" },
+    { "type": "scripture", "ref": "창 21:12-13", "gloss": "하나님: “걱정 마. 사라 말대로 해. 약속의 계보는 이삭으로 감. 근데 여종의 아들도 네 자식이니까, 걔도 큰 민족 되게 해 줄게.” 내보내도 버리는 게 아니라는 보증." },
+    { "bg": "tent-dawn", "fx": "fade", "enter": ["hagar", "ishmael"], "act": "stand", "who": "abraham" },
+    { "type": "narration", "act": "approach", "who": "abraham", "to": "hagar", "text": "아침 일찍이었다. 아브라함은 떡과 물 한 가죽부대를 하갈의 어깨에 메워 주었다. 부자의 이별치고는 짐이 가벼웠다. 그는 무거운 것을 다 자기 쪽에 남겨 두었다." },
+    { "act": "leave", "who": ["hagar", "ishmael"] },
+    { "type": "narration", "act": "travel", "to": "beersheba", "text": "하갈은 아이를 데리고 브엘세바 들로 나갔다. 길은 없었다. 방황했다고, 기록은 적는다." },
+    { "bg": "wilderness", "fx": ["fade", "dust"], "exit": ["abraham"], "enter": ["hagar", "ishmael"] },
+    { "type": "narration", "act": "fall", "who": "ishmael", "text": "가죽부대의 물이 다했다. 광야에서 그 말은 다른 모든 말을 끝낸다. 하갈은 아이를 떨기나무 그늘 아래 뉘었다." },
+    {
+      "type": "choice",
+      "prompt": "하갈은 어떻게 할까?",
+      "options": [
+        { "label": "아이 곁에 남아 손을 잡는다", "goto": "b-stay" },
+        { "label": "차마 못 보고, 떨어져 앉는다", "canon": true }
+      ]
+    },
+    { "type": "narration", "act": "turn", "who": "hagar", "text": "그녀는 활 한 바탕쯤 걸어가 앉았다. 아이가 보이는 곳. 그러나 손은 닿지 않는 곳." },
+    { "type": "line", "who": "hagar", "act": "cry", "text": "“아이가 죽는 걸, 나는 못 보겠어.”" },
+    { "type": "narration", "text": "그녀는 소리를 높여 울었다. 그리고 아이도 울고 있었다. 기록은 여기서 이상한 말을 한다. 하나님이 들으신 것은, 아이의 소리였다고." },
+    { "type": "voice", "fx": "glory", "text": "하갈아 무슨 일이냐 두려워 말라 하나님이 저기 있는 아이의 소리를 들으셨나니" },
+    { "type": "scripture", "ref": "창 21:17", "gloss": "하나님이 아이의 소리를 들으심. 천사가 하늘에서 부름: “하갈아, 무슨 일이야? 무서워하지 마. 하나님이 저 아이 목소리 들으셨어.” 이스마엘 이름 뜻이 ‘하나님이 들으신다’임. 이름값 그대로 됨." },
+    { "type": "voice", "text": "일어나 아이를 일으켜 네 손으로 붙들라 그로 큰 민족을 이루게 하리라" },
+    { "type": "narration", "act": "look-up", "who": "hagar", "text": "하나님이 하갈의 눈을 밝히셨다. 샘이 있었다. 처음부터 거기 있었는지, 그때 생겼는지 기록은 말하지 않는다. 절망한 사람은 대개, 바로 앞에 있는 것부터 못 본다." },
+    { "type": "narration", "act": "approach", "who": "hagar", "to": "ishmael", "text": "그녀는 가죽부대에 물을 채워 아이에게 먹였다." },
+    { "act": "stand", "who": ["hagar", "ishmael"] },
+    { "type": "narration", "fx": "fade", "exit": ["hagar", "ishmael"], "enter": ["ishmael-grown"], "text": "하나님이 그 아이와 함께 계셨다. 아이는 광야에서 자랐고, 활 쏘는 사람이 되었다. 바란 광야에 살았고, 어머니는 그에게 이집트 여인을 아내로 얻어 주었다. 쫓겨난 아이의 이야기는, 거기서 끝나지 않았다." },
+    { "bg": "well", "fx": "fade", "exit": ["ishmael-grown"], "enter": ["abraham", "abimelech", "phicol"] },
+    { "type": "line", "who": "abimelech", "text": "“그대가 무엇을 하든 하나님이 그대와 함께 계시는 게 보이오. 그러니 여기서 맹세하시오. 나와 내 아들과 내 손자에게 거짓되이 행하지 않겠다고.”" },
+    { "type": "narration", "text": "왕이 나그네에게 맹세를 청했다. 군대 장관까지 데리고. 강한 쪽이 먼저 평화를 청할 때는, 대개 상대가 생각보다 강해졌다는 뜻이다." },
+    { "type": "line", "who": "abraham", "act": "approach", "to": "abimelech", "text": "“맹세하지요. 그런데 그 전에 하나만. 왕의 종들이 내가 판 우물을 빼앗았소.”" },
+    { "type": "line", "who": "abimelech", "act": "step-back", "text": "“누가 그랬는지 나는 모르오. 그대도 말해 주지 않았고, 나도 듣지 못했소. 오늘 처음 듣소.”" },
+    { "type": "narration", "text": "모른다는 말은 세 번 반복되었다. 한 번이면 해명이고, 세 번이면 외교다." },
+    { "type": "line", "who": "abraham", "text": "“이 암양 새끼 일곱 마리를 내 손에서 받으시오. 이 우물을 내가 팠다는 증거로.”" },
+    { "type": "scripture", "ref": "창 21:30-31", "gloss": "아브라함: “이 어린 암양 일곱 받아. 이 우물 내가 판 거라는 증거임.” 둘이 거기서 맹세해서 그곳 이름이 브엘세바(맹세의 우물 / 일곱의 우물). 사막 버전 등기부등본." },
+    { "type": "narration", "exit": ["abimelech", "phicol"], "act": "kneel", "who": "abraham", "text": "왕과 장관은 블레셋 땅으로 돌아갔다. 아브라함은 브엘세바에 에셀나무를 심었다. 떠돌던 사람이 나무를 심는 것은, 오래 머물겠다는 말을 땅에게 하는 것이다." },
+    { "type": "narration", "fx": "glory", "act": "pray", "who": "abraham", "text": "그리고 거기서, 영생하시는 하나님 여호와의 이름을 불렀다." },
+    { "fx": "fade", "bg": "tent-dusk", "exit": ["abraham"], "enter": ["isaac"] },
+    { "type": "narration", "act": "look-up", "who": "isaac", "text": "웃음이라는 이름의 아이는 자랐다. 그 아이가 웃음 말고 무엇을 짊어지게 될지는, 아직 아무도 몰랐다." }
+  ],
+  "branches": {
+    "b-stay": [
+      { "type": "narration", "text": "하갈은 아이 곁에 앉으려 했다. 그러나 목이 타는 아이의 숨소리를 한 뼘 거리에서 듣는 일은, 어머니에게 너무 무거웠다." },
+      { "type": "narration", "text": "본문은 그녀가 활 한 바탕쯤 떨어져 앉았다고 적는다. 버린 게 아니다. 볼 수는 있고, 견딜 수는 없는 거리였다." }
+    ]
+  },
+  "insight": "25년 기다린 약속이 드디어 이루어지는 장임. 75세에 ‘네 자손에게 이 땅을 주겠다’ 듣고 100세에 첫아들. 롤로 치면 25년짜리 랭겜 끝에 첫 승. 그래서 키워드가 ‘웃음’임. 이삭이라는 이름 자체가 히브리어로 ‘그가 웃는다’거든. 못 믿어서 웃던 사람들이, 기뻐서 웃게 됨.\n\n이스마엘이 이삭을 ‘희롱했다’(창 21:9)는 부분은 여러 해석이 있음. 여기 쓰인 단어가 ‘웃다’랑 같은 뿌리라서, ① 놀리고 비웃었다는 관점, ② 그냥 같이 놀았는데 사라가 상속 문제로 예민하게 봤다는 관점, ③ 갈라디아서 4장처럼 ‘핍박’으로 읽는 관점이 있음. 본문은 판정을 길게 안 내림. 대신 쫓겨난 쪽을 끝까지 따라감.\n\n그게 포인트임. 이스마엘 이름 뜻이 ‘하나님이 들으신다’(창 16:11)인데, 광야에서 진짜로 ‘하나님이 아이의 소리를 들으셨나니’가 나옴. 약속의 줄기는 이삭으로 가지만, 하나님은 줄기 밖으로 밀려난 엄마랑 아이도 안 버리심.\n\n브엘세바는 ‘맹세의 우물’ 또는 ‘일곱의 우물’로 읽힘(히브리어로 ‘맹세’랑 ‘일곱’ 소리가 비슷함). 광야에서 우물은 생존권이라 우물 분쟁은 진짜 큰일이었음. 에셀나무는 보통 사막에서 잘 버티는 위성류(타마리스크)로 봄. 나그네가 나무를 심었다는 거, 여기 오래 있겠다는 뜻으로 읽을 수 있음.",
+  "tldr": "비웃던 웃음이 기쁜 웃음이 되고, 쫓겨난 아이의 울음도 하나님이 들으심.",
+  "quiz": [
+    {
+      "q": "이삭이 태어났을 때 아브라함의 나이는?",
+      "options": ["75세", "86세", "99세", "100세"],
+      "answer": 3,
+      "why": "‘아브라함이 그 아들 이삭을 낳을 때에 백세라’(창 21:5). 75세는 하란을 떠날 때, 86세는 이스마엘이 태어날 때, 99세는 할례 언약 때임."
+    },
+    {
+      "q": "광야에서 물이 떨어졌을 때, 하나님은 무엇을 들으셨다고 나오나?",
+      "options": ["아이의 소리", "하갈의 기도", "아브라함의 간구"],
+      "answer": 0,
+      "why": "울면서 소리 낸 건 하갈인데, 본문은 ‘하나님이 그 아이의 소리를 들으시므로’(창 21:17)라고 함. 이스마엘 이름 뜻 ‘하나님이 들으신다’랑 딱 맞아떨어짐."
+    }
+  ],
+  "unlocks": { "characters": ["isaac"] }
+}

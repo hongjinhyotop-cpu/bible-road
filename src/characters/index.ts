@@ -45,6 +45,8 @@ export interface CharacterDef {
   height?: number;
   /** 무대에서 차지하는 사람 수 (기본 1). 여럿을 한 그림에 묶은 무리(세 며느리)는 2 */
   slots?: number;
+  /** 옷 색 (키트의 tint). 막 테마색 위에 살짝 섞인다 */
+  tint?: string;
   art: SvgArt | ImageArt;
 }
 

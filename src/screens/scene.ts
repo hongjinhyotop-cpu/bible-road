@@ -1,6 +1,7 @@
-// 장면 재생기 화면 (#/scene/gen-1-light).
-// 무대(인물 실루엣) + 아래 독(dock)에 한 번에 하나씩: 이야기 글 / 본문 카드 / 선택지 / 해설.
-// 탭·스페이스·엔터 = 다음 (글이 번지는 중이면 먼저 전체 표시), 숫자키 = 선택지.
+// 에피소드 재생기 화면 (#/scene/gen-1-light).
+// 무대(인물 실루엣) + 아래 독(dock)에 한 번에 하나씩: 이야기 글 / 본문 카드 / 선택지 / 퀴즈 / 해설.
+// 탭·스페이스·엔터 = 다음 (글이 번지는 중이면 먼저 전체 표시), 숫자키 = 선택지·퀴즈 보기.
+// B급 에피소드는 동작 라이브러리(engine/actions.ts)·배경 라이브러리(fx/places.ts)·키트 인물(characters/_kit.ts)로 움직인다.
 import gsap from 'gsap';
 import type { Params, Screen } from '../engine/router';
 import { go } from '../engine/router';
@@ -9,9 +10,16 @@ import { completeScene, progress } from '../engine/progress';
 import { chaptersDoneWith, nextItem } from '../engine/content';
 import { bindNext, finaleButton, nextButton } from '../ui/next-button';
 import { finaleDue } from '../engine/codex';
-import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
+import { loadScene, SceneCursor, type ActionStep, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
-import { moodOf } from '../engine/moods';
+import { ACT_BG, moodOf } from '../engine/moods';
+import { ACTIONS } from '../engine/actions';
+import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
+import { showTravel, type TravelMap } from '../fx/travel';
+import { runQuiz, type QuizRun } from '../ui/quiz';
+import { openPassage } from '../ui/passage';
+import { person } from '../characters/_kit.ts';
+import type { CharacterDef } from '../characters';
 import { backdropSvg, bowSvg, fitBackdrops } from '../fx/backdrop';
 import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
@@ -27,7 +35,7 @@ import { revealScripture, scriptureCard } from '../ui/scripture-card';
 import { openSettings } from '../ui/settings-sheet';
 import { isSheetOpen } from '../ui/sheet';
 
-type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
+type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'quiz' | 'end';
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback']);
@@ -42,9 +50,11 @@ export function sceneScreen({ id }: Params): Screen {
     <div class="play__dusk" aria-hidden="true"></div>
     <div class="play__storm" aria-hidden="true"></div>
     <div class="play__clear" aria-hidden="true"></div>
+    <div class="play__night" aria-hidden="true"></div>
     <header class="play__head">
       <button class="icon-btn" data-back aria-label="지도로 가기">${icons.back}</button>
       <p class="play__title"><span class="latin play__numeral"></span><span class="play__name"></span></p>
+      <button class="icon-btn" data-text aria-label="본문 전체 보기">${icons.book}</button>
       <button class="icon-btn" data-settings aria-label="설정">${icons.settings}</button>
       <div class="play__bar" aria-hidden="true"><span></span></div>
     </header>
@@ -66,7 +76,8 @@ export function sceneScreen({ id }: Params): Screen {
       <h1 class="play__intro-title"></h1>
       <p class="play__intro-ref ui"></p>
     </div>
-    <div class="play__flash" aria-hidden="true"></div>`;
+    <div class="play__flash" aria-hidden="true"></div>
+    <div class="play__fade" aria-hidden="true"></div>`;
 
   const $ = <T extends HTMLElement>(s: string) => el.querySelector<T>(s)!;
   const dock = $('.dock');
@@ -81,6 +92,14 @@ export function sceneScreen({ id }: Params): Screen {
   // 바벨탑 (창 11): 배경 바로 앞, 언덕 뒤에 선다 (탑 발치가 가까운 언덕에 살짝 묻힌다)
   const tower = createTower();
   $('.scene__backdrop').after(tower);
+  // 군중 (동작 crowd-*): 언덕 위, 인물들 뒤
+  const crowd = createCrowd();
+  $('.scene__stage').before(crowd);
+  /** 펼쳐 둔 여정 지도 (동작 travel) */
+  let travel: TravelMap | null = null;
+  /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
+  let skipHold: (() => void) | null = null;
+  let quiz: QuizRun | null = null;
 
   let scene: Scene | null = null;
   let cursor: SceneCursor | null = null;
@@ -101,6 +120,10 @@ export function sceneScreen({ id }: Params): Screen {
   }
 
   function advance() {
+    if (skipHold) {
+      skipHold();
+      return;
+    }
     if (busy || isSheetOpen()) return;
     if (mode === 'intro') {
       anim?.progress(1);
@@ -139,17 +162,38 @@ export function sceneScreen({ id }: Params): Screen {
     if (!cursor || !scene) return;
     busy = true;
     try {
-      const beat = cursor.next();
-      gsap.to($('.play__bar span'), { scaleX: cursor.progress, duration: 0.6, ease: 'power2.out' });
-      if (!beat) return await finish();
-      await stageChanges(beat);
-      if (!alive) return;
-      await show(beat);
+      for (;;) {
+        const beat = cursor.next();
+        gsap.to($('.play__bar span'), { scaleX: cursor.progress, duration: 0.6, ease: 'power2.out' });
+        if (!beat) return await finish();
+        await stageChanges(beat);
+        if (!alive) return;
+        if (beat.type && beat.type !== 'act') {
+          await show(beat);
+          return;
+        }
+        // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
+        await hold(Math.max(0.4, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
+        if (!alive) return;
+      }
     } catch (err) {
       console.error(err);
     } finally {
       busy = false;
     }
+  }
+
+  function hold(sec: number): Promise<void> {
+    const ms = (reducedMotion() ? Math.min(sec, 0.6) : sec) * 1000;
+    return new Promise((resolve) => {
+      const done = () => {
+        clearTimeout(t);
+        skipHold = null;
+        resolve();
+      };
+      const t = setTimeout(done, ms);
+      skipHold = done;
+    });
   }
 
   async function show(beat: Beat) {
@@ -158,7 +202,7 @@ export function sceneScreen({ id }: Params): Screen {
       case 'narration':
       case 'line': {
         stage.setSpeaker(beat.type === 'line' ? beat.who : null);
-        const name = beat.type === 'line' ? (stage.actors.get(beat.who)?.def.name ?? (await loadCharacter(beat.who)).name) : '';
+        const name = beat.type === 'line' ? (scene?.names?.[beat.who] ?? stage.actors.get(beat.who)?.def.name ?? (await castDef(beat.who)).name) : '';
         await showText(beat.text, name);
         break;
       }
@@ -182,23 +226,113 @@ export function sceneScreen({ id }: Params): Screen {
     }
   }
 
-  // ── 무대: 등장·퇴장·자세·효과 ──────────────────
+  // ── 무대: 등장·퇴장·자세·동작·효과 ──────────────
+  const isB = () => scene?.grade === 'B';
+
+  /** beat의 동작들 (act + acts) */
+  function steps(beat: Beat): ActionStep[] {
+    const out: ActionStep[] = [...(beat.acts ?? [])];
+    if (beat.act) out.unshift({ act: beat.act, who: beat.who, to: beat.to, from: beat.from, via: beat.via });
+    return out;
+  }
+
   async function stageChanges(beat: Beat) {
-    for (const who of beat.exit ?? []) void stage.remove(who);
+    const fx = beat.fx == null ? [] : Array.isArray(beat.fx) ? beat.fx : [beat.fx];
+    // 화면 전환(fade): 까맣게 닫고, 그 사이에 배경·인물을 바꾼 뒤 연다
+    const fade = fx.includes('fade');
+    if (fade) await fadeScreen(true);
+    const all = steps(beat);
+    // 여정 지도: 이번 beat에 travel이 없으면 접는다
+    const trip = all.find((st) => st.act === 'travel');
+    if (!trip && travel) {
+      void travel.hide();
+      travel = null;
+    }
+    for (const who of beat.exit ?? []) void (isB() ? stage.walkOut(who) : stage.remove(who));
     await Promise.all((beat.enter ?? []).map((who) => addActor(who, true)));
     // 이번에 막 들어온 인물은 처음부터 그 옷을 입고 나온다
     for (const [who, name] of Object.entries(beat.outfit ?? {})) stage.actors.get(who)?.outfit(name, !beat.enter?.includes(who));
     for (const [who, pose] of Object.entries(beat.pose ?? {})) stage.actors.get(who)?.pose(pose);
     for (const [who, dir] of Object.entries(beat.face ?? {})) stage.actors.get(who)?.face(dir);
-    if (beat.mood) applyMood(beat.mood, true);
-    const fx = beat.fx == null ? [] : Array.isArray(beat.fx) ? beat.fx : [beat.fx];
-    fx.forEach(playFx);
+    const mood = beat.bg ?? beat.mood;
+    if (mood) applyMood(mood, !fade);
+    fx.filter((f) => f !== 'fade').forEach(playFx);
+    for (const st of all) await perform(st, beat);
+    if (fade) await fadeScreen(false);
   }
 
-  async function addActor(who: string, animate: boolean): Promise<Actor | undefined> {
+  /** 동작 하나를 무대에서 한다 (engine/actions.ts) */
+  async function perform(st: ActionStep, beat: Beat) {
+    const who = [st.who ?? (beat.type === 'line' ? beat.who : undefined)].flat().filter((w): w is string => !!w);
+    const info = ACTIONS[st.act];
+    if (!info) return console.warn(`[${scene?.id}] 동작 없음: ${st.act}`);
+    if (st.act === 'travel') {
+      if (!st.to) return;
+      travel = showTravel($('.scene'), { from: st.from, to: st.to as never, via: st.via }, travel);
+      return;
+    }
+    if (st.act.startsWith('crowd')) {
+      const state = (st.act === 'crowd' ? 'in' : st.act.slice(6)) as CrowdState;
+      setCrowd(crowd, state);
+      return;
+    }
+    // walk-in: 무대에 없으면 세우면서 걸어 들어온다
+    if (st.act === 'walk-in') {
+      for (const w of who) if (!stage.actors.has(w)) await addActor(w, true, 'walk');
+      return;
+    }
+    const actors = who.map((w) => stage.actors.get(w)).filter((a): a is Actor => !!a);
+    const other = st.to ? stage.actors.get(st.to) : undefined;
+    switch (st.act) {
+      case 'walk-out':
+        who.forEach((w) => void stage.walkOut(w));
+        return;
+      case 'leave':
+        who.forEach((w) => void stage.leave(w));
+        return;
+      case 'face':
+        if (actors.length >= 2) stage.faceEachOther(actors[0], actors[1]);
+        else if (actors[0] && other) stage.faceToward(actors[0], other);
+        return;
+      case 'approach':
+        if (actors[0] && (other ?? actors[1])) stage.approach(actors[0], (other ?? actors[1])!);
+        return;
+      case 'embrace':
+      case 'argue': {
+        const pair = other ? [actors[0], other] : actors.slice(0, 2);
+        if (pair.length === 2 && pair[0] && pair[1]) stage[st.act](pair[0], pair[1]);
+        return;
+      }
+      case 'part':
+        actors.forEach((a) => stage.part(a));
+        return;
+    }
+    actors.forEach((a) => a.perform(st.act));
+  }
+
+  /** 화면 전환: 까맣게 닫힘(true) / 열림(false) */
+  function fadeScreen(close: boolean): Promise<unknown> {
+    const rm = reducedMotion();
+    const veil = $('.play__fade');
+    return gsap.to(veil, close
+      ? { opacity: 1, duration: rm ? 0.2 : 0.8, ease: 'power2.in' }
+      : { opacity: 0, duration: rm ? 0.3 : 1.2, ease: 'power2.out', delay: rm ? 0 : 0.25 }) as unknown as Promise<unknown>;
+  }
+
+  /** 등장인물 그림: 장면의 extras(키트 조연) → 인물 파일 순서로 찾는다 */
+  async function castDef(who: string): Promise<CharacterDef> {
+    const extra = scene?.extras?.[who];
+    if (extra) return person({ id: who, ...extra });
+    return loadCharacter(who);
+  }
+
+  async function addActor(who: string, animate: boolean, how?: 'walk'): Promise<Actor | undefined> {
     if (stage.actors.has(who)) return stage.actors.get(who);
-    const actor = stage.add(new Actor(await loadCharacter(who)));
-    if (animate) {
+    const actor = stage.add(new Actor(await castDef(who)));
+    // B급은 옆에서 걸어 들어오는 게 기본 등장
+    if (animate && (how === 'walk' || (isB() && mode !== 'loading'))) {
+      tweens.push(stage.walkIn(actor));
+    } else if (animate) {
       const rm = reducedMotion();
       tweens.push(
         gsap.fromTo(actor.el, { opacity: 0, y: rm ? 0 : 24 }, { opacity: 1, y: 0, duration: rm ? 0.4 : 1.6, ease: 'expo.out' }),
@@ -254,6 +388,34 @@ export function sceneScreen({ id }: Params): Screen {
       case 'scatter':
         scatter(tower);
         return;
+      case 'thunder':
+        playFx('flash');
+        playFx('shake');
+        return;
+      case 'rain-start':
+        rain.set(2);
+        return;
+      case 'rain-stop':
+        rain.set(0);
+        return;
+      case 'glory':
+      case 'fire':
+      case 'stars':
+      case 'dust': {
+        // 효과 라이브러리: 무대 위에 잠깐 깔렸다 사라지는 층 (모양은 styles/library.css)
+        const layer = document.createElement('div');
+        layer.className = `fx-${fx}`;
+        if (fx === 'stars') {
+          layer.innerHTML = Array.from({ length: 70 }, (_, i) => `<i style="--x:${(Math.random() * 100).toFixed(1)}%; --y:${(Math.random() * 62).toFixed(1)}%; --d:${(i * 0.06 + Math.random() * 0.8).toFixed(2)}s; --s:${(0.5 + Math.random() * 1.6).toFixed(2)}"></i>`).join('');
+        }
+        if (fx === 'fire') layer.innerHTML = '<i></i><i></i><i></i><b></b>';
+        if (fx === 'dust') layer.innerHTML = Array.from({ length: 18 }, () => `<i style="--y:${(Math.random() * 90).toFixed(1)}%; --d:${(Math.random() * 1.6).toFixed(2)}s; --w:${(20 + Math.random() * 40).toFixed(0)}%"></i>`).join('');
+        $('.scene').append(layer);
+        const life = { glory: 7000, fire: 9000, stars: 12000, dust: 5000 }[fx];
+        setTimeout(() => layer.classList.add('is-out'), rm ? 1200 : life - 1600);
+        setTimeout(() => layer.remove(), rm ? 2000 : life);
+        return;
+      }
     }
   }
 
@@ -343,7 +505,22 @@ export function sceneScreen({ id }: Params): Screen {
   async function finish() {
     if (!scene) return;
     hideVoice();
+    if (travel) {
+      void travel.hide();
+      travel = null;
+    }
     stage.actors.forEach((a) => a.setDim(true));
+    // 끝 확인 퀴즈 (1~2문제) → 해설 카드
+    let score: number | null = null;
+    if (scene.quiz?.length) {
+      quiz = runQuiz(scene.quiz);
+      await swapDock(quiz.el);
+      setMode('quiz');
+      score = await quiz.done;
+      quiz.destroy();
+      quiz = null;
+      if (!alive) return;
+    }
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
@@ -362,16 +539,19 @@ export function sceneScreen({ id }: Params): Screen {
       <div class="insight__text"></div>
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
+      ${score != null ? `<p class="insight__score">퀴즈 <b class="latin">${score}</b> / ${scene.quiz!.length} · ${score === scene.quiz!.length ? '전부 정답. ㄹㅇ 집중해서 봤네' : score ? '거의 다 맞힘' : '괜찮음. 본문 한 번 훑으면 바로 맞힘'}</p>` : ''}
       <div class="insight__actions">
         ${finale ? finaleButton(finale) : next ? nextButton(next, scene.bridge) : ''}
         <button class="btn${next || finale ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
         <button class="btn" data-again>다시 보기</button>
+        <button class="btn" data-fulltext>본문 전체 보기</button>
       </div>`;
     paragraphs(card.querySelector<HTMLElement>('.insight__text')!, scene.insight);
     const tldr = card.querySelector('.insight__tldr p');
     if (tldr) tldr.textContent = scene.tldr!;
     card.querySelector('[data-map]')!.addEventListener('click', (e) => go('/map', { x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY }));
     card.querySelector('[data-again]')!.addEventListener('click', () => void restart());
+    card.querySelector('[data-fulltext]')!.addEventListener('click', openFullText);
     bindNext(card);
     await swapDock(card);
     setMode('end');
@@ -395,6 +575,8 @@ export function sceneScreen({ id }: Params): Screen {
     el.dataset.land = m.land ? '1' : '0';
     if (m.tone) el.dataset.tone = m.tone;
     else delete el.dataset.tone;
+    // 밤에는 배경 입자가 먼지 대신 별
+    setFieldMode(m.tone === 'night' ? 'stars' : 'dust');
     // 방주·물·비·무지개 (창 6–9). 장면 처음엔 연출 없이 바로 그 상태로
     if (!animate) {
       el.classList.add('is-instant');
@@ -450,7 +632,12 @@ export function sceneScreen({ id }: Params): Screen {
     dock.replaceChildren();
     voice.hidden = true;
     gsap.set($('.play__bar span'), { scaleX: 0 });
-    applyMood(scene.mood, false);
+    applyMood(scene.bg ?? scene.mood ?? ACT_BG[scene.act], false);
+    setCrowd(crowd, null);
+    travel?.el.remove();
+    travel = null;
+    gsap.set($('.play__fade'), { opacity: 0 });
+    setMode('loading');
     cursor = new SceneCursor(scene);
     await Promise.all((scene.cast ?? []).map((c) => addActor(c, true)));
     for (const [who, name] of Object.entries(scene.outfit ?? {})) stage.actors.get(who)?.outfit(name, false);
@@ -490,6 +677,10 @@ export function sceneScreen({ id }: Params): Screen {
   // ── 입력 ──────────────────────────────────────
   function onKey(e: KeyboardEvent) {
     if (isSheetOpen()) return;
+    if (mode === 'quiz' && quiz) {
+      if (/^[1-9]$/.test(e.key) && quiz.key(+e.key)) e.preventDefault();
+      return;
+    }
     const onButton = (e.target as HTMLElement).closest?.('button');
     if ((e.key === ' ' || e.key === 'Enter') && !onButton) {
       e.preventDefault();
@@ -512,6 +703,7 @@ export function sceneScreen({ id }: Params): Screen {
     fit.observe($('.scene__backdrop'));
     $('[data-back]').addEventListener('click', () => go('/map'));
     $('[data-settings]').addEventListener('click', () => openSettings());
+    $('[data-text]').addEventListener('click', openFullText);
     try {
       scene = await loadScene(id);
     } catch (err) {
@@ -529,6 +721,13 @@ export function sceneScreen({ id }: Params): Screen {
     await begin();
   }
 
+  /** 본문 전체 보기: 에피소드가 덮는 개역한글 전체 + 카드로 나온 구절 금빛 표시 */
+  function openFullText() {
+    if (!scene) return;
+    const keys = [...scene.beats, ...Object.values(scene.branches ?? {}).flat()].flatMap((b) => (b.type === 'scripture' ? [b.ref] : []));
+    void openPassage(scene.ref, scene.title, keys);
+  }
+
   return {
     el,
     enter: () => void enter(),
@@ -540,6 +739,9 @@ export function sceneScreen({ id }: Params): Screen {
       tweens.forEach((t) => t.kill());
       stage.destroy();
       rain.destroy();
+      quiz?.destroy();
+      skipHold = null;
+      setFieldMode('dust');
       clearTimeout(movingTimer);
       setFieldIntensity(1);
     },

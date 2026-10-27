@@ -5,17 +5,15 @@ export interface Progress {
   chapters: Record<string, true>;
   /** 끝낸 장면 id */
   scenes: Record<string, true>;
-  /** 끝낸 읽기 구간 id → 퀴즈 최고 점수 */
+  /** (옛 기록) 읽기 구간 시절에 끝낸 id → 퀴즈 점수. 지금은 같은 id의 에피소드를 끝낸 것으로 친다 */
   readings: Record<string, number>;
-  /** 읽다 만 읽기 구간 id → 읽던 자리 ("2:15" = 2장 15절, "insight" = 해설, "quiz" = 퀴즈) */
-  readingSpots: Record<string, string>;
   /** 만난 인물 id (인물 도감) */
   characters: Record<string, true>;
   /** 피날레를 본 막 번호 ("1") */
   finales: Record<string, true>;
   /** 지도에서 점등 연출을 이미 보여 준 별 ("GEN:1-11") */
   litStops: Record<string, true>;
-  /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "read/gen-5", "finale/1" */
+  /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "finale/1" */
   last: string | null;
   startedAt: number | null;
 }
@@ -24,7 +22,6 @@ export const progress = new Store<Progress>('progress', {
   chapters: {},
   scenes: {},
   readings: {},
-  readingSpots: {},
   characters: {},
   finales: {},
   litStops: {},
@@ -51,7 +48,9 @@ export function hasSave(): boolean {
 }
 
 export function sceneDone(id: string): boolean {
-  return !!progress.get().scenes[id];
+  const p = progress.get();
+  // 읽기 구간 → B급 에피소드로 바뀌기 전에 끝낸 기록도 그대로 인정한다 (id가 같음)
+  return !!p.scenes[id] || p.readings?.[id] != null;
 }
 
 /** 장면을 끝냈다: 장면·인물·장을 한꺼번에 기록한다 */
@@ -66,39 +65,11 @@ export function completeScene(id: string, chapters: string[], characters: string
   });
 }
 
-export function readingDone(id: string): boolean {
-  return progress.get().readings[id] != null;
-}
-
-/** 읽기 구간을 끝냈다: 퀴즈 점수(최고 기록)와 장을 기록한다 */
-export function completeReading(id: string, chapters: string[], score: number): void {
-  const p = progress.get();
-  const best = Math.max(score, p.readings[id] ?? 0);
-  const { [id]: _, ...spots } = p.readingSpots;
-  progress.set({
-    readings: { ...p.readings, [id]: best },
-    readingSpots: spots,
-    chapters: { ...p.chapters, ...Object.fromEntries(chapters.map((c) => [c, true as const])) },
-    startedAt: p.startedAt ?? Date.now(),
-  });
-}
-
 /** "이어서 하기"가 갈 주소 */
 export function continuePath(): string {
   const last = progress.get().last;
-  return last && /^(scene|read|finale)\//.test(last) ? `/${last}` : '/map';
-}
-
-/** 읽기 구간에서 읽던 자리. 없으면 null */
-export function readingSpot(id: string): string | null {
-  return progress.get().readingSpots[id] ?? null;
-}
-
-/** 읽던 자리를 기억한다 (null이면 지움 = 맨 위) */
-export function setReadingSpot(id: string, spot: string | null): void {
-  const { [id]: old, ...rest } = progress.get().readingSpots;
-  if ((old ?? null) === spot) return;
-  progress.set({ readingSpots: spot ? { ...rest, [id]: spot } : rest });
+  if (last?.startsWith('read/')) return `/scene/${last.slice(5)}`;
+  return last && /^(scene|finale)\//.test(last) ? `/${last}` : '/map';
 }
 
 /** 막 피날레를 봤다 */
