@@ -55,3 +55,10 @@
 /* 이삭이 등에 진 번제 나무 (창 22:6): 잉크보다 한 톤 밝은 나뭇빛, 묶은 끈은 더 밝게 */
 .actor .wood { color: color-mix(in srgb, var(--sil-ink) 64%, #9b6b3c); }
 .actor .rope { color: color-mix(in srgb, var(--sil-ink) 50%, #cdb88e); }
+
+/* 혼자 선 인물: 무대를 꽉 채우면 배경(떨기나무·물벽·사다리 …)을 가리니, 키를 조금 줄인다.
+   가운데 소품이 있는 배경(spread)이면 PC에서도 오른쪽으로 비켜 선다 (폰은 flood.css) */
+.stage[data-count='1'] > .actor { max-height: 84%; }
+@media (min-width: 768px) {
+  .play[data-spread='1'] .stage[data-count='1'] { justify-content: flex-end; padding-right: 12%; }
+}

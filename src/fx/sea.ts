@@ -387,13 +387,13 @@ function sunriseArt(): string {
     ${seaBand(176, 232, 'rs-sea rs-sea--dawn', 1482, 7)}
     <g class="rs-shimmer">${shimmer}</g>
     ${sand(230, 'rs-sand rs-sand--dawn')}
-    <g class="rs-wheel" transform="translate(186 242) rotate(-14) scale(0.62)">
+    <g class="rs-wheel" transform="translate(204 243) rotate(-14) scale(0.72)">
       <circle cx="0" cy="0" r="11" fill="none" stroke="currentColor" stroke-width="2"/>
       <path d="${spokes}" stroke="currentColor" stroke-width="1"/>
       <circle cx="0" cy="0" r="2.4"/>
       <path class="rs-wheel__rim" d="M-9 -6 A11 11 0 0 1 4 -10.3" fill="none" stroke-width="1"/>
     </g>
-    <path class="rs-sand rs-sand--dawn rs-sand--front" d="M150 262 C162 250 176 244 190 244 C206 244 218 250 228 262 Z"/>
+    <path class="rs-sand rs-sand--dawn rs-sand--front" d="M168 262 C180 251 194 246 208 246 C224 246 236 251 246 262 Z"/>
     ${Array.from({ length: 5 }, (_, i) => `<path class="rs-foamline" style="--d:${(i * 1.3).toFixed(2)}s" d="M${-W * 2} ${231 + i * 0.3} C-100 ${229 + i} 100 ${233 - i} 260 ${230 + i * 0.5} C400 ${228} 600 ${232} ${W * 3} 230"/>`).join('')}`;
 }
 

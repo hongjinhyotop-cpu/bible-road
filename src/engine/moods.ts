@@ -18,6 +18,7 @@ export type BackdropArt =
   | 'goshen-house' | 'goshen-blood' | 'passover-night' | 'egypt-lamps'
   | 'redsea-camp' | 'redsea-chariots' | 'redsea-pillar' | 'redsea-wind' | 'redsea-part' | 'redsea-crossing' | 'redsea-chase' | 'redsea-return' | 'redsea-sunrise'
   | 'joseph-hall' | 'joseph-hall-shut'
+  | 'sinai-camp' | 'sinai-bound' | 'sinai-storm' | 'sinai-fire' | 'sinai-dark'
   | PlaceArt;
 
 /**
@@ -123,6 +124,8 @@ export const FX = [
   'east-wind', // 큰 동풍: 바람 줄기가 화면을 가로질러 몰아침 (약 9초, 출 14:21)
   // ── 나는 요셉이라 (창 45, fx/hall.ts) ──
   'weep', // 큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 나간다 (약 9초, 창 45:2)
+  // ── 시내산 (출 19–20, fx/sinai.ts) ──
+  'trumpet', // 나팔 소리: 산꼭대기(sinai-* 배경)에서 금빛 소리의 고리가 퍼진다. 부를 때마다 더 크고 밝다 (약 8초, 출 19:16-19)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -351,6 +354,20 @@ export const MOODS: Record<string, Mood> = {
   'joseph-hall-shut': { light: true, land: false, art: 'joseph-hall-shut' },
   /** 같은 방, 저녁 */
   'joseph-hall-dusk': { light: true, land: false, art: 'joseph-hall-shut', tone: 'dusk' },
+
+  // ── 시내산 (출 19–20, fx/sinai.ts) ──
+  /** 시내 광야: 가운데 우뚝 선 붉은 화강암 산, 발치에 늘어선 장막 (출 19:1-2) */
+  'sinai-camp': { light: true, land: false, art: 'sinai-camp', tone: 'clear', spread: true },
+  /** 같은 진, 해 질 녘 */
+  'sinai-camp-dusk': { light: true, land: false, art: 'sinai-camp', tone: 'dusk', spread: true },
+  /** 산 둘레에 말뚝과 줄로 지경을 세웠다. 줄이 은은하게 빛난다 (출 19:12) */
+  'sinai-bound': { light: true, land: false, art: 'sinai-bound', spread: true },
+  /** 제 삼일 아침: 빽빽한 먹구름이 산을 삼키고 번개가 친다. 기슭의 백성(crowd)이 떤다 (출 19:16) */
+  'sinai-storm': { light: true, land: false, art: 'sinai-storm', tone: 'storm', spread: true },
+  /** 불 가운데 강림: 꼭대기의 불, 옹기 가마 같은 연기 기둥, 이따금 떠는 산 (출 19:18) */
+  'sinai-fire': { light: true, land: false, art: 'sinai-fire', tone: 'storm', spread: true },
+  /** 하나님이 계신 흑암: 꼭대기를 덮은 짙은 어둠, 가장자리만 금빛 (출 20:21) */
+  'sinai-dark': { light: true, land: false, art: 'sinai-dark', tone: 'storm', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...

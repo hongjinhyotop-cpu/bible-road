@@ -47,6 +47,8 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   shur: at(33.3, 30.6),
   paran: at(34.6, 29.9),
   sinai: at(33.97, 28.54),
+  // 르비딤: 시내산 가기 직전 진 친 곳 (출 17:1, 19:2). 정확한 위치는 모름 — 전통적으로 와디 페이란 근처로 봄
+  rephidim: at(33.62, 28.72),
   // 미디안: 아카바만 동쪽 아라비아 서북부 (모세가 도망가 목자로 산 땅, 출 2:15)
   midian: at(35.4, 28.1),
   kadesh: at(34.42, 30.65),

@@ -26,6 +26,7 @@ import { playPlague } from '../fx/plagues';
 import { playPassover } from '../fx/passover';
 import { playEastWind } from '../fx/sea';
 import { playWeep } from '../fx/hall';
+import { playTrumpet } from '../fx/sinai';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -445,6 +446,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'weep':
         // 나는 요셉이라 (fx/hall.ts): 요셉의 울음이 고리처럼 퍼져 벽 너머로 (창 45:2)
         playWeep($('.scene'), rm);
+        return;
+      case 'trumpet':
+        // 시내산 (fx/sinai.ts): 꼭대기에서 퍼지는 나팔 소리의 고리, 부를 때마다 커진다 (출 19:16-19)
+        playTrumpet($('.scene'), rm);
         return;
       case 'glory':
       case 'fire':
