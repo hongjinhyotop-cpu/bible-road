@@ -1,7 +1,8 @@
 // 콘텐츠 로더: content/acts/NN-이름/ 아래의 act.json · scenes · readings를 한곳에서 찾고,
 // 본문 순서대로 줄을 세운다. 지도 패널, "다음" 버튼, 장 번호 바로가기가 전부 여기서 나온다.
 import { ACTS } from './acts';
-import { parseRef, type ParsedRef } from './bible';
+import { chapterLength, parseRef, type ParsedRef } from './bible';
+import { readingDone, sceneDone } from './progress';
 
 export type ContentKind = 'scene' | 'read';
 
@@ -144,4 +145,33 @@ export async function nextItem(kind: ContentKind, id: string): Promise<ContentIt
     if (items.length) return items[0];
   }
   return null;
+}
+
+// ── 장 완료 ───────────────────────────────────
+/**
+ * 이 장면/읽기를 끝냈을 때 "다 읽은 장"이 되는 장들 ("GEN:2" 형식).
+ * 한 장을 여러 파일이 나눠 덮어도(창 2장 = 1:1–2:3 장면 + 2:4–25 장면) 이미 끝낸 것들과 합쳐서
+ * 1절부터 마지막 절까지 빈틈없이 덮였으면 완료로 친다.
+ */
+export async function chaptersDoneWith(kind: ContentKind, id: string): Promise<string[]> {
+  const f = find(kind, id);
+  if (!f) return [];
+  const items = await contentOfAct(f.act);
+  const done = items.filter((it) => (it.kind === kind && it.id === id) || (it.kind === 'scene' ? sceneDone(it.id) : readingDone(it.id)));
+  const me = items.find((it) => it.kind === kind && it.id === id);
+  if (!me) return [];
+  const out: string[] = [];
+  for (let c = me.r.startChapter; c <= me.r.endChapter; c++) {
+    const len = await chapterLength(me.r.book, c);
+    if (!len) continue;
+    // 이 장을 덮는 구간들을 절 번호로 모아서 1절부터 이어 붙여 본다
+    const spans = done
+      .filter((it) => it.r.book.code === me.r.book.code && it.r.startChapter <= c && c <= it.r.endChapter)
+      .map((it) => [c === it.r.startChapter ? (it.r.startVerse ?? 1) : 1, c === it.r.endChapter ? (it.r.endVerse ?? len) : len] as const)
+      .sort((a, b) => a[0] - b[0]);
+    let reach = 0;
+    for (const [from, to] of spans) if (from <= reach + 1) reach = Math.max(reach, to);
+    if (reach >= len) out.push(`${me.r.book.code}:${c}`);
+  }
+  return out;
 }

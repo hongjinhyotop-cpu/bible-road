@@ -3,13 +3,14 @@
 //  - 파일 이름 = id, 폴더 번호 = act, act.json 있음
 //  - ref가 실제 본문에 있는 구절인지, 그 막의 범위 안인지
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
-//  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상
+//  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상, mood 이름, face 방향
 //  - 읽기: 퀴즈 1~3문항, answer 번호
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { BOOKS, findBook } from '../src/engine/books.ts';
 import { ACTS } from '../src/engine/acts.ts';
+import { MOODS } from '../src/engine/moods.ts';
 
 const root = new URL('..', import.meta.url).pathname;
 const errors = [];
@@ -131,7 +132,14 @@ function checkScene(s, where) {
   const ids = new Set(s.beats.map((b) => b.id).filter(Boolean));
   if (!all.some((b) => b.type === 'scripture')) err(where, '본문 구절(scripture beat)이 하나도 없음 (CLAUDE.md 7번)');
   const people = new Set([...(s.cast ?? []), ...(s.unlocks?.characters ?? [])]);
+  const checkMood = (m) => m != null && !MOODS[m] && warn(where, `mood "${m}"가 src/engine/moods.ts에 없음 (기본 무대로 보임)`);
+  checkMood(s.mood);
   for (const b of all) {
+    checkMood(b.mood);
+    for (const [c, dir] of Object.entries(b.face ?? {})) {
+      people.add(c);
+      if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
+    }
     for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...(b.who ? [b.who] : [])]) people.add(c);
     if (b.type === 'scripture') try { parseRef(b.ref); } catch (e) { err(where, `scripture ${e.message}`); }
     if (b.type === 'choice') {

@@ -170,3 +170,26 @@
   .reading__rail a.is-here { color: var(--gold-bright); }
   .reading__rail a.is-here::before { background: var(--gold-bright); box-shadow: 0 0 10px rgba(244, 214, 150, 0.7); }
 }
+
+/* 읽던 자리로 돌아왔을 때: 그 절에 금빛이 잠깐 번지고, 위에 작은 알림 */
+.verse.is-resume { animation: verse-resume 2.8s var(--ease-out) 0.2s both; border-radius: 8px; }
+@keyframes verse-resume {
+  0% { background: rgba(244, 214, 150, 0); box-shadow: 0 0 0 0 rgba(244, 214, 150, 0); }
+  25% { background: rgba(244, 214, 150, 0.1); box-shadow: 0 0 24px -6px rgba(244, 214, 150, 0.35); }
+  100% { background: rgba(244, 214, 150, 0); box-shadow: 0 0 0 0 rgba(244, 214, 150, 0); }
+}
+:root[data-reduced-motion='true'] .verse.is-resume { animation-duration: 1.2s; }
+.reading__resume {
+  position: absolute; z-index: 5; left: 50%; top: calc(max(6px, env(safe-area-inset-top)) + 58px); translate: -50% 0;
+  display: flex; align-items: center; gap: 12px; white-space: nowrap;
+  padding: 7px 8px 7px 16px; border-radius: 999px;
+  font-size: 0.8125rem; color: var(--ivory-soft);
+  background: rgba(12, 12, 24, 0.9); border: 1px solid var(--line);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.8);
+}
+.reading__resume b { color: var(--gold-bright); font-weight: 600; }
+.reading__resume-top {
+  padding: 4px 12px; border-radius: 999px; font-size: 0.75rem; color: var(--talk-accent);
+  border: 1px solid var(--talk-line);
+}

@@ -5,17 +5,19 @@ import gsap from 'gsap';
 import type { Params, Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
-import { fullChapters } from '../engine/bible';
 import { completeScene, progress } from '../engine/progress';
-import { nextItem } from '../engine/content';
+import { chaptersDoneWith, nextItem } from '../engine/content';
 import { bindNext, nextButton } from '../ui/next-button';
 import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
+import { moodOf } from '../engine/moods';
+import { backdropSvg } from '../fx/backdrop';
 import { loadCharacter } from '../characters';
 import { inkReveal } from '../fx/ink';
 import { getFieldIntensity, setFieldIntensity, setFieldMode } from '../fx/particles';
 import { Actor, Stage } from '../ui/actor';
 import { icons } from '../ui/icons';
+import { paragraphs } from '../ui/paragraphs';
 import { revealScripture, scriptureCard } from '../ui/scripture-card';
 import { openSettings } from '../ui/settings-sheet';
 import { isSheetOpen } from '../ui/sheet';
@@ -29,6 +31,7 @@ export function sceneScreen({ id }: Params): Screen {
   el.innerHTML = `
     <div class="play__sky" aria-hidden="true"></div>
     <div class="play__halo" aria-hidden="true"></div>
+    <div class="play__dusk" aria-hidden="true"></div>
     <header class="play__head">
       <button class="icon-btn" data-back aria-label="지도로 가기">${icons.back}</button>
       <p class="play__title"><span class="latin play__numeral"></span><span class="play__name"></span></p>
@@ -36,6 +39,7 @@ export function sceneScreen({ id }: Params): Screen {
       <div class="play__bar" aria-hidden="true"><span></span></div>
     </header>
     <div class="scene">
+      <div class="scene__backdrop" aria-hidden="true"></div>
       <svg class="scene__land" viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
         <path class="far" d="M0 70 C60 40 110 62 170 48 C240 30 300 58 400 40 L400 120 L0 120 Z"/>
         <path class="near" d="M0 92 C80 78 150 96 220 86 C290 76 340 92 400 84 L400 120 L0 120 Z"/>
@@ -138,6 +142,8 @@ export function sceneScreen({ id }: Params): Screen {
     for (const who of beat.exit ?? []) void stage.remove(who);
     await Promise.all((beat.enter ?? []).map((who) => addActor(who, true)));
     for (const [who, pose] of Object.entries(beat.pose ?? {})) stage.actors.get(who)?.pose(pose);
+    for (const [who, dir] of Object.entries(beat.face ?? {})) stage.actors.get(who)?.face(dir);
+    if (beat.mood) applyMood(beat.mood, true);
     const fx = beat.fx == null ? [] : Array.isArray(beat.fx) ? beat.fx : [beat.fx];
     fx.forEach(playFx);
   }
@@ -272,7 +278,7 @@ export function sceneScreen({ id }: Params): Screen {
     stage.actors.forEach((a) => a.setDim(true));
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
-    const chapters = await fullChapters(scene.ref).catch(() => []);
+    const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
     completeScene(scene.id, chapters, scene.unlocks?.characters ?? []);
     const next = await nextItem('scene', scene.id).catch(() => null);
     // "이어서 하기"는 다음 장면/읽기로 바로 간다
@@ -283,7 +289,7 @@ export function sceneScreen({ id }: Params): Screen {
     card.className = 'insight voice-talk';
     card.innerHTML = `
       <p class="insight__tag">방금 그거 뭐였냐면</p>
-      <p class="insight__text"></p>
+      <div class="insight__text"></div>
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
       <div class="insight__actions">
@@ -291,7 +297,7 @@ export function sceneScreen({ id }: Params): Screen {
         <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
         <button class="btn" data-again>다시 보기</button>
       </div>`;
-    card.querySelector('.insight__text')!.textContent = scene.insight;
+    paragraphs(card.querySelector<HTMLElement>('.insight__text')!, scene.insight);
     const tldr = card.querySelector('.insight__tldr p');
     if (tldr) tldr.textContent = scene.tldr!;
     card.querySelector('[data-map]')!.addEventListener('click', (e) => go('/map', { x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY }));
@@ -307,11 +313,33 @@ export function sceneScreen({ id }: Params): Screen {
   }
 
   // ── 시작 ──────────────────────────────────────
-  function applyMood(s: Scene) {
-    const dark = s.mood === 'void';
-    el.dataset.light = dark ? '0' : '1';
-    el.dataset.land = dark ? '0' : '1';
-    setFieldIntensity(dark ? 0.3 : 1);
+  /** 분위기: 하늘 밝기·언덕·배경 그림·색조. 장면 중간에 바뀌면 배경이 천천히 겹쳐 바뀐다 */
+  function applyMood(name: string | undefined, animate: boolean) {
+    const m = moodOf(name);
+    if (animate) {
+      if ((el.dataset.light === '1') !== m.light) setLight(m.light);
+    } else {
+      el.dataset.light = m.light ? '1' : '0';
+      setFieldIntensity(m.light ? 1 : 0.3);
+    }
+    el.dataset.land = m.land ? '1' : '0';
+    if (m.tone) el.dataset.tone = m.tone;
+    else delete el.dataset.tone;
+
+    const box = $('.scene__backdrop');
+    if (!animate) box.querySelectorAll('.backdrop').forEach((b, i, all) => i < all.length - 1 && b.remove());
+    const old = box.querySelector<SVGElement>('.backdrop:last-child');
+    if ((old?.dataset.art ?? '') === (m.art ?? '')) return;
+    const rm = reducedMotion();
+    if (old) {
+      if (animate) tweens.push(gsap.to(old, { opacity: 0, duration: rm ? 0.3 : 2, ease: 'power1.inOut', onComplete: () => old.remove() }));
+      else old.remove();
+    }
+    if (m.art) {
+      box.insertAdjacentHTML('beforeend', backdropSvg(m.art));
+      const svg = box.lastElementChild!;
+      if (animate) tweens.push(gsap.fromTo(svg, { opacity: 0, y: rm ? 0 : 10 }, { opacity: 1, y: 0, duration: rm ? 0.4 : 2.4, ease: 'power2.out' }));
+    }
   }
 
   async function begin() {
@@ -325,7 +353,7 @@ export function sceneScreen({ id }: Params): Screen {
     dock.replaceChildren();
     voice.hidden = true;
     gsap.set($('.play__bar span'), { scaleX: 0 });
-    applyMood(scene);
+    applyMood(scene.mood, false);
     cursor = new SceneCursor(scene);
     await Promise.all((scene.cast ?? []).map((c) => addActor(c, true)));
     await intro(scene);

@@ -127,7 +127,8 @@ PROGRESS.md      ← 진행 기록
 ### 장면 beat 종류 (엔진에 구현됨 — `src/engine/scene.ts`)
 - `narration` 이야기 서술 · `line` 대사(`"who": "adam"`, 말하는 사람 강조) · `voice` 하나님의 목소리(인물 없이 빛나는 글자)
 - `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
-- 모든 beat에 붙일 수 있는 것: `"enter": ["adam"]`(등장), `"exit"`(퇴장), `"pose": {"adam": "slump"}`(자세: neutral/slump/lift/tremble), `"fx"`(flash/dawn/dark/land/shake)
+- 모든 beat에 붙일 수 있는 것: `"enter": ["adam"]`(등장), `"exit"`(퇴장), `"pose": {"adam": "slump"}`(자세: neutral/slump/lift/tremble), `"face": {"eve": "left"}`(바라보는 쪽, 나중에 선 인물은 자동으로 왼쪽을 봄), `"mood"`(배경 바꾸기), `"fx"`(flash/dawn/dark/land/shake)
+- `"mood"` 이름은 `src/engine/moods.ts` 목록 (void, bare-earth, eden, eden-tree, eden-dusk, east-of-eden …). 그림은 `src/fx/backdrop.ts`. 새 배경이 필요하면 둘 다에 추가.
 - 선택지의 "만약" 장면은 `"branches": { "b-ask-where": [beats...] }`에 넣는다. 다 보면 자동으로 `canon` 길로 돌아온다.
 - 장면 끝 카드: `"insight"`(해설) + `"tldr"`(한 줄 요약). `"mood": "void"`면 깜깜한 데서 시작.
 - 파일 이름 = 장면 id. 예: `content/acts/01-beginning/scenes/gen-1-light.json` → 주소 `#/scene/gen-1-light`

@@ -2,19 +2,21 @@
 // 위에서 아래로 한 줄기: 제목 → 줄거리(친구 말투) → 본문 전체(개역한글) → 해설 → 퀴즈 → 완료.
 // 본문은 스크롤해서 화면에 들어오는 절부터 잉크처럼 번진다. 머리줄의 얇은 막대 = 읽은 만큼.
 // PC(1100px 이상)는 왼쪽에 목차 레일(줄거리 / 장 / 해설 / 퀴즈)이 붙는다.
+// 읽던 자리(절 단위)를 기억해서, 다시 들어오면 그 절로 바로 데려다준다.
 import gsap from 'gsap';
 import type { Params, Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
-import { fullChapters, getPassage, type Passage } from '../engine/bible';
-import { completeReading, progress } from '../engine/progress';
-import { nextItem } from '../engine/content';
+import { getPassage, type Passage } from '../engine/bible';
+import { completeReading, progress, readingSpot, setReadingSpot } from '../engine/progress';
+import { chaptersDoneWith, nextItem } from '../engine/content';
 import { bindNext, nextButton } from '../ui/next-button';
 import { loadReading, type Reading } from '../engine/reading';
 import { reducedMotion } from '../engine/settings';
 import { inkReveal } from '../fx/ink';
 import { setFieldIntensity, setFieldMode } from '../fx/particles';
 import { icons } from '../ui/icons';
+import { paragraphs } from '../ui/paragraphs';
 import { openSettings } from '../ui/settings-sheet';
 import { isSheetOpen } from '../ui/sheet';
 
@@ -27,15 +29,6 @@ const SCORE_LINES = [
   '거의 다 맞힘. 이 정도면 꽤 집중해서 읽은 거임.',
   '전부 정답. ㄹㅇ 꼼꼼하게 읽었네.',
 ];
-
-/** 빈 줄("\n\n")로 나눈 글을 문단으로. 해설이 길어도 한 덩어리로 뭉치지 않게 */
-function paragraphs(box: HTMLElement, text: string) {
-  box.replaceChildren(...text.split(/\n\s*\n/).map((t) => {
-    const p = document.createElement('p');
-    p.textContent = t.trim();
-    return p;
-  }));
-}
 
 export function readingScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -100,13 +93,13 @@ export function readingScreen({ id }: Params): Screen {
         <p class="reading__source ui">${passage.book.name} ${range} · 개역한글</p>
       </section>
 
-      <section class="insight reading__insight voice-talk" id="r-insight" data-rail="해설">
+      <section class="insight reading__insight voice-talk" id="r-insight" data-rail="해설" data-spot="insight">
         <p class="insight__tag">근데 이게 왜 중요하냐면</p>
         <div class="insight__text"></div>
         ${r.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       </section>
 
-      <section class="quiz" id="r-quiz" data-rail="퀴즈" aria-live="polite"></section>`;
+      <section class="quiz" id="r-quiz" data-rail="퀴즈" data-spot="quiz" aria-live="polite"></section>`;
 
     // 제목과 사용자 글은 textContent로 넣는다 (콘텐츠 파일의 글자를 HTML로 해석하지 않게)
     page.querySelector<HTMLElement>('.reading__title')!.textContent = title;
@@ -133,6 +126,7 @@ export function readingScreen({ id }: Params): Screen {
       }
       const p = document.createElement('p');
       p.className = 'verse';
+      p.dataset.spot = `${v.chapter}:${v.verse}`;
       p.innerHTML = `<span class="verse__no latin">${v.verse}</span><span class="verse__text"></span>`;
       p.querySelector('.verse__text')!.textContent = v.text;
       block!.append(p);
@@ -206,6 +200,67 @@ export function readingScreen({ id }: Params): Screen {
   function onScroll() {
     const max = scroller.scrollHeight - scroller.clientHeight;
     gsap.set(bar, { scaleX: max > 0 ? Math.min(1, scroller.scrollTop / max) : 1 });
+    // 스크롤이 멈추면 읽던 자리를 기억한다 (매 프레임 저장하지 않게)
+    clearTimeout(spotTimer);
+    spotTimer = window.setTimeout(saveSpot, 450);
+  }
+
+  // ── 읽던 자리 ─────────────────────────────────
+  let spotTimer = 0;
+  /** 퀴즈까지 끝냈으면 더는 기억하지 않는다 (완료하면 지워짐) */
+  let finished = false;
+
+  /** 화면 위쪽(머리줄 바로 아래)에 걸려 있는 절 = 지금 읽고 있는 곳 */
+  function currentSpot(): string | null {
+    if (scroller.scrollTop < 80) return null;
+    const line = scroller.getBoundingClientRect().top + 72;
+    for (const t of page.querySelectorAll<HTMLElement>('[data-spot]')) {
+      if (t.getBoundingClientRect().bottom > line) return t.dataset.spot!;
+    }
+    return null;
+  }
+
+  function saveSpot() {
+    if (!reading || finished) return;
+    setReadingSpot(reading.id, currentSpot());
+  }
+
+  function spotLabel(spot: string): string {
+    if (spot === 'insight') return '해설';
+    if (spot === 'quiz') return '퀴즈';
+    const [c, v] = spot.split(':');
+    return `${c}장 ${v}절`;
+  }
+
+  /** 지난번 읽던 절로 바로 데려다주고, 그 절에 금빛이 잠깐 번진다 */
+  function resume(spot: string) {
+    const target = page.querySelector<HTMLElement>(`[data-spot="${spot}"]`);
+    if (!target) return;
+    // 이미 지나온 절들은 번지는 연출 없이 바로 보이게
+    page.querySelectorAll<HTMLElement>('.reveal').forEach((it) => {
+      if (it === target || it.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        it.classList.add('is-in');
+        io?.unobserve(it);
+      }
+    });
+    const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop;
+    scroller.scrollTop = Math.max(0, top - 96);
+    target.classList.add('is-resume');
+
+    const note = document.createElement('div');
+    note.className = 'reading__resume ui';
+    note.setAttribute('role', 'status');
+    note.innerHTML = `<span>지난번 읽던 데부터 · <b></b></span><button class="reading__resume-top">처음부터</button>`;
+    note.querySelector('b')!.textContent = spotLabel(spot);
+    el.append(note);
+    const rm = reducedMotion();
+    const hide = () => gsap.to(note, { opacity: 0, y: rm ? 0 : -6, duration: 0.5, onComplete: () => note.remove() });
+    note.querySelector('button')!.addEventListener('click', () => {
+      scroller.scrollTo({ top: 0, behavior: rm ? 'auto' : 'smooth' });
+      hide();
+    });
+    tweens.push(gsap.fromTo(note, { opacity: 0, y: rm ? 0 : -8 }, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out', delay: 0.3 }));
+    tweens.push(gsap.delayedCall(6, hide));
   }
 
   // ── 퀴즈 ──────────────────────────────────────
@@ -316,7 +371,9 @@ export function readingScreen({ id }: Params): Screen {
   async function finish() {
     if (!reading) return;
     const total = reading.quiz.length;
-    const chapters = await fullChapters(reading.ref).catch(() => []);
+    const chapters = await chaptersDoneWith('read', reading.id).catch(() => []);
+    finished = true;
+    clearTimeout(spotTimer);
     completeReading(reading.id, chapters, correct);
     const next = await nextItem('read', reading.id).catch(() => null);
     // "이어서 하기"는 다음 장면/읽기로 바로 간다
@@ -411,6 +468,8 @@ export function readingScreen({ id }: Params): Screen {
     render(reading, passage);
     intro();
     watchReveal();
+    const spot = readingSpot(reading.id);
+    if (spot) resume(spot);
     onScroll();
   }
 
@@ -418,6 +477,8 @@ export function readingScreen({ id }: Params): Screen {
     el,
     enter: () => void enter(),
     leave() {
+      clearTimeout(spotTimer);
+      saveSpot();
       alive = false;
       document.removeEventListener('keydown', onKey);
       io?.disconnect();

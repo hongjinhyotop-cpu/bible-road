@@ -5,6 +5,7 @@ import './styles/base.css';
 import './styles/ui.css';
 import './styles/voice.css';
 import './styles/stage.css';
+import './styles/backdrop.css';
 import './styles/title.css';
 import './styles/map.css';
 import './styles/play.css';
