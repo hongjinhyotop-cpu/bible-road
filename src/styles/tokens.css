@@ -1,0 +1,55 @@
+/* 디자인 토큰 — "빛이 비치는 오래된 책" */
+:root {
+  /* 바탕 */
+  --void: #05060c;
+  --night: #0a0f24;
+  --night-2: #141a3c;
+
+  /* 빛과 잉크 */
+  --gold: #d9b26a;
+  --gold-bright: #f4dfa6;
+  --gold-deep: #a8803c;
+  --ivory: #efe6d2;
+  --ivory-soft: rgba(239, 230, 210, 0.72);
+  --ivory-faint: rgba(239, 230, 210, 0.42);
+  --line: rgba(217, 178, 106, 0.26);
+  --line-strong: rgba(217, 178, 106, 0.55);
+  --glass: rgba(14, 16, 32, 0.72);
+
+  /* 두 목소리 (CLAUDE.md 7-1)
+     이야기 = 명조 + 따뜻한 상아색 / 설명 = 고딕 + 차가운 박하색 */
+  --story-font: var(--font-serif);
+  --story-ink: var(--ivory);
+  --talk-font: var(--font-ui);
+  --talk-ink: #d8ece6;
+  --talk-accent: #8fd3c1;
+  --talk-bg: rgba(143, 211, 193, 0.07);
+  --talk-line: rgba(143, 211, 193, 0.32);
+
+  /* 막별 테마가 덮어쓰는 값 */
+  --act-a: #0b1030;
+  --act-b: #1a1f4a;
+  --act-accent: #e9c77b;
+
+  /* 글꼴 */
+  --font-serif: 'Noto Serif KR', 'Nanum Myeongjo', serif;
+  --font-display: 'Cormorant Garamond', 'Noto Serif KR', serif;
+  --font-ui: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
+
+  /* 크기 */
+  --text-scale: 1;
+  --fs-body: calc(1.0625rem * var(--text-scale));
+  --fs-small: 0.8125rem;
+  --gutter: clamp(20px, 5vw, 48px);
+  --radius: 14px;
+
+  /* 모션 */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-fast: 0.4s;
+  --t-med: 0.8s;
+
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+:root[data-text-size='small'] { --text-scale: 0.92; }
+:root[data-text-size='large'] { --text-scale: 1.16; }
