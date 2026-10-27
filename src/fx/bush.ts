@@ -98,7 +98,7 @@ function bush(lit: boolean): string {
     return `<g class="bd-flame ${cls}" ${st}><path class="bd-flame__out" d="${tongue(x, y, h, w, bend)}"/><path class="bd-flame__core" d="${tongue(x, y + 1, h * 0.55, w * 0.42, bend * 0.5)}"/></g>`;
   };
   const back = ([[-20, -30, 1.25], [0, -40, 1.5], [20, -32, 1.3], [-34, -16, 0.9], [34, -16, 0.95], [-8, -20, 1.1], [12, -18, 1.05]] as const)
-    .map(([dx, dy, k]) => flame(dx, dy, k, 'bd-flame--back')).join('');
+    .map(([dx, dy, k]) => flame(dx, dy, k * 1.3, 'bd-flame--back')).join('');
   const front = ([[-26, -40, 0.6], [-10, -50, 0.75], [8, -52, 0.8], [26, -40, 0.62], [-38, -26, 0.45], [38, -24, 0.45], [-2, -34, 0.55], [18, -22, 0.42], [-18, -18, 0.42]] as const)
     .map(([dx, dy, k]) => flame(dx, dy, k, 'bd-flame--front')).join('');
   // 연기 대신 빛 알갱이가 천천히 오른다 (타지 않는 불: 재가 없다)
@@ -108,7 +108,7 @@ function bush(lit: boolean): string {
   return `<g class="bd-bush is-burning">
     <circle class="bd-bush__halo" cx="${BX}" cy="${GROUND - 56}" r="110"/>
     <path class="bd-bush__shaft" d="M${BX - 30} ${GROUND - 50} L${BX - 64} -20 L${BX + 64} -20 L${BX + 30} ${GROUND - 50} Z"/>
-    ${scale(`<ellipse class="bd-bush__warm" cx="${BX}" cy="${GROUND - 30}" rx="52" ry="40"/>
+    ${scale(`<ellipse class="bd-bush__warm" cx="${BX}" cy="${GROUND - 36}" rx="64" ry="54"/>
       <g class="bd-bush__fire bd-bush__fire--back">${back}</g>
       ${wood}${crown}
       <g class="bd-bush__fire">${front}</g>`)}
@@ -140,7 +140,7 @@ export function bushArt(state: 'horeb' | 'bush' | 'snake'): string {
     ${flock()}
     <path class="bd-near" d="M${-W * 2} ${H} L${-W * 2} 240 C-500 236 -200 242 60 238 C120 236 180 240 240 238 C320 236 520 242 ${W * 3} 238 L${W * 3} ${H} Z"/>
     ${bush(lit)}
-    ${state === 'snake' ? `<g transform="translate(186 252) scale(0.85) translate(-186 -252)">${snake(186, 252)}</g>` : ''}
+    ${state === 'snake' ? `<g transform="translate(186 252) scale(1.1) translate(-186 -252)">${snake(186, 252)}</g>` : ''}
     <g class="bd-near">
       <path d="M-20 262 C-18 238 -2 226 20 226 C36 226 50 236 56 250 C58 256 58 260 58 262 Z"/>
       <path d="M352 262 C354 246 366 236 384 236 C402 236 414 248 416 262 Z"/>

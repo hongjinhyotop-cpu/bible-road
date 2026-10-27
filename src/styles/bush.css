@@ -61,3 +61,8 @@
 
 :root[data-reduced-motion='true'] :is(.bd-ewe__head, .bd-bush__halo, .bd-bush__warm, .bd-bush__shaft, .bd-flame, .bd-mote, .bd-snake, .bd-snake__body, .bd-snake__head, .bd-snake__tongue) { animation: none; }
 :root[data-reduced-motion='true'] .bd-mote { opacity: 0.5; }
+
+/* PC(넓은 화면)에서는 혼자 선 모세가 가운데 서서 떨기나무를 가린다 → 오른쪽으로 비켜 세운다 (폰은 spread가 맡음) */
+@media (min-width: 768px) {
+  .play:has(.backdrop:is([data-art='horeb'], [data-art='bush'], [data-art='bush-snake'])) .stage[data-count='1'] { padding-left: 26%; }
+}

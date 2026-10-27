@@ -17,6 +17,7 @@ import './styles/play.css';
 import './styles/library.css';
 import './styles/tabernacle.css';
 import './styles/codex.css';
+import './styles/ladder.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

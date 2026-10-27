@@ -11,6 +11,7 @@ export type BackdropArt =
   | 'nile' | 'nile-basket' | 'nile-basket-side' | 'nile-found'
   | 'horeb' | 'bush' | 'bush-snake'
   | 'stew-tent' | 'cook-tent' | 'isaac-tent'
+  | 'luz' | 'luz-ladder' | 'luz-pillar'
   | PlaceArt;
 
 /**
@@ -239,6 +240,16 @@ export const MOODS: Record<string, Mood> = {
   'isaac-tent': { light: true, land: false, art: 'isaac-tent', tone: 'dusk' },
   /** 같은 장막, 밤 */
   'isaac-tent-night': { light: true, land: false, art: 'isaac-tent', tone: 'night' },
+
+  // ── 벧엘의 사다리 (창 28:10-22, fx/ladder.ts) ──
+  /** 루스 바깥 돌투성이 산마루, 해 질 녘. 가운데 베개 삼을 납작한 돌 (창 28:11) */
+  'bethel-stone': { light: true, land: true, art: 'luz', tone: 'dusk', spread: true },
+  /** 같은 자리, 밤. 별이 뜬다 */
+  'bethel-night': { light: true, land: true, art: 'luz', tone: 'night', spread: true },
+  /** 꿈: 땅에서 하늘 끝까지 선 빛의 사닥다리, 오르내리는 빛의 사자들, 꼭대기의 빛 (창 28:12-13) */
+  ladder: { light: true, land: true, art: 'luz-ladder', tone: 'night', spread: true },
+  /** 아침: 베개였던 돌을 세운 기둥, 위에 부은 기름이 반짝인다 (창 28:18) */
+  'bethel-pillar': { light: true, land: true, art: 'luz-pillar', tone: 'clear', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...
