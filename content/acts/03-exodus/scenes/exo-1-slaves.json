@@ -1,0 +1,67 @@
+{
+  "id": "exo-1-slaves",
+  "act": 3,
+  "grade": "B",
+  "title": "요셉을 알지 못하는 왕",
+  "ref": "출 1",
+  "bg": "egypt-dawn",
+  "extras": {
+    "hebrew": { "name": "히브리 사람", "base": "man", "hair": "short", "beard": "short", "props": ["basket"], "tint": "brown" },
+    "youth": { "name": "히브리 청년", "base": "youth", "hair": "short", "props": ["bundle"], "tint": "gray" },
+    "taskmaster": { "name": "감독", "base": "soldier", "hair": "helmet", "props": ["staff"], "tint": "red", "height": 1.06 },
+    "shiphrah": { "name": "십브라", "base": "old-woman", "hair": "veil", "tint": "blue" },
+    "puah": { "name": "부아", "base": "woman", "hair": "veil", "tint": "green" },
+    "mother": { "name": "히브리 여인", "base": "woman", "hair": "loose", "tint": "white", "height": 0.94 }
+  },
+  "beats": [
+    { "type": "narration", "act": "crowd", "text": "이 책은 이름들로 시작한다. 르우벤, 시므온, 레위, 유다. 잇사갈, 스불론, 베냐민. 단, 납달리, 갓, 아셀. 그리고 먼저 와 있던 요셉." },
+    { "type": "narration", "act": "crowd-murmur", "text": "수레 몇 대에 다 타고 내려온 식구였다. 모두 칠십. 이름을 하나하나 부를 수 있는 숫자였다." },
+    { "type": "narration", "fx": "fade", "act": "crowd-away", "text": "요셉이 죽었다. 형들도 죽었다. 그 시대 사람이 다 죽었다. 기록은 그 세월을 한 줄로 접는다. 한 세대가 지나가는 데는, 생각보다 문장이 많이 필요하지 않다." },
+    { "type": "narration", "bg": "egypt", "acts": [{ "act": "crowd" }, { "act": "crowd-cheer" }], "text": "그리고 그들은 불어났다. 낳고, 또 낳고, 번성하고, 강해져서 온 땅에 가득해졌다. 이름을 부를 수 있는 숫자는 진작 지나 있었다." },
+    { "type": "narration", "bg": "palace", "fx": "fade", "act": "walk-in", "who": "pharaoh", "text": "그 무렵 이집트에 새 왕이 일어났다. 기록은 그를 이렇게 소개한다. 요셉을 알지 못하는 왕." },
+    { "type": "scripture", "ref": "출 1:8", "gloss": "요셉을 모르는 새 왕이 나옴. 나라 살린 은인이 누군지 아무도 기억 안 하는 시대가 된 거임. 전설의 선배가 졸업하고 나니까 후배들 대우가 확 바뀌는 느낌." },
+    { "type": "narration", "act": "crowd-away", "text": "나라를 굶주림에서 건진 사람이 있었다. 그 덕에 살아남은 나라가, 그 이름을 잊었다. 은혜는 대개 한 세대를 넘기지 못한다. 원한은 열 세대를 간다." },
+    { "type": "line", "who": "pharaoh", "act": "look-up", "text": "“이 백성 이스라엘 자손이 우리보다 많고 강하다. 전쟁이라도 나면 적과 손잡고 우리를 칠 것이다. 그러니, 지혜롭게 하자.”" },
+    { "type": "narration", "act": "turn", "who": "pharaoh", "text": "지혜롭게. 그 왕이 고른 단어였다. 두려움은 늘 계산이 빠르다. 그리고 그 계산은, 대개 다른 사람의 등 위에서 끝난다." },
+    { "type": "narration", "bg": "brickworks", "fx": ["fade", "dust"], "exit": ["pharaoh"], "enter": ["hebrew", "youth", "taskmaster"], "text": "감독들이 세워졌다. 짐이 지워졌다. 히브리 사람들은 바로를 위해 국고성을 지었다. 비돔과 라암셋. 곡식을 쌓아 둘 성이었다. 그 곡식이 그들 몫은 아니었다." },
+    { "act": "approach", "who": "taskmaster", "to": "hebrew" },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "hebrew" }, { "act": "bow-head", "who": "youth" }], "pose": { "hebrew": "slump", "youth": "slump" }, "text": "흙을 이기고, 벽돌을 굽고, 들에서 일했다. 기록은 같은 말을 거듭한다. 엄하게. 고역으로. 엄하였더라. 같은 말을 세 번 하는 기록은, 그 말밖에 할 말이 없었던 것이다." },
+    { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "text": "그런데 이상한 일이 일어났다. 짐이 무거워질수록, 아이들이 늘었다." },
+    { "type": "scripture", "ref": "출 1:12", "gloss": "괴롭힐수록 오히려 더 늘어남. 이집트 사람들이 이스라엘 때문에 걱정에 빠짐. 너프 먹였더니 오히려 버프가 된 상황." },
+    { "type": "narration", "act": "step-back", "who": "taskmaster", "text": "근심한 것은 채찍을 든 쪽이었다. 누르는 사람은 늘 자기가 누르는 것을 무서워한다. 그래서 더 누른다." },
+    { "type": "narration", "bg": "palace", "fx": "fade", "exit": ["hebrew", "youth", "taskmaster"], "enter": ["pharaoh", "shiphrah", "puah"], "text": "왕은 방법을 바꾸었다. 이번에는 채찍이 아니라 산파를 불렀다. 히브리 산파 둘. 십브라와 부아." },
+    { "type": "line", "who": "pharaoh", "act": "face", "to": "shiphrah", "text": "“히브리 여인이 해산할 때 잘 살펴라. 아들이거든 죽이고, 딸이거든 살려 두어라.”" },
+    { "acts": [{ "act": "bow-head", "who": "shiphrah" }, { "act": "bow-head", "who": "puah" }] },
+    { "type": "narration", "text": "기록은 이 왕의 이름을 적지 않았다. 산파 둘의 이름은 적었다. 세상이 누구를 기억하느냐와, 기록이 누구를 기억하느냐는 다르다." },
+    {
+      "type": "choice",
+      "prompt": "왕의 명령이다. 어기면 목숨이 걸린다. 십브라와 부아는?",
+      "options": [
+        { "label": "명령대로 한다. 왕이 시킨 일이다.", "goto": "b-obey" },
+        { "label": "하나님을 두려워한다. 아이들을 살린다.", "canon": true }
+      ]
+    },
+    { "type": "narration", "bg": "house-night", "fx": "fade", "exit": ["pharaoh"], "acts": [{ "act": "kneel", "who": "puah" }, { "act": "look-up", "who": "shiphrah" }], "text": "그러나 산파들은 하나님을 두려워했다. 밤이었다. 어느 히브리 집에서 아기 울음이 터졌다. 사내아이였다. 부아는 아이를 받아 어미 품에 안겼다." },
+    { "type": "scripture", "ref": "출 1:17", "gloss": "산파들이 하나님을 더 무서워해서 왕 명령 씹고 남자아이들을 살려 줌. 왕보다 더 높은 분이 있다는 걸 아는 사람들이었음." },
+    { "type": "narration", "act": "stand", "who": "puah", "text": "왕이 무서운 사람은 왕을 따른다. 하나님이 무서운 사람은, 왕이 덜 무섭다." },
+    { "type": "line", "who": "pharaoh", "bg": "palace", "fx": "fade", "enter": ["pharaoh"], "act": "approach", "to": "shiphrah", "text": "“너희가 어찌하여 이같이 하여, 남자를 살렸느냐.”" },
+    { "type": "line", "who": "shiphrah", "act": "bow-head", "text": "“히브리 여인은 애굽 여인과 같지 아니하고 건장하여, 저희가 이르기 전에 벌써 해산하였더이다.”" },
+    { "type": "line", "who": "puah", "text": "“저희가 문을 열면, 아기가 이미 울고 있습니다.”" },
+    { "type": "narration", "act": "turn", "who": "pharaoh", "text": "왕은 더 묻지 않았다. 신의 아들이라 불리는 왕이, 늙은 산파 둘의 대답 앞에서 할 말을 찾지 못했다. 세상에서 가장 큰 권력이, 가끔은 가장 작은 문 앞에서 멈춘다." },
+    { "type": "narration", "fx": "dawn", "acts": [{ "act": "look-up", "who": "shiphrah" }, { "act": "look-up", "who": "puah" }], "text": "하나님이 산파들에게 은혜를 베푸셨다. 그들이 하나님을 경외했으므로, 그들의 집을 세우셨다. 남의 집 아이를 지킨 사람들에게, 자기 집이 주어졌다." },
+    { "type": "narration", "exit": ["shiphrah", "puah"], "act": "face", "who": "pharaoh", "text": "백성은 또 불어났다. 왕은 마지막 방법을 꺼냈다. 이번에는 숨기지 않았다. 온 백성에게 명했다." },
+    { "type": "line", "who": "pharaoh", "act": "look-up", "text": "“아들이 나거든, 하수에 던지라. 딸이거든 살려 두라.”" },
+    { "type": "scripture", "ref": "출 1:22", "gloss": "바로가 대놓고 전 국민한테 명령함: 히브리 남자아기는 나일강에 던져라. 몰래 하던 일이 이제 국가 정책이 됨." },
+    { "type": "narration", "bg": "river-dusk", "fx": "fade", "exit": ["pharaoh"], "enter": ["mother"], "text": "나일강은 이집트를 먹여 살리는 강이었다. 해마다 넘쳐 들판을 적시고, 사람들은 그 강을 신처럼 섬겼다. 그 강이, 이제 무덤이 되라는 명령을 받았다." },
+    { "acts": [{ "act": "kneel", "who": "mother" }, { "act": "bow-head", "who": "mother" }] },
+    { "type": "narration", "act": "look-up", "who": "mother", "text": "강은 대답하지 않았다. 강은 원래 말이 없다. 다만 왕은 몰랐다. 강이 무엇을 삼키고, 무엇을 돌려보낼지는, 왕이 정하는 일이 아니라는 것을." }
+  ],
+  "branches": {
+    "b-obey": [
+      { "type": "narration", "act": "bow-head", "who": "shiphrah", "text": "만약 그랬다면. 아무도 그들을 탓하지 못했을 것이다. 왕의 명령이었으니까. 명령을 따른 사람은 늘 그렇게 말한다." },
+      { "type": "narration", "act": "look-up", "who": "puah", "text": "그리고 기록은 그들의 이름을 적지 않았을 것이다. 명령만 따른 사람의 이름은, 대개 남지 않는다. 실제로 그 밤, 두 산파는 다른 쪽을 골랐다." }
+    ]
+  },
+  "insight": "출애굽기 히브리어 제목이 ‘이름들’(셰모트)임. 첫 줄이 “이스라엘 아들들의 이름은 이러하니”로 시작하거든. 창세기 끝에서 이집트로 내려간 70명 명단을 다시 불러 주면서, ‘그 가족 이야기 이어 갑니다’ 하는 거임.\n\n7절 잘 보면 ‘생육하고 번성하여 온 땅에 가득’이라는 표현이 나옴. 창세기 1장에서 하나님이 사람한테 주신 복(생육하고 번성하여 땅에 충만하라)이랑 같은 계열의 말임. 노예가 됐어도 그 복은 안 끊겼다는 거. 그래서 바로가 아무리 눌러도 계속 늘어남. 바로 입장에선 하나님이 주신 복이랑 싸우는 중이었던 거임. 이기기 힘든 싸움.\n\n산파 십브라·부아 얘기는 성경에서 꽤 유명한 ‘불복종’ 장면임. 왕이 갑인데 갑 위에 하나님이 있다는 걸 아는 사람들. 근데 바로한테 한 대답(히브리 여자들이 순산해서 우리가 가기 전에 낳음)이 거짓말이냐는 질문이 늘 나옴. 여러 해석이 있음. ‘생명을 살리려고 한 정당한 속임’으로 보는 사람도 있고, ‘하나님이 축복하신 건 거짓말이 아니라 하나님을 두려워한 마음이다’라고 선을 긋는 사람도 있음. 확실한 건 본문이 두 번이나 ‘산파들이 하나님을 두려워했다’고 강조한다는 거.\n\n그리고 이 장에서 바로는 이름이 안 나오는데 산파 둘은 이름이 나옴. 당대 최강 권력자는 그냥 ‘이집트 왕’이고, 무명의 산파들이 실명으로 기록됨. 근데 이게 왜 중요하냐면, 성경이 누구를 ‘중요한 사람’으로 치는지 보여 주거든. 팔로워 수가 아니라, 결정적인 순간에 뭘 골랐냐임.\n\n마지막 명령(아들은 나일강에)은 무거운 장면이라 그냥 담담하게 넘어감. 근데 다음 장에서 바로 그 나일강에 아기 하나가 상자에 담겨 뜨게 됨. 바로가 무덤으로 정한 강이, 이스라엘을 구할 사람을 데려오는 길이 됨.",
+  "tldr": "요셉을 잊은 왕이 이스라엘을 노예로 만들고 아기들까지 죽이려 했지만, 하나님을 두려워한 산파들이 아이들을 살렸다."
+}

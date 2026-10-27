@@ -8,8 +8,7 @@
   "cast": ["jacob", "joseph"],
   "extras": {
     "physician": { "name": "의원", "base": "priest", "hair": "bald", "props": ["jar"], "tint": "white" },
-    "courtier": { "name": "바로의 신하", "base": "man", "hair": "turban", "props": ["scroll"], "tint": "gold", "height": 0.98 },
-    "pharaoh": { "name": "바로", "base": "king", "hair": "crown", "props": ["scepter"], "tint": "gold" }
+    "courtier": { "name": "바로의 신하", "base": "man", "hair": "turban", "props": ["scroll"], "tint": "gold", "height": 0.98 }
   },
   "beats": [
     { "acts": [{ "act": "sleep", "who": "jacob" }, { "act": "kneel", "who": "joseph" }] },

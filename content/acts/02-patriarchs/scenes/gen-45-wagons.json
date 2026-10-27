@@ -6,9 +6,7 @@
   "ref": "창 45:16-28",
   "bg": "palace",
   "cast": ["joseph", "judah", "benjamin"],
-  "extras": {
-    "pharaoh": { "name": "바로", "base": "king", "hair": "crown", "props": ["scepter"], "tint": "gold" }
-  },
+  "extras": { },
   "beats": [
     { "type": "narration", "text": "이제 형제들은 알았다. 곡식을 팔던 이집트 총리가, 이십여 년 전 그들이 판 동생이라는 것을. 그는 울었고, 그들을 안았고, 형제들은 그제야 그와 말을 나누었다." },
     { "type": "narration", "act": "embrace", "who": ["joseph", "benjamin"], "text": "울음소리는 방 밖으로 새어 나갔다. 이집트 사람들이 들었다. 그리고 바로의 궁까지 들렸다. 높은 사람의 울음은 소문이 빠르다. 웃음보다 빠르다." },
