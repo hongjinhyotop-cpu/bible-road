@@ -9,7 +9,8 @@
 // 옷 두 벌 (장면 beat의 "outfit": {"moses": "prince"}):
 //  - prince   : 이집트 왕궁에서 자란 모습 (출 2:10-15). 줄무늬 두건(네메스)이 어깨로 퍼지고, 수염 없이 깎은 얼굴,
 //               목에 금빛 넓은 목걸이, 허리 앞의 주름 앞치마. 지팡이 없이 손을 내린다.
-//  - shepherd : 기본 차림 (미디안의 목자, 출 2:16 이후). prince에서 돌아올 때 쓴다.
+//  - shepherd : 기본 차림 (미디안의 목자, 출 2:16 이후). prince·empty에서 돌아올 때 쓴다.
+//  - empty    : 목자 차림인데 지팡이를 땅에 던져 빈손 (출 4:3 "그것을 땅에 던지라"). 뱀을 잡으면 shepherd로 돌아온다.
 import type { CharacterDef } from './index';
 import { ARM_DOWN } from './_parts.ts';
 
@@ -89,6 +90,7 @@ const moses: CharacterDef = {
     },
     outfits: {
       prince: { markup: COURT, pivot: [104, 112], parts: { hair: NEMES, legs: LEGS, armR: ARM_DOWN } },
+      empty: { markup: MANTLE, pivot: [96, 104], parts: { hair: HOOD, legs: LEGS, armR: ARM_DOWN } },
       shepherd: { markup: MANTLE, pivot: [96, 104], parts: { hair: HOOD, legs: STAFF + LEGS, armR: ARM_STAFF } },
     },
     markup: `

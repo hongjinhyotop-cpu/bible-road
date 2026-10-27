@@ -1,0 +1,51 @@
+/* ── 야곱과 에서 (창 25·27, A급 gen-25-stew · gen-27-blessing) ──
+   인물: 에서의 붉은 털(.fur), 야곱이 입은 형의 붉은 옷(.esau-red)과 염소 가죽(.goat), 그릇의 붉은 죽(.stew)과 김(.steam).
+   배경(fx/stew.ts): 염소털 장막 안, 화덕 위 토기 솥에서 팥죽이 보글거리고 김이 오른다. */
+
+/* ── 인물 ── */
+.actor .fur { color: color-mix(in srgb, var(--sil-ink) 58%, #a3502c); }
+.actor .esau-red { color: color-mix(in srgb, var(--sil-ink) 64%, #9a3e2a); }
+.actor .goat { color: color-mix(in srgb, var(--sil-ink) 66%, #8c765c); }
+.actor .stew { fill: color-mix(in srgb, #c2452c 80%, var(--act-accent)); }
+.actor .steam {
+  stroke: color-mix(in srgb, var(--act-accent) 40%, #f3eadb); opacity: 0;
+  animation: tw-steam 3.2s ease-in-out infinite;
+}
+@keyframes tw-steam {
+  0% { opacity: 0; transform: translateY(4px); }
+  40% { opacity: 0.55; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+
+/* ── 배경: 장막 안 ── */
+.bd-seam { fill: none; stroke: color-mix(in srgb, var(--act-b) 20%, #000); stroke-width: 1.2; opacity: 0.55; }
+.bd-weave-tent { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, #3a3026); stroke-width: 0.5; opacity: 0.18; }
+.bd-tentdoor { fill: url(#tw-door-g); }
+.tw-door-top { stop-color: color-mix(in srgb, var(--act-accent) 60%, #f7e3b8); stop-opacity: 0.42; }
+.tw-door-bot { stop-color: color-mix(in srgb, var(--act-accent) 70%, #e8b070); stop-opacity: 0.16; }
+.bd-rug { fill: color-mix(in srgb, var(--act-a) 40%, #3a1c14); opacity: 0.85; }
+.bd-rug-line { fill: none; stroke: color-mix(in srgb, var(--act-accent) 60%, #b0523a); stroke-width: 1; opacity: 0.45; }
+.bd-pot { fill: color-mix(in srgb, var(--act-b) 30%, #3a2218); }
+.bd-pot-line { stroke: var(--act-accent); stroke-width: 0.6; opacity: 0.35; }
+.bd-stew { fill: color-mix(in srgb, #c8452a 85%, var(--act-accent)); filter: drop-shadow(0 0 2px rgba(240, 120, 70, 0.7)); }
+.bd-stew--brown { fill: color-mix(in srgb, #8a5a32 85%, var(--act-accent)); filter: drop-shadow(0 0 2px rgba(230, 170, 100, 0.5)); }
+.bd-bubble {
+  fill: color-mix(in srgb, #ff9a6a 70%, var(--act-accent)); opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+  animation: tw-bubble 1.8s ease-out infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes tw-bubble { 0% { opacity: 0; transform: scale(0.3); } 30% { opacity: 0.9; } 70% { opacity: 0.6; transform: scale(1.1); } 100% { opacity: 0; transform: scale(1.4); } }
+.bd-steamwrap { filter: blur(0.9px); }
+.bd-steam {
+  stroke: color-mix(in srgb, var(--act-accent) 35%, #efe6d6); stroke-width: 2.2; opacity: 0;
+  animation: tw-steam-up 5.4s ease-in-out infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes tw-steam-up {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.8); }
+  25% { opacity: 0.45; }
+  100% { opacity: 0; transform: translate(var(--dx), -34px) scale(1.5); }
+}
+
+:root[data-reduced-motion='true'] :is(.actor .steam, .bd-bubble, .bd-steam) { animation: none; }
+:root[data-reduced-motion='true'] .bd-steam { opacity: 0.3; }
+:root[data-reduced-motion='true'] .actor .steam { opacity: 0.4; }

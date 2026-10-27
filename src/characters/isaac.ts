@@ -5,6 +5,7 @@
 // 손에는 아무것도 들지 않았다 — 무언가를 쥐고 휘두르는 사람이 아니라 받아 드는 사람.
 // 옷 "wood": 번제 나무 한 단을 등에 지고 끈을 가슴에 둘렀다 (창 22:6 "번제 나무를 취하여 그 아들 이삭에게 지우고").
 //   "plain"으로 다시 내려놓는다.
+// 옷 "old": 늙어 눈이 어두워진 이삭 (창 27, A급 gen-27-blessing) — 센 머리와 길게 자란 센 수염. "young"으로 되돌린다.
 import type { CharacterDef } from './index';
 import { BACK_ARM, FACE_MAN, LEGS_SLIM, TORSO_SLIM, ARM_DOWN } from './_parts.ts';
 
@@ -34,6 +35,35 @@ const WOOD = `
   <!-- 앞어깨 너머 가슴으로 두른 끈 -->
   <path class="rope" d="M86 92 C96 88 108 92 113 102 C118 114 118 132 112 150 C106 164 96 172 88 176 L86 172 C94 167 102 160 107 148 C112 132 112 116 108 106 C104 98 96 95 88 96 Z"/>`;
 
+/** 젊은 날의 머리: 짧은 곱슬 + 천 머리띠 + 턱선의 짧은 수염 (수염도 hair 부위 안에 둔다 — 옷 "old"로 같이 바뀌게) */
+const HAIR_YOUNG = `
+              <!-- 짧은 곱슬머리: 뒤통수에 작은 덩이들 -->
+              <path d="M101 14 C88 12 77 20 74 33 C72 44 74 54 77 62 C79 70 81 76 85 80 C87 74 89 70 91 66 C86 58 85 50 87 44 C90 36 98 31 110 30 C116 29 121 31 124 34 C122 22 113 15 101 14 Z"/>
+              <circle cx="76" cy="38" r="5.4"/><circle cx="74" cy="50" r="5.6"/><circle cx="77" cy="62" r="5.2"/><circle cx="82" cy="72" r="4.6"/>
+              <circle cx="86" cy="18" r="5"/><circle cx="97" cy="13" r="5"/>
+              <!-- 천 머리띠와 뒤로 늘어진 끈 -->
+              <g class="tone2">
+                <path d="M78 31 Q101 21 125 30 L125 35 Q101 26 79 37 Z"/>
+                <path d="M78 34 C71 42 68 54 70 64 L74 64 C73 54 75 44 81 37 Z"/>
+                <path d="M80 35 C76 44 76 52 79 60 L82 58 C80 52 80 44 83 37 Z"/>
+              </g>
+            <!-- 턱선을 따라 난 짧은 수염 -->
+            <path d="M95 57 C102 62 110 65 117 66 L121 67 C123 73 122 79 118 83 C110 86 101 84 95 78 C92 72 92 63 95 57 Z"/>`;
+
+/** 늙은 이삭 (창 27:1 "나이 많아 눈이 어두워"): 성글어진 센 머리, 길게 자란 센 수염 */
+const HAIR_OLD = `
+  <!-- 성글어진 센 곱슬머리 -->
+  <g class="gray">
+    <path d="M101 16 C89 14 79 21 76 33 C74 43 76 52 79 60 C81 67 83 73 86 78 C88 72 89 68 91 65 C87 58 86 50 88 44 C91 36 98 31 110 30 C116 29 121 31 124 34 C122 23 113 16 101 16 Z"/>
+    <circle cx="77" cy="40" r="4.4"/><circle cx="76" cy="52" r="4.6"/><circle cx="79" cy="63" r="4.2"/><circle cx="88" cy="20" r="4"/>
+  </g>
+  <g class="tone2"><path d="M78 31 Q101 21 125 30 L125 35 Q101 26 79 37 Z"/></g>
+  <!-- 가슴께까지 자란 센 수염 (얼굴 옆선 뒤로 깔려서 턱 아래로만 보인다) -->
+  <g class="gray">
+    <path d="M95 56 C102 61 110 64 118 66 L122 68 C126 78 127 90 124 102 C122 110 118 116 113 121 L110 112 L106 121 L103 110 L99 115 C94 102 91 88 91 76 C91 68 92 61 95 56 Z"/>
+    <path class="detail" d="M108 86 Q112 102 109 116 M116 84 Q121 98 117 112" fill="none" stroke-width="0.8"/>
+  </g>`;
+
 const isaac: CharacterDef = {
   id: 'isaac',
   name: '이삭',
@@ -54,6 +84,8 @@ const isaac: CharacterDef = {
     outfits: {
       plain: { markup: MANTLE },
       wood: { markup: MANTLE + WOOD },
+      old: { markup: MANTLE, parts: { hair: HAIR_OLD } },
+      young: { markup: MANTLE, parts: { hair: HAIR_YOUNG } },
     },
     markup: `
       <g data-part="legs">${LEGS_SLIM}</g>
@@ -69,21 +101,8 @@ const isaac: CharacterDef = {
         <g data-part="cloth" class="tone2">${MANTLE}</g>
         <g data-part="head">
           <g transform="matrix(0.88 0 0 0.88 13 10)">
-            <g data-part="hair">
-              <!-- 짧은 곱슬머리: 뒤통수에 작은 덩이들 -->
-              <path d="M101 14 C88 12 77 20 74 33 C72 44 74 54 77 62 C79 70 81 76 85 80 C87 74 89 70 91 66 C86 58 85 50 87 44 C90 36 98 31 110 30 C116 29 121 31 124 34 C122 22 113 15 101 14 Z"/>
-              <circle cx="76" cy="38" r="5.4"/><circle cx="74" cy="50" r="5.6"/><circle cx="77" cy="62" r="5.2"/><circle cx="82" cy="72" r="4.6"/>
-              <circle cx="86" cy="18" r="5"/><circle cx="97" cy="13" r="5"/>
-              <!-- 천 머리띠와 뒤로 늘어진 끈 -->
-              <g class="tone2">
-                <path d="M78 31 Q101 21 125 30 L125 35 Q101 26 79 37 Z"/>
-                <path d="M78 34 C71 42 68 54 70 64 L74 64 C73 54 75 44 81 37 Z"/>
-                <path d="M80 35 C76 44 76 52 79 60 L82 58 C80 52 80 44 83 37 Z"/>
-              </g>
-            </g>
+            <g data-part="hair">${HAIR_YOUNG}</g>
             ${FACE_MAN}
-            <!-- 턱선을 따라 난 짧은 수염 -->
-            <path d="M95 57 C102 62 110 65 117 66 L121 67 C123 73 122 79 118 83 C110 86 101 84 95 78 C92 72 92 63 95 57 Z"/>
           </g>
         </g>
         <g data-part="armR">${ARM_DOWN}</g>

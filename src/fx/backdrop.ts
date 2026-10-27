@@ -4,6 +4,8 @@
 import type { BackdropArt } from '../engine/moods';
 import { PLACE_ART } from './places';
 import { nileArt } from './nile';
+import { bushArt } from './bush';
+import { stewTentArt } from './stew';
 
 export const W = 400;
 export const H = 260;
@@ -410,6 +412,14 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'nile-basket': () => nileArt('basket'),
   'nile-basket-side': () => nileArt('basket-side'),
   'nile-found': () => nileArt('found'),
+  // 호렙산의 떨기나무 (출 3–4, fx/bush.ts)
+  horeb: () => bushArt('horeb'),
+  bush: () => bushArt('bush'),
+  'bush-snake': () => bushArt('snake'),
+  // 이삭 집의 장막 안 (창 25·27, fx/stew.ts)
+  'stew-tent': () => stewTentArt('stew'),
+  'cook-tent': () => stewTentArt('cook'),
+  'isaac-tent': () => stewTentArt('isaac'),
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
