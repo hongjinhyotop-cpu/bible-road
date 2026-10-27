@@ -65,6 +65,7 @@ export const PLACE_NAMES = {
   zoar: '소알',
   gerar: '그랄',
   beersheba: '브엘세바',
+  negev: '남방',
   'beer-lahai-roi': '브엘라해로이',
   moriah: '모리아',
   salem: '살렘',

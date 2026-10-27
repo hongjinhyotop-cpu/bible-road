@@ -397,6 +397,9 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
     ${vines(262, -400, 160, 17, 'bd-near', 143)}
     ${vines(262, 420, 800, 17, 'bd-near', 144)}`,
   plain: plainArt,
+  moreh: () => morehArt(false),
+  'moreh-altar': () => morehArt(true),
+  'bethel-ai': bethelAiArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
     ${palm(-150, 226, 46, 'bd-far', 151)}${palm(560, 226, 44, 'bd-far', 155)}
@@ -406,6 +409,41 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
     ${palm(70, 262, 110, 'bd-near', 156)}
     ${palm(352, 262, 124, 'bd-near', 157)}`,
 };
+
+// ── 2막: 아브람의 길 (창 12:1-9) ──
+/** 세겜 모레 상수리나무 (창 12:6): 홀로 선 큰 나무, 먼 언덕의 가나안 성. altar = 그 아래 쌓은 단 (12:7) */
+function morehArt(withAltar: boolean): string {
+  return `
+    ${hills(202, 'bd-far', 601)}
+    ${city(132, 208, 602, 1)}${city(-150, 210, 607, 1.2)}
+    ${smoke(132, 196, 608, 4)}
+    ${hills(222, 'bd-mid', 603)}
+    ${tree(292, 240, 168, 'bd-mid', 604, { lean: -0.12, sway: true })}
+    ${stones2([244, 262, 318, 120], 244, 'bd-mid', 609)}
+    ${withAltar ? altar(200, 242, true, 605) : ''}
+    ${tree(-70, 262, 190, 'bd-near', 606, { lean: 0.2, sway: true })}${tree(540, 262, 160, 'bd-near', 610, { lean: -0.2, sway: true })}
+    ${thorns(80, 254, 14, 'bd-near', 611)}`;
+}
+
+/** 벧엘 동편 산 (창 12:8): 서쪽(왼쪽)은 벧엘, 동쪽(오른쪽)은 아이. 가운데 언덕 위에 단과 장막 */
+function bethelAiArt(): string {
+  return `
+    ${hills(198, 'bd-far', 621)}
+    ${city(108, 204, 622, 1.15)}
+    ${city(300, 206, 623, 0.85)}
+    <path class="bd-mid" d="M-800 260 L-800 230 C-420 226 -120 234 40 228 C110 222 156 214 200 212 C244 214 290 222 360 228 C520 234 820 226 1200 230 L1200 260 Z"/>
+    ${altar(184, 214, true, 624)}
+    ${tent(236, 218, 0.62)}
+    ${stones2([150, 262, -60, 470], 252, 'bd-near', 625)}
+    ${thorns(96, 254, 16, 'bd-near', 626)}${thorns(318, 256, 18, 'bd-near', 627)}
+    ${tree(-90, 262, 170, 'bd-near', 628, { lean: 0.2, sway: true })}${tree(520, 262, 176, 'bd-near', 629, { lean: -0.2, sway: true })}`;
+}
+
+/** 흩어진 돌 (places.ts의 stones와 같은 모양, 서로 불러오는 순서 문제를 피하려고 여기 따로 둠) */
+function stones2(xs: number[], ground: number, cls: string, seed: number): string {
+  const r = rng(seed);
+  return `<g class="${cls}">${xs.map((x) => `<ellipse cx="${x}" cy="${ground - 1}" rx="${(3 + r() * 5).toFixed(1)}" ry="${(1.6 + r() * 2).toFixed(1)}"/>`).join('')}</g>`;
+}
 
 const cache = new Map<BackdropArt, string>();
 
