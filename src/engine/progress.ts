@@ -5,7 +5,7 @@ export interface Progress {
   chapters: Record<string, true>;
   /** 끝낸 장면 id */
   scenes: Record<string, true>;
-  /** (옛 기록) 읽기 구간 시절에 끝낸 id → 퀴즈 점수. 지금은 같은 id의 에피소드를 끝낸 것으로 친다 */
+  /** (옛 기록) 읽기 구간 시절에 끝낸 id → 점수. 지금은 같은 id의 에피소드를 끝낸 것으로 친다 */
   readings: Record<string, number>;
   /** 만난 인물 id (인물 도감) */
   characters: Record<string, true>;

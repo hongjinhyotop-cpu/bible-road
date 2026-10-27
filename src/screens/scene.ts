@@ -1,6 +1,6 @@
 // 에피소드 재생기 화면 (#/scene/gen-1-light).
-// 무대(인물 실루엣) + 아래 독(dock)에 한 번에 하나씩: 이야기 글 / 본문 카드 / 선택지 / 퀴즈 / 해설.
-// 탭·스페이스·엔터 = 다음 (글이 번지는 중이면 먼저 전체 표시), 숫자키 = 선택지·퀴즈 보기.
+// 무대(인물 실루엣) + 아래 독(dock)에 한 번에 하나씩: 이야기 글 / 본문 카드 / 선택지 / 해설.
+// 탭·스페이스·엔터 = 다음 (글이 번지는 중이면 먼저 전체 표시), 숫자키 = 선택지.
 // B급 에피소드는 동작 라이브러리(engine/actions.ts)·배경 라이브러리(fx/places.ts)·키트 인물(characters/_kit.ts)로 움직인다.
 import gsap from 'gsap';
 import type { Params, Screen } from '../engine/router';
@@ -16,7 +16,6 @@ import { ACT_BG, moodOf } from '../engine/moods';
 import { ACTIONS } from '../engine/actions';
 import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
 import { showTravel, type TravelMap } from '../fx/travel';
-import { runQuiz, type QuizRun } from '../ui/quiz';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
 import type { CharacterDef } from '../characters';
@@ -35,7 +34,7 @@ import { revealScripture, scriptureCard } from '../ui/scripture-card';
 import { openSettings } from '../ui/settings-sheet';
 import { isSheetOpen } from '../ui/sheet';
 
-type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'quiz' | 'end';
+type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback']);
@@ -99,7 +98,6 @@ export function sceneScreen({ id }: Params): Screen {
   let travel: TravelMap | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
-  let quiz: QuizRun | null = null;
 
   let scene: Scene | null = null;
   let cursor: SceneCursor | null = null;
@@ -510,17 +508,6 @@ export function sceneScreen({ id }: Params): Screen {
       travel = null;
     }
     stage.actors.forEach((a) => a.setDim(true));
-    // 끝 확인 퀴즈 (1~2문제) → 해설 카드
-    let score: number | null = null;
-    if (scene.quiz?.length) {
-      quiz = runQuiz(scene.quiz);
-      await swapDock(quiz.el);
-      setMode('quiz');
-      score = await quiz.done;
-      quiz.destroy();
-      quiz = null;
-      if (!alive) return;
-    }
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
@@ -539,7 +526,6 @@ export function sceneScreen({ id }: Params): Screen {
       <div class="insight__text"></div>
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
-      ${score != null ? `<p class="insight__score">퀴즈 <b class="latin">${score}</b> / ${scene.quiz!.length} · ${score === scene.quiz!.length ? '전부 정답. ㄹㅇ 집중해서 봤네' : score ? '거의 다 맞힘' : '괜찮음. 본문 한 번 훑으면 바로 맞힘'}</p>` : ''}
       <div class="insight__actions">
         ${finale ? finaleButton(finale) : next ? nextButton(next, scene.bridge) : ''}
         <button class="btn${next || finale ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
@@ -677,10 +663,6 @@ export function sceneScreen({ id }: Params): Screen {
   // ── 입력 ──────────────────────────────────────
   function onKey(e: KeyboardEvent) {
     if (isSheetOpen()) return;
-    if (mode === 'quiz' && quiz) {
-      if (/^[1-9]$/.test(e.key) && quiz.key(+e.key)) e.preventDefault();
-      return;
-    }
     const onButton = (e.target as HTMLElement).closest?.('button');
     if ((e.key === ' ' || e.key === 'Enter') && !onButton) {
       e.preventDefault();
@@ -739,7 +721,6 @@ export function sceneScreen({ id }: Params): Screen {
       tweens.forEach((t) => t.kill());
       stage.destroy();
       rain.destroy();
-      quiz?.destroy();
       skipHold = null;
       setFieldMode('dust');
       clearTimeout(movingTimer);
