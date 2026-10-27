@@ -47,6 +47,8 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   shur: at(33.3, 30.6),
   paran: at(34.6, 29.9),
   sinai: at(33.97, 28.54),
+  // 미디안: 아카바만 동쪽 아라비아 서북부 (모세가 도망가 목자로 산 땅, 출 2:15)
+  midian: at(35.4, 28.1),
   kadesh: at(34.42, 30.65),
   jericho: at(35.44, 31.87),
   galilee: at(35.58, 32.82),

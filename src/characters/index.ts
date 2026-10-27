@@ -20,11 +20,19 @@ export interface SvgArt {
   outfits?: Record<string, Outfit>;
 }
 
-/** 갈아입을 옷: cloth 부위 안의 그림만 바꾼다. 장면 beat의 "outfit": {"adam": "skins"} */
+/** 갈아입을 옷: cloth 부위 안의 그림을 바꾼다. 장면 beat의 "outfit": {"adam": "skins"} */
 export interface Outfit {
-  markup: string;
+  /** cloth 부위 그림. 없으면 cloth는 그대로 */
+  markup?: string;
   /** 옷자락 흔들림 기준점. 없으면 원래 cloth 기준점 */
   pivot?: [number, number];
+  /**
+   * 다른 부위도 같이 바꿀 때 (머리 장식·소품까지 바뀌는 차림. 예: 모세의 이집트 왕자 차림 ↔ 목자 차림).
+   * 안에 다른 부위가 없는 부위만 (hair, legs, armL, armR). 되돌릴 옷도 outfits에 따로 적어 둔다.
+   */
+  parts?: Partial<Record<'hair' | 'legs' | 'armL' | 'armR', string>>;
+  /** 키 비율을 바꾼다 (같은 인물의 어린 시절: 미리암 소녀 때) */
+  height?: number;
 }
 
 export interface ImageArt {

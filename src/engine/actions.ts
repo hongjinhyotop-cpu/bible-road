@@ -84,6 +84,7 @@ export const PLACE_NAMES = {
   shur: '술 광야',
   paran: '바란 광야',
   sinai: '시내산',
+  midian: '미디안',
   kadesh: '가데스',
   jericho: '여리고',
   galilee: '갈릴리',

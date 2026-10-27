@@ -119,7 +119,7 @@ export class Actor {
   }
 
   /**
-   * 옷을 갈아입는다 (예: 창 3:21 가죽옷). cloth 부위 안의 그림만 바꾼다.
+   * 옷을 갈아입는다 (예: 창 3:21 가죽옷). cloth 부위 그림을 바꾸고, 옷에 parts가 있으면 그 부위(머리 장식·소품)도 바꾼다.
    * 옛 옷이 스러지고, 역광이 한 번 부드럽게 밝아지며 새 옷이 내려앉는다.
    */
   outfit(name: string, animate = true): void {
@@ -134,8 +134,13 @@ export class Actor {
     this.outfitName = name;
     const pivot = next.pivot ?? art.pivots.cloth;
     const swap = () => {
-      cloth.innerHTML = next.markup;
+      if (next.markup != null) cloth.innerHTML = next.markup;
       if (pivot) gsap.set(cloth, { svgOrigin: `${pivot[0]} ${pivot[1]}` });
+      for (const [part, markup] of Object.entries(next.parts ?? {})) {
+        const g = this.parts[part as Part];
+        if (g && markup != null) g.innerHTML = markup;
+      }
+      if (next.height) this.el.style.setProperty('--h', String(next.height));
     };
     if (!animate || reducedMotion()) {
       gsap.killTweensOf(cloth, 'opacity,y');
@@ -144,12 +149,14 @@ export class Actor {
       return;
     }
     const glow = this.el.querySelector('.actor__backlight');
-    gsap.timeline()
-      .to(cloth, { opacity: 0, duration: 0.7, ease: 'power2.in' })
-      .to(glow, { opacity: 1, scale: 1.12, duration: 0.9, ease: 'power2.out' }, 0.2)
+    const extra = Object.keys(next.parts ?? {}).map((k) => this.parts[k as Part]).filter((g): g is SVGGElement => !!g);
+    const tl = gsap.timeline().to(cloth, { opacity: 0, duration: 0.7, ease: 'power2.in' });
+    if (extra.length) tl.to(extra, { opacity: 0, duration: 0.7, ease: 'power2.in' }, 0);
+    tl.to(glow, { opacity: 1, scale: 1.12, duration: 0.9, ease: 'power2.out' }, 0.2)
       .add(swap)
-      .fromTo(cloth, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out' })
-      .to(glow, { opacity: 0.75, scale: 1, duration: 1.4, ease: 'power2.inOut', clearProps: 'opacity,scale' }, '<0.3');
+      .fromTo(cloth, { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 1.3, ease: 'expo.out' });
+    if (extra.length) tl.to(extra, { opacity: 1, duration: 1.1, ease: 'power2.out' }, '<');
+    tl.to(glow, { opacity: 0.75, scale: 1, duration: 1.4, ease: 'power2.inOut', clearProps: 'opacity,scale' }, '<0.3');
   }
 
   // ── 동작 라이브러리 (engine/actions.ts) ──────────

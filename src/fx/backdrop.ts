@@ -3,6 +3,7 @@
 // 모양은 코드로 만들되 시드 고정 난수라 매번 같은 그림이 나온다.
 import type { BackdropArt } from '../engine/moods';
 import { PLACE_ART } from './places';
+import { nileArt } from './nile';
 
 export const W = 400;
 export const H = 260;
@@ -400,6 +401,16 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   moreh: () => morehArt(false),
   'moreh-altar': () => morehArt(true),
   'bethel-ai': bethelAiArt,
+  'moriah-far': moriahFarArt,
+  moriah: () => moriahArt('bare'),
+  'moriah-altar': () => moriahArt('altar'),
+  'moriah-fire': () => moriahArt('fire'),
+  // 나일강 갈대밭 (출 2, fx/nile.ts)
+  nile: () => nileArt('reeds'),
+  'nile-basket': () => nileArt('basket'),
+  'nile-basket-side': () => nileArt('basket-side'),
+  'nile-found': () => nileArt('found'),
+  'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
     ${palm(-150, 226, 46, 'bd-far', 151)}${palm(560, 226, 44, 'bd-far', 155)}
@@ -437,6 +448,113 @@ function bethelAiArt(): string {
     ${stones2([150, 262, -60, 470], 252, 'bd-near', 625)}
     ${thorns(96, 254, 16, 'bd-near', 626)}${thorns(318, 256, 18, 'bd-near', 627)}
     ${tree(-90, 262, 170, 'bd-near', 628, { lean: 0.2, sway: true })}${tree(520, 262, 176, 'bd-near', 629, { lean: -0.2, sway: true })}`;
+}
+
+// ── 2막: 모리아 (창 22:1-19) ──
+/** 제 삼일에 멀리 바라본 그곳 (창 22:4): 광야 길이 홀로 선 산으로 이어지고, 꼭대기에 희미한 빛 */
+function moriahFarArt(): string {
+  return `
+    ${hills(212, 'bd-far', 701)}
+    <circle class="bd-halo bd-moriah-glow" cx="200" cy="118" r="54"/>
+    <path class="bd-far" d="M-40 236 C40 226 110 192 160 146 C176 131 188 120 196 117 C202 115 208 117 214 122 C240 146 290 200 360 226 C400 236 460 240 520 240 L520 260 L-40 260 Z"/>
+    <path class="bd-ridge" d="M196 117 C204 115 210 118 214 122 M150 160 L170 150 M236 150 L256 172" />
+    ${hills(232, 'bd-mid', 703)}
+    <path class="bd-road" d="M150 262 C176 254 214 250 222 244 C232 238 206 236 200 232 C194 228 204 226 208 224"/>
+    ${stones2([96, 118, 286, 300, -40, 450], 250, 'bd-near', 704)}
+    ${thorns(70, 254, 18, 'bd-near', 705)}${thorns(334, 256, 20, 'bd-near', 706)}
+    ${thorns(-90, 252, 22, 'bd-near', 707)}${thorns(500, 252, 22, 'bd-near', 708)}`;
+}
+
+/** 산꼭대기의 마루: 발아래로 먼 산줄기가 낮게 깔리고, 바위가 양옆에 선다 */
+function moriahSummit(seed: number): string {
+  return `
+    <path class="bd-far" d="M-800 260 L-800 226 L-600 214 L-420 224 L-300 210 L-160 222 L-60 214 L40 224 L120 216 L200 222 L290 212 L380 224 L470 214 L600 226 L760 212 L1200 224 L1200 260 Z"/>
+    <path class="bd-far bd-mist" d="M-800 260 L-800 232 C-400 228 -100 236 200 232 C500 228 800 236 1200 232 L1200 260 Z"/>
+    <path class="bd-mid" d="M-800 260 L-800 252 C-400 250 -60 246 80 240 C130 236 160 233 200 233 C240 233 270 236 320 240 C460 246 800 250 1200 252 L1200 260 Z"/>
+    <g class="bd-near">
+      <path d="M-20 262 C-18 236 -4 222 18 220 C34 218 48 226 54 240 C58 250 58 258 56 262 Z"/>
+      <path d="M346 262 C348 244 360 232 378 232 C398 232 412 244 414 262 Z"/>
+      <path d="M-160 262 C-150 230 -120 214 -96 218 C-76 222 -66 242 -64 262 Z"/>
+      <path d="M470 262 C474 236 492 222 512 224 C532 228 542 246 542 262 Z"/>
+    </g>
+    ${stones2([128, 150, 246, 268, 300], 242, 'bd-mid', seed)}`;
+}
+
+/** 돌을 쌓은 단 + 그 위에 벌여 놓은 나무 (창 22:9). 불은 아직 없다 */
+function woodAltar(x: number, ground: number, seed: number): string {
+  const r = rng(seed);
+  const stones: string[] = [];
+  [[5, 9], [4, 8], [3, 7]].forEach(([n, h], row) => {
+    const w = 9;
+    const y = ground - (row + 1) * h + 1;
+    for (let i = 0; i < n; i++) {
+      const sx = x - (n * w) / 2 + i * w + (r() - 0.5) * 1.5;
+      stones.push(`<rect x="${sx.toFixed(1)}" y="${y.toFixed(1)}" width="${(w - 0.8).toFixed(1)}" height="${(h - 0.6).toFixed(1)}" rx="2.4"/>`);
+    }
+  });
+  const top = ground - 24;
+  const sticks = Array.from({ length: 6 }, (_, i) => {
+    const y = top - 1.6 - (i % 3) * 2.2;
+    const x0 = x - 15 + (r() - 0.5) * 3 + (i > 2 ? 3 : 0);
+    const len = 26 + r() * 6;
+    const tilt = (r() - 0.5) * 3;
+    return `<path d="M${x0.toFixed(1)} ${(y + tilt).toFixed(1)} L${(x0 + len).toFixed(1)} ${(y - tilt).toFixed(1)}" stroke-width="2.1" stroke-linecap="round"/>`;
+  }).join('');
+  return `<g class="bd-altar"><g class="bd-mid">${stones.join('')}</g><g class="bd-wood" fill="none">${sticks}</g></g>`;
+}
+
+function moriahArt(state: 'bare' | 'altar' | 'fire'): string {
+  const x = 200;
+  const ground = 240;
+  const altarSvg = state === 'bare' ? stones2([186, 194, 206, 214], ground, 'bd-mid', 711) : state === 'altar' ? woodAltar(x, ground, 712) : altar(x, ground, true, 713);
+  // 폰에서는 인물 둘이 양옆으로 벌어져 서므로, 가운데 단을 크게 그려 둘 사이에 보이게 한다
+  return `${moriahSummit(714)}<g transform="translate(${x} ${ground}) scale(1.6) translate(${-x} ${-ground})">${altarSvg}</g>
+    ${thorns(96, 250, 16, 'bd-near', 715)}${thorns(312, 252, 14, 'bd-near', 716)}`;
+}
+
+/**
+ * 뒤의 수풀 (창 22:13 "한 수양이 뒤에 있는데 뿔이 수풀에 걸렸는지라"):
+ * 엉킨 가시 수풀 한가운데 숫양 한 마리. 뿔에 가지가 걸려 고개를 이따금 당긴다. 위로 은은한 빛
+ */
+function moriahThicketArt(): string {
+  const r = rng(721);
+  const cx = 200;
+  const ground = 242;
+  const branch = (front: boolean) => Array.from({ length: front ? 7 : 16 }, () => {
+    const bx = cx + (r() - 0.5) * (front ? 70 : 110);
+    const a = -Math.PI / 2 + (r() - 0.5) * 2.2;
+    const len = 18 + r() * (front ? 26 : 34);
+    const ex = bx + Math.cos(a) * len;
+    const ey = ground + Math.sin(a) * len;
+    const mx = (bx + ex) / 2 + (r() - 0.5) * 14;
+    const my = (ground + ey) / 2 + (r() - 0.5) * 8;
+    const twig = `M${((mx + ex) / 2).toFixed(1)} ${((my + ey) / 2).toFixed(1)} l${((r() - 0.5) * 14).toFixed(1)} ${(-4 - r() * 7).toFixed(1)}`;
+    return `<path d="M${bx.toFixed(1)} ${ground} Q${mx.toFixed(1)} ${my.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)} ${twig}" fill="none" stroke="currentColor" stroke-width="${(front ? 1.3 : 1.1) + r() * 0.6}" stroke-linecap="round"/>`
+      + (front ? '' : `<circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="${(2 + r() * 2.6).toFixed(1)}"/>`);
+  }).join('');
+  // 숫양: 오른쪽을 본다. 몸·털 덩이·다리, 고개는 뿔째 가지에 걸려 있다
+  const ram = `<g class="bd-ram">
+    <path d="M176 226 C175 218 181 212 189 212 C194 208 204 208 208 212 C214 212 218 217 217 223 C219 229 213 234 205 234 C199 237 189 237 184 234 C178 234 174 231 176 226 Z"/>
+    <circle cx="183" cy="215" r="5.4"/><circle cx="192" cy="210.5" r="5.4"/><circle cx="202" cy="210" r="5.2"/><circle cx="179" cy="224" r="4.8"/><circle cx="184" cy="231" r="4.4"/><circle cx="197" cy="233.5" r="4.4"/>
+    <path d="M183 232 L182 244 L185.4 244 L187 232 Z M191 234 L191 244 L194.4 244 L195 234 Z M204 234 L205 244 L208.4 244 L208 233 Z M211 231 L213 243 L216.4 243 L215 230 Z"/>
+    <g class="bd-ram__head">
+      <path d="M207 218 C207 211 211 205 217 203 C222 202 226 204 229 208 C231 211 233 214 235 217 C236 220 234 222 231 222 C228 222 225 221 222 222 C218 223 214 224 211 223 C208 222 207 220 207 218 Z"/>
+      <path d="M218 205 C211 201 204 206 205 213 C206 220 214 221 216 215 C217 211 213 209 211 212" class="bd-ram__horn" fill="none" stroke-linecap="round"/>
+      <path d="M222 207 L226 203 L227 207 Z"/>
+      <ellipse class="bd-ram__eye" cx="226" cy="210" rx="1.1" ry="0.8"/>
+    </g>
+  </g>`;
+  return `${moriahSummit(722)}
+    ${woodAltar(70, 240, 723)}
+    <circle class="bd-regard" cx="${cx}" cy="200" r="74"/>
+    <g transform="translate(${cx} ${ground - 10}) scale(1.45) translate(${-cx} ${-ground})">
+      <g class="bd-mid bd-thicket">${branch(false)}</g>
+      ${ram}
+      <g class="bd-mid bd-thicket">${branch(true)}
+        <path d="M214 244 Q220 222 206 200 M226 244 Q222 220 214 198" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+    </g>
+    ${thorns(96, 252, 16, 'bd-near', 725)}${thorns(316, 254, 14, 'bd-near', 726)}`;
 }
 
 /** 흩어진 돌 (places.ts의 stones와 같은 모양, 서로 불러오는 순서 문제를 피하려고 여기 따로 둠) */

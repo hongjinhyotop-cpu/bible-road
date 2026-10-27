@@ -76,3 +76,19 @@
 :root[data-reduced-motion='true'] .bd-ember,
 :root[data-reduced-motion='true'] .bd-regard,
 :root[data-reduced-motion='true'] .bd-window { animation: none; }
+
+/* ── 2막: 모리아 (창 22) ── */
+/* 멀리 보이는 그 산 꼭대기의 희미한 빛: 아주 천천히 숨 쉰다 */
+.bd-moriah-glow { animation: bd-breathe 7s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+/* 산꼭대기에서 내려다본 먼 산줄기 위의 옅은 안개 */
+.bd-mist { opacity: 0.45; }
+/* 단 위에 벌여 놓은 나무 (창 22:9) */
+.bd-wood { stroke: color-mix(in srgb, var(--act-b) 30%, #6b4a2c); }
+/* 수풀에 뿔이 걸린 숫양 (창 22:13): 수풀보다 한 톤 밝은 털, 테두리에 빛, 이따금 고개를 당긴다 */
+.bd-ram { fill: color-mix(in srgb, var(--act-b) 40%, #2a2420); filter: drop-shadow(0 0 1.4px color-mix(in srgb, var(--act-accent) 85%, transparent)); }
+.bd-ram__horn { stroke: color-mix(in srgb, var(--act-accent) 55%, #5a4632); stroke-width: 3.4; }
+.bd-ram__eye { fill: var(--act-accent); opacity: 0.7; }
+.bd-ram__head { transform-box: fill-box; transform-origin: 10% 90%; animation: bd-tug 4.2s ease-in-out infinite; }
+@keyframes bd-tug { 0%, 62%, 100% { transform: rotate(0deg); } 70% { transform: rotate(-7deg); } 78% { transform: rotate(2deg); } 86% { transform: rotate(-4deg); } }
+:root[data-reduced-motion='true'] .bd-moriah-glow,
+:root[data-reduced-motion='true'] .bd-ram__head { animation: none; }

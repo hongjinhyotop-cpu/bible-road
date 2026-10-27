@@ -8,6 +8,7 @@ import './styles/stage.css';
 import './styles/backdrop.css';
 import './styles/flood.css';
 import './styles/babel.css';
+import './styles/nile.css';
 import './styles/title.css';
 import './styles/map.css';
 import './styles/play.css';

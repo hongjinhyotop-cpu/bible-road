@@ -7,6 +7,8 @@ export type BackdropArt =
   | 'cities' | 'yard' | 'peaks' | 'peaks-green' | 'altar-one' | 'vineyard'
   | 'plain' | 'kilns'
   | 'moreh' | 'moreh-altar' | 'bethel-ai'
+  | 'moriah-far' | 'moriah' | 'moriah-altar' | 'moriah-thicket' | 'moriah-fire'
+  | 'nile' | 'nile-basket' | 'nile-basket-side' | 'nile-found'
   | PlaceArt;
 
 /**
@@ -183,6 +185,34 @@ export const MOODS: Record<string, Mood> = {
   'bethel-ai': { light: true, land: true, art: 'bethel-ai', tone: 'dusk', spread: true },
   /** 같은 언덕의 밤 */
   'bethel-ai-night': { light: true, land: true, art: 'bethel-ai', tone: 'night', spread: true },
+
+  // ── 모리아 (창 22:1-19) ──
+  /** 제 삼일, 멀리 보이는 그 산: 광야 길 끝에 홀로 선 산, 꼭대기에 희미한 빛 (창 22:4) */
+  'moriah-far': { light: true, land: true, art: 'moriah-far', tone: 'clear' },
+  /** 같은 산, 해 질 녘 (사흘 길의 저녁) */
+  'moriah-far-dusk': { light: true, land: true, art: 'moriah-far', tone: 'dusk' },
+  /** 모리아 산꼭대기: 바위 마루, 흩어진 돌, 발아래 먼 산줄기 (창 22:9) */
+  moriah: { light: true, land: true, art: 'moriah', spread: true },
+  /** 돌을 쌓은 단 위에 벌여 놓은 나무. 아직 불은 없다 (창 22:9) */
+  'moriah-altar': { light: true, land: true, art: 'moriah-altar', spread: true },
+  /** 같은 단, 빛이 꺼져 가는 무거운 순간 (창 22:10) */
+  'moriah-altar-dusk': { light: true, land: true, art: 'moriah-altar', tone: 'dusk', spread: true },
+  /** 뒤의 수풀: 뿔이 걸린 숫양 한 마리, 은은한 빛 (창 22:13) */
+  'moriah-ram': { light: true, land: true, art: 'moriah-thicket', tone: 'clear', spread: true },
+  /** 아들 대신 드린 번제: 단 위의 불과 연기 (창 22:13-14 "여호와 이레") */
+  'moriah-fire': { light: true, land: true, art: 'moriah-fire', tone: 'clear', spread: true },
+
+  // ── 나일강 갈대밭 (출 2:3-10, fx/nile.ts) ──
+  /** 나일 강가: 맞은편 왕궁 탑문, 넓은 강, 우거진 파피루스 */
+  nile: { light: true, land: true, art: 'nile' },
+  /** 같은 강가, 해 질 녘 */
+  'nile-dusk': { light: true, land: true, art: 'nile', tone: 'dusk' },
+  /** 갈대 사이에 떠 있는 갈 상자 (출 2:3) — 이른 아침 */
+  'nile-basket': { light: true, land: true, art: 'nile-basket', tone: 'clear', spread: true },
+  /** 같은 상자, 한낮 (출 2:5 바로의 딸이 목욕하러 내려옴). 셋이 서도 보이게 상자가 가운데에서 조금 오른쪽 */
+  'nile-basket-day': { light: true, land: true, art: 'nile-basket-side', spread: true },
+  /** 건져 올려 연 상자, 우는 아이 (출 2:6). 상자는 가운데에서 조금 오른쪽 */
+  'nile-found': { light: true, land: true, art: 'nile-found', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...
