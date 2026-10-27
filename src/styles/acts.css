@@ -1,0 +1,15 @@
+/* 막별 테마: [data-act="N"] 이 붙은 영역의 색을 덮어쓴다. */
+[data-act='1']  { --act-a: #0b1030; --act-b: #1c2152; --act-accent: #ecca7e; }
+[data-act='2']  { --act-a: #1d160e; --act-b: #3a2a18; --act-accent: #e6ba7c; }
+[data-act='3']  { --act-a: #261410; --act-b: #4c1f17; --act-accent: #ec9f74; }
+[data-act='4']  { --act-a: #15102a; --act-b: #2e1840; --act-accent: #dcb05a; }
+[data-act='5']  { --act-a: #22121a; --act-b: #4d2a22; --act-accent: #f2a86c; }
+[data-act='6']  { --act-a: #101113; --act-b: #26282c; --act-accent: #cfc6b0; }
+[data-act='7']  { --act-a: #1a0f28; --act-b: #36184c; --act-accent: #dcab50; }
+[data-act='8']  { --act-a: #0e1a20; --act-b: #1d313a; --act-accent: #acd4d9; }
+[data-act='9']  { --act-a: #101319; --act-b: #2c303b; --act-accent: #c9b89c; }
+[data-act='10'] { --act-a: #0a1430; --act-b: #13306c; --act-accent: #e6c47c; }
+[data-act='11'] { --act-a: #131e18; --act-b: #303b26; --act-accent: #eac88c; }
+[data-act='12'] { --act-a: #0d1b25; --act-b: #183c4c; --act-accent: #e8d19c; }
+[data-act='13'] { --act-a: #1c130b; --act-b: #3c2514; --act-accent: #eaa95c; }
+[data-act='14'] { --act-a: #05060f; --act-b: #161c40; --act-accent: #c4e5ff; }

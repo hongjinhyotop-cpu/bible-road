@@ -1,0 +1,158 @@
+.map {
+  --sky-a: #0b1030;
+  --sky-b: #1c2152;
+  --sky-accent: #ecca7e;
+  background:
+    radial-gradient(90% 60% at 50% 0%, color-mix(in srgb, var(--sky-b) 80%, transparent), transparent 70%),
+    linear-gradient(180deg, var(--sky-a), color-mix(in srgb, var(--sky-a) 60%, #000) 100%);
+}
+
+/* 배경 캔버스(별)가 비쳐 보이도록 지도 바탕은 살짝 투명하게 둔다 */
+.map::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 40% at 50% 100%, color-mix(in srgb, var(--sky-accent) 10%, transparent), transparent 70%);
+}
+
+.map__header {
+  position: absolute; z-index: 5; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; gap: 8px;
+  padding: max(10px, env(safe-area-inset-top)) 12px 10px;
+  background: linear-gradient(180deg, var(--sky-a) 0%, color-mix(in srgb, var(--sky-a) 88%, transparent) 62%, transparent);
+  padding-bottom: 26px;
+}
+.map__heading { flex: 1; text-align: center; }
+.map__heading h1 { margin: 0; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.32em; margin-right: -0.32em; }
+.map__count { margin: 0; color: var(--sky-accent); letter-spacing: 0.06em; opacity: 0.9; }
+
+.map__scroll {
+  position: absolute; inset: 0; z-index: 2;
+  overflow-y: auto; overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: rgba(217, 178, 106, 0.3) transparent;
+}
+
+.map__road { position: relative; width: min(100%, 860px); margin: 0 auto; }
+.map__svg { position: absolute; inset: 0; overflow: visible; }
+
+.map__path { fill: none; stroke-linecap: round; }
+.map__path--base { stroke: rgba(239, 230, 210, 0.07); stroke-width: 1; stroke-dasharray: 2 7; }
+.map__path--ahead { stroke: color-mix(in srgb, var(--sky-accent) 38%, transparent); stroke-width: 1; }
+.map__path--lit { stroke: var(--gold-bright); stroke-width: 2; filter: drop-shadow(0 0 6px rgba(244, 214, 150, 0.8)); }
+
+.map__end { text-align: center; color: var(--ivory-faint); padding: 20px 0 calc(80px + var(--safe-bottom)); margin: 0; letter-spacing: 0.08em; }
+
+/* ── 막 제목 ── */
+.act-head {
+  position: absolute; left: 0; right: 0;
+  text-align: center; padding: 0 var(--gutter);
+  pointer-events: none;
+}
+.act-head::before {
+  /* 길이 제목 뒤를 지나가도 글이 읽히도록 만드는 어둠의 빈터 */
+  content: ''; position: absolute; left: 50%; top: 50%; width: min(520px, 110%); height: 150%;
+  translate: -50% -46%; z-index: -1;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-a) 92%, transparent), transparent);
+}
+.act-head__numeral {
+  position: absolute; left: 50%; top: -0.32em; translate: -50% 0; z-index: -1;
+  font-family: var(--font-display); font-weight: 400; font-size: 6.5rem; line-height: 1;
+  color: var(--act-accent); opacity: 0.09; letter-spacing: 0.04em;
+}
+.act-head__eyebrow { margin: 0 0 0.4rem; color: var(--act-accent); letter-spacing: 0.16em; }
+.act-head__eyebrow .latin { font-size: 0.95rem; letter-spacing: 0.08em; }
+.act-head__title { margin: 0; font-size: 1.7rem; font-weight: 600; letter-spacing: 0.24em; margin-right: -0.24em; color: var(--ivory); }
+.act-head__meta { margin: 0.5rem 0 0; color: var(--ivory-faint); }
+.act-head__meta span { margin: 0 0.5em; }
+
+/* ── 별 ── */
+.star {
+  position: absolute; width: 48px; height: 48px; margin: -24px 0 0 -24px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  --c: var(--act-accent);
+}
+.star__core {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(239, 230, 210, 0.55);
+  box-shadow: 0 0 0 3px rgba(239, 230, 210, 0.06);
+  transition: transform var(--t-fast) var(--ease-out), background var(--t-fast);
+  grid-area: 1 / 1;
+}
+.star__glow {
+  grid-area: 1 / 1; width: 64px; height: 64px; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--c) 55%, transparent), transparent);
+  opacity: 0; transition: opacity var(--t-fast);
+}
+.star__ring {
+  grid-area: 1 / 1; width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid var(--c); pointer-events: none;
+}
+.star__label {
+  position: absolute; top: 50%; translate: 0 -50%;
+  white-space: nowrap; pointer-events: none;
+  display: flex; flex-direction: column; line-height: 1.35;
+  transition: color var(--t-fast);
+}
+.star[data-side='right'] .star__label { left: 44px; text-align: left; }
+.star[data-side='left'] .star__label { right: 44px; text-align: right; }
+.star__label b { font-weight: 500; font-size: 0.95rem; letter-spacing: 0.06em; color: var(--ivory-soft); }
+.star__label small { font-family: var(--font-ui); font-size: 0.6875rem; color: var(--ivory-faint); letter-spacing: 0.04em; }
+
+.star:hover .star__core,
+.star:focus-visible .star__core { transform: scale(1.5); background: var(--ivory); }
+.star:hover .star__glow,
+.star:focus-visible .star__glow { opacity: 0.5; }
+.star:hover .star__label b { color: var(--ivory); }
+
+/* 다음에 걸을 별: 촛불처럼 숨쉰다 */
+.star--next .star__core { width: 9px; height: 9px; background: #fff3d2; box-shadow: 0 0 12px 2px color-mix(in srgb, var(--c) 80%, transparent); }
+.star--next .star__glow { opacity: 1; animation: star-breathe 3.6s ease-in-out infinite; }
+.star--next .star__label b { color: var(--gold-bright); }
+.star--next .star__label small { color: var(--c); }
+
+.star--lit .star__core { width: 9px; height: 9px; background: var(--gold-bright); box-shadow: 0 0 10px 2px rgba(244, 214, 150, 0.8); }
+.star--lit .star__glow { opacity: 0.8; }
+.star--lit .star__label b { color: var(--ivory); }
+
+@keyframes star-breathe {
+  0%, 100% { transform: scale(0.85); opacity: 0.75; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+:root[data-reduced-motion='true'] .star--next .star__glow { animation: none; }
+
+/* ── 데스크톱: 왼쪽에 막 목차 ── */
+.map__acts { display: none; }
+@media (min-width: 1100px) {
+  .map__acts {
+    display: flex; flex-direction: column; gap: 2px;
+    position: absolute; z-index: 4; left: 28px; top: 50%; translate: 0 -50%;
+  }
+  .map__acts a {
+    display: flex; align-items: baseline; gap: 12px;
+    padding: 5px 12px; border-radius: 8px;
+    color: var(--ivory-faint); text-decoration: none;
+    transition: color var(--t-fast), background var(--t-fast);
+  }
+  .map__acts a .latin { width: 2.6em; text-align: right; font-size: 0.95rem; }
+  .map__acts a:hover { color: var(--ivory); }
+  .map__acts a[aria-current] { color: var(--sky-accent); background: rgba(255, 240, 200, 0.05); }
+  .map__header { padding-left: 28px; padding-right: 28px; }
+  .act-head__title { font-size: 2.1rem; }
+  .act-head__numeral { font-size: 9rem; }
+}
+
+/* ── 별을 누르면 뜨는 패널 ── */
+.stop__meta { color: var(--ivory-faint); margin: -6px 0 18px; }
+.stop__card { min-height: 120px; }
+.stop__empty { text-align: center; color: var(--ivory-soft); margin: 22px 0 24px; font-size: 0.95rem; line-height: 1.8; }
+.stop__chapters {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(40px, 1fr)); gap: 6px;
+}
+.stop__chapters li {
+  aspect-ratio: 1; display: grid; place-items: center; border-radius: 8px;
+  font-family: var(--font-display); font-size: 1rem; color: var(--ivory-faint);
+  border: 1px solid rgba(239, 230, 210, 0.08);
+}
+.stop__chapters li.done { color: var(--gold-bright); border-color: var(--line-strong); }
