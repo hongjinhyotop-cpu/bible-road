@@ -28,6 +28,7 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   zoar: at(35.5, 30.98),
   gerar: at(34.6, 31.38),
   beersheba: at(34.79, 31.25),
+  negev: at(34.85, 30.85),
   'beer-lahai-roi': at(34.4, 30.75),
   moriah: at(35.23, 31.78),
   salem: at(35.23, 31.78),

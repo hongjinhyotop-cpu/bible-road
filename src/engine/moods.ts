@@ -6,6 +6,7 @@ export type BackdropArt =
   | 'garden' | 'tree' | 'gate' | 'field' | 'altar' | 'altar-lit' | 'nod'
   | 'cities' | 'yard' | 'peaks' | 'peaks-green' | 'altar-one' | 'vineyard'
   | 'plain' | 'kilns'
+  | 'moreh' | 'moreh-altar' | 'bethel-ai'
   | PlaceArt;
 
 /**
@@ -172,6 +173,16 @@ export const MOODS: Record<string, Mood> = {
   'tower-far': { light: true, land: true, art: 'plain', tower: 'far', tone: 'clear' },
   /** 쌓다 만 탑, 빈 비계, 저녁 바람 (창 11:8-9) */
   'tower-left': { light: true, land: true, art: 'plain', tower: 'left', tone: 'dusk' },
+
+  // ── 아브람의 길 (창 12:1-9) ──
+  /** 세겜 땅 모레 상수리나무: 홀로 선 큰 나무, 먼 언덕의 가나안 성 (창 12:6) */
+  moreh: { light: true, land: true, art: 'moreh' },
+  /** 같은 나무 아래 아브람이 쌓은 단, 은은한 빛과 연기 (창 12:7) */
+  'moreh-altar': { light: true, land: true, art: 'moreh-altar', spread: true },
+  /** 벧엘 동편 산: 서는 벧엘, 동은 아이. 언덕 위의 단과 장막, 저녁 (창 12:8) */
+  'bethel-ai': { light: true, land: true, art: 'bethel-ai', tone: 'dusk', spread: true },
+  /** 같은 언덕의 밤 */
+  'bethel-ai-night': { light: true, land: true, art: 'bethel-ai', tone: 'night', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...
