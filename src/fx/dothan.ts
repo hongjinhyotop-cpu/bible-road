@@ -22,31 +22,33 @@ function rocks(xs: number[], ground: number, cls: string, seed: number, big = 1)
 
 // ── 꿈 ─────────────────────────────────────────
 
-/** 곡식 단 하나 (밑동을 묶은 이삭 다발). 원점 = 밑동 가운데 */
+/** 곡식 단 하나 (허리를 묶은 이삭 다발). 원점 = 밑동 가운데. 아래는 짚 끝이 살짝 퍼지고, 위는 이삭이 둥글게 벌어진다 */
 function sheaf(h: number, seed: number): string {
   const r = rng(seed);
-  const stalks = Array.from({ length: 7 }, (_, i) => {
-    const a = (i - 3) * 0.09 + (r() - 0.5) * 0.05;
-    const top = -h * (0.92 + r() * 0.12);
-    const x = Math.sin(a) * h * 0.9;
-    return `<ellipse cx="${x.toFixed(1)}" cy="${(top + 3).toFixed(1)}" rx="${(h * 0.06).toFixed(1)}" ry="${(h * 0.16).toFixed(1)}" transform="rotate(${(a * 57).toFixed(1)} ${x.toFixed(1)} ${(top + 3).toFixed(1)})"/>`;
+  const ears = Array.from({ length: 11 }, (_, i) => {
+    const t = (i - 5) / 5;
+    const a = t * 34 + (r() - 0.5) * 6;
+    const x = t * h * 0.24;
+    const y = -h * (0.86 + (1 - Math.abs(t)) * 0.1) + r() * 1.5;
+    return `<ellipse cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${(h * 0.05).toFixed(1)}" ry="${(h * 0.15).toFixed(1)}" transform="rotate(${a.toFixed(1)} ${x.toFixed(1)} ${y.toFixed(1)})"/>`;
   }).join('');
-  const w = h * 0.2;
-  return `<path d="M${-w} 0 C${-w * 0.6} ${-h * 0.3} ${-w * 0.3} ${-h * 0.45} ${-w * 1.4} ${-h * 0.82} L${w * 1.4} ${-h * 0.82} C${w * 0.3} ${-h * 0.45} ${w * 0.6} ${-h * 0.3} ${w} 0 Z"/>
-    ${stalks}
-    <path class="dt-band" d="M${-w * 0.55} ${-h * 0.4} L${w * 0.55} ${-h * 0.4} L${w * 0.5} ${-h * 0.33} L${-w * 0.5} ${-h * 0.33} Z"/>`;
+  return `<path d="M${-h * 0.2} 0 L${-h * 0.09} ${-h * 0.44} C${-h * 0.14} ${-h * 0.56} ${-h * 0.22} ${-h * 0.7} ${-h * 0.26} ${-h * 0.82} L${h * 0.26} ${-h * 0.82} C${h * 0.22} ${-h * 0.7} ${h * 0.14} ${-h * 0.56} ${h * 0.09} ${-h * 0.44} L${h * 0.2} 0 Z"/>
+    ${ears}
+    <path class="dt-straw" d="M${-h * 0.14} -1 L${-h * 0.07} ${-h * 0.4} M0 -1 L0 ${-h * 0.4} M${h * 0.14} -1 L${h * 0.07} ${-h * 0.4}"/>
+    <path class="dt-band" d="M${-h * 0.11} ${-h * 0.47} L${h * 0.11} ${-h * 0.47} L${h * 0.1} ${-h * 0.4} L${-h * 0.1} ${-h * 0.4} Z"/>`;
 }
 
 /** 꿈 1: 밭 한가운데 일어선 단 + 둘러서서 절하는 열한 단 */
 function sheavesArt(): string {
-  const cx = 186;
+  // 폰에서는 요셉이 오른쪽에 비켜 서므로(spread), 꿈은 가운데에서 조금 왼쪽에
+  const cx = 168;
   const base = 222;
   // 열한 단: 둘레를 따라 (뒤쪽은 작게). bow = 가운데 단 쪽으로 기우는 각도
   const ring = Array.from({ length: 11 }, (_, i) => {
     const a = Math.PI * (0.06 + (i / 10) * 0.88);
     const back = Math.sin(a);
-    const x = cx - Math.cos(a) * 92;
-    const y = base + 10 - back * 18;
+    const x = cx - Math.cos(a) * 72;
+    const y = base + 10 - back * 16;
     const s = 0.72 + (1 - back) * 0.3;
     const dir = x < cx ? 1 : -1;
     return { x, y, s, dir, i, back };
@@ -55,7 +57,7 @@ function sheavesArt(): string {
   const back = ring.filter((s) => s.back > 0.55);
   const front = ring.filter((s) => s.back <= 0.55);
   const draw = (list: typeof ring) => list.map((s) => `<g transform="translate(${s.x.toFixed(1)} ${s.y.toFixed(1)}) scale(${s.s.toFixed(2)})">
-      <g class="dt-sheaf dt-sheaf--bow" style="--bow:${(s.dir * 34).toFixed(0)}deg; --d:${(1.2 + s.i * 0.32).toFixed(2)}s">${sheaf(30, 300 + s.i)}</g>
+      <g class="dt-sheaf dt-sheaf--bow" style="--bow:${(s.dir * 24).toFixed(0)}deg; --d:${(1.2 + s.i * 0.32).toFixed(2)}s">${sheaf(30, 300 + s.i)}</g>
     </g>`).join('');
   return `
     <circle class="dt-dreamglow" cx="${cx}" cy="${base - 30}" r="120"/>
@@ -87,8 +89,8 @@ function elevenStarsArt(): string {
   // 열한 별: 해와 달 사이 위쪽으로 둥근 활 모양
   const eleven = Array.from({ length: 11 }, (_, i) => {
     const a = Math.PI * (0.1 + (i / 10) * 0.8);
-    const x = 196 - Math.cos(a) * 104;
-    const y = 104 - Math.sin(a) * 62;
+    const x = 166 - Math.cos(a) * 74;
+    const y = 106 - Math.sin(a) * 58;
     return `<g class="dt-bowing" style="--d:${(1.4 + i * 0.22).toFixed(2)}s">
       <circle class="dt-star__glow" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7"/>
       <g class="dt-star">${star(x, y, 3.6)}</g>
@@ -96,19 +98,19 @@ function elevenStarsArt(): string {
   }).join('');
   return `
     <g class="dt-dust">${dust}</g>
-    <circle class="dt-dreamglow dt-dreamglow--night" cx="196" cy="214" r="110"/>
+    <circle class="dt-dreamglow dt-dreamglow--night" cx="166" cy="214" r="110"/>
     <g class="dt-bowing" style="--d:0.6s">
-      <circle class="dt-sun__glow" cx="128" cy="132" r="34"/>
-      <circle class="dt-sun" cx="128" cy="132" r="15"/>
+      <circle class="dt-sun__glow" cx="104" cy="138" r="30"/>
+      <circle class="dt-sun" cx="104" cy="138" r="13"/>
     </g>
     <g class="dt-bowing" style="--d:1s">
-      <circle class="dt-moon__glow" cx="266" cy="130" r="26"/>
-      <path class="dt-moon" d="M270 116 A14 14 0 1 0 270 144 A11 11 0 1 1 270 116 Z"/>
+      <circle class="dt-moon__glow" cx="228" cy="136" r="22"/>
+      <path class="dt-moon" d="M232 124 A12 12 0 1 0 232 148 A9.5 9.5 0 1 1 232 124 Z"/>
     </g>
     ${eleven}
     ${hills(214, 'bd-far', 331)}
-    <path class="bd-mid" d="M-800 260 L-800 236 C-500 232 -200 240 60 236 C140 234 170 228 196 228 C222 228 252 234 330 236 C600 240 900 232 1200 236 L1200 260 Z"/>
-    <circle class="dt-here" cx="196" cy="227" r="2.4"/>
+    <path class="bd-mid" d="M-800 260 L-800 236 C-500 232 -200 240 60 236 C120 234 140 228 166 228 C192 228 222 234 330 236 C600 240 900 232 1200 236 L1200 260 Z"/>
+    <circle class="dt-here" cx="166" cy="227" r="2.4"/>
     ${thorns(80, 250, 14, 'bd-near', 332)}${thorns(320, 252, 16, 'bd-near', 333)}`;
 }
 
@@ -124,27 +126,27 @@ function pit(x: number, y: number): string {
   </g>`;
 }
 
-/** 걸어가는 낙타 한 마리 + 등의 짐 (오른쪽을 본 그림, 원점 = 발) */
+/** 걸어가는 낙타 한 마리 + 옆구리에 늘어뜨린 짐 (오른쪽을 본 그림, 원점 = 발). 다리는 번갈아 앞뒤로 */
 function camelWalking(load: boolean, seed: number): string {
   const r = rng(seed);
   const pack = load
-    ? `<path class="dt-pack" d="M-7 -19 C-7 -23 -3 -25 1 -25 C5 -25 8 -23 8 -19 L6 -15 L-5 -15 Z"/><path class="dt-pack dt-pack--b" d="M-4 -25 L4 -25 L3 -28 L-3 -28 Z"/>`
+    ? `<path class="dt-pack" d="M-9 -31 L4 -31 L5 -20 L-10 -20 Z"/><path class="dt-pack dt-pack--b" d="M-6 -35 L1 -35 L2 -31 L-7 -31 Z"/><path class="detail" d="M-9.5 -25 L4.5 -25" fill="none" stroke-width="0.5"/>`
     : '';
   const lift = (0.6 + r() * 0.4).toFixed(2);
-  return `<path d="M-10 -11 C-11 -15 -7 -19 -1 -19 C4 -19 6 -16 8 -13 L11 -14 C12 -18 13 -22 15 -23.5 L18.5 -23.5 C19.6 -22.6 19.6 -21.4 18.4 -20.8 L16.4 -20.4 C15.4 -17 14 -13 12 -10 C10 -8.6 7 -8.6 5 -8.6 L-7 -8.6 C-9 -8.6 -10 -9.6 -10 -11 Z"/>
+  return `<path d="M-15 -21 C-14 -27 -9 -34 -3 -34 C2 -34 5 -29 8 -26 C11 -24 13 -23 15 -25 C17 -28 18 -32 20 -34 L24 -34.5 C26 -34 27 -32.5 26.5 -31.5 L22.5 -30.5 C21 -27 19 -22 16 -19.5 C13 -17.5 10 -17 8 -17 L-11 -17 C-14 -17 -15.5 -18.5 -15 -21 Z"/>
     <g class="dt-legs" style="--lift:${lift}">
-      <path class="dt-leg dt-leg--a" d="M-8 -9 L-7 0 L-5.6 0 L-5.6 -9 Z"/>
-      <path class="dt-leg dt-leg--b" d="M-4.6 -9 L-4 0 L-2.6 0 L-3 -9 Z"/>
-      <path class="dt-leg dt-leg--b" d="M6 -9 L7 0 L8.4 0 L8 -9 Z"/>
-      <path class="dt-leg dt-leg--a" d="M9.4 -9.4 L10.6 0 L12 0 L11.4 -10 Z"/>
+      <path class="dt-leg dt-leg--a" d="M-12 -18 L-11.4 -9 L-12 0 L-10.2 0 L-9.8 -9 L-10 -18 Z"/>
+      <path class="dt-leg dt-leg--b" d="M-8.6 -18 L-8 -9 L-8.6 0 L-6.8 0 L-6.4 -9 L-6.6 -18 Z"/>
+      <path class="dt-leg dt-leg--b" d="M6 -18 L6.6 -9 L6 0 L7.8 0 L8.2 -9 L8 -18 Z"/>
+      <path class="dt-leg dt-leg--a" d="M9.4 -18 L10 -9 L9.4 0 L11.2 0 L11.6 -9 L11.4 -18 Z"/>
     </g>
-    <path d="M-10 -12 C-12 -10 -12.6 -7 -12 -4" fill="none" stroke="currentColor" stroke-width="0.7"/>
+    <path d="M-14.6 -22 C-16.5 -19 -16.8 -15 -16 -12" fill="none" stroke="currentColor" stroke-width="0.8"/>
     ${pack}`;
 }
 
 /** 걸어가는 사람 (낙타를 끄는 상인) */
 function walker(): string {
-  return `<circle cx="0" cy="-12.6" r="1.6"/><path d="M-1.6 -11 L1.8 -11 L2.8 0 L-2.6 0 Z"/><path d="M1.8 -10 L5 -6" fill="none" stroke="currentColor" stroke-width="0.6"/>`;
+  return `<circle cx="0" cy="-20" r="2.4"/><path d="M-2.4 -17.6 L2.6 -17.6 L4 0 L-3.6 0 Z"/><path d="M2 -16 L9 -9" fill="none" stroke="currentColor" stroke-width="0.9"/><path d="M-1 -22 L0 -26 L1 -22" fill="none" stroke="currentColor" stroke-width="0.8"/>`;
 }
 
 /** 대상(隊商): 상인들과 짐 실은 낙타들이 한 줄로 길을 따라 왼쪽(애굽 쪽)으로 */
@@ -153,7 +155,7 @@ function caravan(): string {
   let x = 0;
   const units = order.map((k, i) => {
     const g = `<g transform="translate(${x} 0) scale(-1 1)">${k === 'man' ? walker() : camelWalking(true, 360 + i)}</g>`;
-    x += k === 'man' ? 14 : 26;
+    x += k === 'man' ? 18 : 40;
     return g;
   }).join('');
   // 하나하나 왼쪽을 보게 뒤집어 세우고(앞장선 사람이 맨 왼쪽), 줄 전체가 길을 따라 아주 천천히 지나간다
