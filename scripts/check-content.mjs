@@ -3,8 +3,9 @@
 //  - 파일 이름 = id, 폴더 번호 = act, act.json 있음
 //  - ref가 실제 본문에 있는 구절인지, 그 막의 범위 안인지
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
-//  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상, mood 이름, fx 이름, face 방향, outfit 옷 이름
-//  - 읽기: 퀴즈 1~3문항, answer 번호
+//  - 에피소드: 선택지 canon 하나, goto 대상, 인물 파일(또는 extras), 본문 구절 1개 이상, mood·bg 이름, fx 이름,
+//    face 방향, outfit 옷 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름, 퀴즈 1~2문제·answer 번호
+//  - B급: 선택지 최대 1개, 퀴즈 필수, 새 인물 파일 없이(키트 extras·기존 인물만) — CLAUDE.md 6번
 //  - 도감(data/characters.json): 인물 파일, first·verse 구절, scene, unlocks 인물이 도감에 있는지
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -12,8 +13,11 @@ import { join } from 'node:path';
 import { BOOKS, findBook } from '../src/engine/books.ts';
 import { ACTS } from '../src/engine/acts.ts';
 import { FX, MOODS } from '../src/engine/moods.ts';
+import { ACTIONS, PLACE_NAMES } from '../src/engine/actions.ts';
+import { BASES, BEARDS, HAIRS, PROPS, TINTS } from '../src/characters/_kit.ts';
 
 const root = new URL('..', import.meta.url).pathname;
+const BEAT_TYPES = new Set(['narration', 'line', 'voice', 'scripture', 'choice', 'act']);
 const errors = [];
 const warnings = [];
 const err = (where, msg) => errors.push(`✗ [${where}] ${msg}`);
@@ -90,13 +94,16 @@ for (const folder of readdirSync(actsDir).sort()) {
   else {
     if (actJson.act !== no) err(`${folder}/act.json`, `act가 ${actJson.act}인데 폴더는 ${no}막`);
     if (actJson.title !== act.title) warn(`${folder}/act.json`, `title "${actJson.title}"이 acts.ts의 "${act.title}"와 다름`);
-    if (!actJson.mechanic) err(`${folder}/act.json`, 'mechanic이 없음');
+    if (actJson.mechanic) warn(`${folder}/act.json`, 'mechanic은 이제 안 씀 (막별 게임 방식은 없어졌음) — 지워도 됨');
     if (actJson.keyVerse) try { parseRef(actJson.keyVerse); } catch (e) { err(`${folder}/act.json`, `keyVerse ${e.message}`); }
     if (actJson.finale != null && !(Array.isArray(actJson.finale) && actJson.finale.every((l) => typeof l === 'string' && l))) err(`${folder}/act.json`, 'finale은 문장(문자열) 목록이어야 함');
   }
 
   const items = [];
-  for (const [sub, kind] of [['scenes', 'scene'], ['readings', 'read']]) {
+  if (existsSync(join(dir, 'readings')) && readdirSync(join(dir, 'readings')).some((f) => f.endsWith('.json'))) {
+    err(`${folder}/readings`, '읽기 구간은 없어졌음 — B급 에피소드로 바꿔서 scenes/에 넣어야 함 (CLAUDE.md 6번)');
+  }
+  for (const [sub, kind] of [['scenes', 'scene']]) {
     if (!existsSync(join(dir, sub))) continue;
     for (const file of readdirSync(join(dir, sub)).filter((f) => f.endsWith('.json')).sort()) {
       const where = `${folder}/${sub}/${file}`;
@@ -117,13 +124,12 @@ for (const folder of readdirSync(actsDir).sort()) {
       }
       const inAct = act.stops.some((s) => s.book === r.book.code && r.c1 >= s.from && r.c2 <= s.to);
       if (!inAct) err(where, `ref "${data.ref}"가 ${no}막(${act.range}) 범위 밖임`);
-      items.push({ where, r, ref: data.ref });
+      items.push({ where, r, ref: data.ref, grade: data.grade });
       if (kind === 'scene') {
         checkScene(data, where);
         for (const c of data.unlocks?.characters ?? []) unlocked.set(c, where);
         sceneIds.add(id);
       }
-      else checkReading(data, where);
     }
   }
 
@@ -136,19 +142,44 @@ for (const folder of readdirSync(actsDir).sort()) {
   const total = act.stops.reduce((n, s) => n + s.to - s.from + 1, 0);
   const covered = new Set();
   for (const { r } of items) for (let c = r.c1; c <= r.c2; c++) covered.add(`${r.book.code}:${c}`);
-  report.push(`  ${String(no).padStart(2)}막 ${act.title} — 장면·읽기 ${String(items.length).padStart(3)}개 · ${covered.size} / ${total}장`);
+  report.push(`  ${String(no).padStart(2)}막 ${act.title} — 에피소드 ${String(items.length).padStart(3)}개 (A ${items.filter((i) => i.grade !== 'B').length} · B ${items.filter((i) => i.grade === 'B').length}) · ${covered.size} / ${total}장`);
 }
 
 function checkScene(s, where) {
   if (!s.title) err(where, 'title이 없음');
   if (!s.insight) err(where, 'insight(해설)이 없음');
+  if (s.grade != null && s.grade !== 'A' && s.grade !== 'B') err(where, `grade는 "A" 또는 "B" (지금 "${s.grade}")`);
+  const B = s.grade === 'B';
   if (!Array.isArray(s.beats) || !s.beats.length) return err(where, 'beats가 비어 있음');
   const all = [...s.beats, ...Object.values(s.branches ?? {}).flat()];
   const ids = new Set(s.beats.map((b) => b.id).filter(Boolean));
   if (!all.some((b) => b.type === 'scripture')) err(where, '본문 구절(scripture beat)이 하나도 없음 (CLAUDE.md 7번)');
+  // 조연 (키트로 그 자리에서 만드는 인물)
+  const extras = s.extras ?? {};
+  for (const [id, x] of Object.entries(extras)) {
+    if (characters.has(id)) warn(where, `extras "${id}"는 인물 파일이 이미 있음 → 인물 파일을 쓰면 됨`);
+    if (!x?.name) err(where, `extras "${id}": name이 없음`);
+    if (!BASES.includes(x?.base)) err(where, `extras "${id}": base "${x?.base}"는 ${BASES.join('/')} 중 하나`);
+    if (x.hair && !HAIRS.includes(x.hair)) err(where, `extras "${id}": hair "${x.hair}"는 ${HAIRS.join('/')} 중 하나`);
+    if (x.beard && !BEARDS.includes(x.beard)) err(where, `extras "${id}": beard "${x.beard}"는 ${BEARDS.join('/')} 중 하나`);
+    if (x.tint && !(x.tint in TINTS)) err(where, `extras "${id}": tint "${x.tint}"는 ${Object.keys(TINTS).join('/')} 중 하나`);
+    for (const p of x.props ?? []) if (!PROPS.includes(p)) err(where, `extras "${id}": 소품 "${p}"는 ${PROPS.join('/')} 중 하나`);
+  }
   const people = new Set([...(s.cast ?? []), ...(s.unlocks?.characters ?? [])]);
-  const checkMood = (m) => m != null && !MOODS[m] && warn(where, `mood "${m}"가 src/engine/moods.ts에 없음 (기본 무대로 보임)`);
+  const checkMood = (m) => m != null && !MOODS[m] && (B ? err : warn)(where, `배경 "${m}"가 src/engine/moods.ts에 없음 (기본 무대로 보임)`);
   checkMood(s.mood);
+  checkMood(s.bg);
+  // 퀴즈 (에피소드 끝 1~2문제)
+  const quiz = s.quiz ?? [];
+  if (!quiz.length) (B ? err : warn)(where, '끝 퀴즈(quiz)가 없음 — 1~2문제');
+  if (quiz.length > 2) warn(where, `퀴즈는 1~2문제 (지금 ${quiz.length}개)`);
+  quiz.forEach((q, i) => {
+    if (!q.q || !Array.isArray(q.options) || q.options.length < 2) err(where, `퀴즈 ${i + 1}번: q·options(2개 이상)가 필요함`);
+    if (!(q.answer >= 0 && q.answer < q.options?.length)) err(where, `퀴즈 ${i + 1}번: answer 번호가 보기 밖임`);
+    if (!q.why) warn(where, `퀴즈 ${i + 1}번: why(설명)가 없음`);
+  });
+  const choices = all.filter((b) => b.type === 'choice').length;
+  if (B && choices > 1) err(where, `B급은 선택지가 에피소드당 최대 1개 (지금 ${choices}개)`);
   const checkOutfit = (o) => {
     for (const [c, name] of Object.entries(o ?? {})) {
       people.add(c);
@@ -157,32 +188,42 @@ function checkScene(s, where) {
   };
   checkOutfit(s.outfit);
   for (const b of all) {
+    if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg) warn(where, 'type도 act도 없는 빈 beat');
     checkMood(b.mood);
+    checkMood(b.bg);
     checkOutfit(b.outfit);
+    for (const st of [...(b.act ? [{ act: b.act, who: b.who, to: b.to, from: b.from, via: b.via }] : []), ...(b.acts ?? [])]) {
+      const info = ACTIONS[st.act];
+      if (!info) {
+        err(where, `동작 "${st.act}"이 src/engine/actions.ts에 없음`);
+        continue;
+      }
+      const who = [st.who ?? (b.type === 'line' ? b.who : undefined)].flat().filter(Boolean);
+      who.forEach((c) => people.add(c));
+      if (st.act === 'travel') {
+        for (const pl of [st.from, st.to, ...(st.via ?? [])].filter(Boolean)) if (!(pl in PLACE_NAMES)) err(where, `travel 장소 "${pl}"가 actions.ts PLACE_NAMES에 없음`);
+        if (!st.to) err(where, 'travel에는 to(도착지)가 필요함');
+        continue;
+      }
+      if (st.to) people.add(st.to);
+      if (info.needs === 'one' && !who.length) err(where, `동작 "${st.act}"에 who가 없음`);
+      if (info.needs === 'two' && who.length + (st.to ? 1 : 0) < 2) err(where, `동작 "${st.act}"는 두 사람이 필요함 (who 둘, 또는 who + to)`);
+    }
     for (const f of b.fx == null ? [] : [b.fx].flat()) if (!FX.includes(f)) err(where, `fx "${f}"가 src/engine/moods.ts FX 목록에 없음`);
     for (const [c, dir] of Object.entries(b.face ?? {})) {
       people.add(c);
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
     }
-    for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...(b.who ? [b.who] : [])]) people.add(c);
+    for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...(b.who ? [b.who].flat() : [])]) people.add(c);
     if (b.type === 'scripture') try { parseRef(b.ref); } catch (e) { err(where, `scripture ${e.message}`); }
     if (b.type === 'choice') {
       if (b.options.filter((o) => o.canon).length !== 1) err(where, `선택지에 canon이 정확히 하나여야 함: "${b.prompt}"`);
       for (const o of b.options) if (o.goto && !ids.has(o.goto) && !s.branches?.[o.goto]) err(where, `goto 대상 없음: ${o.goto}`);
     }
   }
-  for (const c of people) if (!characters.has(c)) warn(where, `인물 파일 없음: src/characters/${c}.ts`);
-}
-
-function checkReading(r, where) {
-  if (!r.summary) err(where, 'summary가 없음');
-  if (!r.insight) err(where, 'insight가 없음');
-  const quiz = r.quiz ?? [];
-  if (quiz.length < 1 || quiz.length > 3) warn(where, `퀴즈는 1~3문항이 좋음 (지금 ${quiz.length}개)`);
-  quiz.forEach((q, i) => {
-    if (!(q.answer >= 0 && q.answer < q.options?.length)) err(where, `${i + 1}번 문제: answer 번호가 보기 밖임`);
-    if (!q.why) warn(where, `${i + 1}번 문제: why(설명)가 없음`);
-  });
+  for (const c of people) if (!characters.has(c) && !extras[c]) (B ? err : warn)(where, `인물 파일 없음: src/characters/${c}.ts${B ? ' (B급은 새 인물 파일 대신 extras 키트를 씀)' : ''}`);
+  for (const c of s.unlocks?.characters ?? []) if (extras[c]) err(where, `extras "${c}"는 인물 카드(unlocks)로 줄 수 없음 (도감엔 인물 파일만)`);
 }
 
 // 한 줄 번역 파일의 ref도 확인

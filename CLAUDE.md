@@ -14,40 +14,43 @@
 
 ---
 
-## 1. 컨셉
+## 1. 컨셉 — 애니메이션 최대, 속도 최대 (2026-10-27 방향 전환)
 
 성경 66권 전체를 하나의 긴 여정으로 만든다. 첫 화면은 **성경 전체 지도**(66권이 별자리처럼 이어진 길)이고, 플레이한 곳에 하나씩 불이 켜진다.
 
-성경은 **14개의 막(Act)**으로 나뉜다. 막마다 **비주얼 분위기와 게임 방식이 달라진다.** 같은 방식이 계속 반복되면 지루해지기 때문이다.
+1. **모든 장을 캐릭터가 나오는 "애니메이션 에피소드"로 만든다.** 글만 있는 읽기 구간은 없다 (없앴음).
+2. **막별 게임 방식(성막 짓기, 생존 스탯, 탐정 수사 등)은 없다.** 막별 **비주얼 무드(색, 질감)만** 유지한다.
+3. **인터랙션은 최소한:** 탭으로 넘기기, 선택지는 **에피소드당 최대 1개**(없어도 됨), 에피소드 끝에 **퀴즈 1~2문제**.
+4. **개역한글 본문:** 에피소드 안에서는 핵심 구절만 카드로 보여 주고, 머리줄의 **"본문 전체 보기"**(책 아이콘)와 끝 카드 버튼으로 그 에피소드가 덮는 본문 전체를 언제든 펼친다. → 1,189장 본문이 하나도 빠지지 않는다.
 
-모든 장을 게임으로 만들지 않는다.
-- **플레이 장면(Scene):** 큰 사건. 선택지, 연출, 막별 게임 방식이 들어간다.
-- **읽기 구간(Reading):** 나머지 장. 본문 + 짧은 해설 + 퀴즈 1~3문항.
-
-→ 그래서 1,189장 전체가 빠짐없이 연결된다.
+### 에피소드 등급 2개
+- **A급 (큰 사건, 성경 전체에서 약 100개):** 노아·에덴처럼 새 캐릭터, 전용 배경·소품, 큰 연출 OK. 파일에 `"grade": "A"` (생략해도 A).
+- **B급 (나머지 모든 장):** **새 코드·새 그림 없이 라이브러리 조립만으로** 만든다. 대본(JSON)만 쓰면 애니메이션이 나와야 한다. 파일에 `"grade": "B"`.
+  - 연출 라이브러리 = 동작(`src/engine/actions.ts`) + 배경(`src/engine/moods.ts` PLACES, 그림 `src/fx/places.ts`) + 효과(`moods.ts` FX) + 인물 키트(`src/characters/_kit.ts`). 자세한 형식은 6번.
 
 ---
 
-## 2. 14막 구성과 막별 게임 방식
+## 2. 14막 구성
 
-| # | 막 | 범위 | 게임 방식 (Mechanic) | 비주얼 무드 |
+| # | 막 | 범위 | 비주얼 무드 | 막 기본 배경 (`ACT_BG`) |
 |---|---|---|---|---|
-| 1 | 태초 | 창 1–11 | 인물 시점 어드벤처 | 깊은 남색 → 빛이 생기는 연출, 금빛 |
-| 2 | 족장들 | 창 12–50 | 여정 지도 + 인물 시점 | 양피지, 장막, 별밤 |
-| 3 | 출애굽 | 출 1–18 | 선택 + 연출 몰입 (재앙, 홍해) | 이집트 석회암, 붉은 강 |
-| 4 | 시내산과 성막 | 출 19–40, 레위기 | 성막 짓기 (기구를 배치하며 의미 학습) | 아카시아 나무, 청색·자색·홍색 실, 금 |
-| 5 | 광야 40년 | 민수기, 신명기 | 생존 스탯 관리 (만나·물·신뢰) | 사막 노을, 테라코타, 밤하늘 |
-| 6 | 정복과 사사 | 여호수아, 사사기, 룻기 | 탐정 수사 — 반복 패턴 찾기 | 누아르 사건 파일, 타자기 |
-| 7 | 왕국 | 삼상–왕상 11, 역대기 일부 | 왕의 선택 — 나라 상태 시뮬레이션 | 왕실 보라, 청동, 횃불 |
-| 8 | 지혜와 노래 | 욥, 시편, 잠언, 전도서, 아가 | 묵상 모드 — 조용히 천천히 읽기 | 미니멀, 여백, 물결 |
-| 9 | 분열과 예언 | 왕상 12–왕하, 예언서 | 예언자 시점 — 경고를 전하는 메신저 | 폭풍 하늘, 재, 두루마리 |
-| 10 | 포로와 귀환 | 에스겔, 다니엘, 에스라, 느헤미야, 에스더 | 성벽 재건 + 궁정 드라마 | 바빌론 청색 타일, 돌벽 |
-| 11 | 복음서 | 마태–요한 | 제자 시점 — 따라다니는 여정 | 갈릴리 호수, 올리브, 따뜻한 흙빛 |
-| 12 | 교회의 시작 | 사도행전 | 지중해 항해 지도 | 고지도, 바다, 돛 |
-| 13 | 편지들 | 서신서 | 편지 배달부 — 교회 문제와 편지 구절 맞추기 | 밀랍 봉인, 촛불, 파피루스 |
-| 14 | 마지막 | 요한계시록 | 연출 집중 — 상징 해설 | 우주, 유리 바다, 빛 |
+| 1 | 태초 | 창 1–11 | 깊은 남색 → 빛이 생기는 연출, 금빛 | field |
+| 2 | 족장들 | 창 12–50 | 양피지, 장막, 별밤 | tent |
+| 3 | 출애굽 | 출 1–18 | 이집트 석회암, 붉은 강 | egypt |
+| 4 | 시내산과 성막 | 출 19–40, 레위기 | 아카시아 나무, 청색·자색·홍색 실, 금 | mountain |
+| 5 | 광야 40년 | 민수기, 신명기 | 사막 노을, 테라코타, 밤하늘 | wilderness |
+| 6 | 정복과 사사 | 여호수아, 사사기, 룻기 | 누아르 사건 파일, 타자기 | town |
+| 7 | 왕국 | 삼상–왕상 11, 역대기 일부 | 왕실 보라, 청동, 횃불 | palace |
+| 8 | 지혜와 노래 | 욥, 시편, 잠언, 전도서, 아가 | 미니멀, 여백, 물결 | starfield |
+| 9 | 분열과 예언 | 왕상 12–왕하, 예언서 | 폭풍 하늘, 재, 두루마리 | ruins |
+| 10 | 포로와 귀환 | 에스겔, 다니엘, 에스라, 느헤미야, 에스더 | 바빌론 청색 타일, 돌벽 | palace |
+| 11 | 복음서 | 마태–요한 | 갈릴리 호수, 올리브, 따뜻한 흙빛 | sea |
+| 12 | 교회의 시작 | 사도행전 | 고지도, 바다, 돛 | sea |
+| 13 | 편지들 | 서신서 | 밀랍 봉인, 촛불, 파피루스 | house |
+| 14 | 마지막 | 요한계시록 | 우주, 유리 바다, 빛 | starfield |
 
-각 게임 방식은 **독립된 모듈(mechanic)**로 만든다. 새 막을 추가할 때 엔진은 건드리지 않고 모듈만 추가한다.
+- 막 색은 `src/styles/acts.css`의 `[data-act="N"]`. 배경 라이브러리 그림은 전부 이 막 색을 따라가서, 같은 그림이 막마다 다른 색으로 재사용된다.
+- 막 범위·별은 `src/engine/acts.ts` (1,189장을 빠짐없이·중복 없이 덮음).
 
 ---
 
@@ -56,7 +59,7 @@
 - **Vite + Vanilla TypeScript** (프레임워크 없이 가볍게)
 - **GSAP** — 모든 모션의 기본 도구 (타임라인, ScrollTrigger, SplitText 등 필요 시 사용)
 - **Canvas / WebGL (필요 시 가볍게)** — 먼지 입자, 빛, 별 같은 배경 효과
-- **Howler.js** — 배경음과 효과음 (기본값: 꺼짐, 켜기 버튼 제공)
+- **Howler.js** — 배경음과 효과음 (기본값: 꺼짐, 켜기 버튼 제공) — 아직 안 넣음
 - **저장:** `localStorage` (진도, 스탯, 인물 도감). 읽기/쓰기는 try/catch로 감싼다.
 - **배포:** GitHub Pages + GitHub Actions (main에 push하면 자동 배포)
 - 서버, 로그인, DB 없음. 전부 정적 사이트.
@@ -67,21 +70,21 @@
 
 ```
 /src
-  /engine        ← 장면 재생기, 선택지, 스탯, 저장, 라우팅
-  /mechanics     ← 막별 게임 방식 모듈 (adventure, tabernacle, survival, detective ...)
-  /ui            ← 공통 UI 컴포넌트 (텍스트 박스, 선택지 버튼, 본문 카드, 메뉴)
-  /fx            ← 모션·입자·전환 효과
-  /characters    ← 인물별 실루엣 파일 (adam.ts, moses.ts ...) — 8-1 참고
-  /styles        ← 디자인 토큰, 막별 테마
+  /engine        ← 에피소드 재생 순서, 저장, 라우팅, 라이브러리 목록 (actions.ts 동작 · moods.ts 배경·효과)
+  /screens       ← 화면 (title, map, scene=에피소드 재생기, finale, people)
+  /ui            ← 공통 UI (인물 무대 actor.ts, 본문 카드, 퀴즈 quiz.ts, 본문 전체 passage.ts, 패널)
+  /fx            ← 배경 그림(backdrop.ts 1막 전용 · places.ts 라이브러리), 여정 지도 travel.ts, 군중 crowd.ts, 방주·탑·비 …
+  /characters    ← 인물 파일 (adam.ts …) + 조각 _parts.ts + 기본 실루엣 키트 _kit.ts — 8-1 참고
+  /styles        ← 디자인 토큰, 막별 테마, library.css(라이브러리 모양)
 /content
   /acts/01-beginning/
-     act.json        ← 막 정보 (제목, 범위, 테마, mechanic)
-     /scenes/*.json  ← 플레이 장면
-     /readings/*.json← 읽기 구간 (해설 + 퀴즈)
+     act.json        ← 막 정보 (제목, keyVerse, finale)
+     /scenes/*.json  ← 에피소드 (A급·B급 모두 여기)
+     PLAN.md         ← (선택) 막 계획서: 어느 장이 A급인지
 /data
   /bible/        ← 개역한글 본문 (권/장/절 JSON)
   characters.json← 인물 도감
-/public/audio, /public/img
+/scripts/check-content.mjs ← 콘텐츠 검사기 (npm run check:content)
 PROGRESS.md      ← 진행 기록
 ```
 
@@ -98,77 +101,115 @@ PROGRESS.md      ← 진행 기록
 
 ## 6. 콘텐츠 파일 형식
 
-### 플레이 장면 (scene)
+모든 장 = 에피소드 하나(또는 여러 장을 묶은 에피소드 하나). 파일 이름 = id. `content/acts/NN-이름/scenes/<id>.json` → 주소 `#/scene/<id>`.
+장면·에피소드 목록·순서·"다음"은 `src/engine/content.ts`가 ref를 보고 자동으로 정한다 (본문 순서). 순서를 따로 적지 않는다.
+
+### B급 에피소드 (대본만 쓰면 움직인다)
 ```json
 {
-  "id": "gen-22-moriah",
+  "id": "gen-24-rebekah",
   "act": 2,
-  "title": "모리아 산으로",
-  "ref": "창 22:1-19",
-  "pov": "이삭",
-  "mood": "dawn-mountain",
-  "cast": ["isaac", "abraham"],
+  "grade": "B",
+  "title": "우물가의 소녀",
+  "ref": "창 24",
+  "bg": "tent",
+  "cast": ["abraham"],
+  "extras": { "servant": { "name": "늙은 종", "base": "old-man", "hair": "short", "props": ["staff", "bundle"] } },
+  "names": { "abraham": "아브람" },
   "beats": [
-    { "type": "narration", "text": "새벽, 아버지가 나귀에 안장을 얹는 소리에 잠이 깼다." },
-    { "type": "scripture", "ref": "창 22:3", "gloss": "친구 말투 한 줄 번역 (없으면 content/glosses.json에서 찾음)" },
-    { "type": "choice",
-      "prompt": "아버지에게 무엇을 묻겠는가?",
-      "options": [
-        { "label": "어디로 가는지 묻는다", "goto": "b-ask-where" },
-        { "label": "제물로 드릴 양이 어디 있는지 묻는다", "goto": "b-ask-lamb", "canon": true }
-      ]
-    }
+    { "type": "narration", "text": "이영도풍 서술" },
+    { "type": "line", "who": "abraham", "act": "bless", "text": "“대사. 말하면서 동작”" },
+    { "type": "narration", "act": "travel", "from": "beersheba", "to": "haran", "via": ["hebron"], "text": "여정 지도 위로 길이 그어짐" },
+    { "bg": "well-dusk", "fx": "fade", "act": "walk-in", "who": "servant" },
+    { "act": "pray", "who": "servant" },
+    { "type": "scripture", "ref": "창 24:19-20", "gloss": "친구 말투 한 줄 번역" },
+    { "type": "line", "who": "servant", "act": "approach", "to": "rebekah", "text": "…" },
+    { "type": "choice", "prompt": "…", "options": [{ "label": "…", "canon": true }, { "label": "…", "goto": "b-x" }] }
   ],
-  "insight": "짧은 해설 (2~4문장)",
-  "unlocks": { "characters": ["isaac", "abraham"] }
+  "branches": { "b-x": [{ "type": "narration", "text": "만약 장면 1~2줄 → 자동으로 canon 길로 돌아옴" }] },
+  "insight": "해설 (친구 말투, 빈 줄로 문단)",
+  "tldr": "한 줄 요약",
+  "bridge": "(선택) 다음 이야기로 넘어가는 이야기 목소리 한 줄",
+  "quiz": [{ "q": "…", "options": ["…", "…", "…"], "answer": 0, "why": "…" }],
+  "unlocks": { "characters": ["rebekah"] }
 }
 ```
+- **분량:** 장 하나에 beat 20~45개. 본문 카드(scripture) 3~6장(핵심 구절만). 나머지 절은 "본문 전체 보기"가 맡는다.
+- **선택지 최대 1개**, **퀴즈 1~2문제 필수**(B급). 퀴즈 보기에 정답 힌트를 넣지 않는다. `answer`는 0부터.
+- **새 인물 파일 금지.** 이미 있는 인물(`src/characters/*.ts`)을 쓰고, 나머지 조연은 `extras`(키트)로 그 자리에서 만든다. extras는 도감(`unlocks`)에 못 넣는다.
+- `cast` = 처음부터 무대에 선 사람(조용히 떠오름). 장면 중간 `enter` = **옆에서 걸어 들어옴**(B급 기본), `exit` = **보는 쪽으로 걸어 나감**. 무대에는 한 번에 2~3명이 보기 좋다(최대 6).
+- `names`: 이 에피소드에서만 이름표를 바꿔 부를 때 (창 17 전의 아브람·사래, 창 32 뒤의 이스라엘 등).
 
-### 장면 beat 종류 (엔진에 구현됨 — `src/engine/scene.ts`)
-- `narration` 이야기 서술 · `line` 대사(`"who": "adam"`, 말하는 사람 강조) · `voice` 하나님의 목소리(인물 없이 빛나는 글자)
-- `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
-- 모든 beat에 붙일 수 있는 것: `"enter": ["adam"]`(등장), `"exit"`(퇴장), `"pose": {"adam": "slump"}`(자세: neutral/slump/lift/tremble), `"face": {"eve": "left"}`(바라보는 쪽, 나중에 선 인물은 자동으로 왼쪽을 봄), `"mood"`(배경 바꾸기), `"fx"`(flash/dawn/dark/land/shake, 방주 새: raven/dove/dove-leaf/dove-away, 바벨: descend(빛기둥)/babble(말이 뒤섞임)/scatter(흩어짐) — 목록은 `src/engine/moods.ts` FX), `"outfit": {"adam": "skins"}`(옷 갈아입기 — 인물 파일의 `outfits`. 그 beat에 막 등장하는 인물은 처음부터 그 옷으로 나옴)
-- 장면 맨 위 `"outfit"`: 처음부터 무대에 선(`cast`) 인물이 입고 있는 옷. 예: 창 4부터 아담·하와는 `"skins"`(가죽옷)
-- `"mood"` 이름은 `src/engine/moods.ts` 목록 (void, bare-earth, eden, eden-tree, eden-dusk, east-of-eden, field, field-dusk, altar, altar-regard, nod, cities, ark-frame, ark-built, ark-boarding, ark-shut, deluge, deluge-high, waters, ararat, ararat-low, dry-earth, noah-altar, overcast, rainbow, vineyard, shinar, brickworks, tower-base, tower-rising, tower-high, tower-far, tower-left …). 그림은 `src/fx/backdrop.ts`. 새 배경이 필요하면 둘 다에 추가.
-  - mood에는 배경 그림 말고도 방주(`ark`), 물 높이(`water`), 비(`rain`), 무지개(`bow`), 하늘 색조(`tone`: dusk/storm/clear), 가운데 소품용 인물 벌리기(`spread`)를 묶을 수 있다. 방주·물·새는 `src/fx/ark.ts`, 비는 `src/fx/rain.ts`, 모양은 `src/styles/flood.css`.
-  - 바벨탑(`tower`: base/rising/high/far/left)도 mood로 세운다. 층이 하나씩 솟음. `src/fx/tower.ts` + `src/styles/babel.css`.
-  - 방주 훑기·탑 물러나기처럼 긴 카메라 연출은 **탭하면 빨리 감긴다** (`screens/scene.ts`의 `CAMERA` 목록에 CSS 키프레임 이름을 넣으면 됨). 긴 연출은 15초 안으로.
-- 선택지의 "만약" 장면은 `"branches": { "b-ask-where": [beats...] }`에 넣는다. 다 보면 자동으로 `canon` 길로 돌아온다.
-- 장면 끝 카드: `"insight"`(해설) + `"tldr"`(한 줄 요약) + `"bridge"`(선택: "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 이야기 목소리 한 줄. 읽기 구간에도 쓸 수 있음). `"mood": "void"`면 깜깜한 데서 시작.
-- 파일 이름 = 장면 id. 예: `content/acts/01-beginning/scenes/gen-1-light.json` → 주소 `#/scene/gen-1-light`
+### beat 종류 (`src/engine/scene.ts`)
+- `narration` 이야기 서술 · `line` 대사(`"who"` = 말하는 사람, 강조됨) · `voice` 하나님의 목소리(인물 없이 빛나는 글자) · `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
+- **type 없는 beat(또는 `"type": "act"`) = 동작만 하는 beat.** 글 없이 움직이고 잠깐 뒤 저절로 다음으로 넘어간다 (탭하면 바로).
+- 모든 beat에 붙일 수 있는 것:
+  - `"act"` + `"who"`(한 명 또는 배열) + `"to"`(상대): 동작 라이브러리. line beat에서는 who 생략 = 말하는 사람이 함. 여러 동작을 동시에: `"acts": [{ "act": "embrace", "who": ["jacob", "esau"] }, { "act": "cry", "who": "esau" }]`
+  - `"bg"`(= `"mood"`): 배경 바꾸기 · `"fx"`: 효과 (한 개 또는 배열)
+  - `"enter"`, `"exit"`, `"pose"`(neutral/slump/lift/tremble), `"face"`({"eve": "left"}), `"outfit"`(인물 파일의 outfits)
+
+### 동작 라이브러리 (`src/engine/actions.ts` — 검사기가 이름·대상을 확인함)
+| 동작 | 뜻 | 누구 |
+|---|---|---|
+| `walk-in` / `walk-out` | 옆에서 걸어 들어옴(무대에 없으면 세움) / 보는 쪽으로 걸어 나감 | who |
+| `leave` | 떠나감: 지평선 쪽으로 작아지며 멀어짐 → 무대에서 빠짐 | who |
+| `approach` | 상대 쪽으로 몇 걸음 다가감 | who + to |
+| `step-back` | 움찔 물러남 (놀람·두려움) | who |
+| `face` / `turn` | 마주보기(who 둘, 또는 who + to) / 뒤돌아섬 | who |
+| `kneel` · `pray` · `prostrate` | 무릎 꿇기 · 기도(무릎 꿇고 고개·손 듦) · 땅에 엎드려 절함 | who |
+| `bow-head` · `look-up` · `bless` | 고개 숙임 · 고개 듦 · 손을 들어 축복 | who |
+| `argue` · `embrace` · `part` | 다툼(번갈아 들이밂) · 포옹 · 포옹·다가감 풀기 | 둘 / 둘 / who |
+| `cry` · `sleep` · `fall` · `stand` | 울기(stand까지 계속) · 잠듦 · 쓰러짐(절제: 주저앉으며 어두워짐) · 원래 자세로 | who |
+| `crowd` · `crowd-cheer` · `crowd-murmur` · `crowd-bow` · `crowd-away` | 군중이 뒤에 모임 · 환호 · 웅성 · 엎드림 · 흩어짐 | (없음) |
+| `travel` | 여정 지도: `from` → `via`[] → `to` 길을 옛 지도에 그음. 다음 beat에서 접힘(다음 beat에도 travel이면 이어 그림) | 장소 이름 |
+- 여정 지도 장소 이름은 `actions.ts`의 `PLACE_NAMES` (ur, haran, canaan, shechem, bethel, hebron, mamre, sodom, gerar, beersheba, moriah, egypt, goshen, peniel, dothan, sinai, jericho, jerusalem, galilee …). 새 장소는 `PLACE_NAMES` + `src/fx/travel.ts PLACE_XY`(경도·위도)에 추가.
+
+### 배경 라이브러리 (`bg`, `src/engine/moods.ts` PLACES — 그림 `src/fx/places.ts`)
+- 장소: `tent`(장막) `well`(우물) `wilderness`(광야) `town`(성읍) `palace`(궁전 실내) `temple`(성전 뜰) `sea`(바다) `starfield`(밤하늘, 기본이 밤) `mountain`(산) `road`(길) `river`(강·나루) `house`(집 안) `prison`(감옥·구덩이) `oaks`(상수리 숲) `cave`(굴) `ruins`(폐허) `pasture`(목초지) `egypt`(이집트 강가)
+- 시간대: 이름 뒤에 `-dusk`(저녁) `-night`(밤, 별 입자) `-dawn`(맑은 아침). 예: `tent-night`, `well-dusk`, `road-dawn`
+- 1막 전용 배경(eden, field, altar, ark-*, tower-* …)도 그대로 쓸 수 있다. `field-night`도 있음.
+- 에피소드에 `bg`/`mood`가 없으면 막 기본 배경(2번 표)으로 시작.
+- 새 장소 그림이 꼭 필요하면 그건 A급 작업 (B급에서 새 그림 금지).
+
+### 효과 라이브러리 (`fx`, `src/engine/moods.ts` FX)
+- `glory`(하나님의 임재: 위에서 금빛 — 인물로 안 그림) `fire`(무대 가운데 불길) `stars`(별이 쏟아지듯 켜짐) `dust`(모래바람) `fade`(화면 전환: 까맣게 닫혔다 열림, 그 사이 배경·인물이 바뀜 = 시간이 흐름) `thunder`(번개) `rain-start` / `rain-stop`
+- 기본 효과: `flash` `dawn` `dark` `land` `shake`
+- A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
+- 긴 카메라 연출은 탭하면 빨리 감긴다 (`screens/scene.ts`의 `CAMERA` 목록). 긴 연출은 15초 안으로.
+
+### 인물 키트 (`src/characters/_kit.ts`) — 조연·B급 인물
+- `base`: `old-man` `man` `youth` `woman` `old-woman` `girl` `child` `soldier` `king` `priest`
+- `hair`: `hood` `short` `tied` `long` `bald` `veil` `loose` `helmet` `crown` `turban` `shaggy` (생략하면 base 기본값)
+- `beard`: `none` `short` `long` `gray`
+- `props`(여러 개): `staff` `crook` `jar` `lamp` `bundle` `lamb` `bow` `sword` `spear` `shield` `scepter` `scroll` `basket` `sheaf` `cloak`
+- `tint`(옷 색): `red` `blue` `purple` `green` `gold` `white` `brown` `gray` · `height`(키 비율)
+- 장면 `extras`에 쓰면 그 자리에서 만들어짐. 인물 파일로 만들 때는 `export default person({ id, name, base, ... })` 한 줄 (예: `abraham.ts`).
+
+### A급 에피소드 (큰 사건)
+- B급 형식 전부 + 새 인물 파일, 전용 배경 그림(`fx/backdrop.ts` + `moods.ts`), 전용 연출(`fx/*.ts`) OK.
+- 선택지는 최대 1개가 원칙. (1막 A급 10개는 방향 전환 전에 만들어서 선택지가 2~3개 — 그대로 둠)
+- 인물 파일을 새로 만들면 도감(`data/characters.json`)에도 추가. 키트로 임시로 만든 인물은 A급에서 공들여 다시 그린다 (파일 이름 그대로 → 모든 에피소드에 반영됨).
+
+### 장면 맨 위 필드 정리
+`id` `act` `grade` `title` `ref` `bg`/`mood` `cast` `outfit`(처음부터 입은 옷) `extras` `names` `beats` `branches` `insight` `tldr` `bridge` `quiz` `unlocks`
+- `"mood": "void"`면 깜깜한 데서 시작. 해설(`insight`)은 빈 줄(`\n\n`)로 문단을 나눈다.
 
 ### 막 정보 (act.json)
 ```json
-{ "act": 1, "title": "태초", "mechanic": "adventure", "keyVerse": "창 1:1", "finale": ["이야기 목소리 한 줄", "..."] }
+{ "act": 1, "title": "태초", "keyVerse": "창 1:1", "finale": ["이야기 목소리 한 줄", "..."] }
 ```
-- 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `mechanic` = `src/mechanics`의 모듈 이름, `keyVerse` = 막 피날레 핵심 구절, `finale` = 피날레에서 한 줄씩 탭으로 나오는 이야기 목소리(이영도풍) 문장들.
-- **막 피날레** `#/finale/N` (`src/screens/finale.ts`): 그 막의 장을 전부 끝내면, 마지막으로 끝낸 장면·읽기의 "다음" 버튼이 피날레로 바뀜 → finale 문장들 → keyVerse 카드 → 그 막 인물 카드 → "지도에서 별 켜기"(지도에서 그 막 별이 점등되고 다음 별까지 길이 이어짐).
+- 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `keyVerse` = 막 피날레 핵심 구절, `finale` = 피날레에서 한 줄씩 탭으로 나오는 이야기 목소리(이영도풍) 문장들. (`mechanic`은 없어졌음)
+- **막 피날레** `#/finale/N` (`src/screens/finale.ts`): 그 막의 장을 전부 끝내면, 마지막 에피소드의 "다음" 버튼이 피날레로 바뀜 → finale 문장들 → keyVerse 카드 → 그 막 인물 카드 → "지도에서 별 켜기".
 
 ### 인물 도감 (`data/characters.json`)
 ```json
 { "adam": { "act": 1, "first": "창 2:7", "scene": "gen-2-eden", "intro": "친구 말투 소개", "verse": "창 2:7", "gloss": "핵심 구절 한 줄 번역" } }
 ```
-- 키 = 인물 파일 이름(`src/characters/adam.ts`). 파일에 적은 순서 = 도감 순서. 장면 `unlocks.characters`로 카드를 얻는다. 화면은 `#/people` (`src/screens/people.ts`).
-- 사람이 아닌 것(뱀, 죄 그림자)이나 무리(시날의 사람들)는 도감에 넣지 않는다. 새 인물에 `unlocks`를 걸면 여기에도 꼭 추가 (검사 스크립트가 알려 줌).
-- 장면·읽기 목록·순서·"다음"은 `src/engine/content.ts`가 ref를 보고 자동으로 정한다 (본문 순서). 순서를 따로 적지 않는다.
-- **콘텐츠를 만들거나 고친 뒤 `npm run check:content`** — id·act·ref·겹침·canon·퀴즈 번호 등을 검사한다. `npm run build`도 이걸 먼저 돌리고, 오류가 있으면 빌드가 멈춘다.
+- 키 = 인물 파일 이름. 파일에 적은 순서 = 도감 순서. 에피소드 `unlocks.characters`로 카드를 얻는다. 화면은 `#/people`.
+- 사람이 아닌 것(뱀, 죄 그림자)이나 무리, 키트 extras는 도감에 넣지 않는다.
 
-### 읽기 구간 (reading)
-```json
-{
-  "id": "gen-23-25",
-  "act": 2,
-  "title": "화면 제목 (생략하면 ref로 표시)",
-  "ref": "창 23-25",
-  "summary": "3~5문장 요약",
-  "insight": "이 구간이 전체 이야기에서 왜 중요한지",
-  "tldr": "한 줄 요약 (선택)",
-  "quiz": [ { "q": "...", "options": ["..."], "answer": 0, "why": "..." } ]
-}
-```
-- 파일 위치: `content/acts/NN-이름/readings/<id>.json` → 주소 `#/read/<id>`. 화면은 `src/screens/reading.ts`.
-- `summary`·`insight`는 빈 줄(`\n\n`)로 문단을 나눌 수 있다. 길면 꼭 나눈다 (한 화면에 핵심 하나).
-- `answer`는 0부터 센다. 퀴즈 보기에 정답 힌트(예: 나이)를 넣지 않는다.
+### 검사
+- **콘텐츠를 만들거나 고친 뒤 `npm run check:content`** — id·act·ref·겹침·canon·동작·배경·효과·extras·퀴즈·B급 규칙을 검사한다. `npm run build`도 이걸 먼저 돌리고, 오류가 있으면 빌드가 멈춘다. 마지막 줄의 막별 "N / 전체 장"이 1,189장 진척표.
 
 ---
 
@@ -264,7 +305,7 @@ PROGRESS.md      ← 진행 기록
 - 60fps 유지. 무거운 효과는 저사양에서 자동으로 줄인다.
 
 ### 8-1. 캐릭터 연출
-- 글만 있으면 지루하니까, 장면마다 2D 캐릭터를 적극적으로 등장시킨다.
+- 글만 있으면 지루하니까, **모든 에피소드에** 2D 캐릭터를 등장시킨다. 서술만 길게 이어지면 동작(걷기·무릎 꿇기·마주보기·포옹 …)이나 배경 전환·여정 지도로 화면을 움직인다.
 - 스타일: 역광 실루엣 / 종이 오려낸 그림자극 느낌. SVG 코드로 직접 그린다. 막별 테마 색에 맞춰 톤이 바뀐다.
 - 주요 인물은 실루엣만 봐도 누군지 알 수 있게 소품과 체형으로 특징을 준다 (모세=지팡이, 다윗=물매·수금, 베드로=그물 등).
 - 모션: 숨쉬기(미세하게 위아래), 옷자락 흔들림, 말할 때 앞으로 살짝 나오고 밝아짐, 감정에 따른 자세 변화(어깨 처짐, 고개 듦, 떨림).
@@ -272,6 +313,7 @@ PROGRESS.md      ← 진행 기록
 - 하나님은 인물로 그리지 않는다. 빛, 불꽃, 구름, 화면 진동, 목소리 텍스트 연출로만 표현한다.
 - 예수님은 역광 실루엣으로 경건하게 표현한다.
 - 캐릭터는 /src/characters/ 에 인물별 파일로 만들고, 장면 JSON에서 "cast": ["moses", "aaron"] 처럼 불러 쓴다.
+- **캐릭터 재활용 규칙:** 이미 그린 인물은 계속 재사용한다. 조연은 기본 실루엣 키트(`_kit.ts`: 남자 노인/남자/청년/여자/노파/소녀/아이/병사/왕/제사장)에 머리·수염·소품·옷 색만 바꿔서 쓴다. **새 인물 그림은 A급에서만** 만든다.
 - 나중에 특정 인물만 일러스트 이미지로 바꿔 끼울 수 있게 구조를 짜둔다.
 
 ---
@@ -279,35 +321,40 @@ PROGRESS.md      ← 진행 기록
 ## 9. 주요 화면
 
 1. **타이틀** — 어둠 속에서 "태초에"가 빛으로 나타나는 오프닝. 이어하기 / 처음부터.
-2. **성경 지도** — 66권이 하나의 길/별자리로 연결. 막별 구역, 진행률, 탭하면 그 권의 장면 목록.
-3. **장면 플레이어** — 텍스트, 선택지, 본문 카드, 막별 mechanic UI.
-4. **읽기 모드** — 본문 전체를 편하게 읽는 화면 + 해설 + 퀴즈.
-5. **인물 도감** — 만난 인물 카드 (이름, 등장 권, 한 줄 소개, 핵심 구절).
+2. **성경 지도** — 66권이 하나의 길/별자리로 연결. 막별 구역, 진행률, 탭하면 그 구간의 에피소드 목록(큰 장면 / 에피소드).
+3. **에피소드 재생기** `#/scene/<id>` — 무대(인물·배경) + 아래 카드(글/본문 카드/선택지/퀴즈/해설). 머리줄: 뒤로 · 제목 · **본문 전체 보기** · 설정. (예전 `#/read/<id>` 주소는 같은 id 에피소드로 이어짐)
+4. **인물 도감** — 만난 인물 카드 (이름, 등장 권, 한 줄 소개, 핵심 구절).
+5. **막 피날레** — 막을 다 끝내면.
 6. **설정** — 소리, 글자 속도, 글자 크기, 모션 줄이기, 진도 초기화.
 
 ---
 
 ## 10. 작업 규칙
 
-- **한 세션 = 한 단위**(엔진 기능 하나, 또는 막 하나의 일부)만 끝까지 완성한다. 반쯤 만든 걸 여러 개 남기지 않는다.
+- **한 세션 = 한 단위**(엔진 기능 하나, 또는 B급 에피소드 한 묶음, 또는 A급 에피소드 몇 개)를 끝까지 완성한다. 반쯤 만든 걸 여러 개 남기지 않는다.
 - 세션 시작: `CLAUDE.md`와 `PROGRESS.md`를 읽고 지금 할 일을 사용자에게 한두 줄로 말한다.
 - 세션 끝:
-  1. 빌드가 되는지 확인
+  1. 빌드가 되는지 확인 (`npm run build` = 검사기 + 타입 + 빌드)
   2. `PROGRESS.md` 업데이트 (완료한 것 / 다음 할 일 / 알려진 문제)
   3. 커밋 & push → **PR 만들고 Claude가 직접 main에 머지** → 배포(Actions) 성공 확인
   4. 사용자에게 사이트 주소와 "이번에 뭐가 바뀌었는지"를 쉬운 말로 알려준다
 - 엔진을 바꾸면 기존 콘텐츠가 안 깨졌는지 확인한다.
-- **머지는 Claude가 한다.** 사용자가 허락했다(2026-10-27). 빌드 성공 + 브라우저 확인까지 끝나면 PR을 만들고 바로 main에 머지한다. 사용자에게 버튼을 누르라고 하지 않는다. 배포가 실패하면 고쳐서 다시 올린다.
-- 콘텐츠를 대량으로 만들 때는 위의 콘텐츠 원칙(7번)을 다시 확인한다.
+- **머지는 Claude가 한다.** 사용자가 허락했다(2026-10-27). 빌드 성공 + 확인까지 끝나면 PR을 만들고 바로 main에 머지한다. 사용자에게 버튼을 누르라고 하지 않는다. 배포가 실패하면 고쳐서 다시 올린다.
+- 콘텐츠를 대량으로 만들 때는 위의 콘텐츠 원칙(7번)과 말투(7-1)를 다시 확인한다.
+
+### 작업 속도 규칙 (2026-10-27)
+- **B급 에피소드는 한 세션에 10~20장씩**, 도우미(서브에이전트) 여러 개를 동시에 돌려서 만든다. 도우미에게는 이 파일의 6·7·7-1번과 표본 에피소드(`content/acts/02-patriarchs/scenes/gen-24-rebekah.json`)를 읽게 하고, 각자 맡은 장의 개역한글 본문(`data/bible/`)을 직접 읽고 쓰게 한다.
+- **B급 확인은 검사기 통과 + 대표 에피소드 1개만 폰 크기(390px)로 확인하면 끝.** 전부 브라우저 테스트하지 않는다.
+- **A급은 그림 수정 2번까지만.** 테스트는 폰 위주, PC(1440px)는 마지막에 한 번.
+- **새 캐릭터(인물 파일·새 그림)는 A급에서만** 만든다. B급은 기존 인물 + 키트 extras.
 
 ---
 
-## 11. 로드맵
+## 11. 로드맵 (새 방향)
 
-- **Phase 0 — 기반:** 프로젝트 세팅, 배포 파이프라인, 디자인 토큰, 개역한글 데이터, 엔진(장면 재생·선택지·저장), 타이틀 화면, 성경 지도(빈 상태), 설정.
-- **Phase 1 — 1막 태초 (창 1–11):** 창조, 에덴, 가인과 아벨, 노아, 바벨탑. 첫 시그니처 모션 전부 구현. → 첫 "완성된 막"
-- **Phase 2 — 2막 족장들:** 여정 지도 mechanic 추가.
-- **Phase 3 — 3막 출애굽 + 4막 성막:** 성막 짓기 mechanic.
-- **Phase 4 — 5막 광야:** 생존 스탯 mechanic.
-- 이후 막 순서대로. 막마다 새 mechanic 1개.
-- 인물 도감, 막 피날레는 Phase 1부터 계속 쌓는다.
+- **Phase 0 — 기반:** 끝 (세팅, 배포, 디자인 토큰, 개역한글, 엔진, 타이틀, 지도, 설정).
+- **Phase 1 — 1막 태초:** 끝 (A급 10개 + B급 3개, 피날레·도감).
+- **Phase 1.5 — 연출 라이브러리:** 끝 (2026-10-27). 동작·배경·효과·인물 키트·여정 지도·군중, B급 형식, 끝 퀴즈, 본문 전체 보기. 읽기 구간 → B급 변환, 2막 기본 인물 9명(키트).
+- **Phase 2 — 2막 족장들 (창 12–50):** A급 약 15개(`content/acts/02-patriarchs/PLAN.md`) + 나머지 장 B급. 키트로 만든 2막 인물(아브라함·사라·야곱 …)은 A급에서 공들여 다시 그림.
+- **Phase 3 이후 — 막 순서대로:** 막마다 ① A급 목록 정하기(성경 전체 약 100개) ② B급 10~20장씩 도우미로 대량 생산 ③ A급 몇 개씩 공들여 만들기 ④ 막 피날레.
+- 인물 도감, 막 피날레는 계속 쌓는다. 소리(Howler.js)는 나중에.

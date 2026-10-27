@@ -2,11 +2,12 @@
 // 멀수록 하늘색에 가깝고, 가까울수록 어둡다. 잎은 아주 천천히 흔들리고 열매·강물은 은은하게 반짝인다.
 // 모양은 코드로 만들되 시드 고정 난수라 매번 같은 그림이 나온다.
 import type { BackdropArt } from '../engine/moods';
+import { PLACE_ART } from './places';
 
-const W = 400;
-const H = 260;
+export const W = 400;
+export const H = 260;
 
-function rng(seed: number) {
+export function rng(seed: number) {
   let s = seed >>> 0;
   return () => {
     s = (s * 1664525 + 1013904223) >>> 0;
@@ -15,7 +16,7 @@ function rng(seed: number) {
 }
 
 /** 나무 한 그루: 줄기 + 둥근 잎 덩어리 여러 개. sway면 잎이 흔들린다 */
-function tree(x: number, ground: number, h: number, cls: string, seed: number, opts: { lean?: number; fruit?: number; sway?: boolean } = {}): string {
+export function tree(x: number, ground: number, h: number, cls: string, seed: number, opts: { lean?: number; fruit?: number; sway?: boolean } = {}): string {
   const r = rng(seed);
   const lean = opts.lean ?? 0;
   const topX = x + lean * h * 0.3;
@@ -57,7 +58,7 @@ function tree(x: number, ground: number, h: number, cls: string, seed: number, o
 }
 
 /** 지평선을 따라 이어지는 먼 숲 */
-function treeline(y: number, amp: number, cls: string, seed: number): string {
+export function treeline(y: number, amp: number, cls: string, seed: number): string {
   const r = rng(seed);
   let d = `M${-W * 2} ${H} L${-W * 2} ${y}`;
   for (let x = -W * 2; x < W * 3; ) {
@@ -70,7 +71,7 @@ function treeline(y: number, amp: number, cls: string, seed: number): string {
   return `<path class="${cls}" d="${d}"/>`;
 }
 
-function hills(y: number, cls: string, seed: number): string {
+export function hills(y: number, cls: string, seed: number): string {
   const r = rng(seed);
   const p = Array.from({ length: 21 }, (_, i) => [i * 100 - W * 2, y - r() * 18] as const);
   let d = `M${-W * 2} ${H} L${-W * 2} ${p[0][1]}`;
@@ -79,7 +80,7 @@ function hills(y: number, cls: string, seed: number): string {
 }
 
 /** 엉겅퀴·가시덤불 (창 3:18) */
-function thorns(x: number, ground: number, s: number, cls: string, seed: number): string {
+export function thorns(x: number, ground: number, s: number, cls: string, seed: number): string {
   const r = rng(seed);
   const stems = Array.from({ length: 6 }, (_, i) => {
     const a = -Math.PI / 2 + (i - 2.5) * 0.32 + (r() - 0.5) * 0.2;
@@ -92,7 +93,7 @@ function thorns(x: number, ground: number, s: number, cls: string, seed: number)
 }
 
 /** 넓은 화면(PC)에서만 보이는 양옆 나무들. 좁은 화면에서는 그림 밖이라 안 보인다 */
-const WIDE_SIDES = [
+export const WIDE_SIDES = [
   tree(-70, 262, 220, 'bd-near', 201, { lean: 0.2, sway: true }),
   tree(-200, 240, 110, 'bd-mid', 202, { sway: true }),
   tree(470, 262, 220, 'bd-near', 203, { lean: -0.2, sway: true }),
@@ -100,7 +101,7 @@ const WIDE_SIDES = [
 ].join('');
 
 /** 먼 언덕의 양 떼 (아벨의 양, 창 4:2) */
-function sheep(x: number, y: number, seed: number): string {
+export function sheep(x: number, y: number, seed: number): string {
   const r = rng(seed);
   return `<g class="bd-sheep">${Array.from({ length: 7 }, () => {
     const sx = x + (r() - 0.5) * 70;
@@ -120,7 +121,7 @@ function furrows(y: number): string {
 }
 
 /** 앞쪽 이삭 덤불: 줄기 끝에 낟알 이삭이 달려 천천히 흔들린다 */
-function grain(x: number, ground: number, h: number, seed: number): string {
+export function grain(x: number, ground: number, h: number, seed: number): string {
   const r = rng(seed);
   const stalks = Array.from({ length: 9 }, (_, i) => {
     const a = (i - 4) * 0.1 + (r() - 0.5) * 0.08;
@@ -135,7 +136,7 @@ function grain(x: number, ground: number, h: number, seed: number): string {
 }
 
 /** 돌을 쌓은 제단 + 피어오르는 연기. lit = 그 제물을 "열납"하셨다(창 4:4)는 표시로 은은한 빛 */
-function altar(x: number, ground: number, lit: boolean, seed: number): string {
+export function altar(x: number, ground: number, lit: boolean, seed: number): string {
   const r = rng(seed);
   const stones: string[] = [];
   const rows = [[5, 9], [4, 8], [3, 7]];
@@ -168,7 +169,7 @@ function altarArt(lit: boolean): string {
 }
 
 /** 놋 땅의 성 (창 4:16-17): 낮은 성벽, 망대 하나, 창마다 작은 불빛 */
-function city(x: number, ground: number, seed = 81, scale = 1.5, cls = 'bd-far'): string {
+export function city(x: number, ground: number, seed = 81, scale = 1.5, cls = 'bd-far'): string {
   const r = rng(seed);
   const lights = Array.from({ length: 6 }, () =>
     `<rect class="bd-window" style="--d:${(r() * 4).toFixed(2)}s" x="${(x - 26 + r() * 50).toFixed(1)}" y="${(ground - 9 - r() * 5).toFixed(1)}" width="1.6" height="2"/>`,
@@ -182,7 +183,7 @@ function city(x: number, ground: number, seed = 81, scale = 1.5, cls = 'bd-far')
 
 
 /** 피어오르는 연기 기둥 (제단의 연기와 같은 덩이들) */
-function smoke(x: number, top: number, seed: number, n = 6): string {
+export function smoke(x: number, top: number, seed: number, n = 6): string {
   const r = rng(seed);
   return `<g class="bd-smoke">${Array.from({ length: n }, (_, i) =>
     `<circle class="bd-smoke__puff" style="--d:${(i * 1.1 + r()).toFixed(1)}s; --dx:${((r() - 0.5) * 16).toFixed(1)}px" cx="${x}" cy="${top}" r="${(4 + r() * 2).toFixed(1)}"/>`,
@@ -232,7 +233,7 @@ function vines(y: number, from: number, to: number, size: number, cls: string, s
 }
 
 /** 장막 (창 9:21 "장막 안에서"). 입구 틈으로 등잔 불빛이 새어 나온다 */
-function tent(x: number, ground: number, s: number): string {
+export function tent(x: number, ground: number, s: number): string {
   return `<g class="bd-near bd-tent" transform="translate(${x} ${ground}) scale(${s})">
     <path d="M-40 0 L-30 -24 L-4 -34 L0 -40 L4 -34 L30 -24 L40 0 Z"/>
     <path class="bd-tent__door" d="M-6 0 L0 -26 L6 0 Z"/>
@@ -241,7 +242,7 @@ function tent(x: number, ground: number, s: number): string {
 }
 
 /** 대추야자 (메소포타미아 강가의 나무): 가늘고 긴 줄기, 꼭대기에서 늘어지는 잎 */
-function palm(x: number, ground: number, h: number, cls: string, seed: number): string {
+export function palm(x: number, ground: number, h: number, cls: string, seed: number): string {
   const r = rng(seed);
   const lean = (r() - 0.5) * h * 0.25;
   const tx = x + lean;
@@ -260,7 +261,7 @@ function palm(x: number, ground: number, h: number, cls: string, seed: number): 
 }
 
 /** 강가 갈대 */
-function reeds(x: number, ground: number, s: number, cls: string, seed: number): string {
+export function reeds(x: number, ground: number, s: number, cls: string, seed: number): string {
   const r = rng(seed);
   const d = Array.from({ length: 11 }, (_, i) => {
     const bx = x + (i - 5) * s * 0.16;
@@ -289,7 +290,7 @@ function plainArt(): string {
 }
 
 /** 벽돌 가마: 둥근 지붕, 붉게 달아오른 아궁이, 연기 */
-function kiln(x: number, ground: number, s: number, seed: number): string {
+export function kiln(x: number, ground: number, s: number, seed: number): string {
   return `<g class="bd-mid">
     <path d="M${x - 14 * s} ${ground} C${x - 14 * s} ${ground - 16 * s} ${x - 8 * s} ${ground - 22 * s} ${x} ${ground - 22 * s} C${x + 8 * s} ${ground - 22 * s} ${x + 14 * s} ${ground - 16 * s} ${x + 14 * s} ${ground} Z"/>
   </g>
@@ -308,7 +309,7 @@ function brickRows(y: number, from: number, to: number, size: number, cls: strin
   return `<g class="${cls}">${rows.join('')}</g>`;
 }
 
-const ART: Record<BackdropArt, () => string> = {
+const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = {
   garden: () => `
     ${treeline(196, 26, 'bd-far', 3)}
     ${tree(200, 190, 64, 'bd-far bd-glow', 11, { fruit: 0, sway: true })}
@@ -414,7 +415,8 @@ const cache = new Map<BackdropArt, string>();
 export function backdropSvg(art: BackdropArt): string {
   let body = cache.get(art);
   if (!body) {
-    body = ART[art]();
+    // 1막 전용 그림(ART) 또는 B급 배경 라이브러리(places.ts)
+    body = (art in PLACE_ART ? PLACE_ART[art as keyof typeof PLACE_ART] : ART[art as keyof typeof ART])();
     cache.set(art, body);
   }
   const defs = `<defs>

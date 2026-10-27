@@ -1,17 +1,16 @@
-// 콘텐츠 로더: content/acts/NN-이름/ 아래의 act.json · scenes · readings를 한곳에서 찾고,
+// 콘텐츠 로더: content/acts/NN-이름/ 아래의 act.json · scenes(에피소드)를 한곳에서 찾고,
 // 본문 순서대로 줄을 세운다. 지도 패널, "다음" 버튼, 장 번호 바로가기가 전부 여기서 나온다.
+// 모든 장은 에피소드(scene)다. 예전의 읽기 구간(readings)은 B급 에피소드로 바뀌었다.
 import { ACTS } from './acts';
 import { chapterLength, parseRef, type ParsedRef } from './bible';
-import { readingDone, sceneDone } from './progress';
+import { sceneDone } from './progress';
 
-export type ContentKind = 'scene' | 'read';
+export type ContentKind = 'scene';
 
 /** 막 폴더의 act.json */
 export interface ActContent {
   act: number;
   title: string;
-  /** 막별 게임 방식 모듈 이름 (src/mechanics). 예: "adventure" */
-  mechanic: string;
   /** 막 피날레에 쓸 핵심 구절 */
   keyVerse?: string;
   /** 막 피날레의 이야기 목소리 몇 줄 (한 줄씩 탭으로). 마지막 줄 다음에 keyVerse 카드가 나온다 */
@@ -26,13 +25,16 @@ export interface ContentItem {
   title: string;
   ref: string;
   r: ParsedRef;
-  /** 라우터 주소. "/scene/gen-1-light", "/read/gen-5" */
+  /** 라우터 주소. "/scene/gen-1-light" */
   path: string;
+  /** A = 큰 사건, B = 라이브러리 조립 에피소드 */
+  grade: 'A' | 'B';
 }
 
 interface Meta {
   id: string;
   act: number;
+  grade?: 'A' | 'B';
   title?: string;
   ref: string;
 }
@@ -40,7 +42,6 @@ interface Meta {
 // 파일 이름 = id. content/acts/01-beginning/scenes/gen-1-light.json → 장면 "gen-1-light"
 const files: Record<ContentKind, Record<string, () => Promise<unknown>>> = {
   scene: import.meta.glob('/content/acts/*/scenes/*.json', { import: 'default' }),
-  read: import.meta.glob('/content/acts/*/readings/*.json', { import: 'default' }),
 };
 const actFiles = import.meta.glob<ActContent>('/content/acts/*/act.json', { import: 'default', eager: true });
 
@@ -56,10 +57,10 @@ function find(kind: ContentKind, id: string) {
   return index.find((f) => f.kind === kind && f.id === id);
 }
 
-/** 장면/읽기 JSON 하나를 불러온다. 형식 검사는 scene.ts / reading.ts가 한다. */
+/** 에피소드 JSON 하나를 불러온다. 형식 검사는 scene.ts가 한다. */
 export async function loadContent<T>(kind: ContentKind, id: string): Promise<T> {
   const f = find(kind, id);
-  if (!f) throw new Error(`${kind === 'scene' ? '장면' : '읽기 구간'} 없음: ${id}`);
+  if (!f) throw new Error(`에피소드 없음: ${kind}/${id}`);
   const data = (await files[kind][f.path]()) as T & Meta;
   if (data.id !== id) console.warn(`[${id}] 파일 이름과 id가 다름: "${data.id}"`);
   if (data.act !== f.act) console.warn(`[${id}] act가 ${data.act}인데 ${f.act}막 폴더에 있음`);
@@ -92,7 +93,7 @@ async function buildAct(act: number): Promise<ContentItem[]> {
     try {
       const m = (await files[f.kind][f.path]()) as Meta;
       const r = parseRef(m.ref);
-      items.push({ kind: f.kind, id: f.id, act, title: m.title ?? refLabel(m.ref), ref: m.ref, r, path: `/${f.kind}/${f.id}` });
+      items.push({ kind: f.kind, id: f.id, act, title: m.title ?? refLabel(m.ref), ref: m.ref, r, path: `/${f.kind}/${f.id}`, grade: m.grade ?? 'A' });
     } catch (err) {
       console.warn(`[${f.id}]`, err);
     }
@@ -159,7 +160,7 @@ export async function chaptersDoneWith(kind: ContentKind, id: string): Promise<s
   const f = find(kind, id);
   if (!f) return [];
   const items = await contentOfAct(f.act);
-  const done = items.filter((it) => (it.kind === kind && it.id === id) || (it.kind === 'scene' ? sceneDone(it.id) : readingDone(it.id)));
+  const done = items.filter((it) => (it.kind === kind && it.id === id) || sceneDone(it.id));
   const me = items.find((it) => it.kind === kind && it.id === id);
   if (!me) return [];
   const out: string[] = [];

@@ -208,6 +208,11 @@
 @media (max-width: 767px) {
   .play[data-spread='1'] .stage { justify-content: space-between; --slot: 36cqw; }
   .play[data-spread='1'] .stage[data-count='1'] { justify-content: flex-end; --slot: 46cqw; }
+  /* 셋 이상이면 벌릴 자리가 없으니 보통 폭으로 (화면 밖으로 밀려나지 않게) */
+  .play[data-spread='1'] .stage[data-count='3'] { --slot: 30cqw; }
+  .play[data-spread='1'] .stage[data-count='4'] { --slot: 23cqw; }
+  .play[data-spread='1'] .stage[data-count='5'] { --slot: 18.5cqw; }
+  .play[data-spread='1'] .stage[data-count='6'] { --slot: 15.5cqw; }
 }
 @media (min-width: 768px) {
   .play[data-spread='1'] .stage[data-count='2'] { gap: 22%; }

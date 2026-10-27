@@ -1,6 +1,10 @@
-// 플레이 장면(scene) 형식과 재생 순서. 화면 그리기는 screens/scene.ts가 맡고,
+// 에피소드(scene) 형식과 재생 순서. 화면 그리기는 screens/scene.ts가 맡고,
 // 여기서는 "다음에 무엇을 보여줄지"만 정한다 (CLAUDE.md 6번).
+// 모든 장은 에피소드다. A급 = 큰 사건(전용 그림·연출), B급 = 라이브러리(동작·배경·키트 인물) 조립.
 import type { Facing, Pose } from '../ui/actor';
+import type { QuizItem } from '../ui/quiz';
+import type { Base, Beard, Hair, Prop, Tint } from '../characters/_kit';
+import type { ActionName, PlaceName } from './actions';
 import { loadContent } from './content';
 
 import type { SceneFx } from './moods';
@@ -23,7 +27,35 @@ interface BeatBase {
   outfit?: Record<string, string>;
   /** 배경 분위기를 바꾼다 (engine/moods.ts). 예: "eden-dusk" */
   mood?: string;
+  /** mood와 같음 (B급 배경 라이브러리 이름: "tent-night", "well" …) */
+  bg?: string;
   fx?: SceneFx | SceneFx[];
+  /** 동작 라이브러리 (engine/actions.ts). 예: "kneel". 누가 = who (line이면 말하는 사람) */
+  act?: ActionName;
+  /** 동작하는 사람 (한 명 또는 여럿). line beat에서는 말하는 사람 */
+  who?: string | string[];
+  /** 두 사람 동작의 상대 (approach·embrace·face 등) */
+  to?: string;
+  /** 여정 지도(travel): 출발지·경유지 */
+  from?: PlaceName;
+  via?: PlaceName[];
+  /** 여정 지도(travel)의 도착지는 to에 장소 이름으로 쓴다 */
+  /** 동작 여러 개를 동시에: [{ "act": "embrace", "who": ["jacob", "esau"] }, { "act": "cry", "who": "esau" }] */
+  acts?: ActionStep[];
+}
+
+/** 동작 하나 (beat의 act·who·to·from·via와 같은 뜻) */
+export interface ActionStep {
+  act: ActionName;
+  who?: string | string[];
+  to?: string;
+  from?: PlaceName;
+  via?: PlaceName[];
+}
+
+/** 동작만 하는 beat: 글 없이 움직이고, 잠깐 뒤 저절로 다음 beat로 넘어간다 */
+export interface ActionBeat extends BeatBase {
+  type?: 'act';
 }
 
 /** 이야기 목소리(이영도풍) 서술 */
@@ -66,15 +98,34 @@ export interface ChoiceBeat extends BeatBase {
   options: ChoiceOption[];
 }
 
-export type Beat = NarrationBeat | LineBeat | VoiceBeat | ScriptureBeat | ChoiceBeat;
+export type Beat = NarrationBeat | LineBeat | VoiceBeat | ScriptureBeat | ChoiceBeat | ActionBeat;
+
+/** 장면에서만 쓰는 이름 없는 조연 (characters/_kit.ts로 그 자리에서 만든다) */
+export interface ExtraSpec {
+  name: string;
+  base: Base;
+  hair?: Hair;
+  beard?: Beard;
+  props?: Prop[];
+  tint?: Tint;
+  height?: number;
+}
 
 export interface Scene {
   id: string;
   act: number;
+  /** A = 큰 사건(전용 그림·연출), B = 라이브러리 조립 (기본 A) */
+  grade?: 'A' | 'B';
   title: string;
   ref: string;
   pov?: string;
   mood?: string;
+  /** mood와 같음. 둘 다 없으면 막 기본 배경 (moods.ts ACT_BG) */
+  bg?: string;
+  /** 이 장면에서만 나오는 조연: { "servant": { "name": "늙은 종", "base": "old-man" } } */
+  extras?: Record<string, ExtraSpec>;
+  /** 이 장면에서 이름표를 바꿔 부를 때: { "abraham": "아브람" } */
+  names?: Record<string, string>;
   /** 처음부터 무대에 서 있는 인물 */
   cast?: string[];
   /** 처음부터 입고 있는 옷 { "adam": "skins" } */
@@ -89,7 +140,11 @@ export interface Scene {
   /** 끝 카드의 "다음" 버튼 위에 놓이는, 다음 이야기로 넘어가는 한 줄 (이야기 목소리) */
   bridge?: string;
   unlocks?: { characters?: string[] };
+  /** 끝 확인 퀴즈 1~2문제 */
+  quiz?: QuizItem[];
 }
+
+export type { QuizItem };
 
 // ── 불러오기 ──────────────────────────────────
 // 파일 찾기·목록·순서는 content.ts가 맡는다. 여기서는 형식 검사만.
@@ -104,6 +159,7 @@ function validate(scene: Scene): void {
   const ids = new Set(scene.beats.map((b) => b.id).filter(Boolean));
   const all = [...scene.beats, ...Object.values(scene.branches ?? {}).flat()];
   for (const b of all) {
+    if (b.type === 'act' || !b.type) continue;
     if (b.type !== 'choice') continue;
     if (b.options.filter((o) => o.canon).length !== 1) console.warn(`[${scene.id}] 선택지에 canon이 정확히 하나여야 함: "${b.prompt}"`);
     for (const o of b.options) {

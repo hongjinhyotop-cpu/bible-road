@@ -5,7 +5,7 @@ import type { Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS, type Act, type Stop } from '../engine/acts';
 import { BOOKS, TOTAL_CHAPTERS, findBook } from '../engine/books';
-import { countDone, markLit, totalDone, progress, readingDone, sceneDone } from '../engine/progress';
+import { countDone, markLit, totalDone, progress, sceneDone } from '../engine/progress';
 import { contentOfAct } from '../engine/content';
 import { reducedMotion } from '../engine/settings';
 import { setFieldMode } from '../fx/particles';
@@ -108,7 +108,7 @@ export function mapScreen(): Screen {
         <span class="act-head__numeral" aria-hidden="true">${act.numeral}</span>
         <p class="act-head__eyebrow ui">제${act.no}막 · <span class="latin">${act.latin}</span></p>
         <h2 class="act-head__title">${act.title}</h2>
-        <p class="act-head__meta ui">${act.range}<span>·</span>${act.mechanic}</p>`;
+        <p class="act-head__meta ui">${act.range}<span>·</span>${act.mood}</p>`;
       road.append(head);
       headings.push(head);
       y += headH;
@@ -369,7 +369,7 @@ export function mapScreen(): Screen {
     // 이 구간의 플레이 장면 + 읽기 구간 (content.ts가 본문 순서대로 세워 줌)
     const items = (await contentOfAct(p.act.no).catch(() => []))
       .filter(({ r }) => r.book.code === book.code && r.startChapter >= p.stop.from && r.startChapter <= p.stop.to)
-      .map((it) => ({ ...it, done: it.kind === 'scene' ? sceneDone(it.id) : readingDone(it.id) }));
+      .map((it) => ({ ...it, done: sceneDone(it.id) }));
     // 장 번호 → 그 장을 덮는 장면/읽기 구간 주소
     const chapterGo = new Map<number, string>();
     for (const it of items) for (let c = it.r.startChapter; c <= it.r.endChapter; c++) if (!chapterGo.has(c)) chapterGo.set(c, it.path);
@@ -379,7 +379,7 @@ export function mapScreen(): Screen {
            .map(
              (it) => `<li><button class="btn stop__scene${it.done ? ' is-done' : ''}" data-go="${it.path}">
                <span class="stop__scene-title">${it.title}</span>
-               <span class="stop__scene-ref ui"><span class="stop__kind stop__kind--${it.kind}">${it.kind === 'scene' ? '플레이' : '읽기'}</span>${it.ref.replace(/^\S+\s+/, '').replace('-', '–')}${/:/.test(it.ref) ? '' : '장'}${it.done ? ' · 완료' : ''}</span>
+               <span class="stop__scene-ref ui"><span class="stop__kind stop__kind--${it.grade === 'B' ? 'read' : 'scene'}">${it.grade === 'B' ? '에피소드' : '큰 장면'}</span>${it.ref.replace(/^\S+\s+/, '').replace('-', '–')}${/:/.test(it.ref) ? '' : '장'}${it.done ? ' · 완료' : ''}</span>
              </button></li>`,
            )
            .join('')}</ul>`
