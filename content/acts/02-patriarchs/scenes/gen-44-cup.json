@@ -1,0 +1,55 @@
+{
+  "id": "gen-44-cup",
+  "act": 2,
+  "grade": "B",
+  "title": "막내의 자루",
+  "ref": "창 44:1-17",
+  "bg": "house-night",
+  "cast": ["joseph"],
+  "extras": {
+    "steward": { "name": "청지기", "base": "man", "hair": "short", "props": ["staff"], "tint": "white" },
+    "simeon": { "name": "시므온", "base": "man", "hair": "shaggy", "beard": "short", "props": ["bundle"], "tint": "red" }
+  },
+  "names": { "joseph": "총리" },
+  "beats": [
+    { "type": "narration", "enter": ["steward"], "text": "잔치가 끝난 밤, 총리는 청지기를 불렀다. 형제들은 웃으며 잠들어 있었다. 이 집에서 웃으며 잠든 사람들이, 이 집에서 무슨 일이 준비되는지 아는 경우는 드물다." },
+    { "type": "line", "who": "joseph", "act": "face", "to": "steward", "text": "“자루마다 실을 수 있는 만큼 양식을 채워라. 각 사람의 돈도 자루에 도로 넣어라. 그리고 내 잔, 은잔을 그 막내의 자루 아가리에 넣어라. 그의 곡식 값과 함께.”" },
+    { "type": "narration", "act": "bow-head", "who": "steward", "text": "청지기는 묻지 않았다. 좋은 청지기는 이유를 묻지 않고, 나쁜 청지기는 이유를 퍼뜨린다. 이 사람은 좋은 청지기였다." },
+    { "type": "scripture", "ref": "창 44:2", "gloss": "요셉: “내 은잔을 막내 베냐민 자루에 넣어.” 일부러 판을 짬. 형들이 베냐민을 버리고 갈지, 아니면 같이 남을지 보려는 거." },
+    { "bg": "road-dawn", "fx": "fade", "exit": ["joseph", "steward"], "enter": ["judah", "reuben", "benjamin", "simeon"] },
+    { "type": "narration", "act": "walk-in", "who": ["judah", "benjamin"], "text": "날이 밝자 형제들은 나귀를 이끌고 떠났다. 열한 명이었다. 시므온도 돌아왔고, 베냐민도 무사했다. 돌아가는 길은 가벼웠다. 사람은 가장 홀가분한 순간에, 가장 무방비하다." },
+    { "type": "narration", "enter": ["steward"], "act": "approach", "who": "steward", "to": "judah", "text": "성에서 그리 멀리 가지 못했을 때였다. 뒤에서 누가 쫓아왔다. 총리의 청지기였다." },
+    { "type": "line", "who": "steward", "act": "argue", "to": "judah", "text": "“너희가 어찌하여 악으로 선을 갚느냐! 이것은 내 주인이 마시고, 또 점칠 때 쓰는 잔이 아니냐. 너희가 이렇게 하다니 악하다.”" },
+    { "type": "line", "who": "judah", "act": "step-back", "text": "“우리 주여, 어찌 그런 말씀을 하십니까. 종들은 결코 그런 일을 하지 않습니다. 자루에 들어 있던 돈도 가나안에서부터 도로 가져왔는데, 우리가 어찌 당신 주인의 집에서 은이나 금을 훔치겠습니까.”" },
+    { "type": "line", "who": "reuben", "act": "approach", "to": "steward", "text": "“종들 중에 누구에게서든 그것이 나오면 그는 죽을 것이요, 우리는 내 주의 종이 되겠습니다.”" },
+    { "type": "narration", "act": "bow-head", "who": "benjamin", "text": "형제들은 자신이 있었다. 자신 있는 사람은 판돈을 크게 건다. 판돈은 늘, 확인하기 전에 걸린다." },
+    { "type": "line", "who": "steward", "text": "“좋다, 너희 말대로 하자. 그러나 그것이 나오는 사람만 내 종이 되고, 나머지는 죄가 없다.”" },
+    { "type": "narration", "acts": [{ "act": "kneel", "who": "reuben" }, { "act": "kneel", "who": "simeon" }, { "act": "kneel", "who": "judah" }, { "act": "kneel", "who": "benjamin" }], "text": "그들은 서둘러 자루를 땅에 내려놓고 각자 풀었다." },
+    { "type": "narration", "act": "approach", "who": "steward", "to": "reuben", "text": "청지기는 맏이의 자루부터 뒤졌다. 르우벤. 없었다. 시므온. 없었다. 둘째, 셋째, 넷째…" },
+    { "type": "narration", "act": "approach", "who": "steward", "to": "benjamin", "text": "자루 하나를 열 때마다 한 사람씩 숨을 내쉬었다. 열 번의 안도가 지나갔다. 남은 자루는 하나였다. 가장 어린 사람의 것." },
+    { "type": "scripture", "ref": "창 44:12", "gloss": "청지기가 첫째부터 막내까지 순서대로 뒤짐. 마지막 베냐민 자루에서 잔이 나옴. 일부러 순서대로 가서 긴장을 끝까지 끌어올림. 연출 개잘함." },
+    { "type": "narration", "fx": "shake", "acts": [{ "act": "step-back", "who": "benjamin" }, { "act": "fall", "who": "judah" }], "text": "은잔이 아침 햇빛에 반짝였다. 베냐민의 자루 아가리에서." },
+    { "type": "narration", "acts": [{ "act": "cry", "who": "reuben" }, { "act": "cry", "who": "simeon" }, { "act": "cry", "who": "judah" }], "text": "그들은 옷을 찢었다." },
+    { "type": "narration", "text": "이십여 년 전, 이 형제들은 아버지에게 피 묻은 옷 한 벌을 보냈다. 그때 옷을 찢은 것은 아버지였다. 이번에는 그들이 찢었다. 자기 옷을." },
+    { "type": "choice", "prompt": "청지기는 베냐민만 데려가겠다고 했다. 나머지는 자유다. 형들은?", "options": [{ "label": "다 같이 짐을 싣고 성으로 돌아간다", "canon": true }, { "label": "베냐민을 두고 가나안으로 돌아간다", "goto": "b-leave" }] },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "reuben" }, { "act": "stand", "who": "simeon" }, { "act": "stand", "who": "judah" }], "text": "아무도 길을 재촉하지 않았다. 그들은 각자 짐을 다시 나귀에 싣고, 왔던 길로 성을 향해 돌아섰다. 열한 명 모두." },
+    { "bg": "house", "fx": "fade", "exit": ["steward"], "enter": ["joseph"], "act": "walk-in", "who": "judah" },
+    { "type": "narration", "acts": [{ "act": "prostrate", "who": "judah" }, { "act": "prostrate", "who": "reuben" }, { "act": "prostrate", "who": "simeon" }, { "act": "prostrate", "who": "benjamin" }], "text": "유다와 그 형제들이 총리의 집에 이르렀다. 총리는 아직 거기 있었다. 그들은 그 앞 땅에 엎드렸다. 이 사람 앞에서 몇 번째 절인지, 이제는 아무도 세지 않았다. 이번에는 곡식을 사러 온 것이 아니었다." },
+    { "type": "line", "who": "joseph", "act": "approach", "to": "judah", "text": "“너희가 어찌하여 이런 일을 했느냐. 나 같은 사람이 점을 잘 친다는 것을 너희는 몰랐느냐.”" },
+    { "type": "line", "who": "judah", "act": "look-up", "text": "“우리가 내 주께 무슨 말을 하겠습니까. 무슨 설명을 하겠습니까. 어떻게 우리가 결백하다 하겠습니까. 하나님이 종들의 죄악을 찾아내셨습니다.”" },
+    { "type": "scripture", "ref": "창 44:16", "gloss": "유다: “할 말 없음. 하나님이 우리 죄를 찾아내신 거임. 우리 다 같이 종 될게.” 잔은 안 훔쳤는데 ‘죄악’이라고 함. 유다가 말하는 죄는 잔 얘기가 아니라 20년 전 그 일인 듯." },
+    { "type": "narration", "act": "bow-head", "who": "judah", "text": "유다는 잔을 훔치지 않았다. 그래도 죄를 말했다. 어떤 죄는 판결을 기다리지 않는다. 다른 사건이 와도, 자기가 먼저 일어선다." },
+    { "type": "line", "who": "judah", "text": "“우리와, 잔이 나온 사람이 다 내 주의 종이 되겠습니다.”" },
+    { "type": "line", "who": "joseph", "act": "turn", "text": "“결코 그렇게 하지 않겠다. 잔이 나온 자만 내 종이 된다. 너희는 평안히 너희 아버지께로 올라가라.”" },
+    { "type": "narration", "act": "look-up", "who": "benjamin", "text": "평안히. 아버지께로. 이십여 년 전 그들이 바라던 그대로였다. 아버지의 편애를 받는 라헬의 아들만 사라지고, 나머지는 집으로 돌아가는 것." },
+    { "type": "narration", "act": "stand", "who": "judah", "text": "문은 열려 있었다. 아무도 일어나 나가지 않았다. 유다가 몸을 일으켰다. 총리를 향해서." }
+  ],
+  "branches": {
+    "b-leave": [
+      { "type": "narration", "text": "청지기의 말대로라면 그래도 됐다. 죄 없는 열 명은 돌아가고, 잔이 나온 한 명만 남는다. 법으로 따지면 그게 공정했다. 이십여 년 전에도, 그들은 그런 계산을 한 번 해 본 적이 있었다." },
+      { "type": "narration", "text": "그러나 이번에는 아무도 그 계산을 입에 올리지 않았다. 본문에서 그들은 옷을 찢고, 다 같이 성으로 돌아간다." }
+    ]
+  },
+  "insight": "이 장은 요셉이 짠 마지막 테스트임. 상황 세팅을 보면 37장이랑 완전 똑같음. 아버지가 편애하는 라헬의 아들이 하나 있고, 걔만 사라지면 나머지는 아무 책임 없이 집에 갈 수 있음. 20년 전 형들은 그 상황에서 동생을 팔았음. 이번엔 어떻게 하는지 보는 거.\n\n‘점치는 잔’ 얘기가 나와서 요셉이 진짜 점을 쳤냐? 여러 해석이 있음. 이집트 총리 캐릭터를 연기하느라 한 말이라고 보는 사람이 많고, 당시 고대 근동에 잔에 물이나 기름 부어 점치는 관습이 있었다는 설명도 있음. 확실한 건 본문이 요셉이 실제로 점쳤다고 쓰지는 않는다는 거.\n\n형들 반응이 핵심임. 잔 나오자마자 옷을 찢음. 그리고 아무도 도망 안 감. 다 같이 돌아와서 엎드림. 그리고 유다가 “하나님이 우리 죄를 찾아내셨다”고 함. 잔은 안 훔쳤는데 죄를 인정함. 20년 묵은 죄책감이 여기서 터진 거임.\n\n근데 이게 왜 중요하냐면, 사람이 진짜 바뀌었는지는 똑같은 상황이 다시 왔을 때 알 수 있거든. 말로 “나 변했어”는 아무 의미 없음. 문 열어 줬는데 아무도 안 나감. 그게 대답이었음.",
+  "tldr": "은잔은 베냐민의 자루에서 나왔고, 형들은 아무도 그를 두고 떠나지 않았다."
+}
