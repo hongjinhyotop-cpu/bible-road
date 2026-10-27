@@ -5,7 +5,9 @@ import type { Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS, type Act, type Stop } from '../engine/acts';
 import { BOOKS, TOTAL_CHAPTERS, findBook } from '../engine/books';
-import { countDone, totalDone, progress } from '../engine/progress';
+import { countDone, totalDone, progress, sceneDone } from '../engine/progress';
+import { parseRef } from '../engine/bible';
+import { scenesOfAct } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
 import { setFieldMode } from '../fx/particles';
 import { icons } from '../ui/icons';
@@ -261,21 +263,37 @@ export function mapScreen(): Screen {
     tweens.push(tl);
   }
 
-  // ── 별을 눌렀을 때: 그 권의 장면 목록 (지금은 빈 상태) ──
+  // ── 별을 눌렀을 때: 그 구간의 장면 목록 ──
   async function openStop(p: PlacedStop) {
     const book = findBook(p.stop.book)!;
     const sheet = openSheetPanel(book.name, `${p.act.numeral} · ${p.act.title}`);
     sheet.el.dataset.act = String(p.act.no);
     const whole = p.stop.from === 1 && p.stop.to === book.chapters;
     const chapters = Array.from({ length: p.stop.to - p.stop.from + 1 }, (_, i) => p.stop.from + i);
+    const scenes = (await scenesOfAct(p.act.no).catch(() => []))
+      .map((sc) => ({ ...sc, r: parseRef(sc.ref) }))
+      .filter(({ r }) => r.book.code === book.code && r.startChapter >= p.stop.from && r.startChapter <= p.stop.to)
+      .sort((a, b) => a.r.startChapter - b.r.startChapter || (a.r.startVerse ?? 0) - (b.r.startVerse ?? 0));
+    const list = scenes.length
+      ? `<p class="setting__label">플레이 장면</p>
+         <ul class="stop__scenes">${scenes
+           .map(
+             (sc) => `<li><button class="btn stop__scene${sceneDone(sc.id) ? ' is-done' : ''}" data-scene="${sc.id}">
+               <span class="stop__scene-title">${sc.title}</span>
+               <span class="stop__scene-ref ui">${sc.ref.replace(/^\S+\s+/, '').replace('-', '–')}${sceneDone(sc.id) ? ' · 완료' : ''}</span>
+             </button></li>`,
+           )
+           .join('')}</ul>`
+      : '<p class="stop__empty voice-talk">여긴 아직 공사 중임.<br />곧 별 하나씩 켜질 거니까 조금만 기다려 줘.</p>';
     sheet.body.innerHTML = `
       <p class="stop__meta voice-talk">${whole ? `전체 ${book.chapters}장` : `${p.stop.from}–${p.stop.to}장 (전체 ${book.chapters}장 중에)`} · ${p.act.mood}</p>
       <div class="stop__card"></div>
-      <p class="stop__empty voice-talk">여긴 아직 공사 중임.<br />곧 별 하나씩 켜질 거니까 조금만 기다려 줘.</p>
-      ${p.act.no === 1 ? '<button class="btn stop__preview" data-preview>아담 실루엣 미리보기 (시험용)</button>' : ''}
+      ${list}
       <p class="setting__label">장 목록</p>
       <ol class="stop__chapters">${chapters.map((c) => `<li class="${countDone(book.code, c, c) ? 'done' : ''}">${c}</li>`).join('')}</ol>`;
-    sheet.body.querySelector('[data-preview]')?.addEventListener('click', () => go('/stage-test'));
+    sheet.body.querySelectorAll<HTMLButtonElement>('[data-scene]').forEach((b) =>
+      b.addEventListener('click', (e) => go(`/scene/${b.dataset.scene}`, { x: e.clientX, y: e.clientY })),
+    );
     try {
       const card = await scriptureCard(`${book.abbr} ${p.stop.from}:1`);
       if (!sheet.el.isConnected) return;

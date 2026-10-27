@@ -1,4 +1,4 @@
-// 해시 라우터 (#/ , #/map). GitHub Pages에서 새로고침해도 깨지지 않도록 해시를 쓴다.
+// 해시 라우터 (#/ , #/map, #/scene/gen-1-light). GitHub Pages에서 새로고침해도 깨지지 않도록 해시를 쓴다.
 import { lightBloom } from '../fx/transition';
 
 export interface Screen {
@@ -9,7 +9,9 @@ export interface Screen {
   leave?(): void;
 }
 
-type Factory = () => Screen;
+/** "/scene/:id" 같은 자리 표시자에 들어온 값 */
+export type Params = Record<string, string>;
+type Factory = (params: Params) => Screen;
 
 const routes = new Map<string, Factory>();
 let current: Screen | null = null;
@@ -21,15 +23,36 @@ export function route(path: string, factory: Factory): void {
   routes.set(path, factory);
 }
 
+function match(path: string): [Factory, Params] | null {
+  const exact = routes.get(path);
+  if (exact) return [exact, {}];
+  const parts = path.split('/');
+  for (const [pattern, factory] of routes) {
+    const want = pattern.split('/');
+    if (want.length !== parts.length || !want.some((w) => w.startsWith(':'))) continue;
+    const params: Params = {};
+    const ok = want.every((w, i) => {
+      if (w.startsWith(':')) {
+        params[w.slice(1)] = decodeURIComponent(parts[i]);
+        return parts[i] !== '';
+      }
+      return w === parts[i];
+    });
+    if (ok) return [factory, params];
+  }
+  return null;
+}
+
 function pathFromHash(): string {
   const p = location.hash.replace(/^#/, '') || '/';
-  return routes.has(p) ? p : '/';
+  return match(p) ? p : '/';
 }
 
 function mount(path: string): void {
   current?.leave?.();
   current?.el.remove();
-  current = routes.get(path)!();
+  const [factory, params] = match(path)!;
+  current = factory(params);
   currentPath = path;
   document.getElementById('app')!.append(current.el);
   current.enter();
