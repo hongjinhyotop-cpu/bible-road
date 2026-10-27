@@ -7,10 +7,12 @@ import './styles/voice.css';
 import './styles/stage.css';
 import './styles/backdrop.css';
 import './styles/flood.css';
+import './styles/babel.css';
 import './styles/title.css';
 import './styles/map.css';
 import './styles/play.css';
 import './styles/reading.css';
+import './styles/codex.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';
@@ -19,6 +21,8 @@ import { titleScreen } from './screens/title';
 import { mapScreen } from './screens/map';
 import { sceneScreen } from './screens/scene';
 import { readingScreen } from './screens/reading';
+import { finaleScreen } from './screens/finale';
+import { peopleScreen } from './screens/people';
 import { closeSheet } from './ui/sheet';
 
 applySettings();
@@ -35,6 +39,9 @@ route('/', titleScreen);
 route('/map', mapScreen);
 route('/scene/:id', sceneScreen);
 route('/read/:id', readingScreen);
+route('/finale/:act', finaleScreen);
+route('/people', peopleScreen);
+route('/people/:id', peopleScreen);
 // 다른 화면으로 넘어가면 열려 있던 패널은 닫는다
 window.addEventListener('hashchange', closeSheet);
 startRouter();

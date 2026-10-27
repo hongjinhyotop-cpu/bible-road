@@ -5,7 +5,7 @@ import type { Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS, type Act, type Stop } from '../engine/acts';
 import { BOOKS, TOTAL_CHAPTERS, findBook } from '../engine/books';
-import { countDone, totalDone, progress, readingDone, sceneDone } from '../engine/progress';
+import { countDone, markLit, totalDone, progress, readingDone, sceneDone } from '../engine/progress';
 import { contentOfAct } from '../engine/content';
 import { reducedMotion } from '../engine/settings';
 import { setFieldMode } from '../fx/particles';
@@ -32,12 +32,17 @@ export function mapScreen(): Screen {
   el.dataset.act = '1';
   el.innerHTML = `
     <header class="map__header">
-      <button class="icon-btn" data-back aria-label="타이틀로 가기">${icons.back}</button>
+      <div class="map__tools map__tools--left">
+        <button class="icon-btn" data-back aria-label="타이틀로 가기">${icons.back}</button>
+      </div>
       <div class="map__heading">
         <h1>성경 지도</h1>
         <p class="ui map__count"></p>
       </div>
-      <button class="icon-btn" data-settings aria-label="설정">${icons.settings}</button>
+      <div class="map__tools">
+        <button class="icon-btn" data-people aria-label="인물 도감">${icons.people}</button>
+        <button class="icon-btn" data-settings aria-label="설정">${icons.settings}</button>
+      </div>
     </header>
     <nav class="map__acts ui" aria-label="막 바로가기"></nav>
     <div class="map__scroll">
@@ -46,6 +51,7 @@ export function mapScreen(): Screen {
           <path class="map__path map__path--base"/>
           <path class="map__path map__path--ahead"/>
           <path class="map__path map__path--lit"/>
+          <path class="map__path map__path--trail"/>
         </svg>
       </div>
       <p class="map__end ui">아멘. 주 예수여 오시옵소서 — 계 22:20</p>
@@ -58,6 +64,7 @@ export function mapScreen(): Screen {
   const pathBase = $<SVGPathElement>('.map__path--base');
   const pathAhead = $<SVGPathElement>('.map__path--ahead');
   const pathLit = $<SVGPathElement>('.map__path--lit');
+  const pathTrail = $<SVGPathElement>('.map__path--trail');
   const nav = $<HTMLElement>('.map__acts');
 
   let placed: PlacedStop[] = [];
@@ -67,6 +74,9 @@ export function mapScreen(): Screen {
   let io: IntersectionObserver | null = null;
   let currentAct = 1;
   const tweens: gsap.core.Animation[] = [];
+  /** 이번에 처음 켜지는 별 (막 피날레를 보고 왔을 때). 점등 연출이 끝날 때까지는 꺼진 것처럼 그린다 */
+  const igniting = new Set<string>();
+  const stopKey = (s: Stop) => `${s.book}:${s.from}-${s.to}`;
 
   function updateCount() {
     const booksDone = BOOKS.filter((b) => countDone(b.code, 1, b.chapters) === b.chapters).length;
@@ -116,7 +126,7 @@ export function mapScreen(): Screen {
         const whole = stop.from === 1 && stop.to === book.chapters;
         const range = whole ? `${book.chapters}장` : `${stop.from}–${stop.to}장`;
         const b = document.createElement('button');
-        b.className = `star star--${state}`;
+        b.className = `star star--${state}${igniting.has(stopKey(stop)) ? ' is-igniting' : ''}`;
         b.dataset.act = String(act.no);
         b.dataset.side = x > cx + 4 ? 'left' : 'right';
         b.style.left = `${x}px`;
@@ -142,21 +152,34 @@ export function mapScreen(): Screen {
     svg.setAttribute('height', String(H));
 
     const d = smoothPath(placed.map((p) => [p.x, p.y]));
-    [pathBase, pathAhead, pathLit].forEach((p) => p.setAttribute('d', d));
+    [pathBase, pathAhead, pathLit, pathTrail].forEach((p) => p.setAttribute('d', d));
     pathLen = pathBase.getTotalLength();
     samples = [];
     for (let l = 0; l <= pathLen; l += 24) samples.push({ len: l, y: pathBase.getPointAtLength(l).y });
     samples.push({ len: pathLen, y: H });
 
-    // 켜진 별까지 금빛 길
-    const lastLit = placed.reduce((m, p) => (p.state === 'lit' ? p.index : m), -1);
+    // 켜진 별까지 금빛 길 (지금 점등 중인 별은 빼고), 그리고 마지막 켜진 별에서 다음 별까지 이어지는 가는 금빛 길
+    const lastLit = placed.reduce((m, p) => (p.state === 'lit' && !igniting.has(stopKey(p.stop)) ? p.index : m), -1);
     const litLen = lastLit < 0 ? 0 : lengthAtY(placed[lastLit].y);
     pathLit.style.strokeDasharray = `${litLen} ${pathLen}`;
+    setTrail(igniting.size ? -1 : lastLit);
 
     pathAhead.style.strokeDasharray = `${pathLen}`;
     pathAhead.style.strokeDashoffset = `${pathLen}`;
     revealAhead(true);
     observe();
+  }
+
+  /** 켜진 별(from번째)에서 다음 별까지 이어지는 가는 금빛 길. part만큼만 그린다 (점등 연출에서 0→1) */
+  function setTrail(from: number, part = 1) {
+    const next = placed.find((p) => p.state === 'next');
+    if (from < 0 || !next) {
+      pathTrail.style.strokeDasharray = `0 ${pathLen * 2}`;
+      return;
+    }
+    const a = lengthAtY(placed[from].y);
+    const b = lengthAtY(next.y);
+    pathTrail.style.strokeDasharray = `0 ${a} ${Math.max(0, (b - a) * part)} ${pathLen * 2}`;
   }
 
   function lengthAtY(y: number): number {
@@ -244,8 +267,82 @@ export function mapScreen(): Screen {
     });
   }
 
+  // ── 막을 끝내고 왔을 때: 별이 점등되고, 다음 별까지 길이 이어진다 ──
+  /** 막 피날레를 보고 처음 지도에 왔으면, 새로 켜질 별들을 골라 둔다 (layout 전에) */
+  function findIgniting() {
+    igniting.clear();
+    const seen = progress.get().litStops;
+    const fresh: string[] = [];
+    for (const act of ACTS)
+      for (const stop of act.stops)
+        if (countDone(stop.book, stop.from, stop.to) === stop.to - stop.from + 1 && !seen[stopKey(stop)]) fresh.push(stopKey(stop));
+    if (reducedMotion()) markLit(fresh);
+    else fresh.forEach((k) => igniting.add(k));
+  }
+
+  function celebrate() {
+    if (!igniting.size) return igniteNext(1.0);
+    markLit([...igniting]);
+    // 첫 화면 배치가 자리 잡은 뒤(스크롤바가 생기며 다시 배치될 수 있음)에 그때의 별들로 연출을 만든다
+    tweens.push(gsap.delayedCall(1.2, playIgnite));
+  }
+
+  function playIgnite() {
+    const list = placed.filter((p) => igniting.has(stopKey(p.stop)));
+    if (!list.length) return;
+    const last = list[list.length - 1];
+    // 화면 밖이면 그 별로 데려간다
+    if (last.y > scroller.scrollTop + scroller.clientHeight * 0.8) scroller.scrollTo({ top: last.y - scroller.clientHeight * 0.4, behavior: 'smooth' });
+    const prevLit = placed.reduce((m, p) => (p.state === 'lit' && !igniting.has(stopKey(p.stop)) ? p.index : m), -1);
+    const lit = { len: prevLit < 0 ? 0 : lengthAtY(placed[prevLit].y) };
+    const litTo = lengthAtY(last.y);
+    const tl = gsap.timeline();
+    // 그전까지 켜진 길이 새 별까지 금빛으로 차오른다
+    if (litTo > lit.len) tl.to(lit, { len: litTo, duration: 1.4, ease: 'power2.inOut', onUpdate: () => (pathLit.style.strokeDasharray = `${lit.len} ${pathLen}`) }, 0);
+    list.forEach((p, i) => {
+      const at = (litTo > lit.len ? 1.2 : 0) + i * 0.5;
+      const core = p.el.querySelector('.star__core')!;
+      const glow = p.el.querySelector('.star__glow')!;
+      const rings = [0, 1].map(() => {
+        const r = document.createElement('span');
+        r.className = 'star__ring star__ring--gold';
+        p.el.append(r);
+        return r;
+      });
+      tl.call(() => {
+        igniting.delete(stopKey(p.stop));
+        p.el.classList.remove('is-igniting');
+      }, [], at)
+        .fromTo(core, { scale: 0.3 }, { scale: 2.4, duration: 0.45, ease: 'power2.out' }, at)
+        .to(core, { scale: 1, duration: 1.2, ease: 'expo.out' }, at + 0.45)
+        .fromTo(glow, { scale: 0.2, opacity: 0 }, { scale: 1.6, opacity: 1, duration: 1.6, ease: 'expo.out' }, at)
+        .to(glow, { scale: 1, opacity: 0.8, duration: 1.4, ease: 'power2.out' }, at + 1.6)
+        .fromTo(rings[0], { scale: 0.3, opacity: 1 }, { scale: 4, opacity: 0, duration: 1.8, ease: 'expo.out', onComplete: () => rings[0].remove() }, at + 0.05)
+        .fromTo(rings[1], { scale: 0.3, opacity: 0.7 }, { scale: 7, opacity: 0, duration: 2.6, ease: 'expo.out', onComplete: () => rings[1].remove() }, at + 0.35)
+        .fromTo(p.el.querySelector('.star__label'), { opacity: 0.3 }, { opacity: 1, duration: 1.2 }, at + 0.3);
+    });
+    // 막 하나가 끝났다는 한 줄
+    const cap = document.createElement('p');
+    cap.className = 'star__caption ui';
+    cap.style.left = `${last.x}px`;
+    cap.style.top = `${last.y}px`;
+    cap.innerHTML = `<b>${last.act.numeral} · ${last.act.title}</b> 완료 · 별이 켜졌음`;
+    road.append(cap);
+    const lit0 = (litTo > lit.len ? 1.2 : 0) + (list.length - 1) * 0.5;
+    tl.fromTo(cap, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out' }, lit0 + 0.6)
+      .to(cap, { opacity: 0, duration: 1.2, onComplete: () => cap.remove() }, lit0 + 5);
+    // 그리고 다음 별까지 길이 이어진다
+    const t = { part: 0 };
+    tl.to(t, { part: 1, duration: 2, ease: 'power2.inOut', onUpdate: () => setTrail(last.index, t.part) }, lit0 + 1.4)
+      .call(() => {
+        igniting.clear();
+        igniteNext(0);
+      }, [], lit0 + 3.2);
+    tweens.push(tl);
+  }
+
   // ── 시작점 점등 ───────────────────────────────
-  function igniteNext() {
+  function igniteNext(delay: number) {
     const next = placed.find((p) => p.state === 'next');
     if (!next || reducedMotion()) return;
     const core = next.el.querySelector('.star__core')!;
@@ -253,7 +350,7 @@ export function mapScreen(): Screen {
     const ring = document.createElement('span');
     ring.className = 'star__ring';
     next.el.append(ring);
-    const tl = gsap.timeline({ delay: 1.0 });
+    const tl = gsap.timeline({ delay });
     tl.fromTo(core, { scale: 0.4, opacity: 0.3 }, { scale: 1.6, opacity: 1, duration: 0.5, ease: 'power2.out' })
       .to(core, { scale: 1, duration: 0.9, ease: 'expo.out' })
       .fromTo(glow, { scale: 0.2, opacity: 0 }, { scale: 1, opacity: 1, duration: 1.4, ease: 'expo.out' }, 0.1)
@@ -340,6 +437,7 @@ export function mapScreen(): Screen {
     setFieldMode('stars');
     updateCount();
     buildNav();
+    findIgniting();
     layout();
     lastW = road.clientWidth;
     ro.observe(road);
@@ -352,6 +450,7 @@ export function mapScreen(): Screen {
       { passive: true },
     );
     $('[data-back]').addEventListener('click', () => go('/'));
+    $('[data-people]').addEventListener('click', (e) => go('/people', { x: (e as MouseEvent).clientX, y: (e as MouseEvent).clientY }));
     $('[data-settings]').addEventListener('click', () =>
       openSettings(() => {
         updateCount();
@@ -370,7 +469,7 @@ export function mapScreen(): Screen {
       tweens.push(gsap.fromTo($('.map__header'), { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', delay: 0.4 }));
       tweens.push(gsap.fromTo(nav, { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 1, ease: 'expo.out', delay: 0.7 }));
     }
-    igniteNext();
+    celebrate();
   }
 
   return {

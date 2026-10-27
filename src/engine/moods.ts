@@ -4,10 +4,14 @@
 
 export type BackdropArt =
   | 'garden' | 'tree' | 'gate' | 'field' | 'altar' | 'altar-lit' | 'nod'
-  | 'cities' | 'yard' | 'peaks' | 'peaks-green' | 'altar-one' | 'vineyard';
+  | 'cities' | 'yard' | 'peaks' | 'peaks-green' | 'altar-one' | 'vineyard'
+  | 'plain' | 'kilns';
 
 /** 방주 (fx/ark.ts) */
 export type ArkState = 'frame' | 'built' | 'boarding' | 'shut' | 'float' | 'rest';
+
+/** 바벨탑 (fx/tower.ts) */
+export type TowerState = 'base' | 'rising' | 'high' | 'far' | 'left';
 
 export interface Mood {
   /** false면 태초의 어둠 (하늘이 거의 꺼짐) */
@@ -27,6 +31,8 @@ export interface Mood {
   bow?: boolean;
   /** 배경 가운데 소품(제단 등)이 보이게, 폰에서 인물들을 양옆으로 벌려 세운다 */
   spread?: boolean;
+  /** 바벨탑을 무대에 세운다 */
+  tower?: TowerState;
 }
 
 /** beat의 "fx" 연출 이름. 검사 스크립트도 이 목록을 본다 */
@@ -40,6 +46,9 @@ export const FX = [
   'dove', // 비둘기가 나갔다가 앉을 곳을 못 찾고 돌아옴 (창 8:8-9)
   'dove-leaf', // 비둘기가 올리브 잎을 물고 돌아옴 (창 8:11)
   'dove-away', // 비둘기가 날아가 다시 돌아오지 않음 (창 8:12)
+  'descend', // 하늘에서 빛기둥이 탑 위로 내려옴 (창 11:5 "강림하셨더라")
+  'babble', // 사람들의 말이 떠오르다 낯선 글자로 뒤섞여 흩어짐 (창 11:7)
+  'scatter', // 탑 발치의 작은 사람들이 사방으로 걸어 나가 사라짐 (창 11:8)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -98,6 +107,22 @@ export const MOODS: Record<string, Mood> = {
   rainbow: { light: true, land: true, art: 'peaks-green', ark: 'rest', bow: true, tone: 'clear' },
   /** 포도원과 장막, 저녁 (창 9:20-21) */
   vineyard: { light: true, land: true, art: 'vineyard', tone: 'dusk' },
+
+  // ── 바벨탑 (창 11:1–9) ──
+  /** 시날 평지: 끝없이 평평한 땅, 강, 대추야자 (창 11:2) */
+  shinar: { light: true, land: true, art: 'plain' },
+  /** 벽돌 굽는 가마들, 말리는 벽돌 줄 (창 11:3) */
+  brickworks: { light: true, land: true, art: 'kilns' },
+  /** 탑의 아래 두 층, 비계와 일꾼들 (창 11:4) */
+  'tower-base': { light: true, land: true, art: 'kilns', tower: 'base' },
+  /** 넷째 층까지 올라간 탑 */
+  'tower-rising': { light: true, land: true, art: 'plain', tower: 'rising' },
+  /** 꼭대기가 구름에 닿은 탑, 해 질 녘 */
+  'tower-high': { light: true, land: true, art: 'plain', tower: 'high', tone: 'dusk' },
+  /** 하늘에서 보면: 점만 한 탑 (창 11:5) */
+  'tower-far': { light: true, land: true, art: 'plain', tower: 'far', tone: 'clear' },
+  /** 쌓다 만 탑, 빈 비계, 저녁 바람 (창 11:8-9) */
+  'tower-left': { light: true, land: true, art: 'plain', tower: 'left', tone: 'dusk' },
 };
 
 const DEFAULT: Mood = { light: true, land: true };

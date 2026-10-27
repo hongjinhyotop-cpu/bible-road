@@ -240,6 +240,74 @@ function tent(x: number, ground: number, s: number): string {
   </g>`;
 }
 
+/** 대추야자 (메소포타미아 강가의 나무): 가늘고 긴 줄기, 꼭대기에서 늘어지는 잎 */
+function palm(x: number, ground: number, h: number, cls: string, seed: number): string {
+  const r = rng(seed);
+  const lean = (r() - 0.5) * h * 0.25;
+  const tx = x + lean;
+  const ty = ground - h;
+  const trunk = `<path d="M${x - 2.2} ${ground} Q${x + lean * 0.3} ${ground - h * 0.5} ${tx - 1} ${ty} L${tx + 1} ${ty} Q${x + lean * 0.3 + 2} ${ground - h * 0.5} ${x + 2.2} ${ground} Z"/>`;
+  const fronds = Array.from({ length: 8 }, (_, i) => {
+    const a = (i / 8) * Math.PI * 2 + r() * 0.3;
+    const len = h * (0.32 + r() * 0.12);
+    const ex = tx + Math.cos(a) * len;
+    const ey = ty + Math.abs(Math.sin(a)) * len * 0.35 + len * 0.28;
+    const cx = tx + Math.cos(a) * len * 0.55;
+    const cy = ty - len * 0.22;
+    return `<path d="M${tx} ${ty} Q${cx.toFixed(1)} ${cy.toFixed(1)} ${ex.toFixed(1)} ${ey.toFixed(1)} Q${(cx + 1).toFixed(1)} ${(cy + 4).toFixed(1)} ${tx} ${ty + 2} Z"/>`;
+  }).join('');
+  return `<g class="${cls}">${trunk}<g class="bd-sway" style="transform-origin:${tx.toFixed(1)}px ${ty.toFixed(1)}px; --d:${(r() * 3).toFixed(2)}s">${fronds}</g></g>`;
+}
+
+/** 강가 갈대 */
+function reeds(x: number, ground: number, s: number, cls: string, seed: number): string {
+  const r = rng(seed);
+  const d = Array.from({ length: 11 }, (_, i) => {
+    const bx = x + (i - 5) * s * 0.16;
+    const len = s * (0.6 + r() * 0.5);
+    const bend = (r() - 0.5) * s * 0.3;
+    return `M${bx.toFixed(1)} ${ground} Q${(bx + bend * 0.4).toFixed(1)} ${(ground - len * 0.6).toFixed(1)} ${(bx + bend).toFixed(1)} ${(ground - len).toFixed(1)}`;
+  }).join(' ');
+  return `<g class="${cls} bd-sway" style="transform-origin:${x}px ${ground}px; --d:${(r() * 3).toFixed(2)}s"><path d="${d}" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></g>`;
+}
+
+/** 시날 평지 (창 11:2): 산이 없는 납작한 지평선, 느린 강, 대추야자 */
+function plainArt(): string {
+  return `
+    <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
+    <path class="bd-river" d="M-600 222 C-420 218 -260 226 -100 222 C40 218 160 226 300 221 C440 216 600 224 900 220"/>
+    <path class="bd-mid" d="M-800 260 L-800 230 C-560 226 -300 234 -40 230 C180 226 420 234 700 228 L1200 232 L1200 260 Z"/>
+    ${palm(-150, 226, 46, 'bd-far', 151)}${palm(-120, 228, 38, 'bd-far', 152)}
+    ${palm(310, 224, 40, 'bd-far', 153)}${palm(336, 226, 34, 'bd-far', 154)}
+    ${palm(560, 226, 44, 'bd-far', 155)}
+    ${palm(70, 262, 110, 'bd-near', 156)}
+    ${palm(-60, 262, 130, 'bd-near', 162)}
+    ${palm(352, 262, 124, 'bd-near', 157)}
+    ${palm(480, 262, 130, 'bd-near', 163)}
+    ${reeds(110, 262, 34, 'bd-near', 158)}${reeds(300, 262, 38, 'bd-near', 159)}
+    ${reeds(-200, 262, 46, 'bd-near', 160)}${reeds(600, 262, 46, 'bd-near', 161)}`;
+}
+
+/** 벽돌 가마: 둥근 지붕, 붉게 달아오른 아궁이, 연기 */
+function kiln(x: number, ground: number, s: number, seed: number): string {
+  return `<g class="bd-mid">
+    <path d="M${x - 14 * s} ${ground} C${x - 14 * s} ${ground - 16 * s} ${x - 8 * s} ${ground - 22 * s} ${x} ${ground - 22 * s} C${x + 8 * s} ${ground - 22 * s} ${x + 14 * s} ${ground - 16 * s} ${x + 14 * s} ${ground} Z"/>
+  </g>
+  <path class="bd-kiln-fire" style="--d:${(seed % 5) * 0.7}s" d="M${x - 4 * s} ${ground} L${x - 4 * s} ${ground - 5 * s} Q${x} ${ground - 9 * s} ${x + 4 * s} ${ground - 5 * s} L${x + 4 * s} ${ground} Z"/>
+  ${smoke(x, ground - 22 * s, seed, 5)}`;
+}
+
+/** 땅에 줄지어 말리는 벽돌 (창 11:3 "벽돌을 만들어 견고히 굽자") */
+function brickRows(y: number, from: number, to: number, size: number, cls: string): string {
+  const rows: string[] = [];
+  for (let r = 0; r < 3; r++) {
+    const yy = y + r * size * 1.4;
+    const w = size * (1 + r * 0.25);
+    for (let x = from; x < to; x += w * 1.6) rows.push(`<rect x="${x.toFixed(1)}" y="${yy.toFixed(1)}" width="${w.toFixed(1)}" height="${(w * 0.42).toFixed(1)}" rx="0.5"/>`);
+  }
+  return `<g class="${cls}">${rows.join('')}</g>`;
+}
+
 const ART: Record<BackdropArt, () => string> = {
   garden: () => `
     ${treeline(196, 26, 'bd-far', 3)}
@@ -327,6 +395,15 @@ const ART: Record<BackdropArt, () => string> = {
     ${tent(268, 250, 1.3)}
     ${vines(262, -400, 160, 17, 'bd-near', 143)}
     ${vines(262, 420, 800, 17, 'bd-near', 144)}`,
+  plain: plainArt,
+  kilns: () => `
+    <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
+    ${palm(-150, 226, 46, 'bd-far', 151)}${palm(560, 226, 44, 'bd-far', 155)}
+    <path class="bd-mid" d="M-800 260 L-800 230 C-560 226 -300 234 -40 230 C180 226 420 234 700 228 L1200 232 L1200 260 Z"/>
+    ${kiln(122, 234, 1.1, 171)}${kiln(300, 236, 1.2, 172)}${kiln(-30, 232, 1, 173)}${kiln(450, 232, 1, 174)}
+    ${brickRows(240, -300, 700, 6, 'bd-mid bd-bricks')}
+    ${palm(70, 262, 110, 'bd-near', 156)}
+    ${palm(352, 262, 124, 'bd-near', 157)}`,
 };
 
 const cache = new Map<BackdropArt, string>();

@@ -10,7 +10,8 @@ import { ACTS } from '../engine/acts';
 import { getPassage, type Passage } from '../engine/bible';
 import { completeReading, progress, readingSpot, setReadingSpot } from '../engine/progress';
 import { chaptersDoneWith, nextItem } from '../engine/content';
-import { bindNext, nextButton } from '../ui/next-button';
+import { bindNext, finaleButton, nextButton } from '../ui/next-button';
+import { finaleDue } from '../engine/codex';
 import { loadReading, type Reading } from '../engine/reading';
 import { reducedMotion } from '../engine/settings';
 import { inkReveal } from '../fx/ink';
@@ -376,8 +377,10 @@ export function readingScreen({ id }: Params): Screen {
     clearTimeout(spotTimer);
     completeReading(reading.id, chapters, correct);
     const next = await nextItem('read', reading.id).catch(() => null);
-    // "이어서 하기"는 다음 장면/읽기로 바로 간다
-    progress.set({ last: next ? next.path.slice(1) : 'map' });
+    // 막을 다 끝냈으면 "다음" 대신 막 피날레로
+    const finale = finaleDue(reading.act) ? ACTS[reading.act - 1] : null;
+    // "이어서 하기"는 다음 장면/읽기(또는 피날레)로 바로 간다
+    progress.set({ last: finale ? `finale/${finale.no}` : next ? next.path.slice(1) : 'map' });
     if (!alive) return;
 
     const box = page.querySelector<HTMLElement>('.quiz')!;
@@ -393,8 +396,8 @@ export function readingScreen({ id }: Params): Screen {
         <p class="quiz__line voice-talk"></p>
         <p class="quiz__done ui">${chapters.length ? `${chapters.length}장 읽음 표시 완료` : '읽기 완료'} · 지도에 기록됐음</p>
         <div class="insight__actions">
-          ${next ? nextButton(next, reading.bridge) : ''}
-          <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
+          ${finale ? finaleButton(finale) : next ? nextButton(next, reading.bridge) : ''}
+          <button class="btn${next || finale ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
           ${total ? '<button class="btn" data-again>퀴즈 다시</button>' : ''}
         </div>
       </div>`;

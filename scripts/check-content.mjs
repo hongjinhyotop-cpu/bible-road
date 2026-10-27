@@ -5,6 +5,7 @@
 //  - 같은 막 안에서 두 파일이 같은 구절을 덮지 않는지
 //  - 장면: 선택지 canon 하나, goto 대상, 인물 파일, 본문 구절 1개 이상, mood 이름, fx 이름, face 방향, outfit 옷 이름
 //  - 읽기: 퀴즈 1~3문항, answer 번호
+//  - 도감(data/characters.json): 인물 파일, first·verse 구절, scene, unlocks 인물이 도감에 있는지
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
@@ -70,6 +71,9 @@ for (const c of characters) {
   outfits.set(c, new Set(Object.keys(def?.art?.outfits ?? {})));
 }
 const actsDir = join(root, 'content/acts');
+/** 장면이 인물 카드로 주는 인물 → 그 장면 (도감 검사용) */
+const unlocked = new Map();
+const sceneIds = new Set();
 const seenIds = new Map();
 const report = [];
 
@@ -88,6 +92,7 @@ for (const folder of readdirSync(actsDir).sort()) {
     if (actJson.title !== act.title) warn(`${folder}/act.json`, `title "${actJson.title}"이 acts.ts의 "${act.title}"와 다름`);
     if (!actJson.mechanic) err(`${folder}/act.json`, 'mechanic이 없음');
     if (actJson.keyVerse) try { parseRef(actJson.keyVerse); } catch (e) { err(`${folder}/act.json`, `keyVerse ${e.message}`); }
+    if (actJson.finale != null && !(Array.isArray(actJson.finale) && actJson.finale.every((l) => typeof l === 'string' && l))) err(`${folder}/act.json`, 'finale은 문장(문자열) 목록이어야 함');
   }
 
   const items = [];
@@ -113,7 +118,11 @@ for (const folder of readdirSync(actsDir).sort()) {
       const inAct = act.stops.some((s) => s.book === r.book.code && r.c1 >= s.from && r.c2 <= s.to);
       if (!inAct) err(where, `ref "${data.ref}"가 ${no}막(${act.range}) 범위 밖임`);
       items.push({ where, r, ref: data.ref });
-      if (kind === 'scene') checkScene(data, where);
+      if (kind === 'scene') {
+        checkScene(data, where);
+        for (const c of data.unlocks?.characters ?? []) unlocked.set(c, where);
+        sceneIds.add(id);
+      }
       else checkReading(data, where);
     }
   }
@@ -179,6 +188,18 @@ function checkReading(r, where) {
 // 한 줄 번역 파일의 ref도 확인
 const glosses = readJson(join(root, 'content/glosses.json'), 'glosses.json') ?? {};
 for (const ref of Object.keys(glosses)) try { parseRef(ref); } catch (e) { err('glosses.json', e.message); }
+
+// 인물 도감 (data/characters.json): 인물 파일·구절·장면이 실제로 있는지, 카드로 주는 인물이 다 도감에 있는지
+const codex = readJson(join(root, 'data/characters.json'), 'characters.json') ?? {};
+for (const [id, e] of Object.entries(codex)) {
+  const where = `characters.json ${id}`;
+  if (!characters.has(id)) err(where, `인물 파일 없음: src/characters/${id}.ts`);
+  if (!ACTS[e.act - 1]) err(where, `act ${e.act}가 없음`);
+  if (!e.intro) err(where, 'intro(한 줄 소개)가 없음');
+  for (const k of ['first', 'verse']) try { parseRef(e[k]); } catch (x) { err(where, `${k} ${x.message}`); }
+  if (e.scene && !sceneIds.has(e.scene)) err(where, `장면 "${e.scene}"이 없음`);
+}
+for (const [c, where] of unlocked) if (!codex[c]) warn(where, `unlocks의 "${c}"가 data/characters.json(도감)에 없음`);
 
 const totalCh = BOOKS.reduce((n, b) => n + b.chapters, 0);
 console.log(`콘텐츠 검사 — 파일 ${seenIds.size}개, 한 줄 번역 ${Object.keys(glosses).length}개 (전체 ${totalCh}장)`);

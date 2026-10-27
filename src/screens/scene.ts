@@ -7,13 +7,16 @@ import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
 import { completeScene, progress } from '../engine/progress';
 import { chaptersDoneWith, nextItem } from '../engine/content';
-import { bindNext, nextButton } from '../ui/next-button';
+import { bindNext, finaleButton, nextButton } from '../ui/next-button';
+import { finaleDue } from '../engine/codex';
 import { loadScene, SceneCursor, type Beat, type ChoiceBeat, type Scene, type SceneFx } from '../engine/scene';
 import { reducedMotion } from '../engine/settings';
 import { moodOf } from '../engine/moods';
 import { backdropSvg, bowSvg, fitBackdrops } from '../fx/backdrop';
 import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
+import { createTower, scatter, setTowerState } from '../fx/tower';
+import { babble } from '../fx/babble';
 import { loadCharacter } from '../characters';
 import { inkReveal } from '../fx/ink';
 import { getFieldIntensity, setFieldIntensity, setFieldMode } from '../fx/particles';
@@ -25,6 +28,9 @@ import { openSettings } from '../ui/settings-sheet';
 import { isSheetOpen } from '../ui/sheet';
 
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
+
+/** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -72,6 +78,9 @@ export function sceneScreen({ id }: Params): Screen {
   let movingTimer = 0;
   $('.scene__stage').after(rain.el);
   $('.scene__backdrop').innerHTML = bowSvg();
+  // 바벨탑 (창 11): 배경 바로 앞, 언덕 뒤에 선다 (탑 발치가 가까운 언덕에 살짝 묻힌다)
+  const tower = createTower();
+  $('.scene__backdrop').after(tower);
 
   let scene: Scene | null = null;
   let cursor: SceneCursor | null = null;
@@ -98,11 +107,32 @@ export function sceneScreen({ id }: Params): Screen {
       return;
     }
     if (mode !== 'tap') return;
+    const camera = skipCamera();
     if (anim && anim.progress() < 1) {
       anim.progress(1);
       return;
     }
+    if (camera) return;
     void step();
+  }
+
+  /**
+   * 카메라처럼 길게 도는 CSS 연출(방주를 훑기·물러나기, 탑 올려다보기 등).
+   * 탭하면 남은 부분을 0.8초 만에 빨리 감는다. 감았으면 true (그 탭은 다음으로 넘어가지 않는다)
+   */
+  function skipCamera(): boolean {
+    let skipped = false;
+    for (const a of $('.scene').getAnimations({ subtree: true })) {
+      if (!(a instanceof CSSAnimation) || !CAMERA.has(a.animationName) || a.playState !== 'running') continue;
+      const t = a.effect?.getComputedTiming();
+      if (!t || t.iterations === Infinity) continue;
+      const left = (Number(t.endTime) - Number(a.currentTime ?? 0)) / a.playbackRate;
+      if (left > 900) {
+        a.updatePlaybackRate((a.playbackRate * left) / 800);
+        skipped = true;
+      }
+    }
+    return skipped;
   }
 
   async function step() {
@@ -209,6 +239,21 @@ export function sceneScreen({ id }: Params): Screen {
       case 'dove-away':
         flyBird(ark, fx);
         return;
+      case 'descend': {
+        // 하나님은 그리지 않는다: 하늘에서 탑 위로 내려오는 빛기둥만 (CLAUDE.md 8-1)
+        const beam = document.createElement('div');
+        beam.className = 'fx-descend';
+        $('.scene').append(beam);
+        beam.addEventListener('animationend', (e) => e.target === beam && beam.remove());
+        setTimeout(() => beam.remove(), 9000);
+        return;
+      }
+      case 'babble':
+        babble($('.scene'));
+        return;
+      case 'scatter':
+        scatter(tower);
+        return;
     }
   }
 
@@ -304,8 +349,10 @@ export function sceneScreen({ id }: Params): Screen {
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
     completeScene(scene.id, chapters, scene.unlocks?.characters ?? []);
     const next = await nextItem('scene', scene.id).catch(() => null);
-    // "이어서 하기"는 다음 장면/읽기로 바로 간다
-    progress.set({ last: next ? next.path.slice(1) : 'map' });
+    // 막을 다 끝냈으면 "다음" 대신 막 피날레로
+    const finale = finaleDue(scene.act) ? ACTS[scene.act - 1] : null;
+    // "이어서 하기"는 다음 장면/읽기(또는 피날레)로 바로 간다
+    progress.set({ last: finale ? `finale/${finale.no}` : next ? next.path.slice(1) : 'map' });
     const names = await Promise.all(fresh.map((c) => loadCharacter(c).then((d) => d.name).catch(() => c)));
 
     const card = document.createElement('article');
@@ -316,8 +363,8 @@ export function sceneScreen({ id }: Params): Screen {
       ${scene.tldr ? '<div class="insight__tldr"><span>한 줄 요약</span><p></p></div>' : ''}
       ${names.length ? `<p class="insight__unlock">인물 카드 획득 · <b>${names.join(', ')}</b></p>` : ''}
       <div class="insight__actions">
-        ${next ? nextButton(next, scene.bridge) : ''}
-        <button class="btn${next ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
+        ${finale ? finaleButton(finale) : next ? nextButton(next, scene.bridge) : ''}
+        <button class="btn${next || finale ? '' : ' btn--primary'}" data-map>지도로 돌아가기</button>
         <button class="btn" data-again>다시 보기</button>
       </div>`;
     paragraphs(card.querySelector<HTMLElement>('.insight__text')!, scene.insight);
@@ -354,13 +401,19 @@ export function sceneScreen({ id }: Params): Screen {
       requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove('is-instant')));
     }
     // 방주·물이 실제로 바뀔 때만 천천히 움직인다 (독 크기가 바뀌어 무대 높이가 달라질 때는 바로 따라가게)
-    const arkMoves = (ark.dataset.state ?? '') !== (m.ark ?? '') || el.style.getPropertyValue('--water') !== String(m.water ?? 0);
+    const arkMoves =
+      (ark.dataset.state ?? '') !== (m.ark ?? '') ||
+      (tower.dataset.state ?? '') !== (m.tower ?? '') ||
+      el.style.getPropertyValue('--water') !== String(m.water ?? 0);
     if (animate && arkMoves) {
       el.classList.add('is-moving');
       clearTimeout(movingTimer);
       movingTimer = setTimeout(() => el.classList.remove('is-moving'), 7600);
     }
     setArkState(ark, m.ark);
+    setTowerState(tower, m.tower, !animate);
+    if (m.tower) el.dataset.tower = m.tower;
+    else delete el.dataset.tower;
     if (m.ark) el.dataset.ark = m.ark;
     else delete el.dataset.ark;
     el.style.setProperty('--water', String(m.water ?? 0));

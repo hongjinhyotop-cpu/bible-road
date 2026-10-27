@@ -1,0 +1,136 @@
+/* ── 인물 카드·도감·막 피날레 (ui/person-card.ts, screens/people.ts, screens/finale.ts) ── */
+
+/* 움직이지 않는 실루엣 (무대 위 .actor와 같은 색 말투) */
+.sil { --sil-ink: color-mix(in srgb, var(--act-a) 45%, #030306); color: var(--sil-ink); }
+.sil__art { display: block; width: 100%; height: 100%; object-fit: contain; overflow: visible;
+  filter: drop-shadow(0 0 2px color-mix(in srgb, var(--act-accent) 85%, transparent)) drop-shadow(0 0 8px color-mix(in srgb, var(--act-accent) 35%, transparent)); }
+.sil .tone2 { color: color-mix(in srgb, var(--sil-ink) 90%, var(--act-accent)); }
+.sil .glint { fill: var(--act-accent); opacity: 0.7; }
+.sil .detail { stroke: var(--sil-ink); opacity: 0.8; }
+.sil .gray { color: color-mix(in srgb, var(--sil-ink) 62%, #a7abbd); }
+.sil .tongue { stroke: color-mix(in srgb, var(--act-accent) 70%, #b0402a); opacity: 0.85; }
+
+/* ── 카드 한 장: 막 색 하늘 + 역광 + 실루엣 + 이름 ── */
+.pcards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; perspective: 900px; }
+@media (min-width: 640px) { .pcards { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; } }
+@media (min-width: 1000px) { .pcards { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+.pcard {
+  position: relative; display: flex; flex-direction: column; align-items: center;
+  padding: 10px 6px 10px; border-radius: 14px; overflow: hidden; cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--act-accent) 32%, transparent);
+  background:
+    radial-gradient(90% 60% at 50% 30%, color-mix(in srgb, var(--act-b) 85%, transparent), transparent 80%),
+    linear-gradient(180deg, color-mix(in srgb, var(--act-a) 90%, #000), color-mix(in srgb, var(--act-a) 50%, #000));
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 240, 210, 0.03);
+  transition: transform var(--t-fast) var(--ease-out), box-shadow var(--t-fast), border-color var(--t-fast);
+  color: var(--ivory);
+  transform-style: preserve-3d;
+}
+.pcard__light {
+  position: absolute; left: 50%; top: 36%; width: 120%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 42%, transparent), transparent 70%);
+  opacity: 0.7; transition: opacity var(--t-fast);
+}
+.pcard__art { position: relative; width: 100%; aspect-ratio: 3 / 4; display: block; padding: 4px 8px 0; }
+.pcard__name { position: relative; margin-top: 8px; font-family: var(--font-serif); font-size: 0.9375rem; letter-spacing: 0.08em; white-space: nowrap; }
+.pcard__ref { position: relative; margin-top: 2px; font-size: 0.6875rem; color: var(--act-accent); opacity: 0.85; letter-spacing: 0.04em; }
+/* 금빛 테두리가 한 번 훑고 지나간다 (카드 획득) */
+.pcard::after {
+  content: ''; position: absolute; inset: -40%; pointer-events: none;
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 236, 190, 0.22) 50%, transparent 58%);
+  translate: -60% 0; transition: translate 1.1s var(--ease-out);
+}
+@media (hover: hover) {
+  .pcard:not(:disabled):hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--act-accent) 70%, transparent); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 22px color-mix(in srgb, var(--act-accent) 22%, transparent); }
+  .pcard:not(:disabled):hover .pcard__light { opacity: 1; }
+  .pcard:not(:disabled):hover::after { translate: 60% 0; }
+}
+.pcard:focus-visible { outline: 1px solid var(--gold-bright); outline-offset: 2px; }
+/* 아직 못 만난 인물: 역광 없는 검은 그림자 */
+.pcard.is-unknown { cursor: default; border-color: rgba(239, 230, 210, 0.08); background: linear-gradient(180deg, #0b0c16, #06070d); box-shadow: none; }
+.pcard.is-unknown .pcard__light { opacity: 0.12; }
+.pcard.is-unknown .sil__art { filter: brightness(0.35); opacity: 0.55; }
+.pcard.is-unknown .pcard__name { color: var(--ivory-faint); letter-spacing: 0.3em; }
+.pcard.is-unknown .pcard__ref { color: var(--ivory-faint); }
+
+/* ── 도감 화면 ── */
+.people { background: radial-gradient(120% 70% at 50% 0%, #121733 0%, #080a18 60%, var(--void) 100%); }
+.people__head {
+  position: absolute; z-index: 5; top: 0; left: 0; right: 0;
+  display: grid; grid-template-columns: 44px 1fr 44px; align-items: center;
+  padding: max(10px, env(safe-area-inset-top)) 12px 26px;
+  background: linear-gradient(180deg, #0b0f26 0%, color-mix(in srgb, #0b0f26 88%, transparent) 62%, transparent);
+}
+.people__heading { text-align: center; }
+.people__heading h1 { margin: 0; font-size: 1.05rem; font-weight: 600; letter-spacing: 0.32em; margin-right: -0.32em; }
+.people__count { margin: 0; color: var(--gold); letter-spacing: 0.06em; }
+.people__scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; padding: calc(84px + env(safe-area-inset-top)) var(--gutter) calc(40px + var(--safe-bottom)); }
+.people__body { width: min(100%, 880px); margin: 0 auto; display: flex; flex-direction: column; gap: 36px; }
+.people__act-head { display: flex; align-items: baseline; gap: 10px; margin: 0 2px 14px; padding-bottom: 10px; border-bottom: 1px solid color-mix(in srgb, var(--act-accent) 22%, transparent); }
+.people__act-head .latin { color: var(--act-accent); font-size: 1.4rem; }
+.people__act-head h2 { margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.2em; }
+.people__act-head .ui { margin-left: auto; color: var(--ivory-faint); font-size: 0.75rem; }
+.people__foot { text-align: center; color: var(--ivory-faint); margin: 40px 0 0; letter-spacing: 0.06em; }
+
+/* 카드 하나 크게 (패널) */
+.sheet--person .person__art { width: min(46vw, 190px); aspect-ratio: 3 / 4; margin: 4px auto 6px; position: relative; }
+.sheet--person .person__art::before {
+  content: ''; position: absolute; left: 50%; top: 40%; width: 170%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; z-index: -1;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-accent) 40%, transparent), transparent 70%);
+}
+.person__first { text-align: center; color: var(--act-accent); margin: 0 0 14px; font-size: 0.75rem; letter-spacing: 0.06em; }
+.person__intro { margin: 0 0 22px; }
+.person__verse { margin-bottom: 18px; }
+.person__scene { width: 100%; justify-content: center; gap: 8px; }
+
+/* ── 막 피날레 ── */
+.finale { background: radial-gradient(120% 80% at 50% 30%, color-mix(in srgb, var(--act-b) 60%, #070915) 0%, #05060f 70%, var(--void) 100%); cursor: pointer; user-select: none; -webkit-user-select: none; }
+.finale__glow {
+  position: absolute; left: 50%; top: 22%; width: min(140vw, 1100px); aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(255, 236, 190, 0.3), rgba(236, 196, 120, 0.12) 30%, transparent 70%);
+  mix-blend-mode: screen; opacity: 0;
+}
+.finale__head { position: absolute; z-index: 5; top: 0; left: 0; padding: max(10px, env(safe-area-inset-top)) 12px 0; cursor: default; }
+.finale__scroll { position: absolute; inset: 0; overflow-y: auto; overscroll-behavior: contain; padding: calc(16vh + env(safe-area-inset-top)) var(--gutter) calc(90px + var(--safe-bottom)); }
+.finale__scroll > * { width: min(100%, 560px); margin-left: auto; margin-right: auto; }
+.finale__open { position: relative; text-align: center; margin-bottom: 40px; }
+.finale__numeral { position: absolute; left: 50%; top: -0.55em; translate: -50% 0; font-size: 8rem; line-height: 1; color: var(--gold-bright); opacity: 0; pointer-events: none; }
+.finale__eyebrow { position: relative; margin: 0 0 0.6rem; color: var(--act-accent); letter-spacing: 0.18em; }
+.finale__eyebrow .latin { font-size: 1rem; letter-spacing: 0.08em; }
+.finale__title { position: relative; margin: 0; font-size: clamp(1.9rem, 8vw, 2.6rem); font-weight: 600; letter-spacing: 0.24em; margin-right: -0.24em; color: var(--gold-bright); text-shadow: 0 0 24px rgba(244, 214, 150, 0.4); }
+.finale__rule { width: 120px; height: 1px; margin: 22px auto 0; background: linear-gradient(90deg, transparent, var(--gold), transparent); transform: scaleX(0); }
+.finale__lines p { margin: 0 0 1.3em; text-align: center; font-size: calc(1.0625rem * var(--text-scale)); line-height: 1.9; }
+.finale__early { text-align: center; }
+.finale__verse { margin: 8px auto 44px; }
+.finale__cast { margin-bottom: 26px; }
+.finale__label { text-align: center; color: var(--act-accent); letter-spacing: 0.2em; margin: 0 0 16px; }
+.finale__got { text-align: center; margin: 18px 0 0; }
+.finale__actions[hidden] { display: none; }
+.finale__actions { display: flex; flex-direction: column; gap: 10px; cursor: default; }
+.finale__actions .btn { justify-content: center; }
+.finale__hint {
+  position: absolute; left: 0; right: 0; bottom: calc(18px + var(--safe-bottom)); margin: 0; text-align: center; pointer-events: none;
+  color: var(--ivory-faint); font-size: 0.6875rem; letter-spacing: 0.08em; animation: hint-breathe 2.8s ease-in-out infinite; transition: opacity 0.4s;
+}
+.finale__hint::after { content: ' ›'; }
+.finale:not([data-tap='1']) .finale__hint { opacity: 0; animation: none; }
+
+/* 장면·읽기 끝의 "피날레로" 버튼: 금빛이 더 진하다 */
+.btn--finale { border-color: var(--gold); box-shadow: 0 0 24px rgba(244, 214, 150, 0.18); }
+
+/* ── 지도: 별 점등 (screens/map.ts celebrate) ── */
+.map__tools { display: flex; width: 88px; }
+.map__tools:not(.map__tools--left) { justify-content: flex-end; }
+.star.is-igniting .star__core { width: 7px; height: 7px; background: rgba(239, 230, 210, 0.55); box-shadow: none; }
+.star.is-igniting .star__glow { opacity: 0; }
+.star__ring--gold { border-color: var(--gold-bright); box-shadow: 0 0 10px rgba(244, 214, 150, 0.6); }
+.map__path--trail { stroke: var(--gold); stroke-width: 1.2; opacity: 0.75; filter: drop-shadow(0 0 4px rgba(244, 214, 150, 0.5)); }
+.star__caption {
+  position: absolute; z-index: 3; margin: 0; translate: -50% calc(-100% - 30px); white-space: nowrap; pointer-events: none;
+  padding: 6px 12px; border-radius: 999px; font-size: 0.75rem; letter-spacing: 0.04em; color: var(--ivory);
+  background: color-mix(in srgb, #0b0f26 80%, transparent); border: 1px solid color-mix(in srgb, var(--gold) 50%, transparent);
+  box-shadow: 0 0 20px rgba(244, 214, 150, 0.2);
+}
+.star__caption b { color: var(--gold-bright); font-weight: 600; }
+
+:root[data-reduced-motion='true'] .finale__hint { animation: none; }
