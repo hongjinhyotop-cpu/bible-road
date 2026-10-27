@@ -43,3 +43,7 @@
   - **옷 기능 확장** (`src/ui/actor.ts`, `characters/index.ts`): 옷(outfit)이 cloth 말고도 머리(hair)·다리(legs)·팔(armL/armR)까지 바꾸고 키(height)도 바꿀 수 있음. 미리암에 `girl`(소녀 때: 풀어 내린 머리, 작은 키) 옷 추가.
   - **나일강 배경** (`src/fx/nile.ts`, `styles/nile.css`): 파피루스 갈대밭·맞은편 왕궁 탑문. mood `nile`, `nile-dusk`, `nile-basket`(갈대 사이에 까딱이며 떠 있는 상자 + 물결), `nile-basket-day`(같은 상자, 셋이 서도 보이게 오른쪽), `nile-found`(건져 연 상자, 빛과 허우적대는 아기 손).
   - 여정 지도 장소 `midian`(미디안) 추가. exo-1-slaves에 bridge, 도감 moses.scene = exo-2-basket.
+- **2026-10-27 · A급 #2 `exo-3-bush` 「타지 않는 떨기나무」(출 3:1–4:17) 완성.** beat 45개, 본문 카드 4장(3:2 · 3:7-8 · 3:14-15 · 4:11-12), 선택지 1개(마지막 핑계: “…가겠습니다” / “보낼 만한 자를 보내소서”). 하나님은 voice + 빛(glory)으로만. 다섯 번의 핑계와 다섯 번의 대답이 중심.
+  - **호렙산 떨기나무 배경** (`src/fx/bush.ts`, `styles/bush.css`): 뒤로 우뚝 선 화강암 바위산, 비탈에 풀 뜯는 이드로의 양 떼(몇 마리는 고개를 숙였다 듦), 왼쪽 앞에 가시 떨기나무. mood `horeb`·`horeb-dusk`(불 없음), `bush`·`bush-dusk`(불붙었으나 타지 않음: 잎은 짙은 초록 그대로, 뒤 불꽃이 잎을 실루엣으로 비추고 앞 불꽃이 잎 위에서 일렁임, 연기·재 없이 빛 알갱이만 오름), `bush-snake`(같은 떨기나무 + 땅에서 꿈틀대며 고개 드는 뱀). 폰에서는 spread로 모세가 오른쪽, PC에서는 혼자 선 인물을 오른쪽으로 비켜 세움.
+  - **모세 옷 `empty`** (`src/characters/moses.ts`): 목자 차림인데 지팡이를 던져 빈손. 뱀 꼬리를 잡으면 `shepherd`로 돌아와 지팡이가 다시 손에.
+  - 맨발(신 벗기)은 그림으로 안 하고 서술 + 무릎 꿇기로. exo-2-basket에 bridge 추가, 이 에피소드 bridge → exo-4-return.

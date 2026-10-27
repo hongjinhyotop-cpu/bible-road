@@ -9,6 +9,9 @@ export type BackdropArt =
   | 'moreh' | 'moreh-altar' | 'bethel-ai'
   | 'moriah-far' | 'moriah' | 'moriah-altar' | 'moriah-thicket' | 'moriah-fire'
   | 'nile' | 'nile-basket' | 'nile-basket-side' | 'nile-found'
+  | 'horeb' | 'bush' | 'bush-snake'
+  | 'stew-tent' | 'cook-tent' | 'isaac-tent'
+  | 'luz' | 'luz-ladder' | 'luz-pillar'
   | PlaceArt;
 
 /**
@@ -213,6 +216,40 @@ export const MOODS: Record<string, Mood> = {
   'nile-basket-day': { light: true, land: true, art: 'nile-basket-side', spread: true },
   /** 건져 올려 연 상자, 우는 아이 (출 2:6). 상자는 가운데에서 조금 오른쪽 */
   'nile-found': { light: true, land: true, art: 'nile-found', spread: true },
+
+  // ── 호렙산의 떨기나무 (출 3:1-4:17, fx/bush.ts) ──
+  /** 하나님의 산 호렙, 비탈의 이드로 양 떼, 왼쪽 앞에 떨기나무 (아직 불 없음) (출 3:1) */
+  horeb: { light: true, land: false, art: 'horeb', spread: true },
+  /** 같은 곳, 해 질 녘 */
+  'horeb-dusk': { light: true, land: false, art: 'horeb', tone: 'dusk', spread: true },
+  /** 떨기나무에 불이 붙었으나 타지 않는다: 잎은 초록 그대로, 불꽃이 춤추고 빛 알갱이가 오른다 (출 3:2) */
+  bush: { light: true, land: false, art: 'bush', spread: true },
+  /** 같은 떨기나무, 해 질 녘 (불빛이 더 또렷하다) */
+  'bush-dusk': { light: true, land: false, art: 'bush', tone: 'dusk', spread: true },
+  /** 같은 떨기나무 + 땅에 던진 지팡이가 된 뱀 (출 4:3) */
+  'bush-snake': { light: true, land: false, art: 'bush-snake', spread: true },
+
+  // ── 이삭 집의 장막 안 (창 25:29-34 · 창 27, fx/stew.ts) ──
+  /** 장막 안 화덕 위 토기 솥에 붉은 팥죽이 끓는다. 오른쪽 문으로 들빛 (창 25:29) */
+  'stew-tent': { light: true, land: false, art: 'stew-tent', spread: true },
+  /** 같은 장막, 해 질 녘 */
+  'stew-tent-dusk': { light: true, land: false, art: 'stew-tent', tone: 'dusk', spread: true },
+  /** 같은 솥에 갈색 별미가 끓는다 (창 27:14) */
+  'cook-tent': { light: true, land: false, art: 'cook-tent', spread: true },
+  /** 문 휘장을 내린 이삭의 어두운 장막: 잠자리, 등잔 하나 (창 27:1) */
+  'isaac-tent': { light: true, land: false, art: 'isaac-tent', tone: 'dusk' },
+  /** 같은 장막, 밤 */
+  'isaac-tent-night': { light: true, land: false, art: 'isaac-tent', tone: 'night' },
+
+  // ── 벧엘의 사다리 (창 28:10-22, fx/ladder.ts) ──
+  /** 루스 바깥 돌투성이 산마루, 해 질 녘. 가운데 베개 삼을 납작한 돌 (창 28:11) */
+  'bethel-stone': { light: true, land: true, art: 'luz', tone: 'dusk', spread: true },
+  /** 같은 자리, 밤. 별이 뜬다 */
+  'bethel-night': { light: true, land: true, art: 'luz', tone: 'night', spread: true },
+  /** 꿈: 땅에서 하늘 끝까지 선 빛의 사닥다리, 오르내리는 빛의 사자들, 꼭대기의 빛 (창 28:12-13) */
+  ladder: { light: true, land: true, art: 'luz-ladder', tone: 'night', spread: true },
+  /** 아침: 베개였던 돌을 세운 기둥, 위에 부은 기름이 반짝인다 (창 28:18) */
+  'bethel-pillar': { light: true, land: true, art: 'luz-pillar', tone: 'clear', spread: true },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...

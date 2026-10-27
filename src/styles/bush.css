@@ -1,0 +1,68 @@
+/* ── 호렙산의 떨기나무 (출 3:1-4:17, fx/bush.ts) ──
+   타지 않는 불: 불꽃은 잎 위에서 춤추지만 잎은 짙은 초록 그대로다. 연기·재 없이 빛 알갱이만 조용히 오른다.
+   파괴하는 불이 아니라 머무는 불이라, 일렁임은 느리고 부드럽다. */
+.bd-horeb { opacity: 0.96; }
+.bd-ewe { fill: color-mix(in srgb, var(--act-accent) 22%, #cfc6b4); color: color-mix(in srgb, var(--act-b) 50%, #2a201a); opacity: 0.82; }
+.bd-ewe__head { animation: bd-graze 7s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes bd-graze { 0%, 40%, 100% { transform: rotate(0deg); } 50%, 80% { transform: rotate(28deg); } }
+
+/* 떨기나무: 가지는 어두운 나무, 잎은 짙은 초록 (막 색과 섞어도 초록이 남는다) */
+.bd-bush__wood { color: color-mix(in srgb, var(--act-a) 50%, #1a120c); }
+.bd-bush__leaves { fill: color-mix(in srgb, #24442a 78%, var(--act-a)); }
+/* 불이 붙어도 잎은 그대로: 테두리만 불빛을 받아 빛난다 */
+.bd-bush__leaves.is-lit { fill: color-mix(in srgb, #2c5232 82%, var(--act-a)); filter: drop-shadow(0 0 1.6px #ffd58a) drop-shadow(0 0 5px rgba(255, 190, 110, 0.45)); }
+
+.bd-bush__halo { fill: url(#bd-halo-g); transform-box: fill-box; transform-origin: center; animation: bd-bush-breathe 6s ease-in-out infinite; }
+.bd-bush__warm { fill: url(#bd-flame-g); filter: blur(4px); transform-box: fill-box; transform-origin: center; animation: bd-bush-breathe 3.4s ease-in-out infinite; }
+.bd-bush__shaft { fill: #ffe7b4; opacity: 0.08; filter: blur(6px); animation: bd-bush-shaft 8s ease-in-out infinite; }
+@keyframes bd-bush-breathe { 0%, 100% { opacity: 0.8; transform: scale(0.96); } 50% { opacity: 1; transform: scale(1.05); } }
+@keyframes bd-bush-shaft { 0%, 100% { opacity: 0.06; } 50% { opacity: 0.13; } }
+
+.bd-bush__fire { mix-blend-mode: screen; }
+.bd-flame {
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: bd-flame var(--t, 1.4s) ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
+}
+.bd-flame__out { fill: #f6b860; opacity: 0.7; }
+.bd-flame__core { fill: #fff3d2; opacity: 0.85; }
+/* 뒤 불꽃: 크고 흐리게, 잎 뒤에서 타올라 잎을 짙은 실루엣으로 비춘다 */
+.bd-bush__fire--back { filter: blur(1.2px); }
+.bd-flame--back .bd-flame__out { fill: #f3a04e; opacity: 0.62; }
+.bd-flame--back .bd-flame__core { fill: #ffe0a0; opacity: 0.7; }
+/* 앞 불꽃: 잎 위에서 날름거리는 작은 혀 */
+.bd-flame--front .bd-flame__out { opacity: 0.75; }
+@keyframes bd-flame {
+  0% { transform: scale(0.9, 0.86) skewX(-5deg); opacity: 0.82; }
+  45% { transform: scale(1.04, 1.12) skewX(3deg); opacity: 1; }
+  100% { transform: scale(0.96, 0.98) skewX(6deg); opacity: 0.9; }
+}
+.bd-mote {
+  fill: #ffe2a6; opacity: 0;
+  animation: bd-mote var(--t, 6s) ease-out infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes bd-mote {
+  0% { opacity: 0; transform: translate(0, 0); }
+  20% { opacity: 0.85; }
+  100% { opacity: 0; transform: translate(var(--dx), -70px); }
+}
+
+/* 지팡이가 된 뱀 (출 4:3): 흙빛 몸에 불빛 테두리, 몸을 천천히 뒤틀고 고개를 든다 */
+.bd-snake { fill: color-mix(in srgb, var(--act-b) 40%, #2a2016); animation: bd-snake-in 0.9s var(--ease-out) both; }
+.bd-snake__body, .bd-snake__head { filter: drop-shadow(0 0 1.2px color-mix(in srgb, var(--act-accent) 80%, transparent)); }
+.bd-snake__shadow { fill: #000; opacity: 0.3; filter: blur(1.5px); }
+.bd-snake__body { animation: bd-writhe 1.6s ease-in-out infinite alternate; }
+.bd-snake__head { animation: bd-strike 3.2s ease-in-out infinite; }
+.bd-snake__tongue { stroke: #e0704a; stroke-width: 0.6; opacity: 0; animation: bd-tongue 3.2s steps(1) infinite; }
+.bd-snake__eye { fill: var(--act-accent); }
+@keyframes bd-snake-in { from { opacity: 0; transform: scaleX(0.6); } to { opacity: 1; transform: none; } }
+@keyframes bd-writhe { from { transform: scaleY(1) skewX(-4deg); } to { transform: scaleY(0.45) skewX(6deg) translateX(1.5px); } }
+@keyframes bd-strike { 0%, 100% { transform: rotate(0deg); } 30% { transform: rotate(-10deg) translateY(-1px); } 55% { transform: rotate(6deg); } }
+@keyframes bd-tongue { 0%, 20% { opacity: 0; } 22%, 30% { opacity: 1; } 32%, 100% { opacity: 0; } }
+
+:root[data-reduced-motion='true'] :is(.bd-ewe__head, .bd-bush__halo, .bd-bush__warm, .bd-bush__shaft, .bd-flame, .bd-mote, .bd-snake, .bd-snake__body, .bd-snake__head, .bd-snake__tongue) { animation: none; }
+:root[data-reduced-motion='true'] .bd-mote { opacity: 0.5; }
+
+/* PC(넓은 화면)에서는 혼자 선 모세가 가운데 서서 떨기나무를 가린다 → 오른쪽으로 비켜 세운다 (폰은 spread가 맡음) */
+@media (min-width: 768px) {
+  .play:has(.backdrop:is([data-art='horeb'], [data-art='bush'], [data-art='bush-snake'])) .stage[data-count='1'] { padding-left: 26%; }
+}

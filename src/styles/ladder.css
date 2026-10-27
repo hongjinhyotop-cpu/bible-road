@@ -1,0 +1,83 @@
+/* ── 벧엘의 사다리 (창 28:10-22, A급 gen-28-ladder, fx/ladder.ts) ──
+   밤에는 무대가 배경 전체를 어둡게 덮는데(library.css), 사닥다리 빛까지 어두워지면 안 되므로
+   이 그림(luz*)에서는 그 필터를 끄고 땅(.lad-dim)만 따로 어둡게 한다. 별·빛·사자는 밝은 채로. */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop[data-art^='luz']) { filter: none; }
+.lad-dim { transition: filter 2.4s var(--ease-out); }
+.play[data-tone='night'] .lad-dim { filter: brightness(0.5) saturate(0.7); }
+
+/* 별: 밤에만. 일부는 천천히 반짝인다 */
+.lad-star { fill: #f4ecd8; opacity: 0; transition: opacity 3s; }
+.play[data-tone='night'] .lad-star { opacity: 0.55; }
+.play[data-tone='night'] .lad-star.is-big { opacity: 0.9; animation: lad-twinkle 5.5s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.play[data-tone='dusk'] .lad-star.is-big { opacity: 0.35; }
+@keyframes lad-twinkle { 0%, 100% { opacity: 0.35; } 50% { opacity: 1; } }
+
+/* ── 꿈의 사닥다리 ── */
+.lad-beam { fill: url(#lad-beam-g); opacity: 0.55; animation: lad-breathe 7s ease-in-out infinite; transform-box: fill-box; transform-origin: 50% 100%; }
+.lad-beam--core { opacity: 0.8; filter: blur(2px); }
+.lad-beam__lo { stop-color: #f6dca0; stop-opacity: 0.05; }
+.lad-beam__mid { stop-color: #f8e4b4; stop-opacity: 0.22; }
+.lad-beam__hi { stop-color: #fff6de; stop-opacity: 0.55; }
+@keyframes lad-breathe { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
+
+/* 꼭대기: "여호와께서 그 위에 서서" — 사람 모양 없이 빛으로만 */
+.lad-crown { fill: url(#lad-crown-g); animation: lad-crown 8s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.lad-crown__c { stop-color: #fffaf0; stop-opacity: 0.95; }
+.lad-crown__m { stop-color: #f6dca0; stop-opacity: 0.35; }
+.lad-crown__e { stop-color: #f6dca0; stop-opacity: 0; }
+@keyframes lad-crown { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
+
+/* 기둥과 가로대: 땅에서부터 위로 그어지며 생긴다 */
+.lad-frame { filter: drop-shadow(0 0 2px rgba(255, 230, 170, 0.9)); }
+.lad-rail { fill: none; stroke: #fff1cc; stroke-width: 1.5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: lad-draw 4.2s cubic-bezier(0.3, 0.6, 0.3, 1) 0.4s forwards; }
+.lad-rungs { fill: none; stroke: #fbe6b4; stroke-width: 1; stroke-linecap: round; opacity: 0; animation: lad-rungs 3s ease-out 1.6s forwards; }
+@keyframes lad-draw { to { stroke-dashoffset: 0; } }
+@keyframes lad-rungs { to { opacity: 0.8; } }
+.lad-foot { fill: #f6dca0; opacity: 0.35; filter: blur(3px); }
+
+/* 하나님의 사자들: 얼굴 없는 빛 덩이 + 날개. 천천히 오르락내리락 */
+.lad-angel {
+  opacity: 0;
+  animation: lad-climb var(--dur) ease-in-out infinite;
+  animation-delay: calc(var(--d) * -1);
+  filter: drop-shadow(0 0 2.5px rgba(255, 236, 190, 0.95));
+}
+@keyframes lad-climb {
+  0% { opacity: 0; transform: translate(var(--x0), var(--y0)) scale(var(--s0)); }
+  12% { opacity: 0.95; }
+  86% { opacity: 0.9; }
+  100% { opacity: 0; transform: translate(var(--x1), var(--y1)) scale(var(--s1)); }
+}
+.lad-angel__aura { fill: url(#lad-crown-g); opacity: 0.6; }
+.lad-angel__body { fill: #fffaf0; }
+.lad-wing { fill: #fff3d6; opacity: 0.85; }
+.lad-angel__wings { animation: lad-flap var(--flap) ease-in-out infinite alternate; transform-origin: 0 -1px; }
+@keyframes lad-flap { from { transform: scaleY(1); } to { transform: scaleY(0.55) translateY(1px); } }
+
+/* ── 아침: 세운 돌기둥과 기름 ── */
+.lad-sunrise { fill: url(#bd-halo-g); opacity: 0.9; }
+.lad-stone { fill: color-mix(in srgb, var(--act-b) 34%, #1a1612); }
+.lad-stone__edge { stroke: color-mix(in srgb, var(--act-accent) 40%, #6b5a48); stroke-width: 0.6; opacity: 0.5; }
+.lad-oil { fill: color-mix(in srgb, var(--act-accent) 60%, #d8a850); opacity: 0.6; animation: lad-sheen 5s ease-in-out infinite; }
+.lad-glint { stroke: #fff6dc; stroke-width: 0.7; stroke-linecap: round; opacity: 0.8; filter: blur(0.2px); animation: lad-sheen 3.6s ease-in-out infinite; }
+@keyframes lad-sheen { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.95; } }
+.lad-drop { fill: #f6dca0; opacity: 0; animation: lad-drip 5.6s ease-in infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes lad-drip {
+  0% { opacity: 0; transform: translateY(0); }
+  15% { opacity: 0.9; }
+  80% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+/* 사닥다리가 섰던 자리: 기둥 위로 아주 옅게 남은 빛 */
+.lad-memory { fill: color-mix(in srgb, var(--act-accent) 40%, #fff4d8); opacity: 0.07; filter: blur(4px); animation: lad-breathe-soft 9s ease-in-out infinite; }
+@keyframes lad-breathe-soft { 0%, 100% { opacity: 0.05; } 50% { opacity: 0.12; } }
+
+:root[data-reduced-motion='true'] :is(.lad-star, .lad-beam, .lad-crown, .lad-angel__wings, .lad-oil, .lad-glint, .lad-memory) { animation: none; }
+:root[data-reduced-motion='true'] .lad-rail { animation: none; stroke-dashoffset: 0; }
+:root[data-reduced-motion='true'] .lad-rungs { animation: none; opacity: 0.8; }
+:root[data-reduced-motion='true'] .lad-angel { animation-play-state: paused; }
+:root[data-reduced-motion='true'] .lad-drop { animation: none; }
+
+/* 베개 삼은 돌: 테두리에만 저녁빛 한 줄 */
+.lad-pillow path { stroke: color-mix(in srgb, var(--act-accent) 70%, #f0d8a8); stroke-width: 0.7; stroke-opacity: 0.55; }
+.lad-stone__chip { fill: color-mix(in srgb, var(--act-b) 20%, #0e0c0a); }
