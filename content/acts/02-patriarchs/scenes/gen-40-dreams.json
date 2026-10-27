@@ -8,8 +8,7 @@
   "cast": ["joseph"],
   "extras": {
     "cupbearer": { "name": "술 맡은 관원장", "base": "man", "hair": "short", "props": ["jar"], "tint": "gold" },
-    "baker": { "name": "떡 굽는 관원장", "base": "man", "hair": "bald", "props": ["basket"], "tint": "white" },
-    "pharaoh": { "name": "바로", "base": "king", "hair": "crown", "props": ["scepter"], "tint": "gold" }
+    "baker": { "name": "떡 굽는 관원장", "base": "man", "hair": "bald", "props": ["basket"], "tint": "white" }
   },
   "beats": [
     { "type": "narration", "text": "감옥에도 계급이 있다. 바로의 감옥에는 바로의 사람들이 들어왔다. 그날 들어온 두 사람은 원래 왕의 식탁 가장 가까이에 서던 사람들이었다." },

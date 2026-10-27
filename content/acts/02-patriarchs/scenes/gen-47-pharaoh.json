@@ -7,7 +7,6 @@
   "bg": "palace",
   "cast": ["joseph"],
   "extras": {
-    "pharaoh": { "name": "바로", "base": "king", "hair": "crown", "props": ["scepter"], "tint": "gold" },
     "egyptian": { "name": "애굽 백성", "base": "man", "hair": "short", "props": ["basket"], "tint": "brown", "height": 0.96 }
   },
   "beats": [
