@@ -1,0 +1,66 @@
+{
+  "id": "exo-22-laws",
+  "act": 4,
+  "grade": "B",
+  "title": "배상과 나그네",
+  "ref": "출 22",
+  "bg": "pasture-night",
+  "cast": [],
+  "extras": {
+    "thief": { "name": "도둑", "base": "youth", "hair": "hood", "props": ["lamb"], "tint": "gray" },
+    "farmer": { "name": "양 주인", "base": "man", "hair": "short", "beard": "short", "props": ["crook"], "tint": "green" },
+    "judge": { "name": "재판장", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "white" },
+    "burner": { "name": "가시덤불 태운 사람", "base": "man", "hair": "shaggy", "beard": "short", "tint": "brown" },
+    "neighbor": { "name": "곡식 밭 주인", "base": "old-man", "hair": "turban", "beard": "long", "props": ["sheaf"], "tint": "gold" },
+    "stranger": { "name": "나그네", "base": "man", "hair": "hood", "beard": "long", "props": ["staff", "bundle"], "tint": "gray" },
+    "widow": { "name": "과부", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "gray" },
+    "orphan": { "name": "고아", "base": "child", "hair": "short", "tint": "brown" },
+    "lender": { "name": "돈 꾸어 준 사람", "base": "man", "hair": "turban", "beard": "short", "props": ["cloak"], "tint": "purple" },
+    "poor": { "name": "가난한 이웃", "base": "man", "hair": "shaggy", "beard": "short", "tint": "brown" }
+  },
+  "beats": [
+    { "type": "narration", "fx": "stars", "enter": ["thief"], "act": "walk-in", "who": "thief", "text": "밤이었다. 양 우리 담 너머로 그림자 하나가 넘어왔다. 그림자는 양 한 마리를 안고 있었다. 양은 그림자의 것이 아니었다." },
+    { "acts": [{ "act": "walk-in", "who": "farmer" }, { "act": "step-back", "who": "thief" }], "enter": ["farmer"] },
+    { "type": "narration", "act": "face", "who": ["farmer", "thief"], "text": "법은 밤의 도둑과 낮의 도둑을 다르게 봤다. 어둠 속에서 벽을 뚫고 들어온 자를 막다가 죽였다면 피 흘린 죄가 없다. 그러나 해가 뜬 뒤라면 이야기가 다르다. 해가 뜨면, 도둑도 사람으로 보이기 때문이다." },
+    { "type": "narration", "bg": "pasture-dawn", "fx": "fade", "enter": ["judge"], "act": "walk-in", "who": "judge", "text": "아침, 재판장 앞이었다. 양은 이미 잡아먹은 뒤였다." },
+    { "type": "line", "who": "judge", "act": "face", "to": "thief", "text": "“양 하나에 양 넷. 소였다면 다섯이었을 걸세. 양이 살아서 네 손에 있었다면 갑절이면 됐고.”" },
+    { "type": "line", "who": "thief", "act": "bow-head", "text": "“넷이라니요. 한 마리 먹었는데 네 마리를 갚으라니요.”" },
+    { "type": "line", "who": "judge", "text": "“먹어 버렸으니 넷이지. 잡거나 팔아 버린 건 돌이킬 마음이 없었다는 뜻이니까. 갚을 게 없으면 자네 몸을 팔아서라도 갚게.”" },
+    { "type": "scripture", "ref": "출 22:1", "gloss": "소 훔쳐서 잡거나 팔면 다섯 배, 양이면 네 배로 물어내라는 거. 감옥 대신 피해자한테 확실하게 돌려주는 시스템임." },
+    { "type": "narration", "act": "walk-out", "who": "thief", "text": "도둑은 그날부터 남의 우리를 넘지 않았다. 남의 우리를 대신 지켰다. 네 마리를 채울 때까지." },
+    { "type": "narration", "bg": "field-dusk", "fx": ["fade", "fire"], "exit": ["farmer"], "enter": ["burner", "neighbor"], "act": "step-back", "who": "burner", "text": "다음 사건은 불이었다. 한 남자가 제 밭의 가시덤불을 태웠다. 바람이 불었다. 불은 주인을 가리지 않았다. 옆집 낟가리가 탔다." },
+    { "type": "line", "who": "burner", "act": "approach", "to": "neighbor", "text": "“불을 낸 건 나지만, 바람을 부른 건 내가 아니오.”" },
+    { "type": "line", "who": "neighbor", "act": "argue", "to": "burner", "text": "“그럼 내 곡식은 바람한테 받아 내면 되겠소?”" },
+    { "type": "line", "who": "judge", "act": "bless", "text": "“불 놓은 자가 갚는다. 바람은 하나님의 것이지만, 불씨는 자네 것이었네.”" },
+    { "type": "narration", "act": "bow-head", "who": "burner", "text": "남의 밭에서 제 짐승을 먹인 자는 제 밭에서 제일 좋은 것으로 갚았다. 빌려 간 나귀가 죽으면 빌려 간 자가 갚았다. 주인이 곁에 있었다면 갚지 않았다. 책임은 손이 닿는 곳까지였다." },
+    { "type": "narration", "bg": "road", "fx": ["fade", "dust"], "exit": ["burner", "neighbor"], "enter": ["stranger"], "act": "walk-in", "who": "stranger", "text": "그리고 길 위의 사람들. 나그네가 있었다. 말씨가 다르고, 땅이 없고, 편들어 줄 친척도 없는 사람." },
+    { "type": "voice", "fx": "glory", "text": "너희도 애굽 땅에서 나그네이었었음이니라" },
+    { "type": "scripture", "ref": "출 22:21", "gloss": "외국인 괴롭히지 마. 너희도 이집트에서 외국인 노동자였잖아. 그 서러움 누구보다 잘 알면서." },
+    { "type": "narration", "enter": ["widow", "orphan"], "acts": [{ "act": "walk-in", "who": "widow" }, { "act": "embrace", "who": ["widow", "orphan"] }], "text": "과부가 있었고, 고아가 있었다. 그들이 부르짖으면, 하나님은 반드시 듣겠다고 했다. 그리고 그 말 다음에 무서운 말이 붙었다. 그들을 해한 자의 아내가 과부가 되고, 그 자식이 고아가 되리라고." },
+    { "type": "narration", "act": "look-up", "who": "stranger", "text": "약한 자를 건드리는 일은, 그 뒤에 서 있는 자를 건드리는 일이었다. 대개 사람들은 그 뒤에 누가 서 있는지 보지 못한다." },
+    { "type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["stranger", "widow", "orphan", "judge"], "enter": ["lender", "poor"], "act": "face", "who": ["lender", "poor"], "text": "해 질 녘의 장막 앞. 가난한 이웃 하나가 돈을 꾸어 갔었다. 담보로 맡긴 것은 겉옷 한 벌이었다. 그에게 있는 옷은, 그게 다였다." },
+    { "type": "narration", "act": "bow-head", "who": "poor", "pose": { "poor": "tremble" }, "text": "광야의 밤은 차다. 낮에 겉옷이던 것이 밤에는 이불이 된다. 해가 기울자 남자는 팔짱을 끼었다. 아직 춥지는 않았다. 곧 추울 것이었다." },
+    {
+      "type": "choice",
+      "prompt": "네가 돈을 꾸어 준 사람이라면, 이 겉옷을 어떻게 할래?",
+      "options": [
+        { "label": "해 지기 전에 돌려준다", "canon": true },
+        { "label": "빚 갚을 때까지 가지고 있는다. 담보잖아", "goto": "b-keep" }
+      ]
+    },
+    { "type": "line", "who": "lender", "act": "approach", "to": "poor", "text": "“가져가게. 해 떨어지기 전에. 내일 아침에 다시 맡기든가.”" },
+    { "type": "scripture", "ref": "출 22:26-27", "gloss": "이웃 옷 잡혔으면 해 지기 전에 돌려줘. 그거 하나로 덮고 자는데 뭐 입고 자냐. 그가 울면 내가 듣는다. 나 자비로운 신이거든." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "poor" }, { "act": "bow-head", "who": "poor" }], "pose": { "poor": "neutral" }, "text": "남자는 겉옷을 받아 들었다. 이자를 받지 말라는 말도 있었다. 가난한 자에게 빚쟁이처럼 굴지 말라는 말도. 담보는 잡되, 사람은 잡지 말라는 것이었다." },
+    { "type": "narration", "bg": "mountain-night", "fx": ["fade", "stars"], "exit": ["lender", "poor"], "enter": ["moses"], "act": "look-up", "who": "moses", "text": "법은 계속 이어졌다. 무당을 살려 두지 말 것. 다른 신에게 희생을 드리지 말 것. 재판장을 욕하지 말 것. 첫 열매와 맏아들을 늦지 않게 드릴 것." },
+    { "type": "narration", "act": "bow-head", "who": "moses", "text": "그리고 마지막 줄. 너희는 내게 거룩한 사람이 되라. 거룩함은 멀리 있지 않았다. 해 지기 전의 겉옷 한 벌만큼 가까이 있었다." }
+  ],
+  "branches": {
+    "b-keep": [
+      { "type": "narration", "fx": "dark", "act": "cry", "who": "poor", "text": "만약 겉옷을 돌려주지 않았다면. 그날 밤 남자는 장막 바닥에서 몸을 웅크렸을 것이다. 그리고 아마, 어둠 속에서 누군가를 불렀을 것이다. 들으라고 부른 것은 아니었겠지만." },
+      { "type": "voice", "act": "stand", "who": "poor", "text": "그가 내게 부르짖으면 내가 들으리니" }
+    ]
+  },
+  "insight": "22장은 ‘배상법’ 파트임. 핵심 키워드는 감옥이 아니라 배상. 모세 율법에는 ‘징역 몇 년’ 같은 감옥형이 처벌로 아예 안 나옴. 대신 피해자한테 확실하게 물어 줘야 함. 양 훔쳐서 먹어 버렸으면 네 배, 소면 다섯 배. 살아 있는 채로 걸리면 두 배. 왜 차이 나냐면, 잡아먹거나 팔았다는 건 돌려줄 생각이 아예 없었다는 거라서. 소가 더 비싼 건 밭 갈고 일하는 장비라서라고 보는 해석이 많음.\n\n밤도둑 vs 낮도둑(2~3절)도 디테일 미쳤음. 밤에 벽 뚫고 들어온 놈을 막다 죽인 건 정당방위. 근데 해 뜬 뒤면 얘기 다름. 상대가 보이고, 도움도 부를 수 있으니까. 지금으로 치면 ‘과잉방위’ 개념을 그때 벌써 다룬 거.\n\n그리고 이 장의 진짜 하이라이트는 21~27절. 나그네(외국인), 과부, 고아, 가난한 사람. 고대 사회에서 제일 털리기 쉬운 4인방임. 하나님이 여기서 갑자기 개인 감정 드러내심. ‘걔네 건드리면 내가 들음. 그리고 진짜 화남.’ 이유도 붙여 줌. ‘너희도 이집트에서 나그네였잖아.’ 군대에서 이등병 때 서러웠던 거 기억하면 후임한테 그러면 안 된다는 거랑 똑같음.\n\n겉옷 담보(26~27절)는 개 따뜻한 조항임. 가난한 사람은 겉옷이 낮엔 옷, 밤엔 이불이었음. 그거 잡아 두면 그 사람 밤새 떪. 그러니까 담보로 잡아도 해 지면 돌려주라는 거. 돈보다 사람이 먼저라는 원칙을 법조문으로 박아 넣은 거임.\n\n참고로 18~20절(무당, 짐승과의 관계, 다른 신 제사)처럼 지금 읽으면 엄청 무거운 조항도 있음. 이건 이스라엘이 하나님과 맺은 언약 공동체의 경계를 지키는 법으로 이해되는데, 오늘날 그리스도인과 유대인이 이걸 어떻게 적용하는지는 전통마다 여러 해석이 있음.\n\n근데 이게 왜 중요하냐면, 하나님이 ‘거룩하라’고 하실 때 그 거룩이 겉옷 한 벌 돌려주는 데서 시작한다는 거. 신앙 레벨은 내가 약자 대할 때 티 남.",
+  "tldr": "훔쳤으면 몇 배로 물어내고, 불 냈으면 갚고, 나그네·과부·고아는 절대 건드리지 마라. 하나님은 약자 편에서 듣고 계심.",
+  "bridge": "법은 재판정을 지나 들판으로 나갔다. 원수의 나귀와, 일곱째 해의 밭과, 일 년에 세 번 돌아오는 잔치로."
+}

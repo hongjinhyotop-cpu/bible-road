@@ -1,0 +1,68 @@
+{
+  "id": "exo-21-laws",
+  "act": 4,
+  "grade": "B",
+  "title": "종과 이웃에 관한 법",
+  "ref": "출 21",
+  "bg": "mountain",
+  "cast": ["moses"],
+  "extras": {
+    "servant": { "name": "히브리 종", "base": "man", "hair": "shaggy", "beard": "short", "props": ["bundle"], "tint": "brown" },
+    "master": { "name": "상전", "base": "man", "hair": "turban", "beard": "short", "props": ["staff"], "tint": "gold" },
+    "judge": { "name": "재판장", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "white" },
+    "brawler": { "name": "주먹 쓴 사람", "base": "man", "hair": "short", "beard": "short", "tint": "red" },
+    "hurt": { "name": "다친 사람", "base": "man", "hair": "hood", "beard": "short", "props": ["staff"], "tint": "gray" },
+    "maid": { "name": "여종", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "brown" },
+    "owner": { "name": "소 임자", "base": "man", "hair": "turban", "beard": "long", "props": ["crook"], "tint": "green" }
+  },
+  "beats": [
+    { "type": "narration", "act": "look-up", "who": "moses", "fx": "thunder", "text": "산은 아직 연기에 싸여 있었다. 백성은 멀리 서 있었고, 모세는 흑암 가까이 서 있었다. 열 마디 계명이 막 내려온 참이었다." },
+    { "type": "voice", "fx": "glory", "text": "네가 백성 앞에 세울 율례는 이러하니라" },
+    { "type": "narration", "act": "bow-head", "who": "moses", "text": "열 마디는 큰 기둥이다. 기둥만으로는 집에서 살 수 없다. 이제 하나님은 문지방과 문설주와 구덩이와 소 이야기를 하기 시작했다. 거룩함은 생각보다 자주 외양간에 산다." },
+    { "type": "narration", "bg": "tent-dawn", "fx": "fade", "exit": ["moses"], "enter": ["servant", "master"], "act": "walk-in", "who": "servant", "text": "육 년 전, 빚에 몰린 남자 하나가 제 몸을 팔았다. 그날 이후 그는 남의 밭을 갈고 남의 양을 쳤다. 그리고 오늘은 일곱째 해의 첫 아침이었다." },
+    { "type": "line", "who": "servant", "act": "face", "to": "master", "text": "“주인어른. 오늘이 칠 년째입니다.”" },
+    { "type": "line", "who": "master", "act": "bow-head", "text": "“알고 있네. 나도 셀 줄은 알아. 몸값도 따로 받지 않겠네. 그게 법이니까.”" },
+    { "type": "scripture", "ref": "출 21:2", "gloss": "히브리 사람이 종이 돼도 6년이 끝. 7년째엔 돈 한 푼 안 내고 자유인. 무기한 노예 계약 금지라는 거임." },
+    { "type": "narration", "act": "turn", "who": "servant", "text": "남자는 문을 나서려다 돌아보았다. 장막 안에는 이 집에서 맞은 아내와, 그 아내가 낳은 아이가 있었다. 법은 그에게 자유를 주었고, 자유는 그에게 질문을 주었다." },
+    { "type": "line", "who": "servant", "act": "kneel", "text": "“저는 나가지 않겠습니다. 주인어른과 제 처자를 사랑합니다.”" },
+    { "type": "narration", "enter": ["judge"], "act": "walk-in", "who": "judge", "text": "그러면 재판장 앞에서 한 번 더 묻는다. 진심이냐고. 그리고 문설주 앞에서 송곳으로 그 귀를 뚫는다. 남는 일도, 떠나는 일처럼, 혼자 정하지 못하게 되어 있었다." },
+    { "type": "narration", "bg": "town", "fx": "fade", "exit": ["servant", "master"], "enter": ["brawler", "hurt"], "act": "argue", "who": "brawler", "to": "hurt", "text": "성읍 어귀에서 두 남자가 다퉜다. 말이 먼저 나갔고, 주먹이 따라 나갔고, 돌멩이가 그 뒤를 따랐다." },
+    { "type": "narration", "act": "fall", "who": "hurt", "text": "한 사람이 쓰러졌다. 죽지는 않았다. 자리에 누웠을 뿐이다. 그리고 그 자리에서, 한동안 일어나지 못했다." },
+    { "acts": [{ "act": "stand", "who": "hurt" }, { "act": "approach", "who": "hurt", "to": "judge" }] },
+    { "type": "line", "who": "hurt", "text": "“지팡이를 짚고 겨우 다닙니다. 그동안 밭은 누가 갈았겠습니까. 아무도 안 갈았지요.”" },
+    { "type": "line", "who": "judge", "act": "face", "to": "brawler", "text": "“그대는 형벌은 면하네. 대신 이 사람이 누워 있던 날들을 갚고, 다 나을 때까지 치료비를 내게.”" },
+    { "type": "line", "who": "brawler", "act": "bow-head", "text": "“주먹 한 번에 석 달 품삯이라니.”" },
+    { "type": "line", "who": "judge", "text": "“그래서 주먹은 주머니보다 늦게 나가야 하는 걸세.”" },
+    { "type": "narration", "act": "crowd-murmur", "text": "사람을 쳐 죽인 자는 죽는다. 그러나 미리 꾀하지 않은 죽음이라면, 도망할 곳이 따로 정해진다. 일부러 죽였다면, 제단 뿔을 붙잡고 있어도 끌어낸다. 같은 죽음이라도 마음이 어디 있었는지를 법이 묻기 시작했다." },
+    {
+      "type": "choice",
+      "prompt": "네가 재판장이라면, 다친 만큼 어떻게 갚게 할래?",
+      "options": [
+        { "label": "다친 만큼만. 그 이상도, 그 이하도 아니게", "canon": true },
+        { "label": "다시는 못 덤비게, 몇 배로 갚게 한다", "goto": "b-more" }
+      ]
+    },
+    { "type": "narration", "act": "bless", "who": "judge", "text": "재판장은 손을 들었다. 갚되, 다친 만큼만. 저울은 한쪽으로 기울면 저울이 아니다." },
+    { "type": "scripture", "ref": "출 21:23-25", "gloss": "눈 다쳤으면 눈만큼, 이 다쳤으면 이만큼. 핵심은 ‘딱 그만큼까지’임. 복수 무한 증폭 금지 상한선." },
+    { "type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["brawler", "hurt"], "enter": ["maid", "master"], "act": "cry", "who": "maid", "text": "해 질 녘, 여종 하나가 한쪽 눈을 감싸 쥐고 있었다. 상전의 매가 빗나간 것이었다. 아니, 빗나간 게 아니었다." },
+    { "type": "line", "who": "judge", "act": "approach", "to": "maid", "text": "“눈 대신에 저 여자를 놓아 주게. 오늘부로.”" },
+    { "type": "scripture", "ref": "출 21:26-27", "gloss": "주인이 종의 눈 하나, 이 하나만 상하게 해도 그 종은 바로 자유. 종도 몸이 있는 사람이라는 선언임." },
+    { "acts": [{ "act": "stand", "who": "maid" }, { "act": "walk-out", "who": "maid" }, { "act": "bow-head", "who": "master" }] },
+    { "type": "narration", "text": "상전은 이빨 하나 값으로 일꾼 하나를 잃었다. 그날 밤부터 그는 매를 드는 손이 느려졌다. 법이 사람을 착하게 만들지는 못한다. 다만 손을 느리게는 만든다." },
+    { "type": "narration", "bg": "pasture", "fx": "fade", "exit": ["master"], "enter": ["owner"], "act": "walk-in", "who": "owner", "text": "마지막은 소 이야기였다. 소는 들이받는다. 그건 소의 잘못이 아니다. 문제는 사람이다." },
+    { "type": "line", "who": "judge", "act": "face", "to": "owner", "text": "“지난달에도 그 소가 사람을 받았다고 이웃들이 일러 주지 않았나.”" },
+    { "type": "line", "who": "owner", "act": "step-back", "text": "“한 번은 실수지요. 소도 기분 나쁜 날이 있지 않겠습니까.”" },
+    { "type": "scripture", "ref": "출 21:28-29", "gloss": "소가 처음 사람을 받으면 소만 처리, 주인은 무죄. 근데 버릇 있는 거 알고도 방치했으면 주인 책임. 경고 무시가 죄라는 거." },
+    { "type": "narration", "act": "bow-head", "who": "owner", "text": "구덩이를 파 놓고 덮지 않은 사람은, 거기 빠진 남의 나귀 값을 물었다. 남의 소를 받아 죽인 소는 팔아서 그 값을 반씩 나눴다. 하나님의 법은 산꼭대기에서 내려와, 정확히 발밑의 구덩이까지 내려왔다." },
+    { "type": "narration", "bg": "mountain-dusk", "fx": "fade", "exit": ["owner", "judge"], "enter": ["moses"], "act": "look-up", "who": "moses", "text": "모세는 그 말씀을 다 들었다. 노예였던 백성에게, 종을 어떻게 대할지를 가르치는 법이었다. 그들보다 그걸 잘 알아들을 사람은 없었다." }
+  ],
+  "branches": {
+    "b-more": [
+      { "type": "narration", "acts": [{ "act": "argue", "who": "brawler", "to": "hurt" }, { "act": "crowd-murmur" }], "text": "만약 몇 배로 갚게 했다면. 이번엔 맞은 쪽이 지나치게 받아 낸 것이 된다. 그러면 그쪽 형제가 찾아온다. 그다음엔 사촌이." },
+      { "type": "narration", "act": "bow-head", "who": "judge", "text": "옛날에 라멕이라는 사람이 있었다. 누가 나를 상하게 하면 칠십칠 배로 갚겠다고 노래한 사람. 그 노래는 끝나지 않았다. 그래서 법은 ‘그만큼만’이라고 선을 그었다." }
+    ]
+  },
+  "insight": "십계명이 헌법이면, 21~23장은 시행령임. 학자들은 이 부분을 ‘언약서’라고 부르는데 24장 7절에 나오는 그 책이라고 보는 경우가 많음. 내용이 개 구체적임. 종, 싸움, 소, 구덩이. 하나님이 철학 말고 동네 민원부터 챙기심.\n\n먼저 ‘종’. 여기서 히브리 종은 대부분 빚 때문에 몸을 판 사람임. 미국 흑인 노예제 같은 걸 떠올리면 안 됨. 6년 일하면 7년째엔 공짜로 풀려나야 하고, 사람을 납치해서 파는 건 사형(16절). 주인이 종 눈 하나, 이 하나만 상하게 해도 그 종은 자유. 종도 그냥 재산이 아니라 몸 가진 사람이라는 거임.\n\n물론 오늘 눈으로 보면 불편한 조항도 있음. 20~21절처럼 종을 ‘상전의 금전’이라고 부르는 구절도 있고. 그래서 여러 해석이 있는데, 많은 학자들은 이 법을 ‘이상향 설계도’라기보단 그 시대 현실 한가운데서 브레이크를 거는 법으로 봄. 0에서 100으로 못 가니까 일단 30부터 끌어올리는 패치 같은 거.\n\n그리고 유명한 ‘눈은 눈으로’(24절). 이거 복수하라는 말 아님. 오히려 반대. 판사가 쓰는 비례 원칙, 곧 ‘다친 만큼까지만’이라는 상한선임. 라멕처럼 77배 복수하는 세상에서 이건 진짜 브레이크였음. 유대 전통에서는 이걸 실제로 눈을 뽑는 게 아니라 손해에 맞는 돈으로 갚는 기준으로 읽었고, 처음엔 글자 그대로 적용됐다고 보는 사람도 있음. 나중에 예수님은 이 구절을 인용하면서 한 발 더 나가서 개인적인 보복 자체를 내려놓으라고 하심(마 5:38-39).\n\n소 이야기도 재밌음. 소가 처음 받으면 사고. 근데 버릇 있는 거 알고 경고까지 받았는데 방치했으면 주인 책임. 이거 지금 개 물림 사고 판례랑 구조가 거의 같음. ‘몰랐다’랑 ‘알면서 놔뒀다’를 구별하는 거.\n\n근데 이게 왜 중요하냐면, 성경의 거룩함이 교회 안에서만 노는 게 아니라 내 주먹, 내 구덩이, 내 집 개까지 내려온다는 거. 신앙은 결국 남한테 피해 안 주는 디테일에서 티 남.",
+  "tldr": "종은 7년째에 풀어 주고, 다친 만큼만 갚고, 위험한 소는 단속하라. 하나님의 법은 동네 민원 해결 매뉴얼부터 시작함.",
+  "bridge": "법은 이어졌다. 이번에는 도둑과 불과, 해 질 녘에 돌려줘야 할 겉옷 이야기였다."
+}

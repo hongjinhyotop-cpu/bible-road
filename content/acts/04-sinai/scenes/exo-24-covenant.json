@@ -1,0 +1,63 @@
+{
+  "id": "exo-24-covenant",
+  "act": 4,
+  "grade": "B",
+  "title": "언약의 피, 산 위의 식사",
+  "ref": "출 24",
+  "bg": "mountain-dusk",
+  "cast": ["moses"],
+  "extras": {
+    "joshua": { "name": "여호수아", "base": "youth", "hair": "short", "props": ["spear"], "tint": "red" },
+    "hur": { "name": "훌", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "red" },
+    "nadab": { "name": "나답", "base": "man", "hair": "turban", "beard": "short", "tint": "blue" },
+    "abihu": { "name": "아비후", "base": "man", "hair": "turban", "beard": "short", "tint": "white" },
+    "elder": { "name": "장로", "base": "old-man", "hair": "turban", "beard": "gray", "props": ["staff"], "tint": "brown" },
+    "young": { "name": "청년", "base": "youth", "hair": "short", "props": ["lamb"], "tint": "white" }
+  },
+  "beats": [
+    { "type": "voice", "fx": ["thunder", "glory"], "text": "너는 아론과 나답과 아비후와 이스라엘 장로 칠십인과 함께 여호와에게로 올라와 멀리서 경배하고" },
+    { "type": "narration", "act": "bow-head", "who": "moses", "text": "멀리서. 그리고 모세만 가까이. 백성은 오르지 말 것. 초대장에는 자리마다 거리가 적혀 있었다." },
+    { "type": "narration", "bg": "tent-dusk", "fx": "fade", "acts": [{ "act": "walk-in", "who": "moses" }, { "act": "crowd" }], "text": "모세가 산에서 내려왔다. 그리고 들은 것을 다 전했다. 종의 일곱째 해, 다친 만큼의 배상, 해 지기 전의 겉옷, 원수의 나귀, 세 번의 잔치." },
+    { "type": "narration", "act": "crowd-cheer", "text": "백성은 한목소리로 대답했다. 여호와께서 하신 모든 말씀을 우리가 지키겠습니다. 한목소리였다. 한목소리는 듣기에 좋다. 다만 한목소리가 얼마나 오래 가는지는, 그날 아무도 묻지 않았다." },
+    { "type": "narration", "bg": "mountain-night", "fx": ["fade", "stars"], "act": "kneel", "who": "moses", "text": "모세는 그 말씀을 다 기록했다. 산에서 들은 소리가 한 자 한 자 글자가 되어 갔다. 소리는 흩어지지만, 글자는 남는다. 남아서, 나중에 따진다." },
+    { "type": "narration", "bg": "altar", "fx": ["fade", "dawn"], "enter": ["young"], "acts": [{ "act": "stand", "who": "moses" }, { "act": "walk-in", "who": "young" }], "text": "이른 아침, 산 아래에 제단이 섰다. 그 둘레로 돌기둥 열둘. 이스라엘 열두 지파의 수만큼이었다." },
+    { "type": "narration", "act": "bow-head", "who": "young", "fx": "fire", "text": "청년들이 번제를 드리고, 소를 잡아 화목제를 드렸다. 모세가 그 피를 받아 반은 양푼에 담고, 반은 제단에 뿌렸다." },
+    { "type": "narration", "act": "crowd", "exit": ["young"], "text": "그리고 언약서를 펴서, 백성이 듣도록 읽었다. 어젯밤 기록한 그 말을, 처음부터 끝까지." },
+    { "type": "scripture", "ref": "출 24:7", "gloss": "모세가 계약서를 전부 소리 내서 읽어 줌. 백성 대답: “다 지킬게요! 듣고 따를게요!”" },
+    {
+      "type": "choice",
+      "prompt": "네가 그 자리의 백성이라면?",
+      "options": [
+        { "label": "“다 지키겠습니다!” 같이 외친다", "canon": true },
+        { "label": "“잠깐만요… 좀 생각해 보고요”", "goto": "b-wait" }
+      ]
+    },
+    { "type": "narration", "act": "crowd-cheer", "text": "두 번째 대답도 같았다. 다 지키겠습니다. 듣고 따르겠습니다. 그들은 진심이었다. 사람은 대개 약속하는 순간에는 늘 진심이다." },
+    { "type": "narration", "act": "approach", "who": "moses", "to": "elder", "enter": ["elder"], "text": "모세가 양푼의 피를 들어 백성에게 뿌렸다. 제단에 뿌린 피와 같은 피였다. 한 피가 하나님 쪽과 사람 쪽을 이었다." },
+    { "type": "scripture", "ref": "출 24:8", "gloss": "“이게 하나님이 이 말씀으로 너희랑 맺는 언약의 피다.” 피로 도장 찍은 계약이라는 거. 목숨 걸린 약속임." },
+    { "type": "narration", "act": "crowd-bow", "text": "피는 무겁다. 피로 맺은 약속을 가볍게 여기는 사람은 없다. 적어도, 피가 마르기 전까지는." },
+    { "type": "narration", "bg": "mountain-dawn", "fx": "fade", "enter": ["aaron", "nadab", "abihu"], "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "aaron" }, { "act": "walk-in", "who": "nadab" }, { "act": "walk-in", "who": "abihu" }], "text": "그리고 그들이 올라갔다. 모세와 아론, 나답과 아비후, 이스라엘 장로 칠십 인. 산 중턱, 멀리서 경배하라던 그 거리까지." },
+    { "type": "narration", "fx": "glory", "acts": [{ "act": "look-up", "who": "aaron" }, { "act": "look-up", "who": "elder" }, { "act": "look-up", "who": "nadab" }], "text": "그들은 이스라엘의 하나님을 보았다." },
+    { "type": "scripture", "ref": "출 24:10-11", "gloss": "발아래는 사파이어 깐 것 같고 하늘처럼 맑았음. 근데 하나님이 그들을 치지 않으셨고, 그들은 하나님을 보면서 먹고 마셨음. 상견례 밥상 같은 거." },
+    { "type": "narration", "acts": [{ "act": "kneel", "who": "aaron" }, { "act": "kneel", "who": "elder" }, { "act": "kneel", "who": "abihu" }], "text": "기록은 그 이상 말하지 않는다. 발아래가 어떠했는지만 말하고, 그 위는 말하지 않는다. 본 사람들도 아마 위를 오래 보지는 못했을 것이다." },
+    { "type": "narration", "act": "bow-head", "who": "moses", "text": "그리고 그들은 먹고 마셨다. 하나님 앞에서, 죽지 않고. 사람이 하나님과 한 상에 앉는 것. 언약의 끝은 식사였다." },
+    { "type": "voice", "fx": "glory", "text": "너는 산에 올라 내게로 와서 거기 있으라" },
+    { "type": "narration", "exit": ["nadab", "abihu"], "enter": ["joshua", "hur"], "acts": [{ "act": "walk-in", "who": "joshua" }, { "act": "walk-in", "who": "hur" }], "text": "돌판을 주겠다고 하셨다. 하나님이 친히 쓰신 율법과 계명. 모세는 젊은 종 여호수아를 데리고 일어났다." },
+    { "type": "line", "who": "moses", "act": "face", "to": "elder", "text": "“여기서 기다리시오. 우리가 돌아올 때까지. 일이 생기면 아론과 훌에게 가시오.”" },
+    { "type": "line", "who": "aaron", "act": "stand", "text": "“다녀오게. 산 아래는 걱정 말고.”" },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "hur" }, { "act": "approach", "who": "joshua", "to": "moses" }], "text": "걱정 말라는 말은 대개, 하는 사람보다 듣는 사람이 더 믿는다." },
+    { "type": "narration", "bg": "mountain", "fx": ["fade", "thunder"], "exit": ["aaron", "hur", "elder"], "act": "look-up", "who": "moses", "text": "모세가 오르자 구름이 산을 가렸다. 여호와의 영광이 시내산 위에 머물렀다. 구름은 엿새 동안 산을 덮었다. 모세는 기다렸다. 부르실 때까지." },
+    { "type": "narration", "fx": ["glory", "flash"], "act": "bow-head", "who": "joshua", "text": "일곱째 날, 구름 가운데서 부르심이 있었다. 산 아래에서 보기에 그 영광은 맹렬한 불 같았다. 산꼭대기가 타고 있었다. 타는데, 타 없어지지 않았다." },
+    { "type": "narration", "act": "leave", "who": "moses", "text": "모세는 구름 속으로 들어갔다." },
+    { "type": "scripture", "ref": "출 24:18", "gloss": "모세가 구름 속으로 들어가서 40일 밤낮을 산 위에 있었음. 장기 출장 시작." },
+    { "type": "narration", "act": "kneel", "who": "joshua", "fx": "dark", "text": "사십 일. 산 위에서는 짧았을지도 모른다. 산 아래에서는, 아주 길 것이었다." }
+  ],
+  "branches": {
+    "b-wait": [
+      { "type": "narration", "act": "crowd-murmur", "text": "만약 누군가 ‘잠깐만요’라고 했다면. 사람들은 그를 쳐다봤을 것이다. 분위기 깨는 사람으로." },
+      { "type": "narration", "act": "look-up", "who": "moses", "text": "하지만 어쩌면 그게 가장 정직한 대답이었을지도 모른다. 약속의 무게를 아는 사람만이 약속 앞에서 머뭇거린다. 그날 백성은 머뭇거리지 않았다." }
+    ]
+  },
+  "insight": "24장은 시내산 언약의 ‘계약식’임. 앞 장들에서 계약서 조항(십계명 + 21~23장 언약서)을 다 읽어 줬고, 여기서 도장 찍음.\n\n절차가 진짜 계약식 같음.\n1) 조항 낭독 → 백성 “다 지킬게요” (3절)\n2) 문서화: 모세가 다 기록함 (4절)\n3) 제단 + 12지파 기둥 = 양쪽 당사자 표시\n4) 피를 반은 제단(하나님 쪽), 반은 백성 쪽에 뿌림\n5) 다시 낭독 → 다시 “다 지킬게요” (7절)\n6) 같이 밥 먹음 (11절)\n\n피는 왜 뿌림? 고대 근동에서 언약은 목숨 거는 약속이었음. 피는 생명을 뜻하니까, ‘이거 어기면 목숨 걸린 문제’라는 느낌. 그리고 같은 피를 양쪽에 뿌린 건 둘이 하나로 묶였다는 표시로 보는 해석이 많음. 나중에 예수님이 최후의 만찬에서 ‘이것은 언약의 피’라고 하신 게(마 26:28) 바로 이 장면을 떠올리게 하는 말임.\n\n10절 ‘하나님을 보니’ 이거 어떻게 된 거냐? 33장에선 ‘나를 보고 살 자가 없다’고 하시는데? 여러 해석이 있음. 본문도 일부러 발아래만 묘사하고 그 위는 말 안 함. 그래서 하나님의 일부 모습이나 영광을 본 거라고 보는 사람도 있고, 하나님이 사람 모습으로 나타나신 장면으로 보는 사람도 있음. 확실한 건, 하나님이 ‘손을 대지 않으셨다’, 곧 해치지 않으셨다는 거. 그리고 그들이 먹고 마셨다는 거. 계약서 사인하고 같이 밥 먹는 거, 이거 관계가 시작됐다는 뜻임.\n\n근데 여기 쎄한 디테일 하나. 백성이 ‘다 지키겠다’를 두 번이나 외침. 세게 외친 약속일수록 시험이 빨리 옴. 그리고 모세는 40일 동안 산에 있게 됨. 산 아래에서 뭔 일이 터질지는… 다음 장들에서 보게 됨.\n\n그리고 나답·아비후. 하나님 앞에서 밥까지 먹은 이 두 사람 이름 기억해 둬. 레위기에서 다시 나옴.",
+  "tldr": "백성이 “다 지킬게요” 두 번 외치고, 피로 언약에 도장 찍고, 장로들은 하나님 앞에서 밥 먹음. 모세는 구름 속으로 40일 출장."
+}

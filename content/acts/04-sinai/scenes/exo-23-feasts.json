@@ -1,0 +1,63 @@
+{
+  "id": "exo-23-feasts",
+  "act": 4,
+  "grade": "B",
+  "title": "세 절기와 앞서 가는 사자",
+  "ref": "출 23",
+  "bg": "town",
+  "cast": ["judge"],
+  "extras": {
+    "judge": { "name": "재판장", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "white" },
+    "witness": { "name": "증인", "base": "man", "hair": "turban", "beard": "short", "tint": "purple" },
+    "accused": { "name": "가난한 사람", "base": "man", "hair": "shaggy", "beard": "short", "tint": "brown" },
+    "rival": { "name": "앙숙", "base": "man", "hair": "short", "beard": "long", "props": ["staff"], "tint": "red" },
+    "walker": { "name": "길 가던 사람", "base": "man", "hair": "hood", "beard": "short", "props": ["bundle"], "tint": "green" },
+    "gleaner": { "name": "이삭 줍는 여인", "base": "woman", "hair": "veil", "props": ["basket"], "tint": "brown" },
+    "reaper": { "name": "농부", "base": "man", "hair": "short", "beard": "short", "props": ["sheaf"], "tint": "gold" }
+  },
+  "beats": [
+    { "type": "narration", "act": "crowd", "enter": ["witness", "accused"], "text": "성문 앞에 재판이 열렸다. 성문 앞은 그 시대의 법정이었다. 증인들이 서 있었고, 구경꾼은 더 많았다." },
+    { "type": "line", "who": "witness", "act": "approach", "to": "judge", "text": "“저 사람이 훔치는 걸 다들 봤습니다. 그렇지요, 여러분?”" },
+    { "type": "narration", "act": "crowd-murmur", "text": "사람들이 고개를 끄덕였다. 실제로 본 사람은 하나도 없었다. 다만 다들 끄덕였다. 끄덕이는 데에는 증거가 필요 없다." },
+    { "type": "narration", "act": "step-back", "who": "accused", "pose": { "accused": "tremble" }, "text": "율법은 이 장면을 알고 있었다. 헛소문을 퍼뜨리지 말라. 다수를 따라 악을 행하지 말라. 송사에서 다수를 따라 굽게 증언하지 말라." },
+    { "type": "line", "who": "judge", "act": "face", "to": "witness", "text": "“여럿이 끄덕였다고 사실이 되진 않네. 자네 눈으로 본 것만 말하게.”" },
+    { "type": "narration", "act": "bow-head", "who": "witness", "text": "그리고 이상한 조항이 하나 더 있었다. 가난한 자의 송사라고 편들지도 말라. 저울은 부자 편으로 기울어도 안 되지만, 불쌍한 쪽으로 기울어도 안 되었다. 뇌물도 받지 말라. 뇌물은 밝은 눈을 어둡게 한다. 받는 사람은 대개, 자기 눈은 멀쩡하다고 믿는다." },
+    { "type": "narration", "bg": "road", "fx": ["fade", "dust"], "exit": ["judge", "witness", "accused"], "enter": ["rival"], "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "rival" }], "text": "다음은 길 위였다. 두 사람이 있었다. 둘은 사이가 나빴다. 이유는 둘 다 잊었다. 사이가 나쁘다는 것만 기억했다." },
+    { "type": "narration", "act": "kneel", "who": "rival", "pose": { "rival": "slump" }, "text": "그중 하나의 나귀가 짐을 진 채 길에 주저앉았다. 나귀는 일어나지 않았다. 짐이 너무 무거웠다. 주인은 혼자였다." },
+    { "type": "narration", "enter": ["walker"], "act": "walk-in", "who": "walker", "text": "다른 하나가 그 길을 지나가고 있었다." },
+    {
+      "type": "choice",
+      "prompt": "네가 지나가던 사람이라면?",
+      "options": [
+        { "label": "다가가서 같이 짐을 부린다", "canon": true },
+        { "label": "못 본 척 지나간다. 쟤 나 싫어하잖아", "goto": "b-pass" }
+      ]
+    },
+    { "type": "line", "who": "walker", "act": "approach", "to": "rival", "text": "“그쪽을 잡게. 셋 하면 내리지.”" },
+    { "type": "line", "who": "rival", "act": "stand", "text": "“…자네가 왜.”" },
+    { "type": "line", "who": "walker", "act": "face", "to": "rival", "text": "“자네 때문이 아니야. 나귀가 무슨 죄인가.”" },
+    { "type": "scripture", "ref": "출 23:4-5", "gloss": "원수의 소나 나귀가 길 잃으면 돌려줘. 날 싫어하는 놈 나귀가 짐 때문에 쓰러졌어도 그냥 지나가지 말고 같이 내려 줘." },
+    { "type": "narration", "act": "face", "who": ["walker", "rival"], "text": "짐은 내려졌다. 둘은 고맙다는 말을 하지 않았다. 그러나 다음에 길에서 마주쳤을 때, 둘 다 먼저 고개를 돌리지는 않았다. 화해는 대개 그렇게 시작한다. 짐 하나를 같이 드는 데서." },
+    { "type": "narration", "bg": "pasture-dawn", "fx": "fade", "exit": ["walker", "rival"], "enter": ["gleaner"], "act": "walk-in", "who": "gleaner", "text": "일곱째 해의 밭이었다. 여섯 해 동안 갈고 거둔 밭을, 일곱째 해에는 갈지 않고 묵혔다. 저절로 자란 것은 가난한 자가 먹었다. 그러고도 남은 것은 들짐승이 먹었다." },
+    { "type": "narration", "act": "kneel", "who": "gleaner", "text": "이레마다 하루도 쉬었다. 그날은 소와 나귀가 쉬었고, 여종의 아들과 나그네가 숨을 돌렸다. 쉼은 주인만의 것이 아니었다. 주인이 쉬지 않으면, 그 아래 있는 누구도 쉬지 못했다." },
+    { "type": "scripture", "ref": "출 23:9", "gloss": "나그네 압제하지 마. 너희가 그 마음 알잖아. 이집트에서 직접 겪어 봤으니까." },
+    { "type": "narration", "bg": "field-dusk", "fx": "fade", "enter": ["reaper"], "acts": [{ "act": "stand", "who": "gleaner" }, { "act": "walk-in", "who": "reaper" }, { "act": "crowd" }], "text": "그리고 일 년에 세 번, 잔치가 있었다. 봄에는 무교병의 절기. 아빕월, 이집트에서 나온 그 달에 이레 동안 누룩 없는 떡을 먹었다." },
+    { "type": "narration", "act": "look-up", "who": "reaper", "text": "초여름에는 맥추절. 밭에 뿌린 것의 첫 열매를 거둘 때. 가을에는 수장절. 한 해의 수고를 들에서 거두어 곳간에 들일 때." },
+    { "type": "narration", "act": "crowd-cheer", "text": "모든 남자가 해마다 세 번, 주 여호와께 보이러 갔다. 빈손으로는 가지 않았다. 달력은 일과 휴가로 나뉘는 것이 아니었다. 기억과 감사로 나뉘었다." },
+    { "type": "narration", "bg": "mountain", "fx": ["fade", "glory"], "exit": ["gleaner", "reaper"], "enter": ["moses"], "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "moses" }], "text": "법이 끝나 갈 무렵, 말씀은 앞을 내다보았다. 이 백성이 갈 길을." },
+    { "type": "scripture", "ref": "출 23:20", "gloss": "내가 천사를 너보다 먼저 보내서 길에서 지켜 주고, 내가 준비해 둔 곳까지 데려다줄게." },
+    { "type": "narration", "act": "travel", "from": "sinai", "to": "canaan", "text": "홍해에서 블레셋 바다까지. 광야에서 큰 강까지. 길은 아직 지도 위에만 있었다." },
+    { "type": "narration", "act": "bow-head", "who": "moses", "text": "그 땅의 사람들은 단번에 쫓겨나지 않을 것이었다. 땅이 한꺼번에 비면 들짐승이 번성한다. 그래서 조금씩. 백성이 번성해서 그 땅을 채울 수 있을 만큼씩." },
+    { "type": "scripture", "ref": "출 23:29-30", "gloss": "한 방에 다 쫓아내면 땅이 텅 비어서 들짐승 소굴 됨. 그래서 너희가 감당할 수 있는 속도로 조금씩 줄게. 속도 조절까지 해 주심." },
+    { "type": "narration", "act": "look-up", "who": "moses", "fx": "flash", "text": "약속에는 경고도 붙어 있었다. 그들의 신을 섬기지 말라. 그들과 언약하지 말라. 그것이 올무가 되리라. 사람은 대개, 올무 속으로 걸어 들어가면서 그게 길인 줄 안다." }
+  ],
+  "branches": {
+    "b-pass": [
+      { "type": "narration", "act": "walk-out", "who": "walker", "text": "만약 지나쳤다면. 아무도 그를 탓하지 않았을 것이다. 상대는 원수였으니까. 나귀는 해가 질 때까지 길에 누워 있었을 것이고, 원수는 원수로 남았을 것이다." },
+      { "type": "narration", "act": "walk-in", "who": "walker", "text": "그러나 율법은 원수의 나귀를 콕 집어 말했다. 사랑하기 쉬운 사람을 사랑하라는 법은 굳이 돌판에 새길 필요가 없었다." }
+    ]
+  },
+  "insight": "23장은 법 파트의 마무리 + 달력 + 미래 예고편임.\n\n먼저 재판 규칙(1~8절). ‘다수를 따라 악을 행하지 말라.’ 이거 단톡방 여론몰이, 커뮤 마녀사냥이랑 똑같음. 다들 끄덕인다고 사실 되는 거 아님. 그리고 재밌는 게 3절. ‘가난한 사람이라고 편들지 마라.’ 약자 보호하라고 그렇게 강조하더니 왜? 재판에서는 부자 편도, 불쌍한 편도 들면 안 된다는 거. 판결은 동정 말고 사실로. 6절에선 반대로 가난한 사람 재판 굽게 하지 말라고 하니까, 결국 저울을 어느 쪽으로도 안 기울이는 게 포인트.\n\n원수의 나귀(4~5절)는 진짜 레전드 조항임. ‘원수를 사랑하라’는 말이 신약에서 갑자기 튀어나온 게 아니라, 여기서 이미 나귀 짐 내려 주는 수준으로 구체적으로 나옴. 나 싫어하는 놈이랑 친해지라는 건 아님. 근데 걔 나귀가 쓰러져 있으면 같이 들어 주라는 거. 실천 가능한 최소 단위의 사랑.\n\n안식년(10~11절)이랑 안식일(12절)은 ‘쉼’의 법인데, 누구 쉬라고? 소, 나귀, 여종의 아들, 나그네. 제일 못 쉬는 애들 먼저. 휴가가 사장님 전용이 아니라 알바생 거라는 거.\n\n세 절기 정리하면\n- 무교절: 봄. 이집트 탈출 기념. 누룩 없는 빵 7일.\n- 맥추절: 초여름. 첫 수확 감사. (나중에 칠칠절, 신약의 오순절이 이 절기임)\n- 수장절: 가을. 추수 마무리. (초막절이라고도 부름)\n농사 달력에 구원 이야기를 박아 넣은 구조임. 일하다가도 일 년에 세 번은 ‘우리가 누구 덕에 여기 있지?’를 리마인드하는 거.\n\n19절 ‘염소 새끼를 그 어미의 젖으로 삶지 말라’는 왜 그런지 여러 해석이 있음. 가나안 제사 풍습을 따라 하지 말라는 거라는 설도 있고, 생명을 주는 젖으로 새끼를 삶는 게 잔인해서라는 설도 있는데, 확실한 결론은 없음. 유대 전통에서는 이 구절을 근거로 고기랑 유제품을 같이 안 먹는 규칙이 생김.\n\n마지막 앞서 가는 ‘사자’(20~23절)는 하나님이 보내신 천사인데, ‘내 이름이 그에게 있다’는 말 때문에 그냥 천사가 아니라 하나님 자신의 임재를 가리킨다고 보는 해석도 있음. 그리고 ‘왕벌’(28절)도 진짜 벌 떼로 보는 사람, 공포·혼란을 비유한 걸로 보는 사람으로 갈림.\n\n근데 이게 왜 중요하냐면, 29~30절 ‘조금씩’이 개 현실적임. 하나님이 레벨 1한테 보스방 바로 안 열어 주심. 감당할 수 있는 속도로 땅을 주심. 내 인생 진도가 느린 것 같을 때 이 구절 생각나면 좋음.",
+  "tldr": "재판은 다수 말고 사실로, 원수 나귀도 도와주고, 쉼은 약자 먼저, 1년에 3번 잔치로 감사 리마인드. 그리고 땅은 감당할 만큼 조금씩.",
+  "bridge": "모세는 이 모든 말을 가지고 산에서 내려갔다. 이제 백성이 대답할 차례였다."
+}
