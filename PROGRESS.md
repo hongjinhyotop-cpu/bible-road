@@ -7,11 +7,11 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **방향 전환 완료 (아홉 번째 채팅): 애니메이션 최대·속도 최대.** 읽기 구간·막별 게임 방식 없앰 → 모든 장 = 캐릭터 에피소드(A급/B급). 연출 라이브러리 완성. 1막 13개(A 10·B 3), 2막 B급 15개 |
-| 다음 세션 할 일 | **2막 채우기:** ① B급 창 31–50 남은 장 10~20개를 도우미로 한 번에 ② A급 `gen-12-call`부터 (아래 "다음 할 일") |
+| 현재 단계 | **열 번째 채팅(밤샘) 끝:** 퀴즈 삭제, 품질 기준. **1막·2막·3막 완성** (창 1–50, 출 1–18 전부), **4막은 출 19–40 완성**(레위기 27장 남음). 에피소드 91개 |
+| 다음 세션 할 일 | **4막 레위기**(B급 27장 + A급 레 10·16) → 4막 피날레. 그다음 5막 광야(민수기·신명기). 아래 "다음 할 일" |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
-| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) |
+| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) |
 
 ---
 
@@ -302,18 +302,41 @@
 
 ---
 
-## 열 번째 채팅 (2026-10-27 밤 → 28 아침): 퀴즈 삭제 · 품질 기준 · 2막 채우기 · 3막 시작 (사용자 자는 동안)
+## 열 번째 채팅 (2026-10-27 밤 → 28 아침, 사용자 자는 동안): 퀴즈 삭제 · 품질 기준 · 2막·3막 완성 · 4막 출애굽기 부분
 
 > 사용자 요청: 1) 퀴즈 삭제 2) 품질 기준 3) 1막 확인 4) 2막 B급 5) 2막 A급 → 이어서 6) 3막 출애굽 7) 4막 시내산. 단계마다 PR 머지.
 
-### 진행 상황 (단계마다 갱신)
-- [x] 1단계 퀴즈 삭제 — PR #13
-- [x] 2단계 품질 기준 CLAUDE.md 6-1 + 검사기 — PR #14
-- [x] 3단계 1막 확인 — 바벨탑·피날레·도감 이미 완성, 1막 13개 검사기 통과 (할 것 없음)
-- [x] 4단계 2막 B급 15개 — PR #15
-- [x] 5단계 2막 A급 (추천 순서 전부) — gen-12-call(#18), gen-22-moriah(#22), gen-25-stew·gen-27-blessing·gen-28-ladder(#23), gen-32-wrestle·gen-33-esau(#24), gen-37-coat(#25), gen-44-45-joseph(#26). 추가로 진행 중: gen-15-stars·gen-18-visitors. 남음: gen-19-sodom, gen-39-potiphar, gen-41-pharaoh, gen-50-good + 2막 피날레
-- [ ] 6단계 3막 출애굽 — B급 8개(#16), A급 exo-2-basket(#22), exo-3-bush(#23), exo-7-plagues(#24), exo-12-passover(#25), exo-14-sea(#26). 진행 중: exo-16-manna. 남음: 3막 피날레 문장(act.json finale)
-- [ ] 7단계 4막 시내산 — B급 17개(#19, #21), 성막 기구 연출 라이브러리(#20), A급 exo-19-20-sinai(#26). 진행 중: exo-32-calf. 레위기(27장)는 아직
+### 결과 — 요청한 7단계 전부 끝
+- [x] 1단계 **퀴즈 삭제** — [#13](https://github.com/hongjinhyotop-cpu/bible-road/pull/13)
+- [x] 2단계 **품질 기준** CLAUDE.md 6-1 + 검사기 — [#14](https://github.com/hongjinhyotop-cpu/bible-road/pull/14)
+- [x] 3단계 **1막 확인** — 바벨탑·피날레·도감 이미 완성, 1막 13개 검사기 통과
+- [x] 4단계 **2막 B급 15개** (창 31–50) — [#15](https://github.com/hongjinhyotop-cpu/bible-road/pull/15)
+- [x] 5단계 **2막 A급 15개 전부** (PLAN.md 표 전체) + **2막 피날레** — #18 #22 #23 #24 #25 #26 #27 #28
+  - gen-12-call 떠나라 · gen-15-stars 별을 세어 보라 · gen-18-visitors 마므레의 세 손님 · gen-19-sodom 뒤돌아보지 말라 · gen-22-moriah 모리아 산으로 · gen-25-stew 붉은 죽 · gen-27-blessing 목소리는 야곱의 목소리요 · gen-28-ladder 벧엘의 사다리 · gen-32-wrestle 얍복 나루 · gen-33-esau 형의 얼굴 · gen-37-coat 채색옷과 구덩이 · gen-39-potiphar 보디발의 집 · gen-41-pharaoh 바로의 꿈 · gen-44-45-joseph 나는 요셉이라 · gen-50-good 선으로 바꾸사
+- [x] 6단계 **3막 출애굽 전부** (PLAN.md, B급 8 + A급 6, 피날레) — #16 #22 #23 #24 #25 #26 #27
+  - A급: exo-2-basket 갈대 상자 · exo-3-bush 타지 않는 떨기나무 · exo-7-plagues 아홉 가지 재앙 · exo-12-passover 어린 양의 피 · exo-14-sea 바다가 갈라지다 · exo-16-manna 이것이 무엇이냐
+- [x] 7단계 **4막 출 19–40 전부** (PLAN.md, B급 17 + A급 2) — #19 #20 #21 #26 #27
+  - A급: exo-19-20-sinai 산이 연기에 싸이다 · exo-32-calf 금송아지. 성막 장(출 25–31, 35–40)은 성막 기구 연출로
+  - 레위기(4막 나머지 27장)는 요청 범위 밖이라 안 함 → 다음 할 일
+
+### ☀️ 아침에 확인할 것 (사용자)
+1. 사이트 열기: https://hongjinhyotop-cpu.github.io/bible-road/ (배포 자동. 안 바뀌어 보이면 새로고침 한 번)
+2. **퀴즈가 없어졌는지**: 아무 에피소드 끝까지 → 해설 → 한 줄 요약 → 다음 버튼
+3. **꼭 봐 줬으면 하는 장면** (주소창에 붙여 넣기):
+   - `#/scene/exo-14-sea` 홍해가 갈라짐 · `#/scene/gen-28-ladder` 빛의 사다리 · `#/scene/exo-3-bush` 타지 않는 떨기나무
+   - `#/scene/gen-18-visitors` 휘장 뒤 사라의 그림자 · `#/scene/gen-44-45-joseph` 나는 요셉이라 · `#/scene/exo-19-20-sinai` 시내산
+   - `#/items` 성막 기구 12가지 미리 보기 (숨은 화면)
+4. **새로 그린 인물이 마음에 드는지**: 아브라함·사라·이삭·야곱·에서·요셉·롯·모세·아론·바로 (`#/people` 도감)
+5. **무거운 장면 수위**: 소돔(창 19), 디나(창 34), 유다와 다말(창 38), 유월절 밤(출 12), 금송아지 뒤 레위인(출 32) — 절제했는데 괜찮은지
+6. 말투가 이상하거나 사실이 틀린 곳이 보이면 알려주기 (오늘 밤 A급 23개·B급 40개를 도우미들이 썼음)
+
+### 애매해서 내가 정한 것 (바꾸고 싶으면 말해 줘)
+- 바로: 요셉 시대 바로와 모세 시대 바로를 같은 그림(`pharaoh`) 하나로 씀 (실제로는 다른 사람)
+- 요셉·유다·르우벤·베냐민·모세·아론·미리암·바로를 B급용 인물 파일로 만듦 (CLAUDE.md "B급 새 인물 금지"보다 앞서, 여러 에피소드에 계속 나와서). 요셉·모세·아론·바로는 A급에서 다시 그림, 유다·르우벤·베냐민·미리암은 아직 키트 그림
+- 인물 카드(도감)는 첫 등장 A급 장면으로 옮김: 아브라함·사래(창 12), 에서·야곱(창 25), 요셉(창 37), 모세(출 2)
+- 1막 A급 10개는 본문 카드가 5~16장이라 새 기준(2~4)보다 많지만, 기준 전에 완성한 거라 그대로 둠 (검사기 예외)
+- 레위기는 요청 범위(출 19–40) 밖이라 안 만듦
+- 출 11장은 유월절(A급 exo-12-passover, 출 11:1–12:42)에 합침
 
 ### 엔진·라이브러리에 새로 생긴 것 (오늘 밤)
 - **퀴즈 삭제**, 끝 구성 = 해설 → 한 줄 요약 → 다음 버튼
@@ -330,14 +353,17 @@
 
 ## 다음 할 일
 
-### 1. 2막 채우기 ← 다음 세션
-- **B급 창 31–50** (PLAN.md "나중에 만들 것" 목록) — 도우미 여러 명으로 한 세션에. 도우미 지시문은 이번 세션 방식 그대로: CLAUDE.md 6·7·7-1 + 표본 `gen-24-rebekah.json` + 개역한글 직접 읽기 + 검사기 통과.
-- **A급** `gen-12-call` 「떠나라」부터 (PLAN.md 표 15개). 키트 인물(아브라함 등)을 A급에서 공들여 다시 그림 (그림 수정 2번까지).
-- A급을 만들 때 그 앞 B급에 bridge 넣기 (PLAN.md 메모).
+### 1. 4막 마무리 ← 다음 세션
+- **레위기 27장**: B급(제사 규례는 성막 기구 연출 `item`과 아론 `priest` 옷으로) + A급 후보 레 10(나답·아비후의 다른 불), 레 16(속죄일·아사셀 염소). 그다음 4막 피날레 문장(`04-sinai/act.json finale`)
+- 그다음 5막 광야(민수기·신명기): 막마다 ① PLAN.md ② B급 도우미 ③ A급 ④ 피날레
 
-### 2. 라이브러리 다듬기 (필요할 때)
-- 엎드림·잠듦·쓰러짐은 긴 옷이 상체에 붙어 있어서 크게 못 숙임 → 지금은 "깊이 숙인 절" 정도. 제대로 하려면 옷을 허리 위/아래로 나눠야 함.
-- 여정 지도는 근동 지도 하나뿐. 사도행전(로마까지)은 지도 범위를 넓혀야 함.
+### 2. 다듬기 (오늘 밤 나온 것)
+- B급 창 42–50에서 요셉이 총리 옷(`vizier`)을 안 입음 → B급 파일 맨 위 `"outfit": {"joseph": "vizier"}` + 걸어 들어오는 beat에도 outfit 필요
+- 키트 인물 아직 임시 그림: 유다·르우벤·베냐민·미리암·롯의 딸들 등
+- 재앙 효과(우박 등)는 10초간 남아서 빨리 탭하면 다음 장면까지 이어짐 → 배경이 바뀌면 끄기
+- 엔진 동작 `sleep`(앞으로 기울어 서 있음), `kneel`(여자 키트는 티가 잘 안 남), `prostrate`(뻣뻣함)이 어색함 → 옷을 허리 위/아래로 나눠야 제대로 됨
+- 무대에 5~6명이면 폰에서 인물이 작음 (창 33, 창 19 동틀 녘)
+- 출애굽 여정 지도가 짧은 거리라 크게 확대돼 흐릿함 (엔진 최소 확대 범위 130)
 
 ## 알려진 문제 / 다듬을 것
 
