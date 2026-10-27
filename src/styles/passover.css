@@ -1,0 +1,86 @@
+/* ── 유월절 밤 (출 11–12, fx/passover.ts) ──
+   흙벽돌 집, 등잔 불빛, 문 인방과 좌우 설주의 피. 피는 선정적이지 않게: 짙은 검붉은 색, 불빛을 받아 아주 희미하게만 빛난다.
+   밤의 죽음은 그리지 않는다. 멀리 성읍의 등불이 하나씩 꺼질 뿐. */
+
+/* 집 */
+.px-house .px-course { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.22; }
+.px-house--main { --bd: color-mix(in srgb, var(--act-b) 30%, #120a08); }
+.px-window { fill: #f2b766; opacity: 0.55; filter: drop-shadow(0 0 2px #f0a050); }
+.px-smalldoor { fill: color-mix(in srgb, #f0b060 55%, #3a2214); opacity: 0.6; }
+.px-floor { fill: color-mix(in srgb, var(--act-a) 55%, #050304); }
+.px-floorline { stroke: color-mix(in srgb, var(--act-accent) 30%, #000); stroke-width: 0.6; opacity: 0.5; }
+
+/* 문 안: 등잔 불빛이 비친 방 */
+.px-roomwall { fill: #2a140a; opacity: 0.55; }
+.px-niche { fill: #6d3e1e; opacity: 0.55; }
+.px-lamp { fill: url(#bd-flame-g); animation: bd-flicker 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.px-doorlight { fill: #f4b870; opacity: 0.13; filter: blur(3px); }
+.px-family { color: #2a160c; fill: #2a160c; }
+.px-fig .px-belt { stroke: #8a5a30; stroke-width: 1.3; opacity: 0.85; }
+.px-table { fill: #3a1e0e; }
+/* 선 채로 급히 먹는 손: 떡을 입으로 올렸다 내렸다 */
+.px-eat { animation: px-eat 3.6s ease-in-out infinite; }
+@keyframes px-eat { 0%, 55%, 100% { transform: rotate(0deg); } 20%, 35% { transform: rotate(-18deg); } }
+
+/* 문틀: 나무 인방·설주 */
+.px-frame { fill: color-mix(in srgb, #5a3a22 55%, var(--act-a)); }
+.px-grain { fill: none; stroke: #000; stroke-width: 0.4; opacity: 0.3; }
+
+/* 피: 우슬초 묶음으로 그은 자국. 짙은 검붉음 + 아주 옅은 붉은 번짐 */
+.px-blood {
+  fill: none; stroke: #5c0a0d; stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round;
+  filter: drop-shadow(0 0 0.8px rgba(170, 30, 26, 0.5));
+}
+.px-blood--thin { stroke-width: 1; stroke: #7a1414; opacity: 0.8; }
+.px-drip { stroke-width: 0.9; }
+.px-blood--small { stroke-width: 1.6; filter: none; opacity: 0.75; }
+.px-drops { fill: #5c0a0d; }
+.px-bowlblood { fill: #5a0c0e; }
+/* goshen-blood: 인방 → 왼쪽 설주 → 오른쪽 설주 순서로 그어진다 */
+.px-bloodset.is-draw .px-blood { stroke-dasharray: 1; stroke-dashoffset: 1; animation: px-draw 1.5s cubic-bezier(0.5, 0, 0.3, 1) forwards; animation-delay: calc(1.6s + var(--i) * 1.3s); }
+.px-bloodset.is-draw .px-drops { opacity: 0; animation: px-show 0.8s ease-out forwards; animation-delay: calc(1.6s + var(--i) * 1.3s); }
+@keyframes px-draw { to { stroke-dashoffset: 0; } }
+@keyframes px-show { to { opacity: 1; } }
+/* 밤: 피 자국이 등잔 불빛을 받아 희미하게 숨 쉬듯 빛난다 */
+[data-art='passover-night'] .px-bloodset .px-blood { animation: px-blood-glow 5s ease-in-out infinite; }
+@keyframes px-blood-glow { 0%, 100% { filter: drop-shadow(0 0 0.6px rgba(170, 30, 26, 0.35)); } 50% { filter: drop-shadow(0 0 1.8px rgba(210, 50, 36, 0.55)); } }
+
+/* 밤하늘 */
+.px-moon { fill: #f4ead0; filter: drop-shadow(0 0 4px #f4ead0); }
+.px-moonglow { fill: url(#bd-halo-g); opacity: 0.9; }
+
+/* 먼 애굽 성읍: 등불이 하나씩 꺼진다 (가운데 왕궁 → 성읍 → 변두리 옥) */
+.px-city { opacity: 1; }
+.px-bars { fill: none; stroke: #000; stroke-width: 0.8; opacity: 0.6; }
+.px-elamp__dot { fill: #ffd28c; }
+.px-elamp__glow { fill: url(#bd-flame-g); }
+.px-elamp { animation: px-lamp-out 1.8s ease-in forwards; animation-delay: var(--d); }
+@keyframes px-lamp-out {
+  0% { opacity: 1; }
+  30% { opacity: 0.45; }
+  42% { opacity: 0.85; }
+  100% { opacity: 0; }
+}
+
+/* fx "passover": 어두운 바람이 쓸고 지나간다. 피 바른 문 자리만 비켜 간다 */
+.fx-passover { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; }
+.fx-passover.has-door {
+  -webkit-mask-image: radial-gradient(var(--mw) var(--mh) at var(--mx) var(--my), transparent 55%, #000 100%);
+  mask-image: radial-gradient(var(--mw) var(--mh) at var(--mx) var(--my), transparent 55%, #000 100%);
+}
+.fx-passover__sweep {
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(2, 2, 6, 0.55) 22%, rgba(1, 1, 4, 0.92) 46%, rgba(1, 1, 4, 0.92) 58%, rgba(2, 2, 6, 0.5) 80%, transparent 100%);
+}
+.fx-passover__streaks i {
+  position: absolute; left: 0; top: var(--y); width: var(--w); height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(190, 200, 230, 0.32), transparent);
+  transform: translateX(-60cqw); animation: px-streak 2.4s linear 2 both; animation-delay: calc(1.4s + var(--d));
+}
+@keyframes px-streak { to { transform: translateX(130cqw); } }
+/* 지나가는 동안 문 안의 불빛은 오히려 또렷해진다 */
+.scene.is-passing :is(.px-room, .px-lamp, .px-doorlight) { filter: brightness(1.18); }
+.px-room, .px-lamp, .px-doorlight { transition: filter 1.2s; }
+
+:root[data-reduced-motion='true'] :is(.px-lamp, .px-eat, .px-bloodset .px-blood, .px-bloodset .px-drops) { animation: none; stroke-dashoffset: 0; opacity: 1; }
+:root[data-reduced-motion='true'] .px-elamp { animation-duration: 0.6s; animation-delay: calc(var(--d) * 0.2); }

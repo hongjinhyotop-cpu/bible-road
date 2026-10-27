@@ -9,6 +9,8 @@ import { bushArt } from './bush';
 import { stewTentArt } from './stew';
 import { ladderArt } from './ladder';
 import { jabbokArt, seirArt } from './jabbok';
+import { dothanArt } from './dothan';
+import { egyptLampsArt, goshenArt } from './passover';
 
 export const W = 400;
 export const H = 260;
@@ -438,6 +440,17 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'seir-road': () => seirArt(false),
   'seir-host': () => seirArt('far'),
   'seir-near': () => seirArt('near'),
+  // 요셉의 꿈과 도단의 구덩이 (창 37, fx/dothan.ts)
+  sheaves: () => dothanArt('sheaves'),
+  'eleven-stars': () => dothanArt('eleven-stars'),
+  dothan: () => dothanArt('dothan'),
+  'dothan-caravan': () => dothanArt('dothan-caravan'),
+  cistern: () => dothanArt('cistern'),
+  // 유월절 밤 (출 11–12, fx/passover.ts)
+  'goshen-house': () => goshenArt('house'),
+  'goshen-blood': () => goshenArt('blood'),
+  'passover-night': () => goshenArt('night'),
+  'egypt-lamps': egyptLampsArt,
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>

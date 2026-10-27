@@ -23,6 +23,7 @@ import { backdropSvg, bowSvg, fitBackdrops } from '../fx/backdrop';
 import { createArk, flyBird, setArkState } from '../fx/ark';
 import { Rain } from '../fx/rain';
 import { playPlague } from '../fx/plagues';
+import { playPassover } from '../fx/passover';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -420,6 +421,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'locusts':
         // 애굽의 재앙 (fx/plagues.ts): 무대 위에 잠깐 깔렸다 사라지는 층
         playPlague($('.scene'), fx, rm);
+        return;
+      case 'passover':
+        // 유월절 밤 (fx/passover.ts): 어두운 바람이 쓸고 지나가고, 피 바른 문만 불빛이 남는다
+        playPassover($('.scene'), rm);
         return;
       case 'glory':
       case 'fire':

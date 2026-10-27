@@ -9,6 +9,7 @@
 //  - "bowl"     : 지팡이 대신 김이 오르는 붉은 죽 그릇을 든다 (창 25:29-34)
 //  - "disguise" : 형의 좋은 옷(붉은 겉옷)을 입고, 염소 새끼 가죽으로 손과 목을 덮었다. 손에는 별미 그릇 (창 27:15-17)
 //  - "limp"     : 얍복 나루 뒤 (창 32:31). 지팡이를 앞으로 짚고 기대어 선다. 걸음은 절뚝인다 (A급 gen-32-wrestle)
+//  - "coat"     : 피 묻은 채색옷을 팔에 걸쳐 든다 (창 37:32-33 "내 아들의 옷이라"). 선정적이지 않게, 짙은 얼룩 하나만 (A급 gen-37-coat)
 import type { CharacterDef } from './index';
 import { BACK_ARM, FACE_MAN, LEGS_SLIM, TORSO_SLIM, ARM_BENT } from './_parts.ts';
 
@@ -66,10 +67,26 @@ const LEGS_LIMP = LEGS_SLIM.replace(
 const ARM_LEAN = `
   <path d="M92 106 C90 98 98 93 105 94 C112 95 117 101 119 110 C125 130 136 158 146 182 C150 188 151 196 148 200 C144 204 138 203 136 197 C126 174 108 144 98 124 Z"/>`;
 
+/**
+ * 요셉의 채색옷을 앞팔에 걸쳐 든다 (창 37:33). 옷은 반으로 접혀 팔 양쪽으로 늘어지고,
+ * 띠 색은 요셉의 옷과 같은 jc-1 ~ jc-4 (styles/joseph.css). 아랫자락에 마른 피의 짙은 얼룩.
+ */
+const HELD_COAT_OUTLINE = 'M110 150 C118 141 146 139 162 146 C166 182 168 232 164 288 L156 284 L150 293 L142 286 L134 294 L126 287 L119 292 C115 246 112 196 110 150 Z';
+const ARM_COAT = `
+  <defs><clipPath id="jacob-held-coat"><path d="${HELD_COAT_OUTLINE}"/></clipPath></defs>
+  <path d="${HELD_COAT_OUTLINE}"/>
+  <g clip-path="url(#jacob-held-coat)">
+    ${Array.from({ length: 13 }, (_, i) => `<path class="jc-${(i % 4) + 1}" d="M100 ${152 + i * 12} Q137 ${156 + i * 12} 172 ${150 + i * 12} L172 ${161 + i * 12} Q137 ${167 + i * 12} 100 ${163 + i * 12} Z"/>`).join('')}
+    <path class="stain" d="M126 236 C130 228 138 230 141 224 C145 218 152 222 152 230 C153 238 160 242 158 252 C156 262 148 262 146 270 C143 278 134 276 132 268 C130 260 122 258 122 250 C122 244 124 240 126 236 Z"/>
+    <path class="stain" d="M150 204 C152 201 156 202 156 206 C156 209 153 210 151 209 Z M136 282 C138 280 141 281 140 284 C139 286 136 286 136 282 Z"/>
+  </g>
+  <path class="detail" d="M124 160 Q122 220 126 284 M148 158 Q154 220 152 286" fill="none" stroke-width="0.7"/>
+  ${ARM_BENT}`;
+
 const jacob: CharacterDef = {
   id: 'jacob',
   name: '야곱',
-  traits: '옆모습, 가늘고 곧은 몸, 뒤로 단정히 묶어 늘어뜨린 머리, 짧게 다듬은 수염, 발목까지 오는 줄무늬 긴 옷과 겉옷, 앞손에 쥔 지팡이. 옷 bowl = 붉은 죽 그릇, disguise = 형의 붉은 옷 + 손·목의 염소 가죽, limp = 지팡이에 기대 절뚝임',
+  traits: '옆모습, 가늘고 곧은 몸, 뒤로 단정히 묶어 늘어뜨린 머리, 짧게 다듬은 수염, 발목까지 오는 줄무늬 긴 옷과 겉옷, 앞손에 쥔 지팡이. 옷 bowl = 붉은 죽 그릇, disguise = 형의 붉은 옷 + 손·목의 염소 가죽, limp = 지팡이에 기대 절뚝임, coat = 피 묻은 요셉의 채색옷을 팔에 걸쳐 듦',
   faces: 'right',
   height: 0.98,
   tint: '#4d6a6a',
@@ -88,6 +105,7 @@ const jacob: CharacterDef = {
       plain: { markup: MANTLE, parts: { legs: STAFF + LEGS, armR: ARM_BENT, armL: BACK_ARM } },
       limp: { markup: MANTLE, parts: { legs: STAFF_LEAN + LEGS_LIMP, armR: ARM_LEAN, armL: BACK_ARM } },
       bowl: { markup: MANTLE, parts: { legs: LEGS, armR: ARM_BOWL, armL: BACK_ARM } },
+      coat: { markup: MANTLE, parts: { legs: LEGS, armR: ARM_COAT, armL: BACK_ARM } },
       disguise: { markup: ESAU_ROBE + GOAT_NECK, parts: { legs: LEGS, armR: ARM_BOWL + GOAT_HAND, armL: BACK_ARM + GOAT_HAND_BACK } },
     },
     markup: `

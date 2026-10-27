@@ -1,0 +1,89 @@
+/* ── 채색옷과 구덩이 (창 37, A급 gen-37-coat) ──
+   인물: 요셉의 채색옷 띠(.jc-1 ~ .jc-4, 야곱이 든 피 묻은 옷도 같은 색), 마른 피 얼룩(.stain), 이집트 세마포(.linen)
+   배경(fx/dothan.ts): 꿈의 곡식 단·해와 달과 열한 별, 도단 들과 구덩이, 이스마엘 대상, 구덩이 안 */
+
+/* ── 인물 ── 띠 색은 막 테마색(--act-accent)이 살짝 섞여 막마다 톤이 바뀐다. 실루엣이라 잉크를 섞어 은은하게 */
+.actor .jc-1 { fill: color-mix(in srgb, color-mix(in srgb, #b23a2c 82%, var(--act-accent)) 58%, var(--sil-ink)); }
+.actor .jc-2 { fill: color-mix(in srgb, color-mix(in srgb, #3a5aa8 82%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .jc-3 { fill: color-mix(in srgb, color-mix(in srgb, #d8a03a 82%, var(--act-accent)) 60%, var(--sil-ink)); }
+.actor .jc-4 { fill: color-mix(in srgb, color-mix(in srgb, #4f8a52 82%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .jc-shade { fill: #000; opacity: 0.3; }
+.sil .jc-shade { fill: #000; opacity: 0.3; }
+.actor .stain { fill: color-mix(in srgb, #4a1810 55%, var(--sil-ink)); opacity: 0.85; }
+.actor .linen { fill: color-mix(in srgb, #ece4d0 52%, var(--sil-ink)); }
+.actor .linen-belt { fill: color-mix(in srgb, #f4eee0 40%, var(--sil-ink)); }
+/* 도감 카드의 실루엣도 같은 색 */
+.sil .jc-1 { fill: color-mix(in srgb, #b23a2c 58%, var(--sil-ink)); }
+.sil .jc-2 { fill: color-mix(in srgb, #3a5aa8 52%, var(--sil-ink)); }
+.sil .jc-3 { fill: color-mix(in srgb, #d8a03a 60%, var(--sil-ink)); }
+.sil .jc-4 { fill: color-mix(in srgb, #4f8a52 52%, var(--sil-ink)); }
+
+/* ── 꿈 (sheaves · eleven-stars) ── 꿈속이라 빛이 부드럽게 번진다 */
+.dt-dreamglow { fill: url(#bd-halo-g); opacity: 0.9; animation: dt-breathe 6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+.dt-dreamglow--night { opacity: 0.6; }
+@keyframes dt-breathe { from { transform: scale(0.94); } to { transform: scale(1.06); } }
+.dt-field { opacity: 0.75; }
+.dt-stubble { fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #a08048); stroke-width: 0.6; opacity: 0.35; }
+
+/* 곡식 단: 금빛이 도는 잉크. 가운데 단은 땅에서 일어서고, 둘레 단들은 차례로 그쪽으로 기울어 절한다 */
+.dt-sheaf { color: color-mix(in srgb, var(--act-accent) 46%, #3a2c18); fill: currentColor; transform-box: fill-box; transform-origin: 50% 100%; }
+.dt-sheaf .dt-straw { fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #f0d8a0); stroke-width: 0.5; opacity: 0.4; }
+.dt-sheaves .dt-sheaf { color: color-mix(in srgb, var(--act-accent) 28%, #2a2014); }
+.dt-sheaf .dt-band { fill: color-mix(in srgb, var(--act-accent) 70%, #f0d8a0); opacity: 0.6; }
+.dt-sheaf--rise { color: color-mix(in srgb, var(--act-accent) 70%, #6a4e20); filter: drop-shadow(0 0 3px color-mix(in srgb, var(--act-accent) 80%, transparent)); animation: dt-rise 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s both; }
+@keyframes dt-rise { from { transform: scaleY(0.25) rotate(-8deg); opacity: 0.4; } 60% { transform: scaleY(1.04) rotate(1deg); opacity: 1; } to { transform: scaleY(1) rotate(0); opacity: 1; } }
+.dt-sheaf--bow { animation: dt-bow 2.2s cubic-bezier(0.4, 0, 0.2, 1) both; animation-delay: var(--d); }
+@keyframes dt-bow { from { transform: rotate(0); } 70% { transform: rotate(calc(var(--bow) * 1.08)); } to { transform: rotate(var(--bow)); } }
+
+/* 해와 달과 열한 별: 하나씩 아래로 내려앉으며 고개를 숙인다 */
+.dt-dust circle { fill: #e6e0d0; opacity: 0.35; }
+.dt-sun { fill: #ffe0a0; filter: drop-shadow(0 0 6px rgba(255, 210, 140, 0.95)); }
+.dt-sun__glow { fill: #ffc070; opacity: 0.22; filter: blur(4px); }
+.dt-moon { fill: #eef0f6; filter: drop-shadow(0 0 4px rgba(220, 230, 255, 0.85)); }
+.dt-moon__glow { fill: #c8d4f0; opacity: 0.16; filter: blur(3px); }
+.dt-star { fill: #fff4d8; filter: drop-shadow(0 0 2px rgba(255, 240, 200, 0.95)); }
+.dt-star__glow { fill: #ffe6b0; opacity: 0.18; filter: blur(2px); }
+.dt-bowing { transform-box: fill-box; transform-origin: 50% 50%; animation: dt-dip 2.6s cubic-bezier(0.4, 0, 0.2, 1) both; animation-delay: var(--d); }
+@keyframes dt-dip { from { transform: translateY(0) scale(1); } 55% { transform: translateY(16px) scale(0.86); } to { transform: translateY(12px) scale(0.9); } }
+.dt-here { fill: var(--act-accent); filter: drop-shadow(0 0 4px var(--act-accent)); opacity: 0.85; }
+
+/* ── 도단 들 ── */
+.dt-road { fill: none; stroke: color-mix(in srgb, var(--act-accent) 35%, #8a7458); stroke-width: 1.6; opacity: 0.32; stroke-dasharray: 3 4; }
+.dt-pit__mouth { fill: #050404; }
+.dt-pit__lip { fill: color-mix(in srgb, var(--act-b) 30%, #1a1612); }
+/* 이스마엘 대상: 길르앗에서 내려와 애굽 쪽(왼쪽)으로 아주 천천히 */
+.dt-caravan { animation: dt-caravan 80s linear infinite; animation-delay: -10s; }
+@keyframes dt-caravan { from { transform: translateX(310px); } to { transform: translateX(-560px); } }
+.dt-caravan__line { animation: dt-plod 1.3s ease-in-out infinite alternate; }
+@keyframes dt-plod { from { transform: translateY(0); } to { transform: translateY(-0.5px); } }
+.dt-leg { transform-box: fill-box; transform-origin: 50% 0; animation: dt-step 1.3s ease-in-out infinite alternate; }
+.dt-leg--b { animation-delay: -0.65s; }
+@keyframes dt-step { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+.dt-pack { fill: color-mix(in srgb, var(--act-accent) 22%, #3a2a1c); }
+.dt-pack--b { fill: color-mix(in srgb, var(--act-accent) 28%, #4a3420); }
+.dt-caravan__dust { fill: color-mix(in srgb, var(--act-accent) 40%, #d8c4a0); opacity: 0.22; filter: blur(3px); }
+
+/* ── 구덩이 안 ── 어두운 돌벽, 머리 위 동그란 하늘 (하늘 자체는 무대의 하늘색이 비친다) */
+.backdrop[data-art='cistern'] { overflow: visible; }
+.dt-wall { fill: color-mix(in srgb, var(--act-b) 14%, #0b0907); }
+.dt-courses path { fill: none; stroke: color-mix(in srgb, var(--act-accent) 18%, #4a3e30); stroke-width: 0.8; opacity: 0.5; }
+.dt-joints { fill: none; stroke: color-mix(in srgb, var(--act-accent) 14%, #3a3026); stroke-width: 0.6; opacity: 0.55; }
+.dt-rim { fill: none; stroke: color-mix(in srgb, var(--act-accent) 60%, #f0e2c0); stroke-width: 1.4; opacity: 0.45; }
+.dt-shaft { fill: url(#dt-shaft-g); mix-blend-mode: screen; animation: dt-shaft 9s ease-in-out infinite alternate; }
+.dt-shaft__top { stop-color: color-mix(in srgb, var(--act-accent) 50%, #fff2d0); stop-opacity: 0.4; }
+.dt-shaft__bot { stop-color: color-mix(in srgb, var(--act-accent) 50%, #fff2d0); stop-opacity: 0.04; }
+@keyframes dt-shaft { from { opacity: 0.75; } to { opacity: 1; } }
+.dt-floor { fill: url(#dt-floor-g); }
+.dt-floor__c { stop-color: color-mix(in srgb, var(--act-accent) 40%, #c8b090); stop-opacity: 0.32; }
+.dt-floor__e { stop-color: #000; stop-opacity: 0; }
+.dt-floorstone { fill: #0a0806; }
+.dt-mote { fill: #fff0c8; opacity: 0; animation: dt-mote 9s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes dt-mote { 0%, 100% { opacity: 0; transform: translate(0, 0); } 30% { opacity: 0.6; } 70% { opacity: 0.4; } 99% { transform: translate(var(--x), 14px); } }
+
+:root[data-reduced-motion='true'] :is(.dt-dreamglow, .dt-caravan__line, .dt-leg, .dt-shaft, .dt-mote) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.dt-sheaf--rise, .dt-sheaf--bow, .dt-bowing) { animation-duration: 0.01s; animation-delay: 0s; }
+:root[data-reduced-motion='true'] .dt-caravan { animation-play-state: paused; }
+
+/* 꿈 2는 밤이지만 해와 달과 별이 어두워지면 안 된다: 무대의 밤 필터를 끄고 땅만 어둡게 둔다 */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop[data-art='eleven-stars']) { filter: none; }
+.backdrop[data-art='eleven-stars'] :is(.bd-far, .bd-mid, .bd-near) { filter: brightness(0.55); }

@@ -1,0 +1,850 @@
+{
+  "id": "gen-37-coat",
+  "act": 2,
+  "grade": "A",
+  "title": "채색옷과 구덩이",
+  "ref": "창 37",
+  "pov": "요셉",
+  "bg": "pasture",
+  "cast": [
+    "joseph"
+  ],
+  "outfit": {
+    "joseph": "plain"
+  },
+  "extras": {
+    "dan": {
+      "name": "단",
+      "base": "man",
+      "hair": "short",
+      "beard": "short",
+      "tint": "brown",
+      "props": [
+        "crook"
+      ]
+    },
+    "gad": {
+      "name": "갓",
+      "base": "man",
+      "hair": "hood",
+      "beard": "short",
+      "tint": "gray",
+      "props": [
+        "staff"
+      ]
+    },
+    "simeon": {
+      "name": "시므온",
+      "base": "man",
+      "hair": "shaggy",
+      "beard": "short",
+      "tint": "red",
+      "props": [
+        "crook"
+      ]
+    },
+    "stranger": {
+      "name": "어떤 사람",
+      "base": "old-man",
+      "hair": "hood",
+      "beard": "gray",
+      "tint": "brown",
+      "props": [
+        "staff"
+      ]
+    },
+    "merchant": {
+      "name": "이스마엘 상인",
+      "base": "man",
+      "hair": "hood",
+      "beard": "long",
+      "tint": "purple",
+      "props": [
+        "bundle",
+        "staff"
+      ]
+    }
+  },
+  "beats": [
+    {
+      "type": "narration",
+      "act": "look-up",
+      "who": "joseph",
+      "text": "요셉은 열일곱이었다. 형들과 함께 양을 쳤다. 정확히는, 아버지의 첩 빌하와 실바가 낳은 형들과 함께였다. 형제가 열둘이면, 형제 안에도 동네가 여러 개 생긴다."
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "dan"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "face",
+          "who": "joseph",
+          "to": "gad"
+        }
+      ],
+      "text": "형들이 들에서 무슨 일을 했는지는 기록에 없다. 요셉이 그 과실을 아버지에게 일렀다는 것만 있다. 무슨 과실이었든, 고자질에는 늘 과실보다 오래 남는 것이 하나 있다. 누가 일렀는가."
+    },
+    {
+      "type": "narration",
+      "bg": "tent",
+      "fx": "fade",
+      "exit": [
+        "dan",
+        "gad"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "jacob"
+        },
+        {
+          "act": "face",
+          "who": [
+            "jacob",
+            "joseph"
+          ]
+        },
+        {
+          "act": "bless",
+          "who": "jacob",
+          "to": "joseph"
+        }
+      ],
+      "text": "요셉은 이스라엘이 늙어서 얻은 아들이었다. 라헬의 첫아들이었다. 아버지는 그를 여러 아들보다 깊이 사랑했다. 그리고 그 사랑을, 옷으로 지었다.",
+      "outfit": {
+        "joseph": "coat"
+      }
+    },
+    {
+      "type": "narration",
+      "act": "look-up",
+      "who": "joseph",
+      "text": "발목까지 내려오고, 소매가 손목을 덮는 옷이었다. 여러 빛깔이 띠를 이루고 있었다. 그런 소매로는 양을 칠 수 없다. 그 옷은 말하고 있었다. 이 아이는 일하지 않아도 된다고."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 37:3-4",
+      "gloss": "아빠가 늘그막에 얻은 요셉만 대놓고 예뻐해서 특별한 옷까지 맞춰 줌. 형들은 그거 보고 요셉을 미워하게 됐고, 요셉한테 ‘안녕’ 소리 한 마디도 곱게 못 함."
+    },
+    {
+      "type": "narration",
+      "bg": "pasture",
+      "fx": "fade",
+      "exit": [
+        "jacob"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "dan"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "turn",
+          "who": "gad"
+        }
+      ],
+      "text": "형들은 그 옷을 보았다. 그리고 평안하다는 말을 할 수 없게 되었다. 인사 한마디가 목에 걸렸다. 미움은 대개 큰 소리가 아니라, 하지 않는 인사로 시작한다."
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "act": "approach",
+      "to": "dan",
+      "text": "“청컨대 나의 꾼 꿈을 들으시오.”"
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "bg": "dream-sheaves",
+      "fx": "fade",
+      "exit": [
+        "dan",
+        "gad"
+      ],
+      "act": "look-up",
+      "text": "“우리가 밭에서 곡식을 묶더니, 내 단은 일어서고 당신들의 단은 내 단을 둘러서서 절하더이다.”"
+    },
+    {
+      "type": "line",
+      "who": "gad",
+      "bg": "pasture",
+      "fx": "fade",
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "dan"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "approach",
+          "who": "gad",
+          "to": "joseph"
+        },
+        {
+          "act": "argue",
+          "who": [
+            "gad",
+            "joseph"
+          ]
+        }
+      ],
+      "text": "“네가 참으로 우리의 왕이 되겠느냐? 참으로 우리를 다스리게 되겠느냐?”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "part",
+          "who": "gad"
+        },
+        {
+          "act": "turn",
+          "who": "gad"
+        },
+        {
+          "act": "turn",
+          "who": "dan"
+        }
+      ],
+      "text": "그들은 그를 더욱 미워했다. 꿈 때문에, 그리고 그 말 때문에. 사람은 꿈보다, 꿈을 이야기하던 표정을 더 오래 기억한다."
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "bg": "dream-stars",
+      "fx": "fade",
+      "exit": [
+        "dan",
+        "gad"
+      ],
+      "act": "look-up",
+      "text": "“내가 또 꿈을 꾼즉, 해와 달과 열한 별이 내게 절하더이다.”"
+    },
+    {
+      "type": "line",
+      "who": "jacob",
+      "bg": "tent-dusk",
+      "fx": "fade",
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "jacob"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "approach",
+          "who": "jacob",
+          "to": "joseph"
+        }
+      ],
+      "text": "“너의 꾼 꿈이 무엇이냐? 나와 네 어미와 네 형제들이 참으로 가서 땅에 엎드려 네게 절하겠느냐?”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "turn",
+          "who": "gad"
+        },
+        {
+          "act": "bow-head",
+          "who": "joseph"
+        },
+        {
+          "act": "look-up",
+          "who": "jacob"
+        }
+      ],
+      "text": "해와 달, 그리고 별 열하나. 셈은 어렵지 않았다. 형이 열, 아우가 하나. 형들은 시기했다. 그런데 아버지는, 그 말을 마음에 두었다. 꾸짖는 입과 기억하는 마음이, 한 사람 안에 같이 있었다."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 37:10-11",
+      "gloss": "아빠도 “네가 뭔데 우리가 다 너한테 절을 해?” 하고 혼냄. 형들은 질투만 하는데, 아빠는 혼내 놓고도 그 말을 속으로 계속 곱씹음. 뭔가 있다고 느낀 거."
+    },
+    {
+      "type": "line",
+      "who": "jacob",
+      "text": "“네 형들이 세겜에서 양을 치지 아니하느냐. 가서 네 형들과 양 떼가 다 잘 있는지 보고, 돌아와 내게 고하라.”",
+      "acts": [
+        {
+          "act": "walk-out",
+          "who": "gad"
+        },
+        {
+          "act": "face",
+          "who": "jacob",
+          "to": "joseph"
+        }
+      ]
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "text": "“내가 그리하겠나이다.”",
+      "acts": [
+        {
+          "act": "bow-head",
+          "who": "joseph"
+        },
+        {
+          "act": "bless",
+          "who": "jacob",
+          "to": "joseph"
+        }
+      ]
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "walk-out",
+          "who": "jacob"
+        },
+        {
+          "act": "travel",
+          "from": "hebron",
+          "to": "shechem"
+        }
+      ],
+      "text": "잘 있는지. 그 말은 ‘평안’이었다. 형들이 끝내 그에게 건네지 못한 바로 그 말. 아버지는 아들의 손에 그 말을 들려 헤브론 골짜기에서 내보냈다. 세겜으로. 몇 해 전, 형들 가운데 둘이 칼을 들고 들어갔던 성으로."
+    },
+    {
+      "type": "narration",
+      "bg": "oaks",
+      "fx": "fade",
+      "acts": [
+        {
+          "act": "turn",
+          "who": "joseph"
+        },
+        {
+          "act": "walk-in",
+          "who": "stranger"
+        },
+        {
+          "act": "approach",
+          "who": "stranger",
+          "to": "joseph"
+        }
+      ],
+      "outfit": {
+        "joseph": "coat"
+      },
+      "text": "세겜 들에 형들은 없었다. 요셉은 들을 헤맸다. 채색옷을 입은 소년이 혼자 헤매면, 멀리서도 눈에 띈다. 어떤 사람이 그를 만나 물었다. 무엇을 찾느냐고."
+    },
+    {
+      "type": "line",
+      "who": "joseph",
+      "act": "face",
+      "to": "stranger",
+      "text": "“내가 나의 형들을 찾으오니, 청컨대 그들의 양 치는 곳을 내게 가르치소서.”"
+    },
+    {
+      "type": "line",
+      "who": "stranger",
+      "text": "“그들이 여기서 떠났느니라. 내가 그들의 말을 들으니, 도단으로 가자 하더라.”",
+      "acts": [
+        {
+          "act": "turn",
+          "who": "stranger"
+        },
+        {
+          "act": "travel",
+          "from": "shechem",
+          "to": "dothan"
+        }
+      ]
+    },
+    {
+      "type": "narration",
+      "bg": "dothan",
+      "fx": "fade",
+      "exit": [
+        "joseph",
+        "stranger"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "reuben"
+        },
+        {
+          "act": "walk-in",
+          "who": "simeon"
+        },
+        {
+          "act": "walk-in",
+          "who": "judah"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "look-up",
+          "who": "simeon"
+        }
+      ],
+      "text": "이름도 남기지 않은 사람이 길을 일러 주었다. 이야기는 가끔, 그런 대답 하나로 방향을 튼다. 도단 들에서 형들이 그를 보았다. 아직 멀리 있을 때였다. 채색옷은, 멀리서도 보였다."
+    },
+    {
+      "type": "line",
+      "who": "simeon",
+      "act": "approach",
+      "to": "judah",
+      "text": "“꿈꾸는 자가 오는도다.”"
+    },
+    {
+      "type": "line",
+      "who": "gad",
+      "acts": [
+        {
+          "act": "face",
+          "who": [
+            "gad",
+            "simeon"
+          ]
+        }
+      ],
+      "text": "“자, 그를 죽여 한 구덩이에 던지고, 악한 짐승이 잡아먹었다 하자. 그 꿈이 어떻게 되는지 우리가 볼 것이니라.”"
+    },
+    {
+      "type": "narration",
+      "act": "step-back",
+      "who": "reuben",
+      "text": "꿈이 어떻게 되는지 보자. 꿈을 죽이려고 꿈꾸는 자를 죽이자는 말이었다. 그것이 사람이 할 수 있는 가장 오래된 착각이다. 사람을 없애면, 그 사람이 받은 것도 같이 없어질 거라는."
+    },
+    {
+      "type": "choice",
+      "prompt": "르우벤, 맏아들. 형제들이 죽이자고 한다. 어떻게 할까?",
+      "options": [
+        {
+          "label": "“안 된다. 그 아이에게 손대려면 나부터 넘어라.”",
+          "goto": "b-stand"
+        },
+        {
+          "label": "“피는 흘리지 말자. 저 구덩이에 던지기만 하자.”",
+          "canon": true
+        }
+      ]
+    },
+    {
+      "type": "line",
+      "who": "reuben",
+      "acts": [
+        {
+          "act": "approach",
+          "who": "reuben",
+          "to": "simeon"
+        }
+      ],
+      "text": "“우리가 그 생명은 상하지 말자. 피를 흘리지 말라. 그를 광야 그 구덩이에 던지고, 손을 그에게 대지 말라.”"
+    },
+    {
+      "type": "narration",
+      "text": "나중에 혼자 와서 건질 생각이었다. 아버지에게 돌려보낼 생각이었다. 맏아들이 그날 할 수 있었던 가장 용감한 일은, 시간을 버는 것이었다.",
+      "acts": [
+        {
+          "act": "bow-head",
+          "who": "reuben"
+        },
+        {
+          "act": "walk-in",
+          "who": "joseph"
+        }
+      ],
+      "outfit": {
+        "joseph": "coat"
+      }
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "approach",
+          "who": "simeon",
+          "to": "joseph"
+        },
+        {
+          "act": "step-back",
+          "who": "joseph"
+        }
+      ],
+      "outfit": {
+        "joseph": "plain"
+      },
+      "text": "요셉이 형들에게 이르렀다. 평안을 물으러 온 길이었다. 그들은 먼저 옷을 벗겼다. 그 옷을. 채색옷을."
+    },
+    {
+      "type": "narration",
+      "bg": "dothan-pit",
+      "fx": "fade",
+      "exit": [
+        "reuben",
+        "simeon",
+        "gad",
+        "judah"
+      ],
+      "act": "fall",
+      "who": "joseph",
+      "text": "그리고 그를 잡아 구덩이에 던졌다. 구덩이는 비어 있었다. 그 속에 물이 없었다."
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "stand",
+          "who": "joseph"
+        },
+        {
+          "act": "look-up",
+          "who": "joseph"
+        }
+      ],
+      "pose": {
+        "joseph": "slump"
+      },
+      "text": "물이 없다는 건 다행이었다. 빠져 죽지는 않을 테니까. 물이 없다는 건 불행이었다. 목말라 죽을 테니까. 구덩이 안에서는, 다행과 불행이 한 문장으로 쓰인다. 그는 소리쳤을 것이다. 기록은 여기서 그의 목소리를 적지 않는다. 그 목소리는 스무 해쯤 뒤에야 형들의 입에서 나온다. ‘그가 애걸할 때에 우리가 듣지 아니하였으므로.’"
+    },
+    {
+      "type": "narration",
+      "bg": "dothan-caravan",
+      "fx": "fade",
+      "exit": [
+        "joseph"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "simeon"
+        },
+        {
+          "act": "walk-in",
+          "who": "judah"
+        },
+        {
+          "act": "walk-in",
+          "who": "gad"
+        },
+        {
+          "act": "kneel",
+          "who": "simeon"
+        },
+        {
+          "act": "kneel",
+          "who": "gad"
+        },
+        {
+          "act": "kneel",
+          "who": "judah"
+        },
+        {
+          "act": "look-up",
+          "who": "judah"
+        }
+      ],
+      "text": "그리고 그들은 앉아서 음식을 먹었다. 기록은 그 한 줄을 아무 꾸밈 없이 적는다. 꾸밈이 없어서, 더 오래 남는다. 먹다가 눈을 들어 보니, 길르앗에서 내려오는 이스마엘 사람들의 대상이었다. 향품과 유향과 몰약을 실은 낙타들이 애굽으로 가고 있었다."
+    },
+    {
+      "type": "line",
+      "who": "judah",
+      "acts": [
+        {
+          "act": "stand",
+          "who": "judah"
+        },
+        {
+          "act": "approach",
+          "who": "judah",
+          "to": "simeon"
+        }
+      ],
+      "text": "“우리가 우리 동생을 죽이고 그의 피를 은익한들 무엇이 유익할까? 자, 그를 이스마엘 사람에게 팔고 우리 손을 그에게 대지 말자. 그는 우리의 동생이요 우리의 골육이니라.”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "stand",
+          "who": "simeon"
+        },
+        {
+          "act": "stand",
+          "who": "gad"
+        },
+        {
+          "act": "bow-head",
+          "who": "simeon"
+        }
+      ],
+      "text": "형제들이 그 말을 들었다. 유다의 말에는 두 가지가 섞여 있었다. ‘무슨 유익이 있느냐’와 ‘우리 동생이다’. 어느 쪽이 형제들을 움직였는지는, 아무도 적어 두지 않았다."
+    },
+    {
+      "type": "narration",
+      "exit": [
+        "simeon",
+        "gad"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "merchant"
+        },
+        {
+          "act": "walk-in",
+          "who": "joseph"
+        },
+        {
+          "act": "approach",
+          "who": "merchant",
+          "to": "judah"
+        }
+      ],
+      "outfit": {
+        "joseph": "plain"
+      },
+      "pose": {
+        "joseph": "slump"
+      },
+      "text": "미디안 상인들이 지나가고 있었다. 요셉이 구덩이에서 끌어올려졌다. 값이 매겨졌다. 은 이십 개. 그는 낙타 행렬 끝에 매여 애굽 쪽으로 걸어갔다. 뒤를 돌아보았는지는, 기록에 없다."
+    },
+    {
+      "type": "scripture",
+      "ref": "창 37:26-28",
+      "gloss": "유다: “죽여 봤자 우리한테 남는 게 뭐냐? 차라리 팔자. 그래도 동생인데 손에 피는 묻히지 말자.” 그래서 지나가던 상인들한테 은 20개 받고 팔아 버림. 요셉은 그대로 이집트행.",
+      "acts": [
+        {
+          "act": "leave",
+          "who": "merchant"
+        },
+        {
+          "act": "leave",
+          "who": "joseph"
+        },
+        {
+          "act": "bow-head",
+          "who": "judah"
+        }
+      ]
+    },
+    {
+      "type": "narration",
+      "bg": "dothan-dusk",
+      "fx": "fade",
+      "exit": [
+        "judah"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "reuben"
+        },
+        {
+          "act": "kneel",
+          "who": "reuben"
+        }
+      ],
+      "text": "해 질 녘, 르우벤이 구덩이로 돌아왔다. 혼자였다. 들여다보았다. 요셉이 없었다. 그는 옷을 찢었다."
+    },
+    {
+      "type": "line",
+      "who": "reuben",
+      "acts": [
+        {
+          "act": "stand",
+          "who": "reuben"
+        },
+        {
+          "act": "cry",
+          "who": "reuben"
+        },
+        {
+          "act": "walk-in",
+          "who": "judah"
+        },
+        {
+          "act": "walk-in",
+          "who": "simeon"
+        }
+      ],
+      "text": "“아이가 없도다. 나는, 나는 어디로 갈까.”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "turn",
+          "who": "judah"
+        },
+        {
+          "act": "bow-head",
+          "who": "simeon"
+        }
+      ],
+      "text": "맏아들의 꾀는 하나만 빼고 다 맞았다. 자리를 비우지 않았어야 했다. 그들은 숫염소 한 마리를 잡았다. 그 피에 요셉의 옷을 적셨다. 오래전 그들의 아버지는 염소 새끼 가죽을 두르고 자기 아버지를 속였다. 이 집안에서 염소는, 늘 거짓말에 쓰였다."
+    },
+    {
+      "type": "line",
+      "who": "judah",
+      "bg": "tent-dusk",
+      "fx": "fade",
+      "exit": [
+        "reuben",
+        "simeon"
+      ],
+      "acts": [
+        {
+          "act": "walk-in",
+          "who": "jacob"
+        },
+        {
+          "act": "approach",
+          "who": "judah",
+          "to": "jacob"
+        }
+      ],
+      "text": "“우리가 이것을 얻었으니, 아버지의 아들의 옷인가 아닌가 보소서.”"
+    },
+    {
+      "type": "line",
+      "who": "jacob",
+      "act": "step-back",
+      "pose": {
+        "jacob": "tremble"
+      },
+      "text": "“내 아들의 옷이라. 악한 짐승이 그를 먹었도다. 요셉이 정녕 찢겼도다.”",
+      "outfit": {
+        "jacob": "coat"
+      }
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "cry",
+          "who": "jacob"
+        },
+        {
+          "act": "walk-in",
+          "who": "reuben"
+        },
+        {
+          "act": "walk-in",
+          "who": "benjamin"
+        }
+      ],
+      "text": "아버지의 아들. 그들은 ‘우리 동생’이라고 하지 않았다. 야곱은 자기 옷을 찢고, 굵은 베로 허리를 묶었다. 모든 자녀가 일어나 그를 위로했다. 위로하는 자식들 가운데 몇은, 진실을 알고 있었다."
+    },
+    {
+      "type": "line",
+      "who": "jacob",
+      "acts": [
+        {
+          "act": "kneel",
+          "who": "jacob"
+        },
+        {
+          "act": "bow-head",
+          "who": "judah"
+        },
+        {
+          "act": "bow-head",
+          "who": "reuben"
+        }
+      ],
+      "text": "“내가 슬퍼하며 음부에 내려 아들에게로 가리라.”"
+    },
+    {
+      "type": "scripture",
+      "ref": "창 37:34-35",
+      "gloss": "야곱은 옷 찢고 상복 입고 계속 욺. 자식들이 다 와서 위로하는데 “됐다, 나도 죽어서 아들 따라갈 거다” 하면서 위로를 거부함. 위로하는 애들 중 몇은 범인임."
+    },
+    {
+      "type": "narration",
+      "bg": "egypt",
+      "fx": "fade",
+      "exit": [
+        "jacob",
+        "judah",
+        "reuben",
+        "benjamin"
+      ],
+      "acts": [
+        {
+          "act": "travel",
+          "from": "dothan",
+          "to": "egypt"
+        },
+        {
+          "act": "walk-in",
+          "who": "joseph"
+        },
+        {
+          "act": "walk-in",
+          "who": "merchant"
+        }
+      ],
+      "outfit": {
+        "joseph": "plain"
+      },
+      "text": "아버지가 아들의 옷을 붙들고 우는 동안, 아들은 옷 없이 애굽에 있었다. 미디안 사람들이 그를 다시 팔았다. 바로의 신하, 시위대장 보디발에게."
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "look-up",
+          "who": "joseph"
+        },
+        {
+          "act": "walk-out",
+          "who": "merchant"
+        }
+      ],
+      "text": "이 장 내내 하늘은 한마디도 하지 않았다. 남은 것은, 두 개의 꿈뿐이었다."
+    }
+  ],
+  "branches": {
+    "b-stand": [
+      {
+        "type": "narration",
+        "act": "approach",
+        "who": "reuben",
+        "to": "simeon",
+        "text": "맏아들이 정면으로 막아섰다면. 몇은 물러섰을지도 모른다. 아무도 물러서지 않았을지도 모른다."
+      },
+      {
+        "type": "narration",
+        "act": "bow-head",
+        "who": "reuben",
+        "text": "기록은 르우벤이 정면으로 맞서지 않았다고만 적는다. 그는 용기 대신 꾀를 골랐다. 나쁜 선택은 아니었다. 다만 꾀는, 그 자리를 떠나지 않을 때에만 통한다."
+      }
+    ]
+  },
+  "insight": "창세기 37장 = 요셉 이야기 1화. 아빠 편애 → 채색옷 → 꿈 자랑 → 형들 폭발 → 구덩이 → 은 20개에 팔림 → 아빠한테는 ‘짐승한테 먹혔다’고 거짓말. 이 장 하나에 막장 드라마 한 시즌이 들어 있음.\n\n채색옷부터. 히브리어로 ‘케토네트 파심’인데, 이게 정확히 어떤 옷인지는 여러 해석이 있음. 옛 그리스어 번역(칠십인역)은 ‘여러 색깔 옷’으로 읽었고, 요즘은 ‘손목·발목까지 내려오는 긴 소매 옷’으로 보는 학자도 많음(파스 = 손바닥·발바닥). 어느 쪽이든 포인트는 같음. 그거 입고는 양 못 침. 사무엘하 13:18에서 공주 다말이 입은 옷도 같은 단어임. 그러니까 형들 눈엔 ‘아빠가 후계자 찍었네’로 보인 거. 회사로 치면 막내 인턴한테 사장이 법카 준 느낌.\n\n근데 이게 왜 중요하냐면, 편애가 이 집안 내력이거든. 이삭은 에서, 리브가는 야곱을 편애했음(25:28). 그 피해자였던 야곱이 커서 라헬을 레아보다 사랑했고(29:30), 33장에선 위험할 때 식구들 줄 세우면서 라헬·요셉을 맨 뒤에 둠. 그리고 이번엔 요셉한테 옷을 지어 줌. 당해 본 사람이 똑같이 함. 그리고 소름 포인트 하나 더. 야곱은 27장에서 염소 가죽으로 아빠를 속였는데, 37장에서 염소 피 묻은 옷으로 아들들한테 속음.\n\n요셉도 완벽한 피해자 캐릭은 아님. 형들 잘못 아빠한테 이르고, 듣는 사람 표정 안 보고 꿈 얘기를 두 번이나 함. 열일곱 살 눈치 0. 근데 꿈 자체는 진짜였음. 42장에서 형들이 진짜로 요셉 앞에 엎드림. 그리고 해와 달 꿈에서 ‘네 어미’는 누구냐? 라헬은 35장에서 이미 죽었음. 레아나 빌하를 말한다는 해석, 그냥 꿈의 상징일 뿐이라는 해석 등 여러 해석이 있음.\n\n르우벤 vs 유다. 르우벤은 살리려는 마음은 있었는데 정면으로 안 막고 ‘구덩이에만 넣자’로 시간 끌다가, 자리 비운 사이에 다 끝남. 조별과제에서 ‘내가 나중에 수습할게’ 하고 잠수 탄 사람 느낌. 유다는 ‘죽여서 뭐 남냐, 팔자’라는 계산이랑 ‘그래도 동생이다’라는 말을 한 문장에 섞음. 근데 이 유다가 44장에서는 베냐민 대신 자기가 종이 되겠다고 나섬. 사람이 바뀌는 이야기의 시작점이 여기임.\n\n은 20개도 디테일임. 레위기 27:5에서 다섯 살부터 스무 살 남자의 몸값을 은 20세겔로 매김. 딱 요셉 나이. 그리고 상인이 이스마엘 사람이었다가 미디안 사람이었다가 섞여 나오는데, 같은 무리를 두 이름으로 부른 거라는 해석(사사기 8:24에서도 미디안을 이스마엘 사람이라 부름)과, 미디안 사람이 끌어올려서 이스마엘 대상한테 넘겼다는 해석이 있음.\n\n마지막으로 진짜 중요한 거. 이 장에는 하나님이 한 번도 말씀하지 않으심. 하나님 이름 자체가 안 나옴. 꿈만 있고, 그 꿈 꾼 애는 구덩이에 던져졌다가 노예로 팔려 감. 근데 50장 가서 요셉이 이렇게 말함. ‘당신들은 나를 해하려 하였으나 하나님은 그것을 선으로 바꾸사.’ 하나님이 조용한 구간이 하나님이 없는 구간은 아니라는 거. 인생에도 그런 시즌 있잖아. 아무 대답 없는데 일만 꼬이는 시즌.\n\n한 줄 요약: 편애가 미움을 낳고, 미움이 동생을 팔았다. 하늘은 한마디도 안 했지만, 꿈은 그대로 살아 있었음.",
+  "tldr": "아빠의 편애와 채색옷, 꿈 자랑에 폭발한 형들이 요셉을 구덩이에 던졌다가 은 20개에 팔아 버림. 야곱은 피 묻은 옷을 보고 무너지고, 요셉은 이집트 보디발의 집으로 감.",
+  "bridge": "애굽으로 가는 길 위에 요셉이 있었다. 이야기는 잠시 그를 두고, 그를 팔자고 말한 형을 따라간다.",
+  "unlocks": {
+    "characters": [
+      "joseph"
+    ]
+  }
+}
