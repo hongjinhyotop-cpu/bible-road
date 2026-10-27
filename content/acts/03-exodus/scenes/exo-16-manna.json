@@ -1,0 +1,605 @@
+{
+  "id": "exo-16-manna",
+  "act": 3,
+  "grade": "A",
+  "title": "이것이 무엇이냐",
+  "ref": "출 16",
+  "bg": "well-dawn",
+  "cast": [
+    "moses",
+    "aaron"
+  ],
+  "extras": {
+    "grumbler": {
+      "name": "배고픈 사내",
+      "base": "man",
+      "hair": "shaggy",
+      "beard": "short",
+      "props": [
+        "bundle"
+      ],
+      "tint": "gray"
+    },
+    "mother": {
+      "name": "어미",
+      "base": "woman",
+      "hair": "veil",
+      "props": [
+        "basket"
+      ],
+      "tint": "blue"
+    },
+    "child": {
+      "name": "아이",
+      "base": "child",
+      "hair": "short",
+      "tint": "white"
+    },
+    "hoarder": {
+      "name": "알뜰한 사내",
+      "base": "man",
+      "hair": "short",
+      "beard": "short",
+      "props": [
+        "jar"
+      ],
+      "tint": "brown"
+    },
+    "elder": {
+      "name": "회중의 두목",
+      "base": "old-man",
+      "hair": "hood",
+      "beard": "gray",
+      "props": [
+        "staff"
+      ],
+      "tint": "green"
+    }
+  },
+  "beats": [
+    {
+      "type": "narration",
+      "act": "travel",
+      "from": "elim",
+      "to": "sin-desert",
+      "fx": "dust",
+      "text": "엘림을 떠났다. 샘 열둘과 종려 일흔 그루를 등 뒤에 두고. 엘림과 시내산 사이, 신 광야. 애굽에서 나온 지 한 달 하고 보름째 되는 날이었다."
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-dusk",
+      "fx": "fade",
+      "acts": [
+        {
+          "act": "crowd"
+        },
+        {
+          "act": "face",
+          "who": [
+            "moses",
+            "aaron"
+          ]
+        }
+      ],
+      "text": "한 달 반. 노예가 자유인이 되기에는 짧고, 애굽에서 싸 온 반죽 그릇이 바닥나기에는 충분한 시간이었다."
+    },
+    {
+      "type": "line",
+      "who": "grumbler",
+      "enter": [
+        "grumbler"
+      ],
+      "acts": [
+        {
+          "act": "approach",
+          "who": "grumbler",
+          "to": "moses"
+        },
+        {
+          "act": "crowd-murmur"
+        }
+      ],
+      "text": "“우리가 애굽 땅에서 고기 가마 곁에 앉았던 때에, 떡을 배불리 먹던 때에, 차라리 여호와의 손에 죽었더면 좋았을 것을!”"
+    },
+    {
+      "type": "narration",
+      "act": "face",
+      "who": [
+        "grumbler",
+        "moses"
+      ],
+      "text": "고기 가마 곁에 앉았던 때. 사내는 고기를 먹던 때라고 하지 않았다. 곁에 앉았던 때라고 했다. 배고픈 사람의 기억 속에서, 가마는 늘 실제보다 크고 채찍은 늘 실제보다 작다."
+    },
+    {
+      "type": "line",
+      "who": "grumbler",
+      "act": "argue",
+      "to": "moses",
+      "text": "“너희가 우리를 이 광야로 끌어내어, 이 온 회중을 주려 죽게 하는도다!”"
+    },
+    {
+      "type": "narration",
+      "act": "step-back",
+      "who": "aaron",
+      "text": "원망은 모세와 아론 둘을 향했다. 아론이 반 걸음 물러섰다. 원망은 맨 앞에 선 사람부터 찾아간다. 둘째 자리에 선 사람에게 허락되는 것은, 반 걸음 정도다."
+    },
+    {
+      "type": "scripture",
+      "ref": "출 16:4",
+      "fx": "glory",
+      "act": "look-up",
+      "who": "moses",
+      "gloss": "하늘에서 빵을 비처럼 내려 줄게. 대신 하루치씩만 주워. 이걸로 너네가 내 말 듣나 안 듣나 볼 거임."
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "approach",
+      "to": "grumbler",
+      "text": "“저녁이 되면 너희가, 여호와께서 너희를 애굽 땅에서 인도하여 내셨음을 알 것이요. 아침에는 여호와의 영광을 보리라.”"
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "acts": [
+        {
+          "act": "face",
+          "who": "moses",
+          "to": "grumbler"
+        },
+        {
+          "act": "step-back",
+          "who": "grumbler"
+        }
+      ],
+      "text": "“우리가 누구냐. 너희의 원망은 우리를 향하여 함이 아니요, 여호와를 향하여 함이로다.”"
+    },
+    {
+      "type": "line",
+      "who": "aaron",
+      "act": "face",
+      "to": "moses",
+      "text": "“우리를 향한 게 아니라니. 조금은 편해지는군.”"
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "face",
+      "to": "aaron",
+      "text": "“편해질 말이 아니네. 회중에게 전하게. 여호와께 가까이 나아오라고. 그분이 원망을 다 들으셨다고.”"
+    },
+    {
+      "type": "narration",
+      "bg": "sin-glory",
+      "acts": [
+        {
+          "act": "look-up",
+          "who": [
+            "moses",
+            "aaron",
+            "grumbler"
+          ]
+        },
+        {
+          "act": "crowd"
+        }
+      ],
+      "text": "아론이 온 회중에게 말했다. 그들이 광야를 바라보았다. 구름 속에, 여호와의 영광이 나타났다. 원망하던 입들이 닫혔다. 사람은 대개 하늘이 아니라 서로의 얼굴을 보면서 원망한다."
+    },
+    {
+      "type": "voice",
+      "fx": "glory",
+      "act": "bow-head",
+      "who": "grumbler",
+      "text": "내가 이스라엘 자손의 원망함을 들었노라. 너희가 해 질 때에는 고기를 먹고, 아침에는 떡으로 배부르리니, 나는 여호와 너희의 하나님인 줄 알리라."
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-dusk",
+      "fx": "quail",
+      "acts": [
+        {
+          "act": "look-up",
+          "who": "grumbler"
+        },
+        {
+          "act": "crowd-murmur"
+        }
+      ],
+      "text": "해 질 녘. 진 바깥에서 낮게, 무언가가 몰려왔다. 날개 소리가 먼저 왔고, 새는 그다음에 왔다."
+    },
+    {
+      "type": "narration",
+      "bg": "sin-quail",
+      "acts": [
+        {
+          "act": "crowd-cheer"
+        },
+        {
+          "act": "kneel",
+          "who": "grumbler"
+        },
+        {
+          "act": "face",
+          "who": [
+            "moses",
+            "aaron"
+          ]
+        }
+      ],
+      "text": "메추라기였다. 진을 덮었다. 그 사내가 제일 먼저 무릎을 꿇었다. 기도하려던 것은 아니었다. 고기 가마를 그리워하던 사람들은, 그날 저녁 가마가 모자랐다."
+    },
+    {
+      "type": "narration",
+      "bg": "manna-dew",
+      "fx": "fade",
+      "exit": [
+        "grumbler",
+        "aaron",
+        "moses"
+      ],
+      "enter": [
+        "mother",
+        "child"
+      ],
+      "acts": [
+        {
+          "act": "crowd-away"
+        }
+      ],
+      "text": "아침. 이슬이 진 사면에 깔려 있었다. 아직은, 그냥 이슬이었다."
+    },
+    {
+      "type": "narration",
+      "bg": "manna-dawn",
+      "fx": "dawn",
+      "acts": [
+        {
+          "act": "kneel",
+          "who": "mother"
+        },
+        {
+          "act": "approach",
+          "who": "child",
+          "to": "mother"
+        }
+      ],
+      "text": "이슬이 말랐다. 그 자리에 남은 것이 있었다. 광야 지면 가득, 작고 둥글며 서리같이 가는 것."
+    },
+    {
+      "type": "line",
+      "who": "child",
+      "act": "look-up",
+      "text": "“이게 뭐야?”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "crowd"
+        },
+        {
+          "act": "crowd-murmur"
+        },
+        {
+          "act": "face",
+          "who": [
+            "mother",
+            "child"
+          ]
+        }
+      ],
+      "text": "어미도 몰랐다. 온 진이 같은 말을 하고 있었다. 만 후. 이것이 무엇이냐. 장막마다 같은 질문이 오갔고, 대답하는 사람은 없었다."
+    },
+    {
+      "type": "choice",
+      "prompt": "땅을 덮은 하얀 것. 너라면?",
+      "options": [
+        {
+          "label": "옆 사람에게 묻는다. “이것이 무엇이냐?”",
+          "canon": true
+        },
+        {
+          "label": "일단 한 알 집어 입에 넣어 본다",
+          "goto": "b-taste"
+        }
+      ]
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "enter": [
+        "moses"
+      ],
+      "act": "look-up",
+      "text": "“이는 여호와께서 너희에게 주어 먹게 하신 양식이라.”"
+    },
+    {
+      "type": "scripture",
+      "ref": "출 16:15",
+      "act": "bow-head",
+      "who": "mother",
+      "gloss": "다들 ‘이게 뭐임?’ 하고 있는데 모세가 정리해 줌. ‘하나님이 주신 밥이다.’"
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "bless",
+      "text": "“각 사람의 식량대로 거두라. 인수대로, 한 사람에 한 오멜씩. 각기 장막에 있는 식구들을 위하여.”"
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "kneel",
+          "who": [
+            "mother",
+            "child"
+          ]
+        },
+        {
+          "act": "crowd-bow"
+        }
+      ],
+      "text": "사람들이 허리를 굽혔다. 애굽에서 평생 굽혔던 허리였다. 이번에는 남의 벽돌이 아니라, 제 식구의 떡을 위해서였다."
+    },
+    {
+      "type": "narration",
+      "enter": [
+        "hoarder"
+      ],
+      "acts": [
+        {
+          "act": "stand",
+          "who": [
+            "mother",
+            "child"
+          ]
+        },
+        {
+          "act": "crowd"
+        }
+      ],
+      "text": "많이 거둔 자가 있었고 적게 거둔 자가 있었다. 젊은 사내는 두 팔 가득 안고 왔고, 아이는 두 손에 한 줌. 장막에 돌아와 오멜로 되어 보았다. 셈이 맞지 않았다. 맞지 않는데, 모자란 사람도 남는 사람도 없었다."
+    },
+    {
+      "type": "scripture",
+      "ref": "출 16:17-18",
+      "act": "face",
+      "who": [
+        "hoarder",
+        "mother"
+      ],
+      "gloss": "많이 주운 사람도 남는 거 없고, 적게 주운 사람도 모자란 거 없음. 딱 자기 먹을 만큼. 광야식 자동 정산."
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "face",
+      "to": "hoarder",
+      "text": "“아무든지, 아침까지 그것을 남겨 두지 말라.”"
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-night",
+      "fx": "fade",
+      "exit": [
+        "mother",
+        "child",
+        "moses"
+      ],
+      "act": "turn",
+      "who": "hoarder",
+      "text": "“예, 예.” 사내는 대답을 잘했다. 그날 밤, 그는 장막 구석에 항아리 하나를 밀어 두었다. 혹시 모르니까. ‘혹시 모르니까’는 사람이 가장 오래 써 온 핑계다."
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-dawn",
+      "fx": [
+        "fade",
+        "stink"
+      ],
+      "act": "step-back",
+      "who": "hoarder",
+      "text": "아침. 장막 구석에서 냄새가 났다. 항아리 안이, 꿈틀거렸다."
+    },
+    {
+      "type": "line",
+      "who": "hoarder",
+      "act": "turn",
+      "text": "“…어제는 꿀맛이었는데.”"
+    },
+    {
+      "type": "narration",
+      "enter": [
+        "moses"
+      ],
+      "acts": [
+        {
+          "act": "approach",
+          "who": "moses",
+          "to": "hoarder"
+        },
+        {
+          "act": "bow-head",
+          "who": "hoarder"
+        }
+      ],
+      "text": "모세가 노하였다. 기록은 그것을 굳이 숨기지 않는다. 내일을 손에 쥐어 보려던 사내는, 오늘 아침을 냄새로 시작했다."
+    },
+    {
+      "type": "narration",
+      "bg": "manna-noon",
+      "exit": [
+        "hoarder"
+      ],
+      "text": "그 뒤로 그들은 아침마다 거두었다. 각기 먹을 만큼. 해가 뜨겁게 쪼이면, 땅의 것은 스러졌다. 광야에서 늦잠은 곧 굶는 일이었다.",
+      "acts": [
+        {
+          "act": "part",
+          "who": "moses"
+        },
+        {
+          "act": "look-up",
+          "who": "moses"
+        }
+      ]
+    },
+    {
+      "type": "narration",
+      "bg": "manna-dawn",
+      "fx": "fade",
+      "enter": [
+        "elder"
+      ],
+      "acts": [
+        {
+          "act": "approach",
+          "who": "elder",
+          "to": "moses"
+        },
+        {
+          "act": "bow-head",
+          "who": "elder"
+        }
+      ],
+      "text": "여섯째 날. 같은 바구니에 갑절이 담겼다. 하나에 두 오멜씩. 회중의 두목들이 와서 모세에게 고했다. 세어 보니 이상하다고."
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "face",
+      "to": "elder",
+      "text": "“내일은 휴식이니, 여호와께 거룩한 안식일이라. 구울 것은 굽고 삶을 것은 삶고, 그 나머지는 아침까지 간수하라.”"
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-dawn",
+      "fx": "fade",
+      "exit": [
+        "elder",
+        "moses"
+      ],
+      "enter": [
+        "hoarder"
+      ],
+      "act": "look-up",
+      "who": "hoarder",
+      "text": "이튿날 아침, 사내는 항아리 뚜껑을 아주 조심스럽게 열었다. 냄새가 나지 않았다. 벌레도 없었다. 같은 항아리, 같은 만나였다. 달라진 것은 날짜뿐이었다."
+    },
+    {
+      "type": "narration",
+      "enter": [
+        "grumbler"
+      ],
+      "acts": [
+        {
+          "act": "bow-head",
+          "who": "grumbler"
+        },
+        {
+          "act": "turn",
+          "who": "grumbler"
+        }
+      ],
+      "text": "그래도 더러는 바구니를 들고 나갔다. 들은 깨끗했다. 이슬도, 서리 같은 것도 없었다. 습관은 명령보다 일찍 일어난다."
+    },
+    {
+      "type": "voice",
+      "fx": "glory",
+      "act": "step-back",
+      "who": "grumbler",
+      "text": "어느 때까지 너희가 내 계명과 내 율법을 지키지 아니하려느냐. 볼지어다, 여호와가 너희에게 안식일을 줌으로 제 육일에는 이틀 양식을 너희에게 주는 것이니, 제 칠일에는 아무도 그 처소에서 나오지 말지니라."
+    },
+    {
+      "type": "narration",
+      "acts": [
+        {
+          "act": "sleep",
+          "who": "grumbler"
+        },
+        {
+          "act": "kneel",
+          "who": "hoarder"
+        }
+      ],
+      "text": "그러므로 백성이 제 칠일에 안식하였다. 쉬라는 명령은 처음이었다. 사백 년 동안 그들이 들은 명령은, 대개 그 반대였다."
+    },
+    {
+      "type": "narration",
+      "bg": "sin-camp-dusk",
+      "fx": "fade",
+      "exit": [
+        "grumbler",
+        "hoarder"
+      ],
+      "enter": [
+        "moses",
+        "aaron"
+      ],
+      "item": "manna-jar",
+      "text": "이스라엘 족속이 그 이름을 만나라 하였다. 깟씨 같고 희고, 맛은 꿀 섞은 과자 같았다. 이것이 무엇이냐. 질문이 그대로 이름이 되었다."
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "face",
+      "to": "aaron",
+      "text": "“항아리를 가져다가 만나 한 오멜을 담게. 여호와 앞에 두고, 대대로 간수하게.”"
+    },
+    {
+      "type": "line",
+      "who": "aaron",
+      "text": "“광야에서 먹은 아침밥을, 무엇하러 남겨 두나.”"
+    },
+    {
+      "type": "line",
+      "who": "moses",
+      "act": "bow-head",
+      "text": "“잊어버릴 테니까.”"
+    },
+    {
+      "type": "narration",
+      "act": "bow-head",
+      "who": "aaron",
+      "text": "아론이 그것을 증거판 앞에 두어 간수하게 하였다. 그 증거판은 아직 시내산 위에 있었다. 기록은 먼 훗날의 일까지 한자리에 적었다."
+    },
+    {
+      "type": "scripture",
+      "ref": "출 16:35",
+      "bg": "sin-camp-night",
+      "fx": "fade",
+      "gloss": "가나안 땅 밟을 때까지 40년 동안 매일 만나 먹음. 하루도 안 빠지고."
+    },
+    {
+      "type": "narration",
+      "fx": "stars",
+      "act": "look-up",
+      "who": [
+        "moses",
+        "aaron"
+      ],
+      "text": "사십 년. 아침마다 하늘은 같은 것을 땅에 내려놓았고, 사람들은 같은 질문을 주웠다. 이것이 무엇이냐. 대답은 언제나, 하루치였다."
+    }
+  ],
+  "branches": {
+    "b-taste": [
+      {
+        "type": "narration",
+        "act": "kneel",
+        "who": "child",
+        "text": "혀에 닿자 녹았다. 달았다. 꿀 섞은 과자 같은 맛이었다. 이름보다 맛을 먼저 안 셈이다. 그래도 질문은 그대로 남았다. 맛을 안다고 이름을 아는 것은 아니니까."
+      },
+      {
+        "type": "line",
+        "who": "mother",
+        "act": "face",
+        "to": "child",
+        "text": "“뭔지도 모르는 걸 입에 넣으면 어떡하니.”"
+      }
+    ]
+  },
+  "insight": "일단 이름부터 개웃김. ‘만나’는 히브리어 ‘만 후’(이게 뭐임?)에서 온 말이라고 보는 게 일반적임. 처음 보고 다들 ‘이게 뭐냐?’ 한 게 그대로 이름이 된 거. 이스라엘은 40년 동안 매일 아침 ‘이게뭐임’을 먹은 셈ㅋㅋ\n\n근데 룰이 있었음. 한 사람당 한 오멜(대충 2리터쯤으로 봄. 정확한 양은 학자마다 좀 다름). 하루치만 줍고, 남겨 두면 벌레 생기고 냄새남. 근데 여섯째 날 갑절로 주워 둔 건 다음 날에도 멀쩡함. 같은 음식인데 결과가 다름. 문제는 음식이 아니라 ‘말을 믿고 따르냐’였던 거. 본문도 대놓고 ‘시험하리라’(16:4)라고 함. 떨어뜨리려는 시험이 아니라, 진짜 따라오는지 보는 테스트.\n\n‘일용할 것을 날마다’라는 말, 어디서 들어 본 것 같지? 주기도문의 ‘오늘 우리에게 일용할 양식을 주옵시고’(마 6:11). 이 기도를 광야의 만나랑 연결해서 읽는 관점이 많음. 한 달치 월급 땡겨 달라는 게 아니라, 오늘치를 오늘 받는 연습.\n\n16:18 ‘많이 거둔 자도 남음이 없고 적게 거둔 자도 부족함이 없었다’는 바울이 고후 8:15에서 그대로 인용함. 형편 괜찮은 교회가 어려운 교회 도와서 서로 남는 걸로 모자란 걸 채우자, 그게 ‘균등하게 하는 것’이라고. 광야식 자동 정산을 사람이 직접 해 보라는 얘기.\n\n그리고 안식일. 성경에서 사람한테 ‘일곱째 날엔 쉬어라’가 규칙으로 나오는 게 여기가 처음임. 십계명 받기도 전에. 사백 년 노예 생활에 쉬는 날이란 개념 자체가 낯설었을 텐데, 쉬라니까 굳이 바구니 들고 나간 사람들도 있었음ㅋㅋ 근데 이게 왜 중요하냐면, 우리도 똑같거든. 쉬는 날에도 단톡 확인하고, 안 하면 불안하고. 안식은 ‘내가 안 해도 세상 안 무너진다’를 몸으로 배우는 날임.\n\n만나가 정확히 뭐였냐는 질문도 있음. 여러 해석이 있다: 시내 반도의 위성류(타마리스크) 나무에 생기는 단 분비물 같은 자연현상으로 설명하려는 사람들도 있음. 근데 본문 디테일(매일 아침, 여섯째 날 갑절, 안식일엔 없음, 하루 지나면 썩는데 안식일 전날 것만 멀쩡, 40년 내내)은 그걸로 다 설명이 안 됨. 본문은 하나님이 하늘에서 내려 주신 양식으로 기록함. 나중에 예수님은 요한복음 6장에서 이 만나를 꺼내면서 ‘내가 하늘에서 내려온 떡’이라고 하심.",
+  "tldr": "만나 = ‘이게 뭐임?’. 하나님은 광야에서 매일 하루치씩 먹이시면서, 쌓아 두는 법 대신 믿는 법과 쉬는 법을 가르치심.",
+  "bridge": "배는 채워졌다. 다음은 목이었다. 신 광야를 떠나는 길 끝에서, 물 없는 르비딤이 기다리고 있었다."
+}

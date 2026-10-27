@@ -181,3 +181,6 @@
 :root[data-reduced-motion='true'] .ti .ti-line { stroke-dasharray: none; transition: none; }
 :root[data-reduced-motion='true'] .ti :is(.ti-edges, .ti__light, .ti-flame > *, .ti-ember, .ti-shine, .ti-wisp, .ti-smoke, .ti-smoke path, .ti-sway, .ti-spark, .ti-drop, .ti-glint) { animation: none !important; }
 :root[data-reduced-motion='true'] .ti :is(.ti-glint, .ti-drop) { opacity: 0; }
+
+/* 만나 항아리 (출 16:33): 항아리 위로 소복한 흰 알갱이 */
+.ti-manna { fill: #f4efe0; }

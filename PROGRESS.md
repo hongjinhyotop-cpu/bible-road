@@ -311,9 +311,22 @@
 - [x] 2단계 품질 기준 CLAUDE.md 6-1 + 검사기 — PR #14
 - [x] 3단계 1막 확인 — 바벨탑·피날레·도감 이미 완성, 1막 13개 검사기 통과 (할 것 없음)
 - [x] 4단계 2막 B급 15개 — PR #15
-- [ ] 5단계 2막 A급 — 머지: gen-12-call(#18), gen-22-moriah(#22), gen-25-stew·gen-27-blessing·gen-28-ladder(#23). 진행 중: gen-32-wrestle·gen-33-esau. 남음: gen-37-coat, gen-44-45-joseph (+ PLAN의 나머지 15·18·19·39·41·50)
-- [ ] 6단계 3막 출애굽 — B급 8개(#16), A급 exo-2-basket(#22), exo-3-bush(#23). 진행 중: exo-7-plagues. 남음: exo-12-passover, exo-14-sea, exo-16-manna, 3막 피날레 문장
-- [ ] 7단계 4막 시내산 — PLAN.md, B급 17개 전부 머지(PR #19, #21), 성막 기구 연출 라이브러리(PR #20). A급 2개 남음
+- [x] 5단계 2막 A급 (추천 순서 전부) — gen-12-call(#18), gen-22-moriah(#22), gen-25-stew·gen-27-blessing·gen-28-ladder(#23), gen-32-wrestle·gen-33-esau(#24), gen-37-coat(#25), gen-44-45-joseph(#26). 추가로 진행 중: gen-15-stars·gen-18-visitors. 남음: gen-19-sodom, gen-39-potiphar, gen-41-pharaoh, gen-50-good + 2막 피날레
+- [ ] 6단계 3막 출애굽 — B급 8개(#16), A급 exo-2-basket(#22), exo-3-bush(#23), exo-7-plagues(#24), exo-12-passover(#25), exo-14-sea(#26). 진행 중: exo-16-manna. 남음: 3막 피날레 문장(act.json finale)
+- [ ] 7단계 4막 시내산 — B급 17개(#19, #21), 성막 기구 연출 라이브러리(#20), A급 exo-19-20-sinai(#26). 진행 중: exo-32-calf. 레위기(27장)는 아직
+
+### 엔진·라이브러리에 새로 생긴 것 (오늘 밤)
+- **퀴즈 삭제**, 끝 구성 = 해설 → 한 줄 요약 → 다음 버튼
+- **품질 기준(CLAUDE.md 6-1) + 검사기**: 본문 카드 2~4개 + 한 줄 번역, 동작 beat 8개 이상, 배경·효과 변화 2번 이상, 글만 이어지는 beat 4개까지 (B급 오류 / A급 주의, 1막 A급은 카드 수 예외)
+- **성막 기구 연출** beat `"item"` 12가지 (`#/items` 미리 보기)
+- **새 동작**: `wrestle`(씨름), `bow-seven`(일곱 번 절)
+- **새 효과**: 재앙 6종(frogs gnats flies ash hail locusts), `passover`, `east-wind`, `weep`, `trumpet`
+- **beat별 `names`** (그 beat부터 이름표 바뀜), **옷 확장**(머리·다리·팔·키까지 바꿈, walk-in으로 들어올 때도 그 beat 옷)
+- **인물 자리 순서** 버그 수정 (cast/enter가 늘 적힌 순서대로)
+- **혼자 선 인물** 키 84% + spread 배경이면 PC에서도 오른쪽으로 비켜섬
+- 새 지명: negev, midian, rameses, succoth-egypt, pi-hahiroth, red-sea, rephidim
+- 새로 공들여 그린 인물: 아브라함, 이삭(옷 wood/plain/old), 야곱(plain/bowl/disguise/limp/coat), 에서, 요셉(plain/coat/vizier), 모세(shepherd/prince/empty), "어떤 사람"(얍복, 도감 X)
+- 키트 인물 추가: 요셉·유다·르우벤·베냐민(요셉은 다시 그림), 모세·아론·미리암·바로
 
 ## 다음 할 일
 

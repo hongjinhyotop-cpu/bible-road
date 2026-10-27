@@ -1,0 +1,75 @@
+/* ── 마므레의 세 손님 (창 18, A급 gen-18-visitors, fx/mamre.ts · characters/visitors.ts) ── */
+
+/* 한낮의 해와 아지랑이 */
+.mam-sun { fill: #fffbee; opacity: 0.95; filter: blur(0.6px); }
+.mam-sun__halo { fill: url(#bd-halo-g); opacity: 1; }
+.mam-heat { fill: none; stroke: #fff4dc; stroke-width: 1.4; opacity: 0.1; filter: blur(1px); animation: mam-heat 6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes mam-heat { 0%, 100% { transform: translateX(0); opacity: 0.06; } 50% { transform: translateX(-24px); opacity: 0.2; } }
+/* 먼 언덕이 열기에 아주 조금 일렁인다 */
+.mam-far { animation: mam-shimmer 3.2s ease-in-out infinite alternate; transform-origin: 50% 210px; }
+@keyframes mam-shimmer { from { transform: scaleY(1); } to { transform: scaleY(1.012) translateY(-0.4px); } }
+
+/* 장막 */
+.mam-seam { stroke: color-mix(in srgb, var(--act-accent) 18%, var(--act-b)); stroke-width: 0.8; opacity: 0.6; }
+.mam-seam--big { stroke-width: 3; opacity: 0.35; }
+.mam-wall { fill: color-mix(in srgb, var(--act-a) 70%, #0b0806); }
+.mam-pole { fill: color-mix(in srgb, var(--act-a) 50%, #000); }
+.mam-ropes { stroke: color-mix(in srgb, var(--act-a) 50%, #000); stroke-width: 2; }
+/* 문 휘장: 뒤에서 햇빛을 받은 아마 천 */
+.mam-curtain { fill: color-mix(in srgb, var(--act-accent) 62%, #fff2d6); opacity: 0.85; }
+.mam-curtain--big { opacity: 0.92; }
+.mam-curtain__glow ellipse { fill: #fff7e4; opacity: 0.35; filter: blur(14px); animation: mam-breathe 7s ease-in-out infinite; }
+.mam-curtain__fold { stroke: color-mix(in srgb, var(--act-accent) 40%, #6a4a2a); stroke-width: 0.8; opacity: 0.35; }
+@keyframes mam-breathe { 0%, 100% { opacity: 0.25; } 50% { opacity: 0.45; } }
+
+/* 휘장에 비친 사라의 그림자: 천 너머라 가장자리가 살짝 번진다 */
+.mam-shadow { fill: color-mix(in srgb, var(--act-a) 60%, #2a1a10); opacity: 0.72; filter: blur(0.9px); }
+.mam-shadow-small .mam-shadow { opacity: 0.55; filter: blur(0.4px); }
+.mam-shadow__body { transform-box: fill-box; transform-origin: 50% 100%; }
+.mam-shadow--listen .mam-shadow__body { animation: mam-listen 5s ease-in-out infinite; }
+@keyframes mam-listen { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(1.2deg); } }
+/* 속으로 웃음: 어깨가 들썩인다 */
+.mam-shadow--laugh .mam-shadow__body { animation: mam-laugh 0.34s ease-in-out infinite alternate; }
+@keyframes mam-laugh { from { transform: translateY(0) scaleY(1); } to { transform: translateY(-1.4px) scaleY(0.992); } }
+/* 움찔: 휘장에서 물러서며 그림자가 흐려진다 */
+.mam-shadow--start { animation: mam-start 1.6s ease-out both; }
+@keyframes mam-start { from { opacity: 0.8; transform: translateX(6px); } to { opacity: 0.5; transform: translateX(-4px); filter: blur(2px); } }
+
+/* 나무 그늘과 음식 */
+.mam-shade { fill: #000; opacity: 0.22; filter: blur(3px); }
+.mam-mat { fill: color-mix(in srgb, var(--act-accent) 34%, #5a3f22); }
+.mam-mat__edge { stroke: color-mix(in srgb, var(--act-accent) 60%, #f0d8a8); stroke-width: 0.6; opacity: 0.6; }
+.mam-food { fill: color-mix(in srgb, var(--act-b) 50%, #a07a48); }
+.mam-milk { fill: #f6efe0; opacity: 0.75; }
+.mam-steam path { fill: none; stroke: #fff4e0; stroke-width: 0.8; stroke-linecap: round; opacity: 0; animation: mam-steam 3.6s ease-out infinite; animation-delay: var(--d); }
+@keyframes mam-steam { 0% { opacity: 0; transform: translateY(2px); } 30% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-6px); } }
+
+/* 소돔이 내려다보이는 산마루 */
+.mam-moab { opacity: 0.75; }
+.mam-sea { fill: color-mix(in srgb, var(--act-accent) 45%, #b8c4c8); opacity: 0.55; }
+.mam-sea__sheen { fill: none; stroke: #fff2d8; stroke-width: 0.6; stroke-linecap: round; opacity: 0.5; animation: mam-breathe 6s ease-in-out infinite; }
+.mam-kikkar { fill: color-mix(in srgb, var(--act-b) 60%, #2a2018); opacity: 0.85; }
+.mam-town { fill: color-mix(in srgb, var(--act-b) 40%, #120c08); }
+.mam-town .bd-window { display: none; }
+.mam-citylight { fill: #ffc070; opacity: 0.55; filter: drop-shadow(0 0 1.2px #ffb050); animation: mam-flick 4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.play[data-tone='night'] .mam-citylight { opacity: 1; }
+@keyframes mam-flick { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.95; } }
+.mam-haze { fill: color-mix(in srgb, var(--act-accent) 40%, #e8a070); opacity: 0.2; filter: blur(4px); }
+/* 밤에도 먼 들의 불빛과 사해 물빛은 보이게: 배경 전체 어둡게 하는 필터 대신 땅만 */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop:last-child[data-art='sodom-view']) { filter: brightness(0.75) saturate(0.7); }
+.mam-road { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, var(--act-b)); stroke-width: 7; stroke-linecap: round; opacity: 0.45; }
+.mam-plain { opacity: 0.95; }
+
+:root[data-reduced-motion='true'] :is(.mam-citylight, .mam-sea__sheen, .mam-heat, .mam-far, .mam-curtain__glow ellipse, .mam-shadow__body, .mam-steam path) { animation: none; }
+:root[data-reduced-motion='true'] .mam-shadow--start { animation: none; opacity: 0.55; }
+
+/* ── 세 사람 (characters/visitors.ts): 얼굴을 가린 나그네 셋. 가장자리에만 따뜻한 빛 ── */
+.actor[data-id='visitors'] { --sil-ink: color-mix(in srgb, var(--act-a) 60%, #050403); }
+.actor[data-id='visitors'] .actor__rimcolor { flood-color: #fff2d0; flood-opacity: 0.95; }
+.actor[data-id='visitors'] .actor__backlight { opacity: 0.95; filter: brightness(1.2) saturate(0.7); }
+.actor[data-id='visitors'] .edge { fill: none; stroke: #fff1cf; stroke-width: 1; opacity: 0.5; animation: vis-edge 5.2s ease-in-out infinite; }
+@keyframes vis-edge { 0%, 100% { opacity: 0.35; } 50% { opacity: 0.75; } }
+:root[data-reduced-motion='true'] .actor[data-id='visitors'] .edge { animation: none; }
+
+/* ── 사라 (characters/sarah.ts): 어깨의 숄은 옷보다 한 톤 밝게 ── */
+.actor[data-id='sarah'] .shawl { color: color-mix(in srgb, var(--sil-ink) 62%, color-mix(in srgb, var(--tint, var(--act-accent)) 70%, #d8c0a0)); }

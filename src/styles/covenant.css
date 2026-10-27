@@ -1,0 +1,67 @@
+/* ── 별을 세어 보라 · 쪼갠 고기 사이의 횃불 (창 15, A급 gen-15-stars, fx/covenant.ts) ── */
+
+/* 밤에는 무대가 배경 전체를 어둡게 덮는데(library.css), 별까지 어두워지면 안 되므로
+   이 그림(cov-count)에서는 그 필터를 끄고 언덕(.cov-dim)만 따로 어둡게 한다. */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop:last-child[data-art='cov-count']) { filter: none; }
+.cov-dim { filter: brightness(0.42) saturate(0.6); }
+.cov-tentdoor { fill: #f2c27a; opacity: 0.55; animation: cov-lamp 4s ease-in-out infinite; }
+@keyframes cov-lamp { 0%, 100% { opacity: 0.45; } 50% { opacity: 0.7; } }
+
+/* 별: 처음엔 몇 개, 갈수록 셀 수 없이. 한 번 켜지면 그대로 (큰 별만 반짝임) */
+.cov-star { fill: #f6efdd; opacity: 0; animation: cov-on 2.6s ease-out var(--d) forwards; }
+.cov-star.is-big {
+  filter: drop-shadow(0 0 1.6px rgba(255, 240, 205, 0.95));
+  animation: cov-on 2.6s ease-out var(--d) forwards, cov-twinkle 5.5s ease-in-out calc(var(--d) + 2.6s) infinite;
+}
+@keyframes cov-on { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 0.78; } }
+@keyframes cov-twinkle { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+/* 은하수: 별이 다 차오를 무렵 천천히 떠오른다 */
+.cov-milky { opacity: 0; filter: blur(6px); animation: cov-milky 14s ease-in-out 12s forwards; }
+.cov-milky__core { filter: blur(3px); }
+@keyframes cov-milky { to { opacity: 0.55; } }
+
+:root[data-reduced-motion='true'] .cov-star,
+:root[data-reduced-motion='true'] .cov-star.is-big { animation: none; opacity: 0.8; }
+:root[data-reduced-motion='true'] .cov-milky { animation: none; opacity: 0.5; }
+
+/* ── 쪼갠 고기: 천을 덮은 낮은 덩이 두 줄과 그 사이 길 ── */
+.cov-lane { fill: color-mix(in srgb, var(--act-a) 60%, #000); opacity: 0.35; }
+.cov-track { fill: none; stroke: color-mix(in srgb, var(--act-accent) 30%, var(--act-b)); stroke-width: 0.7; opacity: 0.35; }
+.cov-cloth { fill: color-mix(in srgb, var(--act-b) 55%, #8a7458); }
+.cov-fold { fill: none; stroke: color-mix(in srgb, var(--act-a) 70%, #000); stroke-width: 0.8; opacity: 0.55; }
+.cov-rim { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #fff3d8); stroke-width: 0.9; stroke-linecap: round; opacity: 0.55; }
+.cov-shade { fill: #000; opacity: 0.28; }
+.cov-dove { fill: color-mix(in srgb, var(--act-b) 45%, #9a8a74); }
+.cov-scrub { opacity: 0.8; }
+/* 해 질 녘·밤: 천 빛이 식는다 */
+.play[data-tone='dusk'] .cov-rim { opacity: 0.35; }
+.play[data-tone='night'] .cov-rim { opacity: 0.12; }
+.play[data-light='0'] .cov-land { filter: brightness(0.8); transition: filter 3s; }
+
+/* ── 효과: 솔개 (kites) ── */
+.fx-kites, .fx-torch { position: absolute; left: 0; right: 0; bottom: 4%; height: 94%; z-index: 2; pointer-events: none; }
+.fx-kites svg, .fx-torch svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.kite { fill: color-mix(in srgb, var(--act-a) 60%, #050403); opacity: 0; }
+.kite__wings { transform-box: fill-box; transform-origin: 50% 60%; animation: kite-glide 2.4s ease-in-out infinite alternate; }
+.kite.is-flap .kite__wings { animation: kite-flap var(--flap, 0.5s) ease-in-out infinite alternate; }
+@keyframes kite-glide { from { transform: scaleY(1); } to { transform: scaleY(0.85); } }
+@keyframes kite-flap { from { transform: scaleY(1); } to { transform: scaleY(-0.6); } }
+:root[data-reduced-motion='true'] .kite__wings { animation: none; }
+
+/* ── 효과: 연기 나는 풀무와 타는 횃불 (torch-pass) ── */
+.fx-torch { z-index: 1; transition: opacity 2.6s; }
+.fx-torch.is-out { opacity: 0; }
+.tp-glow { fill: url(#tp-glow-g); mix-blend-mode: screen; animation: tp-breathe 1.4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+.tp-pot__body { fill: #1a0f0a; }
+.tp-pot__mouth { fill: #ffb45a; filter: drop-shadow(0 0 2px #ffb45a); }
+.tp-pot__band { stroke: #4a2a18; stroke-width: 0.8; }
+.tp-torch__shaft { fill: #20140c; }
+.tp-torch__wrap { fill: #3a2414; }
+.tp-flame path { fill: url(#tp-flame-g); filter: drop-shadow(0 0 3px rgba(255, 190, 100, 0.95)); }
+.tp-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: tp-flicker 0.42s ease-in-out infinite alternate; }
+.tp-flame--pot { animation-duration: 0.55s; }
+.tp-puff { fill: #3a3430; opacity: 0.55; filter: blur(1.4px); }
+@keyframes tp-flicker { from { transform: scale(1, 1) skewX(-4deg); } to { transform: scale(0.88, 1.14) skewX(5deg); } }
+@keyframes tp-breathe { 0%, 100% { opacity: 0.85; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+:root[data-reduced-motion='true'] :is(.tp-glow, .tp-flame) { animation: none; }

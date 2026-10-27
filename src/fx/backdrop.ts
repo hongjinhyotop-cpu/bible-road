@@ -14,6 +14,10 @@ import { egyptLampsArt, goshenArt } from './passover';
 import { redSeaArt } from './sea';
 import { josephHallArt } from './hall';
 import { sinaiArt } from './sinai';
+import { sinArt } from './manna';
+import { covenantArt } from './covenant';
+import { mamreArt } from './mamre';
+import { calfArt } from './calf';
 
 export const W = 400;
 export const H = 260;
@@ -473,6 +477,31 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'sinai-storm': () => sinaiArt('storm'),
   'sinai-fire': () => sinaiArt('fire'),
   'sinai-dark': () => sinaiArt('dark'),
+  // 신 광야의 만나 (출 16, fx/manna.ts)
+  'sin-camp': () => sinArt('camp'),
+  'sin-glory': () => sinArt('glory'),
+  'sin-quail': () => sinArt('quail'),
+  'sin-dew': () => sinArt('dew'),
+  'sin-manna': () => sinArt('manna'),
+  'sin-melt': () => sinArt('melt'),
+  // 금송아지 (출 32, fx/calf.ts)
+  'calf-camp': () => calfArt('camp'),
+  'calf-forge': () => calfArt('forge'),
+  'calf-idol': () => calfArt('idol'),
+  'calf-feast': () => calfArt('feast'),
+  'calf-view': () => calfArt('view'),
+  'calf-burn': () => calfArt('burn'),
+  'calf-ash': () => calfArt('ash'),
+  // 별을 세어 보라 (창 15, fx/covenant.ts)
+  'cov-count': () => covenantArt('count'),
+  'cov-pieces': () => covenantArt('pieces'),
+  // 마므레의 세 손님 (창 18, fx/mamre.ts)
+  mamre: () => mamreArt('grove'),
+  'mamre-meal': () => mamreArt('meal'),
+  'mamre-door': () => mamreArt('door'),
+  'mamre-laugh': () => mamreArt('laugh'),
+  'mamre-start': () => mamreArt('start'),
+  'sodom-view': () => mamreArt('sodom'),
   'moriah-thicket': moriahThicketArt,
   kilns: () => `
     <path class="bd-far" d="M-800 260 L-800 212 C-500 208 -200 214 100 210 C300 207 500 213 800 209 L1200 211 L1200 260 Z"/>
