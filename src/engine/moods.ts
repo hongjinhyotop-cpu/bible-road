@@ -19,6 +19,10 @@ export type BackdropArt =
   | 'redsea-camp' | 'redsea-chariots' | 'redsea-pillar' | 'redsea-wind' | 'redsea-part' | 'redsea-crossing' | 'redsea-chase' | 'redsea-return' | 'redsea-sunrise'
   | 'joseph-hall' | 'joseph-hall-shut'
   | 'sinai-camp' | 'sinai-bound' | 'sinai-storm' | 'sinai-fire' | 'sinai-dark'
+  | 'sin-camp' | 'sin-glory' | 'sin-quail' | 'sin-dew' | 'sin-manna' | 'sin-melt'
+  | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
+  | 'cov-count' | 'cov-pieces'
+  | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | PlaceArt;
 
 /**
@@ -126,6 +130,14 @@ export const FX = [
   'weep', // 큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 나간다 (약 9초, 창 45:2)
   // ── 시내산 (출 19–20, fx/sinai.ts) ──
   'trumpet', // 나팔 소리: 산꼭대기(sinai-* 배경)에서 금빛 소리의 고리가 퍼진다. 부를 때마다 더 크고 밝다 (약 8초, 출 19:16-19)
+  // ── 만나 (출 16, fx/manna.ts) ──
+  'quail', // 메추라기 떼: 작은 새들이 한쪽에서 낮게 몰려와 무대를 휩쓸고, 절반쯤 땅에 내려앉음 (약 11초, 출 16:13). 뒤이어 배경 sin-quail
+  'stink', // 냄새: 말하는 사람(없으면 오른쪽 사람) 곁에서 옅은 잿빛 김이 구불구불 오르고 날벌레 두엇이 맴돎 (약 6초, 출 16:20). 가볍게
+  // ── 금송아지 (출 32, fx/calf.ts) ──
+  'tablets-break', // 돌판 깨짐: 떠 있는 증거판 두 돌판(item tablets, 없으면 세움)에 금이 그어지고 여덟 조각으로 갈라져 아래로 떨어짐 (약 3초, 출 32:19)
+  // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
+  'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
+  'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -368,6 +380,68 @@ export const MOODS: Record<string, Mood> = {
   'sinai-fire': { light: true, land: false, art: 'sinai-fire', tone: 'storm', spread: true },
   /** 하나님이 계신 흑암: 꼭대기를 덮은 짙은 어둠, 가장자리만 금빛 (출 20:21) */
   'sinai-dark': { light: true, land: false, art: 'sinai-dark', tone: 'storm', spread: true },
+
+  // ── 신 광야의 만나 (출 16, fx/manna.ts) ──
+  /** 신 광야의 진: 넓고 평평한 모래 광야, 멀리 낮은 산줄기, 겹겹이 흩어진 장막들 (출 16:1) */
+  'sin-camp': { light: true, land: false, art: 'sin-camp' },
+  /** 같은 진, 해 질 녘 */
+  'sin-camp-dusk': { light: true, land: false, art: 'sin-camp', tone: 'dusk' },
+  /** 같은 진, 밤 (장막 몇에 불빛) */
+  'sin-camp-night': { light: true, land: false, art: 'sin-camp', tone: 'night' },
+  /** 같은 진, 맑은 아침 (아무것도 없는 맨땅 — 안식일 아침) */
+  'sin-camp-dawn': { light: true, land: false, art: 'sin-camp', tone: 'clear' },
+  /** 광야 쪽 하늘의 구름 속에 여호와의 영광: 금빛이 숨 쉬듯 밝아지고 아래로 빛줄기 (출 16:10). 인물로 그리지 않는다 */
+  'sin-glory': { light: true, land: false, art: 'sin-glory', tone: 'dusk' },
+  /** 진을 덮은 메추라기: 장막 사이와 앞쪽 땅에 내려앉은 새들, 몇은 고개를 까딱 (출 16:13). fx quail 뒤에 */
+  'sin-quail': { light: true, land: false, art: 'sin-quail', tone: 'dusk' },
+  /** 새벽, 진 사면에 낮게 깔린 이슬 안개 (출 16:13) */
+  'manna-dew': { light: true, land: false, art: 'sin-dew', tone: 'clear' },
+  /** 이슬이 마른 아침: 땅을 덮은 작고 둥근, 서리 같은 흰 알갱이. 드문드문 반짝 (출 16:14) */
+  'manna-dawn': { light: true, land: false, art: 'sin-manna', tone: 'clear' },
+  /** 한낮: 뜨거운 해, 아지랑이, 땅의 만나가 천천히 스러진다 (출 16:21) */
+  'manna-noon': { light: true, land: false, art: 'sin-melt' },
+
+  // ── 금송아지 (출 32, fx/calf.ts) ──
+  /** 시내산 발치의 진, 밤: 흑암에 덮인 산꼭대기, 장막 사이 모닥불 (출 32:1) */
+  'calf-camp': { light: true, land: false, art: 'calf-camp', tone: 'night' },
+  /** 진 한가운데 풀무 구덩이: 금이 녹는 빛, 튀는 불티 (출 32:4 "부어서") */
+  'calf-forge': { light: true, land: false, art: 'calf-forge', tone: 'night' },
+  /** 돌 받침 위의 금송아지가 불빛에 빛나고, 그 앞에 단 (출 32:4-5). 폰에서 인물은 양옆으로 */
+  'calf-idol': { light: true, land: false, art: 'calf-idol', tone: 'night', spread: true },
+  /** 잔치: 송아지 + 불붙은 단 + 둘레에서 들썩이는 사람들의 그림자 (출 32:6, 19). 절제 */
+  'calf-feast': { light: true, land: false, art: 'calf-feast', tone: 'night', spread: true },
+  /** 산길 위에서 내려다본 진: 멀리 불빛 점과 금빛 한 점, 피어오르는 소리의 고리 (출 32:17-18) */
+  'calf-view': { light: true, land: false, art: 'calf-view', tone: 'night' },
+  /** 불살라: 송아지가 불길에 싸여 검게 식으며 주저앉음, 산 아래 돌판 조각 (출 32:20) */
+  'calf-burn': { light: true, land: false, art: 'calf-burn', tone: 'dusk', spread: true },
+  /** 이튿날 아침: 빈 받침의 재, 금가루가 반짝이며 흐르는 시내 (출 32:20, 신 9:21) */
+  'calf-ash': { light: true, land: false, art: 'calf-ash', tone: 'clear' },
+
+  // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
+  /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */
+  'stars-count': { light: true, land: false, art: 'cov-count', tone: 'night', spread: true },
+  /** 쪼갠 고기를 마주 대하여 놓은 두 줄과 그 사이 길 (천을 덮은 덩이, 끝에 쪼개지 않은 새 둘) (창 15:10) */
+  'covenant-pieces': { light: true, land: false, art: 'cov-pieces', spread: true },
+  /** 같은 곳, 해 질 녘 (창 15:12) */
+  'covenant-pieces-dusk': { light: true, land: false, art: 'cov-pieces', tone: 'dusk', spread: true },
+  /** 같은 곳, 해가 져서 캄캄함 (창 15:12, 17). fx torch-pass와 함께 */
+  'covenant-dark': { light: false, land: false, art: 'cov-pieces', tone: 'night', spread: true },
+
+  // ── 마므레의 세 손님 (창 18, fx/mamre.ts) ──
+  /** 오정의 마므레 상수리 수풀: 염소털 큰 장막(문 휘장 뒤에 사라의 그림자), 큰 상수리나무, 흰 해, 아지랑이 (창 18:1) */
+  mamre: { light: true, land: false, art: 'mamre' },
+  /** 같은 곳 + 나무 그늘 아래 차린 떡·버터·우유·송아지 요리, 김 (창 18:8) */
+  'mamre-meal': { light: true, land: false, art: 'mamre-meal', spread: true },
+  /** 장막 문 가까이: 뒤에서 빛을 받은 휘장에 사라의 그림자가 귀를 기울인다 (창 18:10) */
+  'mamre-door': { light: true, land: false, art: 'mamre-door' },
+  /** 같은 휘장, 그림자가 손으로 입을 가리고 어깨를 들썩인다 (창 18:12 "속으로 웃고") */
+  'mamre-laugh': { light: true, land: false, art: 'mamre-laugh' },
+  /** 같은 휘장, 그림자가 움찔 물러선다 (창 18:13-15) */
+  'mamre-start': { light: true, land: false, art: 'mamre-start' },
+  /** 헤브론 동쪽 산마루 길, 해 질 녘: 발아래 멀리 요단 들과 사해, 아지랑이 속 작은 성들 (창 18:16) */
+  'sodom-view': { light: true, land: false, art: 'sodom-view', tone: 'dusk' },
+  /** 같은 산마루, 밤 */
+  'sodom-view-night': { light: true, land: false, art: 'sodom-view', tone: 'night' },
 };
 
 // 배경 라이브러리를 mood 이름으로 등록: tent, tent-dusk, tent-night, tent-dawn ...

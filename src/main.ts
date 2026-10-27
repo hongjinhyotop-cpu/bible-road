@@ -25,6 +25,10 @@ import './styles/passover.css';
 import './styles/sea.css';
 import './styles/hall.css';
 import './styles/sinai.css';
+import './styles/manna.css';
+import './styles/covenant.css';
+import './styles/mamre.css';
+import './styles/calf.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';

@@ -18,7 +18,7 @@ const FOOT = 214;
 const f = (n: number) => n.toFixed(1);
 
 /** 시내산: 가운데 높은 봉우리, 양옆 어깨 봉우리, 골짜기 능선. 화강암이 갈라진 결 */
-function massif(): string {
+export function massif(): string {
   return `
     <path class="bd-far" d="M${-W * 2} ${H} L${-W * 2} 196 L-560 186 L-420 198 L-300 180 L-170 194 L-60 186 L20 196 L${W * 3} 194 L${W * 3} ${H} Z"/>
     <path class="bd-far sn-mount" d="M-30 ${FOOT} L18 192 L44 184 L62 162 L84 150 L98 128 L116 122 L130 100 L146 92 L160 70 L172 66 L184 50 L${SX - 6} ${SY + 2} L${SX + 4} ${SY - 2} L212 50 L222 48 L232 64 L246 70 L258 92 L272 98 L286 122 L302 128 L318 152 L340 162 L360 184 L388 192 L430 ${FOOT} Z"/>
@@ -55,7 +55,7 @@ function boundary(): string {
 }
 
 /** 빽빽한 구름: 산 윗부분을 감싼 먹구름 덩이들. 천천히 굴러가고, 속에서 번개가 번쩍인다 */
-function cloud(state: SinaiState): string {
+export function cloud(state: SinaiState): string {
   const r = rng(state === 'dark' ? 4311 : 4301);
   const n = state === 'storm' ? 34 : 40;
   const blobs = Array.from({ length: n }, (_, i) => {

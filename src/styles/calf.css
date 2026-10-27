@@ -1,0 +1,126 @@
+/* ── 금송아지 (출 32, A급 exo-32-calf, fx/calf.ts) ──
+   시내산 발치의 밤 진: 흑암에 덮인 산, 장막 사이 모닥불, 돌 받침 위에서 불빛을 받아 빛나는 금송아지,
+   그 둘레에서 천천히 들썩이는 사람들의 그림자. 산길 위에서 내려다본 진(소리의 고리), 불살라진 송아지, 금가루가 흐르는 시내.
+   효과 tablets-break: 돌판에 금이 그어지고 조각나 떨어진다 */
+
+/* 밤 색조의 어두운 필터는 이 배경에선 끄고, 불빛 아닌 것만 따로 어둡게 (불은 또렷하게) */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop[data-art^='calf']) { filter: none; }
+.play[data-tone='night'] .cf-dim { filter: brightness(0.55) saturate(0.7); }
+.play[data-tone='night'] .cf--view .bd-far { filter: brightness(0.6); }
+.cf-near { opacity: 0.96; }
+/* 산: 밤에도 윤곽이 보이게 (흑암의 구름 가장자리 금빛은 sinai.css) */
+.cf-mount .sn-mount { fill: color-mix(in srgb, #7a4436 26%, var(--bd)); }
+.play[data-tone='night'] .cf-mount { filter: brightness(0.85); }
+/* 진 전체가 모닥불 빛을 받는다: 땅 위로 낮게 깔린 따뜻한 빛 (잔치 때 더 밝게) */
+.cf-campglow { fill: url(#bd-flame-g); opacity: 0.35; mix-blend-mode: screen; }
+.cf--feast .cf-campglow { opacity: 0.75; animation: cf-breathe 3.6s ease-in-out infinite alternate; }
+.cf--forge .cf-campglow, .cf--idol .cf-campglow { opacity: 0.5; }
+
+/* 모닥불 */
+.cf-firelight { fill: url(#bd-flame-g); opacity: 0.8; transform-box: fill-box; transform-origin: center; animation: cf-breathe 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); mix-blend-mode: screen; }
+@keyframes cf-breathe { from { opacity: 0.6; transform: scale(0.94); } to { opacity: 0.95; transform: scale(1.06); } }
+.cf-logs { fill: none; stroke: #1a0e08; stroke-width: 1.4; stroke-linecap: round; }
+.cf-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: cf-flame var(--t, 1.3s) ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); mix-blend-mode: screen; }
+.cf-flame__out { fill: #f39a46; opacity: 0.75; }
+.cf-flame__in { fill: #fff0c8; opacity: 0.9; }
+@keyframes cf-flame { 0% { transform: scale(1, 1) skewX(0deg); } 50% { transform: scale(0.88, 1.16) skewX(5deg); } 100% { transform: scale(1.06, 0.88) skewX(-4deg); } }
+
+/* 풀무: 녹은 금 빛, 튀어 오르는 불티 */
+.cf-firelight--forge { opacity: 1; }
+.cf-pit { fill: #0d0806; }
+.cf-pit--stones { fill: color-mix(in srgb, var(--act-a) 40%, #0a0708); }
+.cf-melt { fill: #ffe7a0; filter: blur(1.2px) drop-shadow(0 0 4px #ffb84a); animation: cf-melt 1.8s ease-in-out infinite alternate; }
+@keyframes cf-melt { from { opacity: 0.75; } to { opacity: 1; } }
+.cf-spark { fill: #ffd890; opacity: 0; animation: cf-spark var(--t) ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes cf-spark { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -70px); } }
+
+/* 금송아지: 금빛 그라데이션 대신 불빛을 받은 금 — 아래는 짙고 등선은 밝다. 뒤에 따뜻한 빛 번짐 */
+.cf-halo { fill: url(#bd-flame-g); opacity: 0.85; mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: cf-breathe 4s ease-in-out infinite alternate; }
+.cf-calf__body { fill: #c99332; filter: drop-shadow(0 0 3px rgba(255, 196, 92, 0.65)) drop-shadow(0 0 10px rgba(255, 170, 60, 0.3)); }
+.cf-calf__hi { fill: none; stroke: #fff0b8; stroke-width: 1.1; stroke-linecap: round; opacity: 0.85; animation: cf-glint 3.6s ease-in-out infinite alternate; }
+@keyframes cf-glint { from { opacity: 0.5; } to { opacity: 1; } }
+/* 각도로 새긴 결 (32:4 "각도로 새겨") */
+.cf-calf__cut { fill: none; stroke: #6a4410; stroke-width: 0.6; opacity: 0.55; }
+.cf-plinth { fill: color-mix(in srgb, var(--act-a) 38%, #120d0c); }
+.cf-crack { fill: none; stroke: #050304; stroke-width: 0.9; }
+
+/* 불살라: 금빛이 붉게 달았다가 검게 식으며 받침 위로 주저앉는다 (한 번) */
+.cf--burn .cf-calf { animation: cf-sink 9s cubic-bezier(0.5, 0, 0.7, 1) 1.2s both; }
+.cf--burn .cf-calf__body { animation: cf-char 9s ease-in 1.2s both; }
+.cf--burn .cf-calf__hi { animation: cf-fade 4s ease-in 1.2s both; }
+.cf--burn .cf-halo { fill: url(#bd-flame-g); opacity: 1; }
+@keyframes cf-char { 0% { fill: #c99332; } 30% { fill: #e2602a; } 70% { fill: #3a1a10; } 100% { fill: #120a08; filter: none; } }
+@keyframes cf-sink { 0% { translate: 0 0; scale: 1 1; } 60% { translate: 0 2px; scale: 1 0.9; } 100% { translate: 0 6px; scale: 1.04 0.55; opacity: 0.4; } }
+@keyframes cf-fade { to { opacity: 0; } }
+.cf-pyre .cf-flame__out { fill: #f58a3a; opacity: 0.8; }
+.cf-pyre__back .cf-flame__out { fill: #d8502a; opacity: 0.7; }
+.cf-pyre__back .cf-flame__in { opacity: 0.5; }
+.cf-firelight--pyre { opacity: 1; }
+/* 불이 서서히 잦아든다 (송아지가 다 녹을 즈음) */
+.cf--burn .cf-pyre { animation: cf-die 12s ease-in 2s both; }
+@keyframes cf-die { to { opacity: 0.45; } }
+
+/* 단에 불이 붙었다 (32:6 "번제를 드리며") — 라이브러리 altar 그림을 그대로 */
+
+/* 춤: 실루엣이 천천히 들썩이고 팔이 흔들린다. 절제해서 — 몸짓이 크지 않게 */
+.cf-dance { color: color-mix(in srgb, var(--act-a) 40%, #060406); fill: currentColor; }
+.cf-dance--back { opacity: 0.8; color: color-mix(in srgb, var(--act-b) 30%, #0a0708); }
+.cf-arm { fill: none; stroke: currentColor; stroke-linecap: round; transform-box: view-box; }
+.cf-dancer__b { transform-box: fill-box; transform-origin: 50% 100%; animation: cf-bob var(--t) ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes cf-bob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-1.8px) rotate(3deg); } }
+
+/* 산 아래 돌판 조각 */
+.cf-shards { fill: color-mix(in srgb, var(--act-b) 40%, #2a2830); }
+.cf-shard-line { fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #ffe9b0); stroke-width: 0.5; opacity: 0.55; }
+
+/* 이튿날 아침: 빈 받침의 재, 금가루가 흐르는 시내 */
+.cf-ash { fill: #3a3634; }
+.cf-wisp { fill: none; stroke: #b8b2aa; stroke-width: 1.4; stroke-linecap: round; stroke-dasharray: 0.3 0.7; opacity: 0.35; filter: blur(0.6px); animation: cf-rise 6s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes cf-rise { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.cf-water { fill: none; stroke: color-mix(in srgb, var(--act-b) 50%, #6f8ea0); stroke-width: 7; stroke-linecap: round; opacity: 0.55; }
+.cf-water__hi { fill: none; stroke: #e9f2f6; stroke-width: 0.8; stroke-dasharray: 4 12; opacity: 0.5; animation: bd-flow 6s linear infinite; }
+.cf-speck { fill: #ffe39a; opacity: 0.9; animation: cf-tw 1.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes cf-tw { from { opacity: 0.2; } to { opacity: 1; } }
+
+/* 산길에서 내려다본 진: 불빛 점들이 깜박이고, 가운데 금빛 한 점에서 소리의 고리가 피어오른다 (32:18 "노래하는 소리로다") */
+.cf-dot { fill: #ffbe6a; animation: cf-tw 2.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.cf-firelight--far { opacity: 0.9; }
+.cf-gold { fill: #ffe7a0; filter: drop-shadow(0 0 2px #ffcf6a); }
+.cf-valley .bd-tent { opacity: 0.8; }
+.cf-ring {
+  fill: none; stroke: color-mix(in srgb, var(--act-accent) 55%, #ffd99a); stroke-width: 0.8; opacity: 0;
+  transform-box: fill-box; transform-origin: 50% 100%;
+  animation: cf-ring 6.4s cubic-bezier(0.2, 0.6, 0.4, 1) infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes cf-ring { 0% { opacity: 0; transform: translateY(0) scale(0.3); } 15% { opacity: 0.7; } 100% { opacity: 0; transform: translateY(-34px) scale(2.6); } }
+
+/* ── 효과 tablets-break ── */
+.fx-break { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
+.fx-break__cracks { position: absolute; overflow: visible; }
+.fx-break__cracks path {
+  fill: none; stroke: #fffbe8; stroke-width: 1.3; stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 1 1; stroke-dashoffset: 1;
+  filter: drop-shadow(0 0 2px #fff6d6) drop-shadow(0 0 5px color-mix(in srgb, var(--act-accent) 80%, transparent));
+}
+/* 조각: 기구 그림의 복제. 위치·크기는 원래 그림 그대로, 빛 번짐·이름표는 없이 */
+.ti.fx-break__shard { position: absolute; translate: none; transform: none; opacity: 1; transition: none; will-change: transform; }
+.ti.fx-break__shard::before { display: none; }
+.ti.fx-break__shard .ti-live { display: none; }
+.ti.fx-break__shard .ti__art { width: 100%; height: 100%; }
+.fx-break__dust {
+  position: absolute; left: 50%; bottom: -6%; width: 90%; height: 26%; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--act-b) 40%, #b9ada0 50%), transparent);
+  opacity: 0; filter: blur(6px);
+  animation: fx-break-dust 2.2s ease-out both;
+}
+@keyframes fx-break-dust { 0% { opacity: 0; transform: scale(0.4, 0.6); } 20% { opacity: 0.6; } 100% { opacity: 0; transform: scale(1.3, 1.5) translateY(-20%); } }
+
+:root[data-reduced-motion='true'] :is(.cf-firelight, .cf-flame, .cf-melt, .cf-spark, .cf-halo, .cf-calf__hi, .cf-dancer__b, .cf-wisp, .cf-water__hi, .cf-speck, .cf-dot, .cf-ring) { animation: none !important; }
+:root[data-reduced-motion='true'] .cf-spark { opacity: 0; }
+:root[data-reduced-motion='true'] .cf-ring { opacity: 0.4; }
+:root[data-reduced-motion='true'] .cf--burn :is(.cf-calf, .cf-calf__body) { animation-duration: 0.01s !important; }
+:root[data-reduced-motion='true'] .fx-break__cracks path { stroke-dasharray: none; }
+
+/* 송아지 앞의 단: 연기가 송아지를 가리지 않게 옅게, 잔치 때는 단 위에 작은 불 */
+.cf .bd-altar .bd-smoke { opacity: 0.22; }
+.cf-altarfire .cf-flame__out { fill: #f6a24e; }

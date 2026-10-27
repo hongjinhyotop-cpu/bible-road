@@ -1,0 +1,73 @@
+/* ── 신 광야의 만나 (출 16, fx/manna.ts) ──
+   메추라기는 저녁에 진을 덮고, 만나는 이슬이 마른 아침 땅을 서리처럼 덮는다.
+   반짝임은 느리고 드문드문 — 땅 전체가 번쩍이면 안 된다. */
+.sin-camp .sin-door { fill: #ffcf86; opacity: 0.75; animation: bd-twinkle 5s ease-in-out infinite; }
+
+/* 구름 속의 영광 (16:10): 구름은 짙고, 속에서 금빛이 숨 쉬듯 밝아졌다 잦아든다. 가장자리만 금테 */
+.sin-glory__cloud { fill: color-mix(in srgb, var(--act-b) 50%, #4a3e4a); }
+/* 금테: 같은 구름 모양을 굵은 금빛 선으로 구름 뒤에 깔아, 바깥 가장자리만 빛이 새어 나온다 */
+.sin-glory__rim { fill: none; stroke: #ffdf9a; stroke-width: 5; opacity: 0.55; filter: blur(2px); animation: sin-breathe 5.5s ease-in-out infinite; }
+.sin-glory__halo { fill: #ffd98e; opacity: 0.22; filter: blur(22px); animation: sin-halo 5.5s ease-in-out infinite; }
+@keyframes sin-halo { 0%, 100% { opacity: 0.14; } 50% { opacity: 0.3; } }
+.sin-glory__core { fill: #ffe2a0; filter: blur(14px); opacity: 0.7; mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: sin-core 5.5s ease-in-out infinite; }
+.sin-glory__shaft { fill: #ffe9bc; opacity: 0.1; filter: blur(8px); animation: sin-shaft 5.5s ease-in-out infinite; }
+.sin-glory { animation: sin-rise 2.6s var(--ease-out) both; }
+@keyframes sin-rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes sin-breathe { 0%, 100% { opacity: 0.4; } 50% { opacity: 0.85; } }
+@keyframes sin-core { 0%, 100% { opacity: 0.5; transform: scale(0.94); } 50% { opacity: 0.9; transform: scale(1.08); } }
+@keyframes sin-shaft { 0%, 100% { opacity: 0.07; } 50% { opacity: 0.16; } }
+
+/* 내려앉은 메추라기 (16:13): 흙빛 깃털, 몇 마리는 고개를 까딱 */
+.sin-quail { fill: color-mix(in srgb, var(--act-a) 30%, #2e2118); stroke: color-mix(in srgb, var(--act-accent) 55%, #e0c79a); stroke-width: 0.35; stroke-opacity: 0.55; }
+.sin-quail__belly { stroke: color-mix(in srgb, var(--act-accent) 50%, #d9c296); stroke-width: 0.7; opacity: 0.8; }
+.sin-quail__head { animation: sin-peck 3.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: 0% 100%; }
+@keyframes sin-peck { 0%, 55%, 100% { transform: none; } 65%, 72% { transform: rotate(38deg) translate(1px, 1.6px); } }
+
+/* 이슬 (16:13): 낮게 깔린 하얀 안개가 아주 천천히 밀려갔다 돌아온다 */
+.sin-dew { fill: #eef1f2; filter: blur(5px); }
+.sin-dew ellipse { opacity: 0.26; animation: sin-dew 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sin-dew { from { transform: translateX(-6px); opacity: 0.18; } to { transform: translateX(6px); opacity: 0.34; } }
+
+/* 만나 (16:14 "작고 둥글며 서리 같이 세미한 것"): 흰 알갱이, 드문드문 별처럼 반짝임 */
+.sin-flakes { fill: #f3efe3; opacity: 0.88; }
+.sin-manna { animation: sin-appear 2.4s var(--ease-out) both; }
+@keyframes sin-appear { from { opacity: 0; } to { opacity: 1; } }
+.sin-glint { fill: #fffbea; opacity: 0; transform-box: fill-box; transform-origin: center; animation: sin-glint var(--t, 3.4s) ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes sin-glint { 0%, 70%, 100% { opacity: 0; scale: 0.4; } 82% { opacity: 1; scale: 1.15; } }
+
+/* 한낮 (16:21): 뜨거운 해, 아지랑이, 서리 같은 것이 천천히 스러진다 */
+.sin-sun { fill: #fff3d6; filter: blur(0.6px); }
+.sin-sun__halo { fill: #ffd98c; opacity: 0.36; filter: blur(9px); }
+.sin-haze path { fill: none; stroke: #fff2d8; stroke-width: 0.8; opacity: 0.16; animation: sin-haze 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sin-haze { from { transform: translate(-4px, 0.6px); } to { transform: translate(4px, -0.6px); } }
+.backdrop[data-art='sin-melt'] .sin-manna { animation: sin-melt 9s ease-in 0.8s both; }
+.backdrop[data-art='sin-melt'] .sin-glints { display: none; }
+@keyframes sin-melt { 0% { opacity: 1; } 100% { opacity: 0.06; } }
+
+/* 효과 quail: 낮게 몰려오는 작은 새 떼 → 절반은 땅에 내려앉음 */
+.fx-quail { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s; }
+.fx-quail.is-out { opacity: 0; }
+.fx-quail i { position: absolute; left: 0; top: 0; display: block; }
+.fx-quail svg { display: block; width: 100%; height: auto; fill: color-mix(in srgb, var(--act-accent) 20%, #7a6048); overflow: visible; filter: drop-shadow(0 0 1px rgba(255, 220, 170, 0.5)); }
+.fx-quail__wing { transform-box: fill-box; transform-origin: 50% 100%; animation: fx-quail-flap 0.16s ease-in-out infinite alternate; }
+.fx-quail i.is-down .fx-quail__wing { animation: none; transform: scaleY(0.25); }
+.fx-quail i.is-down svg { fill: color-mix(in srgb, var(--act-accent) 12%, #5a4632); filter: none; }
+@keyframes fx-quail-flap { from { transform: scaleY(1); } to { transform: scaleY(-0.7); } }
+
+/* 효과 stink: 잿빛 김이 구불구불, 날벌레 두엇 */
+.fx-stink { position: absolute; left: 50%; top: 40%; width: 64px; z-index: 4; pointer-events: none; translate: -50% -100%; opacity: 0; transition: opacity 0.8s; }
+.fx-stink.is-on { opacity: 1; }
+.fx-stink.is-out { opacity: 0; transition-duration: 1.2s; }
+.fx-stink svg { display: block; width: 100%; overflow: visible; }
+.fx-stink__wisp { fill: none; stroke: #c3c9a8; stroke-width: 2.6; stroke-linecap: round; opacity: 0; filter: blur(0.6px); animation: fx-wisp 2.4s ease-out infinite; animation-delay: var(--d); }
+@keyframes fx-wisp { 0% { opacity: 0; transform: translateY(10px) scaleX(0.8); } 35% { opacity: 0.6; } 100% { opacity: 0; transform: translateY(-14px) scaleX(1.2); } }
+.fx-stink b { position: absolute; left: 50%; top: 40%; width: 3px; height: 3px; border-radius: 50%; background: #2a2620; animation: fx-buzz 1.3s linear infinite; }
+.fx-stink b + b { animation-duration: 1.7s; animation-direction: reverse; }
+@keyframes fx-buzz {
+  0% { transform: rotate(0deg) translateX(14px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(14px) rotate(-360deg); }
+}
+
+:root[data-reduced-motion='true'] :is(.sin-door, .sin-glory, .sin-glory__rim, .sin-glory__halo, .sin-glory__core, .sin-glory__shaft, .sin-quail__head, .sin-dew ellipse, .sin-manna, .sin-glint, .sin-haze path, .fx-stink__wisp, .fx-stink b) { animation: none; }
+:root[data-reduced-motion='true'] .fx-stink__wisp { opacity: 0.45; }
+:root[data-reduced-motion='true'] .backdrop[data-art='sin-melt'] .sin-manna { animation: none; opacity: 0.2; }

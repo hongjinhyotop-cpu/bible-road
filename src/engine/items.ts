@@ -15,6 +15,7 @@ export const ITEMS = {
   court: { name: '성막 뜰', note: '세마포 울타리, 문은 동쪽 하나', ref: '출 27:9–19' },
   tablets: { name: '증거판 두 돌판', note: '하나님이 친히 쓰신 글', ref: '출 31:18' },
   oil: { name: '관유와 향품', note: '거룩하게 구별하는 기름', ref: '출 30:22–38' },
+  'manna-jar': { name: '만나 항아리', note: '광야에서 먹은 양식 한 오멜', ref: '출 16:32–34' },
 } as const;
 
 export type ItemName = keyof typeof ITEMS;

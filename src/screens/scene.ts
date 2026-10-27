@@ -27,6 +27,9 @@ import { playPassover } from '../fx/passover';
 import { playEastWind } from '../fx/sea';
 import { playWeep } from '../fx/hall';
 import { playTrumpet } from '../fx/sinai';
+import { playQuail, playStink } from '../fx/manna';
+import { playKites, playTorchPass } from '../fx/covenant';
+import { playTabletsBreak } from '../fx/calf';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -450,6 +453,26 @@ export function sceneScreen({ id }: Params): Screen {
       case 'trumpet':
         // 시내산 (fx/sinai.ts): 꼭대기에서 퍼지는 나팔 소리의 고리, 부를 때마다 커진다 (출 19:16-19)
         playTrumpet($('.scene'), rm);
+        return;
+      case 'quail':
+        // 만나 (fx/manna.ts): 메추라기 떼가 낮게 몰려와 진에 내려앉는다 (출 16:13)
+        playQuail($('.scene'), rm);
+        return;
+      case 'stink':
+        // 만나 (fx/manna.ts): 아침까지 남겨 둔 것에서 냄새 (출 16:20) — 가볍게
+        playStink($('.scene'), rm);
+        return;
+      case 'tablets-break':
+        // 금송아지 (fx/calf.ts): 증거판 두 돌판에 금이 가고 조각나 떨어진다 (출 32:19)
+        playTabletsBreak(el, items, rm);
+        return;
+      case 'kites':
+        // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)
+        playKites($('.scene'), rm);
+        return;
+      case 'torch-pass':
+        // 별을 세어 보라 (fx/covenant.ts): 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이로 지나간다 (창 15:17)
+        playTorchPass($('.scene'), rm);
         return;
       case 'glory':
       case 'fire':

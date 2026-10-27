@@ -313,6 +313,27 @@ const ART: Record<ItemName, () => Art> = {
       glints: [[166, 50], [86, 150], [156, 158]],
     };
   },
+
+  // ── 만나 항아리: 만나 한 오멜을 담아 증거판 앞에 대대로 간수 (출 16:32-34, 히 9:4 "만나를 담은 금 항아리") ──
+  'manna-jar'() {
+    const jar = 'M98 64 L142 64 L140 72 C139 78 136 82 134 86 C160 96 172 118 170 140 C168 162 152 176 120 177 C88 176 72 162 70 140 C68 118 80 96 106 86 C104 82 101 78 100 72 Z';
+    const heap = 'M100 66 C104 54 114 49 120 49 C126 49 136 54 140 66 Z';
+    const flakes = Array.from({ length: 14 }, (_, i) => {
+      const x = 104 + ((i * 37) % 32);
+      const y = 52 + ((i * 13) % 12);
+      return `<ellipse class="ti-manna" cx="${x}" cy="${y}" rx="1.6" ry="1.1"/>`;
+    }).join('');
+    return {
+      body: `<path class="ti-manna" d="${heap}"/>${flakes}
+        <path fill="$G" d="${jar}"/>
+        <rect x="94" y="62" width="52" height="6" rx="2" fill="$G"/>
+        <path class="ti-shade" fill="$G" d="M134 86 C160 96 172 118 170 140 C168 162 152 176 120 177 C140 170 154 156 156 138 C158 118 150 100 134 86 Z"/>
+        <ellipse class="ti-gold-hi" cx="88" cy="132" rx="3" ry="18" transform="rotate(8 88 132)"/>`,
+      edges: line(jar) + line('M94 62 H146 V68 H94 Z', 0.8) + line('M78 120 C100 112 140 112 162 120 M76 150 C100 158 140 158 164 150', 0.6),
+      live: `<ellipse class="ti-shine" cx="120" cy="56" rx="34" ry="22" fill="$L"/>`,
+      glints: [[112, 50], [131, 54], [92, 118]],
+    };
+  },
 };
 
 /** 반짝임 (네 갈래 별) */
