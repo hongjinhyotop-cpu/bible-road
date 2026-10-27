@@ -8,6 +8,7 @@ import './styles/stage.css';
 import './styles/title.css';
 import './styles/map.css';
 import './styles/play.css';
+import './styles/reading.css';
 
 import { applySettings, settings } from './engine/settings';
 import { route, startRouter } from './engine/router';
@@ -15,6 +16,7 @@ import { mountField, restartField } from './fx/particles';
 import { titleScreen } from './screens/title';
 import { mapScreen } from './screens/map';
 import { sceneScreen } from './screens/scene';
+import { readingScreen } from './screens/reading';
 import { closeSheet } from './ui/sheet';
 
 applySettings();
@@ -30,6 +32,7 @@ mountField();
 route('/', titleScreen);
 route('/map', mapScreen);
 route('/scene/:id', sceneScreen);
+route('/read/:id', readingScreen);
 // 다른 화면으로 넘어가면 열려 있던 패널은 닫는다
 window.addEventListener('hashchange', closeSheet);
 startRouter();

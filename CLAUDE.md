@@ -137,12 +137,17 @@ PROGRESS.md      ← 진행 기록
 {
   "id": "gen-23-25",
   "act": 2,
+  "title": "화면 제목 (생략하면 ref로 표시)",
   "ref": "창 23-25",
   "summary": "3~5문장 요약",
   "insight": "이 구간이 전체 이야기에서 왜 중요한지",
+  "tldr": "한 줄 요약 (선택)",
   "quiz": [ { "q": "...", "options": ["..."], "answer": 0, "why": "..." } ]
 }
 ```
+- 파일 위치: `content/acts/NN-이름/readings/<id>.json` → 주소 `#/read/<id>`. 화면은 `src/screens/reading.ts`.
+- `summary`·`insight`는 빈 줄(`\n\n`)로 문단을 나눌 수 있다. 길면 꼭 나눈다 (한 화면에 핵심 하나).
+- `answer`는 0부터 센다. 퀴즈 보기에 정답 힌트(예: 나이)를 넣지 않는다.
 
 ---
 

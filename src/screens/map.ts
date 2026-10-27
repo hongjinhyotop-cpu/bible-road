@@ -5,9 +5,10 @@ import type { Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS, type Act, type Stop } from '../engine/acts';
 import { BOOKS, TOTAL_CHAPTERS, findBook } from '../engine/books';
-import { countDone, totalDone, progress, sceneDone } from '../engine/progress';
+import { countDone, totalDone, progress, readingDone, sceneDone } from '../engine/progress';
 import { parseRef } from '../engine/bible';
 import { scenesOfAct } from '../engine/scene';
+import { readingsOfAct } from '../engine/reading';
 import { reducedMotion } from '../engine/settings';
 import { setFieldMode } from '../fx/particles';
 import { icons } from '../ui/icons';
@@ -270,17 +271,22 @@ export function mapScreen(): Screen {
     sheet.el.dataset.act = String(p.act.no);
     const whole = p.stop.from === 1 && p.stop.to === book.chapters;
     const chapters = Array.from({ length: p.stop.to - p.stop.from + 1 }, (_, i) => p.stop.from + i);
-    const scenes = (await scenesOfAct(p.act.no).catch(() => []))
-      .map((sc) => ({ ...sc, r: parseRef(sc.ref) }))
+    // 이 구간의 플레이 장면 + 읽기 구간을 본문 순서대로 한 줄에
+    const [scenes, readings] = await Promise.all([scenesOfAct(p.act.no).catch(() => []), readingsOfAct(p.act.no).catch(() => [])]);
+    const items = [
+      ...scenes.map((sc) => ({ kind: 'scene' as const, id: sc.id, title: sc.title, ref: sc.ref, done: sceneDone(sc.id) })),
+      ...readings.map((rd) => ({ kind: 'read' as const, id: rd.id, title: rd.title ?? rd.ref, ref: rd.ref, done: readingDone(rd.id) })),
+    ]
+      .map((it) => ({ ...it, r: parseRef(it.ref) }))
       .filter(({ r }) => r.book.code === book.code && r.startChapter >= p.stop.from && r.startChapter <= p.stop.to)
       .sort((a, b) => a.r.startChapter - b.r.startChapter || (a.r.startVerse ?? 0) - (b.r.startVerse ?? 0));
-    const list = scenes.length
-      ? `<p class="setting__label">플레이 장면</p>
-         <ul class="stop__scenes">${scenes
+    const list = items.length
+      ? `<p class="setting__label">이 구간에서 할 것</p>
+         <ul class="stop__scenes">${items
            .map(
-             (sc) => `<li><button class="btn stop__scene${sceneDone(sc.id) ? ' is-done' : ''}" data-scene="${sc.id}">
-               <span class="stop__scene-title">${sc.title}</span>
-               <span class="stop__scene-ref ui">${sc.ref.replace(/^\S+\s+/, '').replace('-', '–')}${sceneDone(sc.id) ? ' · 완료' : ''}</span>
+             (it) => `<li><button class="btn stop__scene${it.done ? ' is-done' : ''}" data-go="/${it.kind}/${it.id}">
+               <span class="stop__scene-title">${it.title}</span>
+               <span class="stop__scene-ref ui"><span class="stop__kind stop__kind--${it.kind}">${it.kind === 'scene' ? '플레이' : '읽기'}</span>${it.ref.replace(/^\S+\s+/, '').replace('-', '–')}${/:/.test(it.ref) ? '' : '장'}${it.done ? ' · 완료' : ''}</span>
              </button></li>`,
            )
            .join('')}</ul>`
@@ -291,8 +297,8 @@ export function mapScreen(): Screen {
       ${list}
       <p class="setting__label">장 목록</p>
       <ol class="stop__chapters">${chapters.map((c) => `<li class="${countDone(book.code, c, c) ? 'done' : ''}">${c}</li>`).join('')}</ol>`;
-    sheet.body.querySelectorAll<HTMLButtonElement>('[data-scene]').forEach((b) =>
-      b.addEventListener('click', (e) => go(`/scene/${b.dataset.scene}`, { x: e.clientX, y: e.clientY })),
+    sheet.body.querySelectorAll<HTMLButtonElement>('[data-go]').forEach((b) =>
+      b.addEventListener('click', (e) => go(b.dataset.go!, { x: e.clientX, y: e.clientY })),
     );
     try {
       const card = await scriptureCard(`${book.abbr} ${p.stop.from}:1`);
