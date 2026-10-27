@@ -89,15 +89,15 @@
 @keyframes sod-glint { 0%, 70%, 100% { opacity: 0; } 80% { opacity: 0.9; } }
 
 /* 헤브론 산마루에서 바라본 연기: 아침 하늘보다 짙은 잿빛 기둥이 굵게 치밀어 오른다 */
-.sod-morning { fill: url(#bd-halo-g); opacity: 0.9; }
+.sod-morning { fill: #f2dcb4; opacity: 0.22; filter: blur(20px); }
 .sod-deadsea { fill: color-mix(in srgb, var(--act-accent) 30%, #9a9c98); opacity: 0.5; }
 .sod-furnace { filter: blur(2px); }
 .sod-furnace__puff { fill: color-mix(in srgb, var(--act-accent) 22%, #7a6e66); opacity: 0; animation: sod-furnace 10s ease-out infinite; animation-delay: calc(var(--d) * -1); }
 .sod-furnace__puff.is-dark { fill: #2e2420; }
 @keyframes sod-furnace { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 12% { opacity: 0.85; } 70% { opacity: 0.55; } 100% { opacity: 0; transform: translate(var(--dx), -190px) scale(3.6); } }
-.sod-smokebank { fill: color-mix(in srgb, var(--act-accent) 15%, #5a504a); opacity: 0.4; filter: blur(10px); animation: bd-sail 34s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.sod-smokebank { fill: #241c18; opacity: 0.45; filter: blur(10px); animation: bd-sail 34s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
 
-.sod-column { fill: color-mix(in srgb, var(--act-accent) 14%, #4a403c); opacity: 0.8; filter: blur(3px); transform-box: fill-box; transform-origin: 50% 100%; animation: sod-column 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.sod-column { fill: #1c1513; opacity: 0.8; filter: blur(4px); transform-box: fill-box; transform-origin: 50% 100%; animation: sod-column 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
 @keyframes sod-column { from { transform: scaleX(0.94) skewX(-1deg); } to { transform: scaleX(1.06) skewX(1.5deg); } }
 
 /* 효과 blind (19:11): 흰빛이 터져 덮었다가 걷힌다 */

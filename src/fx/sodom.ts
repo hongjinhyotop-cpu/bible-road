@@ -230,7 +230,6 @@ function plainArt(state: 'dawn' | 'fire' | 'salt'): string {
 
 // ── 아브라함이 바라본 연기 (19:27-28) ──
 function smokeArt(): string {
-  const r = rng(1961);
   // 연기 기둥: 아래는 좁고 위로 갈수록 부풀어 오르는 기둥 (폰에서도 인물 양옆으로 보이게 x 120 · 280 근처)
   const column = (x: number, w: number, seed: number) => {
     const q = rng(seed);
@@ -238,19 +237,17 @@ function smokeArt(): string {
     const R: string[] = [];
     for (let i = 0; i <= 8; i++) {
       const y = 196 - i * 26;
-      const half = w * 0.12 + (w * i) / 8 + q() * 8;
-      const drift = i * i * 0.5;
+      const half = w * 0.05 + w * Math.pow(i / 8, 1.7) + q() * 6;
+      const drift = i * i * 0.6;
       L.push(`${(x - half + drift).toFixed(1)} ${y}`);
       R.unshift(`${(x + half + drift + q() * 6).toFixed(1)} ${(y - 6 + q() * 12).toFixed(1)}`);
     }
     return `<g class="sod-column" style="--d:${(q() * 6).toFixed(1)}s"><path d="M${L.join(' T')} L${R.join(' T')} Z"/></g>`;
   };
-  const puffs = [120, 280, 160, 244].map((x, i) => `<g class="sod-furnace">${Array.from({ length: 6 }, (_, j) =>
-    `<circle class="sod-furnace__puff${j % 2 ? ' is-dark' : ''}" style="--d:${(j * 1.7 + i * 0.6).toFixed(1)}s; --dx:${((r() - 0.3) * 40).toFixed(1)}px" cx="${x}" cy="192" r="${(12 + r() * 6).toFixed(1)}"/>`).join('')}</g>`).join('');
   // 이미 하늘에 퍼진 연기: 천천히 흐르는 두꺼운 띠
   const banks = [[-60, 70, 180], [120, 40, 200], [300, 64, 190]].map(([x, y, w], i) =>
     `<ellipse class="sod-smokebank" style="--d:${i * 4}s" cx="${x}" cy="${y}" rx="${w}" ry="${30 + i * 6}"/>`).join('');
-  const columns = column(122, 70, 1964) + column(282, 80, 1965) + column(30, 60, 1966) + column(380, 60, 1967) + puffs;
+  const columns = column(118, 64, 1964) + column(286, 72, 1965) + column(20, 56, 1966) + column(390, 56, 1967);
   return `
     <ellipse class="sod-morning" cx="260" cy="120" rx="260" ry="90"/>
     ${banks}
