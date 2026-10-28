@@ -7,11 +7,11 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **열 번째 채팅(밤샘) 끝:** 퀴즈 삭제, 품질 기준. **1막·2막·3막 완성** (창 1–50, 출 1–18 전부), **4막은 출 19–40 완성**(레위기 27장 남음). 에피소드 91개 |
+| 현재 단계 | **열한 번째 채팅: 창 1–50·출 1–40 검수 끝** (`AUDIT-2026-10-28.md`). 그 전 열 번째 채팅(밤샘): 퀴즈 삭제, 품질 기준. **1막·2막·3막 완성** (창 1–50, 출 1–18 전부), **4막은 출 19–40 완성**(레위기 27장 남음). 에피소드 91개 |
 | 다음 세션 할 일 | **4막 레위기**(B급 27장 + A급 레 10·16) → 4막 피날레. 그다음 5막 광야(민수기·신명기). 아래 "다음 할 일" |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
-| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) |
+| 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) · 열한 번째 채팅(검수): [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 등 |
 
 ---
 
@@ -331,7 +331,7 @@
 6. 말투가 이상하거나 사실이 틀린 곳이 보이면 알려주기 (오늘 밤 A급 23개·B급 40개를 도우미들이 썼음)
 
 ### 애매해서 내가 정한 것 (바꾸고 싶으면 말해 줘)
-- 바로: 요셉 시대 바로와 모세 시대 바로를 같은 그림(`pharaoh`) 하나로 씀 (실제로는 다른 사람)
+- ~~바로: 요셉 시대 바로와 모세 시대 바로를 같은 그림 하나로 씀~~ → 열한 번째 채팅에서 나눔 (`pharaoh-joseph` 금빛 / `pharaoh` 청금석)
 - 요셉·유다·르우벤·베냐민·모세·아론·미리암·바로를 B급용 인물 파일로 만듦 (CLAUDE.md "B급 새 인물 금지"보다 앞서, 여러 에피소드에 계속 나와서). 요셉·모세·아론·바로는 A급에서 다시 그림, 유다·르우벤·베냐민·미리암은 아직 키트 그림
 - 인물 카드(도감)는 첫 등장 A급 장면으로 옮김: 아브라함·사래(창 12), 에서·야곱(창 25), 요셉(창 37), 모세(출 2)
 - 1막 A급 10개는 본문 카드가 5~16장이라 새 기준(2~4)보다 많지만, 기준 전에 완성한 거라 그대로 둠 (검사기 예외)
@@ -351,6 +351,16 @@
 - 새로 공들여 그린 인물: 아브라함, 이삭(옷 wood/plain/old), 야곱(plain/bowl/disguise/limp/coat), 에서, 요셉(plain/coat/vizier), 모세(shepherd/prince/empty), "어떤 사람"(얍복, 도감 X)
 - 키트 인물 추가: 요셉·유다·르우벤·베냐민(요셉은 다시 그림), 모세·아론·미리암·바로
 
+## 열한 번째 채팅 (2026-10-28): 창 1–50 · 출 1–40 검수
+
+> 사용자 요청: 새로 만들지 말고 검수만. 도우미 여러 개로 본문 대조. 사실 오류·말투·수위·조롱 검사. 애매한 건 고치지 말고 목록에만. + 바로 둘 구분, CLAUDE.md 규칙, 요셉 총리 옷, 잠듦/엎드림 동작.
+
+- **검수 결과 전체 목록: `AUDIT-2026-10-28.md`** (막·구간별 "고친 것" / "안 고친 것(애매)")
+- [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) 도우미 9명이 91개 에피소드를 개역한글과 대조 → 약 90곳 수정 (숫자·인물·지명·여정 지도·본문 인용 원문, 말투, 수위). 디나(창 34) 미화 표현 제거 + 해설에 성폭력 명시·피해자 탓 금지, 다말·하갈 드립 제거, 레위인(출 32) 해설 보강. 조롱 표현은 없었음
+- [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) CLAUDE.md: **여러 에피소드에 반복 등장하는 인물은 B급이라도 인물 파일(키트 한 줄)을 만든다**
+- [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) 바로 구분: `pharaoh-joseph.ts`(같은 그림, 금빛 — 창 12·40·41·45·47·50, 도감 카드는 gen-41) / `pharaoh`(출애굽, 청금석 줄무늬·붉은 장식). 색은 `styles/egypt-court.css`의 `.actor[data-id='pharaoh']`. 해설 한 줄(exo-1, gen-41)
+- [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 엔진: 장면 맨 위 `outfit` = 그 장면 내내 기본 옷 (중간에 들어오는 인물도). 창 42–50 B급 9개에 요셉 `vizier`. `prostrate` = 무릎 꿇고 몸 전체를 낮게 웅크리며 앞으로 숙임, `sleep` = 뒤로 누움 (`actor.ts tilt()`, `stand`로 되돌림)
+
 ## 다음 할 일
 
 ### 1. 4막 마무리 ← 다음 세션
@@ -358,10 +368,10 @@
 - 그다음 5막 광야(민수기·신명기): 막마다 ① PLAN.md ② B급 도우미 ③ A급 ④ 피날레
 
 ### 2. 다듬기 (오늘 밤 나온 것)
-- B급 창 42–50에서 요셉이 총리 옷(`vizier`)을 안 입음 → B급 파일 맨 위 `"outfit": {"joseph": "vizier"}` + 걸어 들어오는 beat에도 outfit 필요
+- **검수에서 애매해서 남긴 것** → `AUDIT-2026-10-28.md` (해설 안 "한 줄 요약:" 중복, 이집트/애굽 표기, 수르/술 광야 이름표, 장면별 작은 연출 제안들). 사용자와 정한 뒤 고치기
 - 키트 인물 아직 임시 그림: 유다·르우벤·베냐민·미리암·롯의 딸들 등
 - 재앙 효과(우박 등)는 10초간 남아서 빨리 탭하면 다음 장면까지 이어짐 → 배경이 바뀌면 끄기
-- 엔진 동작 `sleep`(앞으로 기울어 서 있음), `kneel`(여자 키트는 티가 잘 안 남), `prostrate`(뻣뻣함)이 어색함 → 옷을 허리 위/아래로 나눠야 제대로 됨
+- 엔진 동작 `kneel`(여자 키트는 티가 잘 안 남). `sleep`·`prostrate`는 열한 번째 채팅에서 몸 전체를 눕히고/웅크리는 방식으로 고침. 두 사람이 마주 보고 동시에 엎드리면 머리가 가까이 겹쳐 보임
 - 무대에 5~6명이면 폰에서 인물이 작음 (창 33, 창 19 동틀 녘)
 - 출애굽 여정 지도가 짧은 거리라 크게 확대돼 흐릿함 (엔진 최소 확대 범위 130)
 
