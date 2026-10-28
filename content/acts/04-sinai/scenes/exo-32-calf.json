@@ -9,7 +9,6 @@
   "extras": {
     "ringleader": { "name": "목소리 큰 사내", "base": "man", "hair": "short", "beard": "short", "tint": "red" },
     "woman": { "name": "귀고리를 뺀 여인", "base": "woman", "hair": "veil", "tint": "gold" },
-    "joshua": { "name": "여호수아", "base": "youth", "hair": "short", "props": ["spear"], "tint": "red" },
     "levite": { "name": "레위 사람", "base": "man", "hair": "hood", "beard": "short", "tint": "white" }
   },
   "beats": [

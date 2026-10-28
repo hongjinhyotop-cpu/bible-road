@@ -73,6 +73,22 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   'brook-egypt': at(33.8, 31.12),
   // 유브라데: 그 큰 강. 가나안에서 가장 가까운 북쪽 굽이 (갈그미스 근처)
   euphrates: at(38.35, 36.7),
+  hazeroth: at(34.4, 28.95),
+  taberah: at(34.2, 29.1),
+  'kibroth-hattaavah': at(34.25, 28.85),
+  'zin-desert': at(34.9, 30.75),
+  'mount-hor': at(35.4, 30.3),
+  'ezion-geber': at(35.0, 29.55),
+  oboth: at(35.55, 30.75),
+  arnon: at(35.75, 31.45),
+  heshbon: at(35.8, 31.8),
+  bashan: at(36.1, 32.8),
+  moab: at(35.8, 31.25),
+  'moab-plains': at(35.62, 31.83),
+  shittim: at(35.65, 31.85),
+  pisgah: at(35.73, 31.77),
+  nebo: at(35.73, 31.77),
+  jordan: at(35.55, 31.9),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */
