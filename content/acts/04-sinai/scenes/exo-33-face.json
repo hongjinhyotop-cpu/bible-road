@@ -7,7 +7,6 @@
   "bg": "mountain-dusk",
   "cast": ["moses"],
   "extras": {
-    "joshua": { "name": "여호수아", "base": "youth", "hair": "short", "props": ["spear"], "tint": "red" },
     "woman": { "name": "이스라엘 여인", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "gold" },
     "man": { "name": "이스라엘 남자", "base": "man", "hair": "turban", "beard": "short", "tint": "purple" }
   },

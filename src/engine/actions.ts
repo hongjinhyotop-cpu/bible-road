@@ -102,5 +102,22 @@ export const PLACE_NAMES = {
   'sin-desert': '신 광야',
   'brook-egypt': '애굽 강',
   euphrates: '유브라데',
+  // ── 광야 40년 (민수기·신명기) ──
+  hazeroth: '하세롯',
+  taberah: '다베라',
+  'kibroth-hattaavah': '기브롯핫다아와',
+  'zin-desert': '신 광야', // 민 13:21 (가데스 쪽 Zin — 출 16:1의 sin-desert와 다른 곳, 개역한글 표기는 같음)
+  'mount-hor': '호르산',
+  'ezion-geber': '에시온게벨',
+  oboth: '오봇',
+  arnon: '아르논',
+  heshbon: '헤스본',
+  bashan: '바산',
+  moab: '모압',
+  'moab-plains': '모압 평지',
+  shittim: '싯딤',
+  pisgah: '비스가',
+  nebo: '느보산',
+  jordan: '요단',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
