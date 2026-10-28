@@ -23,10 +23,11 @@
 .od--blaze .od-tent__shine { opacity: 0.85; animation: od-breathe 3.4s ease-in-out infinite alternate; }
 
 /* 구름 기둥: 흰 구름 덩이가 아주 느리게 부푼다. 가장자리는 막 색에 녹는다 */
-.od-cloud__puff { fill: color-mix(in srgb, #f4ecdc 62%, var(--act-b)); opacity: 0.8; transform-box: fill-box; transform-origin: center; animation: od-puff 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.od-cloud__body { filter: blur(2.2px); }
+.od-cloud__puff { fill: color-mix(in srgb, #f4ecdc 50%, var(--act-b)); opacity: var(--o, 0.6); transform-box: fill-box; transform-origin: center; animation: od-puff 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
 @keyframes od-puff { from { transform: scale(0.96) translateX(-1px); } to { transform: scale(1.05) translateX(1.5px); } }
 .od-cloud__glow { fill: url(#bd-halo-g); opacity: 0.4; mix-blend-mode: screen; }
-.od-cloud.is-lit .od-cloud__puff { fill: color-mix(in srgb, #ffe2a0 70%, #fff8ea); }
+.od-cloud.is-lit .od-cloud__puff { fill: color-mix(in srgb, #ffd890 60%, var(--act-b)); }
 .od-cloud.is-lit .od-cloud__glow { opacity: 0.95; animation: od-breathe 4s ease-in-out infinite alternate; }
 @keyframes od-breathe { from { opacity: 0.6; } to { opacity: 1; } }
 

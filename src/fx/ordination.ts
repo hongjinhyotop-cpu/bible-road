@@ -28,12 +28,12 @@ function cloudPillar(state: OrdState): string {
   for (let i = 0; i < 16; i++) {
     const t = i / 15;
     const y = 150 - t * 140 + (r() - 0.5) * 6;
-    const w = 15 + Math.sin(t * Math.PI) * 9 + r() * 6;
-    puffs.push(`<ellipse class="od-cloud__puff" style="--d:${f(r() * 6)}s" cx="${f(CX + (r() - 0.5) * 10)}" cy="${f(y)}" rx="${f(w)}" ry="${f(w * 0.62)}"/>`);
+    const w = 11 + Math.sin(t * Math.PI) * 7 + r() * 5;
+    puffs.push(`<ellipse class="od-cloud__puff" style="--d:${f(r() * 6)}s; --o:${f(0.75 - t * 0.5)}" cx="${f(CX + (r() - 0.5) * 12)}" cy="${f(y)}" rx="${f(w)}" ry="${f(w * 0.7)}"/>`);
   }
   return `<g class="od-cloud${state === 'blaze' ? ' is-lit' : ''}">
     <ellipse class="od-cloud__glow" cx="${CX}" cy="96" rx="64" ry="120"/>
-    ${puffs.join('')}
+    <g class="od-cloud__body">${puffs.join('')}</g>
   </g>`;
 }
 

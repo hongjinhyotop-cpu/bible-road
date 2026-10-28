@@ -40,7 +40,7 @@
     { "type": "line", "who": "boy", "act": "look-up", "text": "“대제사장님, 안 나오면 어떡해요?”" },
     { "type": "line", "who": "father", "act": "approach", "to": "boy", "text": "“나오실 거다. …그러니까 조용히 기다려.”" },
 
-    { "bg": "atone-live", "fx": "fade", "exit": ["boy", "father"], "enter": ["aaron"], "face": { "aaron": "left" }, "acts": [{ "act": "crowd-away" }, { "act": "stand", "who": "aaron" }], "type": "narration", "text": "아론이 나왔다. 단 귀퉁이 뿔들에 피를 바르고, 그 위에 일곱 번 뿌렸다. 이제 회막 문 앞에는 산 염소 한 마리만 남아 있었다." },
+    { "bg": "atone-live", "fx": "fade", "exit": ["boy", "father"], "enter": ["aaron"], "outfit": { "aaron": "linen" }, "face": { "aaron": "left" }, "acts": [{ "act": "crowd-away" }, { "act": "stand", "who": "aaron" }], "type": "narration", "text": "아론이 나왔다. 단 귀퉁이 뿔들에 피를 바르고, 그 위에 일곱 번 뿌렸다. 이제 회막 문 앞에는 산 염소 한 마리만 남아 있었다." },
     { "type": "narration", "act": "bless", "who": "aaron", "text": "아론이 두 손을 들어 염소의 머리에 얹었다. 손바닥 아래로 염소의 뿔이, 체온이, 숨이 느껴졌다." },
     { "type": "line", "who": "aaron", "act": "bow-head", "fx": "confess", "text": "“이스라엘 자손의 모든 불의와… 그 범한 모든 죄를…”" },
     { "type": "narration", "act": "bow-head", "who": "aaron", "text": "그는 하나씩 고했다. 알고 지은 것, 모르고 지은 것, 지었다는 것조차 잊어버린 것. 그것들이 하나하나 염소의 머리 위에 내려앉았다. 염소는 무거워진 줄도 모르고 고개를 들었다." },

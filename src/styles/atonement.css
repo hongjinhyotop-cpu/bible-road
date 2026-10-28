@@ -16,8 +16,9 @@
 .at-thread--p { stroke: #7b4a9a; }
 .at-thread--s { stroke: #b84a3e; }
 .at-linen { fill: color-mix(in srgb, #efe8d6 42%, var(--act-b)); opacity: 0.85; }
-.at-cloud__puff { fill: #f4efe4; opacity: 0.32; transform-box: fill-box; transform-origin: center; animation: at-billow 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
-@keyframes at-billow { from { transform: translateX(-2px) scale(0.96); opacity: 0.26; } to { transform: translateX(2px) scale(1.06); opacity: 0.4; } }
+.at-cloud { filter: blur(2.2px); }
+.at-cloud__puff { fill: #f4efe4; opacity: 0.3; transform-box: fill-box; transform-origin: center; animation: at-billow 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes at-billow { from { transform: translate(-3px, 1px) scale(0.94); opacity: 0.16; } to { transform: translate(3px, -2px) scale(1.08); opacity: 0.34; } }
 .at-rope { fill: none; stroke: color-mix(in srgb, #c9b48a 50%, var(--act-a)); stroke-width: 0.7; }
 
 /* 염소: 숨 쉬듯 아주 조금 들썩인다. 죄를 지면(is-laden) 검게 가라앉고 둘레에 어두운 기운 */
@@ -49,7 +50,7 @@
 .at-road { fill: color-mix(in srgb, #d8b98a 30%, var(--act-b)); opacity: 0.7; }
 .at-road__rut { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #120c08); stroke-width: 0.6; opacity: 0.4; }
 .at-scrub { fill: color-mix(in srgb, var(--act-a) 50%, #0b0805); opacity: 0.7; }
-.at-watch { fill: color-mix(in srgb, var(--act-a) 46%, #020205); transform-box: fill-box; transform-origin: 50% 100%; animation: at-breathe 4.2s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.at-watch { fill: color-mix(in srgb, var(--act-a) 46%, #020205); stroke: color-mix(in srgb, var(--act-accent) 60%, transparent); stroke-width: 0.4; transform-box: fill-box; transform-origin: 50% 100%; animation: at-breathe 4.2s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
 .play[data-tone='dusk'] .at--edge .at-road { opacity: 0.45; }
 
 /* ── 효과 공통 층 ── */
@@ -67,7 +68,7 @@
 .lt.is-lord.is-shown .lt__glow { opacity: 1; }
 .lt.is-lord .lt__label { fill: #f6dfa4; filter: drop-shadow(0 0 3px rgba(246, 210, 140, 0.8)); }
 .lt.is-lord .lt__stone rect { fill: #f1d48e; }
-.lt.is-azazel .lt__label { fill: #b9b3aa; }
+.lt.is-azazel .lt__label { fill: #ddd6cb; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.9)); }
 .lt.is-azazel .lt__stone rect { fill: #8d877e; }
 .fx-lots .lt.is-lord .lt__glow { fill: rgba(250, 214, 140, 0.25); filter: blur(4px); }
 
@@ -87,7 +88,7 @@
 }
 
 /* confess: 모여드는 어두운 티끌 */
-.cn-mote { fill: #0b080a; filter: drop-shadow(0 0 1.4px rgba(0, 0, 0, 0.8)); }
+.cn-mote { fill: #0b080a; stroke: rgba(226, 206, 186, 0.35); stroke-width: 0.5; filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.9)); }
 .cn-sink { fill: rgba(8, 5, 8, 0.6); filter: blur(2px); }
 
 /* scapegoat: 정한 사람과 염소 */

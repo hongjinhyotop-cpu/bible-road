@@ -83,10 +83,11 @@ function tabernacle(): string {
 /** 구름 기둥: 성막 위에 서 있는 흰 구름 (출 40:34-38). 아주 천천히 피어오른다 */
 function cloudPillar(): string {
   const r = rng(1601);
-  const puffs = Array.from({ length: 14 }, (_, i) => {
-    const y = 140 - i * 10;
-    const w = 14 + Math.sin(i * 0.8) * 4 + r() * 4;
-    return `<ellipse class="at-cloud__puff" style="--d:${f(r() * 6)}s" cx="${f(CX + (r() - 0.5) * 8)}" cy="${f(y)}" rx="${f(w)}" ry="${f(8 + r() * 4)}"/>`;
+  const puffs = Array.from({ length: 22 }, () => {
+    const t = r();
+    const y = 146 - t * 136;
+    const w = 12 + (1 - t) * 4 + r() * 10;
+    return `<ellipse class="at-cloud__puff" style="--d:${f(r() * 9)}s" cx="${f(CX + (r() - 0.5) * 16)}" cy="${f(y)}" rx="${f(w)}" ry="${f(w * (0.7 + r() * 0.4))}"/>`;
   }).join('');
   return `<g class="at-cloud">${puffs}</g>`;
 }
@@ -109,10 +110,10 @@ function fence(): string {
 
 function court(state: 'lots' | 'live' | 'gone'): string {
   const goats = state === 'lots'
-    ? `${stake(CX - 40, false)}${stake(CX + 30, false)}${goat(CX - 26, 1.25, false, 'lord', 0)}${goat(CX + 34, 1.25, true, 'azazel', 1.4)}`
+    ? `${stake(CX - 52, false)}${stake(CX + 42, false)}${goat(CX - 38, 1.25, false, 'lord', 0)}${goat(CX + 46, 1.25, true, 'azazel', 1.4)}`
     : state === 'live'
-      ? `${stake(CX - 28, false)}${goat(CX - 12, 1.45, false, 'live', 0)}`
-      : `${stake(CX - 28, true)}`;
+      ? `${stake(CX - 18, false)}${goat(CX - 2, 1.45, false, 'live', 0)}`
+      : `${stake(CX - 18, true)}`;
   return `<g class="at at--${state}">
     ${hills(190, 'bd-far', 1602)}
     ${cloudPillar()}
@@ -212,16 +213,18 @@ function edge(): string {
     const s = 3.2 / z;
     return `<path class="at-scrub" d="M${f(x - 3 * s)} ${f(yAt(z))} Q${f(x)} ${f(yAt(z) - 4 * s)} ${f(x + 3 * s)} ${f(yAt(z))} Z"/>`;
   }).join('');
-  // 진의 끝자락: 양옆 앞쪽의 장막들
-  const tents = [[-210, 252, 0.7], [-120, 256, 0.8], [-30, 252, 0.62], [40, 258, 0.74], [356, 258, 0.74], [430, 252, 0.62], [520, 256, 0.8], [610, 252, 0.7]]
+  // 진의 끝자락: 양옆의 장막들 (길 양쪽으로 비켜서)
+  const tents = [[-200, 244, 0.6], [-110, 248, 0.66], [-20, 244, 0.54], [58, 247, 0.5], [118, 242, 0.36], [284, 242, 0.36], [344, 247, 0.5], [420, 244, 0.54], [510, 248, 0.66], [600, 244, 0.6]]
     .map(([x, y, s]) => tent(x, y, s)).join('');
-  // 바라보는 사람들: 폰에서도 보이게 가운데 가까운 양옆(x 100~140, 260~300)에, 넓은 화면에선 더 멀리까지
+  // 바라보는 사람들: 장막 앞, 길 양옆에 등을 보이고 섰다. 폰에서도 보이게 길 가까이(x 120~180, 222~285)에도
   const people: string[] = [];
-  const spots: [number, 'man' | 'woman' | 'child'][] = [
-    [-60, 'man'], [-46, 'woman'], [8, 'man'], [22, 'child'], [70, 'woman'], [86, 'man'], [104, 'man'], [116, 'woman'], [128, 'child'],
-    [272, 'child'], [284, 'man'], [297, 'woman'], [314, 'man'], [330, 'woman'], [380, 'man'], [394, 'child'], [452, 'woman'], [466, 'man'],
+  const spots: [number, number, 'man' | 'woman' | 'child'][] = [
+    [-80, 252, 'man'], [-66, 251, 'woman'], [-4, 253, 'man'], [10, 252, 'child'], [70, 251, 'woman'], [84, 252, 'man'],
+    [124, 247, 'man'], [136, 248, 'woman'], [148, 247, 'child'], [162, 246, 'man'], [174, 245, 'woman'],
+    [248, 245, 'man'], [260, 246, 'child'], [272, 247, 'woman'], [284, 248, 'man'], [296, 247, 'woman'],
+    [318, 252, 'man'], [332, 251, 'child'], [400, 252, 'woman'], [414, 253, 'man'], [480, 251, 'man'],
   ];
-  spots.forEach(([x, k], i) => people.push(watcher(x + (r() - 0.5) * 3, 262 + r() * 2, (k === 'child' ? 20 : 30) + r() * 4, k, r() * 4 + i * 0.1)));
+  spots.forEach(([x, y, k], i) => people.push(watcher(x + (r() - 0.5) * 3, y, (k === 'child' ? 13 : 19) + r() * 3, k, r() * 4 + i * 0.1)));
   return `<g class="at at--edge">
     ${plain}${mesas}
     ${road()}
@@ -263,8 +266,8 @@ export function playLots(scene: HTMLElement, rm: boolean): void {
   const { layer, svg } = overlay(scene, 'fx-lots');
   // 염소 두 마리 위 (배경 atone-lots: 왼쪽 = 여호와께, 오른쪽 = 아사셀에게)
   const spots = [
-    { x: CX - 22, label: '여호와께', cls: 'is-lord' },
-    { x: CX + 30, label: '아사셀에게', cls: 'is-azazel' },
+    { x: CX - 34, label: '여호와께', cls: 'is-lord' },
+    { x: CX + 42, label: '아사셀에게', cls: 'is-azazel' },
   ];
   svg.innerHTML = spots.map((s, i) => `
     <g class="lt ${s.cls}" data-i="${i}" transform="translate(${s.x} 196)">
@@ -299,7 +302,7 @@ export function playIncense(scene: HTMLElement, rm: boolean): void {
   const n = rm ? 8 : 26;
   layer.innerHTML = Array.from({ length: n }, (_, i) => {
     const x = 50 + (Math.random() - 0.5) * 34;
-    const y = 30 + Math.random() * 30;
+    const y = 12 + Math.random() * 30;
     return `<i style="--x:${f(x)}%; --y:${f(y)}%; --s:${f(0.7 + Math.random() * 0.9)}; --d:${f(i * 0.16)}s; --dx:${f((Math.random() - 0.5) * 30)}%"></i>`;
   }).join('');
   scene.append(layer);
@@ -310,8 +313,8 @@ export function playIncense(scene: HTMLElement, rm: boolean): void {
 
 export function playConfess(scene: HTMLElement, rm: boolean): void {
   const { layer, svg } = overlay(scene, 'fx-confess');
-  // 배경 atone-live의 염소 머리 (goat(CX - 12, 1.45): 머리 ≈ 원점 + (20, -27) × 1.45)
-  const hx = CX - 12 + 20 * 1.45;
+  // 배경 atone-live의 염소 머리 (goat(CX - 2, 1.45): 머리 ≈ 원점 + (20, -27) × 1.45)
+  const hx = CX - 2 + 20 * 1.45;
   const hy = G - 27 * 1.45;
   const darken = () => scene.querySelectorAll('.at-goat[data-goat="live"]').forEach((g) => g.classList.add('is-laden'));
   const ring = `<circle class="cn-sink" cx="${f(hx)}" cy="${f(hy)}" r="6"/>`;
@@ -322,14 +325,14 @@ export function playConfess(scene: HTMLElement, rm: boolean): void {
     return;
   }
   const NS = 'http://www.w3.org/2000/svg';
-  const N = 46;
+  const N = 60;
   for (let i = 0; i < N; i++) {
     const a = Math.random() * Math.PI * 2;
     const sx = hx + Math.cos(a) * (220 + Math.random() * 260);
     const sy = Math.min(250, hy + Math.sin(a) * (150 + Math.random() * 60));
     const c = document.createElementNS(NS, 'path');
     // 티끌 하나: 먹물이 번진 듯한 작은 조각
-    const s = 1 + Math.random() * 1.6;
+    const s = 1.6 + Math.random() * 2;
     c.setAttribute('d', `M${-s} 0 Q0 ${-s * 1.4} ${s} 0 Q0 ${s * 1.2} ${-s} 0 Z`);
     c.setAttribute('class', 'cn-mote');
     svg.append(c);
