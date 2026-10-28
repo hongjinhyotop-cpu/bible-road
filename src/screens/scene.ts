@@ -31,6 +31,9 @@ import { playTrumpet } from '../fx/sinai';
 import { playQuail, playStink } from '../fx/manna';
 import { playKites, playTorchPass } from '../fx/covenant';
 import { playTabletsBreak } from '../fx/calf';
+import { playConfess, playIncense, playLots, playScapegoat } from '../fx/atonement';
+import { playFireFall } from '../fx/ordination';
+import { playStrangeFire } from '../fx/strangefire';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -475,6 +478,30 @@ export function sceneScreen({ id }: Params): Screen {
       case 'tablets-break':
         // 금송아지 (fx/calf.ts): 증거판 두 돌판에 금이 가고 조각나 떨어진다 (출 32:19)
         playTabletsBreak(el, items, rm);
+        return;
+      case 'cast-lots':
+        // 대속죄일 (fx/atonement.ts): 두 염소 위로 제비 — 여호와께 / 아사셀에게 (레 16:8)
+        playLots($('.scene'), rm);
+        return;
+      case 'incense-cloud':
+        // 대속죄일 (fx/atonement.ts): 향연이 속죄소를 덮는다 (레 16:13)
+        playIncense($('.scene'), rm);
+        return;
+      case 'confess':
+        // 대속죄일 (fx/atonement.ts): 모든 죄가 산 염소의 머리 위로 모여든다 (레 16:21)
+        playConfess($('.scene'), rm);
+        return;
+      case 'scapegoat':
+        // 대속죄일 (fx/atonement.ts): 염소가 광야 길을 따라 지평선 너머로 사라진다 (레 16:22)
+        playScapegoat($('.scene'), rm);
+        return;
+      case 'fire-fall':
+        // 하늘에서 내린 불 (fx/ordination.ts): 성막 쪽에서 금빛 불줄기가 제단으로 내리꽂힌다 (레 9:24)
+        playFireFall($('.scene'), rm);
+        return;
+      case 'strange-fire':
+        // 다른 불 (fx/strangefire.ts): 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다 (레 10:2)
+        playStrangeFire($('.scene'), rm);
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)

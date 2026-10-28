@@ -7,10 +7,6 @@
   "bg": "mountain",
   "cast": ["moses"],
   "extras": {
-    "nadab": { "name": "나답", "base": "priest", "hair": "turban", "beard": "short", "tint": "blue" },
-    "abihu": { "name": "아비후", "base": "priest", "hair": "turban", "beard": "short", "tint": "white" },
-    "eleazar": { "name": "엘르아살", "base": "priest", "hair": "turban", "beard": "short", "tint": "white", "height": 0.97 },
-    "ithamar": { "name": "이다말", "base": "priest", "hair": "turban", "beard": "none", "tint": "blue", "height": 0.95 },
     "weaver": { "name": "마음이 지혜로운 직공", "base": "woman", "hair": "veil", "props": ["basket"], "tint": "purple" }
   },
   "beats": [

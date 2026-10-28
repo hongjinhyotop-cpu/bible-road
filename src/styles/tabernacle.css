@@ -184,3 +184,81 @@
 
 /* 만나 항아리 (출 16:33): 항아리 위로 소복한 흰 알갱이 */
 .ti-manna { fill: #f4efe0; }
+
+/* ════ 레위기 제사와 규례 (burnt · grain · peace · sin-offering · guilt · feasts · jubilee) ════ */
+
+/* 번제: 통째로 타는 제물 덩이, 나뭇단, 곧게 올라가는 연기 기둥 */
+.ti-offer { fill: color-mix(in srgb, #2a1a12 80%, var(--act-a)); }
+.ti-wood rect { fill: color-mix(in srgb, #4a2e1a 75%, var(--act-a)); }
+.ti-column { fill: color-mix(in srgb, var(--ivory) 70%, var(--act-accent)); opacity: 0.16; filter: blur(5px); animation: ti-column 6s ease-in-out infinite alternate; }
+@keyframes ti-column { to { opacity: 0.28; } }
+.ti-puff {
+  fill: color-mix(in srgb, var(--ivory) 65%, var(--act-accent)); opacity: 0; filter: blur(2px);
+  transform-box: fill-box; transform-origin: center;
+  animation: ti-puff 6s ease-out infinite; animation-delay: calc(var(--d, 0s) * -1);
+}
+@keyframes ti-puff { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 15% { opacity: 0.4; } 100% { opacity: 0; transform: translate(var(--dx, 0px), -78px) scale(2.2); } }
+
+/* 소제: 고운 가루, 기름, 유향, 소금, 누룩 없는 떡 */
+.ti-flour { fill: color-mix(in srgb, #efe6cf 82%, var(--act-a)); }
+.ti-oil { fill: color-mix(in srgb, #e3b24a 80%, var(--act-accent)); opacity: 0.8; }
+.ti-pour {
+  fill: none; stroke: color-mix(in srgb, #f0c560 80%, var(--act-accent)); stroke-width: 2.2; stroke-linecap: round;
+  stroke-dasharray: 0.5 0.12; animation: ti-pour 1.6s linear infinite; opacity: 0.9;
+}
+@keyframes ti-pour { from { stroke-dashoffset: 0.62; } to { stroke-dashoffset: 0; } }
+.ti-frank { fill: #f6f0de; stroke: color-mix(in srgb, #c9b88a 70%, var(--act-a)); stroke-width: 0.4; }
+.ti-salt { fill: #f4f4f2; }
+.ti-clay-handle { fill: none; stroke: color-mix(in srgb, #9a5a38 78%, var(--act-a)); stroke-width: 2.4; stroke-linecap: round; }
+.ti-clay { fill: color-mix(in srgb, #9a5a38 78%, var(--act-a)); }
+.ti-prick { fill: color-mix(in srgb, #5a3a1c 80%, var(--act-a)); }
+
+/* 화목제: 흔드는 제물(가슴·넓적다리), 둘러앉은 식구 */
+.ti-meat { fill: color-mix(in srgb, #b87a52 72%, var(--act-a)); }
+.ti-wave { animation: ti-wave 3.2s ease-in-out infinite alternate; }
+@keyframes ti-wave { 0% { transform: translate(-3px, 0); } 50% { transform: translate(0, -2.5px); } 100% { transform: translate(3px, 0); } }
+.ti-diner { fill: var(--ti-ink); }
+
+/* 속죄제: 뿔의 붉은 표시, 제단 밑으로 스미는 붉은 빛(아주 은은히), 위에서 덮는 빛 */
+.ti-mark { fill: color-mix(in srgb, #8e1f22 85%, var(--act-a)); opacity: 0.9; animation: ti-mark 4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+@keyframes ti-mark { to { opacity: 0.65; } }
+.ti-seep { fill: #9a2a26; opacity: 0.16; filter: blur(3px); animation: ti-seep 5s ease-in-out infinite alternate; }
+@keyframes ti-seep { to { opacity: 0.26; } }
+.ti-cover { fill: color-mix(in srgb, var(--act-accent) 50%, #fff4d6); opacity: 0.14; filter: blur(7px); animation: ti-cover 6s ease-in-out infinite; }
+@keyframes ti-cover { 0%, 100% { opacity: 0.12; transform: translateY(-4px); } 50% { opacity: 0.24; transform: none; } }
+.ti-mote { fill: #fff6dc; opacity: 0; animation: ti-mote 6.5s linear infinite; animation-delay: calc(var(--d, 0s) * -1); }
+@keyframes ti-mote { 0% { opacity: 0; transform: translateY(0); } 20% { opacity: 0.9; } 100% { opacity: 0; transform: translateY(80px); } }
+
+/* 속건제: 은 세겔, 오분의 일(더 얹은 한 닢), 숫양 */
+.ti-coin { fill: color-mix(in srgb, #cfd2da 74%, var(--act-a)); stroke: color-mix(in srgb, #6a6c78 70%, var(--act-a)); stroke-width: 0.5; }
+.ti-coin.is-extra { fill: color-mix(in srgb, #eef0f6 80%, var(--act-accent)); }
+.ti-coin.is-falling { animation: ti-coin 4.8s ease-in infinite; }
+@keyframes ti-coin { 0%, 30% { opacity: 0; transform: translateY(-34px); } 40% { opacity: 1; } 62% { opacity: 1; transform: translateY(0); } 68% { transform: translateY(-1.5px); } 74%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+.ti-wool { fill: color-mix(in srgb, #ddd2bc 70%, var(--act-a)); }
+
+/* 절기 바퀴: 어두운 판, 천천히 도는 눈금과 달, 보릿단·초막 잎 */
+.ti-dial { fill: color-mix(in srgb, var(--act-a) 50%, #07060a); }
+.ti-dial.is-inner { fill: color-mix(in srgb, var(--act-b) 30%, #0c0a10); }
+.ti-turn { transform-box: view-box; transform-origin: 120px 100px; animation: ti-turn 90s linear infinite; }
+@keyframes ti-turn { to { transform: rotate(360deg); } }
+.ti-moon { fill: #fff6dc; filter: drop-shadow(0 0 3px rgba(255, 240, 200, 0.9)); }
+.ti-dot { fill: color-mix(in srgb, var(--ti-gold) 70%, #fff3d2); opacity: 0.7; }
+.ti-dot.is-on { opacity: 1; }
+.ti-barley { fill: color-mix(in srgb, #e0c27a 80%, var(--act-a)); stroke: color-mix(in srgb, #e0c27a 80%, var(--act-a)); }
+.ti-leaf { fill: color-mix(in srgb, #5f8a4a 75%, var(--act-a)); }
+
+/* 희년: 소리 고리, 풀려 떨어지는 사슬, 경계석과 밭 */
+.ti-ring {
+  fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #fff1c8); stroke-width: 1.4; stroke-linecap: round; opacity: 0;
+  transform-box: view-box; transform-origin: 195px 49px;
+  animation: ti-ring 3.6s ease-out infinite; animation-delay: var(--d, 0s);
+}
+@keyframes ti-ring { 0% { opacity: 0; transform: scale(0.5); } 20% { opacity: 0.85; } 100% { opacity: 0; transform: scale(2); } }
+.ti-link { fill: none; stroke: color-mix(in srgb, #9a9ca8 70%, var(--act-a)); stroke-width: 2; }
+.ti-fall { animation: ti-fall 5s ease-in infinite; }
+@keyframes ti-fall { 0%, 25% { opacity: 1; transform: none; } 75% { opacity: 0.9; transform: translate(4px, 70px) rotate(14deg); } 100% { opacity: 0; transform: translate(4px, 80px) rotate(14deg); } }
+.ti-field { fill: color-mix(in srgb, var(--act-b) 40%, #0d0a0c); }
+
+:root[data-reduced-motion='true'] .ti :is(.ti-column, .ti-puff, .ti-pour, .ti-wave, .ti-mark, .ti-seep, .ti-cover, .ti-mote, .ti-coin, .ti-turn, .ti-ring, .ti-fall) { animation: none !important; }
+:root[data-reduced-motion='true'] .ti :is(.ti-puff, .ti-mote, .ti-coin.is-falling) { opacity: 0; }
+:root[data-reduced-motion='true'] .ti .ti-ring { opacity: 0.5; }

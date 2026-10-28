@@ -19,6 +19,9 @@ import { sinArt } from './manna';
 import { covenantArt } from './covenant';
 import { mamreArt } from './mamre';
 import { calfArt } from './calf';
+import { atoneArt } from './atonement';
+import { ordinationArt } from './ordination';
+import { strangeFireArt } from './strangefire';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -497,6 +500,20 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'calf-view': () => calfArt('view'),
   'calf-burn': () => calfArt('burn'),
   'calf-ash': () => calfArt('ash'),
+  // 대속죄일 (레 16, fx/atonement.ts)
+  'atone-lots': () => atoneArt('lots'),
+  'atone-live': () => atoneArt('live'),
+  'atone-gone': () => atoneArt('gone'),
+  'atone-holy': () => atoneArt('holy'),
+  'atone-edge': () => atoneArt('edge'),
+  // 하늘에서 내린 불 (레 8–9, fx/ordination.ts)
+  'ord-court': () => ordinationArt('court'),
+  'ord-altar': () => ordinationArt('altar'),
+  'ord-blaze': () => ordinationArt('blaze'),
+  // 다른 불 (레 10, fx/strangefire.ts)
+  'sf-court': () => strangeFireArt('court'),
+  'sf-ash': () => strangeFireArt('ash'),
+  'sf-outside': () => strangeFireArt('outside'),
   // 별을 세어 보라 (창 15, fx/covenant.ts)
   'cov-count': () => covenantArt('count'),
   'cov-pieces': () => covenantArt('pieces'),

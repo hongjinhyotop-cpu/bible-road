@@ -9,8 +9,6 @@
   "extras": {
     "joshua": { "name": "여호수아", "base": "youth", "hair": "short", "props": ["spear"], "tint": "red" },
     "hur": { "name": "훌", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "red" },
-    "nadab": { "name": "나답", "base": "man", "hair": "turban", "beard": "short", "tint": "blue" },
-    "abihu": { "name": "아비후", "base": "man", "hair": "turban", "beard": "short", "tint": "white" },
     "elder": { "name": "장로", "base": "old-man", "hair": "turban", "beard": "gray", "props": ["staff"], "tint": "brown" },
     "young": { "name": "청년", "base": "youth", "hair": "short", "props": ["lamb"], "tint": "white" }
   },

@@ -21,6 +21,9 @@ export type BackdropArt =
   | 'sinai-camp' | 'sinai-bound' | 'sinai-storm' | 'sinai-fire' | 'sinai-dark'
   | 'sin-camp' | 'sin-glory' | 'sin-quail' | 'sin-dew' | 'sin-manna' | 'sin-melt'
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
+  | 'ord-court' | 'ord-altar' | 'ord-blaze'
+  | 'sf-court' | 'sf-ash' | 'sf-outside'
+  | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -51,13 +54,15 @@ export const PLACES = {
   ruins: '폐허: 무너진 성벽, 피어오르는 연기, 잿빛 땅',
   pasture: '목초지: 완만한 언덕과 흩어진 양 떼, 목자의 돌 우리',
   egypt: '이집트: 강가 야자, 멀리 피라미드와 신전 기둥',
+  tabernacle: '성막 뜰: 세마포 울타리, 가운데 번제단과 연기, 뒤로 성막 장막과 그 위 구름 기둥 (레위기·민수기)',
+  camp: '광야의 진: 지평선까지 늘어선 장막들, 지파 깃발, 가운데 멀리 성막과 구름 기둥 (레위기·민수기)',
 } as const;
 export type PlaceArt = keyof typeof PLACES;
 
 /** 실내 장소: 언덕(land)을 깔지 않는다 */
 const INDOOR = new Set<PlaceArt>(['palace', 'temple', 'house', 'prison']);
 /** 가운데 소품이 있는 장소: 폰에서 인물을 양옆으로 벌려 세운다 */
-const CENTERED = new Set<PlaceArt>(['well', 'cave']);
+const CENTERED = new Set<PlaceArt>(['well', 'cave', 'tabernacle']);
 const VARIANTS = { '': undefined, '-dusk': 'dusk', '-night': 'night', '-dawn': 'clear' } as const;
 
 /** 막별 기본 배경: 에피소드에 bg/mood가 없으면 이걸 쓴다 */
@@ -137,6 +142,15 @@ export const FX = [
   'stink', // 냄새: 말하는 사람(없으면 오른쪽 사람) 곁에서 옅은 잿빛 김이 구불구불 오르고 날벌레 두엇이 맴돎 (약 6초, 출 16:20). 가볍게
   // ── 금송아지 (출 32, fx/calf.ts) ──
   'tablets-break', // 돌판 깨짐: 떠 있는 증거판 두 돌판(item tablets, 없으면 세움)에 금이 그어지고 여덟 조각으로 갈라져 아래로 떨어짐 (약 3초, 출 32:19)
+  // ── 대속죄일 (레 16, fx/atonement.ts) ──
+  'cast-lots', // 제비뽑기: 두 염소(배경 atone-lots) 위로 제비가 떠올라 왼쪽은 금빛 "여호와께", 오른쪽은 잿빛 "아사셀에게" (약 9초, 레 16:8)
+  'incense-cloud', // 향연: 아래에서 흰 향 연기가 피어올라 떠 있는 기구(item ark)를 덮고 머물렀다 옅어짐 (약 13초, 레 16:13)
+  'confess', // 안수와 고백: 사방에서 어두운 티끌이 모여들어 산 염소(배경 atone-live)의 머리에 내려앉고, 염소가 검게 가라앉음 (약 7초, 레 16:21)
+  'scapegoat', // 아사셀 염소: 정한 사람이 염소를 끌고 길(배경 atone-edge)을 따라 지평선 쪽으로 작아지고, 염소 혼자 너머로 사라짐 (약 15초, 레 16:22)
+  // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
+  'fire-fall', // 여호와 앞에서 나온 불: 성막 쪽이 밝아지고 금빛 불줄기가 제단(ord-* 배경)으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 (약 9초, 레 9:24). 배경 ord-blaze와 같이
+  // ── 다른 불 (레 10, fx/strangefire.ts) ──
+  'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
@@ -424,6 +438,44 @@ export const MOODS: Record<string, Mood> = {
   'calf-burn': { light: true, land: false, art: 'calf-burn', tone: 'dusk', spread: true },
   /** 이튿날 아침: 빈 받침의 재, 금가루가 반짝이며 흐르는 시내 (출 32:20, 신 9:21) */
   'calf-ash': { light: true, land: false, art: 'calf-ash', tone: 'clear' },
+
+  // ── 대속죄일 (레 16, fx/atonement.ts) ──
+  /** 회막 문 앞: 성막과 구름 기둥, 세마포 뜰, 매어 둔 수염소 둘 (레 16:7) */
+  'atone-lots': { light: true, land: false, art: 'atone-lots', spread: true },
+  'atone-lots-dawn': { light: true, land: false, art: 'atone-lots', tone: 'clear', spread: true },
+  /** 같은 자리, 산 염소 하나 (레 16:20-21 안수) */
+  'atone-live': { light: true, land: false, art: 'atone-live', spread: true },
+  'atone-live-dusk': { light: true, land: false, art: 'atone-live', tone: 'dusk', spread: true },
+  /** 같은 자리, 염소가 떠난 빈 말뚝 (레 16:23-28) */
+  'atone-gone': { light: true, land: false, art: 'atone-gone', spread: true },
+  'atone-gone-dusk': { light: true, land: false, art: 'atone-gone', tone: 'dusk', spread: true },
+  /** 지성소 안: 금 널판 벽, 양옆 휘장, 가운데 위에 고인 빛. 법궤는 item ark로 (레 16:2, 12-15) */
+  'atone-holy': { light: true, land: false, art: 'atone-holy' },
+  /** 진의 가장자리: 바라보는 사람들의 등, 지평선까지 굽은 광야 길 (레 16:21-22) */
+  'atone-edge': { light: true, land: false, art: 'atone-edge', spread: true },
+  'atone-edge-dusk': { light: true, land: false, art: 'atone-edge', tone: 'dusk', spread: true },
+
+  // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
+  /** 회막 문 앞: 세마포 뜰 울타리와 청·자·홍색 뜰 문, 성막 지붕 위 구름 기둥, 앞에 놋 번제단(불 없음)과 물두멍 (레 8:3-4) */
+  'ord-court': { light: true, land: false, art: 'ord-court', spread: true },
+  /** 같은 뜰, 맑은 아침 */
+  'ord-court-dawn': { light: true, land: false, art: 'ord-court', tone: 'clear', spread: true },
+  /** 같은 뜰, 밤 (위임식 칠 주야, 레 8:35) */
+  'ord-court-night': { light: true, land: false, art: 'ord-court', tone: 'night', spread: true },
+  /** 같은 뜰, 제단 위에서 제물이 타고 연기가 오른다 (레 8:16-28, 9:8-21) */
+  'ord-altar': { light: true, land: false, art: 'ord-altar', spread: true },
+  /** 하늘에서 내린 불: 제단 위에 높은 금빛 불, 구름 기둥 속이 빛나고 뜰 전체가 금빛 (레 9:24). fx fire-fall과 같이 */
+  'ord-blaze': { light: true, land: false, art: 'ord-blaze', spread: true },
+
+  // ── 다른 불 (레 10, fx/strangefire.ts) ──
+  /** 성막 뜰: 구름 기둥 아래 성막과 청·자·홍색 문, 문 안의 빛, 세마포 포장, 꺼지지 않는 번제단 불, 물두멍. fx strange-fire는 이 문에서 나온다 */
+  'sf-court': { light: true, land: false, art: 'sf-court', spread: true },
+  /** 같은 뜰, 저녁 (레 10:16-20) */
+  'sf-court-dusk': { light: true, land: false, art: 'sf-court', tone: 'dusk', spread: true },
+  /** 일이 지난 뒤: 회막 문 앞 그을린 땅, 엎어진 향로 둘, 식어 가는 숯과 가는 연기 (레 10:2-3) */
+  'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
+  /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
+  'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
 
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */

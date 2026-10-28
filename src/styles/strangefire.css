@@ -1,0 +1,102 @@
+/* ── 다른 불 (레 10, A급 lev-10-strange-fire, fx/strangefire.ts) ──
+   성막 뜰: 구름 기둥 아래 성막, 동쪽 문의 청·자·홍색 휘장, 세마포 포장, 꺼지지 않는 번제단 불.
+   일이 지난 뒤의 뜰(엎어진 향로 둘, 식어 가는 숯), 진 밖(지는 해).
+   효과 strange-fire: 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다.
+   인물: 나답·아비후의 향로(옷 censer)의 숯불과 향 연기도 여기서 칠한다. */
+
+/* 구름 기둥 */
+.sf-pillar { filter: blur(3px); }
+.sf-puff {
+  fill: color-mix(in srgb, var(--act-accent) 18%, #f4efe2); opacity: 0.12;
+  transform-box: fill-box; transform-origin: center;
+  animation: sf-puff 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
+}
+@keyframes sf-puff { from { transform: translate(-2px, 0) scale(0.96); opacity: 0.08; } to { transform: translate(2px, -3px) scale(1.05); opacity: 0.15; } }
+.sf--outside .sf-puff { animation: none; opacity: 0.3; }
+
+/* 성막: 문 안의 빛 (지성소 쪽에서 새어 나오는 듯), 휘장 세 빛깔 */
+.sf-holy { fill: url(#bd-halo-g); opacity: 0.55; }
+.sf-fold, .sf-hem { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #000); stroke-width: 0.8; opacity: 0.6; }
+.sf-hem { stroke-width: 1.4; opacity: 0.5; }
+.sf-door__glow { fill: color-mix(in srgb, var(--act-accent) 70%, #fff3cf); opacity: 0.35; filter: blur(3px); animation: sf-doorglow 5s ease-in-out infinite alternate; }
+@keyframes sf-doorglow { from { opacity: 0.22; } to { opacity: 0.42; } }
+.sf-door__band { opacity: 0.82; }
+.sf-door__band--0 { fill: color-mix(in srgb, #3e5f9a 60%, var(--act-b)); }
+.sf-door__band--1 { fill: color-mix(in srgb, #6e3f8a 60%, var(--act-b)); }
+.sf-door__band--2 { fill: color-mix(in srgb, #b0482e 60%, var(--act-b)); }
+.sf-post { fill: color-mix(in srgb, var(--act-accent) 55%, #3a2a10); }
+.sf-door__mark { fill: none; }
+
+/* 세마포 포장: 흰 휘장에 막 빛이 살짝 */
+.sf-linen { fill: color-mix(in srgb, #d8d2c0 55%, var(--act-b)); opacity: 0.55; }
+
+/* 번제단: 꺼지지 않는 불 (레 6:13) */
+.sf-altarglow { fill: url(#bd-flame-g); opacity: 0.85; mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; animation: sf-breathe 3.4s ease-in-out infinite alternate; }
+@keyframes sf-breathe { from { opacity: 0.55; transform: scale(0.94); } to { opacity: 0.9; transform: scale(1.06); } }
+.sf-flame { fill: #f6a24e; opacity: 0.85; transform-box: fill-box; transform-origin: 50% 100%; mix-blend-mode: screen; animation: sf-flame 1.3s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sf-flame { 0% { transform: scale(1, 1) skewX(0deg); } 50% { transform: scale(0.86, 1.18) skewX(5deg); } 100% { transform: scale(1.06, 0.86) skewX(-4deg); } }
+.sf-grate { fill: none; stroke: color-mix(in srgb, var(--act-accent) 40%, #2a1a0c); stroke-width: 0.7; opacity: 0.7; }
+.sf-water { fill: color-mix(in srgb, var(--act-accent) 40%, #cfe4ef); opacity: 0.45; }
+
+/* 일이 지난 뒤: 그을린 땅, 엎어진 향로, 식어 가는 숯, 가는 연기. 문 빛도 숨을 죽인다 */
+.sf--ash .sf-holy { opacity: 0.3; }
+.sf--ash .sf-door__glow { animation: none; opacity: 0.16; }
+.sf-scorch { fill: #050304; opacity: 0.45; filter: blur(2px); }
+.sf-coal { fill: #ff9a3c; filter: drop-shadow(0 0 1.5px #ff7a20); animation: sf-coal 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sf-coal { from { opacity: 0.9; } to { opacity: 0.25; } }
+.sf-wisp { fill: none; stroke: color-mix(in srgb, #d8d2c0 70%, var(--act-b)); stroke-width: 1.4; stroke-linecap: round; filter: blur(1.2px); opacity: 0.4; stroke-dasharray: 10 6; animation: sf-wisp 4s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes sf-wisp { from { stroke-dashoffset: 32; } to { stroke-dashoffset: 0; } }
+
+/* 진 밖: 지는 해, 먼 진 */
+.sf-sun { fill: url(#bd-flame-g); opacity: 0.9; }
+.sf-farcamp .bd-tent { opacity: 0.7; }
+
+/* 인물의 향로 (나답·아비후 옷 censer): 숯불은 또렷하게, 향 연기는 위로 흘러간다 */
+.actor .sf-pan { fill: color-mix(in srgb, var(--sil-ink) 60%, #8a5a2a); }
+.actor .sf-hot { fill: #ffb24a; filter: drop-shadow(0 0 2px #ff8a2a) drop-shadow(0 0 6px rgba(255, 140, 40, 0.6)); animation: sf-coal 1.6s ease-in-out infinite alternate; }
+.actor .sf-incense { fill: none; stroke: color-mix(in srgb, #efe6d4 70%, var(--act-accent)); stroke-width: 2; stroke-linecap: round; opacity: 0.5; filter: blur(1.6px); stroke-dasharray: 14 10; animation: sf-wisp 3.2s linear infinite; }
+.actor .sf-incense + .sf-incense { animation-duration: 4.1s; opacity: 0.35; }
+
+/* ── 효과 strange-fire ── */
+.fx-sfire { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; --x: 50%; --y: 42%; transition: opacity 1.6s ease-in; }
+.fx-sfire.is-out { opacity: 0; }
+/* 온 무대를 덮는 흰 빛 */
+.fx-sfire s {
+  position: absolute; inset: -10%;
+  background: radial-gradient(circle at var(--x) var(--y), #fffdf6 0%, #fff0c8 16%, rgba(255, 196, 110, 0.75) 38%, rgba(230, 110, 40, 0.35) 62%, transparent 86%);
+  mix-blend-mode: screen; opacity: 0;
+  animation: sf-wash 5.8s cubic-bezier(0.2, 0.7, 0.3, 1) 0.1s both;
+}
+@keyframes sf-wash { 0% { opacity: 0; } 14% { opacity: 1; } 34% { opacity: 0.92; } 100% { opacity: 0; } }
+/* 문에서 먼저 한 점이 하얗게 달아오른다 */
+.fx-sfire b {
+  position: absolute; left: var(--x); top: var(--y); width: 14px; height: 22px; translate: -50% -50%; border-radius: 40%;
+  background: #fffaf0; box-shadow: 0 0 18px 8px #ffe2a0, 0 0 60px 26px rgba(255, 170, 70, 0.6);
+  opacity: 0; animation: sf-core 2.6s cubic-bezier(0.3, 0, 0.2, 1) both;
+}
+@keyframes sf-core { 0% { opacity: 0; scale: 0.4; } 16% { opacity: 1; scale: 1; } 24% { opacity: 1; scale: 8; } 60% { opacity: 0.5; scale: 14; } 100% { opacity: 0; scale: 16; } }
+/* 불의 혀: 문에서 앞·양옆으로 곧게 뻗는다 */
+.fx-sfire i {
+  position: absolute; left: var(--x); top: var(--y); width: 5vmax; height: calc(var(--l) * 80vmax); translate: -50% 0;
+  transform-origin: 50% 0; rotate: var(--a);
+  background: linear-gradient(to bottom, #fffdf6 0%, #ffe6ac 22%, rgba(255, 150, 60, 0.7) 58%, transparent 100%);
+  border-radius: 50% 50% 46% 46% / 12% 12% 60% 60%; filter: blur(5px); mix-blend-mode: screen;
+  opacity: 0; scale: 1 0;
+  animation: sf-tongue 2.8s cubic-bezier(0.16, 0.8, 0.3, 1) var(--d) both;
+}
+@keyframes sf-tongue { 0% { opacity: 0; scale: 0.4 0; } 18% { opacity: 1; scale: 1 1; } 55% { opacity: 0.75; scale: 1.25 1.05; } 100% { opacity: 0; scale: 1.6 1.1; } }
+/* 다 걷힌 뒤 떠도는 불티 */
+.fx-sfire u {
+  position: absolute; left: var(--ex); top: var(--ey); width: calc(var(--s) * 3px); height: calc(var(--s) * 3px); border-radius: 50%;
+  background: #ffd08a; box-shadow: 0 0 6px #ff9a3c; opacity: 0;
+  animation: sf-ember 4.4s ease-out var(--d) both;
+}
+@keyframes sf-ember { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 0.9; } 100% { opacity: 0; translate: var(--dx) -90px; } }
+/* 불이 터질 때 무대가 한 번 울린다 (translate만 써서 gsap shake와 겹치지 않게) */
+.scene.is-sfire { animation: sf-quake 0.09s linear infinite alternate; }
+@keyframes sf-quake { from { translate: -1.5px 0.6px; } to { translate: 1.5px -0.6px; } }
+
+:root[data-reduced-motion='true'] :is(.sf-puff, .sf-door__glow, .sf-altarglow, .sf-flame, .sf-coal, .sf-wisp, .sf-hot, .sf-incense) { animation: none !important; }
+:root[data-reduced-motion='true'] .scene.is-sfire { animation: none; }
+:root[data-reduced-motion='true'] .fx-sfire s { animation: sf-wash 2.4s ease-in-out both; }
+:root[data-reduced-motion='true'] .fx-sfire b { display: none; }

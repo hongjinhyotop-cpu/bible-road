@@ -9,8 +9,7 @@
   "extras": {
     "bezalel": { "name": "브살렐", "base": "man", "hair": "short", "beard": "short", "props": ["bundle"], "tint": "gold" },
     "oholiab": { "name": "오홀리압", "base": "man", "hair": "tied", "beard": "short", "props": ["cloak"], "tint": "blue" },
-    "serving": { "name": "회막 문의 여인", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "white" },
-    "ithamar": { "name": "이다말", "base": "priest", "hair": "turban", "beard": "short", "props": ["scroll"], "tint": "white" }
+    "serving": { "name": "회막 문의 여인", "base": "woman", "hair": "veil", "props": ["jar"], "tint": "white" }
   },
   "beats": [
     { "type": "narration", "enter": ["bezalel"], "acts": [{ "act": "walk-in", "who": "bezalel" }, { "act": "face", "who": ["bezalel", "moses"] }], "text": "집은 섰다. 이제 그 안을 채울 차례였다. 브살렐이 조각목 앞에 앉았다. 산 위에서 모세가 들은 치수를, 그는 이제 손으로 들을 것이었다." },
