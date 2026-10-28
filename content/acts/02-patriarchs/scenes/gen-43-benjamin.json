@@ -44,7 +44,7 @@
     { "type": "narration", "act": "approach", "who": "joseph", "to": "benjamin", "text": "총리는 눈을 들어 베냐민을 보았다. 자기 어머니의 아들. 헤어질 때 아마 아이였을 동생." },
     { "type": "line", "who": "joseph", "act": "bless", "text": "“이 아이가 너희가 말하던 막내냐.” 그리고 덧붙였다. “소자여, 하나님이 네게 은혜 베푸시기를 원한다.”" },
     { "type": "narration", "act": "turn", "who": "joseph", "text": "그 말 끝에서 목소리가 버티지 못했다. 총리는 급히 돌아섰다." },
-    { "bg": "house-night", "exit": ["judah", "simeon", "benjamin", "steward"], "act": "cry", "who": "joseph" },
+    { "exit": ["judah", "simeon", "benjamin", "steward"], "act": "cry", "who": "joseph" },
     { "type": "scripture", "ref": "창 43:30-31", "gloss": "요셉이 동생 보고 마음이 타는 것 같아서 급하게 안방 들어가서 울고, 세수하고 나와서 아무렇지 않은 척 “밥 차려라.” 그 몇 초 사이에 감정 다 눌러 담음." },
     { "type": "narration", "act": "stand", "who": "joseph", "text": "그는 얼굴을 씻었다. 물은 눈물을 지우지만 눈은 지우지 못한다. 그래도 그는 나갔다. 총리의 얼굴로." },
     { "bg": "house", "enter": ["judah", "benjamin", "simeon"], "act": "crowd" },

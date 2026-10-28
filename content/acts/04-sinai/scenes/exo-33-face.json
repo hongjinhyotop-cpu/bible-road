@@ -21,7 +21,7 @@
     { "type": "narration", "act": "stand", "who": "woman", "text": "떼어 낸 금은 다시 무언가가 되지 않았다. 그냥 내려놓였다. 회개는 대개, 무언가를 만드는 것보다 내려놓는 것에 가깝다." },
     { "type": "narration", "bg": "wilderness", "fx": ["fade", "dust"], "exit": ["woman", "man"], "enter": ["joshua"], "acts": [{ "act": "walk-in", "who": "joshua" }, { "act": "approach", "who": "moses", "to": "joshua" }], "text": "모세는 장막 하나를 가져다 진 밖에, 진에서 멀리 떨어진 곳에 쳤다. 그리고 회막이라 불렀다. 만나는 장막. 여호와를 찾는 사람은 누구든 진 밖으로 걸어 나가야 했다." },
     { "type": "narration", "act": "crowd", "text": "모세가 회막으로 갈 때면 백성이 다 일어나 자기 장막 문에 섰다. 그리고 모세가 들어갈 때까지 바라보았다. 아무도 따라가지는 않았다. 다만 눈으로는 다들 따라갔다." },
-    { "type": "narration", "fx": "glory", "acts": [{ "act": "crowd-bow" }, { "act": "kneel", "who": "joshua" }], "text": "모세가 들어가면 구름 기둥이 내려와 회막 문에 섰다. 백성은 그것을 보고 각자 자기 장막 문에서 엎드렸다." },
+    { "type": "narration", "fx": "glory", "acts": [{ "act": "crowd-bow" }, { "act": "kneel", "who": "joshua" }], "text": "모세가 들어가면 구름 기둥이 내려와 회막 문에 섰다. 백성은 그것을 보고 다 일어나, 각자 자기 장막 문에 서서 경배했다." },
     { "type": "scripture", "ref": "출 33:11", "gloss": "하나님이 모세랑은 친구랑 얘기하듯 얼굴 맞대고 대화하심. 모세가 진으로 돌아가도 청년 여호수아는 회막을 안 떠남." },
     { "type": "narration", "act": "walk-out", "who": "moses", "text": "이야기가 끝나면 모세는 진으로 돌아갔다. 진에는 백성이 있었고, 문제가 있었고, 모세가 해야 할 일이 있었다." },
     { "type": "narration", "act": "look-up", "who": "joshua", "text": "여호수아는 남았다. 청년이었다. 아무도 그에게 남으라고 하지 않았다. 그래서 더 오래 남았다." },

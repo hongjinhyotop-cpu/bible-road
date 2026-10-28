@@ -43,7 +43,7 @@
     { "type": "line", "who": "judah", "act": "turn", "text": "“그냥 가지라고 해. 괜히 우리만 웃음거리가 되겠어. 나는 보냈고, 자네는 못 찾았어. 그걸로 됐네.”" },
     { "type": "narration", "act": "walk-out", "who": "hirah", "text": "체면이 도장보다 무거웠다. 유다는 자기 이름이 새겨진 것을 길가에 두고 왔다. 그리고 그것을 잊기로 했다. 잊기로 한 것은, 대개 돌아온다." },
     { "type": "narration", "bg": "tent", "fx": "fade", "act": "turn", "who": "judah", "text": "석 달쯤 뒤. 누군가 유다에게 고했다. 며느리 다말이 행음하여 잉태했다고." },
-    { "type": "line", "who": "judah", "act": "argue", "to": "tamar", "enter": ["tamar"], "text": "“그를 끌어내어 불사르라.”" },
+    { "type": "line", "who": "judah", "acts": [{ "act": "walk-in", "who": "tamar" }], "text": "“그를 끌어내어 불사르라.”" },
     { "type": "narration", "act": "bow-head", "who": "tamar", "text": "끌려 나가면서, 다말은 시아버지에게 사람을 보냈다. 물건 셋을 들려서." },
     { "type": "line", "who": "tamar", "act": "look-up", "text": "“이 물건 임자로 말미암아 잉태했습니다. 보소서. 이 도장과 끈과 지팡이가, 누구의 것입니까.”" },
     { "type": "narration", "act": "step-back", "who": "judah", "text": "유다는 그것들을 알아보았다. 모를 수가 없었다. 자기 것이었다." },

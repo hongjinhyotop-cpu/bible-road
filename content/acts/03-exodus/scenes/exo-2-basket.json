@@ -78,7 +78,7 @@
     {"type": "narration", "outfit": {"moses": "shepherd"}, "acts": [{"act": "bless", "who": "reuel"}, {"act": "face", "who": "moses", "to": "zipporah"}], "text": "모세는 그 집에 머물기를 기뻐했다. 르우엘은 딸 십보라를 그에게 주었다. 왕궁의 두건은 접혀 장막 구석으로 들어갔다. 대신 손에 막대기 하나가 들렸다. 양 치는 막대기였다. 그것이 장차 무엇이 될지는, 아직 아무도 몰랐다."},
     {"type": "line", "who": "moses", "enter": ["son"], "exit": ["reuel"], "acts": [{"act": "approach", "who": "zipporah", "to": "moses"}, {"act": "bow-head", "who": "moses"}], "text": "“이름을 게르솜이라 하자. 내가 타국에서 객이 되었으니.”"},
     {"type": "narration", "bg": "brickworks", "fx": ["fade", "dust"], "exit": ["moses", "zipporah", "son"], "acts": [{"act": "crowd"}, {"act": "crowd-murmur"}], "text": "여러 해 뒤, 이집트 왕이 죽었다. 왕은 바뀌었고, 벽돌은 바뀌지 않았다. 이스라엘 자손은 고역 때문에 탄식하며 부르짖었다. 누구에게 닿을지 모르고 지른 소리였다. 그래도, 닿았다."},
-    {"type": "scripture", "ref": "출 2:24-25", "fx": "glory", "act": "crowd-bow", "gloss": "하나님이 신음 소리를 들으시고, 아브라함·이삭·야곱이랑 한 약속을 기억하시고, 이스라엘을 마음에 두고 돌보심(권념). 수백 년 조용하던 하나님 쪽 채팅창에 드디어 ‘읽음’이 뜬 순간."},
+    {"type": "scripture", "ref": "출 2:24-25", "fx": "glory", "act": "crowd-bow", "gloss": "하나님이 신음 소리를 들으시고, 아브라함·이삭·야곱이랑 한 약속을 기억하시고, 이스라엘을 마음에 두고 돌보심(권념). 그동안 모르셨다는 게 아님. 성경에서 ‘기억하셨다’는 ‘이제 움직이신다’는 뜻이거든. 다 보고 계시던 분이 드디어 출동 버튼 누른 순간."},
     {"type": "narration", "bg": "wilderness-dusk", "fx": "fade", "acts": [{"act": "crowd-away"}, {"act": "walk-in", "who": "moses"}, {"act": "look-up", "who": "moses"}], "text": "그 무렵 미디안 광야에서, 한 목자가 양 떼를 몰고 있었다. 자기가 그 부르짖음의 대답이라는 것을, 그는 아직 몰랐다."}
   ],
   "branches": {
