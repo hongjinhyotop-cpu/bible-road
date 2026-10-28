@@ -262,7 +262,11 @@ export function sceneScreen({ id }: Params): Screen {
     const fx = beat.fx == null ? [] : Array.isArray(beat.fx) ? beat.fx : [beat.fx];
     // 화면 전환(fade): 까맣게 닫고, 그 사이에 배경·인물을 바꾼 뒤 연다
     const fade = fx.includes('fade');
-    if (fade) await fadeScreen(true);
+    if (fade) {
+      await fadeScreen(true);
+      // 까만 사이에 앞 장면의 효과를 걷는다 (이 beat의 새 효과는 아래에서 다시 깔림)
+      clearFx();
+    }
     const all = steps(beat);
     // 이름표: 이 beat부터 바꿔 부른다 (예: 총리 → 요셉)
     if (beat.names) Object.assign(names, beat.names);
@@ -350,6 +354,12 @@ export function sceneScreen({ id }: Params): Screen {
   }
 
   /** 화면 전환: 까맣게 닫힘(true) / 열림(false) */
+  /** 잠깐 깔리는 효과 층(fx-*: 불·영광·재앙·불뱀 …)을 바로 걷는다.
+   *  각 층은 제 타이머(5~12초)로 사라지는데, 그 사이 화면 전환(fade)이 오면 다음 장면까지 남았다 */
+  function clearFx() {
+    el.querySelectorAll('.scene > [class^="fx-"], .scene > [class*=" fx-"]').forEach((n) => n.remove());
+  }
+
   function fadeScreen(close: boolean): Promise<unknown> {
     const rm = reducedMotion();
     const veil = $('.play__fade');
@@ -802,6 +812,7 @@ export function sceneScreen({ id }: Params): Screen {
     if (busy) return;
     busy = true;
     await gsap.to(el.querySelectorAll('.dock, .scene__stage'), { opacity: 0, duration: 0.5 });
+    clearFx();
     gsap.set(el.querySelectorAll('.dock, .scene__stage'), { opacity: 1 });
     busy = false;
     await begin();
