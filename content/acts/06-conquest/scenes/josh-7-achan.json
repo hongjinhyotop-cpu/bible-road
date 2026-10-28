@@ -16,7 +16,7 @@
     { "type": "narration", "act": "bow-head", "who": "achan", "text": "바친 물건이었다. 여호와의 것이라 선언된 것. 그는 그것을 땅속에 넣고 흙을 덮었다. 땅은 아무것도 묻지 않았다. 사람은 대개 그것을 허락으로 착각한다." },
     { "type": "narration", "fx": "fade", "bg": "js-ai", "exit": ["achan"], "enter": ["joshua", "scout"], "acts": [{ "act": "walk-in", "who": ["joshua", "scout"] }, { "act": "face", "who": "joshua", "to": "scout" }], "text": "독자는 알고, 진은 몰랐다. 여호수아는 여리고에서 벧엘 동편 아이로 사람을 보냈다. 작은 성이었다. 정탐꾼들은 가볍게 돌아왔다." },
     { "type": "line", "who": "scout", "act": "bow-head", "text": "“백성을 다 올라가게 말고 이삼천명만 올라가서 아이를 치게 하소서 그들은 소수니 모든 백성을 그리로 보내어 수고롭게 마소서”" },
-    { "type": "narration", "act": "crowd", "text": "삼천 명쯤 올라갔다. 아무도 여호와께 묻지 않았다. 성벽이 무너지는 것을 본 지 며칠 되지 않은 사람들이었다. 이긴 기억은 가끔, 왜 이겼는지를 잊게 만든다." },
+    { "type": "narration", "act": "crowd", "text": "삼천 명쯤 올라갔다. 본문은 여호와께 묻는 장면을 적지 않는다. 성벽이 무너지는 것을 본 지 며칠 되지 않은 사람들이었다. 이긴 기억은 가끔, 왜 이겼는지를 잊게 만든다." },
     { "type": "narration", "bg": "js-ai-dusk", "fx": "dust", "acts": [{ "act": "crowd-away" }, { "act": "step-back", "who": "scout" }], "text": "그리고 도망쳐 내려왔다. 아이 사람들이 성문 앞에서부터 스바림까지 쫓아와, 내려가는 비탈에서 쳤다. 서른여섯 명쯤. 본문은 숫자 하나로 적는다." },
     { "type": "narration", "act": "crowd-murmur", "text": "백성의 마음이 녹아 물같이 되었다. 여리고 사람들의 간담이 녹는다던 그 말이었다. 이번에는 이쪽이 녹았다." },
     { "bg": "tabernacle-dusk", "fx": "fade", "exit": ["scout"], "enter": ["elder"], "acts": [{ "act": "walk-in", "who": "elder" }, { "act": "prostrate", "who": ["joshua", "elder"] }] },

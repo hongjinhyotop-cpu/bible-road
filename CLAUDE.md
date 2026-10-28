@@ -151,6 +151,7 @@ PROGRESS.md      ← 진행 기록
   - `"names"`: 그 beat부터 이름표를 바꿔 부름 (위 `names`와 같은 형식)
   - `"enter"`, `"exit"`, `"pose"`(neutral/slump/lift/tremble), `"face"`({"eve": "left"}), `"outfit"`(인물 파일의 outfits)
   - `"item"`: 성막 기구 하나를 무대 가운데 띄움 (아래 "성막 기구") · `"item": null`(또는 `"none"`)이면 걷힘
+  - `"allot"`: 땅 분배 지도 — 가나안 옛 지도에 지파 땅을 칠함. `"judah"` 또는 `["benjamin", "simeon"]`. 다음 beat에도 allot이면 이어 칠하고, 없으면 접힘. 여호수아서 분배 순서상 앞선 지파는 자동으로 옅게 칠해져 있음. 이름: reuben gad manasseh-east judah ephraim manasseh-west benjamin simeon zebulun issachar asher naphtali dan + `levi`(레위 성읍 점) `refuge`(도피성 여섯) `all` (`src/engine/tribes.ts`, 그림 `src/fx/allot.ts`, 2026-10-28)
 
 ### 동작 라이브러리 (`src/engine/actions.ts` — 검사기가 이름·대상을 확인함)
 | 동작 | 뜻 | 누구 |
@@ -182,6 +183,7 @@ PROGRESS.md      ← 진행 기록
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
 - **회상·앞날 필터** (2026-10-28, 신명기): `recall`(바랜 빛 + "기억") / `foresee`(맑고 찬 빛 + "그날이 오면") → `present`로 끝. `fade`로는 안 끝나고 에피소드 끝에 저절로 걷힘. 보통 `"fx": ["fade", "recall"]` + 앞에서 만든 배경(sinai-*, calf-*, spy-*, mr-* …)을 재활용 → `["fade", "present"]` + 원래 배경. 신명기처럼 말하는 사람이 지난 일·앞날을 이야기할 때.
 - 신명기 A급 효과 (`src/fx/deuteronomy.ts`): `shema`("들으라" 금빛 글자 + 소리 고리) `pass-on`(금빛 티끌이 왼쪽 인물 → 오른쪽 인물: 가르침·전해 줌) `amen`(군중 쪽에서 "아멘"이 떠오름) `eagle`(독수리가 새끼를 받아 올림) `land-show`(배경 `dt-nebo-view`의 땅이 구역별로 밝아짐). 배경 `dt-door`/`dt-door-lit`(문설주) `dt-twin`/`-bless`/`-curse`(그리심·에발) `dt-song`(별밤·반석 벼랑) `dt-nebo-path`/`dt-nebo-view`/`dt-nebo-empty`(느보산).
+- 여호수아 A급 (`src/fx/joshua.ts`, 2026-10-28): 효과 `march`(여리고 성벽 아래 행렬) `shout`(일곱 나팔 + 큰 외침, `shake`와 같이) `lots`(제비가 지파 → 한 사람으로 좁혀짐, 수 7) `sun-stand`(해·달이 머묾, 배경 `js-gibeon-sun`). 배경 `js-jericho`(-dusk/-dawn) `js-jericho-cord` `js-jericho-fallen` `js-jericho-ruin` `js-roof`(라합의 지붕, 밤) `js-window-rope`/`js-window-cord`(성벽의 창) `js-jordan-flood`/`js-jordan-dry`(넘치는·마른 요단) `js-gilgal`(열두 돌) `js-ai` `js-tent-dig`(아간의 장막) `js-achor`(아골 골짜기) `js-gibeon`(-night/-storm/-sun) `js-shechem`/`js-shechem-stone`(세겜 상수리나무와 큰 돌). 성 함락·전쟁 장면에서 재사용 가능.
 - 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐. `fade` 전환이나 다른 배경으로 바뀌는 beat에서는 바로 걷힘 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
 - `weep`(큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 — 창 45:2, `src/fx/hall.ts`). 이집트 고관의 홀 배경 `joseph-hall`(열린 큰 문·파피루스 기둥·화로) / `joseph-hall-shut`(모두 물러가고 문이 닫힘) / `joseph-hall-dusk` — 창 41–50의 요셉 궁·바로 궁 장면에서 재사용 가능.
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
@@ -400,6 +402,7 @@ A급·B급 **모든 에피소드**는 아래를 통과해야 한다. 빨리 만�
 - **Phase 1.5 — 연출 라이브러리:** 끝 (2026-10-27). 동작·배경·효과·인물 키트·여정 지도·군중, B급 형식, 본문 전체 보기 (끝 퀴즈는 2026-10-28에 없앰). 읽기 구간 → B급 변환, 2막 기본 인물 9명(키트).
 - **Phase 2 — 2막 족장들 (창 12–50):** 끝 (2026-10-28). A급 15개 + B급 30개 + 피날레.
 - **Phase 3 — 3막 출애굽 (출 1–18):** 끝 (2026-10-28). A급 6개 + B급 8개 + 피날레.
-- **Phase 4 — 4막 시내산:** 출 19–40 끝 (A급 2 + B급 17, 성막 기구 연출). 레위기 남음.
+- **Phase 4–5 — 4막 시내산·5막 광야:** 끝 (모세오경 187장 완주, 2026-10-28).
+- **Phase 6 — 6막 정복과 사사:** 여호수아 24장 끝 (A급 6 + B급 12, 땅 분배 지도). 사사기·룻기 남음.
 - **그다음 — 막 순서대로:** 막마다 ① A급 목록 정하기(성경 전체 약 100개) ② B급 10~20장씩 도우미로 대량 생산 ③ A급 몇 개씩 공들여 만들기 ④ 막 피날레.
 - 인물 도감, 막 피날레는 계속 쌓는다. 소리(Howler.js)는 나중에.
