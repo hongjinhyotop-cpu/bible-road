@@ -6,6 +6,7 @@
   "ref": "창 46",
   "bg": "tent-dawn",
   "cast": ["jacob"],
+  "outfit": { "joseph": "vizier" },
   "beats": [
     { "type": "narration", "text": "이스라엘은 짐을 쌌다. 백삼십 년을 산 사람의 짐은 많다. 대부분은 짐승이고, 나머지는 기억이다." },
     { "type": "narration", "act": "travel", "from": "hebron", "to": "beersheba", "text": "그는 남쪽으로 내려가다 브엘세바에서 멈췄다. 아브라함이 우물을 팠고, 이삭이 제단을 쌓았던 곳. 가나안의 마지막 우물이었다. 그 너머는 이집트로 가는 길뿐이었다." },

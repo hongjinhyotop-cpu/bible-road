@@ -6,6 +6,7 @@
   "ref": "창 49",
   "bg": "house-dusk",
   "cast": ["jacob"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "simeon": { "name": "시므온", "base": "man", "hair": "short", "beard": "short", "props": ["sword"], "tint": "red" },
     "levi": { "name": "레위", "base": "man", "hair": "hood", "beard": "short", "props": ["sword"], "tint": "purple", "height": 0.98 }

@@ -35,6 +35,8 @@ export class Actor {
   private actLoop: gsap.core.Animation | null = null;
   /** 무릎을 꿇었나 (일어설 때 되돌린다) */
   private low = false;
+  /** 몸 전체를 기울인 축 (엎드림 front · 잠듦 back) — 일어설 때 같은 축으로 되돌린다 */
+  private tiltPivot: 'front' | 'back' = 'front';
 
   constructor(readonly def: CharacterDef) {
     this.el = document.createElement('div');
@@ -189,19 +191,22 @@ export class Actor {
         to(p.armL, { rotation: -72, y: 0 }, 1.4);
         return true;
       case 'prostrate':
+        // 무릎을 꿇은 채 몸 전체를 앞으로 기울여 이마를 땅 가까이 (옷이 상체에 붙어 있어 상체만 숙이면 옷자락이 들린다)
         settle();
         this.kneel(true);
-        // 긴 옷이 상체에 붙어 있어서 크게 숙이면 옷자락이 들린다 → 상체는 조금, 고개는 깊게
-        to(p.upper, { rotation: 22 }, 1.4);
-        to(p.head, { rotation: 34 }, 1.4);
-        to(p.armL, { rotation: -40, y: 0 }, 1.4);
+        to(p.upper, { rotation: 18 }, 1.4);
+        to(p.head, { rotation: 36 }, 1.4);
+        to(p.armL, { rotation: -70, y: 0 }, 1.4);
+        this.tilt('front', 16, 1.5, 0.72);
         return true;
       case 'sleep':
+        // 무릎을 접고 뒤로 눕는다: 몸 전체가 뒤꿈치를 축으로 눕고, 얼굴은 하늘을 본다. 빛이 조금 빠진다
         settle();
         this.kneel(true);
-        to(p.upper, { rotation: 18 }, 1.8);
-        to(p.head, { rotation: 30 }, 1.8);
-        to(p.armL, { rotation: -20, y: 0 }, 1.8);
+        to(p.upper, { rotation: 0 }, 1.8);
+        to(p.head, { rotation: -10 }, 1.8);
+        to(p.armL, { rotation: -10, y: 0 }, 1.8);
+        this.tilt('back', 74, 2);
         gsap.to(this.el, { filter: 'brightness(0.7)', duration: d(1.8) });
         return true;
       case 'fall':
@@ -255,6 +260,7 @@ export class Actor {
         return true;
       case 'stand':
         settle();
+        this.tilt(this.tiltPivot, 0, 0.9);
         this.kneel(false);
         this.pose('neutral');
         gsap.to(this.el, { filter: 'brightness(1)', duration: d(0.8) });
@@ -303,6 +309,31 @@ export class Actor {
   finishBow(): void {
     if (this.bowing?.isActive()) this.bowing.progress(1);
     this.bowing = null;
+  }
+
+  /**
+   * 몸 전체를 발끝(front) 또는 뒤꿈치(back)를 축으로 기울인다. 엎드림 = 앞으로 조금 + 몸을 낮게 웅크림(squash), 잠듦 = 뒤로 눕기. deg 0 = 바로 섬.
+   * 그림 안 좌표에서 돌리므로 face()로 뒤집혀 있어도 그대로 맞는다.
+   */
+  private tilt(pivot: 'front' | 'back', deg: number, dur = 1.2, squash = 1): void {
+    if (this.def.art.kind !== 'svg') return;
+    const body = this.body as unknown as SVGGraphicsElement;
+    const [, h] = this.def.art.viewBox;
+    const foot = h * 0.974;
+    let box: DOMRect | SVGRect;
+    try {
+      box = body.getBBox();
+    } catch {
+      return;
+    }
+    if (!box.width) return;
+    const right = (this.def.faces ?? 'right') === 'right';
+    const front = right ? box.x + box.width * 0.78 : box.x + box.width * 0.22;
+    const back = right ? box.x + box.width * 0.3 : box.x + box.width * 0.7;
+    this.tiltPivot = pivot;
+    const x = pivot === 'front' ? front : back;
+    const sign = (pivot === 'front') === right ? 1 : -1;
+    gsap.to(body, { rotation: sign * deg, scaleY: squash, svgOrigin: `${x} ${foot}`, duration: reducedMotion() ? 0.01 : dur, ease: 'power2.inOut', overwrite: 'auto' });
   }
 
   /** 무릎 꿇기 / 일어서기: 다리를 아래에서부터 접고, 상체를 그만큼 내린다 */

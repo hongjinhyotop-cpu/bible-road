@@ -6,6 +6,7 @@
   "ref": "창 48",
   "bg": "house",
   "cast": ["joseph"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "messenger": { "name": "전하는 사람", "base": "man", "hair": "short", "tint": "gray", "height": 0.96 },
     "manasseh": { "name": "므낫세", "base": "youth", "hair": "short", "tint": "blue", "height": 0.92 },
