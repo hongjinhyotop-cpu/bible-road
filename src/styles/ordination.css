@@ -1,0 +1,99 @@
+/* ── 위임식과 하늘에서 내린 불 (레 8–9, A급 lev-8-9-fire, fx/ordination.ts) ──
+   회막 문 앞: 세마포 뜰 울타리와 청·자·홍색 뜰 문, 성막 지붕과 구름 기둥, 놋 번제단과 물두멍.
+   ord-altar = 제물이 타며 연기, ord-blaze = 하늘에서 내린 불이 제단 위에 높이 타고 뜰 전체가 금빛.
+   효과 fire-fall: 성막 쪽이 밝아지고 금빛 불줄기가 제단으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 */
+
+/* 실 색 (출 26:31 청색·자색·홍색 실과 가늘게 꼰 베실) — 역광 속이라 낮게 */
+.od-blue    { fill: color-mix(in srgb, #3a5aa8 55%, var(--act-a)); }
+.od-purple  { fill: color-mix(in srgb, #7a3a8c 55%, var(--act-a)); }
+.od-scarlet { fill: color-mix(in srgb, #b23a3a 55%, var(--act-a)); }
+.od-linen   { fill: color-mix(in srgb, #e8dcc0 40%, var(--act-b)); }
+.od-silver  { fill: color-mix(in srgb, #d8dce6 60%, var(--act-b)); }
+.od-fence__post { fill: color-mix(in srgb, var(--act-a) 70%, #050407); }
+.od-fence__fold { fill: none; stroke: color-mix(in srgb, var(--act-a) 50%, transparent); stroke-width: 0.5; opacity: 0.5; }
+.od-gate rect { opacity: 0.95; }
+
+/* 성막: 짙은 가죽 지붕, 앞 기둥 다섯(금 머리), 문 휘장. 안쪽에서 아주 은은한 빛 */
+.od-tent__roof { fill: color-mix(in srgb, var(--act-a) 80%, #050307); }
+.od-tent__drape { fill: color-mix(in srgb, #6a4a30 30%, var(--act-a)); }
+.od-tent__screen rect { opacity: 0.8; }
+.od-tent__post { fill: color-mix(in srgb, var(--act-a) 60%, #050407); }
+.od-tent__cap { fill: color-mix(in srgb, var(--act-accent) 75%, #000); }
+.od-tent__shine { fill: url(#bd-halo-g); opacity: 0.35; mix-blend-mode: screen; }
+.od--blaze .od-tent__shine { opacity: 0.85; animation: od-breathe 3.4s ease-in-out infinite alternate; }
+
+/* 구름 기둥: 흰 구름 덩이가 아주 느리게 부푼다. 가장자리는 막 색에 녹는다 */
+.od-cloud__puff { fill: color-mix(in srgb, #f4ecdc 62%, var(--act-b)); opacity: 0.8; transform-box: fill-box; transform-origin: center; animation: od-puff 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes od-puff { from { transform: scale(0.96) translateX(-1px); } to { transform: scale(1.05) translateX(1.5px); } }
+.od-cloud__glow { fill: url(#bd-halo-g); opacity: 0.4; mix-blend-mode: screen; }
+.od-cloud.is-lit .od-cloud__puff { fill: color-mix(in srgb, #ffe2a0 70%, #fff8ea); }
+.od-cloud.is-lit .od-cloud__glow { opacity: 0.95; animation: od-breathe 4s ease-in-out infinite alternate; }
+@keyframes od-breathe { from { opacity: 0.6; } to { opacity: 1; } }
+
+.od-camp .bd-tent { opacity: 0.7; }
+.od-yard { opacity: 0.95; }
+.od-near { opacity: 0.97; }
+
+/* 놋 제단 · 물두멍 */
+.od-bronze, .od-bronze path, .od-bronze rect { fill: color-mix(in srgb, #8a5a2a 46%, var(--act-a)); }
+.od-bronze__hi { fill: none; stroke: color-mix(in srgb, #e0a860 60%, transparent); stroke-width: 0.8; }
+.od-net { fill: none; stroke: color-mix(in srgb, #1a0e08 70%, transparent); stroke-width: 0.7; }
+.od-ring { fill: none; stroke: color-mix(in srgb, #e0a860 50%, transparent); stroke-width: 0.6; }
+.od-water { fill: color-mix(in srgb, #bcd6e8 60%, transparent); animation: od-breathe 3s ease-in-out infinite alternate; }
+.od-pieces path { fill: #1a0d08; }
+.od-altar__light { fill: url(#bd-flame-g); opacity: 0; mix-blend-mode: screen; transform-box: fill-box; transform-origin: center; }
+.od--altar .od-altar__light { opacity: 0.85; animation: od-glow 3.2s ease-in-out infinite alternate; }
+.od--blaze .od-altar__light { opacity: 1; animation: od-glow 2.6s ease-in-out infinite alternate; }
+@keyframes od-glow { from { opacity: 0.65; transform: scale(0.94); } to { opacity: 1; transform: scale(1.06); } }
+
+/* 연기: 제단 위에서 천천히 오르며 퍼진다 */
+.od-smoke__puff { fill: color-mix(in srgb, #d8ccb8 40%, var(--act-b)); opacity: 0; animation: od-smoke 7s ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes od-smoke { 0% { opacity: 0; transform: translate(0, 0) scale(0.6); } 15% { opacity: 0.55; } 100% { opacity: 0; transform: translate(var(--dx), -110px) scale(3.2); } }
+
+/* 불꽃 */
+.od-flame { transform-box: fill-box; transform-origin: 50% 100%; animation: od-flame var(--t, 1.3s) ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); mix-blend-mode: screen; }
+.od-flame__out { fill: #f39a46; opacity: 0.75; }
+.od-flame__in { fill: #fff0c8; opacity: 0.9; }
+@keyframes od-flame { 0% { transform: scale(1, 1) skewX(0deg); } 50% { transform: scale(0.88, 1.16) skewX(5deg); } 100% { transform: scale(1.06, 0.88) skewX(-4deg); } }
+/* 하늘에서 내린 불: 붉은 불이 아니라 금빛·흰빛 */
+.od-blaze .od-flame__out { fill: #ffc24a; opacity: 0.85; }
+.od-blaze__back .od-flame__out { fill: #ff9a3a; opacity: 0.6; }
+.od-blaze .od-flame__in { fill: #fffbe8; opacity: 1; }
+.od-blaze { filter: drop-shadow(0 0 6px rgba(255, 210, 120, 0.8)); }
+.od-spark { fill: #ffe6a8; opacity: 0; animation: od-spark var(--t) ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes od-spark { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), -90px); } }
+
+/* 뜰 전체가 금빛으로 물듦 (blaze) */
+.od-wash { fill: #ffcf7a; opacity: 0.14; mix-blend-mode: screen; pointer-events: none; animation: od-wash 5s ease-in-out infinite alternate; }
+@keyframes od-wash { from { opacity: 0.1; } to { opacity: 0.2; } }
+.od--blaze .od-linen { fill: color-mix(in srgb, #ffe6b0 52%, var(--act-b)); }
+.od--blaze .od-bronze, .od--blaze .od-bronze path, .od--blaze .od-bronze rect { fill: color-mix(in srgb, #c8843a 60%, var(--act-a)); }
+/* 밤 색조에서도 불·구름은 또렷하게 */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop[data-art^='ord']) { filter: brightness(0.62) saturate(0.8); }
+
+/* ── 효과 fire-fall ── */
+.fx-firefall { position: absolute; inset: 0; pointer-events: none; z-index: 3; overflow: hidden; }
+.fx-firefall.is-out { transition: opacity 1.8s ease; opacity: 0; }
+.fx-firefall b, .fx-firefall i { position: absolute; display: block; }
+/* 성막 쪽(구름 기둥 아래)이 밝아짐 */
+.fx-firefall__source { left: calc(var(--x0) - 90px); top: calc(var(--y0) - 110px); width: 180px; height: 180px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, rgba(255, 252, 235, 0.95) 0%, rgba(255, 220, 140, 0.55) 30%, rgba(255, 190, 90, 0) 70%); mix-blend-mode: screen; }
+/* 불줄기: 위에서 아래로 뻗는다 (scaleY, 원점 위) */
+.fx-firefall__bolt { left: calc(var(--x1) - 9px); top: var(--y0); width: 18px; height: var(--len); transform-origin: 50% 0; transform: scaleY(0);
+  background: linear-gradient(90deg, rgba(255, 190, 80, 0) 0%, rgba(255, 200, 100, 0.8) 25%, #fffbe6 50%, rgba(255, 200, 100, 0.8) 75%, rgba(255, 190, 80, 0) 100%);
+  filter: blur(1.5px) drop-shadow(0 0 12px rgba(255, 200, 100, 0.9)); border-radius: 9px; mix-blend-mode: screen; }
+.fx-firefall__burst { left: calc(var(--x1) - 110px); top: calc(var(--y1) - 130px); width: 220px; height: 220px; border-radius: 50%; opacity: 0;
+  background: radial-gradient(circle, #fffdf0 0%, rgba(255, 220, 130, 0.85) 22%, rgba(255, 170, 70, 0.3) 50%, rgba(255, 170, 70, 0) 72%); mix-blend-mode: screen; }
+.fx-firefall__ring { left: calc(var(--x1) - 180px); top: calc(var(--y1) - 70px); width: 360px; height: 140px; border-radius: 50%; opacity: 0;
+  border: 2px solid rgba(255, 226, 150, 0.9); box-shadow: 0 0 24px rgba(255, 210, 120, 0.7), inset 0 0 18px rgba(255, 210, 120, 0.5); }
+.fx-firefall__wash { inset: 0; opacity: 0;
+  background: radial-gradient(ellipse at var(--x1) var(--y1), rgba(255, 226, 150, 0.85) 0%, rgba(255, 196, 100, 0.45) 45%, rgba(220, 150, 60, 0.25) 100%); mix-blend-mode: screen; }
+.fx-firefall__sparks i { left: var(--x1); top: calc(var(--y1) - 8px); width: calc(3px * var(--s)); height: calc(3px * var(--s)); border-radius: 50%; opacity: 0;
+  background: #fff3c8; box-shadow: 0 0 6px #ffc860; }
+.fx-firefall.is-hit .fx-firefall__sparks i { animation: od-fly 2.6s cubic-bezier(0.2, 0.7, 0.4, 1) var(--d) forwards; }
+@keyframes od-fly { 0% { opacity: 1; transform: translate(0, 0); } 70% { opacity: 0.9; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
+
+:root[data-reduced-motion='true'] .fx-firefall__wash { animation: od-rm 3.2s ease forwards; }
+@keyframes od-rm { 0% { opacity: 0; } 30% { opacity: 0.5; } 100% { opacity: 0.2; } }
+:root[data-reduced-motion='true'] :is(.od-cloud__puff, .od-flame, .od-smoke__puff, .od-spark, .od-wash) { animation: none !important; }
+:root[data-reduced-motion='true'] .od-smoke__puff { opacity: 0.35; }

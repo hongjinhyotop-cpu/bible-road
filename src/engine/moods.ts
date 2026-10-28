@@ -21,6 +21,7 @@ export type BackdropArt =
   | 'sinai-camp' | 'sinai-bound' | 'sinai-storm' | 'sinai-fire' | 'sinai-dark'
   | 'sin-camp' | 'sin-glory' | 'sin-quail' | 'sin-dew' | 'sin-manna' | 'sin-melt'
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
+  | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -139,6 +140,8 @@ export const FX = [
   'stink', // 냄새: 말하는 사람(없으면 오른쪽 사람) 곁에서 옅은 잿빛 김이 구불구불 오르고 날벌레 두엇이 맴돎 (약 6초, 출 16:20). 가볍게
   // ── 금송아지 (출 32, fx/calf.ts) ──
   'tablets-break', // 돌판 깨짐: 떠 있는 증거판 두 돌판(item tablets, 없으면 세움)에 금이 그어지고 여덟 조각으로 갈라져 아래로 떨어짐 (약 3초, 출 32:19)
+  // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
+  'fire-fall', // 여호와 앞에서 나온 불: 성막 쪽이 밝아지고 금빛 불줄기가 제단(ord-* 배경)으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 (약 9초, 레 9:24). 배경 ord-blaze와 같이
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
@@ -426,6 +429,18 @@ export const MOODS: Record<string, Mood> = {
   'calf-burn': { light: true, land: false, art: 'calf-burn', tone: 'dusk', spread: true },
   /** 이튿날 아침: 빈 받침의 재, 금가루가 반짝이며 흐르는 시내 (출 32:20, 신 9:21) */
   'calf-ash': { light: true, land: false, art: 'calf-ash', tone: 'clear' },
+
+  // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
+  /** 회막 문 앞: 세마포 뜰 울타리와 청·자·홍색 뜰 문, 성막 지붕 위 구름 기둥, 앞에 놋 번제단(불 없음)과 물두멍 (레 8:3-4) */
+  'ord-court': { light: true, land: false, art: 'ord-court', spread: true },
+  /** 같은 뜰, 맑은 아침 */
+  'ord-court-dawn': { light: true, land: false, art: 'ord-court', tone: 'clear', spread: true },
+  /** 같은 뜰, 밤 (위임식 칠 주야, 레 8:35) */
+  'ord-court-night': { light: true, land: false, art: 'ord-court', tone: 'night', spread: true },
+  /** 같은 뜰, 제단 위에서 제물이 타고 연기가 오른다 (레 8:16-28, 9:8-21) */
+  'ord-altar': { light: true, land: false, art: 'ord-altar', spread: true },
+  /** 하늘에서 내린 불: 제단 위에 높은 금빛 불, 구름 기둥 속이 빛나고 뜰 전체가 금빛 (레 9:24). fx fire-fall과 같이 */
+  'ord-blaze': { light: true, land: false, art: 'ord-blaze', spread: true },
 
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */

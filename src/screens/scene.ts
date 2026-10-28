@@ -31,6 +31,7 @@ import { playTrumpet } from '../fx/sinai';
 import { playQuail, playStink } from '../fx/manna';
 import { playKites, playTorchPass } from '../fx/covenant';
 import { playTabletsBreak } from '../fx/calf';
+import { playFireFall } from '../fx/ordination';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -475,6 +476,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'tablets-break':
         // 금송아지 (fx/calf.ts): 증거판 두 돌판에 금이 가고 조각나 떨어진다 (출 32:19)
         playTabletsBreak(el, items, rm);
+        return;
+      case 'fire-fall':
+        // 하늘에서 내린 불 (fx/ordination.ts): 성막 쪽에서 금빛 불줄기가 제단으로 내리꽂힌다 (레 9:24)
+        playFireFall($('.scene'), rm);
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)

@@ -25,6 +25,37 @@ function flame(x: number, y: number, s = 1, d = 0): string {
   </g>`;
 }
 
+/** 번제단 몸체 (출 27:1-8): 번제단·번제·속죄제가 같이 쓴다. 윗면 y 94~104, 바닥 y 174, 앞 뿔 끝 ≈ (65, 91)·(161, 91) */
+function bronzeAltar(): { body: string; edges: string } {
+  const horn = (x: number, y: number, s: number, flip = false) =>
+    `<path transform="translate(${x} ${y}) scale(${flip ? -s : s} ${s})" d="M-4 0 C-6 -6 -4 -11 1 -13 C-1 -8 1 -4 4 0 Z"/>`;
+  let grate = '';
+  for (let x = 62; x < 164; x += 8) grate += `M${x} 132 L${Math.min(x + 8, 164)} 146 M${Math.min(x + 8, 164)} 132 L${x} 146 `;
+  return {
+    body: `<g fill="$B">${horn(80, 95, 0.8)}${horn(176, 95, 0.8, true)}
+        <path class="ti-top" d="M62 104 L76 94 L178 94 L164 104 Z"/>
+        <path class="ti-shade" d="M164 104 L178 94 L178 162 L164 174 Z"/>
+        <rect x="62" y="104" width="102" height="70"/>${horn(64, 104, 1.1)}${horn(162, 104, 1.1, true)}
+        <rect x="30" y="137" width="168" height="4" rx="2"/></g>
+        <rect class="ti-grate" x="62" y="132" width="102" height="14"/>`,
+    edges: line('M62 104 L76 94 L178 94 L164 104 Z') + line('M62 104 V174 H164 V104 M164 174 L178 162 V94') + line(grate, 0.5) +
+      line('M62 132 H164 M62 146 H164', 0.7) + line('M30 139 H198', 1.1),
+  };
+}
+
+/** 앉아 있는 사람 실루엣 (화목제 식탁). 바닥 가운데 (x, y), 크기 s */
+const sitter = (x: number, y: number, s = 1) =>
+  `<g class="ti-diner" transform="translate(${x} ${y}) scale(${s})"><circle cx="0" cy="-25" r="5.2"/>
+    <path d="M-10 0 C-11 -12 -7 -19 0 -19 C7 -19 11 -12 10 0 Z"/></g>`;
+
+/** 떡 한 덩이 (위에서 비스듬히 본 둥근 떡) */
+const loaf = (x: number, y: number, rx = 7, ry = 2.6) => `<ellipse class="ti-bread" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`;
+
+/** 피어오르는 연기 덩이 (번제의 연기 기둥) */
+const puffs = (x: number, y: number, n: number, spread = 10) =>
+  Array.from({ length: n }, (_, i) =>
+    `<circle class="ti-puff" style="--d:${(i * (6 / n)).toFixed(2)}s; --dx:${(((i * 37) % 11) - 5) * (spread / 5)}px" cx="${x}" cy="${y}" r="${5 + (i % 3) * 1.5}"/>`).join('');
+
 const ART: Record<ItemName, () => Art> = {
   // ── 증거궤 + 속죄소 + 두 그룹 (출 25:10-22) ──
   ark() {
@@ -92,19 +123,8 @@ const ART: Record<ItemName, () => Art> = {
 
   // ── 번제단: 조각목에 놋을 입힌 네모 제단, 네 뿔, 그물 (출 27:1-8) ──
   altar() {
-    const horn = (x: number, y: number, s: number, flip = false) =>
-      `<path transform="translate(${x} ${y}) scale(${flip ? -s : s} ${s})" d="M-4 0 C-6 -6 -4 -11 1 -13 C-1 -8 1 -4 4 0 Z"/>`;
-    let grate = '';
-    for (let x = 62; x < 164; x += 8) grate += `M${x} 132 L${Math.min(x + 8, 164)} 146 M${Math.min(x + 8, 164)} 132 L${x} 146 `;
     return {
-      body: `<g fill="$B">${horn(80, 95, 0.8)}${horn(176, 95, 0.8, true)}
-        <path class="ti-top" d="M62 104 L76 94 L178 94 L164 104 Z"/>
-        <path class="ti-shade" d="M164 104 L178 94 L178 162 L164 174 Z"/>
-        <rect x="62" y="104" width="102" height="70"/>${horn(64, 104, 1.1)}${horn(162, 104, 1.1, true)}
-        <rect x="30" y="137" width="168" height="4" rx="2"/></g>
-        <rect class="ti-grate" x="62" y="132" width="102" height="14"/>`,
-      edges: line('M62 104 L76 94 L178 94 L164 104 Z') + line('M62 104 V174 H164 V104 M164 174 L178 162 V94') + line(grate, 0.5) +
-        line('M62 132 H164 M62 146 H164', 0.7) + line('M30 139 H198', 1.1),
+      ...bronzeAltar(),
       live: `<ellipse class="ti-ember" cx="120" cy="99" rx="34" ry="4"/>${flame(104, 100, 1.5, 0.2)}${flame(120, 100, 2.1, 0)}${flame(136, 100, 1.4, 0.5)}
         <path class="ti-wisp" pathLength="1" d="M120 76 C114 64 126 56 119 44 C113 34 124 26 120 14"/>`,
       glints: [[64, 92], [164, 92], [62, 139]],
@@ -332,6 +352,217 @@ const ART: Record<ItemName, () => Art> = {
       edges: line(jar) + line('M94 62 H146 V68 H94 Z', 0.8) + line('M78 120 C100 112 140 112 162 120 M76 150 C100 158 140 158 164 150', 0.6),
       live: `<ellipse class="ti-shine" cx="120" cy="56" rx="34" ry="22" fill="$L"/>`,
       glints: [[112, 50], [131, 54], [92, 118]],
+    };
+  },
+
+  // ════ 레위기: 제사와 규례 (레 1–7, 23, 25) — 제사 종류를 기구처럼 하나씩 ════
+
+  // ── 번제: 놋 제단 위에서 통째로 다 태워 올림. 연기는 곧게 하늘로 (레 1:9 "향기로운 냄새") ──
+  burnt() {
+    const a = bronzeAltar();
+    // 제물은 뭉뚱그린 덩이 하나 (나뭇단 위). 피·도살은 그리지 않는다
+    const offer = 'M84 98 C82 88 92 80 106 78 C110 70 124 68 132 74 C146 76 158 86 156 98 Z';
+    return {
+      body: `<path class="ti-column" d="M104 76 C100 54 108 30 100 -14 L140 -14 C132 30 140 54 136 76 Z"/>
+        ${a.body}
+        <g class="ti-wood"><rect x="80" y="94" width="80" height="4" rx="2" transform="rotate(-4 120 96)"/><rect x="84" y="95" width="74" height="4" rx="2" transform="rotate(5 120 97)"/></g>
+        <path class="ti-offer" d="${offer}"/>`,
+      edges: a.edges + line(offer, 0.6) + line('M120 66 V20', 0.4),
+      live: `<ellipse class="ti-ember" cx="120" cy="99" rx="44" ry="5"/>
+        ${flame(92, 100, 1.8, 0.3)}${flame(150, 100, 1.9, 0.6)}${flame(106, 96, 2.6, 0.1)}${flame(134, 96, 2.8, 0.45)}${flame(120, 84, 2.2, 0.8)}
+        <g class="ti-rise">${puffs(120, 64, 7, 6)}</g>
+        <g class="ti-smoke"><path pathLength="1" d="M120 66 C117 46 123 26 119 0 C118 -8 121 -14 120 -20"/>
+        <path class="is-thin" pathLength="1" d="M112 70 C110 50 114 30 111 6"/><path class="is-thin" pathLength="1" d="M128 70 C130 50 126 30 129 6"/></g>`,
+      glints: [[65, 91], [161, 91], [62, 139]],
+    };
+  },
+
+  // ── 소제: 고운 가루에 기름을 붓고 유향을 얹음. 누룩 없이, 소금은 꼭 (레 2:1-2, 4, 11, 13) ──
+  grain() {
+    const mound = 'M66 150 C78 132 100 113 120 112 C140 113 162 132 174 150 Z';
+    // 기름 항아리: 똑바로 그린 뒤 120° 기울임 → 입구가 오른쪽 아래 (≈ 101, 71)
+    const jar = 'M-5 -22 L5 -22 L4 -17 C12 -14 14 -4 12 4 C10 12 4 16 0 16 C-4 16 -10 12 -12 4 C-14 -4 -12 -14 -4 -17 Z';
+    const jarAt = (s: string) => `<g transform="translate(82 60) rotate(120)">${s}</g>`;
+    const cakes = [170, 164, 158].map((y) => loaf(42, y, 20, 4.6)).join('');
+    const pricks = [158].map((y) => [-10, -4, 2, 8, -7, 5].map((dx, i) => `<circle class="ti-prick" cx="${42 + dx}" cy="${y + (i > 3 ? 1.6 : -0.6)}" r="0.7"/>`).join('')).join('');
+    const frank = [[136, 122], [140, 124], [144, 121], [139, 119.6], [147, 125], [133, 125]]
+      .map(([x, y]) => `<circle class="ti-frank" cx="${x}" cy="${y}" r="2"/>`).join('');
+    return {
+      body: `<g fill="$B"><ellipse cx="120" cy="150" rx="62" ry="10"/><rect x="104" y="156" width="32" height="14" rx="2"/><rect x="96" y="169" width="48" height="4" rx="2"/></g>
+        <path class="ti-flour" d="${mound}"/>
+        <path class="ti-oil" d="M110 116 C112 112 126 112 128 116 C130 122 134 126 132 134 C128 128 124 124 120 124 C116 126 112 130 106 134 C106 126 108 120 110 116 Z"/>
+        ${frank}
+        ${jarAt(`<path class="ti-clay" d="${jar}"/><path class="ti-shade ti-clay" d="M4 -17 C12 -14 14 -4 12 4 C10 12 4 16 0 16 C6 10 8 0 4 -17 Z"/>`)}
+        ${cakes}${pricks}
+        <path fill="$B" d="M182 160 C184 174 214 174 216 160 Z"/><path class="ti-salt" d="M185 160 C190 150 208 150 213 160 Z"/>`,
+      edges: line('M58 150 C62 160 178 160 182 150 M58 150 C62 140 178 140 182 150', 0.8) + line(mound, 0.6) + jarAt(line(jar, 0.8)) +
+        line('M22 158 C24 162 60 162 62 158 M22 164 C24 168 60 168 62 164 M22 170 C24 174 60 174 62 170', 0.5) + line('M182 160 C184 174 214 174 216 160 Z', 0.7),
+      live: `<path class="ti-pour" pathLength="1" d="M101 72 C106 80 113 94 117 113"/>
+        <circle class="ti-drop" cx="117" cy="104" r="1.6"/>
+        <path class="ti-wisp" pathLength="1" d="M140 118 C136 108 144 102 139 92 C135 84 142 78 139 70"/>
+        <ellipse class="ti-spark" style="--d:0.8s" cx="199" cy="155" rx="3" ry="0.7"/><ellipse class="ti-spark" style="--d:2.2s" cx="205" cy="157" rx="2.4" ry="0.6"/>`,
+      glints: [[120, 113], [199, 154], [42, 156]],
+    };
+  },
+
+  // ── 화목제: 한 상을 셋이 나눔 — 기름은 제단 불에(하나님 몫), 흔든 가슴과 넓적다리는 제사장 몫, 나머지는 드린 사람 식구가 먹음 (레 3; 7:11-34) ──
+  peace() {
+    const horn = (x: number, flip = false) => `<path transform="translate(${x} 114) scale(${flip ? -0.75 : 0.75} 0.75)" d="M-4 0 C-6 -6 -4 -11 1 -13 C-1 -8 1 -4 4 0 Z"/>`;
+    const breast = 'M98 112 C97 101 107 94 117 95 C124 96 127 103 125 112 Z';
+    const thigh = 'M127 112 C128 104 133 97 139 94 C142 89 149 89 150 94 C151 98 147 101 144 101 C141 105 140 108 142 112 Z';
+    return {
+      body: `<ellipse class="ti-shine" cx="120" cy="40" rx="30" ry="20" fill="$L"/>
+        <g fill="$B">${horn(32)}${horn(68, true)}<rect x="30" y="114" width="40" height="38"/><path class="ti-top" d="M30 114 L34 110 L74 110 L70 114 Z"/>
+        <path class="ti-shade" d="M70 114 L74 110 L74 148 L70 152 Z"/></g>
+        <g class="ti-wave"><path class="ti-meat" d="${breast}"/><path class="ti-meat" d="${thigh}"/>
+        <path fill="$G" d="M90 112 L152 112 L147 118 L95 118 Z"/></g>
+        <g fill="$G"><rect x="118" y="118" width="4" height="30"/><rect x="108" y="148" width="24" height="4" rx="2"/></g>
+        ${sitter(184, 140, 0.9)}
+        <ellipse class="ti-linen" cx="186" cy="150" rx="34" ry="6"/>
+        ${loaf(174, 148)}${loaf(188, 147.4, 6, 2.3)}<path fill="$G" d="M197 141 L205 141 L203 147 L199 147 Z"/>
+        ${sitter(156, 152)}${sitter(216, 152, 0.75)}`,
+      edges: line('M30 114 L34 110 L74 110 L70 114 Z M30 114 V152 H70 V114 M70 152 L74 148 V110', 0.8) +
+        `<g class="ti-wave">${line(breast, 0.6)}${line(thigh, 0.6)}${line('M90 112 H152 L147 118 H95 Z', 0.7)}</g>` +
+        line('M86 100 C80 106 80 114 84 120 M156 100 C162 106 162 114 158 120', 0.5) +
+        line('M120 46 L54 98 M120 46 V88 M120 46 L184 128', 0.35) +
+        line('M152 151 C160 157 212 157 220 151', 0.6) + line('M20 160 H220', 0.9),
+      live: `${flame(46, 110, 1.4, 0.2)}${flame(58, 110, 1.1, 0.6)}
+        <path class="ti-wisp" pathLength="1" d="M52 98 C48 88 56 82 51 72 C47 64 54 58 51 50"/>
+        <ellipse class="ti-ember" cx="186" cy="138" rx="30" ry="9"/>`,
+      glints: [[120, 40], [150, 113], [201, 141]],
+    };
+  },
+
+  // ── 속죄제: 피를 놋 제단 네 뿔에 바르고 나머지는 제단 밑에 쏟음. 위에서 덮는 빛 (레 4:7, 25, 30) ──
+  'sin-offering'() {
+    const a = bronzeAltar();
+    const marks = [[65, 93.6, 2.1], [161, 93.6, 2.1], [80.6, 86.6, 1.6], [175.4, 86.6, 1.6]]
+      .map(([x, y, r], i) => `<ellipse class="ti-mark" style="--d:${(i * 0.9).toFixed(1)}s" cx="${x}" cy="${y}" rx="${r}" ry="${(r * 1.3).toFixed(1)}"/>`).join('');
+    const motes = [[96, 10], [140, 0], [118, 24], [84, 30], [152, 20]]
+      .map(([x, y], i) => `<circle class="ti-mote" style="--d:${(i * 1.3).toFixed(1)}s" cx="${x}" cy="${y}" r="1.2"/>`).join('');
+    return {
+      body: `<path class="ti-cover" d="M98 -24 L142 -24 L190 100 L50 100 Z"/>
+        <ellipse class="ti-seep" cx="113" cy="176" rx="56" ry="4.5"/>
+        ${a.body}`,
+      edges: a.edges + line('M58 176 H170', 0.5),
+      live: `<ellipse class="ti-ember" cx="120" cy="99" rx="22" ry="3"/>${flame(112, 99, 1.1, 0.3)}${flame(126, 99, 1.4, 0)}
+        ${marks}${motes}`,
+      glints: [[65, 92], [161, 92], [120, 20]],
+    };
+  },
+
+  // ── 속건제: 끼친 손해만큼 + 오분의 일을 더 얹어 갚고, 흠 없는 숫양을 드림 (레 5:15-16; 6:4-6) ──
+  guilt() {
+    // 저울대는 5° 기울어 오른쪽(더 얹은 쪽)이 내려감. 받침점 (120, 58), 팔 길이 66
+    const t = (5 * Math.PI) / 180;
+    const L = [120 - 66 * Math.cos(t), 58 - 66 * Math.sin(t)];
+    const R = [120 + 66 * Math.cos(t), 58 + 66 * Math.sin(t)];
+    const drop = 44;
+    const pan = ([x, y]: number[]) => `M${x - 24} ${y + drop} C${x - 20} ${y + drop + 11} ${x + 20} ${y + drop + 11} ${x + 24} ${y + drop} Z`;
+    const cords = ([x, y]: number[]) => `M${x} ${y} L${x - 22} ${y + drop} M${x} ${y} L${x + 22} ${y + drop} M${x} ${y} V${y + drop}`;
+    const stack = ([x, y]: number[], n: number) =>
+      Array.from({ length: n }, (_, i) => `<ellipse class="ti-coin" cx="${(x + (i % 2) * 0.8).toFixed(1)}" cy="${(y + drop - 1.6 - i * 3).toFixed(1)}" rx="7.5" ry="2.2"/>`).join('');
+    const extraY = R[1] + drop - 1.6 - 4 * 3;
+    // 숫양 (작게, 왼쪽 아래)
+    const ram = 'M-22 -14 C-24 -24 -10 -28 4 -26 C12 -25 17 -22 19 -17 L24 -22 C28 -26 33 -25 33 -20 L30 -13 C27 -9 23 -9 20 -11 C18 -7 14 -5 12 -5 L12 0 L9 0 L8 -4 L-12 -4 L-13 0 L-16 0 L-17 -5 C-21 -7 -22 -10 -22 -14 Z';
+    const curl = 'M25 -22 C21 -29 30 -32 33 -27 C35 -23 31 -20 28 -22';
+    const ramAt = (s: string) => `<g transform="translate(40 176) scale(0.95)">${s}</g>`;
+    return {
+      body: `<g fill="$G"><rect x="117.5" y="58" width="5" height="108"/><circle cx="120" cy="53" r="4.2"/>
+        <path d="M96 176 L144 176 L136 166 L104 166 Z"/>
+        <rect x="52" y="55.6" width="136" height="4.8" rx="2.4" transform="rotate(5 120 58)"/>
+        <path d="${pan(L)}"/><path d="${pan(R)}"/></g>
+        ${stack(L, 4)}${stack(R, 4)}
+        <ellipse class="ti-coin is-extra" cx="${R[0] + 2}" cy="${extraY.toFixed(1)}" rx="6" ry="1.9"/>
+        ${ramAt(`<path class="ti-wool" d="${ram}"/>`)}
+        ${[[176, 173.5], [189, 171.5], [200, 174.5]].map(([x, y]) => `<ellipse class="ti-coin" cx="${x}" cy="${y}" rx="6" ry="1.9"/>`).join('')}`,
+      edges: line(cords(L), 0.5) + line(cords(R), 0.5) + line(pan(L), 0.8) + line(pan(R), 0.8) +
+        `<g transform="rotate(5 120 58)">${line('M52 55.6 H188 V60.4 H52 Z', 0.7)}</g>` + line('M117.5 62 V166 M122.5 62 V166 M96 176 L104 166 H136 L144 176', 0.7) +
+        ramAt(line(ram, 0.6) + `<path class="ti-line" pathLength="1" stroke-width="1.6" d="${curl}"/>`) + line('M20 176.6 H220', 0.6),
+      live: `<ellipse class="ti-coin is-falling" cx="${R[0] + 2}" cy="${(extraY - 3).toFixed(1)}" rx="6" ry="1.9"/>
+        <ellipse class="ti-shine" cx="${R[0]}" cy="${(extraY - 2).toFixed(1)}" rx="18" ry="10" fill="$L"/>`,
+      glints: [[120, 52], [R[0] + 4, extraY - 2], [52, 52]],
+    };
+  },
+
+  // ── 여호와의 절기: 한 해의 바퀴. 가운데 안식일, 봄에 유월절·무교절·초실절, 칠칠절, 가을에 나팔절·속죄일·초막절 (레 23) ──
+  feasts() {
+    const C = [120, 100];
+    const at = (deg: number, r = 51) => {
+      const a = (deg * Math.PI) / 180;
+      return [C[0] + r * Math.sin(a), C[1] - r * Math.cos(a)];
+    };
+    const g = (deg: number, s: string) => {
+      const [x, y] = at(deg);
+      return `<g transform="translate(${x.toFixed(1)} ${y.toFixed(1)})">${s}</g>`;
+    };
+    const lamb = `<path class="ti-wool" d="M-8 2 C-10 -3 -6 -6 0 -6 C4 -6 6 -5 7 -3 L9 -6 C11 -7 12 -5 11 -3 L9 0 C8 2 6 2 5 1 L4 5 H2.6 L2 2 H-5 L-5.6 5 H-7 Z"/>`;
+    const matzah = `<circle class="ti-bread" r="7.4"/>${[[-3, -2], [2, -3], [0, 1], [4, 2], [-3, 3]].map(([x, y]) => `<circle class="ti-prick" cx="${x}" cy="${y}" r="0.7"/>`).join('')}`;
+    const sheaf = `<g class="ti-barley">${[-5, -2.5, 0, 2.5, 5].map((dx) => `<path d="M${dx * 0.4} 6 L${dx} -6" stroke-width="1"/><ellipse cx="${dx * 1.05}" cy="-7.5" rx="1.3" ry="2.6" transform="rotate(${dx * 4} ${dx * 1.05} -7.5)"/>`).join('')}</g><rect fill="$G" x="-3.6" y="0" width="7.2" height="2"/>`;
+    const loaves = `${loaf(-4, 1, 6, 3)}${loaf(4, -2, 6, 3)}`;
+    const shofar = `<path fill="$H" d="M-9 5 C-4 6 2 4 5 -1 C6 -3 7 -6 7 -8 L11 -6 C10 -2 8 2 5 5 C1 8 -5 9 -9 7 Z"/>`;
+    const veil = `<rect fill="$W" x="-6" y="-8" width="12" height="15"/><rect fill="$G" x="-7.5" y="-9.5" width="15" height="2"/>`;
+    const booth = `<g fill="$G"><rect x="-7" y="-4" width="1.4" height="11"/><rect x="5.6" y="-4" width="1.4" height="11"/></g>
+      <g class="ti-leaf"><ellipse cx="-5" cy="-6" rx="4" ry="2.2"/><ellipse cx="0" cy="-7.6" rx="4.4" ry="2.4"/><ellipse cx="5" cy="-6" rx="4" ry="2.2"/><ellipse cx="-2" cy="-4.6" rx="3.4" ry="1.8"/><ellipse cx="3" cy="-4.6" rx="3.4" ry="1.8"/></g>`;
+    // 안식일: 가운데 금 고리에 일곱 점(일곱째 날) + 등잔 하나
+    const seven = Array.from({ length: 7 }, (_, i) => {
+      const [x, y] = at((i * 360) / 7, 10.5);
+      return `<circle class="ti-dot${i === 0 ? ' is-on' : ''}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i === 0 ? 1.9 : 1.3}"/>`;
+    }).join('');
+    // 바깥 테의 눈금 (열두 달) — 천천히 돈다
+    const ticks = Array.from({ length: 48 }, (_, i) => {
+      const [x1, y1] = at(i * 7.5, i % 4 ? 72 : 69);
+      const [x2, y2] = at(i * 7.5, 76);
+      return `M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}`;
+    }).join(' ');
+    const arc = (a0: number, a1: number, r: number) => {
+      const [x0, y0] = at(a0, r);
+      const [x1, y1] = at(a1, r);
+      return `M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+    };
+    const turn = (s: string) => `<g class="ti-turn">${s}</g>`;
+    return {
+      body: `<circle class="ti-dial" cx="120" cy="100" r="78"/>
+        <circle fill="none" stroke="$G" stroke-width="6" cx="120" cy="100" r="74"/>
+        <circle class="ti-dial is-inner" cx="120" cy="100" r="66"/>
+        ${g(-26, lamb)}${g(4, matzah)}${g(34, sheaf)}${g(92, loaves)}${g(168, shofar)}${g(204, veil)}${g(240, booth)}
+        <circle fill="$G" cx="120" cy="100" r="15"/><circle class="ti-dial" cx="120" cy="100" r="12.4"/>${seven}`,
+      edges: turn(`<path class="ti-line" pathLength="1" stroke-width="0.5" d="${ticks}"/>`) +
+        `<circle class="ti-line" pathLength="1" cx="120" cy="100" r="78"/><circle class="ti-line" pathLength="1" stroke-width="0.6" cx="120" cy="100" r="66"/>` +
+        line(arc(-44, 104, 62), 1.4) + line(arc(150, 256, 62), 1.4) +
+        `<circle class="ti-line" pathLength="1" stroke-width="0.7" cx="120" cy="100" r="15"/>`,
+      live: turn(`<circle class="ti-moon" cx="120" cy="25" r="3.2"/>`) + flame(120, 103, 0.55, 0.2),
+      glints: [[120, 22], [at(168)[0], at(168)[1] - 6], [at(34)[0], at(34)[1] - 8]],
+    };
+  },
+
+  // ── 희년의 나팔: 오십 년째 속죄일에 숫양 뿔나팔 — 종이 풀려나고 땅이 본래 주인에게 (레 25:9-10) ──
+  jubilee() {
+    const horn = 'M24 108 C40 136 84 146 120 134 C152 122 172 92 184 44 L206 54 C194 102 168 138 128 152 C86 166 38 152 20 118 Z';
+    const ridges = 'M34 128 Q32 138 40 142 M54 138 Q52 148 60 152 M78 142 Q78 152 86 156 M104 140 Q106 150 112 152 M130 132 Q134 142 140 144 M152 116 Q158 126 164 126 M168 92 Q176 100 182 98 M178 66 Q186 72 194 70';
+    // 소리 고리: 나팔 입 (195, 49)에서 위·오른쪽으로 퍼짐
+    const ring = (r: number, i: number) => {
+      const p = (deg: number) => [195 + r * Math.cos((deg * Math.PI) / 180), 49 + r * Math.sin((deg * Math.PI) / 180)];
+      const [x0, y0] = p(-140);
+      const [x1, y1] = p(-5);
+      return `<path class="ti-ring" style="--d:${(i * 1.2).toFixed(1)}s" pathLength="1" d="M${x0.toFixed(1)} ${y0.toFixed(1)} A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}"/>`;
+    };
+    // 사슬: 왼쪽 위에서 내려오다 끊어짐. 아래 고리 둘은 풀려 떨어진다
+    const link = (x: number, y: number, side: boolean) =>
+      side ? `<rect class="ti-link" x="${x - 1.6}" y="${y - 5}" width="3.2" height="10" rx="1.6"/>` : `<ellipse class="ti-link is-open" cx="${x}" cy="${y}" rx="3.6" ry="5.2"/>`;
+    const chain = Array.from({ length: 7 }, (_, i) => link(40 + i * 1.4, 14 + i * 9, i % 2 === 1)).join('');
+    const stone = 'M196 176 L196 142 C196 136 200 132 206 132 C212 132 216 136 216 142 L216 176 Z';
+    return {
+      body: `<g class="ti-chain">${chain}</g>
+        <path fill="$H" d="${horn}"/><path class="ti-ridge" d="${ridges}"/>
+        <ellipse class="ti-ink" cx="195" cy="49" rx="11.5" ry="4" transform="rotate(25 195 49)"/>
+        <path class="ti-stone" d="${stone}"/>
+        <path class="ti-field" d="M20 176 C70 172 150 174 220 172 L220 178 L20 178 Z"/>`,
+      edges: line(horn) + line('M20 118 C30 112 26 106 24 108', 0.8) + line(stone, 0.8) + line('M200 146 H212 M200 154 H210 M203 162 H212', 0.5) +
+        line('M24 170 C60 166 100 168 140 166 M30 174 C80 170 130 172 186 170', 0.4) + line('M38 6 V12', 0.8),
+      live: `${[14, 26, 38].map(ring).join('')}
+        <g class="ti-fall">${link(50.4, 80, false)}${link(51.6, 89, true)}</g>`,
+      glints: [[195, 44], [206, 134], [42, 10]],
     };
   },
 };

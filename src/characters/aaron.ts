@@ -10,6 +10,7 @@
 //  - elder  : 기본 차림 (출 4–32). priest에서 돌아올 때 쓴다.
 //  - priest : 대제사장 옷 (출 28, 39; 레 8 위임식부터). 이마에 금패를 단 관, 가슴에 열두 보석 흉패,
 //             금실 띠를 맨 에봇, 겉옷 아랫단의 방울과 석류. 지팡이는 그대로.
+//  - linen  : 세마포 옷 (레 16:4 대속죄일). 흰 세마포 속옷·띠·관, 장식 없음. (A급 lev-16-atonement)
 import type { CharacterDef } from './index';
 import { ARM_BENT, BACK_ARM, FACE_MAN, LEGS_SLIM, ROBE_LONG } from './_parts.ts';
 
@@ -70,6 +71,20 @@ const PLATE = `
     return `<rect x="${(112.6 + c * 5.6).toFixed(1)}" y="${(114 + r * 5.8 - c * 0.2).toFixed(1)}" width="3.2" height="3.6" rx="0.8"/>`;
   }).join('')}</g>`;
 
+// 세마포 옷 (레 16:4, 23, 32 대속죄일): 흰 세마포 속옷·띠·관. 금도 보석도 없다 — 대제사장 옷과의 대비가 핵심.
+// 몸 전체를 덮는 흰 속옷, 허리에 감아 길게 늘어뜨린 세마포 띠, 금패 없이 감아 올린 세마포 관.
+const LINEN = `
+  ${ROBE_LONG.replace('<path d=', '<path class="linen" d=')}
+  <path class="linen-belt" d="M81 176 Q102 184 121 177 L121 185 Q102 193 81 184 Z"/>
+  <path class="linen-belt" d="M110 186 L116 185 L119 262 C118 266 114 267 112 263 Z"/>
+  <path class="linen-belt" d="M104 187 L109 187 L110 238 C109 242 106 242 105 238 Z"/>
+  <path class="detail" d="M95 112 Q92 150 92 172 M98 196 Q96 300 99 386" fill="none" stroke-width="0.7"/>`;
+
+const LINEN_MITRE = `
+  <path class="linen" d="M80 44 C78 54 76 66 76 80 C76 92 79 102 84 110 C85 98 86 88 89 80 C85 70 84 58 86 48 Z"/>
+  <path class="linen" d="M77 40 C70 14 84 -2 102 -2 C121 -2 131 11 128 35 C112 30 92 30 77 40 Z"/>
+  <path class="detail" d="M80 30 Q102 19 126 27 M79 22 Q102 11 127 19 M83 12 Q103 3 124 10" fill="none" stroke-width="0.8"/>`;
+
 const aaron: CharacterDef = {
   id: 'aaron',
   name: '아론',
@@ -91,6 +106,7 @@ const aaron: CharacterDef = {
     outfits: {
       elder: { markup: ELDER, pivot: [102, 110], parts: { hair: WRAP, armR: ARM_BENT } },
       priest: { markup: PRIEST, pivot: [102, 110], parts: { hair: MITRE, armR: ARM_BENT + PLATE } },
+      linen: { markup: LINEN, pivot: [102, 110], parts: { hair: LINEN_MITRE, armR: ARM_BENT } },
     },
     markup: `
       <g data-part="legs">${STAFF}${LEGS_SLIM}</g>

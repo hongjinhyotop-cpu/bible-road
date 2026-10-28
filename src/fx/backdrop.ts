@@ -19,6 +19,7 @@ import { sinArt } from './manna';
 import { covenantArt } from './covenant';
 import { mamreArt } from './mamre';
 import { calfArt } from './calf';
+import { ordinationArt } from './ordination';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -497,6 +498,10 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'calf-view': () => calfArt('view'),
   'calf-burn': () => calfArt('burn'),
   'calf-ash': () => calfArt('ash'),
+  // 하늘에서 내린 불 (레 8–9, fx/ordination.ts)
+  'ord-court': () => ordinationArt('court'),
+  'ord-altar': () => ordinationArt('altar'),
+  'ord-blaze': () => ordinationArt('blaze'),
   // 별을 세어 보라 (창 15, fx/covenant.ts)
   'cov-count': () => covenantArt('count'),
   'cov-pieces': () => covenantArt('pieces'),
