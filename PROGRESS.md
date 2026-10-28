@@ -8,7 +8,7 @@
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
 | 현재 단계 | **열다섯 번째 채팅: 신명기 AUDIT 결정 반영 → 6막 여호수아 24장(A급 6 + B급 12, 땅 분배 지도) → 여호수아 검수.** **1막~5막 + 여호수아 = 211장 / 1,189장 (약 18%).** 에피소드 179개 |
-| 다음 세션 할 일 | **사사기 21장** (6막 계속) → 룻기 4장 → 6막 피날레. 먼저 AUDIT "여호수아 검수"의 "먼저 정할 것"을 사용자와 정하기 |
+| 다음 세션 할 일 | **사사기 21장** (6막 계속) → 룻기 4장 → 6막 피날레. AUDIT "여호수아 검수"의 애매한 것은 필요하면 사용자와 |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
 | 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) · 열한 번째 채팅(검수): [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 등 |
@@ -452,6 +452,8 @@
 - 확인(폰 390px): A급 6개 + josh-18-19(땅 분배 지도) 끝까지, 콘솔 오류 0. 그림 수정 1번: 여리고 성 1.7배 + 라합의 집 가운데로, 요단 물빛 밝게, 길갈 돌 키우고 군중 물림
 
 ### 3단계 여호수아 검수 → `AUDIT-2026-10-28.md` "여호수아 검수"
+- 새 도우미 2명(Sonnet, 수 1–12 / 13–24)이 개역한글과 대조 → **약 50곳 수정** (개역개정 표현 섞인 인용 수 13:1·신 8:3, 수 1:18 등 인용 글자, 유월절 간격 마흔 해, 기브온의 일 "나무 패고 물 긷는", 10:24 주어 여호수아, 수 24:32 "금 일백 개", 딤낫 세라 "폐허" 단정 삭제, 20:4-5 하나님 말씀 gloss 담백하게 등). 진멸·처형 수위는 기준대로, 조롱 없음
+- 도우미가 물은 것 4개는 Claude가 정해서 반영 (수 10 막게다 장면 본문 순서대로 쪼갬, 5:15 군대 장관 대사로 통일, 13:1 "땅이 남음" 구분, "한 세대쯤의 변명" 중립 표현). 애매한 나머지는 AUDIT에
 
 ## 다음 할 일
 
