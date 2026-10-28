@@ -8,7 +8,6 @@
   "cast": ["moses", "aaron"],
   "outfit": { "aaron": "priest" },
   "extras": {
-    "nahshon": { "name": "나손", "base": "man", "hair": "turban", "beard": "short", "props": ["staff"], "tint": "gold" },
     "elizur": { "name": "엘리술", "base": "man", "hair": "hood", "beard": "long", "props": ["spear"], "tint": "red" },
     "elishama": { "name": "엘리사마", "base": "man", "hair": "tied", "beard": "short", "props": ["staff"], "tint": "green" },
     "ahiezer": { "name": "아히에셀", "base": "soldier", "hair": "helmet", "beard": "short", "props": ["shield"], "tint": "blue" }

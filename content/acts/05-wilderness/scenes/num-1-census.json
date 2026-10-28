@@ -8,7 +8,6 @@
   "cast": ["moses"],
   "outfit": { "aaron": "priest" },
   "extras": {
-    "nahshon": { "name": "나손", "base": "man", "hair": "turban", "beard": "short", "props": ["staff"], "tint": "gold" },
     "youth": { "name": "스무 살 청년", "base": "youth", "hair": "short", "tint": "brown" },
     "levite": { "name": "레위 사람", "base": "man", "hair": "hood", "beard": "short", "tint": "blue" }
   },

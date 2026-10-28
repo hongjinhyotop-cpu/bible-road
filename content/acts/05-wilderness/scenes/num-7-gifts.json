@@ -8,7 +8,6 @@
   "cast": ["moses", "aaron"],
   "outfit": { "aaron": "priest" },
   "extras": {
-    "nahshon": { "name": "나손 · 유다", "base": "man", "hair": "hood", "beard": "long", "tint": "red", "props": ["basket"] },
     "nethanel": { "name": "느다넬 · 잇사갈", "base": "man", "hair": "turban", "beard": "short", "tint": "blue", "props": ["basket"] },
     "eliab": { "name": "엘리압 · 스불론", "base": "man", "hair": "short", "beard": "short", "tint": "green", "props": ["basket"] },
     "elizur": { "name": "엘리술 · 르우벤", "base": "old-man", "hair": "hood", "beard": "gray", "tint": "brown", "props": ["basket"] },
@@ -21,6 +20,7 @@
     "pagiel": { "name": "바기엘 · 아셀", "base": "man", "hair": "tied", "beard": "short", "tint": "gold", "props": ["basket"] },
     "ahira": { "name": "아히라 · 납달리", "base": "man", "hair": "long", "beard": "long", "tint": "brown", "props": ["basket"] }
   },
+  "names": { "nahshon": "나손 · 유다" },
   "beats": [
     { "type": "narration", "act": "look-up", "who": "moses", "text": "성막이 섰다. 모세는 장막에 기름을 발랐다. 궤에도, 상에도, 등대에도, 단에도. 기름 냄새가 아직 마르지 않은 날이었다. 그날, 손님들이 왔다." },
     { "type": "narration", "fx": "dust", "act": "crowd", "text": "이스라엘의 족장들이었다. 지파마다 하나씩, 열두 사람. 그들은 덮개 있는 수레 여섯 대와 소 열두 마리를 끌고 왔다. 족장 둘에 수레 하나, 족장 하나에 소 하나." },
