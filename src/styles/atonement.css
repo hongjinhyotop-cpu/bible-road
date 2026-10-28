@@ -104,3 +104,9 @@
 .sg-puff { fill: color-mix(in srgb, #d8b98a 40%, var(--act-b)); opacity: 0.5; }
 
 :root[data-reduced-motion='true'] :is(.at-goat, .at-watch, .at-cloud__puff, .at-shekinah, .at-haze, .sg-man__body, .sg-man__foot, .at-goat .at-leg) { animation: none; }
+
+/* 장면이 넘어가 배경이 바뀌면(빨리 탭했을 때) 그 배경에 붙은 효과는 바로 걷는다 */
+.scene:has(> .scene__backdrop > .backdrop:last-child:not([data-art='atone-lots'])) .fx-lots,
+.scene:has(> .scene__backdrop > .backdrop:last-child:not([data-art='atone-live'])) .fx-confess,
+.scene:has(> .scene__backdrop > .backdrop:last-child:not([data-art='atone-edge'])) .fx-scapegoat,
+.scene:has(> .scene__backdrop > .backdrop:last-child:not([data-art='atone-holy'])) .fx-incense { opacity: 0; transition: opacity 0.6s; }
