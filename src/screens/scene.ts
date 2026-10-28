@@ -34,6 +34,10 @@ import { playTabletsBreak } from '../fx/calf';
 import { playConfess, playIncense, playLots, playScapegoat } from '../fx/atonement';
 import { playFireFall } from '../fx/ordination';
 import { playStrangeFire } from '../fx/strangefire';
+import { playClap, playEyesOpen, playStrike } from '../fx/balaam';
+import { playEarthOpen, playPlagueStop } from '../fx/korah';
+import { playGrasshopper } from '../fx/spies';
+import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
@@ -500,9 +504,41 @@ export function sceneScreen({ id }: Params): Screen {
         // 하늘에서 내린 불 (fx/ordination.ts): 성막 쪽에서 금빛 불줄기가 제단으로 내리꽂힌다 (레 9:24)
         playFireFall($('.scene'), rm);
         return;
+      case 'bal-strike':
+        // 발람과 나귀 (fx/balaam.ts): 나귀 위의 발람이 지팡이를 휘두른다 (민 22:23·25·27)
+        playStrike($('.scene'), rm);
+        return;
+      case 'eyes-open':
+        // 발람과 나귀 (fx/balaam.ts): 흐린 막이 걷히고 사자의 칼날이 번쩍 (민 22:31)
+        playEyesOpen($('.scene'), rm);
+        return;
+      case 'clap':
+        // 발람과 나귀 (fx/balaam.ts): 발락이 손뼉을 친다 (민 24:10)
+        playClap($('.scene'), rm);
+        return;
       case 'strange-fire':
         // 다른 불 (fx/strangefire.ts): 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다 (레 10:2)
         playStrangeFire($('.scene'), rm);
+        return;
+      case 'earth-open':
+        // 땅이 입을 열어 (fx/korah.ts): 장막 밑 땅이 갈라져 삼키고 다시 합한다 (민 16:31-33)
+        playEarthOpen($('.scene'), rm);
+        return;
+      case 'plague-stop':
+        // 땅이 입을 열어 (fx/korah.ts): 잿빛 그늘이 아론의 향 연기 기둥 앞에서 멈춘다 (민 16:47-48)
+        playPlagueStop($('.scene'), rm);
+        return;
+      case 'grasshopper':
+        // 우리는 메뚜기 같으니 (fx/spies.ts): 거인들이 커지고 무대 위 사람들이 작아진다 (민 13:33)
+        playGrasshopper($('.scene'), rm);
+        return;
+      case 'strike-twice':
+        // 반석을 두 번 치다 (fx/meribah.ts): 반석의 틈에 두 번 내리치는 빛과 금, 물보라 (민 20:11)
+        playStrikeTwice($('.scene'), rm);
+        return;
+      case 'mantle':
+        // 반석을 두 번 치다 (fx/meribah.ts): 금빛 티끌이 아론에게서 엘르아살에게로 (민 20:28)
+        playMantle($('.scene'), rm);
         return;
       case 'fiery-serpents':
         // 놋뱀 (fx/brazen.ts): 모래 위를 불빛 같은 줄기들이 스쳐 간다 (민 21:6)
