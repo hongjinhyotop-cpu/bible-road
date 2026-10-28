@@ -128,23 +128,23 @@ export function balaamArt(state: BalaamState): string {
       </g>`;
     }
     case 'walls': {
-      const courses = (dir: -1 | 1) => Array.from({ length: 6 }, (_, i) => {
-        const yb = 262 - i * 13;
-        return `M${dir < 0 ? -300 : 700} ${yb} L${dir < 0 ? 186 : 214} ${f(206 - i * 1.5)}`;
+      const courses = (dir: -1 | 1) => Array.from({ length: 9 }, (_, i) => {
+        const yb = 250 - i * 22;
+        return `M${dir < 0 ? -300 : 700} ${yb} L${dir < 0 ? 40 : 360} ${yb} L${dir < 0 ? 186 : 214} ${f(206 - i * 1.2)}`;
       }).join(' ');
       const r = rng(7121);
       const leaves = (dir: -1 | 1) => Array.from({ length: 22 }, () => {
         const t = r();
         const x = dir < 0 ? -300 + t * 486 : 700 - t * 486;
-        const y = 150 + t * 46;
-        return `<circle cx="${f(x)}" cy="${f(y - 2)}" r="${f(9 - t * 7)}"/>`;
+        const y = x < 40 && dir < 0 || x > 360 && dir > 0 ? 60 : 60 + (dir < 0 ? (x - 40) : (360 - x)) * (136 / 146);
+        return `<circle cx="${f(x)}" cy="${f(y - 2)}" r="${f(12 - t * 9)}"/>`;
       }).join('');
       return `<g class="bal bal--walls">
         <path class="bd-far" d="M${-W * 2} ${H} L${-W * 2} 200 C0 196 200 200 400 197 C600 194 900 200 ${W * 3} 198 L${W * 3} ${H} Z"/>
         <path class="bal-road" d="M190 206 L210 206 L330 ${H} L70 ${H} Z"/>
         <g class="bd-near bal-vines">${leaves(-1)}${leaves(1)}</g>
-        <path class="bd-mid bal-stonewall" d="M-300 ${H} L-300 160 L186 198 L188 208 L90 ${H} Z"/>
-        <path class="bd-mid bal-stonewall" d="M700 ${H} L700 160 L214 198 L212 208 L310 ${H} Z"/>
+        <path class="bd-mid bal-stonewall" d="M-300 ${H} L-300 60 L40 60 L186 196 L188 208 L90 ${H} Z"/>
+        <path class="bd-mid bal-stonewall" d="M700 ${H} L700 60 L360 60 L214 196 L212 208 L310 ${H} Z"/>
         <path class="bal-courses" d="${courses(-1)} ${courses(1)}"/>
       </g>`;
     }

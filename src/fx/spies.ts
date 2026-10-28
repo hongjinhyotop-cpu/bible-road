@@ -64,8 +64,8 @@ function giant(x: number, ground: number, h: number, flip: boolean, spear: boole
   const s = flip ? -1 : 1;
   const legs = `<path d="M-10 0 L-8.5 -44 L-1.5 -44 L-2.5 0 Z"/><path d="M3 0 L1.5 -44 L8.5 -44 L10.5 0 Z"/>
     <path d="M-12 0 L-12 -2.4 L-2 -2.4 L-1 0 Z"/><path d="M2 0 L2.5 -2.4 L13 -2.4 L13 0 Z"/>`;
-  const tunic = `<path d="M-16 -40 L-19 -78 C-19 -83 -14 -85 -6 -85 L6 -85 C14 -85 19 -83 19 -78 L16 -40 Z"/>
-    <path d="M-17 -42 L-15 -36 L15 -36 L17 -42 Z"/>`;
+  const tunic = `<path d="M-14 -38 L-11 -60 L-17 -79 C-17 -84 -12 -85 -6 -85 L6 -85 C12 -85 17 -84 17 -79 L11 -60 L14 -38 Z"/>
+    <path d="M-12 -62 L-11 -57 L11 -57 L12 -62 Z"/>`;
   const head = `<path d="M-3.5 -84 L-3.5 -88 L3.5 -88 L3.5 -84 Z"/>
     <ellipse cx="1" cy="-93" rx="6.2" ry="7"/>
     <path d="M-2 -90 C-1 -82 4 -78 8 -81 C8 -86 7 -89 6 -91 Z"/>
@@ -79,7 +79,7 @@ function giant(x: number, ground: number, h: number, flip: boolean, spear: boole
        <ellipse cx="-20" cy="-60" rx="9" ry="12"/><circle class="spy-boss" cx="-20" cy="-60" r="1.6"/>`;
   return `<g class="spy-giant" style="--d:${f(r() * 4)}s; transform-origin:${f(x)}px ${ground}px">
     <ellipse class="spy-giant__shade" cx="${f(x)}" cy="${ground}" rx="${f(h * 0.3)}" ry="${f(h * 0.025)}"/>
-    <g class="bd-near spy-giant__body" transform="translate(${f(x)} ${ground}) scale(${f(s * k)} ${f(k)})">${legs}${tunic}${arms}${head}</g>
+    <g class="bd-near spy-giant__body"><g transform="translate(${f(x)} ${ground}) scale(${f(s * k)} ${f(k)})">${legs}${tunic}${arms}${head}</g></g>
   </g>`;
 }
 
@@ -170,7 +170,7 @@ function carriers(): string {
       ${carrier(160, G, h, false, 'bd-near spy-man--back')}
       ${carrier(240, G, h, false, 'bd-near spy-man--front')}
       <path class="spy-pole" d="M148 ${f(poleY + 1)} L252 ${f(poleY - 1)}"/>
-      <g class="spy-sway" style="transform-origin:200px ${f(poleY)}px">${cluster(200, poleY, 46, 40, 7321)}</g>
+      <g class="spy-sway" style="transform-origin:200px ${f(poleY)}px">${cluster(200, poleY, 54, 42, 7321)}</g>
     </g>
   </g>`;
 }

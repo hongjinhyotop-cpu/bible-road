@@ -28,9 +28,10 @@
 
 /* 땅의 입: 처음엔 닫혀 있다 */
 .kr-crack { transform-box: fill-box; transform-origin: 50% 40%; transform: scaleY(0); }
+.kr-ground { fill: color-mix(in srgb, var(--act-b) 62%, #9a7458); }
 .kr-crack__mouth { fill: #020104; }
-.kr-crack__lip { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, #3a2416); stroke-width: 0.8; opacity: 0.8; }
-.kr-crumb { fill: color-mix(in srgb, var(--act-b) 40%, #1a120c); opacity: 0; }
+.kr-crack__lip { fill: none; stroke: color-mix(in srgb, var(--act-accent) 45%, #c8a888); stroke-width: 0.9; opacity: 0.85; }
+.kr-crumb { fill: color-mix(in srgb, var(--act-b) 50%, #9a7458); opacity: 0; }
 .kr-dust ellipse { fill: color-mix(in srgb, var(--act-a) 40%, #8a7a66); opacity: 0; filter: blur(4px); transform-box: fill-box; transform-origin: center; }
 .kr-sink__in { transform-box: fill-box; transform-origin: 50% 100%; }
 
@@ -101,7 +102,7 @@
 /* 산 자 쪽: 아주 옅은 따뜻한 빛 */
 .fx-plague em {
   position: absolute; top: 0; bottom: 0; left: var(--x); right: 0;
-  background: linear-gradient(to right, rgba(255, 214, 150, 0.16), rgba(255, 214, 150, 0.04) 60%, transparent);
+  background: linear-gradient(to right, transparent, rgba(255, 214, 150, 0.14) 22%, rgba(255, 214, 150, 0.05) 65%, transparent);
   opacity: 0; animation: kr-warm 9s ease-out 3.2s forwards;
 }
 @keyframes kr-warm { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0.6; } }

@@ -520,10 +520,10 @@ export const MOODS: Record<string, Mood> = {
   'korah-door': { light: true, land: false, art: 'kr-door', spread: true },
   /** 불이 지나간 뒤: 사람 그림자 없이 엎어진 향로들만 식어 간다, 그을린 뜰 (민 16:35-37) */
   'korah-ash': { light: true, land: false, art: 'kr-ash', tone: 'dusk', spread: true },
-  /** 고라·다단·아비람의 장막 셋, 둘레의 진은 멀리 물러섬, 잿빛 하늘 (민 16:24-27). fx earth-open과 같이 */
-  'korah-tents': { light: true, land: false, art: 'kr-tents', tone: 'storm' },
+  /** 고라·다단·아비람의 장막 셋, 둘레의 진은 멀리 물러섬, 저녁빛 (민 16:24-27). fx earth-open과 같이 */
+  'korah-tents': { light: true, land: false, art: 'kr-tents', tone: 'dusk', spread: true },
   /** 같은 자리, 장막이 없고 땅에 아문 금 한 줄 (민 16:33) */
-  'korah-gone': { light: true, land: false, art: 'kr-gone', tone: 'storm' },
+  'korah-gone': { light: true, land: false, art: 'kr-gone', tone: 'dusk', spread: true },
 
   // ── 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts) ──
   /** 헤브론: 언덕 위 큰 돌 성벽과 성문, 그 앞에 선 아낙 자손 셋(성문 곁 보통 사람과 견줌). fx grasshopper가 이들을 키운다 (민 13:22, 28) */

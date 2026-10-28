@@ -117,13 +117,13 @@ function crack(): string {
   const r = rng(9321);
   const top: string[] = [];
   const bot: string[] = [];
-  const L = 112;
-  const R = 290;
+  const L = 92;
+  const R = 310;
   const n = 18;
   for (let i = 0; i <= n; i++) {
     const x = L + ((R - L) * i) / n;
     const t = Math.sin((Math.PI * i) / n); // 가운데가 가장 넓다
-    const open = 2 + t * 13;
+    const open = 2 + t * 22;
     top.push(`${f(x + (r() - 0.5) * 4)},${f(G - open * (0.35 + r() * 0.2))}`);
     bot.push(`${f(x + (r() - 0.5) * 4)},${f(G + open * (0.65 + r() * 0.3))}`);
   }
@@ -140,7 +140,7 @@ function crack(): string {
 function dust(): string {
   const r = rng(9331);
   return `<g class="kr-dust">${Array.from({ length: 16 }, (_, i) => {
-    const x = 120 + r() * 160;
+    const x = 100 + r() * 200;
     return `<ellipse style="--d:${f(1 + i * 0.12 + r() * 0.5)}s; --dx:${f((r() - 0.5) * 40)}px" cx="${f(x)}" cy="${f(G - 4)}" rx="${f(10 + r() * 12)}" ry="${f(5 + r() * 5)}"/>`;
   }).join('')}</g>`;
 }
@@ -148,7 +148,7 @@ function dust(): string {
 /** 아문 금: 땅이 그 위에 합한 자리 */
 function seam(cls: string): string {
   const r = rng(9341);
-  const pts = Array.from({ length: 13 }, (_, i) => `${f(116 + i * 14 + (r() - 0.5) * 4)},${f(G + 1 + (r() - 0.5) * 2.4)}`);
+  const pts = Array.from({ length: 13 }, (_, i) => `${f(96 + i * 17.5 + (r() - 0.5) * 4)},${f(G + 1 + (r() - 0.5) * 2.4)}`);
   return `<path class="${cls}" d="M${pts.join(' L')}"/>`;
 }
 
@@ -161,11 +161,11 @@ function tents(gone: boolean): string {
     <g class="bd-far"><rect x="${CX + 140}" y="190" width="20" height="7"/></g>
     ${ring(203, 0.42, 13, 9352, 70)}
     ${ring(209, 0.6, 18, 9353, 96)}
-    <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} ${G} C-300 ${G - 3} 0 ${G + 2} ${CX} ${G} C400 ${G - 2} 700 ${G + 2} ${W * 3} ${G - 1} L${W * 3} ${H} Z"/>
-    ${gone ? `${seam('kr-seam')}<ellipse class="kr-turned" cx="${CX}" cy="${G + 3}" rx="96" ry="4"/>` : `
+    <path class="kr-ground" d="M${-W * 2} ${H} L${-W * 2} ${G} C-300 ${G - 3} 0 ${G + 2} ${CX} ${G} C400 ${G - 2} 700 ${G + 2} ${W * 3} ${G - 1} L${W * 3} ${H} Z"/>
+    ${gone ? `${seam('kr-seam')}<ellipse class="kr-turned" cx="${CX}" cy="${G + 3}" rx="116" ry="5"/>` : `
     <g class="kr-sink" clip-path="url(#kr-clip)">
-      <g class="kr-sink__in">${tent(152, G, 0.62)}${tent(204, G - 1, 0.74)}${tent(254, G, 0.6)}
-        <path class="bd-near kr-rope" d="M118 ${G} L128 ${G - 14} M288 ${G} L278 ${G - 14}" fill="none" stroke="currentColor" stroke-width="0.6"/>
+      <g class="kr-sink__in">${tent(134, G, 0.8)}${tent(201, G - 1, 1.02)}${tent(268, G, 0.78)}
+        <path class="bd-near kr-rope" d="M92 ${G} L104 ${G - 18} M310 ${G} L298 ${G - 18}" fill="none" stroke="currentColor" stroke-width="0.6"/>
       </g>
     </g>
     ${crack()}${dust()}${seam('kr-seam kr-seam--late')}`}
