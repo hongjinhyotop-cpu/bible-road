@@ -6,6 +6,7 @@
   "ref": "창 50:1-14",
   "bg": "house-night",
   "cast": ["jacob", "joseph"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "physician": { "name": "의원", "base": "priest", "hair": "bald", "props": ["jar"], "tint": "white" },
     "courtier": { "name": "바로의 신하", "base": "man", "hair": "turban", "props": ["scroll"], "tint": "gold", "height": 0.98 }

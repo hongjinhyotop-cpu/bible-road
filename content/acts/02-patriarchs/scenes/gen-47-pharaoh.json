@@ -6,6 +6,7 @@
   "ref": "창 47",
   "bg": "palace",
   "cast": ["joseph"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "egyptian": { "name": "애굽 백성", "base": "man", "hair": "short", "props": ["basket"], "tint": "brown", "height": 0.96 }
   },

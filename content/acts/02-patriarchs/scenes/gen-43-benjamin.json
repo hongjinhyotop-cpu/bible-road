@@ -6,6 +6,7 @@
   "ref": "창 43",
   "bg": "tent",
   "cast": ["jacob", "judah", "benjamin"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "steward": { "name": "청지기", "base": "man", "hair": "short", "props": ["staff"], "tint": "white" },
     "simeon": { "name": "시므온", "base": "man", "hair": "shaggy", "beard": "short", "props": ["bundle"], "tint": "red" }

@@ -6,6 +6,7 @@
   "ref": "창 42",
   "bg": "tent",
   "cast": ["jacob", "reuben", "judah"],
+  "outfit": { "joseph": "vizier" },
   "extras": {
     "simeon": { "name": "시므온", "base": "man", "hair": "shaggy", "beard": "short", "props": ["bundle"], "tint": "red" },
     "interpreter": { "name": "통역", "base": "man", "hair": "bald", "props": ["scroll"], "tint": "white" },

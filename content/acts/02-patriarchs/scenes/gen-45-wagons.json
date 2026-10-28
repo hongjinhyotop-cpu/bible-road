@@ -6,6 +6,7 @@
   "ref": "창 45:16-28",
   "bg": "palace",
   "cast": ["joseph", "judah", "benjamin"],
+  "outfit": { "joseph": "vizier" },
   "extras": { },
   "beats": [
     { "type": "narration", "text": "이제 형제들은 알았다. 곡식을 팔던 이집트 총리가, 이십여 년 전 그들이 판 동생이라는 것을. 그는 울었고, 그들을 안았고, 형제들은 그제야 그와 말을 나누었다." },

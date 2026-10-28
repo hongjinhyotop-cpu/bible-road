@@ -268,6 +268,9 @@ export function sceneScreen({ id }: Params): Screen {
     await addInOrder(beat.enter ?? []);
     // 이번에 막 들어온 인물은 처음부터 그 옷을 입고 나온다
     for (const [who, name] of Object.entries(beat.outfit ?? {})) stage.actors.get(who)?.outfit(name, !beat.enter?.includes(who));
+    // 장면 맨 위 "outfit"은 그 장면 내내 기본 옷: 중간에 들어오는(다시 들어오는) 인물도 그 옷으로 (창 42–50 요셉의 총리 옷)
+    const base = scene?.outfit ?? {};
+    for (const who of beat.enter ?? []) if (!beat.outfit?.[who] && base[who]) stage.actors.get(who)?.outfit(base[who], false);
     for (const [who, pose] of Object.entries(beat.pose ?? {})) stage.actors.get(who)?.pose(pose);
     for (const [who, dir] of Object.entries(beat.face ?? {})) stage.actors.get(who)?.face(dir);
     const mood = beat.bg ?? beat.mood;
@@ -280,6 +283,7 @@ export function sceneScreen({ id }: Params): Screen {
     for (const st of all) await perform(st, beat);
     // 이번 beat의 동작(walk-in)으로 막 들어온 인물도 그 옷을 입고 나온다
     for (const [who, name] of Object.entries(beat.outfit ?? {})) if (!had.has(who)) stage.actors.get(who)?.outfit(name, false);
+    for (const [who, name] of Object.entries(base)) if (!had.has(who) && !beat.outfit?.[who]) stage.actors.get(who)?.outfit(name, false);
     if (fade && beat.item) setItem(el, items, beat.item);
     if (fade) await fadeScreen(false);
   }
