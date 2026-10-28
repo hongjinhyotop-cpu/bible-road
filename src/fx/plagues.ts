@@ -118,6 +118,8 @@ function particles(layer: HTMLElement, fx: Exclude<PlagueFx, 'frogs'>, rm: boole
   let last = 0;
 
   function draw(now: number) {
+    // 화면 전환으로 층이 먼저 걷혔으면 그리기를 멈춘다 (screens/scene.ts clearFx)
+    if (!layer.isConnected) return;
     if (!t0) t0 = last = now;
     const t = (now - t0) / 1000;
     const dt = Math.min(0.05, (now - last) / 1000);
