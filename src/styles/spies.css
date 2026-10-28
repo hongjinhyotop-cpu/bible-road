@@ -71,8 +71,8 @@
 
 /* ── 효과 grasshopper ── */
 /* 무대 위 사람들이 작아진다 (scale만 써서 gsap transform과 겹치지 않게) */
-.scene .stage .actor { transition: scale 2.2s cubic-bezier(0.3, 0, 0.2, 1), filter 2.2s; }
-.scene.is-grasshopper .stage .actor { scale: 0.48; transform-origin: 50% 100%; filter: brightness(0.7); }
+.scene .stage .actor { transition: scale 2.2s cubic-bezier(0.3, 0, 0.2, 1); }
+.scene.is-grasshopper .stage .actor { scale: 0.48; }
 .fx-hopper { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s; }
 .fx-hopper.is-out { opacity: 0; }
 /* 하늘이 거인의 그림자에 덮인다 */

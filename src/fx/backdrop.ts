@@ -22,6 +22,8 @@ import { calfArt } from './calf';
 import { atoneArt } from './atonement';
 import { ordinationArt } from './ordination';
 import { strangeFireArt } from './strangefire';
+import { spiesArt } from './spies';
+import { meribahArt } from './meribah';
 import { brazenArt } from './brazen';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
@@ -515,6 +517,20 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'sf-court': () => strangeFireArt('court'),
   'sf-ash': () => strangeFireArt('ash'),
   'sf-outside': () => strangeFireArt('outside'),
+  // 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts)
+  'spy-hebron': () => spiesArt('hebron'),
+  'spy-eshcol': () => spiesArt('eshcol'),
+  'spy-cluster': () => spiesArt('cluster'),
+  'spy-report': () => spiesArt('report'),
+  'spy-lament': () => spiesArt('lament'),
+  // 반석을 두 번 치다 (민 20, fx/meribah.ts)
+  'mr-kadesh': () => meribahArt('kadesh'),
+  'mr-rock': () => meribahArt('rock'),
+  'mr-water': () => meribahArt('water'),
+  'mr-edom': () => meribahArt('edom'),
+  'mr-hor': () => meribahArt('hor'),
+  'mr-hor-mourn': () => meribahArt('hor-mourn'),
+  'mr-summit': () => meribahArt('summit'),
   // 놋뱀 (민 21, fx/brazen.ts)
   'bz-road': () => brazenArt('road'),
   'bz-camp': () => brazenArt('camp'),

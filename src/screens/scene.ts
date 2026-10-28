@@ -34,6 +34,8 @@ import { playTabletsBreak } from '../fx/calf';
 import { playConfess, playIncense, playLots, playScapegoat } from '../fx/atonement';
 import { playFireFall } from '../fx/ordination';
 import { playStrangeFire } from '../fx/strangefire';
+import { playGrasshopper } from '../fx/spies';
+import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
@@ -503,6 +505,18 @@ export function sceneScreen({ id }: Params): Screen {
       case 'strange-fire':
         // 다른 불 (fx/strangefire.ts): 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다 (레 10:2)
         playStrangeFire($('.scene'), rm);
+        return;
+      case 'grasshopper':
+        // 우리는 메뚜기 같으니 (fx/spies.ts): 거인들이 커지고 무대 위 사람들이 작아진다 (민 13:33)
+        playGrasshopper($('.scene'), rm);
+        return;
+      case 'strike-twice':
+        // 반석을 두 번 치다 (fx/meribah.ts): 반석의 틈에 두 번 내리치는 빛과 금, 물보라 (민 20:11)
+        playStrikeTwice($('.scene'), rm);
+        return;
+      case 'mantle':
+        // 반석을 두 번 치다 (fx/meribah.ts): 금빛 티끌이 아론에게서 엘르아살에게로 (민 20:28)
+        playMantle($('.scene'), rm);
         return;
       case 'fiery-serpents':
         // 놋뱀 (fx/brazen.ts): 모래 위를 불빛 같은 줄기들이 스쳐 간다 (민 21:6)
