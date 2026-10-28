@@ -1,0 +1,96 @@
+/* ── 놋뱀 (민 21, A급 num-21-serpent, fx/brazen.ts) ──
+   에돔 둘레 길(붉은 사암 산, 하얀 길, 아지랑이), 광야의 진, 진 한가운데 장대 위의 놋뱀.
+   효과 fiery-serpents: 모래 위를 불빛 같은 줄기가 스쳐 감 (무는 장면 없음).
+   효과 serpent-lift: 장대 위 놋뱀에서 금빛이 번지고 고리가 퍼짐. */
+
+/* 에돔: 붉은 사암 */
+.bz-edom { fill: color-mix(in srgb, #9a4a2e 34%, var(--bd)); }
+.bz-edom--far { fill: color-mix(in srgb, #c06a44 30%, var(--bd)); }
+.bz-strata { fill: none; stroke: color-mix(in srgb, #e09a6a 40%, var(--act-b)); stroke-width: 0.6; opacity: 0.18; }
+.bz-sand { fill: color-mix(in srgb, #b0754a 22%, var(--bd)); }
+.bz-floor { fill: color-mix(in srgb, #b0754a 16%, var(--bd)); }
+
+/* 흰 해, 눈부심 */
+.bz-sun { fill: #fff6e2; opacity: 0.85; filter: blur(1.5px); }
+.bz-glare { fill: url(#bd-halo-g); opacity: 0.9; }
+
+/* 하얀 길과 행렬 */
+.bz-path { fill: color-mix(in srgb, #e9d6b4 40%, var(--act-b)); opacity: 0.5; }
+.bz-file rect { fill: color-mix(in srgb, var(--act-a) 50%, #000); opacity: 0.75; animation: bz-step 2.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bz-step { from { translate: 0 0; } to { translate: 0 -0.5px; } }
+
+/* 아지랑이 */
+.bz-haze path { fill: none; stroke: color-mix(in srgb, #fff2d8 60%, var(--act-accent)); stroke-width: 0.8; opacity: 0.14; filter: blur(0.6px); animation: bz-haze 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bz-haze { from { translate: -3px 0; opacity: 0.06; } to { translate: 3px -1px; opacity: 0.2; } }
+
+.bz-twig { fill: none; stroke: var(--bd); stroke-width: 0.9; stroke-linecap: round; }
+.bz-ripple { fill: none; stroke: color-mix(in srgb, #e8c89a 40%, var(--act-b)); stroke-width: 0.7; opacity: 0.22; }
+
+/* 멀리 구름 기둥 */
+.bz-pillar { filter: blur(2.5px); }
+.bz-puff { fill: color-mix(in srgb, var(--act-accent) 16%, #f4efe2); opacity: 0.14; transform-box: fill-box; transform-origin: center; animation: bz-puff 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bz-puff { from { transform: translate(-1px, 0) scale(0.96); opacity: 0.1; } to { transform: translate(1px, -2px) scale(1.05); opacity: 0.18; } }
+
+/* 장대와 놋뱀: 구리빛, 숨 쉬는 듯 은은한 광택 */
+.bz-staff { fill: color-mix(in srgb, var(--bd) 70%, #5a3a1c); }
+.bz-body { fill: none; stroke: color-mix(in srgb, #b07a3a 70%, var(--act-b)); stroke-width: 5.2; stroke-linecap: round; stroke-linejoin: round; }
+.bz-body--glow { stroke: color-mix(in srgb, #e0a050 80%, var(--act-accent)); stroke-width: 9; opacity: 0.25; filter: blur(3px); }
+.bz-shine { fill: none; stroke: #ffd994; stroke-width: 1.2; stroke-linecap: round; opacity: 0.55; stroke-dasharray: 3 9; animation: bz-shine 6s linear infinite; }
+@keyframes bz-shine { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -120; } }
+.bz-head { fill: color-mix(in srgb, #b07a3a 70%, var(--act-b)); stroke: #ffd994; stroke-width: 0.5; stroke-opacity: 0.5; }
+.bz-eye { fill: #fff0c0; }
+.bz-mark { fill: none; }
+.bz-halo { fill: url(#bd-halo-g); opacity: 0.5; transform-box: fill-box; transform-origin: center; animation: bz-halo 5s ease-in-out infinite alternate; }
+@keyframes bz-halo { from { opacity: 0.35; transform: scale(0.95); } to { opacity: 0.6; transform: scale(1.05); } }
+
+/* 빛나는 놋뱀 (bz-pole-lit) */
+.bz-pole.is-lit .bz-halo { opacity: 1; animation-duration: 3.4s; }
+.bz-pole.is-lit .bz-body { stroke: color-mix(in srgb, #f2c070 85%, #fff); }
+.bz-pole.is-lit .bz-body--glow { stroke: #ffcf7a; opacity: 0.7; stroke-width: 14; filter: blur(5px); }
+.bz-pole.is-lit .bz-head { fill: color-mix(in srgb, #f2c070 85%, #fff); }
+.bz-pole.is-lit .bz-shine { stroke: #fff6dc; opacity: 0.9; }
+.bz-rays path { fill: color-mix(in srgb, #ffd994 70%, var(--act-accent)); opacity: 0.14; }
+.bz-rays { animation: bz-rays 40s linear infinite; mix-blend-mode: screen; }
+@keyframes bz-rays { to { rotate: 360deg; } }
+
+/* ── 효과 fiery-serpents ── */
+.fx-fserp { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-fserp.is-out { opacity: 0; }
+/* 땅이 붉게 달고, 위는 어두워진다 */
+.fx-fserp b {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(8, 4, 6, 0.55) 0%, rgba(8, 4, 6, 0.25) 45%, rgba(150, 40, 16, 0.28) 78%, rgba(200, 70, 20, 0.36) 100%);
+  opacity: 0; animation: bz-dim 2s ease-out both;
+}
+@keyframes bz-dim { to { opacity: 1; } }
+.fx-fserp i { position: absolute; left: -10%; width: 120%; top: var(--y); height: calc(var(--s) * 18px); }
+.fx-fserp svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.fx-fserp path { fill: none; stroke-linecap: round; stroke-dasharray: 9 140; stroke-dashoffset: 9; animation: bz-slither var(--t) cubic-bezier(0.45, 0.1, 0.55, 0.9) var(--d) infinite; }
+.fx-fserp .g { stroke: #ff7a2a; stroke-width: 5; opacity: 0.55; filter: blur(3px); }
+.fx-fserp .c { stroke: #ffe0a0; stroke-width: 1.6; filter: drop-shadow(0 0 3px #ff9a3c); }
+@keyframes bz-slither { 0% { stroke-dashoffset: 9; opacity: 0; } 8% { opacity: 1; } 85% { opacity: 1; } 100% { stroke-dashoffset: -100; opacity: 0; } }
+
+/* ── 효과 serpent-lift ── */
+.fx-slift { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; --x: 50%; --y: 40%; transition: opacity 1.8s ease-in; }
+.fx-slift.is-out { opacity: 0; }
+.fx-slift s {
+  position: absolute; inset: -10%;
+  background: radial-gradient(circle at var(--x) var(--y), rgba(255, 246, 220, 0.9) 0%, rgba(255, 214, 140, 0.55) 12%, rgba(240, 170, 80, 0.22) 36%, transparent 70%);
+  mix-blend-mode: screen; opacity: 0; animation: bz-wash 7s ease-out both;
+}
+@keyframes bz-wash { 0% { opacity: 0; } 25% { opacity: 1; } 70% { opacity: 0.8; } 100% { opacity: 0.35; } }
+.fx-slift i {
+  position: absolute; left: var(--x); top: var(--y); width: 30px; height: 30px; translate: -50% -50%; border-radius: 50%;
+  border: 1.5px solid rgba(255, 220, 150, 0.8); box-shadow: 0 0 12px rgba(255, 200, 110, 0.6), inset 0 0 10px rgba(255, 200, 110, 0.4);
+  opacity: 0; animation: bz-ring 4.6s cubic-bezier(0.2, 0.6, 0.3, 1) var(--d) both;
+}
+@keyframes bz-ring { 0% { opacity: 0; scale: 0.3; } 15% { opacity: 0.9; } 100% { opacity: 0; scale: 40; } }
+.fx-slift u {
+  position: absolute; left: var(--ex); top: var(--ey); width: calc(var(--s) * 3px); height: calc(var(--s) * 3px); border-radius: 50%;
+  background: #ffe2a0; box-shadow: 0 0 6px #ffc060; opacity: 0;
+  animation: bz-mote 4.2s ease-out var(--d) both;
+}
+@keyframes bz-mote { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.9; } 100% { opacity: 0; translate: var(--dx) -110px; } }
+
+:root[data-reduced-motion='true'] :is(.bz-file rect, .bz-haze path, .bz-puff, .bz-shine, .bz-halo, .bz-rays) { animation: none !important; }
+:root[data-reduced-motion='true'] .fx-slift s { animation: bz-wash 2.4s ease-in-out both; }

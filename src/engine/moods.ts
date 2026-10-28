@@ -24,6 +24,7 @@ export type BackdropArt =
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'sf-court' | 'sf-ash' | 'sf-outside'
   | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
+  | 'bz-road' | 'bz-camp' | 'bz-pole' | 'bz-pole-lit'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -150,6 +151,9 @@ export const FX = [
   // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
   'fire-fall', // 여호와 앞에서 나온 불: 성막 쪽이 밝아지고 금빛 불줄기가 제단(ord-* 배경)으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 (약 9초, 레 9:24). 배경 ord-blaze와 같이
   // ── 다른 불 (레 10, fx/strangefire.ts) ──
+  // ── 놋뱀 (민 21, fx/brazen.ts) ──
+  'fiery-serpents', // 불뱀: 모래 위를 불빛 같은 줄기들이 구불구불 스쳐 가고 무대 아래가 붉게 어두워짐 (약 10초, 민 21:6). 무는 모습 없음 — fall과 같이
+  'serpent-lift', // 놋뱀을 쳐다봄: 장대 위 놋뱀(bz-pole 배경)에서 금빛이 번지고 고리가 퍼짐 (약 9초, 민 21:9). 배경 bz-pole-lit과 같이
   'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
@@ -476,6 +480,20 @@ export const MOODS: Record<string, Mood> = {
   'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
   /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
   'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
+
+  // ── 놋뱀 (민 21, fx/brazen.ts) ──
+  /** 에돔 땅을 두르는 길: 붉은 사암 산줄기, 지평선까지 굽은 하얀 길과 먼 행렬, 흰 해, 아지랑이 (민 21:4) */
+  'bz-road': { light: true, land: false, art: 'bz-road' },
+  'bz-road-dusk': { light: true, land: false, art: 'bz-road', tone: 'dusk' },
+  /** 광야의 진: 낮은 장막들, 먼 구름 기둥, 모래 결, 마른 덤불 (민 21:5-7) */
+  'bz-camp': { light: true, land: false, art: 'bz-camp' },
+  'bz-camp-dusk': { light: true, land: false, art: 'bz-camp', tone: 'dusk' },
+  'bz-camp-night': { light: true, land: false, art: 'bz-camp', tone: 'night' },
+  /** 진 한가운데 장대, 장대를 감고 올라 고개 든 놋뱀 (민 21:8-9) */
+  'bz-pole': { light: true, land: false, art: 'bz-pole', tone: 'dusk', spread: true },
+  'bz-pole-dawn': { light: true, land: false, art: 'bz-pole', tone: 'clear', spread: true },
+  /** 같은 장대, 놋뱀이 금빛으로 빛나고 빛살이 돈다 (민 21:9). fx serpent-lift와 같이 */
+  'bz-pole-lit': { light: true, land: false, art: 'bz-pole-lit', tone: 'dusk', spread: true },
 
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */

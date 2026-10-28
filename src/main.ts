@@ -32,6 +32,7 @@ import './styles/calf.css';
 import './styles/atonement.css';
 import './styles/ordination.css';
 import './styles/strangefire.css';
+import './styles/brazen.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';
 
