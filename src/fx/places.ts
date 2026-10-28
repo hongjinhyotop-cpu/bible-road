@@ -121,10 +121,11 @@ function waves(y0: number, rows: number, gap: number, seed: number): string {
 /** 구름 기둥 (출 13:21; 40:36-38): 땅(성막)에서 하늘 끝까지 서는 흰 기둥. 밤(tone night)에는 불빛으로 바뀐다 (library.css) */
 function cloudPillar(x: number, base: number, w: number, seed: number): string {
   const r = rng(seed);
-  const puffs = Array.from({ length: 9 }, (_, i) => {
-    const y = base - 14 - i * ((base + 20) / 9);
-    const rw = w * (0.55 + i * 0.07) * (0.85 + r() * 0.3);
-    return `<ellipse class="bd-pillar__puff" style="--d:${(r() * 6).toFixed(2)}s" cx="${(x + (r() - 0.5) * w * 0.4).toFixed(1)}" cy="${y.toFixed(1)}" rx="${rw.toFixed(1)}" ry="${(rw * 0.55).toFixed(1)}"/>`;
+  const n = 16;
+  const puffs = Array.from({ length: n }, (_, i) => {
+    const y = base - 10 - i * ((base + 20) / n);
+    const rw = w * (0.5 + (i / n) * 0.6) * (0.85 + r() * 0.3);
+    return `<ellipse class="bd-pillar__puff" style="--d:${(r() * 6).toFixed(2)}s" cx="${(x + (r() - 0.5) * w * 0.5).toFixed(1)}" cy="${y.toFixed(1)}" rx="${rw.toFixed(1)}" ry="${(rw * 0.9).toFixed(1)}"/>`;
   }).join('');
   return `<g class="bd-pillar">
     <ellipse class="bd-pillar__glow" cx="${x}" cy="${base - 60}" rx="${w * 3}" ry="${base * 0.6}"/>
@@ -158,7 +159,7 @@ function bronzeAltarBg(x: number, ground: number, s: number, seed: number): stri
       <rect x="-22" y="-22" width="44" height="22"/>
       <path class="detail" d="M-22 -10 H22 M-22 -6 H22" fill="none" stroke-width="0.6"/>
     </g>
-    <ellipse class="bd-ember" cx="${x}" cy="${ground - 22 * s}" rx="${16 * s}" ry="${2.4 * s}"/>`;
+    <ellipse class="bd-ember" cx="${x}" cy="${ground - 22 * s}" rx="${11 * s}" ry="${1.6 * s}"/>`;
 }
 
 /** 성막 정면 (동쪽 문 휘장 + 금 기둥 다섯, 위로 덮개) */
@@ -386,11 +387,12 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     ${cloudPillar(200, 192, 12, 611)}
     <g class="bd-far-court"><rect x="180" y="194" width="40" height="5"/></g>
     <g class="bd-mid"><rect x="193" y="185" width="16" height="10"/><path d="M190 186 Q201 182 212 186 L212 188 L190 188 Z"/></g>
-    ${campRow(203, 0.42, 20, 'bd-mid', 612, [172, 228])}
-    ${campRow(210, 0.62, 28, 'bd-mid', 613, [150, 250])}
+    ${campRow(202.5, 0.4, 14, 'bd-mid', 612, [176, 226])}
+    ${campRow(208, 0.55, 19, 'bd-mid', 613, [170, 232])}
+    ${campRow(215, 0.72, 24, 'bd-mid', 619, [158, 244])}
     ${banner(150, 206, 22, 1, 'bd-mid')}${banner(252, 206, 22, 2, 'bd-mid')}${banner(-40, 206, 24, 3, 'bd-mid')}${banner(440, 206, 24, 4, 'bd-mid')}
-    ${dunes(222, 'bd-mid', 614)}
-    ${campRow(232, 1.05, 42, 'bd-near', 615, [118, 282])}
+    ${dunes(226, 'bd-mid', 614)}
+    ${campRow(236, 1.05, 34, 'bd-near', 615, [150, 250])}
     ${banner(96, 236, 44, 2)}${banner(306, 236, 46, 4)}${banner(-160, 234, 50, 1)}${banner(560, 234, 50, 3)}
     ${tent(40, 256, 1.1)}${tent(372, 256, 1.15)}${tent(-240, 258, 1.4)}${tent(640, 258, 1.4)}
     ${stones([150, 254, 92, 330], 256, 'bd-near', 616)}

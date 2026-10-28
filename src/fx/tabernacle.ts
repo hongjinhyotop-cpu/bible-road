@@ -361,7 +361,7 @@ const ART: Record<ItemName, () => Art> = {
   burnt() {
     const a = bronzeAltar();
     // 제물은 뭉뚱그린 덩이 하나 (나뭇단 위). 피·도살은 그리지 않는다
-    const offer = 'M84 98 C82 88 92 80 106 78 C110 70 124 68 132 74 C146 76 158 86 156 98 Z';
+    const offer = 'M84 98 C82 84 94 72 108 70 C112 60 126 58 134 66 C148 70 158 84 156 98 Z';
     return {
       body: `<path class="ti-column" d="M104 76 C100 54 108 30 100 -14 L140 -14 C132 30 140 54 136 76 Z"/>
         ${a.body}
@@ -369,7 +369,7 @@ const ART: Record<ItemName, () => Art> = {
         <path class="ti-offer" d="${offer}"/>`,
       edges: a.edges + line(offer, 0.6) + line('M120 66 V20', 0.4),
       live: `<ellipse class="ti-ember" cx="120" cy="99" rx="44" ry="5"/>
-        ${flame(92, 100, 1.8, 0.3)}${flame(150, 100, 1.9, 0.6)}${flame(106, 96, 2.6, 0.1)}${flame(134, 96, 2.8, 0.45)}${flame(120, 84, 2.2, 0.8)}
+        ${flame(90, 100, 1.9, 0.3)}${flame(152, 100, 2, 0.6)}${flame(104, 99, 2.2, 0.1)}${flame(138, 99, 2.4, 0.45)}${flame(121, 100, 1.7, 0.8)}
         <g class="ti-rise">${puffs(120, 64, 7, 6)}</g>
         <g class="ti-smoke"><path pathLength="1" d="M120 66 C117 46 123 26 119 0 C118 -8 121 -14 120 -20"/>
         <path class="is-thin" pathLength="1" d="M112 70 C110 50 114 30 111 6"/><path class="is-thin" pathLength="1" d="M128 70 C130 50 126 30 129 6"/></g>`,
@@ -381,7 +381,7 @@ const ART: Record<ItemName, () => Art> = {
   grain() {
     const mound = 'M66 150 C78 132 100 113 120 112 C140 113 162 132 174 150 Z';
     // 기름 항아리: 똑바로 그린 뒤 120° 기울임 → 입구가 오른쪽 아래 (≈ 101, 71)
-    const jar = 'M-5 -22 L5 -22 L4 -17 C12 -14 14 -4 12 4 C10 12 4 16 0 16 C-4 16 -10 12 -12 4 C-14 -4 -12 -14 -4 -17 Z';
+    const jar = 'M-6.5 -24 L6.5 -24 L6.5 -21.5 L4 -21 L4 -16 C12 -13 14 -4 12 4 C10 12 4 16 0 16 C-4 16 -10 12 -12 4 C-14 -4 -12 -13 -4 -16 L-4 -21 L-6.5 -21.5 Z';
     const jarAt = (s: string) => `<g transform="translate(82 60) rotate(120)">${s}</g>`;
     const cakes = [170, 164, 158].map((y) => loaf(42, y, 20, 4.6)).join('');
     const pricks = [158].map((y) => [-10, -4, 2, 8, -7, 5].map((dx, i) => `<circle class="ti-prick" cx="${42 + dx}" cy="${y + (i > 3 ? 1.6 : -0.6)}" r="0.7"/>`).join('')).join('');
@@ -392,7 +392,7 @@ const ART: Record<ItemName, () => Art> = {
         <path class="ti-flour" d="${mound}"/>
         <path class="ti-oil" d="M110 116 C112 112 126 112 128 116 C130 122 134 126 132 134 C128 128 124 124 120 124 C116 126 112 130 106 134 C106 126 108 120 110 116 Z"/>
         ${frank}
-        ${jarAt(`<path class="ti-clay" d="${jar}"/><path class="ti-shade ti-clay" d="M4 -17 C12 -14 14 -4 12 4 C10 12 4 16 0 16 C6 10 8 0 4 -17 Z"/>`)}
+        ${jarAt(`<path class="ti-clay-handle" d="M4 -19 C14 -20 16 -10 10 -6"/><path class="ti-clay" d="${jar}"/><path class="ti-shade ti-clay" d="M4 -17 C12 -14 14 -4 12 4 C10 12 4 16 0 16 C6 10 8 0 4 -17 Z"/>`)}
         ${cakes}${pricks}
         <path fill="$B" d="M182 160 C184 174 214 174 216 160 Z"/><path class="ti-salt" d="M185 160 C190 150 208 150 213 160 Z"/>`,
       edges: line('M58 150 C62 160 178 160 182 150 M58 150 C62 140 178 140 182 150', 0.8) + line(mound, 0.6) + jarAt(line(jar, 0.8)) +
@@ -428,7 +428,7 @@ const ART: Record<ItemName, () => Art> = {
         line('M152 151 C160 157 212 157 220 151', 0.6) + line('M20 160 H220', 0.9),
       live: `${flame(46, 110, 1.4, 0.2)}${flame(58, 110, 1.1, 0.6)}
         <path class="ti-wisp" pathLength="1" d="M52 98 C48 88 56 82 51 72 C47 64 54 58 51 50"/>
-        <ellipse class="ti-ember" cx="186" cy="138" rx="30" ry="9"/>`,
+        <ellipse class="ti-shine" cx="186" cy="132" rx="34" ry="18" fill="$L"/>`,
       glints: [[120, 40], [150, 113], [201, 141]],
     };
   },
@@ -436,7 +436,7 @@ const ART: Record<ItemName, () => Art> = {
   // ── 속죄제: 피를 놋 제단 네 뿔에 바르고 나머지는 제단 밑에 쏟음. 위에서 덮는 빛 (레 4:7, 25, 30) ──
   'sin-offering'() {
     const a = bronzeAltar();
-    const marks = [[65, 93.6, 2.1], [161, 93.6, 2.1], [80.6, 86.6, 1.6], [175.4, 86.6, 1.6]]
+    const marks = [[65, 94, 2.6], [161, 94, 2.6], [80.6, 87, 2], [175.4, 87, 2]]
       .map(([x, y, r], i) => `<ellipse class="ti-mark" style="--d:${(i * 0.9).toFixed(1)}s" cx="${x}" cy="${y}" rx="${r}" ry="${(r * 1.3).toFixed(1)}"/>`).join('');
     const motes = [[96, 10], [140, 0], [118, 24], [84, 30], [152, 20]]
       .map(([x, y], i) => `<circle class="ti-mote" style="--d:${(i * 1.3).toFixed(1)}s" cx="${x}" cy="${y}" r="1.2"/>`).join('');
@@ -465,7 +465,7 @@ const ART: Record<ItemName, () => Art> = {
     const extraY = R[1] + drop - 1.6 - 4 * 3;
     // 숫양 (작게, 왼쪽 아래)
     const ram = 'M-22 -14 C-24 -24 -10 -28 4 -26 C12 -25 17 -22 19 -17 L24 -22 C28 -26 33 -25 33 -20 L30 -13 C27 -9 23 -9 20 -11 C18 -7 14 -5 12 -5 L12 0 L9 0 L8 -4 L-12 -4 L-13 0 L-16 0 L-17 -5 C-21 -7 -22 -10 -22 -14 Z';
-    const curl = 'M25 -22 C21 -29 30 -32 33 -27 C35 -23 31 -20 28 -22';
+    const curl = 'M24 -21 C18 -30 31 -34 34 -27 C36 -22 31 -18 27 -21';
     const ramAt = (s: string) => `<g transform="translate(40 176) scale(0.95)">${s}</g>`;
     return {
       body: `<g fill="$G"><rect x="117.5" y="58" width="5" height="108"/><circle cx="120" cy="53" r="4.2"/>
@@ -478,7 +478,7 @@ const ART: Record<ItemName, () => Art> = {
         ${[[176, 173.5], [189, 171.5], [200, 174.5]].map(([x, y]) => `<ellipse class="ti-coin" cx="${x}" cy="${y}" rx="6" ry="1.9"/>`).join('')}`,
       edges: line(cords(L), 0.5) + line(cords(R), 0.5) + line(pan(L), 0.8) + line(pan(R), 0.8) +
         `<g transform="rotate(5 120 58)">${line('M52 55.6 H188 V60.4 H52 Z', 0.7)}</g>` + line('M117.5 62 V166 M122.5 62 V166 M96 176 L104 166 H136 L144 176', 0.7) +
-        ramAt(line(ram, 0.6) + `<path class="ti-line" pathLength="1" stroke-width="1.6" d="${curl}"/>`) + line('M20 176.6 H220', 0.6),
+        ramAt(line(ram, 0.6) + `<path class="ti-line" pathLength="1" stroke-width="2.2" d="${curl}"/>`) + line('M20 176.6 H220', 0.6),
       live: `<ellipse class="ti-coin is-falling" cx="${R[0] + 2}" cy="${(extraY - 3).toFixed(1)}" rx="6" ry="1.9"/>
         <ellipse class="ti-shine" cx="${R[0]}" cy="${(extraY - 2).toFixed(1)}" rx="18" ry="10" fill="$L"/>`,
       glints: [[120, 52], [R[0] + 4, extraY - 2], [52, 52]],
@@ -559,7 +559,7 @@ const ART: Record<ItemName, () => Art> = {
         <path class="ti-stone" d="${stone}"/>
         <path class="ti-field" d="M20 176 C70 172 150 174 220 172 L220 178 L20 178 Z"/>`,
       edges: line(horn) + line('M20 118 C30 112 26 106 24 108', 0.8) + line(stone, 0.8) + line('M200 146 H212 M200 154 H210 M203 162 H212', 0.5) +
-        line('M24 170 C60 166 100 168 140 166 M30 174 C80 170 130 172 186 170', 0.4) + line('M38 6 V12', 0.8),
+        line('M24 170 C60 166 100 168 140 166 M30 174 C80 170 130 172 186 170', 0.4) + `<circle class="ti-line" pathLength="1" stroke-width="1.4" cx="39" cy="7" r="3"/>`,
       live: `${[14, 26, 38].map(ring).join('')}
         <g class="ti-fall">${link(50.4, 80, false)}${link(51.6, 89, true)}</g>`,
       glints: [[195, 44], [206, 134], [42, 10]],

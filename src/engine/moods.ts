@@ -142,6 +142,11 @@ export const FX = [
   'stink', // 냄새: 말하는 사람(없으면 오른쪽 사람) 곁에서 옅은 잿빛 김이 구불구불 오르고 날벌레 두엇이 맴돎 (약 6초, 출 16:20). 가볍게
   // ── 금송아지 (출 32, fx/calf.ts) ──
   'tablets-break', // 돌판 깨짐: 떠 있는 증거판 두 돌판(item tablets, 없으면 세움)에 금이 그어지고 여덟 조각으로 갈라져 아래로 떨어짐 (약 3초, 출 32:19)
+  // ── 대속죄일 (레 16, fx/atonement.ts) ──
+  'cast-lots', // 제비뽑기: 두 염소(배경 atone-lots) 위로 제비가 떠올라 왼쪽은 금빛 "여호와께", 오른쪽은 잿빛 "아사셀에게" (약 9초, 레 16:8)
+  'incense-cloud', // 향연: 아래에서 흰 향 연기가 피어올라 떠 있는 기구(item ark)를 덮고 머물렀다 옅어짐 (약 13초, 레 16:13)
+  'confess', // 안수와 고백: 사방에서 어두운 티끌이 모여들어 산 염소(배경 atone-live)의 머리에 내려앉고, 염소가 검게 가라앉음 (약 7초, 레 16:21)
+  'scapegoat', // 아사셀 염소: 정한 사람이 염소를 끌고 길(배경 atone-edge)을 따라 지평선 쪽으로 작아지고, 염소 혼자 너머로 사라짐 (약 15초, 레 16:22)
   // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
   'fire-fall', // 여호와 앞에서 나온 불: 성막 쪽이 밝아지고 금빛 불줄기가 제단(ord-* 배경)으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 (약 9초, 레 9:24). 배경 ord-blaze와 같이
   // ── 다른 불 (레 10, fx/strangefire.ts) ──
@@ -433,6 +438,22 @@ export const MOODS: Record<string, Mood> = {
   'calf-burn': { light: true, land: false, art: 'calf-burn', tone: 'dusk', spread: true },
   /** 이튿날 아침: 빈 받침의 재, 금가루가 반짝이며 흐르는 시내 (출 32:20, 신 9:21) */
   'calf-ash': { light: true, land: false, art: 'calf-ash', tone: 'clear' },
+
+  // ── 대속죄일 (레 16, fx/atonement.ts) ──
+  /** 회막 문 앞: 성막과 구름 기둥, 세마포 뜰, 매어 둔 수염소 둘 (레 16:7) */
+  'atone-lots': { light: true, land: false, art: 'atone-lots', spread: true },
+  'atone-lots-dawn': { light: true, land: false, art: 'atone-lots', tone: 'clear', spread: true },
+  /** 같은 자리, 산 염소 하나 (레 16:20-21 안수) */
+  'atone-live': { light: true, land: false, art: 'atone-live', spread: true },
+  'atone-live-dusk': { light: true, land: false, art: 'atone-live', tone: 'dusk', spread: true },
+  /** 같은 자리, 염소가 떠난 빈 말뚝 (레 16:23-28) */
+  'atone-gone': { light: true, land: false, art: 'atone-gone', spread: true },
+  'atone-gone-dusk': { light: true, land: false, art: 'atone-gone', tone: 'dusk', spread: true },
+  /** 지성소 안: 금 널판 벽, 양옆 휘장, 가운데 위에 고인 빛. 법궤는 item ark로 (레 16:2, 12-15) */
+  'atone-holy': { light: true, land: false, art: 'atone-holy' },
+  /** 진의 가장자리: 바라보는 사람들의 등, 지평선까지 굽은 광야 길 (레 16:21-22) */
+  'atone-edge': { light: true, land: false, art: 'atone-edge', spread: true },
+  'atone-edge-dusk': { light: true, land: false, art: 'atone-edge', tone: 'dusk', spread: true },
 
   // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
   /** 회막 문 앞: 세마포 뜰 울타리와 청·자·홍색 뜰 문, 성막 지붕 위 구름 기둥, 앞에 놋 번제단(불 없음)과 물두멍 (레 8:3-4) */

@@ -35,7 +35,33 @@
 .bd-cave { fill: #030205; }
 .bd-ash { fill: color-mix(in srgb, var(--act-b) 25%, #26252a); }
 
-:root[data-reduced-motion='true'] :is(.bd-water, .bd-flicker, .bd-lampflame, .bd-firelight, .bd-shaft, .bd-star, .bd-wave, .bd-sail, .bd-cloud) { animation: none; }
+/* 성막 뜰 · 광야의 진 (tabernacle, camp): 구름 기둥, 세마포 울타리, 놋 제단, 문 휘장, 지파 깃발 */
+.bd-pillar__glow { fill: url(#bd-halo-g); opacity: 0.35; }
+.bd-pillar__body { fill: color-mix(in srgb, #f2ede2 66%, var(--act-b)); opacity: 0.46; filter: blur(5px); }
+.bd-pillar__puff { fill: color-mix(in srgb, #f6f1e6 66%, var(--act-b)); opacity: 0.22; filter: blur(4px); animation: bd-pillar 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bd-pillar { from { transform: translate(-2px, 0); opacity: 0.16; } to { transform: translate(2px, -3px); opacity: 0.3; } }
+.play[data-tone='night'] .bd-pillar__body { fill: #ff8c3c; opacity: 0.85; filter: blur(4px); }
+.play[data-tone='night'] .bd-pillar__puff { fill: #ffb45a; }
+.play[data-tone='night'] .bd-pillar__glow { opacity: 0.9; }
+.bd-linen { fill: color-mix(in srgb, #efe7d2 46%, var(--act-b)); opacity: 0.85; }
+.bd-silver { fill: color-mix(in srgb, #d9dce4 60%, var(--act-b)); }
+.bd-court { fill: color-mix(in srgb, var(--act-accent) 14%, color-mix(in srgb, var(--act-b) 55%, #08070a)); }
+.bd-far-court { fill: color-mix(in srgb, #efe7d2 45%, var(--act-b)); opacity: 0.8; }
+.bd-bronze { fill: color-mix(in srgb, #9a5a32 55%, var(--act-a)); color: color-mix(in srgb, #e0a060 60%, var(--act-a)); }
+.bd-bronze .detail { stroke: currentColor; opacity: 0.6; }
+.bd-thread--b { fill: color-mix(in srgb, #3556a6 42%, var(--act-b)); }
+.bd-thread--p { fill: color-mix(in srgb, #7a3a92 42%, var(--act-b)); }
+.bd-thread--s { fill: color-mix(in srgb, #b4343a 42%, var(--act-b)); }
+.bd-thread--l { fill: color-mix(in srgb, #e9dfc6 36%, var(--act-b)); }
+.bd-goldpost { fill: color-mix(in srgb, color-mix(in srgb, var(--act-accent) 60%, #d9a948) 60%, var(--act-b)); }
+.bd-flag { transform-box: fill-box; transform-origin: 0% 50%; animation: bd-flag 2.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bd-flag { from { transform: skewY(-4deg) scaleX(0.94); } to { transform: skewY(5deg) scaleX(1.03); } }
+.bd-flag--1 { fill: color-mix(in srgb, #b4343a 62%, var(--act-b)); }
+.bd-flag--2 { fill: color-mix(in srgb, #3556a6 62%, var(--act-b)); }
+.bd-flag--3 { fill: color-mix(in srgb, #d9a948 66%, var(--act-b)); }
+.bd-flag--4 { fill: color-mix(in srgb, #4f8a5a 62%, var(--act-b)); }
+
+:root[data-reduced-motion='true'] :is(.bd-water, .bd-flicker, .bd-lampflame, .bd-firelight, .bd-shaft, .bd-star, .bd-wave, .bd-sail, .bd-cloud, .bd-pillar__puff, .bd-flag) { animation: none; }
 
 /* ── 밤 (tone night): 하늘이 식고, 배경이 어두워지고, 등잔·창 불빛만 또렷 ── */
 .play__night {

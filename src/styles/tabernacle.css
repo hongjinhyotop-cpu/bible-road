@@ -209,6 +209,7 @@
 @keyframes ti-pour { from { stroke-dashoffset: 0.62; } to { stroke-dashoffset: 0; } }
 .ti-frank { fill: #f6f0de; stroke: color-mix(in srgb, #c9b88a 70%, var(--act-a)); stroke-width: 0.4; }
 .ti-salt { fill: #f4f4f2; }
+.ti-clay-handle { fill: none; stroke: color-mix(in srgb, #9a5a38 78%, var(--act-a)); stroke-width: 2.4; stroke-linecap: round; }
 .ti-clay { fill: color-mix(in srgb, #9a5a38 78%, var(--act-a)); }
 .ti-prick { fill: color-mix(in srgb, #5a3a1c 80%, var(--act-a)); }
 
