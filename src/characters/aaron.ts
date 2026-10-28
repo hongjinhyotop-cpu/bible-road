@@ -13,6 +13,7 @@
 //  - linen  : 세마포 옷 (레 16:4 대속죄일). 흰 세마포 속옷·띠·관, 장식 없음. (A급 lev-16-atonement)
 import type { CharacterDef } from './index';
 import { ARM_BENT, BACK_ARM, FACE_MAN, LEGS_SLIM, ROBE_LONG } from './_parts.ts';
+import { CENSER } from './_sons.ts';
 
 // 가늘고 곧은 지팡이 + 아몬드 모양 손잡이 + 싹 눈 셋
 const STAFF = `
@@ -107,6 +108,8 @@ const aaron: CharacterDef = {
       elder: { markup: ELDER, pivot: [102, 110], parts: { hair: WRAP, armR: ARM_BENT } },
       priest: { markup: PRIEST, pivot: [102, 110], parts: { hair: MITRE, armR: ARM_BENT + PLATE } },
       linen: { markup: LINEN, pivot: [102, 110], parts: { hair: LINEN_MITRE, armR: ARM_BENT } },
+      // 대제사장 옷 + 앞손에 향로 (민 16:17-18, 46-48 "향로를 가지고 회중에게로 달려 간즉"). A급 num-16-korah
+      censer: { markup: PRIEST, pivot: [102, 110], parts: { hair: MITRE, armR: ARM_BENT + PLATE + CENSER } },
     },
     markup: `
       <g data-part="legs">${STAFF}${LEGS_SLIM}</g>

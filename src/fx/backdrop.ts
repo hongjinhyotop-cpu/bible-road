@@ -22,6 +22,10 @@ import { calfArt } from './calf';
 import { atoneArt } from './atonement';
 import { ordinationArt } from './ordination';
 import { strangeFireArt } from './strangefire';
+import { balaamArt } from './balaam';
+import { korahArt } from './korah';
+import { spiesArt } from './spies';
+import { meribahArt } from './meribah';
 import { brazenArt } from './brazen';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
@@ -515,6 +519,34 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'sf-court': () => strangeFireArt('court'),
   'sf-ash': () => strangeFireArt('ash'),
   'sf-outside': () => strangeFireArt('outside'),
+  // 발람과 나귀 (민 22–24, fx/balaam.ts)
+  'bal-moab': () => balaamArt('moab'),
+  'bal-road': () => balaamArt('road'),
+  'bal-walls': () => balaamArt('walls'),
+  'bal-narrow': () => balaamArt('narrow'),
+  'bal-baal': () => balaamArt('baal'),
+  'bal-pisgah': () => balaamArt('pisgah'),
+  'bal-peor': () => balaamArt('peor'),
+  'bal-star': () => balaamArt('star'),
+  // 땅이 입을 열어 (민 16, fx/korah.ts)
+  'kr-door': () => korahArt('door'),
+  'kr-ash': () => korahArt('ash'),
+  'kr-tents': () => korahArt('tents'),
+  'kr-gone': () => korahArt('gone'),
+  // 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts)
+  'spy-hebron': () => spiesArt('hebron'),
+  'spy-eshcol': () => spiesArt('eshcol'),
+  'spy-cluster': () => spiesArt('cluster'),
+  'spy-report': () => spiesArt('report'),
+  'spy-lament': () => spiesArt('lament'),
+  // 반석을 두 번 치다 (민 20, fx/meribah.ts)
+  'mr-kadesh': () => meribahArt('kadesh'),
+  'mr-rock': () => meribahArt('rock'),
+  'mr-water': () => meribahArt('water'),
+  'mr-edom': () => meribahArt('edom'),
+  'mr-hor': () => meribahArt('hor'),
+  'mr-hor-mourn': () => meribahArt('hor-mourn'),
+  'mr-summit': () => meribahArt('summit'),
   // 놋뱀 (민 21, fx/brazen.ts)
   'bz-road': () => brazenArt('road'),
   'bz-camp': () => brazenArt('camp'),

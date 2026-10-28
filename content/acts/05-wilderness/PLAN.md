@@ -46,3 +46,4 @@
 
 ## 작업 기록
 - num-21-serpent (A급, 2026-10-28): 전용 배경 bz-road/bz-camp/bz-pole/bz-pole-lit + 효과 fiery-serpents·serpent-lift (`src/fx/brazen.ts`, `styles/brazen.css`). 45 beat, 카드 4, 선택지 1.
+- num-13-14-spies · num-16-korah · num-20-rock · num-22-24-balaam (A급, 2026-10-28 열세 번째 채팅에서 마무리): 전용 배경 spy-* / kr-* / mr-* / bal-* (`src/fx/spies.ts` `korah.ts` `meribah.ts` `balaam.ts` + css), 효과 grasshopper · earth-open · plague-stop · strike-twice · mantle · bal-strike · eyes-open · clap. 인물 korah·balaam·balak·donkey·angel-sword, 엘르아살 대제사장 옷, 아론 향로 옷(`censer`). 도감 갈렙·고라·발람·발락·비느하스(num-25).

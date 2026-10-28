@@ -23,6 +23,10 @@ export type BackdropArt =
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'sf-court' | 'sf-ash' | 'sf-outside'
+  | 'bal-moab' | 'bal-road' | 'bal-walls' | 'bal-narrow' | 'bal-baal' | 'bal-pisgah' | 'bal-peor' | 'bal-star'
+  | 'kr-door' | 'kr-ash' | 'kr-tents' | 'kr-gone'
+  | 'spy-hebron' | 'spy-eshcol' | 'spy-cluster' | 'spy-report' | 'spy-lament'
+  | 'mr-kadesh' | 'mr-rock' | 'mr-water' | 'mr-edom' | 'mr-hor' | 'mr-hor-mourn' | 'mr-summit'
   | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
   | 'bz-road' | 'bz-camp' | 'bz-pole' | 'bz-pole-lit'
   | 'cov-count' | 'cov-pieces'
@@ -155,6 +159,18 @@ export const FX = [
   'fiery-serpents', // 불뱀: 모래 위를 불빛 같은 줄기들이 구불구불 스쳐 가고 무대 아래가 붉게 어두워짐 (약 10초, 민 21:6). 무는 모습 없음 — fall과 같이
   'serpent-lift', // 놋뱀을 쳐다봄: 장대 위 놋뱀(bz-pole 배경)에서 금빛이 번지고 고리가 퍼짐 (약 9초, 민 21:9). 배경 bz-pole-lit과 같이
   'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
+  // ── 발람과 나귀 (민 22–24, fx/balaam.ts) ──
+  'bal-strike', // 채찍질: 나귀(donkey) 위의 발람이 지팡이를 휘두르고 나귀가 움찔, 맞은 자리에 흰 빗금 (약 1.5초, 민 22:23·25·27)
+  'eyes-open', // 눈이 밝아짐: 무대를 덮은 흐린 막이 걷히고 사자(angel-sword)의 칼날을 따라 빛이 그어지며 번쩍 (약 4초, 민 22:31). angel-sword 옷 seen과 같이
+  'clap', // 손뼉: 발락(balak)의 손에서 짧은 소리의 고리가 두 번 퍼짐 (약 2초, 민 24:10)
+  // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
+  'earth-open', // 땅이 갈라짐: 장막 셋(배경 korah-tents) 밑의 땅이 벌어져 장막이 가라앉고, 흙먼지, 땅이 다시 합해 아문 금만 남음. 무대가 흔들림 (약 8초, 민 16:31-33). 사람 몸은 안 그림
+  'plague-stop', // 염병이 그침: 왼쪽에서 잿빛 그늘이 덮어 오다가 아론(무대 인물) 자리에서 솟은 금빛 향 연기 기둥 앞에서 멈추고 물러남 (약 12초, 민 16:47-48)
+  // ── 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts) ──
+  'grasshopper', // 메뚜기 같으니: 헤브론의 거인(배경 spy-hebron)이 하늘을 덮을 만큼 커지고 무대 위 사람들은 작아짐, 발치에 메뚜기 몇 마리 (약 9초, 민 13:33)
+  // ── 반석을 두 번 치다 (민 20, fx/meribah.ts) ──
+  'strike-twice', // 반석(배경 mr-rock)의 틈에 두 번 내리치는 섬광과 금(두 번째가 더 큼), 이어 틈에서 물보라가 솟음 (약 7초, 민 20:11). 다음 beat에 배경 mr-water
+  'mantle', // 옷이 옮겨 감: 금빛 티끌이 아론에게서 떠올라 둥글게 넘어가 엘르아살에게 내려앉음 (약 6초, 민 20:28). outfit 갈아입기와 같이
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
@@ -480,6 +496,71 @@ export const MOODS: Record<string, Mood> = {
   'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
   /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
   'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
+
+  // ── 발람과 나귀 (민 22–24, fx/balaam.ts) ──
+  /** 모압 고원 벼랑: 왼쪽 모압 성벽, 발아래 평지를 장막이 덮었다 (민 22:1-5) */
+  'bal-moab': { light: true, land: false, art: 'bal-moab', tone: 'dusk' },
+  /** 새벽 길: 지평선까지 곧은 길, 양옆 밭과 포도나무 (민 22:21-23) */
+  'bal-road': { light: true, land: false, art: 'bal-road', tone: 'clear' },
+  /** 포도원 사이 좁은 길, 좌우 돌담 (민 22:24-25) */
+  'bal-walls': { light: true, land: false, art: 'bal-walls', tone: 'clear' },
+  /** 좌우로 피할 데 없는 바위 틈 (민 22:26-35) */
+  'bal-narrow': { light: true, land: false, art: 'bal-narrow', tone: 'dusk' },
+  /** 바알의 산당: 일곱 단, 발아래 진의 절반 (민 22:41–23:12) */
+  'bal-baal': { light: true, land: false, art: 'bal-baal', tone: 'dusk', spread: true },
+  /** 소빔 들 비스가 꼭대기: 일곱 단, 진의 끝자락만 (민 23:13 "그 끝만 보리니") */
+  'bal-pisgah': { light: true, land: false, art: 'bal-pisgah', spread: true },
+  /** 브올산 꼭대기: 지파대로 진 친 온 이스라엘과 가운데 성막 (민 23:27–24:13) */
+  'bal-peor': { light: true, land: false, art: 'bal-peor', tone: 'clear', spread: true },
+  /** 같은 곳의 밤: 진의 등불 위로 한 별이 떠오른다 (민 24:14-25) */
+  'bal-star': { light: true, land: false, art: 'bal-star', tone: 'night', spread: true },
+
+  // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
+  /** 회막 문 앞: 성막과 구름 기둥, 향로를 든 이백오십 명이 세 줄로 (손마다 숯불·향 연기, 민 16:17-18). fx strange-fire가 이 문에서 나온다 */
+  'korah-door': { light: true, land: false, art: 'kr-door', spread: true },
+  /** 불이 지나간 뒤: 사람 그림자 없이 엎어진 향로들만 식어 간다, 그을린 뜰 (민 16:35-37) */
+  'korah-ash': { light: true, land: false, art: 'kr-ash', tone: 'dusk', spread: true },
+  /** 고라·다단·아비람의 장막 셋, 둘레의 진은 멀리 물러섬, 저녁빛 (민 16:24-27). fx earth-open과 같이 */
+  'korah-tents': { light: true, land: false, art: 'kr-tents', tone: 'dusk', spread: true },
+  /** 같은 자리, 장막이 없고 땅에 아문 금 한 줄 (민 16:33) */
+  'korah-gone': { light: true, land: false, art: 'kr-gone', tone: 'dusk', spread: true },
+
+  // ── 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts) ──
+  /** 헤브론: 언덕 위 큰 돌 성벽과 성문, 그 앞에 선 아낙 자손 셋(성문 곁 보통 사람과 견줌). fx grasshopper가 이들을 키운다 (민 13:22, 28) */
+  'spy-hebron': { light: true, land: false, art: 'spy-hebron', spread: true },
+  /** 같은 곳, 해 질 녘 */
+  'spy-hebron-dusk': { light: true, land: false, art: 'spy-hebron', tone: 'dusk', spread: true },
+  /** 에스골 골짜기: 계단식 포도원 비탈, 석류·무화과나무, 마른 시내 (민 13:23) */
+  'spy-eshcol': { light: true, land: false, art: 'spy-eshcol' },
+  /** 같은 골짜기: 두 사람이 막대기에 꿴 큰 포도송이 하나를 메고 왼쪽에서 걸어 들어와 가운데 멈춤 (약 7초, 민 13:23) */
+  'spy-cluster': { light: true, land: false, art: 'spy-cluster', spread: true },
+  /** 가데스의 진: 가운데 두 갈래 말뚝 위에 그 송이를 꿴 막대기, 석류·무화과 바구니 (민 13:26) */
+  'spy-report': { light: true, land: false, art: 'spy-report', spread: true },
+  /** 같은 진, 해 질 녘 */
+  'spy-report-dusk': { light: true, land: false, art: 'spy-report', tone: 'dusk', spread: true },
+  /** 밤새 우는 진: 장막마다 등불, 문 앞에 웅크린 사람들, 장막에서 울음의 고리가 퍼져 오름 (민 14:1) */
+  'spy-lament': { light: true, land: false, art: 'spy-lament', tone: 'night' },
+
+  // ── 반석을 두 번 치다 (민 20, fx/meribah.ts) ──
+  /** 신 광야 가데스의 진, 가운데 앞에 갓 쌓은 돌무덤 하나 (민 20:1 미리암). 폰에서 인물은 양옆으로 */
+  'mr-kadesh': { light: true, land: false, art: 'mr-kadesh', tone: 'dusk', spread: true },
+  'mr-kadesh-night': { light: true, land: false, art: 'mr-kadesh', tone: 'night', spread: true },
+  /** 므리바의 반석: 가운데 큰 바위와 세로 틈, 마른 땅의 금 (민 20:8-10). fx strike-twice는 이 틈을 친다 */
+  'mr-rock': { light: true, land: false, art: 'mr-rock', spread: true },
+  'mr-rock-dusk': { light: true, land: false, art: 'mr-rock', tone: 'dusk', spread: true },
+  /** 같은 반석, 틈에서 물이 쏟아져 웅덩이와 시내가 됨 (민 20:11) */
+  'mr-water': { light: true, land: false, art: 'mr-water', spread: true },
+  'mr-water-dusk': { light: true, land: false, art: 'mr-water', tone: 'dusk', spread: true },
+  /** 에돔 어귀: 붉은 사암 절벽 사이 왕의 대로를 막아선 칼 든 무리 (민 20:17-20) */
+  'mr-edom': { light: true, land: false, art: 'mr-edom', spread: true },
+  /** 진에서 올려다본 호르산(봉우리 둘), 산길 위의 작은 사람 셋 (민 20:27) */
+  'mr-hor': { light: true, land: false, art: 'mr-hor', tone: 'clear' },
+  /** 같은 산, 빈 산길, 꼭대기에 머문 빛 — 삼십 일 애곡 (민 20:29) */
+  'mr-hor-mourn': { light: true, land: false, art: 'mr-hor-mourn', tone: 'dusk' },
+  'mr-hor-night': { light: true, land: false, art: 'mr-hor-mourn', tone: 'night' },
+  /** 호르산 꼭대기: 넓은 하늘, 발아래 먼 골짜기 안개, 위에서 내려오는 빛 한 줄기 (민 20:28) */
+  'mr-summit': { light: true, land: false, art: 'mr-summit', tone: 'clear' },
+  'mr-summit-dusk': { light: true, land: false, art: 'mr-summit', tone: 'dusk' },
 
   // ── 놋뱀 (민 21, fx/brazen.ts) ──
   /** 에돔 땅을 두르는 길: 붉은 사암 산줄기, 지평선까지 굽은 하얀 길과 먼 행렬, 흰 해, 아지랑이 (민 21:4) */
