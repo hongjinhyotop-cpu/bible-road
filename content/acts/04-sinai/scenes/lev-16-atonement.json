@@ -29,7 +29,7 @@
     { "item": null, "enter": ["father"], "acts": [{ "act": "walk-in", "who": "father" }, { "act": "stand", "who": "aaron" }], "type": "narration", "text": "회중이 수염소 둘을 끌고 왔다. 털빛도 나이도 비슷한 두 마리였다. 둘은 회막 문 앞, 여호와 앞에 나란히 매였다. 아무것도 모르는 얼굴로 풀을 씹었다." },
     { "type": "line", "who": "father", "act": "bow-head", "text": "“회중이 바치는 염소 둘입니다. 흠 없는 놈으로 골랐습니다.”" },
     { "fx": "cast-lots", "type": "narration", "acts": [{ "act": "look-up", "who": "aaron" }, { "act": "step-back", "who": "father" }], "text": "아론이 제비를 뽑았다. 돌 두 개가 손에서 굴러 나와, 한 번씩 뒤집혔다. 한 마리는 여호와를 위하여. 한 마리는 아사셀을 위하여." },
-    { "type": "scripture", "ref": "레 16:8", "gloss": "염소 둘 놓고 제비뽑기. 하나는 ‘여호와께’, 하나는 ‘아사셀에게’. 둘 다 똑같이 생겼는데 운명이 여기서 갈림." },
+    { "type": "scripture", "ref": "레 16:8", "gloss": "“두 염소를 놓고 제비를 뽑되, 한 제비는 여호와를 위하고 한 제비는 아사셀을 위하라.” 똑같은 염소 둘의 운명이 제비뽑기로 갈린다." },
     { "type": "narration", "act": "face", "who": "aaron", "to": "father", "text": "한 마리는 죽으러 가고, 한 마리는 살아서 떠나기로 정해졌다. 어느 쪽이 나은지는 염소들도 몰랐다. 사람들도 사실은 잘 몰랐다." },
 
     { "bg": "atone-holy", "fx": "fade", "item": "ark", "exit": ["moses", "father"], "type": "narration", "act": "walk-in", "who": "aaron", "text": "아론은 향로에 제단의 불을 채웠다. 두 손에 곱게 간 향을 가득 쥐었다. 그리고 휘장을 지나, 장 안으로 들어갔다. 일 년 중 단 하루, 단 한 사람에게만 허락된 걸음이었다." },
@@ -44,7 +44,7 @@
     { "type": "narration", "act": "bless", "who": "aaron", "text": "아론이 두 손을 들어 염소의 머리에 얹었다. 손바닥 아래로 염소의 뿔이, 체온이, 숨이 느껴졌다." },
     { "type": "line", "who": "aaron", "act": "bow-head", "fx": "confess", "text": "“이스라엘 자손의 모든 불의와… 그 범한 모든 죄를…”" },
     { "type": "narration", "act": "bow-head", "who": "aaron", "text": "그는 하나씩 고했다. 알고 지은 것, 모르고 지은 것, 지었다는 것조차 잊어버린 것. 그것들이 하나하나 염소의 머리 위에 내려앉았다. 염소는 무거워진 줄도 모르고 고개를 들었다." },
-    { "type": "scripture", "ref": "레 16:21", "gloss": "아론이 두 손을 염소 머리에 얹고, 이스라엘이 저지른 잘못을 하나하나 다 말함. 그 죄를 전부 염소 머리에 옮겨 놓고, 미리 정해 둔 사람한테 맡겨 광야로 보냄." },
+    { "type": "scripture", "ref": "레 16:21", "gloss": "“아론은 두 손을 산 염소의 머리에 얹고 이스라엘 자손의 모든 불의와 범한 모든 죄를 고하여, 그 죄를 염소의 머리에 두고 미리 정한 사람에게 맡겨 광야로 보내라.”" },
     { "enter": ["chosen"], "act": "walk-in", "who": "chosen" },
     { "type": "line", "who": "chosen", "act": "approach", "to": "aaron", "text": "“제가 데리고 가겠습니다.”" },
     { "type": "line", "who": "aaron", "act": "face", "to": "chosen", "text": "“사람이 살지 않는 데까지. 다시는 길을 찾아 돌아오지 못할 데까지.”" },
@@ -60,7 +60,7 @@
       ]
     },
     { "type": "narration", "act": "approach", "who": "boy", "to": "father", "text": "무인지경에 이르자 정한 사람은 걸음을 멈췄다. 줄을 풀었다. 염소는 잠깐 그를 돌아보았다가, 다시 앞을 보고 걸었다. 혼자서." },
-    { "type": "scripture", "ref": "레 16:22", "gloss": "염소가 사람들 죄를 몽땅 지고 아무도 안 사는 땅까지 감. 거기서 놓아 버림. 끝." },
+    { "type": "scripture", "ref": "레 16:22", "gloss": "“염소가 그들의 모든 불의를 지고 사람이 살지 않는 땅에 이르면, 그 염소를 광야에 놓아 주라.” 염소가 백성의 죄를 지고 아무도 살지 않는 땅까지 간다." },
     { "type": "line", "who": "boy", "act": "face", "to": "father", "text": "“아빠, 그 염소… 다시 와요?”" },
     { "type": "line", "who": "father", "act": "bow-head", "text": "“안 와. …그게 요점이다.”" },
     { "bg": "atone-edge-dusk", "type": "narration", "acts": [{ "act": "embrace", "who": ["father", "boy"] }], "text": "점은 지평선에 닿았고, 지평선을 넘었고, 더는 보이지 않았다. 누구도 그것을 찾으러 가지 않았다. 잃어버린 것을 찾지 않는 날은, 일 년에 이날 하루뿐이었다." },
@@ -70,7 +70,7 @@
     { "fx": "fire", "type": "narration", "act": "bless", "who": "aaron", "text": "그는 자기의 번제와 백성의 번제를 드렸다. 연기가 저녁 하늘로 곧게 올라갔다. 아침에 그를 무겁게 누르던 것이, 이제는 그 연기처럼 가벼웠다." },
 
     { "bg": "camp-dusk", "fx": "fade", "enter": ["moses"], "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }, { "act": "look-up", "who": "moses" }], "type": "voice", "text": "너희는 영원히 이 규례를 지킬지니라\n칠월 곧 그 달 십일에 너희는 스스로 괴롭게 하고 아무 일도 하지 말되\n본토인이든지 너희 중에 우거하는 객이든지 그리하라" },
-    { "type": "scripture", "ref": "레 16:30", "gloss": "이날 너희를 위해 속죄가 이뤄져서 깨끗해짐. 모든 죄에서, 여호와 앞에서. 하나도 빼놓지 않고." },
+    { "type": "scripture", "ref": "레 16:30", "gloss": "“이날에 너희를 위해 속죄하여 너희를 정결하게 하겠다. 너희가 모든 죄에서 여호와 앞에 정결해질 것이다.” 하나도 빠짐없이 모든 죄에서 깨끗해진다는 약속이다." },
     { "type": "narration", "act": "prostrate", "who": "aaron", "text": "일 년에 한 번. 백성은 굶었고, 쉬었고, 자기 마음을 들여다보았다. 그리고 그날 저녁, 깨끗했다. 아론이 여호와께서 모세에게 명하신 대로 행하였다." }
   ],
   "branches": {

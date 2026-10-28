@@ -16,7 +16,7 @@
     { "type": "narration", "item": "incense", "act": "bow-head", "who": "moses", "text": "조각목에 정금. 위와 옆과 네 뿔까지 다 금으로 쌌다. 번제단보다 훨씬 작았다. 불은 작았고, 대신 연기가 올라갈 것이었다." },
     { "type": "narration", "act": "kneel", "who": "moses", "text": "놓을 자리는 증거궤 앞, 휘장 밖. 속죄소 맞은편. 내가 너와 만날 곳의 바로 앞이었다. 만남 바로 앞에, 향이 있었다." },
     { "type": "narration", "bg": "tent-night", "fx": "fade", "item": "incense", "exit": ["moses"], "enter": ["aaron"], "act": "walk-in", "who": "aaron", "text": "아침마다 등불을 손볼 때. 저녁마다 등불을 켤 때. 아론이 그 위에 향기로운 향을 사른다." },
-    { "type": "scripture", "ref": "출 30:7-8", "gloss": "아론이 아침에 등불 정리할 때 한 번, 저녁에 불 켤 때 한 번 향을 피움. 대대로 끊기면 안 됨. 하루 두 번 고정 루틴." },
+    { "type": "scripture", "ref": "출 30:7-8", "gloss": "“아론이 아침마다 그 위에서 향기로운 향을 사르되 등불을 손질할 때 사르고, 저녁에 등불을 켤 때도 사르라. 이 향은 너희가 대대로 여호와 앞에서 끊지 말라.” 하루 두 번 정해진 일이다." },
     { "type": "narration", "act": "pray", "who": "aaron", "text": "향은 위로 올라간다. 연기는 손에 잡히지 않는다. 말로 다 하지 못하는 것들이, 대개 그렇게 올라간다." },
     { "type": "narration", "act": "bow-head", "who": "aaron", "text": "다른 향은 안 된다. 번제도, 소제도, 부어 드리는 술도 안 된다. 이 단은 오직 향을 위한 것이었다. 그리고 일 년에 한 번, 그 뿔에 속죄제의 피를 바른다." },
     { "type": "narration", "bg": "wilderness-dawn", "fx": "fade", "item": null, "exit": ["aaron"], "enter": ["rich", "poor"], "acts": [{ "act": "walk-in", "who": "rich" }, { "act": "walk-in", "who": "poor" }, { "act": "crowd" }], "text": "그리고 이어진 말은, 뜬금없이 들렸다. 인구 조사. 스무 살 이상, 수효에 드는 사람마다 자기 생명의 속전을 드려라." },
@@ -29,16 +29,16 @@
         { "label": "열 배 내서 내 이름 좀 크게 남긴다", "goto": "b-more" }
       ]
     },
-    { "type": "scripture", "ref": "출 30:15", "gloss": "부자라고 더 내지 말고, 가난하다고 덜 내지 마라. 생명값은 다 똑같음. 이건 기부 경쟁이 아님." },
+    { "type": "scripture", "ref": "출 30:15", "gloss": "“너희 생명을 속하려고 여호와께 드릴 때, 부자라고 반 세겔보다 더 내지 말고 가난한 자라고 덜 내지 말라.” 생명의 값은 누구에게나 같다는 말씀이다." },
     { "type": "narration", "acts": [{ "act": "bow-head", "who": "rich" }, { "act": "look-up", "who": "poor" }], "text": "부자는 더 내지 말 것. 가난한 사람은 덜 내지 말 것. 다른 모든 장부에서 그 둘의 줄은 길이가 달랐다. 이 장부에서만은 같았다." },
     { "type": "narration", "act": "face", "who": ["rich", "poor"], "text": "부자는 조금 서운했을지도 모른다. 가난한 사람은 조금 놀랐을지도 모른다. 생명의 값 앞에서, 사람은 처음으로 서로 같은 크기였다." },
     { "type": "narration", "act": "crowd-bow", "text": "그 은은 회막의 봉사에 쓰일 것이었다. 이스라엘 자손의 기념이 되어서. 돈은 흔히 사람을 나눈다. 이 돈은 사람을 한 줄로 세웠다." },
     { "type": "narration", "bg": "mountain", "fx": "fade", "item": "laver", "exit": ["rich", "poor"], "enter": ["moses"], "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "moses" }], "text": "다시 산 위. 놋으로 만든 물두멍과 그 받침. 회막과 제단 사이에 두고, 물을 담으라." },
-    { "type": "scripture", "ref": "출 30:20", "gloss": "회막 들어갈 때랑 제단에서 일할 때 꼭 물로 씻어야 함. 그래야 안 죽음. 손 씻기가 생사가 걸린 규칙." },
+    { "type": "scripture", "ref": "출 30:20", "gloss": "“그들이 회막에 들어갈 때 물로 씻어야 죽음을 면한다. 제단에 가까이 가서 직분을 행하며 화제를 여호와 앞에 사를 때도 그렇게 하라.” 씻는 일이 생사가 걸린 규칙이다." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "제단에서 피를 만진 손으로, 그대로 안에 들어가지 않는다. 불과 방 사이에 물이 있었다. 하나님의 집에는, 현관이 있었다." },
     { "type": "narration", "item": "oil", "fx": "glory", "act": "kneel", "who": "moses", "text": "그리고 거룩한 관유. 액체 몰약, 향기로운 육계, 향기로운 창포, 계피, 그리고 감람 기름. 향을 만드는 법대로 섞는다." },
     { "type": "narration", "act": "look-up", "who": "moses", "text": "회막에, 증거궤에, 상과 등대에, 분향단과 번제단에, 물두멍과 그 받침에. 기름이 닿는 곳마다 구별되었다. 무엇이든 거기 닿으면 거룩해졌다. 그리고 아론과 그 아들들에게도." },
-    { "type": "scripture", "ref": "출 30:32", "gloss": "“이 기름은 아무 사람 몸에 바르지 말고, 똑같은 레시피로 따라 만들지도 마라. 거룩한 거니까.” 정품 전용. 복제 금지." },
+    { "type": "scripture", "ref": "출 30:32", "gloss": "“사람의 몸에 붓지 말고, 이 방법대로 같은 것을 만들지도 말라. 이것은 거룩하니 너희도 거룩히 여겨라.” 정해진 용도로만 쓰고 흉내 내어 만들지 말라는 뜻이다." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "향도 마찬가지였다. 소합향, 나감향, 풍자향, 유향. 같은 무게로 섞고 소금을 쳐서. 그 향을 자기가 맡으려고 만드는 자는 백성 중에서 끊쳐진다." },
     { "type": "narration", "item": null, "fx": "dark", "act": "pray", "who": "moses", "text": "거룩한 것은 흉내 낼 수 있다. 다만 흉내 낸 것은 거룩하지 않다. 모세는 그 향기를 아직 맡아 본 적이 없었다. 그러나 이미 알고 있었다. 그것이 누구를 위한 향기인지." }
   ],

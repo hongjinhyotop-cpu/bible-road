@@ -168,7 +168,7 @@ PROGRESS.md      ← 진행 기록
 | `bow-seven` | 일곱 번 엎드려 절하며 상대 쪽으로 나아감 | who (+ to) |
 | `crowd` · `crowd-cheer` · `crowd-murmur` · `crowd-bow` · `crowd-away` | 군중이 뒤에 모임 · 환호 · 웅성 · 엎드림 · 흩어짐 | (없음) |
 | `travel` | 여정 지도: `from` → `via`[] → `to` 길을 옛 지도에 그음. 다음 beat에서 접힘(다음 beat에도 travel이면 이어 그림) | 장소 이름 |
-- 여정 지도 장소 이름은 `actions.ts`의 `PLACE_NAMES` (ur, haran, canaan, shechem, bethel, hebron, mamre, sodom, gerar, beersheba, moriah, egypt, goshen, peniel, dothan, sinai, jericho, jerusalem, galilee …). 새 장소는 `PLACE_NAMES` + `src/fx/travel.ts PLACE_XY`(경도·위도)에 추가.
+- 여정 지도 장소 이름은 `actions.ts`의 `PLACE_NAMES` (이름표 아래 작은 설명은 `PLACE_NOTES`) (ur, haran, canaan, shechem, bethel, hebron, mamre, sodom, gerar, beersheba, moriah, egypt, goshen, peniel, dothan, sinai, jericho, jerusalem, galilee …). 새 장소는 `PLACE_NAMES` + `src/fx/travel.ts PLACE_XY`(경도·위도)에 추가.
 
 ### 배경 라이브러리 (`bg`, `src/engine/moods.ts` PLACES — 그림 `src/fx/places.ts`)
 - 장소: `tent`(장막) `well`(우물) `wilderness`(광야) `town`(성읍) `palace`(궁전 실내) `temple`(성전 뜰) `sea`(바다) `starfield`(밤하늘, 기본이 밤) `mountain`(산) `road`(길) `river`(강·나루) `house`(집 안) `prison`(감옥·구덩이) `oaks`(상수리 숲) `cave`(굴) `ruins`(폐허) `pasture`(목초지) `egypt`(이집트 강가)
@@ -180,7 +180,7 @@ PROGRESS.md      ← 진행 기록
 ### 효과 라이브러리 (`fx`, `src/engine/moods.ts` FX)
 - `glory`(하나님의 임재: 위에서 금빛 — 인물로 안 그림) `fire`(무대 가운데 불길) `stars`(별이 쏟아지듯 켜짐) `dust`(모래바람) `fade`(화면 전환: 까맣게 닫혔다 열림, 그 사이 배경·인물이 바뀜 = 시간이 흐름) `thunder`(번개) `rain-start` / `rain-stop`
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
-- 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
+- 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐. `fade` 전환이나 다른 배경으로 바뀌는 beat에서는 바로 걷힘 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
 - `weep`(큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 — 창 45:2, `src/fx/hall.ts`). 이집트 고관의 홀 배경 `joseph-hall`(열린 큰 문·파피루스 기둥·화로) / `joseph-hall-shut`(모두 물러가고 문이 닫힘) / `joseph-hall-dusk` — 창 41–50의 요셉 궁·바로 궁 장면에서 재사용 가능.
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
 - 긴 카메라 연출은 탭하면 빨리 감긴다 (`screens/scene.ts`의 `CAMERA` 목록). 긴 연출은 15초 안으로.
@@ -252,7 +252,7 @@ A급·B급 **모든 에피소드**는 아래를 통과해야 한다. 빨리 만�
 5. 폭력적이거나 무거운 장면(홍수, 정복 전쟁, 십자가)은 선정적이지 않게, 무게감 있게 연출한다.
 6. **표기 규칙 (2026-10-28):**
    - **이집트 / 애굽:** 이야기 서술·해설·한 줄 번역·요약·지도 이름표는 **"이집트"**. 본문 카드와 성경을 그대로 옮긴 인용(대사·하나님 목소리 안의 원문 인용 포함)은 원문대로 **"애굽"**. 창 12장 첫 등장 해설에 "애굽 = 이집트"를 한 번 적어 둠 (`gen-12-egypt`).
-   - **지명은 개역한글 표기로 통일한다** (이집트만 예외). 같은 곳이라도 책마다 개역한글 표기가 다르면 그 책의 표기를 따른다: 여정 지도 `shur` = "수르 광야"(출 15:22), `shur-way` = "술"(창 16:7, 20:1, 25:18). 새 지명을 `PLACE_NAMES`에 넣을 때는 `data/bible/`에서 철자를 확인한다.
+   - **지명은 개역한글 표기로 통일한다** (이집트만 예외. 단 "애굽 강"(창 15:18)·"애굽 시내"(민 34:5)처럼 "애굽"이 들어간 고유 지명은 개역한글 그대로 쓰고, 여정 지도 이름표 아래에 "이집트 국경 쪽 개울" 같은 설명을 단다 — `actions.ts PLACE_NOTES`). 같은 곳이라도 책마다 개역한글 표기가 다르면 그 책의 표기를 따른다: 여정 지도 `shur` = "수르 광야"(출 15:22), `shur-way` = "술"(창 16:7, 20:1, 25:18). 새 지명을 `PLACE_NAMES`에 넣을 때는 `data/bible/`에서 철자를 확인한다.
    - **해석이 갈리는 것은 단정하지 않는다** ("여러 해석이 있음"). **시간대(낮·밤·새벽)는 본문대로** 배경(`-night`, `-dawn` …)을 맞춘다.
 
 ---
@@ -270,6 +270,7 @@ A급·B급 **모든 에피소드**는 아래를 통과해야 한다. 빨리 만�
 - 장면 내레이션, 인물 대사, 막 오프닝/피날레 → 이영도풍 문체
 - 해설, 한 줄 요약, 인물 도감, 메뉴, 버튼, 알림 → 20대 친구 말투
 - 성경 본문 카드 → 개역한글 원문 그대로. 절대 바꾸지 않는다. 바로 아래에 친구 말투 "한 줄 번역"을 붙인다.
+- **하나님·예수님 말씀의 한 줄 번역은 은어·비속어 없이 쉬운 현대어로. 친구 말투는 해설에서만.** (2026-10-28) 카드 구절이 하나님·예수님의 직접 말씀(모세가 전하는 율법 포함)이면 한 줄 번역은 “…하라.” “…하겠다.” 같은 담백한 현대어로 쓰고, "~함/~임", "걔", "까다", ㅋㅋ, 게임 비유 같은 건 넣지 않는다. 사람의 말·서술 카드의 한 줄 번역은 지금처럼 친구 말투 OK.
 
 ### 목소리 1: 이영도풍 문체 (이야기)
 - 담담하고 건조한 3인칭 서술. 감정을 직접 말하지 않고 상황과 행동으로 보여준다.

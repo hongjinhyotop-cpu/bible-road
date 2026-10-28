@@ -199,6 +199,7 @@
 .travel__ring { fill: none; stroke: var(--gold-bright); stroke-width: calc(0.8px * var(--k)); transform-box: fill-box; transform-origin: center; animation: travel-ring 2.4s ease-out infinite; }
 @keyframes travel-ring { from { opacity: 0.9; transform: scale(0.4); } to { opacity: 0; transform: scale(1.8); } }
 .travel__name { fill: var(--ivory); font-family: var(--story-font); font-weight: 600; letter-spacing: 0.06em; paint-order: stroke; stroke: rgba(10, 8, 4, 0.7); stroke-width: 2.4px; }
+.travel__note { fill: var(--ivory); opacity: 0.72; font-family: var(--talk-font, sans-serif); letter-spacing: 0.02em; paint-order: stroke; stroke: rgba(10, 8, 4, 0.7); stroke-width: 1.8px; }
 .travel__walker { fill: #fff6dc; filter: drop-shadow(0 0 calc(4px * var(--k)) rgba(255, 236, 190, 1)); }
 :root[data-reduced-motion='true'] .travel__ring { animation: none; }
 
@@ -219,3 +220,17 @@
 .verse + .verse { margin-top: 0.3em; }
 .verse__no { position: absolute; left: 0; top: 0.42em; width: 1.6em; text-align: right; font-size: 0.82em; line-height: 1.5; font-style: normal; color: var(--gold); opacity: 0.85; }
 .verse.is-key { border-radius: 8px; background: rgba(244, 214, 150, 0.08); box-shadow: inset 2px 0 0 var(--gold); color: var(--gold-bright); }
+
+/* ── 회상(recall) / 앞날(foresee): 신명기 — 모세의 기억과 예고 (screens/scene.ts setMemory) ── */
+.scene__backdrop, .scene__stage, .scene__land { transition: filter 1.4s var(--ease-out); }
+[data-memory='past'] .scene__backdrop, [data-memory='past'] .scene__land { filter: sepia(0.62) saturate(0.72) brightness(0.9) contrast(0.95); }
+[data-memory='past'] .scene__stage { filter: sepia(0.45) brightness(0.92); }
+[data-memory='future'] .scene__backdrop, [data-memory='future'] .scene__land { filter: saturate(0.55) brightness(1.08) hue-rotate(-12deg); }
+[data-memory='future'] .scene__stage { filter: saturate(0.7) brightness(1.04); }
+.scene__memory { position: absolute; inset: 0; z-index: 4; pointer-events: none; opacity: 0; transition: opacity 1.4s var(--ease-out); }
+[data-memory] .scene__memory { opacity: 1; }
+[data-memory='past'] .scene__memory { background: radial-gradient(ellipse 78% 70% at 50% 52%, transparent 55%, rgba(60, 38, 14, 0.5) 100%); }
+[data-memory='future'] .scene__memory { background: radial-gradient(ellipse 80% 72% at 50% 48%, transparent 58%, rgba(150, 190, 220, 0.22) 100%); }
+.scene__memory-tag { position: absolute; left: 16px; top: 12px; font-family: var(--story-font); font-size: 0.78rem; letter-spacing: 0.32em; color: var(--ivory); opacity: 0.66; }
+.scene__memory-tag::before { content: ''; display: inline-block; width: 18px; height: 1px; margin-right: 8px; vertical-align: middle; background: currentColor; opacity: 0.7; }
+:root[data-reduced-motion='true'] .scene__memory, :root[data-reduced-motion='true'] .scene__backdrop { transition: none; }

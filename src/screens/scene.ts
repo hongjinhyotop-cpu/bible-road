@@ -85,6 +85,7 @@ export function sceneScreen({ id }: Params): Screen {
       <div class="scene__water scene__water--back" aria-hidden="true"></div>
       <div class="scene__water scene__water--front" aria-hidden="true"></div>
       <div class="scene__stage"></div>
+      <div class="scene__memory" aria-hidden="true"><span class="scene__memory-tag"></span></div>
       <p class="play__voice" aria-live="polite"></p>
     </div>
     <div class="dock" aria-live="polite"></div>
@@ -353,11 +354,21 @@ export function sceneScreen({ id }: Params): Screen {
     actors.forEach((a) => a.perform(st.act));
   }
 
+  let shownMood: string | undefined;
   /** 화면 전환: 까맣게 닫힘(true) / 열림(false) */
   /** 잠깐 깔리는 효과 층(fx-*: 불·영광·재앙·불뱀 …)을 바로 걷는다.
    *  각 층은 제 타이머(5~12초)로 사라지는데, 그 사이 화면 전환(fade)이 오면 다음 장면까지 남았다 */
   function clearFx() {
     el.querySelectorAll('.scene > [class^="fx-"], .scene > [class*=" fx-"]').forEach((n) => n.remove());
+  }
+  /** 배경만 바뀔 때(fade 없이): 앞 배경의 재앙 효과(개구리·이·파리·재·우박·메뚜기)가 새 배경에 10초씩 남지 않게 짧게 흐려지며 걷는다.
+   *  불·영광·별 같은 다른 효과는 배경이 바뀌어도 이어지는 연출이 있어서(사다리의 별, 메추라기 …) 그대로 둔다 */
+  function clearPlagues() {
+    el.querySelectorAll<HTMLElement>('.scene > .fx-plague').forEach((n) => {
+      if (reducedMotion()) return n.remove();
+      n.classList.add('is-out'); // plagues.css: 1.6초 동안 흐려짐
+      setTimeout(() => n.remove(), 1600);
+    });
   }
 
   function fadeScreen(close: boolean): Promise<unknown> {
@@ -402,9 +413,24 @@ export function sceneScreen({ id }: Params): Screen {
     tweens.push(gsap.to(fi, { v: on ? 1 : 0.3, duration: reducedMotion() ? 0.3 : 3, ease: 'power1.inOut', onUpdate: () => setFieldIntensity(fi.v) }));
   }
 
+  /** 회상(recall) / 앞날(foresee) 필터: 신명기처럼 말하는 사람의 기억·예고를 보여 줄 때. present로 끝남 (fade로는 안 끝남) */
+  function setMemory(kind: 'past' | 'future' | null) {
+    const tag = el.querySelector<HTMLElement>('.scene__memory-tag');
+    if (kind) {
+      el.dataset.memory = kind;
+      if (tag) tag.textContent = kind === 'past' ? '기억' : '그날이 오면';
+    } else delete el.dataset.memory;
+  }
+
   function playFx(fx: SceneFx) {
     const rm = reducedMotion();
     switch (fx) {
+      case 'recall':
+        return setMemory('past');
+      case 'foresee':
+        return setMemory('future');
+      case 'present':
+        return setMemory(null);
       case 'dawn':
         return setLight(true);
       case 'dark':
@@ -683,6 +709,7 @@ export function sceneScreen({ id }: Params): Screen {
     }
     stage.actors.forEach((a) => a.setDim(true));
     setItem(el, items, null);
+    setMemory(null);
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
@@ -727,6 +754,9 @@ export function sceneScreen({ id }: Params): Screen {
   /** 분위기: 하늘 밝기·언덕·배경 그림·색조. 장면 중간에 바뀌면 배경이 천천히 겹쳐 바뀐다 */
   function applyMood(name: string | undefined, animate: boolean) {
     const m = moodOf(name);
+    // 배경이 다른 곳으로 바뀌면 앞 배경에 깔린 재앙 효과는 걷는다 (이 beat의 새 효과는 이 뒤에 깔림)
+    if (animate && name !== shownMood) clearPlagues();
+    shownMood = name;
     if (animate) {
       if ((el.dataset.light === '1') !== m.light) setLight(m.light);
     } else {
@@ -794,6 +824,7 @@ export function sceneScreen({ id }: Params): Screen {
     voice.hidden = true;
     gsap.set($('.play__bar span'), { scaleX: 0 });
     applyMood(scene.bg ?? scene.mood ?? ACT_BG[scene.act], false);
+    setMemory(null);
     setCrowd(crowd, null);
     setItem(el, items, null, true);
     travel?.el.remove();

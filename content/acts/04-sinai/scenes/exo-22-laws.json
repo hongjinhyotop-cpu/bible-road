@@ -26,7 +26,7 @@
     { "type": "line", "who": "judge", "act": "face", "to": "thief", "text": "“양 하나에 양 넷. 소였다면 다섯이었을 걸세. 양이 살아서 자네 손에 있었다면 갑절이면 됐고.”" },
     { "type": "line", "who": "thief", "act": "bow-head", "text": "“넷이라니요. 한 마리 먹었는데 네 마리를 갚으라니요.”" },
     { "type": "line", "who": "judge", "text": "“먹어 버렸으니 넷이지. 잡거나 팔아 버린 건 돌이킬 마음이 없었다는 뜻이니까. 갚을 게 없으면 자네 몸을 팔아서라도 갚게.”" },
-    { "type": "scripture", "ref": "출 22:1", "gloss": "소 훔쳐서 잡거나 팔면 다섯 배, 양이면 네 배로 물어내라는 거. 감옥 대신 피해자한테 확실하게 돌려주는 시스템임." },
+    { "type": "scripture", "ref": "출 22:1", "gloss": "“소나 양을 훔쳐 잡거나 팔면 소 하나에 소 다섯, 양 하나에 양 넷으로 갚아라.” 피해를 입은 사람에게 확실히 돌려주게 하는 규정이다." },
     { "type": "narration", "act": "walk-out", "who": "thief", "text": "도둑은 그날부터 남의 우리를 넘지 않았다. 남의 우리를 대신 지켰다. 네 마리를 채울 때까지." },
     { "type": "narration", "bg": "field-dusk", "fx": ["fade", "fire"], "exit": ["farmer"], "enter": ["burner", "neighbor"], "act": "step-back", "who": "burner", "text": "다음 사건은 불이었다. 한 남자가 제 밭의 가시덤불을 태웠다. 바람이 불었다. 불은 주인을 가리지 않았다. 옆집 낟가리가 탔다." },
     { "type": "line", "who": "burner", "act": "approach", "to": "neighbor", "text": "“불을 낸 건 나지만, 바람을 부른 건 내가 아니오.”" },
@@ -35,7 +35,7 @@
     { "type": "narration", "act": "bow-head", "who": "burner", "text": "남의 밭에서 제 짐승을 먹인 자는 제 밭에서 제일 좋은 것으로 갚았다. 빌려 간 나귀가 죽으면 빌려 간 자가 갚았다. 주인이 곁에 있었다면 갚지 않았다. 책임은 손이 닿는 곳까지였다." },
     { "type": "narration", "bg": "road", "fx": ["fade", "dust"], "exit": ["burner", "neighbor"], "enter": ["stranger"], "act": "walk-in", "who": "stranger", "text": "그리고 길 위의 사람들. 나그네가 있었다. 말씨가 다르고, 땅이 없고, 편들어 줄 친척도 없는 사람." },
     { "type": "voice", "fx": "glory", "text": "너희도 애굽 땅에서 나그네이었었음이니라" },
-    { "type": "scripture", "ref": "출 22:21", "gloss": "외국인 괴롭히지 마. 너희도 이집트에서 외국인 노동자였잖아. 그 서러움 누구보다 잘 알면서." },
+    { "type": "scripture", "ref": "출 22:21", "gloss": "“나그네를 압제하거나 학대하지 말라. 너희도 이집트 땅에서 나그네였다.” 이집트에서 외국인으로 지내며 겪은 설움을 기억하라는 말씀이다." },
     { "type": "narration", "enter": ["widow", "orphan"], "acts": [{ "act": "walk-in", "who": "widow" }, { "act": "embrace", "who": ["widow", "orphan"] }], "text": "과부가 있었고, 고아가 있었다. 그들이 부르짖으면, 하나님은 반드시 듣겠다고 했다. 그리고 그 말 다음에 무서운 말이 붙었다. 그들을 해한 자의 아내가 과부가 되고, 그 자식이 고아가 되리라고." },
     { "type": "narration", "act": "look-up", "who": "stranger", "text": "약한 자를 건드리는 일은, 그 뒤에 서 있는 자를 건드리는 일이었다. 대개 사람들은 그 뒤에 누가 서 있는지 보지 못한다." },
     { "type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["stranger", "widow", "orphan", "judge"], "enter": ["lender", "poor"], "act": "face", "who": ["lender", "poor"], "text": "해 질 녘의 장막 앞. 가난한 이웃 하나가 돈을 꾸어 갔었다. 담보로 맡긴 것은 겉옷 한 벌이었다. 그에게 있는 옷은, 그게 다였다." },
@@ -49,7 +49,7 @@
       ]
     },
     { "type": "line", "who": "lender", "act": "approach", "to": "poor", "text": "“가져가게. 해 떨어지기 전에. 내일 아침에 다시 맡기든가.”" },
-    { "type": "scripture", "ref": "출 22:26-27", "gloss": "이웃 옷을 담보로 잡았으면 해 지기 전에 돌려줘. 그거 하나로 덮고 자는데 뭐 입고 자냐. 그가 울면 내가 듣는다. 나 자비로운 신이거든." },
+    { "type": "scripture", "ref": "출 22:26-27", "gloss": "“이웃의 옷을 담보로 잡았으면 해가 지기 전에 돌려주어라. 그것이 그의 몸을 가릴 유일한 것이니, 그가 무엇을 덮고 자겠느냐? 그가 내게 부르짖으면 내가 들을 것이다. 나는 자비로운 하나님이다.”" },
     { "type": "narration", "acts": [{ "act": "stand", "who": "poor" }, { "act": "bow-head", "who": "poor" }], "pose": { "poor": "neutral" }, "text": "남자는 겉옷을 받아 들었다. 이자를 받지 말라는 말도 있었다. 가난한 자에게 빚쟁이처럼 굴지 말라는 말도. 담보는 잡되, 사람은 잡지 말라는 것이었다." },
     { "type": "narration", "bg": "mountain-night", "fx": ["fade", "stars"], "exit": ["lender", "poor"], "enter": ["moses"], "act": "look-up", "who": "moses", "text": "법은 계속 이어졌다. 무당을 살려 두지 말 것. 다른 신에게 희생을 드리지 말 것. 재판장을 욕하지 말 것. 첫 열매와 맏아들을 늦지 않게 드릴 것." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "그리고 마지막 줄. 너희는 내게 거룩한 사람이 되라. 거룩함은 멀리 있지 않았다. 해 지기 전의 겉옷 한 벌만큼 가까이 있었다." }

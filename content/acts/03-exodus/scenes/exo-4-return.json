@@ -23,7 +23,7 @@
     { "type": "narration", "exit": ["jethro"], "enter": ["zipporah", "son"], "act": "look-up", "who": "moses", "text": "모세는 아내와 아들들을 나귀에 태웠다. 그리고 손에 지팡이를 쥐었다. 양을 치던 막대기였다. 기록은 이제 그것을 다르게 부른다. 하나님의 지팡이." },
     { "type": "narration", "bg": "road-dusk", "fx": ["fade", "dust"], "acts": [{ "act": "walk-in", "who": "moses" }, { "act": "face", "who": "zipporah", "to": "moses" }], "text": "길 위에서, 말씀이 한 번 더 왔다. 이번에는 바로 앞에서 할 말이었다." },
     { "type": "voice", "text": "이스라엘은 내 아들, 내 장자라. 내 아들을 놓아 나를 섬기게 하라. 네가 거절하면, 내가 네 아들 네 장자를 죽이리라." },
-    { "type": "scripture", "ref": "출 4:22-23", "gloss": "하나님: “바로한테 전해. 이스라엘은 내 맏아들이다. 내 아들 보내라. 안 보내면 네 맏아들이 대가를 치른다.” 마지막 재앙이 여기서 벌써 예고됨." },
+    { "type": "scripture", "ref": "출 4:22-23", "gloss": "“바로에게 이렇게 전하라. 이스라엘은 내 아들, 내 맏아들이다. 내 아들을 보내어 나를 섬기게 하라. 네가 거절하면 내가 네 맏아들을 죽이겠다.” 마지막 재앙이 여기서 미리 예고된다." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "그분은 바로의 마음이 굳어질 것도 미리 말씀하셨다. 가는 길에 결과를 다 듣고 가는 심부름이었다. 쉬울 거라는 말은, 한 번도 없었다." },
     { "type": "narration", "bg": "wilderness-night", "fx": "fade", "act": "sleep", "who": "son", "text": "길의 숙소에서였다. 밤." },
     { "type": "narration", "fx": ["dark", "shake"], "act": "fall", "who": "moses", "text": "여호와께서 모세를 만나, 그를 죽이려 하셨다. 기록은 이유를 말하지 않는다. 그 침묵이, 이 밤을 더 어둡게 한다." },
