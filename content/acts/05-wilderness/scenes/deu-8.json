@@ -11,8 +11,8 @@
     "farmer": { "name": "훗날의 농부", "base": "man", "hair": "short", "beard": "short", "props": ["sheaf"], "tint": "green" }
   },
   "beats": [
-    { "type": "narration", "fx": "dawn", "act": "crowd", "text": "새벽이었다. 사십 년 동안 매일 아침 그랬듯, 이슬이 땅에 내려 있었다. 그러나 오늘 아침 이슬 위에는 주울 것이 없었다. 사십 년 전 아침들이 이 땅 위로 다시 올라오고 있었다." },
-    { "type": "line", "who": "moses", "act": "bless", "text": "“네 하나님 여호와께서 이 사십 년 동안에 너로 광야의 길을 걷게 하신 것을 기억하라. 이는 너를 낮추시며 너를 시험하사 네 마음이 어떠한지 알려 하심이라.”" },
+    { "type": "narration", "fx": "dawn", "act": "crowd", "text": "새벽이었다. 사십 년 동안 매일 아침 그랬듯, 이슬이 땅에 내려 있었다. 이슬이 마르면 그 위에 하루치 떡이 깔릴 터였다. 사십 년 전 첫 아침도 이러했다." },
+    { "type": "line", "who": "moses", "act": "bless", "text": "“네 하나님 여호와께서 이 사십 년 동안에 너로 광야의 길을 걷게 하신 것을 기억하라. 이는 너를 낮추시며 너를 시험하사 네 마음이 어떠한지… 알려 하심이라.”" },
     { "type": "narration", "bg": "manna-dew", "fx": ["fade", "recall"], "enter": ["woman"], "acts": [{ "act": "walk-in", "who": "woman" }, { "act": "kneel", "who": "woman" }], "text": "광야의 첫 달들. 이슬이 마르자 땅 위에 가늘고 둥근 것이 깔려 있었다. 그것이 무엇인지 아무도 몰랐다. 서로 묻는 소리가 이름이 되었다. 만나. 이게 뭐냐." },
     { "type": "narration", "bg": "manna-dawn", "act": "crowd", "text": "하루치를 거두는 법도 배웠다. 욕심내어 더 주워 봐야 아침이면 썩었다. 그날의 허기는 그날의 떡이 채웠다. 내일의 걱정은 내일 이슬이 가져왔다." },
     { "type": "narration", "bg": "sin-camp-dawn", "fx": "fade", "act": "stand", "who": "woman", "text": "누구도 이 떡을 심지 않았다. 거두지도 않았다. 이스라엘은 그 떡을 사십 년 먹었고, 사십 년 동안 받는 법을 배우는 일이 서툴렀다." },
@@ -21,7 +21,7 @@
     { "type": "narration", "bg": "sin-camp-night", "fx": "fade", "act": "look-up", "who": "woman", "text": "한 가지 더, 이상한 일이 있었다. 사십 년을 걸었는데 옷이 해어지지 않았다. 발도 부르트지 않았다." },
     { "type": "scripture", "ref": "신 8:4", "gloss": "이 40년 동안 네 옷이 해어지지 않았고 네 발이 부르트지 않았다." },
     { "type": "line", "who": "moses", "act": "face", "to": "woman", "text": "“너는 사람이 그 아들을 징계함 같이 네 하나님 여호와께서 너를 징계하시는 줄 마음에 생각하고…”" },
-    { "type": "narration", "bg": "bz-pole-lit", "fx": "fade", "exit": ["woman"], "act": "step-back", "who": "moses", "text": "광대하고 위험한 광야. 불뱀과 전갈이 있고 물이 없는 메마른 땅. 그곳에서 굳은 바위에서 물이 났고, 장대에 달린 놋뱀을 바라본 이들이 살았다. 모세는 그것도 지나가듯 말했다. 그 길을 걸은 사람에게는 이 단어들이 목록이 아니었다." },
+    { "type": "narration", "bg": "bz-pole-lit", "fx": "fade", "exit": ["woman"], "act": "step-back", "who": "moses", "text": "광대하고 위험한 광야. 불뱀과 전갈이 있고 물이 없는 메마른 땅. 그곳에서 굳은 반석에서 물이 났다. 모세는 그것도 지나가듯 말했다. 그 길을 걸은 사람에게는 이 단어들이 목록이 아니었다." },
     { "type": "narration", "bg": "plains", "fx": ["fade", "present"], "act": "look-up", "who": "moses", "text": "다시 모압 평지. 눈앞으로 요단 건너 종려나무가 보이는 아침이었다. 모세가 이야기를 앞으로 돌렸다. 이제 들어갈 땅 이야기였다." },
     { "type": "narration", "bg": "vineyard", "fx": ["fade", "foresee"], "enter": ["farmer"], "acts": [{ "act": "walk-in", "who": "farmer" }, { "act": "look-up", "who": "farmer" }], "text": "그날이 오면. 골짜기와 산지에 시내와 샘이 흐르고, 밀과 보리, 포도와 무화과와 석류, 감람과 꿀이 나는 땅. 돌은 쇠요, 산에서는 구리를 캘 수 있는 땅이라고 했다." },
     { "type": "line", "who": "moses", "act": "bless", "text": "“네가 먹어서 배불리고 네 하나님 여호와께서 옥토로 네게 주셨음을 인하여 그를 찬송하리라.”" },

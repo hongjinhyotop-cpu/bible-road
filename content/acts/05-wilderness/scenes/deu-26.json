@@ -15,7 +15,7 @@
   "beats": [
     { "type": "narration", "act": "crowd", "text": "설교는 길었고 해는 높았다. 모세는 이제 법의 목록을 접었다. 마지막으로 하나의 장면을 보여 주려 했다. 땅에 들어간 뒤, 첫 수확을 거두어 광주리에 담아 올라가는 사람의 모습을." },
     { "type": "line", "who": "moses", "act": "look-up", "text": "“…그 토지 모든 소산의 맏물을 거둔 후에 그것을 취하여 광주리에 담고 네 하나님 여호와께서 그 이름을 두시려고 택하신 곳으로 그것을 가지고 가서…”" },
-    { "type": "narration", "bg": "pasture-dawn", "fx": ["fade", "foresee"], "exit": ["moses"], "enter": ["farmer", "child"], "acts": [{ "act": "walk-in", "who": "farmer" }, { "act": "walk-in", "who": "child" }], "text": "그 땅의 첫 가을. 농부가 이삭 사이에서 가장 먼저 여문 것들을 골랐다. 한 해를 기다려 얻은 것이었다. 가장 먼저 먹고 싶은 것을 가장 먼저 내려놓는 날이었다." },
+    { "type": "narration", "bg": "pasture-dawn", "fx": ["fade", "foresee"], "exit": ["moses"], "enter": ["farmer", "child"], "acts": [{ "act": "walk-in", "who": "farmer" }, { "act": "walk-in", "who": "child" }], "text": "그 땅의 어느 해 가을. 농부가 이삭 사이에서 가장 먼저 여문 것들을 골랐다. 한 해를 기다려 얻은 것이었다. 가장 먼저 먹고 싶은 것을 가장 먼저 내려놓는 날이었다." },
     { "type": "line", "who": "child", "act": "approach", "to": "farmer", "text": "“아빠, 이걸 왜 먼저 드려요? 우리도 배고픈데.”" },
     { "type": "line", "who": "farmer", "act": "bow-head", "text": "“이 땅이 우리 것이 아니라 받은 것이어서다. 받은 사람은 받았다고 말해야지.”" },
     { "type": "narration", "bg": "tabernacle-dawn", "fx": "fade", "enter": ["priest"], "acts": [{ "act": "walk-in", "who": "priest" }, { "act": "approach", "who": "farmer", "to": "priest" }], "text": "택하신 곳의 제단 앞. 농부는 제사장에게 광주리를 건네며 첫마디를 시작했다. 정해진 말이었다. 농부 자신이 지어낸 말이 아니라 대대로 이어진 말이었다." },
