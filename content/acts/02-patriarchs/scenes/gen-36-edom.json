@@ -34,7 +34,7 @@
     { "type": "narration", "act": "walk-in", "who": "timna", "text": "엘리바스의 첩 딤나가 아들을 낳았다. 이름은 아말렉. 이 이름은 기억해 두는 게 좋다. 수백 년 뒤 광야에서, 같은 이름이 칼을 들고 다시 나온다." },
     { "type": "narration", "act": "crowd-cheer", "text": "그들을 족장이라 불렀다. 족장 데만, 족장 오말, 족장 스보, 족장 그나스, 족장 고라, 족장 가담, 족장 아말렉. 앞에 붙은 말은 같고, 뒤에 붙은 이름만 바뀐다. 족보란 대개 그렇게 생겼다." },
     { "type": "narration", "bg": "wilderness", "fx": "fade", "exit": ["eliphaz", "timna"], "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "seir" }], "text": "세일 땅에는 먼저 살던 사람들이 있었다. 호리 족속. 세일의 아들들, 로단과 소발과 시브온과 아나와 디손과 에셀과 디산." },
-    { "type": "narration", "act": "walk-in", "who": "anah", "text": "그중 아나라는 사람이 있었다. 아버지 시브온의 나귀를 치다가, 광야에서 온천을 찾아냈다." },
+    { "type": "narration", "act": "walk-in", "who": "anah", "text": "시브온의 아들 가운데 아나라는 사람이 있었다. 아버지 시브온의 나귀를 치다가, 광야에서 온천을 찾아냈다." },
     { "type": "scripture", "ref": "창 36:24", "gloss": "족보 한가운데 갑자기 TMI 하나: “아나가 아빠 나귀 치다가 광야에서 온천 발견함.” 이름만 쭉 나오다가 진짜 사람 하나가 보이는 순간." },
     { "type": "narration", "act": "face", "who": ["anah", "seir"], "text": "이름만 이어지는 명단 한가운데에, 누군가 이 한 줄을 넣어 두었다. 나귀를 치다 물을 찾은 사람. 족보는 이름의 목록이지만, 가끔 그 틈으로 사람의 얼굴이 비친다." },
     { "type": "narration", "act": "approach", "who": "esau", "to": "seir", "text": "그리고 아나의 딸이 오홀리바마였다. 에서의 아내. 먼저 살던 사람들과 새로 온 사람들이, 그렇게 한 집안으로 엮였다." },

@@ -34,7 +34,7 @@
     { "type": "narration", "acts": [{ "act": "stand", "who": "foreman" }, { "act": "step-back", "who": "foreman" }], "text": "왕은 같은 말을 두 번 했다. 할 말이 없는 사람은 같은 말을 더 크게 한다. 패장은 일어섰다. 화가 몸에 미친 줄을, 그제야 알았다." },
     { "type": "narration", "bg": "road-dusk", "fx": "fade", "exit": ["pharaoh"], "acts": [{ "act": "walk-in", "who": "moses" }, { "act": "walk-in", "who": "aaron" }], "text": "왕궁을 나서는 길. 모세와 아론이 거기 서 있었다. 기다리고 있었는지도 모른다. 좋은 소식을." },
     { "type": "line", "who": "foreman", "acts": [{ "act": "argue", "who": ["foreman", "moses"] }], "text": "“여호와께서 너희를 보시고 판단하시기를 바란다. 너희가 우리를 바로와 그 신하들 눈에 미운 물건이 되게 했다. 그들 손에 칼을 쥐여 주었다.”" },
-    { "type": "narration", "acts": [{ "act": "part", "who": "foreman" }, { "act": "walk-out", "who": "foreman" }], "text": "모세는 대답하지 않았다. 어제 그들은 여호와 앞에 엎드려 경배했다. 오늘은 그 여호와께 모세를 고발했다. 같은 이름이었다. 하루 사이에." },
+    { "type": "narration", "acts": [{ "act": "part", "who": "foreman" }, { "act": "walk-out", "who": "foreman" }], "text": "모세는 대답하지 않았다. 며칠 전 그들은 여호와 앞에 엎드려 경배했다. 오늘은 그 여호와께 모세를 고발했다. 같은 이름이었다. 며칠 사이에." },
     { "type": "narration", "act": "bow-head", "who": "aaron", "text": "희망을 들고 온 사람은, 그 희망이 깨질 때 가장 먼저 원망을 듣는다. 깨뜨린 사람이 아니라, 들고 온 사람이." },
     { "type": "narration", "bg": "egypt-night", "fx": "fade", "exit": ["aaron"], "act": "kneel", "who": "moses", "text": "그날 밤, 모세는 여호와께 돌아갔다. 떨기나무 앞에서는 핑계를 댔었다. 이번에는 따지러 갔다." },
     { "type": "line", "who": "moses", "act": "pray", "text": "“주여, 어찌하여 이 백성이 학대를 받게 하셨습니까. 어찌하여 저를 보내셨습니까.”" },
