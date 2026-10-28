@@ -21,7 +21,7 @@ const BASE = 214;
 const YARD = 236;
 
 /** 구름 기둥: 성막 위에 선 흰 구름. 천천히 숨 쉰다 (출 40:34-38) */
-export function pillar(x: number, top: number, bottom: number, w: number, seed: number): string {
+function pillar(x: number, top: number, bottom: number, w: number, seed: number): string {
   const r = rng(seed);
   const puffs: string[] = [];
   for (let y = bottom; y > top; y -= 9) {
@@ -33,7 +33,7 @@ export function pillar(x: number, top: number, bottom: number, w: number, seed: 
 }
 
 /** 성막: 널판으로 세운 네모난 집 위에 덮개가 늘어지고, 동쪽 문에 다섯 기둥과 휘장 (출 26) */
-export function tabernacle(): string {
+function tabernacle(): string {
   const L = CX - 54;
   const R = CX + 54;
   const T = BASE - 52;
@@ -58,7 +58,7 @@ export function tabernacle(): string {
 }
 
 /** 세마포 포장: 놋 받침 위 기둥에 흰 휘장을 걸어 뜰을 둘렀다 (출 27:9-18). 양옆으로 비스듬히 물러난다 */
-export function hangings(): string {
+function hangings(): string {
   const side = (dir: -1 | 1) => {
     const pts: string[] = [];
     const posts: string[] = [];
@@ -78,7 +78,7 @@ export function hangings(): string {
 }
 
 /** 놋 번제단: 네모난 단, 네 귀퉁이 뿔, 그물 받침, 그 위 꺼지지 않는 불과 연기 (출 27:1-8, 레 6:13) */
-export function bronzeAltar(x: number, ground: number, seed: number): string {
+function bronzeAltar(x: number, ground: number, seed: number): string {
   const r = rng(seed);
   const w = 30;
   const h = 18;

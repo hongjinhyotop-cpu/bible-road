@@ -7,8 +7,8 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **열두 번째 채팅: 검수 남은 것 처리 → 레위기 27장 완성(4막 끝) → 레위기 검수 → 민수기 진행 중.** 1막~4막 완성 (창 1–50, 출 1–40, 레 1–27). 에피소드 111개 + 민수기 |
-| 다음 세션 할 일 | 아래 "열두 번째 채팅"의 체크리스트에서 안 끝난 것부터. 그다음 신명기(5막 나머지) → 5막 피날레 |
+| 현재 단계 | **열두 번째 채팅: 검수 남은 것 처리 → 레위기 27장 완성(4막 끝) → 레위기 검수 → 민수기 B급 21개 + A급 1개(놋뱀).** 1막~4막 완성 (창 1–50, 출 1–40, 레 1–27), 5막 29 / 70장. 에피소드 134개 |
+| 다음 세션 할 일 | **민수기 A급 4개** (아래 "남은 일") → 신명기 → 5막 피날레 |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
 | 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) · 열한 번째 채팅(검수): [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 등 |
@@ -379,7 +379,19 @@
   - 인물 파일: 나답·아비후(손그림), 엘르아살·이다말(키트), 도감 4명
 - [x] **3단계 레위기 검수** — [#35](https://github.com/hongjinhyotop-cpu/bible-road/pull/35) · 새 도우미 4명이 대조, 약 25곳 수정, 애매한 건 `AUDIT-2026-10-28.md` "레위기 검수"에. 수위·조롱 문제 없음
   - 같이: 여호수아·갈렙 인물 파일(키트), 여호수아 도감(출 17), 광야 지명 16개(하세롯·호르산·모압 평지·느보산 …)
-- [ ] **4단계 민수기 (5막)** — `content/acts/05-wilderness/PLAN.md` (A급 5 + B급 21). 진행 중 (아래 갱신)
+- [~] **4단계 민수기 (5막)** — `content/acts/05-wilderness/PLAN.md` (A급 5 + B급 21). 사용자 요청으로 중간에 멈춤 (토큰 절약)
+  - [x] **B급 21개 전부** (민 1, 2, 3–4, 5–6, 7, 8, 9, 10, 11, 12, 15, 17, 18–19, 25, 26, 27, 28–29, 30, 31, 32, 33, 34–36)
+  - [x] A급 `num-21-serpent` 놋뱀 (`fx/brazen.ts`, 배경 bz-road/bz-camp/bz-pole/bz-pole-lit, 효과 `fiery-serpents` `serpent-lift`)
+  - 인물 파일(키트): 여호수아·갈렙·비느하스·나손. 여호수아 도감(출 17). 갈렙·비느하스 도감 카드는 아직 없음
+  - 여정 지도 광야 지명 16개 (하세롯·다베라·기브롯핫다아와·신 광야(Zin)·호르산·에시온게벨·오봇·아르논·헤스본·바산·모압·모압 평지·싯딤·비스가·느보산·요단)
+
+### ⏸ 남은 일 (민수기 A급 4개 — 미완성이라 main에서 뺐음)
+- `num-13-14-spies` 우리는 메뚜기 같으니 (민 13–14) · `num-16-korah` 땅이 입을 열어 (민 16) · `num-20-rock` 반석을 두 번 치다 (민 20) · `num-22-24-balaam` 발람과 나귀 (민 22–24)
+- 도우미들이 반쯤 만든 것(장면 JSON 초안, 전용 그림 `fx/spies.ts` `fx/korah.ts` `fx/meribah.ts` `fx/balaam.ts` + css, 인물 korah·balaam·balak·donkey·angel-sword, 엘르아살 대제사장 옷, 아론 향로 옷)은 **커밋 `331e9d6`에 보관**돼 있음. 이어 할 때: `git checkout 331e9d6 -- <파일들>`로 되살린 뒤 moods.ts·backdrop.ts·main.ts·scene.ts 등록 줄(그 커밋의 diff 참고)과 도감(caleb·korah·balaam·balak)을 다시 넣고, 브리프(PLAN.md A급 표)대로 마무리·폰 확인
+- 그 4개가 들어가면: 갈렙 도감 카드(num-13-14), 비느하스 도감 카드(num-25 unlocks)
+- 여정 지도: 민 34:5 "애굽 시내"는 지금 `brook-egypt` 이름표 "애굽 강"(창 15:18)과 같은 키 → 책별 표기 규칙(CLAUDE.md 7-6)대로 나눌지
+- 엔진: `fire` 같은 효과가 `fade` 화면 전환 뒤에도 몇 초 남음 (놋뱀 도우미가 발견, 그 장면은 flash로 피함) → 전환 때 끄기
+- 민수기 검수(새 도우미 대조)는 아직 안 함
 
 ## 다음 할 일
 
