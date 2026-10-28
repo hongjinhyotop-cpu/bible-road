@@ -234,3 +234,31 @@
 .scene__memory-tag { position: absolute; left: 16px; top: 12px; font-family: var(--story-font); font-size: 0.78rem; letter-spacing: 0.32em; color: var(--ivory); opacity: 0.66; }
 .scene__memory-tag::before { content: ''; display: inline-block; width: 18px; height: 1px; margin-right: 8px; vertical-align: middle; background: currentColor; opacity: 0.7; }
 :root[data-reduced-motion='true'] .scene__memory, :root[data-reduced-motion='true'] .scene__backdrop { transition: none; }
+
+/* ── 땅 분배 지도 (beat 필드 allot, fx/allot.ts): 가나안 가까이, 지파의 몫이 하나씩 칠해짐 ── */
+.allot .map__region { display: none; }
+.allot__land {
+  fill: color-mix(in srgb, var(--hue) 70%, var(--map-paper)); fill-opacity: 0.8; opacity: 0;
+  stroke: var(--gold-bright); stroke-width: 0.35; stroke-linejoin: round;
+  transition: fill-opacity 1.2s, stroke 1.2s, stroke-width 1.2s;
+}
+.allot__land.is-new { filter: drop-shadow(0 0 1.2px rgba(255, 226, 150, 0.9)); }
+.allot__land.is-done { opacity: 1; fill-opacity: 0.32; stroke: color-mix(in srgb, var(--map-ink) 55%, transparent); stroke-width: 0.2; filter: none; }
+.allot__name {
+  opacity: 0; fill: var(--ivory); font-family: var(--story-font); font-weight: 600; font-size: 2.3px; letter-spacing: 0.04em;
+  text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: rgba(10, 8, 4, 0.75); stroke-width: 0.5px;
+}
+.allot__name.is-new { font-size: 2.7px; fill: #fff3cf; }
+.allot__name.is-done { opacity: 0.6 !important; }
+.allot__jordan { fill: color-mix(in srgb, var(--map-ink) 70%, transparent); font-family: var(--story-font); font-size: 1.5px; font-style: italic; letter-spacing: 0.2em; writing-mode: vertical-rl; }
+.allot__levi circle { fill: #fff0c8; opacity: 0; transform-box: fill-box; transform-origin: center; }
+.allot.show-levi .allot__levi circle { animation: allot-pop 0.6s ease-out calc(0.3s + var(--i) * 0.12s) forwards; }
+.allot__refuge g { opacity: 0; }
+.allot__refuge circle { fill: var(--gold-bright); }
+.allot__refuge .allot__ring { fill: none; stroke: var(--gold-bright); stroke-width: 0.25; transform-box: fill-box; transform-origin: center; animation: travel-ring 2.4s ease-out infinite; }
+.allot__refuge text { fill: var(--ivory); font-family: var(--story-font); font-size: 1.9px; font-weight: 600; paint-order: stroke; stroke: rgba(10, 8, 4, 0.75); stroke-width: 0.45px; }
+.allot.show-refuge .allot__refuge g { animation: allot-in 0.8s ease-out calc(0.3s + var(--i) * 0.5s) forwards; }
+@keyframes allot-pop { from { opacity: 0; scale: 0.2; } to { opacity: 0.95; scale: 1; } }
+@keyframes allot-in { to { opacity: 1; } }
+:root[data-reduced-motion='true'] .allot.show-levi .allot__levi circle,
+:root[data-reduced-motion='true'] .allot.show-refuge .allot__refuge g { animation-duration: 0.01s; animation-delay: 0s; }

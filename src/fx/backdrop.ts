@@ -28,6 +28,7 @@ import { spiesArt } from './spies';
 import { meribahArt } from './meribah';
 import { brazenArt } from './brazen';
 import { deutArt } from './deuteronomy';
+import { joshArt } from './joshua';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -563,6 +564,25 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'dt-nebo-path': () => deutArt('dt-nebo-path'),
   'dt-nebo-view': () => deutArt('dt-nebo-view'),
   'dt-nebo-empty': () => deutArt('dt-nebo-empty'),
+  // 여호수아 (fx/joshua.ts)
+  'js-jericho': () => joshArt('js-jericho'),
+  'js-jericho-cord': () => joshArt('js-jericho-cord'),
+  'js-jericho-fallen': () => joshArt('js-jericho-fallen'),
+  'js-jericho-ruin': () => joshArt('js-jericho-ruin'),
+  'js-roof': () => joshArt('js-roof'),
+  'js-window-rope': () => joshArt('js-window-rope'),
+  'js-window-cord': () => joshArt('js-window-cord'),
+  'js-jordan-flood': () => joshArt('js-jordan-flood'),
+  'js-jordan-dry': () => joshArt('js-jordan-dry'),
+  'js-gilgal': () => joshArt('js-gilgal'),
+  'js-ai': () => joshArt('js-ai'),
+  'js-tent-dig': () => joshArt('js-tent-dig'),
+  'js-achor': () => joshArt('js-achor'),
+  'js-gibeon': () => joshArt('js-gibeon'),
+  'js-gibeon-storm': () => joshArt('js-gibeon-storm'),
+  'js-gibeon-sun': () => joshArt('js-gibeon-sun'),
+  'js-shechem': () => joshArt('js-shechem'),
+  'js-shechem-stone': () => joshArt('js-shechem-stone'),
   // 별을 세어 보라 (창 15, fx/covenant.ts)
   'cov-count': () => covenantArt('count'),
   'cov-pieces': () => covenantArt('pieces'),

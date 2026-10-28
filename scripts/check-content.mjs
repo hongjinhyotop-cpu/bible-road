@@ -16,6 +16,7 @@ import { ACTS } from '../src/engine/acts.ts';
 import { FX, MOODS } from '../src/engine/moods.ts';
 import { ACTIONS, PLACE_NAMES } from '../src/engine/actions.ts';
 import { ITEMS } from '../src/engine/items.ts';
+import { TRIBES, ALLOT_SPECIAL } from '../src/engine/tribes.ts';
 import { BASES, BEARDS, HAIRS, PROPS, TINTS } from '../src/characters/_kit.ts';
 
 const root = new URL('..', import.meta.url).pathname;
@@ -189,7 +190,7 @@ function checkScene(s, where) {
   if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
-  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined;
+  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot;
   const motion = main.filter(moves).length;
   const changes = main.filter(scenery).length;
   let still = 0;
@@ -212,7 +213,7 @@ function checkScene(s, where) {
   checkOutfit(s.outfit);
   for (const b of all) {
     if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
-    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined) warn(where, 'type도 act도 없는 빈 beat');
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot) warn(where, 'type도 act도 없는 빈 beat');
     checkMood(b.mood);
     checkMood(b.bg);
     checkOutfit(b.outfit);
@@ -235,6 +236,7 @@ function checkScene(s, where) {
     }
     for (const f of b.fx == null ? [] : [b.fx].flat()) if (!FX.includes(f)) err(where, `fx "${f}"가 src/engine/moods.ts FX 목록에 없음`);
     if (b.item !== undefined && b.item !== null && b.item !== 'none' && !(b.item in ITEMS)) err(where, `성막 기구 item "${b.item}"가 src/engine/items.ts에 없음 (${Object.keys(ITEMS).join('/')}, 걷기는 null 또는 "none")`);
+    for (const t of b.allot == null ? [] : [b.allot].flat()) if (!(t in TRIBES) && !ALLOT_SPECIAL.includes(t)) err(where, `allot "${t}"가 fx/allot.ts에 없음 (${[...Object.keys(TRIBES), ...ALLOT_SPECIAL].join('/')})`);
     for (const [c, dir] of Object.entries(b.face ?? {})) {
       people.add(c);
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
