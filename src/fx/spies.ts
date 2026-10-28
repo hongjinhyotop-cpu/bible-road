@@ -29,12 +29,12 @@ function hillCountry(seed: number): string {
 /** 큰 돌로 쌓은 성벽과 망대, 가운데 성문 (민 13:28 "성읍은 견고하고 심히 클뿐 아니라") */
 function fortress(): string {
   const G = 214;
-  const top = G - 40;
+  const top = G - 62;
   const blocks: string[] = [];
-  for (let row = 0; row < 5; row++) {
-    const y = G - 8 - row * 8;
+  for (let row = 0; row < 7; row++) {
+    const y = G - 8 - row * 8.6;
     for (let x = 96 + (row % 2) * 9; x < 304; x += 18) {
-      if (x > 182 && x < 218 && row < 3) continue;
+      if (x > 176 && x < 224 && row < 5) continue;
       blocks.push(`M${x} ${y} h16`);
     }
   }
@@ -46,9 +46,9 @@ function fortress(): string {
     <g class="bd-mid">
       <path d="M90 ${G} L90 ${top} L310 ${top} L310 ${G} Z"/>
       ${towers}${battle}
-      <path d="M180 ${G} L180 ${G - 30} Q200 ${G - 44} 220 ${G - 30} L220 ${G} Z"/>
+      <path d="M178 ${G} L178 ${G - 34} Q200 ${G - 50} 222 ${G - 34} L222 ${G} Z"/>
     </g>
-    <path class="spy-gate" d="M184 ${G} L184 ${G - 28} Q200 ${G - 40} 216 ${G - 28} L216 ${G} Z"/>
+    <path class="spy-gate" d="M183 ${G} L183 ${G - 32} Q200 ${G - 45} 217 ${G - 32} L217 ${G} Z"/>
     <path class="spy-blocks" d="${blocks.join(' ')}"/>
     <g class="bd-window-set">
       <rect class="bd-window" style="--d:0.6s" x="101" y="${top - 6}" width="2" height="3"/>
@@ -57,27 +57,29 @@ function fortress(): string {
   </g>`;
 }
 
-/** 아낙 자손 하나: 큰 키, 넓은 어깨, 투구, 긴 창. 사람 키의 세 배쯤 */
+/** 아낙 자손 하나: 키 100 기준으로 그려 h만큼 키운다. 투구와 볏, 넓은 어깨, 수염, 긴 창(또는 둥근 방패) */
 function giant(x: number, ground: number, h: number, flip: boolean, spear: boolean, seed: number): string {
   const r = rng(seed);
+  const k = h / 100;
   const s = flip ? -1 : 1;
-  const sh = h * 0.24; // 어깨 폭 절반
-  const head = h * 0.075;
-  const neck = ground - h * 0.84;
-  const body = `M${f(x - sh * 0.62)} ${ground} L${f(x - sh * 0.7)} ${f(ground - h * 0.46)} L${f(x - sh)} ${f(neck + h * 0.05)}
-    Q${f(x)} ${f(neck - h * 0.03)} ${f(x + sh)} ${f(neck + h * 0.05)} L${f(x + sh * 0.7)} ${f(ground - h * 0.46)} L${f(x + sh * 0.62)} ${ground}
-    L${f(x + sh * 0.12)} ${ground} L${f(x)} ${f(ground - h * 0.3)} L${f(x - sh * 0.12)} ${ground} Z`;
-  const helm = `<path d="M${f(x - head * 1.1)} ${f(neck - head * 0.6)} Q${f(x)} ${f(neck - head * 3.2)} ${f(x + head * 1.1)} ${f(neck - head * 0.6)} Z"/>
-    <path d="M${f(x)} ${f(neck - head * 2.6)} l${f(s * head * 0.3)} ${f(-head * 1.1)} l${f(s * head * 0.3)} ${f(head * 1.1)} Z"/>`;
-  const arm = spear
-    ? `<path d="M${f(x + s * sh)} ${f(neck + h * 0.05)} L${f(x + s * sh * 1.35)} ${f(ground - h * 0.5)} L${f(x + s * sh * 1.15)} ${f(ground - h * 0.48)} L${f(x + s * sh * 0.82)} ${f(neck + h * 0.12)} Z"/>
-       <path d="M${f(x + s * sh * 1.28)} ${ground} L${f(x + s * sh * 1.28)} ${f(ground - h * 1.12)}" fill="none" stroke="currentColor" stroke-width="${f(h * 0.018)}"/>
-       <path d="M${f(x + s * sh * 1.28 - h * 0.03)} ${f(ground - h * 1.1)} L${f(x + s * sh * 1.28)} ${f(ground - h * 1.24)} L${f(x + s * sh * 1.28 + h * 0.03)} ${f(ground - h * 1.1)} Z"/>`
-    : `<path d="M${f(x + s * sh)} ${f(neck + h * 0.05)} L${f(x + s * sh * 1.2)} ${f(ground - h * 0.44)} L${f(x + s * sh * 0.95)} ${f(ground - h * 0.42)} L${f(x + s * sh * 0.8)} ${f(neck + h * 0.12)} Z"/>
-       <ellipse cx="${f(x - s * sh * 1.05)}" cy="${f(ground - h * 0.52)}" rx="${f(h * 0.11)}" ry="${f(h * 0.16)}"/>`;
+  const legs = `<path d="M-10 0 L-8.5 -44 L-1.5 -44 L-2.5 0 Z"/><path d="M3 0 L1.5 -44 L8.5 -44 L10.5 0 Z"/>
+    <path d="M-12 0 L-12 -2.4 L-2 -2.4 L-1 0 Z"/><path d="M2 0 L2.5 -2.4 L13 -2.4 L13 0 Z"/>`;
+  const tunic = `<path d="M-16 -40 L-19 -78 C-19 -83 -14 -85 -6 -85 L6 -85 C14 -85 19 -83 19 -78 L16 -40 Z"/>
+    <path d="M-17 -42 L-15 -36 L15 -36 L17 -42 Z"/>`;
+  const head = `<path d="M-3.5 -84 L-3.5 -88 L3.5 -88 L3.5 -84 Z"/>
+    <ellipse cx="1" cy="-93" rx="6.2" ry="7"/>
+    <path d="M-2 -90 C-1 -82 4 -78 8 -81 C8 -86 7 -89 6 -91 Z"/>
+    <path d="M-6.5 -94 C-6.5 -103 7.5 -103 7.5 -94 L8.5 -92 L-7.5 -92 Z"/>
+    <path class="spy-crest" d="M0 -101 C-6 -106 -14 -104 -18 -98 C-12 -101 -6 -100 -1 -97 Z"/>`;
+  const arms = spear
+    ? `<path d="M15 -82 L23 -58 L25 -60 L19 -82 Z"/><path d="M-15 -82 L-21 -56 L-17 -55 L-12 -78 Z"/>
+       <path d="M24 6 L24 -128" fill="none" stroke="currentColor" stroke-width="1.6"/>
+       <path d="M21.4 -126 L24 -140 L26.6 -126 Z"/>`
+    : `<path d="M15 -82 L21 -56 L17 -55 L12 -78 Z"/><path d="M-15 -82 L-20 -60 L-16 -59 L-12 -78 Z"/>
+       <ellipse cx="-20" cy="-60" rx="9" ry="12"/><circle class="spy-boss" cx="-20" cy="-60" r="1.6"/>`;
   return `<g class="spy-giant" style="--d:${f(r() * 4)}s; transform-origin:${f(x)}px ${ground}px">
-    <ellipse class="spy-giant__shade" cx="${f(x)}" cy="${ground}" rx="${f(sh * 1.6)}" ry="${f(h * 0.03)}"/>
-    <g class="bd-mid spy-giant__body"><path d="${body}"/>${helm}${arm}</g>
+    <ellipse class="spy-giant__shade" cx="${f(x)}" cy="${ground}" rx="${f(h * 0.3)}" ry="${f(h * 0.025)}"/>
+    <g class="bd-near spy-giant__body" transform="translate(${f(x)} ${ground}) scale(${f(s * k)} ${f(k)})">${legs}${tunic}${arms}${head}</g>
   </g>`;
 }
 
@@ -149,41 +151,41 @@ function carrier(x: number, ground: number, h: number, flip: boolean, cls: strin
   const neck = ground - h * 0.82;
   const hd = h * 0.08;
   return `<g class="spy-man ${cls}">
-    <g class="spy-man__leg spy-man__leg--a" style="transform-origin:${f(x)}px ${f(ground - h * 0.42)}px"><path d="M${f(x - 1.4)} ${f(ground - h * 0.44)} L${f(x - 1.8)} ${ground} L${f(x + 1.2)} ${ground} L${f(x + 1.6)} ${f(ground - h * 0.44)} Z"/></g>
-    <g class="spy-man__leg spy-man__leg--b" style="transform-origin:${f(x)}px ${f(ground - h * 0.42)}px"><path d="M${f(x - 1.4)} ${f(ground - h * 0.44)} L${f(x - 1.6)} ${ground} L${f(x + 1.4)} ${ground} L${f(x + 1.6)} ${f(ground - h * 0.44)} Z"/></g>
-    <path d="M${f(x - sh * 0.9)} ${f(ground - h * 0.36)} L${f(x - sh)} ${f(neck + 2)} Q${f(x)} ${f(neck - 1)} ${f(x + sh)} ${f(neck + 2)} L${f(x + sh * 0.9)} ${f(ground - h * 0.36)} Z"/>
+    <g class="spy-man__leg spy-man__leg--a" style="transform-origin:${f(x)}px ${f(ground - h * 0.42)}px"><path d="M${f(x - h * 0.045)} ${f(ground - h * 0.44)} L${f(x - h * 0.05)} ${ground} L${f(x + h * 0.03)} ${ground} L${f(x + h * 0.045)} ${f(ground - h * 0.44)} Z"/></g>
+    <g class="spy-man__leg spy-man__leg--b" style="transform-origin:${f(x)}px ${f(ground - h * 0.42)}px"><path d="M${f(x - h * 0.045)} ${f(ground - h * 0.44)} L${f(x - h * 0.04)} ${ground} L${f(x + h * 0.05)} ${ground} L${f(x + h * 0.045)} ${f(ground - h * 0.44)} Z"/></g>
+    <path d="M${f(x - sh * 0.9)} ${f(ground - h * 0.36)} L${f(x - sh)} ${f(neck + h * 0.05)} Q${f(x)} ${f(neck - h * 0.03)} ${f(x + sh)} ${f(neck + h * 0.05)} L${f(x + sh * 0.9)} ${f(ground - h * 0.36)} Z"/>
     <circle cx="${f(x + s * 0.8)}" cy="${f(neck - hd)}" r="${f(hd)}"/>
     <path d="M${f(x - hd * 1.1)} ${f(neck - hd * 1.1)} Q${f(x)} ${f(neck - hd * 2.4)} ${f(x + hd * 1.2)} ${f(neck - hd * 1.1)} L${f(x - s * hd * 1.6)} ${f(neck + hd * 0.6)} Z"/>
-    <path d="M${f(x + s * sh * 0.6)} ${f(neck + 2)} L${f(x + s * sh * 0.3)} ${f(neck - 2)} L${f(x + s * sh * 0.9)} ${f(neck - 2.4)} L${f(x + s * sh * 1.1)} ${f(neck + 3)} Z"/>
+    <path d="M${f(x + s * sh * 0.5)} ${f(neck + h * 0.05)} L${f(x + s * sh * 0.25)} ${f(neck - h * 0.05)} L${f(x + s * sh * 0.85)} ${f(neck - h * 0.06)} L${f(x + s * sh * 1.1)} ${f(neck + h * 0.08)} Z"/>
   </g>`;
 }
 
 /** 둘이 막대기에 꿰어 멘 포도송이 (민 13:23) */
 function carriers(): string {
-  const G = 232;
-  const h = 32;
+  const G = 246;
+  const h = 58;
   const poleY = G - h * 0.84;
   return `<g class="spy-carry">
     <g class="spy-carry__walk">
-      ${carrier(156, G, h, false, 'bd-mid spy-man--back')}
-      ${carrier(244, G, h, false, 'bd-mid spy-man--front')}
-      <path class="spy-pole" d="M146 ${f(poleY + 1)} L254 ${f(poleY - 1)}"/>
-      <g class="spy-sway" style="transform-origin:200px ${f(poleY)}px">${cluster(200, poleY, 38, 30, 7321)}</g>
+      ${carrier(160, G, h, false, 'bd-near spy-man--back')}
+      ${carrier(240, G, h, false, 'bd-near spy-man--front')}
+      <path class="spy-pole" d="M148 ${f(poleY + 1)} L252 ${f(poleY - 1)}"/>
+      <g class="spy-sway" style="transform-origin:200px ${f(poleY)}px">${cluster(200, poleY, 46, 40, 7321)}</g>
     </g>
   </g>`;
 }
 
 /** 두 갈래 말뚝 위에 내려놓은 막대기와 송이, 석류·무화과 바구니 (민 13:26 "그 땅 실과를 보이고") */
 function display(): string {
-  const G = 240;
-  const poleY = 206;
+  const G = 244;
+  const poleY = 196;
   const stake = (x: number) => `<path d="M${x - 1.4} ${G} L${x - 1} ${poleY + 2} L${x - 4} ${poleY - 4} L${x - 2.6} ${poleY - 4.4} L${x} ${poleY} L${x + 2.6} ${poleY - 4.4} L${x + 4} ${poleY - 4} L${x + 1} ${poleY + 2} L${x + 1.4} ${G} Z"/>`;
   const figs = Array.from({ length: 5 }, (_, i) => `<path class="spy-fig" d="M${238 + i * 4} ${G - 9} q-2.2 -1 -1.6 -3.6 q1.6 -2.8 3.2 0 q0.6 2.6 -1.6 3.6 Z"/>`).join('');
   return `<g class="spy-display">
     <ellipse class="spy-display__glow" cx="200" cy="${poleY + 18}" rx="56" ry="30"/>
     <g class="bd-near">${stake(166)}${stake(234)}</g>
-    <path class="spy-pole" d="M156 ${poleY} L244 ${poleY}"/>
-    ${cluster(200, poleY, 36, 28, 7322)}
+    <path class="spy-pole" d="M150 ${poleY} L250 ${poleY}"/>
+    ${cluster(200, poleY, 48, 42, 7322)}
     <g class="bd-near"><path d="M150 ${G} L148 ${G - 8} L170 ${G - 8} L168 ${G} Z"/><path d="M232 ${G} L230 ${G - 8} L260 ${G - 8} L258 ${G} Z"/></g>
     ${pomegranate(153, G - 10, 2.6)}${pomegranate(159, G - 11, 2.8)}${pomegranate(165, G - 10, 2.5)}${pomegranate(156, G - 14, 2.4)}
     ${figs}
@@ -215,7 +217,7 @@ function wails(): string {
   const r = rng(7431);
   const spots: [number, number][] = [[64, 222], [118, 208], [150, 226], [246, 224], [286, 208], [338, 222], [10, 210], [392, 210], [200, 212]];
   return `<g class="spy-wails">${spots.map(([x, y], i) =>
-    `<circle class="spy-wail" style="--d:${f(i * 0.9 + r() * 1.5)}s" cx="${x}" cy="${y - 10}" r="12"/><circle class="spy-wail" style="--d:${f(i * 0.9 + 3.4 + r())}s" cx="${x}" cy="${y - 10}" r="12"/>`,
+    `<circle class="spy-wail" style="--d:${f(i * 0.9 + r() * 1.5)}s" cx="${x}" cy="${y - 10}" r="5"/><circle class="spy-wail" style="--d:${f(i * 0.9 + 3.4 + r())}s" cx="${x}" cy="${y - 10}" r="5"/>`,
   ).join('')}</g>`;
 }
 
@@ -232,11 +234,11 @@ export function spiesArt(state: SpiesState): string {
       ${hillCountry(7301)}
       <path class="bd-far" d="M${-W * 2} ${H} L${-W * 2} 214 C-200 210 60 216 200 212 C340 208 600 216 ${W * 3} 212 L${W * 3} ${H} Z"/>
       ${fortress()}
-      ${smallFolk([176, 226, 232], 214)}
+      ${smallFolk([170, 230, 236, 120], 214)}
       <g class="spy-giants">
-        ${giant(146, 222, 74, false, true, 7302)}
-        ${giant(256, 222, 70, true, true, 7303)}
-        ${giant(202, 214, 62, false, false, 7304)}
+        ${giant(200, 216, 128, false, false, 7304)}
+        ${giant(140, 224, 150, false, true, 7302)}
+        ${giant(262, 224, 144, true, true, 7303)}
       </g>
       <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 228 C-200 224 0 232 200 228 C400 224 700 232 ${W * 3} 228 L${W * 3} ${H} Z"/>
       ${tree(70, 250, 46, 'bd-near', 7305, { sway: true })}${tree(338, 250, 50, 'bd-near', 7306, { sway: true })}

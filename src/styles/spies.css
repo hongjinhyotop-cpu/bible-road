@@ -15,8 +15,11 @@
 .spy-giant__body { animation: spy-breathe 6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: 50% 100%; }
 @keyframes spy-breathe { from { transform: scale(1, 1); } to { transform: scale(1.01, 1.025); } }
 .spy-giant__shade { fill: #000; opacity: 0.35; filter: blur(1.5px); }
-.scene.is-grasshopper .spy-giant { scale: 1.9; filter: brightness(0.55); }
-.scene.is-grasshopper .spy-giant:nth-child(3) { scale: 2.2; }
+.scene.is-grasshopper .spy-giant { scale: 1.32; }
+.scene.is-grasshopper .spy-giant:nth-child(1) { scale: 1.45; }
+.spy-giant__body { stroke: color-mix(in srgb, var(--act-accent) 60%, transparent); stroke-width: 0.5; stroke-opacity: 0.55; }
+.spy-crest { fill: color-mix(in srgb, #8a2a1e 60%, var(--act-a)); }
+.spy-boss { fill: var(--act-accent); opacity: 0.6; }
 
 /* 포도원: 송이, 석류, 무화과 */
 .spy-bunch { fill: color-mix(in srgb, var(--act-accent) 20%, #4a2450); opacity: 0.85; }
@@ -25,12 +28,12 @@
 
 /* 거대한 포도송이: 보랏빛 알갱이가 하나씩 숨 쉬듯 빛나고, 빛 한 줄기가 쓸고 지나간다 */
 .spy-berry {
-  fill: color-mix(in srgb, #5a2a6a 72%, var(--act-accent));
+  fill: color-mix(in srgb, #3e1a4e 80%, var(--act-accent));
   stroke: color-mix(in srgb, var(--act-accent) 55%, #2a1030); stroke-width: 0.35;
   animation: spy-berry 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
 }
 @keyframes spy-berry { from { fill-opacity: 0.85; } to { fill-opacity: 1; } }
-.spy-cluster { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--act-accent) 50%, transparent)); }
+.spy-cluster { filter: drop-shadow(0 0 2px color-mix(in srgb, var(--act-accent) 35%, transparent)); }
 .spy-stem { fill: none; stroke: #2a1a10; stroke-width: 1.2; }
 .spy-leaf { fill: color-mix(in srgb, #4d6a2a 60%, var(--act-b)); opacity: 0.9; }
 .spy-glint {
@@ -66,13 +69,14 @@
   transform-box: fill-box; transform-origin: center;
   animation: spy-wail 7s ease-out infinite; animation-delay: calc(var(--d) * -1);
 }
-@keyframes spy-wail { 0% { opacity: 0; transform: translateY(0) scale(0.3); } 15% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-26px) scale(2.4); } }
+@keyframes spy-wail { 0% { opacity: 0; transform: translateY(0) scale(0.4); } 20% { opacity: 0.28; } 100% { opacity: 0; transform: translateY(-34px) scale(3); } }
 .spy-hunch { opacity: 0.95; }
 
 /* ── 효과 grasshopper ── */
 /* 무대 위 사람들이 작아진다 (scale만 써서 gsap transform과 겹치지 않게) */
-.scene .stage .actor { transition: scale 2.2s cubic-bezier(0.3, 0, 0.2, 1); }
-.scene.is-grasshopper .stage .actor { scale: 0.48; }
+/* 인물 하나하나는 gsap이 transform을 쥐고 있어서, 무대(.stage) 통째로 줄인다 */
+.scene__stage > .stage { transform-origin: 50% 100%; transition: scale 2.2s cubic-bezier(0.3, 0, 0.2, 1); }
+.scene.is-grasshopper .scene__stage > .stage { scale: 0.45; }
 .fx-hopper { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s; }
 .fx-hopper.is-out { opacity: 0; }
 /* 하늘이 거인의 그림자에 덮인다 */

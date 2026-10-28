@@ -45,3 +45,4 @@
 - 전쟁·처형(민 15:32-36, 민 25, 민 31): 고대의 맥락을 설명하되 미화하지 않고, 연출은 절제.
 
 ## 작업 기록
+- num-21-serpent (A급, 2026-10-28): 전용 배경 bz-road/bz-camp/bz-pole/bz-pole-lit + 효과 fiery-serpents·serpent-lift (`src/fx/brazen.ts`, `styles/brazen.css`). 45 beat, 카드 4, 선택지 1.
