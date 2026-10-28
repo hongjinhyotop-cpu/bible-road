@@ -16,6 +16,14 @@ export const ITEMS = {
   tablets: { name: '증거판 두 돌판', note: '하나님이 친히 쓰신 글', ref: '출 31:18' },
   oil: { name: '관유와 향품', note: '거룩하게 구별하는 기름', ref: '출 30:22–38' },
   'manna-jar': { name: '만나 항아리', note: '광야에서 먹은 양식 한 오멜', ref: '출 16:32–34' },
+  // ── 레위기 제사와 규례 (레 1–7, 23, 25) — 제사 종류를 기구처럼 하나씩 보여 준다 ──
+  burnt: { name: '번제', note: '통째로 다 태워 올려 드림', ref: '레 1' },
+  grain: { name: '소제', note: '고운 가루·기름·유향, 그리고 소금', ref: '레 2' },
+  peace: { name: '화목제', note: '하나님과 제사장과 드린 사람이 나눠 먹음', ref: '레 3; 7:11–34' },
+  'sin-offering': { name: '속죄제', note: '모르고 지은 죄도 덮는 피', ref: '레 4:1–5:13' },
+  guilt: { name: '속건제', note: '끼친 손해 + 오분의 일을 더 갚음', ref: '레 5:14–6:7' },
+  feasts: { name: '여호와의 절기', note: '안식일부터 초막절까지, 한 해의 달력', ref: '레 23' },
+  jubilee: { name: '희년의 나팔', note: '오십 년째, 땅과 사람이 돌아감', ref: '레 25:8–17' },
 } as const;
 
 export type ItemName = keyof typeof ITEMS;

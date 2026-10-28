@@ -51,13 +51,15 @@ export const PLACES = {
   ruins: '폐허: 무너진 성벽, 피어오르는 연기, 잿빛 땅',
   pasture: '목초지: 완만한 언덕과 흩어진 양 떼, 목자의 돌 우리',
   egypt: '이집트: 강가 야자, 멀리 피라미드와 신전 기둥',
+  tabernacle: '성막 뜰: 세마포 울타리, 가운데 번제단과 연기, 뒤로 성막 장막과 그 위 구름 기둥 (레위기·민수기)',
+  camp: '광야의 진: 지평선까지 늘어선 장막들, 지파 깃발, 가운데 멀리 성막과 구름 기둥 (레위기·민수기)',
 } as const;
 export type PlaceArt = keyof typeof PLACES;
 
 /** 실내 장소: 언덕(land)을 깔지 않는다 */
 const INDOOR = new Set<PlaceArt>(['palace', 'temple', 'house', 'prison']);
 /** 가운데 소품이 있는 장소: 폰에서 인물을 양옆으로 벌려 세운다 */
-const CENTERED = new Set<PlaceArt>(['well', 'cave']);
+const CENTERED = new Set<PlaceArt>(['well', 'cave', 'tabernacle']);
 const VARIANTS = { '': undefined, '-dusk': 'dusk', '-night': 'night', '-dawn': 'clear' } as const;
 
 /** 막별 기본 배경: 에피소드에 bg/mood가 없으면 이걸 쓴다 */
