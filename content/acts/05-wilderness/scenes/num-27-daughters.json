@@ -44,7 +44,7 @@
     { "type": "scripture", "ref": "민 27:16-17", "gloss": "모세 기도: ‘저 대신 백성 이끌 사람 하나 세워 주세요. 목자 없는 양처럼 되지 않게.’ 자기 못 들어간다는 얘기 듣자마자 한 말이 후임자 걱정임." },
     { "type": "voice", "fx": "glory", "text": "눈의 아들 여호수아는 신에 감동된 자니 너는 데려다가 그에게 안수하고" },
     { "type": "narration", "bg": "tabernacle-dawn", "fx": "fade", "enter": ["eleazar"], "act": "crowd", "text": "회막 앞. 다시 온 회중이 모였다. 제사장 엘르아살이 섰다. 아론이 서던 자리였다." },
-    { "type": "narration", "act": "walk-in", "who": "joshua", "text": "눈의 아들 여호수아. 아말렉과 싸우던 청년. 모세가 산에 오를 때 산 아래서 기다리던 사람. 회막을 떠나지 않던 사람." },
+    { "type": "narration", "act": "walk-in", "who": "joshua", "text": "눈의 아들 여호수아. 아말렉과 싸우던 청년. 모세가 산에 오를 때 따라 올라가 기다리던 사람. 회막을 떠나지 않던 사람." },
     { "type": "narration", "act": "approach", "who": "moses", "to": "joshua", "text": "모세가 그에게 다가갔다. 온 회중이 보는 앞에서." },
     { "type": "narration", "acts": [{ "act": "bless", "who": "moses" }, { "act": "bow-head", "who": "joshua" }], "text": "그리고 그의 머리에 손을 얹었다. 여호와께서 명하신 대로. 그 손이 무거웠는지 가벼웠는지, 기록은 말하지 않는다." },
     { "type": "scripture", "ref": "민 27:22-23", "gloss": "모세가 시키신 대로 함. 여호수아를 엘르아살이랑 온 회중 앞에 세우고, 머리에 손 얹고 자리 넘김. 공식 인수인계식." },

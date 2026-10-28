@@ -16,7 +16,7 @@
   "beats": [
     { "type": "narration", "text": "모압 평지의 아침. 땅은 아직 강 건너에 있었다. 한 뼘도 밟아 보지 못한 땅이었다. 그런데 그 땅에 먼저 줄이 그어지기 시작했다." },
     { "type": "voice", "fx": "glory", "text": "너희가 가나안 땅에 들어가는 때에 그 땅은 너희의 기업이 되리니 곧 가나안 사방 지경이라" },
-    { "type": "narration", "act": "travel", "from": "zin-desert", "to": "brook-egypt", "via": ["kadesh"], "text": "남편 경계. 염해 끝에서 시작해 아그랍빔 언덕 남편, 신 광야, 가데스바네아 남방, 하살아달, 아스몬. 거기서 돌아 애굽 시내를 따라 바다까지." },
+    { "type": "narration", "act": "travel", "from": "zin-desert", "to": "brook-egypt", "via": ["kadesh"], "text": "남편 경계. 염해 끝에서 시작해 아그랍빔 언덕 남편, 신 광야, 가데스바네아 남방, 하살아달, 아스몬. 거기서 돌아 이집트 시내를 따라 바다까지." },
     { "type": "narration", "act": "travel", "from": "galilee", "to": "jordan", "text": "서편은 대해. 북편은 호르산에서 하맛 어귀, 스닷, 시브론, 하살에난. 동편은 스밤과 리블라를 지나 긴네렛 동편 물가로, 요단을 따라 내려가 염해까지." },
     { "type": "narration", "act": "look-up", "who": "moses", "text": "모세는 그 선들을 들었다. 사십 년 동안 그가 걸은 땅은 전부 이 선 바깥이었다. 선을 긋는 일은 쉽다. 선 안을 채우는 일이 어렵다." },
     { "type": "line", "who": "moses", "act": "bless", "text": "“이는 너희가 제비 뽑아 얻을 땅이라. 아홉 지파와 반 지파에게. 르우벤과 갓과 므낫세 반 지파는 이미 해 돋는 편에서 받았느니라.”" },
@@ -26,7 +26,7 @@
     { "bg": "town-dawn", "fx": "fade", "exit": ["caleb", "joshua"], "act": "bow-head", "who": "eleazar" },
     { "type": "narration", "text": "레위인에게는 기업이 없었다. 여호와가 그들의 기업이었다. 그러나 사람은 어딘가에 살아야 한다. 각 지파의 몫에서 성읍을 떼어 레위인에게 주었다. 모두 마흔여덟." },
     { "type": "line", "who": "moses", "act": "face", "to": "eleazar", "text": "“성벽에서부터 밖으로 사면 이천 규빗, 가축을 둘 들까지 함께 주라. 많이 얻은 자에게서는 많이, 적게 얻은 자에게서는 적게.”" },
-    { "type": "narration", "act": "look-up", "who": "eleazar", "text": "제사장의 사람들이 한 곳에 모여 살지 않고, 열두 지파 사이사이에 흩어졌다. 성막은 하나였지만, 그 성막을 아는 사람들은 온 땅에 있게 되었다." },
+    { "type": "narration", "act": "look-up", "who": "eleazar", "text": "레위인들은 한 곳에 모여 살지 않고, 열두 지파 사이사이에 흩어졌다. 성막은 하나였지만, 그 성막을 아는 사람들은 온 땅에 있게 되었다." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "그 마흔여덟 성 가운데 여섯은 이름이 하나 더 붙었다. 도피성. 요단 이편에 셋, 가나안 땅에 셋." },
     { "bg": "road-dusk", "fx": "fade", "exit": ["moses", "eleazar"], "act": "walk-in", "who": "manslayer" },
     { "type": "narration", "act": "step-back", "who": "manslayer", "text": "언젠가, 그 땅에서. 한 사람이 돌을 던졌다. 보지 못하고 던진 돌이었다. 원한도 없었고, 해하려던 것도 아니었다. 그러나 사람이 죽었다." },

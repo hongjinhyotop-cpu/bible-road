@@ -14,9 +14,9 @@
   },
   "beats": [
     {"type": "narration", "fx": "dust", "act": "travel", "from": "zin-desert", "to": "kadesh", "text": "정월. 온 회중이 신 광야에 이르러 가데스에 머물렀다. 서른여덟 해 전, 들어가기를 거절했던 땅의 문턱이었다. 광야는 길을 한 바퀴 돌려, 사람들을 같은 자리에 다시 세워 놓았다. 다만 같은 사람들은 아니었다."},
-    {"type": "narration", "text": "미리암은 늙어 있었다. 나일 강가 갈대 사이에서 바구니를 지켜보던 소녀였다. 바다를 건넌 날 소고를 들고 여인들 앞에서 춤추던 사람이었다. ‘너희는 여호와를 찬송하라.’ 그 노래를 처음 부른 입이었다. 누나, 형, 그리고 막내. 세 남매가 함께 걸어온 길은 이집트에서 여기까지였다.", "acts": [{"act": "look-up", "who": "miriam"}, {"act": "face", "who": "moses", "to": "miriam"}]},
+    {"type": "narration", "text": "미리암은 늙어 있었다. 나일 강가 갈대 사이에서 바구니를 지켜보던 소녀였다. 바다를 건넌 날 소고를 들고 여인들 앞에서 춤추던 사람이었다. ‘너희는 여호와를 찬송하라.’ 그 노래로 화답하던 입이었다. 누나, 형, 그리고 막내. 세 남매가 함께 걸어온 길은 이집트에서 여기까지였다.", "acts": [{"act": "look-up", "who": "miriam"}, {"act": "face", "who": "moses", "to": "miriam"}]},
     {"type": "narration", "act": "leave", "who": "miriam", "text": "미리암이 거기서 죽었다."},
-    {"type": "narration", "bg": "mr-kadesh", "fx": "fade", "acts": [{"act": "kneel", "who": "moses"}, {"act": "bow-head", "who": "aaron"}], "text": "그리고 거기 장사되었다. 기록은 그것이 전부다. 노래를 처음 부른 사람의 죽음은, 노래 한 소절보다 짧게 적혔다."},
+    {"type": "narration", "bg": "mr-kadesh", "fx": "fade", "acts": [{"act": "kneel", "who": "moses"}, {"act": "bow-head", "who": "aaron"}], "text": "그리고 거기 장사되었다. 기록은 그것이 전부다. 그 노래를 받아 부른 사람의 죽음은, 노래 한 소절보다 짧게 적혔다."},
     {"type": "scripture", "ref": "민 20:1", "gloss": "가데스에 도착함. 그리고 미리암이 거기서 죽어서 묻힘. 성경은 딱 이 한 줄로 끝냄. 모세 누나, 홍해에서 소고 치며 노래 부르던 그 사람."},
     {"type": "narration", "act": "stand", "who": "moses", "text": "무덤 위에 마지막 돌이 놓였다. 그날 저녁 진에는 물이 없었다. 슬픔은 기다려 주지만, 목마름은 기다려 주지 않는다."},
     {"type": "narration", "bg": "camp-dusk", "fx": "fade", "act": "crowd", "text": "회중이 모였다. 이번에도, 모세와 아론을 향해서였다."},
