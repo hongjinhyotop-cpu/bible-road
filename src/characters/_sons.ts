@@ -45,7 +45,7 @@ const TUNIC = `
   <path class="crown" d="M108 184 L112 184 L113 248 L110 252 L107 248 Z"/>`;
 
 // 향로: 손잡이를 쥐고 앞으로 내민 놋 그릇 + 숯불 + 향 연기 (레 10:1 "각기 향로를 가져다가")
-const CENSER = `
+export const CENSER = `
   <path class="sf-incense" d="M176 144 C168 128 184 116 176 100 C168 84 182 72 174 56 C168 44 176 34 172 22"/>
   <path class="sf-incense" d="M181 146 C188 132 176 118 184 104 C190 92 180 80 186 66"/>
   <path class="sf-pan" d="M146 157 L163 154.6 L163 157.4 L146 160 Z"/>
