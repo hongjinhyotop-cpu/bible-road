@@ -191,16 +191,17 @@ function road(): string {
 
 /** 등을 보이고 서서 광야 쪽을 바라보는 사람 (원점 = 발). 여자는 너울, 아이는 작게 */
 function watcher(x: number, ground: number, h: number, kind: 'man' | 'woman' | 'child', d: number): string {
-  const w = h * (kind === 'child' ? 0.34 : 0.3);
-  const head = h * 0.12;
-  const top = -h + head * 2.1;
-  const body = kind === 'woman'
-    ? `<path d="M${f(-w * 0.42)} ${f(top - head * 1.6)} Q0 ${f(top - head * 3.2)} ${f(w * 0.42)} ${f(top - head * 1.6)} L${f(w * 0.62)} 0 L${f(-w * 0.62)} 0 Z"/>`
-    : `<path d="M${f(-w * 0.5)} ${f(top)} Q0 ${f(top - head * 0.5)} ${f(w * 0.5)} ${f(top)} L${f(w * 0.6)} 0 L${f(-w * 0.6)} 0 Z"/>`;
+  const w = h * (kind === 'child' ? 0.42 : 0.4);
+  const head = h * 0.13;
+  const top = -h + head * 2;
+  // 둥근 어깨에서 발치로 퍼지는 겉옷. 여자는 머리부터 어깨까지 너울이 이어진다
+  const robe = `<path d="M${f(-w * 0.2)} ${f(top - head * 0.1)} Q${f(-w * 0.52)} ${f(top)} ${f(-w * 0.52)} ${f(top + head * 1.4)} L${f(-w * 0.62)} 0 L${f(w * 0.62)} 0 L${f(w * 0.52)} ${f(top + head * 1.4)} Q${f(w * 0.52)} ${f(top)} ${f(w * 0.2)} ${f(top - head * 0.1)} Z"/>`;
+  const veil = kind === 'woman'
+    ? `<path d="M${f(-head * 1.1)} ${f(top - head * 0.6)} Q0 ${f(top - head * 3.2)} ${f(head * 1.1)} ${f(top - head * 0.6)} L${f(w * 0.5)} ${f(top + head * 2.4)} L${f(-w * 0.5)} ${f(top + head * 2.4)} Z"/>`
+    : '';
+  const body = `<circle cx="0" cy="${f(top - head * 1)}" r="${f(head)}"/>${robe}${veil}`;
   // 위치는 바깥 g의 transform 속성, 숨쉬기(CSS transform)는 안쪽 g — 둘이 겹치면 CSS가 속성을 덮어쓴다
-  return `<g transform="translate(${f(x)} ${f(ground)})"><g class="at-watch" style="--d:${f(d)}s">
-    <circle cx="0" cy="${f(top - head * 0.9)}" r="${f(head)}"/>${body}
-  </g></g>`;
+  return `<g transform="translate(${f(x)} ${f(ground)})"><g class="at-watch" style="--d:${f(d)}s">${body}</g></g>`;
 }
 
 function edge(): string {
