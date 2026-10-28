@@ -15,6 +15,22 @@ export interface ActContent {
   keyVerse?: string;
   /** 막 피날레의 이야기 목소리 몇 줄 (한 줄씩 탭으로). 마지막 줄 다음에 keyVerse 카드가 나온다 */
   finale?: string[];
+  /** (선택) 큰 이정표: 막 피날레의 핵심 구절 다음, 인물 카드 앞에 나오는 완주 연출 (5막 = 모세오경 완주) */
+  milestone?: Milestone;
+}
+
+export interface Milestone {
+  /** 큰 제목 (예: "모세오경 완주") */
+  title: string;
+  /** 두루마리 하나씩: 짧은 이름 + 장 수 (예: { "name": "창세기", "chapters": 50 }) */
+  books: { name: string; chapters: number }[];
+  /** 두루마리들이 하나로 말린 뒤의 이름 (예: "토라") */
+  scroll: string;
+  /** 여기까지 끝낸 장 수 / 전체 장 수 */
+  done: number;
+  total: number;
+  /** 이야기 목소리 몇 줄 (탭으로 한 줄씩) */
+  lines?: string[];
 }
 
 /** 지도·목록에 필요한 만큼만 추린 장면/읽기 구간 정보 */

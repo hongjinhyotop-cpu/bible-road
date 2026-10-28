@@ -27,6 +27,7 @@ import { korahArt } from './korah';
 import { spiesArt } from './spies';
 import { meribahArt } from './meribah';
 import { brazenArt } from './brazen';
+import { deutArt } from './deuteronomy';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -552,6 +553,16 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'bz-camp': () => brazenArt('camp'),
   'bz-pole': () => brazenArt('pole'),
   'bz-pole-lit': () => brazenArt('pole-lit'),
+  // 신명기 (fx/deuteronomy.ts)
+  'dt-door': () => deutArt('dt-door'),
+  'dt-door-lit': () => deutArt('dt-door-lit'),
+  'dt-twin': () => deutArt('dt-twin'),
+  'dt-twin-bless': () => deutArt('dt-twin-bless'),
+  'dt-twin-curse': () => deutArt('dt-twin-curse'),
+  'dt-song': () => deutArt('dt-song'),
+  'dt-nebo-path': () => deutArt('dt-nebo-path'),
+  'dt-nebo-view': () => deutArt('dt-nebo-view'),
+  'dt-nebo-empty': () => deutArt('dt-nebo-empty'),
   // 별을 세어 보라 (창 15, fx/covenant.ts)
   'cov-count': () => covenantArt('count'),
   'cov-pieces': () => covenantArt('pieces'),

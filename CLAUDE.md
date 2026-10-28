@@ -171,7 +171,7 @@ PROGRESS.md      ← 진행 기록
 - 여정 지도 장소 이름은 `actions.ts`의 `PLACE_NAMES` (이름표 아래 작은 설명은 `PLACE_NOTES`) (ur, haran, canaan, shechem, bethel, hebron, mamre, sodom, gerar, beersheba, moriah, egypt, goshen, peniel, dothan, sinai, jericho, jerusalem, galilee …). 새 장소는 `PLACE_NAMES` + `src/fx/travel.ts PLACE_XY`(경도·위도)에 추가.
 
 ### 배경 라이브러리 (`bg`, `src/engine/moods.ts` PLACES — 그림 `src/fx/places.ts`)
-- 장소: `tent`(장막) `well`(우물) `wilderness`(광야) `town`(성읍) `palace`(궁전 실내) `temple`(성전 뜰) `sea`(바다) `starfield`(밤하늘, 기본이 밤) `mountain`(산) `road`(길) `river`(강·나루) `house`(집 안) `prison`(감옥·구덩이) `oaks`(상수리 숲) `cave`(굴) `ruins`(폐허) `pasture`(목초지) `egypt`(이집트 강가)
+- 장소: `tent`(장막) `well`(우물) `wilderness`(광야) `town`(성읍) `palace`(궁전 실내) `temple`(성전 뜰) `sea`(바다) `starfield`(밤하늘, 기본이 밤) `mountain`(산) `road`(길) `river`(강·나루) `house`(집 안) `prison`(감옥·구덩이) `oaks`(상수리 숲) `cave`(굴) `ruins`(폐허) `pasture`(목초지) `egypt`(이집트 강가) `tabernacle`(성막 뜰) `camp`(광야의 진) `plains`(모압 평지: 요단·여리고, 신명기 모세의 설교 자리)
 - 시간대: 이름 뒤에 `-dusk`(저녁) `-night`(밤, 별 입자) `-dawn`(맑은 아침). 예: `tent-night`, `well-dusk`, `road-dawn`
 - 1막 전용 배경(eden, field, altar, ark-*, tower-* …)도 그대로 쓸 수 있다. `field-night`도 있음.
 - 에피소드에 `bg`/`mood`가 없으면 막 기본 배경(2번 표)으로 시작.
@@ -180,6 +180,8 @@ PROGRESS.md      ← 진행 기록
 ### 효과 라이브러리 (`fx`, `src/engine/moods.ts` FX)
 - `glory`(하나님의 임재: 위에서 금빛 — 인물로 안 그림) `fire`(무대 가운데 불길) `stars`(별이 쏟아지듯 켜짐) `dust`(모래바람) `fade`(화면 전환: 까맣게 닫혔다 열림, 그 사이 배경·인물이 바뀜 = 시간이 흐름) `thunder`(번개) `rain-start` / `rain-stop`
 - 기본 효과: `flash` `dawn` `dark` `land` `shake`
+- **회상·앞날 필터** (2026-10-28, 신명기): `recall`(바랜 빛 + "기억") / `foresee`(맑고 찬 빛 + "그날이 오면") → `present`로 끝. `fade`로는 안 끝나고 에피소드 끝에 저절로 걷힘. 보통 `"fx": ["fade", "recall"]` + 앞에서 만든 배경(sinai-*, calf-*, spy-*, mr-* …)을 재활용 → `["fade", "present"]` + 원래 배경. 신명기처럼 말하는 사람이 지난 일·앞날을 이야기할 때.
+- 신명기 A급 효과 (`src/fx/deuteronomy.ts`): `shema`("들으라" 금빛 글자 + 소리 고리) `pass-on`(금빛 티끌이 왼쪽 인물 → 오른쪽 인물: 가르침·전해 줌) `amen`(군중 쪽에서 "아멘"이 떠오름) `eagle`(독수리가 새끼를 받아 올림) `land-show`(배경 `dt-nebo-view`의 땅이 구역별로 밝아짐). 배경 `dt-door`/`dt-door-lit`(문설주) `dt-twin`/`-bless`/`-curse`(그리심·에발) `dt-song`(별밤·반석 벼랑) `dt-nebo-path`/`dt-nebo-view`/`dt-nebo-empty`(느보산).
 - 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐. `fade` 전환이나 다른 배경으로 바뀌는 beat에서는 바로 걷힘 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
 - `weep`(큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 — 창 45:2, `src/fx/hall.ts`). 이집트 고관의 홀 배경 `joseph-hall`(열린 큰 문·파피루스 기둥·화로) / `joseph-hall-shut`(모두 물러가고 문이 닫힘) / `joseph-hall-dusk` — 창 41–50의 요셉 궁·바로 궁 장면에서 재사용 가능.
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
@@ -216,6 +218,7 @@ PROGRESS.md      ← 진행 기록
 ```
 - 위치: `content/acts/NN-이름/act.json`. `title`은 `src/engine/acts.ts`와 같게. `keyVerse` = 막 피날레 핵심 구절, `finale` = 피날레에서 한 줄씩 탭으로 나오는 이야기 목소리(이영도풍) 문장들. (`mechanic`은 없어졌음)
 - **막 피날레** `#/finale/N` (`src/screens/finale.ts`): 그 막의 장을 전부 끝내면, 마지막 에피소드의 "다음" 버튼이 피날레로 바뀜 → finale 문장들 → keyVerse 카드 → 그 막 인물 카드 → "지도에서 별 켜기".
+- (선택) **큰 이정표** `act.json`의 `"milestone"`: `{ title, scroll, books: [{name, chapters}], done, total, lines }` → 피날레의 핵심 구절 다음에 두루마리(책)가 한 권씩 켜지고 한 두루마리로 말린 뒤, 끝낸 장 수가 차오르고 전체 진행 막대 → lines 한 줄씩 → 인물 카드. 5막 = 모세오경 완주(187장). 나중에 역사서·복음서 끝 같은 큰 구간에도 재사용. 검사기가 책 장 수 합 = done인지 본다.
 
 ### 인물 도감 (`data/characters.json`)
 ```json

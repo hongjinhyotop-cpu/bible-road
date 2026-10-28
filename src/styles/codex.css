@@ -103,6 +103,28 @@
 .finale__early { text-align: center; }
 .finale__verse { margin: 8px auto 44px; }
 .finale__cast { margin-bottom: 26px; }
+/* ── 완주 연출 (act.json milestone — 5막 모세오경) ── */
+.finale__mile[hidden] { display: none; }
+.finale__mile { position: relative; margin: 0 auto 48px; text-align: center; }
+.mile__shelf { display: flex; justify-content: center; gap: clamp(6px, 2.4vw, 14px); height: 150px; align-items: stretch; }
+.mile__scroll, .mile__torah { position: relative; display: flex; flex-direction: column; align-items: center; }
+.mile__scroll { width: clamp(44px, 14vw, 64px); }
+.mile__rod { display: block; width: 116%; height: 9px; border-radius: 5px; background: linear-gradient(180deg, #8a6234, #4a3018); box-shadow: 0 1px 0 rgba(255, 220, 160, 0.3) inset; flex: none; }
+.mile__body { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  background: linear-gradient(90deg, #b69a6e, #e8d6b0 30%, #f1e4c4 50%, #e8d6b0 70%, #b69a6e); color: #3a2814; box-shadow: 0 0 0 rgba(255, 210, 130, 0); transition: box-shadow 1s, filter 1s; }
+.mile__body b { writing-mode: vertical-rl; font-family: var(--story-font); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.2em; }
+.mile__body small { font-size: 0.9rem; opacity: 0.7; }
+.mile__scroll.is-lit .mile__body { box-shadow: 0 0 22px rgba(255, 210, 130, 0.55); }
+.mile__torah { position: absolute; left: 50%; top: 34px; width: clamp(110px, 34vw, 150px); height: 150px; translate: -50% 0; opacity: 0; transform-origin: center; }
+.mile__torah .mile__body { box-shadow: 0 0 40px rgba(255, 214, 140, 0.7); }
+.mile__torah .mile__body b { writing-mode: horizontal-tb; font-size: 1.5rem; letter-spacing: 0.4em; margin-right: -0.4em; }
+.mile__count { margin: 26px 0 8px; color: var(--gold-bright); opacity: 0; }
+.mile__num { font-size: clamp(2.6rem, 12vw, 3.6rem); line-height: 1; text-shadow: 0 0 24px rgba(244, 214, 150, 0.5); }
+.mile__unit { margin-left: 0.25em; font-family: var(--story-font); font-size: 1.1rem; }
+.mile__bar { width: min(100%, 320px); height: 4px; margin: 0 auto; border-radius: 2px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+.mile__bar span { display: block; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transform-origin: left; transform: scaleX(0); box-shadow: 0 0 10px var(--gold); }
+.mile__of { margin: 12px 0 30px; opacity: 0; }
+.mile__line { margin: 0 0 1.3em; font-size: calc(1.0625rem * var(--text-scale)); line-height: 1.9; }
 .finale__label { text-align: center; color: var(--act-accent); letter-spacing: 0.2em; margin: 0 0 16px; }
 .finale__got { text-align: center; margin: 18px 0 0; }
 .finale__actions[hidden] { display: none; }

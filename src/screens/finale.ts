@@ -37,6 +37,7 @@ export function finaleScreen({ act: actParam }: Params): Screen {
       </div>
       <div class="finale__lines voice-story"></div>
       <div class="finale__verse"></div>
+      <section class="finale__mile" hidden aria-live="polite"></section>
       <section class="finale__cast" hidden>
         <p class="finale__label ui">이번 막에서 만난 사람들</p>
         <div class="pcards"></div>
@@ -58,6 +59,10 @@ export function finaleScreen({ act: actParam }: Params): Screen {
   let stepNo = 0;
   let lines: string[] = [];
   let done = false;
+  /** 완주 연출(milestone): 0 = 아직, 1 = 두루마리 다 놓임(그다음 탭부터 이야기 줄), 2 = 끝 */
+  let mile = 0;
+  let mileLines: string[] = [];
+  let mileNo = 0;
 
   function setTap(on: boolean) {
     el.dataset.tap = on ? '1' : '0';
@@ -87,6 +92,19 @@ export function finaleScreen({ act: actParam }: Params): Screen {
       } else if (stepNo === lines.length) {
         stepNo++;
         await showVerse();
+      } else if (actContent(no)?.milestone && mile < 2) {
+        if (mile === 0) {
+          mile = 1;
+          await showMilestone();
+        } else if (mileNo < mileLines.length) {
+          const p = document.createElement('p');
+          p.className = 'mile__line voice-story';
+          $('.finale__mile').append(p);
+          anim = inkReveal(p, mileLines[mileNo]).timeline;
+          reveal(p);
+          mileNo++;
+          if (mileNo === mileLines.length) mile = 2;
+        } else mile = 2;
       } else {
         stepNo++;
         await showCast();
@@ -104,6 +122,46 @@ export function finaleScreen({ act: actParam }: Params): Screen {
     $('.finale__verse').append(card);
     anim = revealScripture(card);
     reveal(card);
+  }
+
+  /** 완주 연출: 두루마리가 한 권씩 켜지고 → 한 두루마리로 말리고 → 장 수가 차오르고 → 전체 진행 막대 */
+  async function showMilestone() {
+    const m = actContent(no)!.milestone!;
+    mileLines = m.lines ?? [];
+    const box = $('.finale__mile');
+    const pct = Math.round((m.done / m.total) * 100);
+    box.innerHTML = `
+      <p class="finale__label ui">${m.title}</p>
+      <div class="mile__shelf">${m.books.map((b, i) => `<div class="mile__scroll" style="--i:${i}"><i class="mile__rod"></i><span class="mile__body"><b>${b.name}</b><small class="latin">${b.chapters}</small></span><i class="mile__rod"></i></div>`).join('')}</div>
+      <div class="mile__torah" aria-hidden="true"><i class="mile__rod"></i><span class="mile__body"><b>${m.scroll}</b></span><i class="mile__rod"></i></div>
+      <p class="mile__count"><span class="mile__num latin">0</span><span class="mile__unit">장</span></p>
+      <div class="mile__bar" aria-hidden="true"><span style="--p:${(m.done / m.total).toFixed(4)}"></span></div>
+      <p class="mile__of voice-talk">성경 ${m.total.toLocaleString('ko-KR')}장 중 ${m.done}장 · 약 ${pct}%</p>`;
+    box.hidden = false;
+    const rm = reducedMotion();
+    const scrolls = box.querySelectorAll<HTMLElement>('.mile__scroll');
+    const torah = $('.mile__torah');
+    const num = $('.mile__num');
+    const counter = { v: 0 };
+    const tl = gsap.timeline();
+    tl.fromTo(box.querySelector('.finale__label'), { opacity: 0 }, { opacity: 1, duration: 0.6 })
+      // 한 권씩 불이 켜진다 (창 → 신)
+      .fromTo(scrolls, { opacity: 0, y: rm ? 0 : 18, filter: 'brightness(0.4)' }, { opacity: 1, y: 0, filter: 'brightness(1)', duration: rm ? 0.3 : 0.8, ease: 'expo.out', stagger: rm ? 0.05 : 0.45 }, 0.3)
+      .add(() => scrolls.forEach((s) => s.classList.add('is-lit')), rm ? 0.5 : 2.6)
+      // 다섯 두루마리가 가운데로 모여 하나로 말린다
+      .to(scrolls, rm ? { opacity: 0, duration: 0.3 } : {
+        x: (i) => { const r = scrolls[i].getBoundingClientRect(); const c = box.getBoundingClientRect(); return c.left + c.width / 2 - (r.left + r.width / 2); },
+        scaleX: 0.3, opacity: 0, duration: 1.1, ease: 'power3.in', stagger: { each: 0.06, from: 'edges' },
+      }, rm ? 0.6 : 3.2)
+      .fromTo(torah, { opacity: 0, scaleX: rm ? 1 : 0.2 }, { opacity: 1, scaleX: 1, duration: rm ? 0.4 : 1.4, ease: 'expo.out' }, rm ? 0.8 : 4.2)
+      .fromTo($('.mile__count'), { opacity: 0 }, { opacity: 1, duration: 0.5 }, rm ? 1 : 4.8)
+      .to(counter, { v: m.done, duration: rm ? 0.3 : 2, ease: 'power2.out', onUpdate: () => { num.textContent = String(Math.round(counter.v)); } }, '<')
+      .fromTo(box.querySelector('.mile__bar span'), { scaleX: 0 }, { scaleX: m.done / m.total, duration: rm ? 0.3 : 2, ease: 'power2.out' }, '<')
+      .fromTo($('.mile__of'), { opacity: 0, y: rm ? 0 : 8 }, { opacity: 1, y: 0, duration: 0.8 }, '>-0.6');
+    anim = tl;
+    reveal(box);
+    tl.eventCallback('onUpdate', () => reveal(box));
+    if (!mileLines.length) mile = 2;
   }
 
   async function showCast() {

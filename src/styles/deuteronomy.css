@@ -1,0 +1,110 @@
+/* ── 신명기 A급 (신 6 · 27–28 · 32 · 34, fx/deuteronomy.ts) ──
+   문설주의 글, 그리심과 에발, 모세의 노래의 밤과 독수리, 느보산에서 본 온 땅.
+   효과: shema · pass-on · amen · eagle · land-show */
+
+/* 작은 사람들 (비탈의 백성) */
+.dt-folk rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); opacity: 0.8; animation: dt-sway 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.dt-folk--priest rect { fill: color-mix(in srgb, #f1e6cc 55%, var(--act-b)); opacity: 0.7; }
+@keyframes dt-sway { from { translate: 0 0; } to { translate: 0 -0.4px; } }
+.dt-stars circle { fill: #fff6e0; opacity: 0.6; animation: dt-twinkle 4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes dt-twinkle { from { opacity: 0.25; } to { opacity: 0.85; } }
+
+/* ── 문설주 (신 6:9) ── */
+.dt-house rect { stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 0.5; }
+.dt-doorway { fill: color-mix(in srgb, #3a2412 70%, #000); }
+.dt-lamp { fill: #ffd890; filter: blur(0.6px); animation: dt-flicker 2.6s ease-in-out infinite alternate; }
+.dt-lamp-halo { opacity: 0.9; }
+@keyframes dt-flicker { from { opacity: 0.75; } to { opacity: 1; } }
+.dt-vine path { fill: none; }
+.dt-vine circle, .dt-vine path:not([fill]) { fill: currentColor; }
+.dt-script path { fill: none; stroke: #ffd994; stroke-width: 0.9; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 1.6px rgba(255, 210, 130, 0.9)); animation: dt-write 0.7s ease-out calc(0.4s + var(--i) * 0.16s) forwards; }
+@keyframes dt-write { to { stroke-dashoffset: 0; } }
+.dt-mezuzah rect { fill: #e8c27a; filter: drop-shadow(0 0 2px rgba(255, 210, 130, 0.8)); }
+.dt-door-glow { fill: url(#bd-halo-g); opacity: 0; animation: dt-glow 2.4s ease-out 0.4s forwards; }
+@keyframes dt-glow { to { opacity: 1; } }
+
+/* ── 그리심과 에발 (신 27–28) ── */
+.dt-gerizim { fill: color-mix(in srgb, #5f7a4a 18%, var(--bd)); }
+.dt-ebal { fill: color-mix(in srgb, #5c5048 16%, var(--bd)); }
+.dt-plaster { fill: #ece4d2; opacity: 0.82; }
+.dt-law { stroke: color-mix(in srgb, #5a4a3a 80%, #000); stroke-width: 0.5; opacity: 0.7; }
+.dt-ark rect { fill: #e8c27a; }
+.dt-ark path { stroke: #c9a056; fill: none; }
+.dt-ark .dt-ark__wing { stroke: #ffe2a0; stroke-width: 0.8; }
+.dt-bless__beam { fill: rgba(255, 224, 150, 0.16); filter: blur(6px); mix-blend-mode: screen; animation: dt-beam 6s ease-in-out infinite alternate; }
+@keyframes dt-beam { from { opacity: 0.6; } to { opacity: 1; } }
+.dt--bless .dt-gerizim { fill: color-mix(in srgb, #8aa456 32%, var(--bd)); transition: fill 2s; }
+.dt-grain { fill: none; stroke: #e9c46a; stroke-width: 0.9; stroke-linecap: round; transform-box: fill-box; transform-origin: bottom; animation: dt-grain 2.8s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes dt-grain { from { rotate: -3deg; } to { rotate: 3deg; } }
+.dt-cloud { fill: color-mix(in srgb, #1c1c26 80%, var(--act-b)); opacity: 0.85; filter: blur(2px); animation: dt-cloud 9s ease-in-out infinite alternate; }
+@keyframes dt-cloud { from { translate: -4px 0; } to { translate: 4px 1px; } }
+.dt--curse .dt-ebal { fill: color-mix(in srgb, #2a2420 40%, var(--bd)); }
+.dt-crack { fill: none; stroke: color-mix(in srgb, #000 70%, var(--act-b)); stroke-width: 0.9; }
+
+/* ── 모세의 노래 (신 32) ── */
+.dt-milky { fill: none; stroke: rgba(255, 244, 220, 0.14); stroke-width: 26; filter: blur(10px); }
+.dt-crag-edge { fill: none; stroke: color-mix(in srgb, var(--act-accent) 55%, #fff); stroke-width: 0.8; opacity: 0.45; }
+.dt-nest-mark { fill: none; }
+.dt-fire { fill: #ffb060; filter: drop-shadow(0 0 3px #ff9a40); animation: dt-flicker 1.8s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+
+/* ── 느보산 (신 34) ── */
+.dt-trail { fill: none; stroke: color-mix(in srgb, #f0dcb4 50%, var(--act-b)); stroke-width: 1.6; stroke-dasharray: 3 3; opacity: 0.5; }
+.dt-westsea { fill: color-mix(in srgb, #bcdcea 60%, var(--act-b)); opacity: 0.5; filter: blur(0.6px); }
+.dt-hills--far { opacity: 0.6; }
+.dt-region { fill: color-mix(in srgb, var(--act-b) 60%, #1a1a24); opacity: 0.55; }
+.dt-jordan { fill: none; stroke: color-mix(in srgb, #a8d0dc 60%, var(--act-b)); stroke-width: 1.4; opacity: 0.7; }
+.dt-deadsea { fill: color-mix(in srgb, #a8c8d4 50%, var(--act-b)); opacity: 0.7; }
+.dt-label { font-family: var(--story-font); font-size: 7.6px; letter-spacing: 0.06em; fill: var(--ivory); paint-order: stroke; stroke: rgba(10, 8, 4, 0.7); stroke-width: 1.6px; opacity: 0; }
+.dt--view.is-showing .dt-region { animation: dt-reveal 1.4s ease-out calc(0.4s + var(--i) * 1.5s) both; }
+.dt--view.is-showing .dt-label { animation: dt-reveal 1.4s ease-out calc(0.6s + var(--i) * 1.5s) both; }
+@keyframes dt-reveal {
+  0% { opacity: 0.2; fill: color-mix(in srgb, var(--act-b) 60%, #1a1a24); }
+  40% { opacity: 1; fill: #ffe2a0; }
+  100% { opacity: 0.9; fill: color-mix(in srgb, #f0d290 55%, var(--act-b)); }
+}
+.dt--view.is-showing .dt-label { fill: var(--ivory); }
+.dt-stay { fill: url(#bd-halo-g); animation: dt-stay 6s ease-in-out infinite alternate; }
+.dt-stay__beam { fill: rgba(255, 232, 180, 0.12); filter: blur(8px); mix-blend-mode: screen; }
+@keyframes dt-stay { from { opacity: 0.5; } to { opacity: 0.95; } }
+
+/* ── 효과 shema ── */
+.fx-shema { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-shema.is-out { opacity: 0; }
+.fx-shema p { position: absolute; left: 50%; top: 26%; translate: -50% -50%; margin: 0; text-align: center; }
+.fx-shema__he { display: block; font-size: clamp(1rem, 5cqh, 1.6rem); color: #ffe2a0; opacity: 0; letter-spacing: 0.1em; animation: dt-word 2.4s ease-out 0.2s forwards; }
+.fx-shema__ko { display: block; font-family: var(--story-font); font-size: clamp(1.7rem, 10cqh, 3rem); letter-spacing: 0.4em; color: #fff3d6; text-shadow: 0 0 18px rgba(255, 200, 110, 0.9); opacity: 0; animation: dt-word 2.4s ease-out 0.9s forwards; }
+@keyframes dt-word { from { opacity: 0; translate: 0 8px; filter: blur(6px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+.fx-shema__he { --o: 0.55; }
+.fx-shema i { position: absolute; left: 50%; top: 30%; width: 40px; height: 40px; translate: -50% -50%; border-radius: 50%; border: 1.5px solid rgba(255, 220, 150, 0.7); box-shadow: 0 0 12px rgba(255, 200, 110, 0.5); opacity: 0; animation: bz-ring 4.8s cubic-bezier(0.2, 0.6, 0.3, 1) calc(1.4s + var(--d)) both; }
+
+/* ── 효과 pass-on ── */
+.fx-passon { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 1.4s ease-in; }
+.fx-passon.is-out { opacity: 0; }
+.fx-passon s { position: absolute; left: var(--x0); top: var(--y0); width: 60px; height: 60px; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgba(255, 226, 160, 0.8), transparent 70%); mix-blend-mode: screen; opacity: 0; animation: dt-pulse 2.2s ease-out 0.2s both; }
+.fx-passon s.to { left: var(--x1); top: var(--y1); animation-delay: 2.6s; }
+@keyframes dt-pulse { 0% { opacity: 0; scale: 0.4; } 40% { opacity: 1; scale: 1.1; } 100% { opacity: 0.2; scale: 1.4; } }
+.fx-passon u { position: absolute; left: var(--x0); top: var(--y0); width: calc(var(--s) * 3px); height: calc(var(--s) * 3px); border-radius: 50%; background: #ffe2a0; box-shadow: 0 0 6px #ffc060; opacity: 0; animation: dt-carry 2.6s cubic-bezier(0.4, 0, 0.3, 1) calc(0.8s + var(--d)) both; }
+@keyframes dt-carry {
+  0% { opacity: 0; translate: 0 0; }
+  15% { opacity: 1; }
+  50% { translate: calc((var(--x1) - var(--x0)) * 0.5) calc((var(--y1) - var(--y0)) * 0.5 + var(--lift)); }
+  90% { opacity: 1; }
+  100% { opacity: 0; translate: calc(var(--x1) - var(--x0)) calc(var(--y1) - var(--y0)); }
+}
+
+/* ── 효과 amen ── */
+.fx-amen { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-amen.is-out { opacity: 0; }
+.fx-amen b { position: absolute; left: var(--x); top: var(--y); font-family: var(--story-font); font-weight: 600; font-size: calc(var(--s) * 0.92rem); color: #fff0d0; text-shadow: 0 0 8px rgba(255, 200, 110, 0.8); opacity: 0; animation: dt-amen 2.2s ease-out var(--d) both; }
+@keyframes dt-amen { 0% { opacity: 0; translate: 0 6px; } 30% { opacity: 0.95; } 100% { opacity: 0; translate: 0 -34px; } }
+
+/* ── 효과 eagle (신 32:11) ── 둥지(왼쪽 위) → 새끼가 떨어짐 → 큰 날개가 밑으로 파고들어 받아 올림 */
+.fx-eagle { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-eagle.is-out { opacity: 0; }
+.fx-eagle i { position: absolute; left: 0; top: 0; }
+.fx-eagle svg { display: block; width: 100%; height: 100%; fill: color-mix(in srgb, var(--act-a) 35%, #08070c); filter: drop-shadow(0 0 2px color-mix(in srgb, var(--act-accent) 70%, #fff)); }
+.fx-eagle__big .w { transform-origin: center; animation: dt-flap 0.9s ease-in-out infinite alternate; }
+@keyframes dt-flap { from { transform: scaleY(1); } to { transform: scaleY(0.45); } }
+
+:root[data-reduced-motion='true'] :is(.dt-folk rect, .dt-stars circle, .dt-lamp, .dt-grain, .dt-cloud, .dt-fire, .dt-stay, .dt-bless__beam) { animation: none !important; }
+:root[data-reduced-motion='true'] .dt-script path { animation-duration: 0.01s; animation-delay: 0s; }

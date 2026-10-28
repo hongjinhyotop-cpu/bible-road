@@ -37,6 +37,7 @@ import './styles/korah.css';
 import './styles/spies.css';
 import './styles/meribah.css';
 import './styles/brazen.css';
+import './styles/deuteronomy.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';
 

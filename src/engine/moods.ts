@@ -29,6 +29,7 @@ export type BackdropArt =
   | 'mr-kadesh' | 'mr-rock' | 'mr-water' | 'mr-edom' | 'mr-hor' | 'mr-hor-mourn' | 'mr-summit'
   | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
   | 'bz-road' | 'bz-camp' | 'bz-pole' | 'bz-pole-lit'
+  | 'dt-door' | 'dt-door-lit' | 'dt-twin' | 'dt-twin-bless' | 'dt-twin-curse' | 'dt-song' | 'dt-nebo-path' | 'dt-nebo-view' | 'dt-nebo-empty'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -176,6 +177,11 @@ export const FX = [
   'strike-twice', // 반석(배경 mr-rock)의 틈에 두 번 내리치는 섬광과 금(두 번째가 더 큼), 이어 틈에서 물보라가 솟음 (약 7초, 민 20:11). 다음 beat에 배경 mr-water
   'mantle', // 옷이 옮겨 감: 금빛 티끌이 아론에게서 떠올라 둥글게 넘어가 엘르아살에게 내려앉음 (약 6초, 민 20:28). outfit 갈아입기와 같이
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
+  'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
+  'pass-on', // 금빛 티끌이 왼쪽 인물의 가슴에서 떠올라 오른쪽 인물에게 내려앉음 (약 5초, 신 6:7 "네 자녀에게 부지런히 가르치며")
+  'amen', // 백성 쪽에서 "아멘" 글자들이 물결처럼 두 번 떠올랐다 스러짐 (약 6초, 신 27:15-26)
+  'eagle', // 독수리가 둥지를 흔들고, 떨어지는 새끼 밑으로 날개를 펴 받아 올림 (약 9초, 신 32:11. 배경 dt-song이면 벼랑 둥지에서)
+  'land-show', // 느보산 전경(배경 dt-nebo-view)의 땅이 북쪽부터 차례로 밝아지며 이름이 뜸 (약 12초, 탭하면 빨리 감김, 신 34:1-3)
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
   // ── 뒤돌아보지 말라 (창 19, fx/sodom.ts) ──
@@ -566,6 +572,27 @@ export const MOODS: Record<string, Mood> = {
   'mr-summit': { light: true, land: false, art: 'mr-summit', tone: 'clear' },
   'mr-summit-dusk': { light: true, land: false, art: 'mr-summit', tone: 'dusk' },
 
+  // ── 신명기 (신 6 · 27–28 · 32 · 34, fx/deuteronomy.ts) ──
+  /** 약속의 땅의 돌집 문 앞: 돌 문틀, 문 안 등잔 불빛, 올리브나무·포도 덩굴, 멀리 성읍 (신 6:9). foresee와 같이 */
+  'dt-door': { light: true, land: false, art: 'dt-door', tone: 'dusk', spread: true },
+  /** 같은 문: 문설주와 인방에 금빛 글줄, 문설주의 작은 두루마리 갑 (신 6:9 "기록할찌니라") */
+  'dt-door-lit': { light: true, land: false, art: 'dt-door-lit', tone: 'dusk', spread: true },
+  /** 세겜 골짜기: 왼쪽 그리심, 오른쪽 에발(돌 제단·석회 바른 돌), 비탈의 백성, 골짜기 가운데 궤 (신 27:2-13) */
+  'dt-twin': { light: true, land: false, art: 'dt-twin', spread: true },
+  /** 같은 곳, 그리심 쪽에 금빛이 내리고 밭이 익음 (신 28:1-14) */
+  'dt-twin-bless': { light: true, land: false, art: 'dt-twin-bless', tone: 'clear', spread: true },
+  /** 같은 곳, 에발 쪽에 먹구름과 갈라진 땅 (신 28:15-68) */
+  'dt-twin-curse': { light: true, land: false, art: 'dt-twin-curse', tone: 'storm', spread: true },
+  /** 모압 평지의 밤: 넓은 별하늘·은하수, 왼쪽 바위 벼랑(반석)과 독수리 둥지, 진의 모닥불 (신 32) */
+  'dt-song': { light: true, land: false, art: 'dt-song', tone: 'night' },
+  'dt-song-dawn': { light: true, land: false, art: 'dt-song', tone: 'clear' },
+  /** 느보산 오르는 길: 굽은 산길, 꼭대기에 머문 빛, 아래 진 (신 32:49, 34:1) */
+  'dt-nebo-path': { light: true, land: false, art: 'dt-nebo-path', tone: 'dusk' },
+  'dt-nebo-path-dawn': { light: true, land: false, art: 'dt-nebo-path', tone: 'clear' },
+  /** 비스가 꼭대기에서 서쪽을 본 온 땅: 요단 골짜기·여리고·염해, 겹겹 산지, 지평선의 서해 (신 34:1-3). fx land-show와 같이 */
+  'dt-nebo-view': { light: true, land: false, art: 'dt-nebo-view', tone: 'clear', spread: true },
+  /** 같은 꼭대기, 아무도 없이 빛만 머묾 (신 34:5-6) */
+  'dt-nebo-empty': { light: true, land: false, art: 'dt-nebo-empty', tone: 'dusk' },
   // ── 놋뱀 (민 21, fx/brazen.ts) ──
   /** 에돔 땅을 두르는 길: 붉은 사암 산줄기, 지평선까지 굽은 하얀 길과 먼 행렬, 흰 해, 아지랑이 (민 21:4) */
   'bz-road': { light: true, land: false, art: 'bz-road' },

@@ -39,6 +39,7 @@ import { playEarthOpen, playPlagueStop } from '../fx/korah';
 import { playGrasshopper } from '../fx/spies';
 import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
+import { playAmen, playEagle, playLandShow, playPassOn, playShema } from '../fx/deuteronomy';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -56,7 +57,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -583,6 +584,26 @@ export function sceneScreen({ id }: Params): Screen {
       case 'serpent-lift':
         // 놋뱀 (fx/brazen.ts): 장대 위 놋뱀에서 금빛이 번지고 고리가 퍼진다 (민 21:9)
         playSerpentLift($('.scene'), rm);
+        return;
+      case 'shema':
+        // 신명기 (fx/deuteronomy.ts): "들으라"가 떠오르고 소리의 고리가 퍼진다 (신 6:4)
+        playShema($('.scene'), rm);
+        return;
+      case 'pass-on':
+        // 신명기: 금빛 티끌이 한 사람에게서 다음 사람에게 (신 6:7)
+        playPassOn($('.scene'), rm);
+        return;
+      case 'amen':
+        // 신명기: 백성 쪽에서 "아멘"이 물결처럼 (신 27:15-26)
+        playAmen($('.scene'), rm);
+        return;
+      case 'eagle':
+        // 신명기: 독수리가 떨어지는 새끼를 날개로 받아 올린다 (신 32:11)
+        playEagle($('.scene'), rm);
+        return;
+      case 'land-show':
+        // 신명기: 느보산에서 땅이 차례로 밝아진다 (신 34:1-3)
+        playLandShow($('.scene'));
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)
