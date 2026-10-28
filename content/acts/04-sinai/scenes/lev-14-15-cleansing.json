@@ -18,7 +18,7 @@
     { "type": "narration", "enter": ["priest"], "act": "walk-in", "who": "priest", "text": "제사장이 진 밖으로 나왔다. 부정한 사람은 거룩한 곳으로 갈 수 없었다. 그래서 거룩한 곳의 사람이 먼저 걸어 나왔다. 길은 늘, 걸을 수 있는 쪽이 걷는다." },
     { "type": "line", "who": "priest", "act": "approach", "to": "outsider", "text": "“팔을 보이시오.”" },
     { "type": "narration", "act": "bow-head", "who": "outsider", "text": "제사장은 오래 보았다. 판정받던 날과 똑같이 오래. 이번에는 의심하려는 것이 아니라, 확인하려는 것이었다." },
-    { "type": "narration", "acts": [{ "act": "kneel", "who": "priest" }, { "act": "look-up", "who": "outsider" }], "text": "산 새 두 마리. 백향목, 홍색 실, 우슬초. 흐르는 물 위에 질그릇 하나. 새 한 마리가 그 그릇 위에서 잡혔다." },
+    { "type": "narration", "acts": [{ "act": "kneel", "who": "priest" }, { "act": "look-up", "who": "outsider" }], "text": "산 새 두 마리. 백향목, 홍색 실, 우슬초. 흐르는 물 위에 질그릇 하나. 새 한 마리가 그 그릇 안에서 잡혔다." },
     { "type": "narration", "act": "bless", "who": "priest", "text": "제사장은 산 새를 백향목과 홍색 실과 우슬초와 함께 그 피에 찍었다. 그리고 남자에게 일곱 번 뿌렸다. 정하다." },
     { "type": "scripture", "ref": "레 14:7", "gloss": "피를 일곱 번 뿌리고 ‘깨끗하다’ 선언. 그리고 살아 있는 새는 들판에 풀어 줌. 한 마리는 죽고, 한 마리는 날아감." },
     { "type": "narration", "fx": "dawn", "acts": [{ "act": "stand", "who": "priest" }, { "act": "look-up", "who": "outsider" }], "text": "제사장이 손을 펴자 새가 날아올랐다. 남자는 고개를 들어 그것을 보았다. 젖은 날개가 들판 쪽으로 멀어졌다. 한 마리는 물 위에서 죽었고, 한 마리는 들로 갔다. 남자는 그 둘 사이에 서 있었다." },
