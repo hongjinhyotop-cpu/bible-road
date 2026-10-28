@@ -1,0 +1,65 @@
+{
+  "id": "num-9-cloud",
+  "act": 5,
+  "grade": "B",
+  "title": "구름이 떠오르면",
+  "ref": "민 9",
+  "bg": "camp-dusk",
+  "cast": ["moses", "aaron"],
+  "outfit": { "aaron": "priest" },
+  "extras": {
+    "mourner": { "name": "부정한 사람", "base": "man", "hair": "hood", "beard": "short", "tint": "gray" },
+    "brother": { "name": "그의 형제", "base": "youth", "hair": "short", "tint": "gray" },
+    "stranger": { "name": "나그네", "base": "man", "hair": "turban", "beard": "long", "tint": "green", "props": ["staff", "bundle"] },
+    "packer": { "name": "장막 치는 사람", "base": "man", "hair": "tied", "beard": "short", "tint": "brown", "props": ["bundle"] },
+    "neighbor": { "name": "옆 장막 사람", "base": "old-man", "hair": "hood", "beard": "gray", "tint": "red" }
+  },
+  "beats": [
+    { "type": "narration", "fx": "dust", "act": "look-up", "who": "moses", "text": "이집트 땅에서 나온 다음 해, 정월. 시내 광야. 한 해 전 이맘때, 그들은 노예였다. 한 해는 짧다. 그러나 노예가 자유인이 되기에는, 충분히 길었다." },
+    { "type": "voice", "fx": "glory", "text": "이스라엘 자손으로 유월절을 그 정기에 지키게 하라" },
+    { "type": "narration", "act": "crowd", "text": "모세가 명했다. 정월 십사일 해 질 때. 모든 율례와 모든 규례대로." },
+    { "bg": "camp-night", "fx": ["fade", "fire"], "acts": [{ "act": "crowd-bow" }, { "act": "bow-head", "who": "aaron" }], "type": "narration", "text": "그 밤, 진 안에 불이 켜졌다. 어린 양, 무교병, 쓴 나물. 한 해 전에는 신을 신고 허리에 띠를 띠고 급히 먹었던 음식이었다. 이번에는 아무도 그들을 쫓지 않았다. 기억은 같은 음식을, 다른 맛으로 먹게 한다." },
+    { "type": "scripture", "ref": "민 9:5", "gloss": "정월 14일 저녁, 시내 광야에서 첫 ‘유월절 1주년’ 지킴. 하나님이 명하신 대로 다 함. 탈출 기념일 제대로 챙김." },
+
+    { "type": "narration", "enter": ["mourner", "brother"], "acts": [{ "act": "walk-in", "who": ["mourner", "brother"] }, { "act": "crowd-away" }], "text": "그런데 그 상에 앉지 못한 사람들이 있었다. 며칠 전 사람의 시체를 만진 사람들이었다. 누군가 죽었고, 누군가는 그를 묻어야 했다. 그들이 그 일을 했다." },
+    { "type": "line", "who": "mourner", "act": "approach", "to": "moses", "text": "“우리가 시체로 인하여 부정케 되었습니다. 그런데 어찌하여 우리만 이스라엘 자손과 함께 정한 때에 여호와께 예물을 드리지 못합니까.”" },
+    { "type": "line", "who": "brother", "act": "bow-head", "text": "“죽은 사람을 묻어 준 것이… 그렇게 잘못입니까.”" },
+    { "type": "narration", "act": "face", "who": ["moses", "mourner"], "text": "율법은 분명했다. 시체로 부정해진 사람은 거룩한 것에 가까이 오지 못한다. 그리고 유월절은 정해진 날에 지킨다. 두 법이 한 사람 위에서 부딪쳤다." },
+    { "type": "line", "who": "moses", "act": "stand", "text": "“기다리라. 여호와께서 너희에 대하여 어떻게 명하시는지 내가 들으리라.”" },
+    { "type": "narration", "act": "pray", "who": "moses", "text": "율법을 받아 온 사람이 ‘모르겠다’고 말했다. 모르는 것을 모른다고 말하는 지도자는 드물다. 대개는 아는 척하고, 나중에 수습한다." },
+    { "type": "voice", "fx": "glory", "text": "너희나 너희 후손 중에 시체로 인하여 부정케 되든지 먼 여행 중에 있든지 할찌라도\n다 여호와 앞에 마땅히 유월절을 지키되\n이월 십사일 해 질 때에 그것을 지켜서" },
+    { "type": "scripture", "ref": "민 9:10-11", "gloss": "시체 때문에 부정해졌거나 먼 길 가 있어서 못 지킨 사람은, 한 달 뒤 2월 14일 저녁에 지키면 됨. 유월절 재시험 기회 오픈." },
+    { "type": "line", "who": "mourner", "act": "look-up", "text": "“한 달 뒤에… 우리도.”" },
+    { "type": "line", "who": "moses", "act": "approach", "to": "mourner", "text": "“너희도. 그리고 먼 길 위에 있는 자도. 너희 후손 대대로.”" },
+    { "type": "choice", "prompt": "네가 부정해져서 유월절 상에 못 앉게 된 사람이라면?", "options": [
+      { "label": "모세에게 가서 왜 안 되냐고 묻는다", "canon": true },
+      { "label": "규칙이 그렇다니 조용히 내년을 기다린다", "goto": "b-wait" }
+    ] },
+    { "type": "narration", "act": "embrace", "who": ["mourner", "brother"], "text": "그들이 물었기 때문에, 문이 하나 더 생겼다. 대대로 남을 문이었다. 어떤 질문은 불평처럼 들린다. 그러나 하나님은 그 질문을, 법 한 조항으로 대답하셨다." },
+    { "type": "narration", "exit": ["mourner", "brother"], "enter": ["stranger"], "acts": [{ "act": "walk-in", "who": "stranger" }, { "act": "crowd-murmur" }], "text": "그러나 깨끗하고 길 위에 있지도 않으면서 지키지 않는 자는 백성 중에서 끊어진다. 그리고 이스라엘 가운데 사는 나그네가 지키고자 하면, 같은 율례로 지킨다. 본토인에게나 나그네에게나, 법은 하나였다." },
+    { "type": "narration", "act": "bow-head", "who": "aaron", "exit": ["stranger"], "text": "한 달 뒤의 저녁이 어땠는지 이 장은 적지 않는다. 다만 그날 이후로, 유월절에는 늦게 오는 사람의 자리가 있었다." },
+
+    { "bg": "tabernacle-dusk", "fx": ["fade", "glory"], "act": "look-up", "who": "aaron", "type": "narration", "text": "성막을 세운 날, 구름이 성막을 덮었다. 그리고 저녁이 되자, 그 구름 속에 불 같은 것이 나타났다." },
+    { "bg": "tabernacle-night", "fx": "fire", "act": "look-up", "who": "moses", "type": "narration", "text": "아침까지 있었다. 다음 날도. 낮에는 구름, 밤에는 불. 항상 그러했다. 고개만 들면 보였다. 이 진에서 하나님이 어디 계시냐고 묻는 사람은 없었다. 물어볼 필요가 없었다." },
+    { "bg": "camp-dawn", "fx": ["fade", "dawn"], "act": "crowd", "type": "narration", "text": "어느 아침, 구름이 떠올랐다. 그러면 진 전체가 일어섰다. 말뚝이 뽑히고, 장막이 접히고, 깃발이 올라갔다." },
+    { "type": "narration", "fx": "dust", "act": "crowd-away", "text": "구름이 가는 데로 갔다. 그리고 구름이 멈추는 데에, 진을 쳤다." },
+    { "type": "scripture", "ref": "민 9:17", "gloss": "구름 뜨면 출발, 구름 멈추면 그 자리에 캠프. 이스라엘 이동 규칙 1번이자 유일한 규칙." },
+    { "bg": "camp-dusk", "fx": "fade", "enter": ["packer", "neighbor"], "acts": [{ "act": "walk-in", "who": ["packer", "neighbor"] }, { "act": "crowd" }], "type": "narration", "text": "구름은 일정을 알려 주지 않았다. 이틀을 머물 때도 있었다. 하룻밤만 머물 때도 있었다. 저녁에 진을 쳤는데, 아침에 구름이 떠오르기도 했다." },
+    { "type": "line", "who": "packer", "act": "look-up", "text": "“…어제 쳤는데.”" },
+    { "type": "line", "who": "neighbor", "act": "face", "to": "packer", "text": "“그러니까 오늘 걷는 거지.”" },
+    { "type": "line", "who": "packer", "act": "turn", "text": "“지난번엔 한 달을 있었잖아요. 말뚝 박으면서 이번엔 좀 오래 있겠구나 했지.”" },
+    { "type": "line", "who": "neighbor", "act": "approach", "to": "packer", "text": "“여기서 오래 있겠구나 하는 사람이 제일 늦게 짐을 싸네.”" },
+    { "bg": "camp-night", "fx": ["fade", "stars"], "acts": [{ "act": "sleep", "who": "neighbor" }, { "act": "look-up", "who": "packer" }], "type": "narration", "text": "이틀이든 한 달이든 일 년이든. 구름이 머물러 있는 동안은 진행하지 않았다. 떠오르면 갔다. 여호와의 명을 좇아 진을 치고, 여호와의 명을 좇아 진행했다. 이 장은 같은 말을 몇 번이고 되풀이한다. 광야에서 배워야 할 것이 그것 하나였던 것처럼." },
+    { "type": "scripture", "ref": "민 9:22-23", "gloss": "이틀이든 한 달이든 1년이든 구름 머물면 대기, 뜨면 출발. 오직 하나님 명령 따라 치고 따라 감. 일정표는 위에서 내려옴." },
+    { "type": "narration", "exit": ["packer", "neighbor"], "acts": [{ "act": "look-up", "who": "moses" }, { "act": "look-up", "who": "aaron" }], "fx": "glory", "text": "언제 떠날지 모르는 사람은 짐을 가볍게 싼다. 언제 떠날지 아시는 분을 따라가는 사람은, 짐보다 하늘을 더 자주 본다." }
+  ],
+  "branches": {
+    "b-wait": [
+      { "type": "narration", "act": "bow-head", "who": "mourner", "text": "그랬다면 그들은 한 해를 거르고, 다음 해에 또 누군가를 묻게 되면 또 한 해를 거를 것이다. 아무도 묻지 않은 규칙은, 고쳐질 기회도 없다." },
+      { "type": "narration", "act": "look-up", "who": "mourner", "text": "그러나 그들은 물었다. 정한 때가 지나기 전에, 모세와 아론 앞으로 걸어갔다." }
+    ]
+  },
+  "insight": "9장도 시간을 살짝 되감음. 9:1이 ‘다음 해 정월’인데, 민수기 1장은 ‘이월’ 얘기니까. 이 장은 크게 둘로 나뉨. 앞은 ‘두 번째 유월절’, 뒤는 ‘구름 따라 움직이기’.\n\n먼저 유월절. 출애굽 1주년 기념으로 유월절을 지켰는데, 시체를 만져서 ‘부정’해진 사람들은 못 지키게 됨. 여기서 ‘부정’은 죄를 지었다는 뜻이 아님. 장례 치러 준 건 오히려 좋은 일임. 그냥 거룩한 예식에 바로 참여하기 전에 정결 절차를 거쳐야 하는 ‘상태’라는 거(자세한 절차는 19장에 나옴). 근데 그 상태 때문에 1년에 한 번뿐인 날을 놓치게 생긴 거.\n\n그래서 이 사람들이 모세한테 가서 따짐. ‘왜 우리만 안 됨?’ 그리고 모세가 개쿨하게 ‘잠깐, 나도 모름. 여쭤보고 옴’ 함. 하나님 답은 ‘한 달 뒤에 지켜라.’ 학교로 치면 사유 결석자 재시험임. 장례·먼 출장은 인정. 근데 아무 이유 없이 그냥 안 오면? 그건 재시험 없음(9:13 끊쳐짐). 그리고 9:14, 이스라엘에 같이 사는 외국인도 원하면 같은 규칙으로 지킬 수 있음. 출입문을 하나 더 만들어 준 장이라고 보면 됨.\n\n근데 이게 왜 중요하냐면, 이 새 규칙이 ‘따진 사람들’ 덕에 생겼다는 거. 질문하는 게 불경이 아니었음. 모르면 묻고, 지도자도 모르면 모른다고 하고, 하나님은 답해 주심.\n\n뒷부분은 구름. 낮엔 구름, 밤엔 불이 성막 위에 있었고, 그게 뜨면 출발, 멈추면 캠프. 이틀일 수도, 한 달일 수도, 1년일 수도 있음. 군대 대기 명령 생각하면 됨. ‘언제까지 대기임?’ ‘대기하라면 대기해.’ 근데 차이점은, 이 지휘관은 진짜로 길을 알고 있음 ㅋㅋ ‘여호와의 명을 좇아’가 이 몇 절 안에 계속 반복되는데, 광야 40년의 핵심 과목이 딱 이거 하나였다는 뜻.",
+  "tldr": "장례 치르느라 유월절 놓친 사람들이 ‘왜 우리만 안 됨?’ 물었더니 한 달 뒤 재시험이 생김. 그리고 구름 뜨면 출발, 멈추면 대기. 일정은 하늘이 정함.",
+  "bridge": "구름은 아직 시내 광야에 머물러 있었다. 그동안 하나님은 모세에게 은을 두드려 만든 나팔 두 개를 말씀하셨다. 떠날 날이 가까웠다."
+}

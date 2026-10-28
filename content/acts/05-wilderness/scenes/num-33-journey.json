@@ -6,7 +6,6 @@
   "ref": "민 33",
   "bg": "camp-night",
   "cast": ["moses", "eleazar"],
-  "outfit": { "aaron": "priest" },
   "extras": {
     "scribe": { "name": "젊은 서기", "base": "youth", "hair": "short", "props": ["scroll"], "tint": "white" }
   },
@@ -26,10 +25,10 @@
     { "type": "narration", "text": "사십 년의 대부분은 그런 날들이었다. 기적도 반역도 없이, 장막을 걷고 걷고 또 세우는 날들. 한 세대가 저물어 가는 소리는, 대개 조용하다." },
     { "type": "narration", "act": "travel", "from": "ezion-geber", "to": "kadesh", "via": ["zin-desert"], "text": "에시온게벨에서 신 광야, 곧 가데스. 모세는 그 이름에서 잠시 눈을 감았다. 정탐꾼들이 돌아왔던 곳. 미리암이 묻힌 곳. 반석을 두 번 쳤던 곳." },
     { "type": "narration", "act": "travel", "from": "kadesh", "to": "mount-hor", "text": "가데스에서 떠나 에돔 국경 호르산에 진 쳤다." },
-    { "bg": "mountain-dusk", "fx": "fade", "enter": ["aaron"], "exit": ["scribe"] },
+    { "bg": "mountain-dusk", "fx": "fade", "exit": ["scribe"] },
     { "type": "scripture", "ref": "민 33:38-39", "gloss": "출애굽 40년째 다섯째 달 1일, 아론이 하나님 말씀대로 호르산에 올라가 거기서 죽음. 123살. 이동 목록 한가운데에 딱 한 사람의 죽음만 날짜까지 적혀 있음." },
-    { "type": "narration", "act": "face", "who": "aaron", "to": "eleazar", "text": "형은 동생보다 세 살이 많았다. 동생의 입이 되어 바로 앞에 섰던 사람이었다. 금송아지를 만든 손도, 향로를 들고 죽은 자와 산 자 사이에 섰던 손도 그의 손이었다." },
-    { "type": "narration", "act": "leave", "who": "aaron", "text": "그는 산을 올라갔다. 내려온 사람은 둘이었다. 올라간 사람은 셋이었다." },
+    { "type": "narration", "act": "look-up", "who": "eleazar", "text": "형은 동생보다 세 살이 많았다. 동생의 입이 되어 바로 앞에 섰던 사람이었다. 금송아지를 만든 손도, 향로를 들고 죽은 자와 산 자 사이에 섰던 손도 그의 손이었다." },
+    { "type": "narration", "act": "kneel", "who": "eleazar", "text": "그는 산을 올라갔다. 내려온 사람은 둘이었다. 올라간 사람은 셋이었다." },
     { "type": "narration", "act": "bow-head", "who": ["moses", "eleazar"], "text": "목록은 다시 이어졌다. 사람이 죽어도 진은 떠난다. 그것이 광야의 예의였다." },
     { "bg": "wilderness-dawn", "fx": "fade", "act": "walk-in", "who": "scribe" },
     { "type": "narration", "act": "travel", "from": "mount-hor", "to": "nebo", "via": ["oboth", "arnon"], "text": "살모나, 부논, 오봇. 모압 변경 이예아바림. 디본갓, 알몬디블라다임. 그리고 느보 앞 아바림산." },
