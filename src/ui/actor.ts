@@ -197,7 +197,8 @@ export class Actor {
         to(p.upper, { rotation: 18 }, 1.4);
         to(p.head, { rotation: 36 }, 1.4);
         to(p.armL, { rotation: -70, y: 0 }, 1.4);
-        this.tilt('front', 16, 1.5, 0.72);
+        // 앞으로 숙이는 만큼 몸을 뒤로 물려 앉힌다: 두 사람이 마주 보고 같이 엎드려도 머리가 겹치지 않게
+        this.tilt('front', 16, 1.5, 0.72, 0.4);
         return true;
       case 'sleep':
         // 무릎을 접고 뒤로 눕는다: 몸 전체가 뒤꿈치를 축으로 눕고, 얼굴은 하늘을 본다. 빛이 조금 빠진다
@@ -315,7 +316,7 @@ export class Actor {
    * 몸 전체를 발끝(front) 또는 뒤꿈치(back)를 축으로 기울인다. 엎드림 = 앞으로 조금 + 몸을 낮게 웅크림(squash), 잠듦 = 뒤로 눕기. deg 0 = 바로 섬.
    * 그림 안 좌표에서 돌리므로 face()로 뒤집혀 있어도 그대로 맞는다.
    */
-  private tilt(pivot: 'front' | 'back', deg: number, dur = 1.2, squash = 1): void {
+  private tilt(pivot: 'front' | 'back', deg: number, dur = 1.2, squash = 1, recede = 0): void {
     if (this.def.art.kind !== 'svg') return;
     const body = this.body as unknown as SVGGraphicsElement;
     const [, h] = this.def.art.viewBox;
@@ -333,7 +334,9 @@ export class Actor {
     this.tiltPivot = pivot;
     const x = pivot === 'front' ? front : back;
     const sign = (pivot === 'front') === right ? 1 : -1;
-    gsap.to(body, { rotation: sign * deg, scaleY: squash, svgOrigin: `${x} ${foot}`, duration: reducedMotion() ? 0.01 : dur, ease: 'power2.inOut', overwrite: 'auto' });
+    // recede: 몸 폭에 대한 비율만큼 보는 쪽 반대로 물러남 (0 = 제자리)
+    const shift = (right ? -1 : 1) * box.width * recede;
+    gsap.to(body, { rotation: sign * deg, scaleY: squash, x: shift, svgOrigin: `${x} ${foot}`, duration: reducedMotion() ? 0.01 : dur, ease: 'power2.inOut', overwrite: 'auto' });
   }
 
   /** 무릎 꿇기 / 일어서기: 다리를 아래에서부터 접고, 상체를 그만큼 내린다 */

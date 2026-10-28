@@ -54,7 +54,7 @@
     { "bg": "wilderness-dusk", "fx": "fade", "exit": ["isaac"], "enter": ["ishmael"] },
     { "type": "narration", "act": "crowd", "text": "이스마엘의 아들은 열둘이었다. 느바욧, 게달, 앗브엘, 밉삼, 미스마, 두마, 맛사, 하닷, 데마, 여둘, 나비스, 게드마. 그들은 마을과 진을 따라 열두 방백이 되었다." },
     { "type": "scripture", "ref": "창 25:16", "gloss": "이스마엘 아들 열둘이 각자 부족의 리더(방백)가 됨. 17장에서 하나님이 “이스마엘도 열두 방백 낳게 해 줄게” 하신 약속 그대로. 메인 퀘스트만 챙기고 서브 퀘스트 버리는 분이 아님." },
-    { "type": "narration", "act": "travel", "from": "beer-lahai-roi", "to": "shur", "text": "그 자손들은 하윌라에서 애굽 앞 술까지 퍼져 살았다. 모든 형제들의 맞은편에." },
+    { "type": "narration", "act": "travel", "from": "beer-lahai-roi", "to": "shur-way", "text": "그 자손들은 하윌라에서 이집트 앞 술까지 퍼져 살았다. 모든 형제들의 맞은편에." },
     { "type": "narration", "act": "leave", "who": "ishmael", "text": "이스마엘은 백삼십칠 년을 살고, 기운이 다하여 숨을 거두었다. 그도 자기 조상들에게로 돌아갔다. 기록은 두 형제의 아버지에게 쓴 말을, 형에게도 그대로 썼다." }
   ],
   "branches": {

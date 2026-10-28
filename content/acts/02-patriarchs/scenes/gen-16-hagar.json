@@ -14,7 +14,7 @@
   "beats": [
     { "type": "narration", "text": "가나안에 들어온 지 십 년이 지났다. 약속은 별만큼 많은 자손이었다. 장막 안에는 아이가 하나도 없었다." },
     { "type": "narration", "text": "십 년은 기다리기에 긴 시간이다. 그리고 기다리던 사람이 방법을 찾기 시작하기에, 딱 알맞은 시간이다." },
-    { "type": "narration", "enter": ["hagar"], "text": "사래에게는 여종이 하나 있었다. 애굽 사람이었고, 이름은 하갈이었다. 이 장에서 그 이름을 부르는 사람은, 처음에는 아무도 없다." },
+    { "type": "narration", "enter": ["hagar"], "text": "사래에게는 여종이 하나 있었다. 이집트 사람이었고, 이름은 하갈이었다. 이 장에서 그 이름을 부르는 사람은, 처음에는 아무도 없다." },
     { "type": "line", "who": "sarah", "act": "face", "to": "abraham", "text": "“여호와께서 내게 아이를 허락지 않으셨어요. 내 여종에게 들어가세요. 혹시 그 아이로 말미암아, 내가 자식을 얻을지도 모르니까.”" },
     { "type": "line", "who": "abraham", "act": "bow-head", "text": "“…당신 뜻이 그렇다면.”" },
     { "type": "narration", "text": "아브람은 사래의 말을 들었다. 기록은 그것뿐이다. 하나님께 묻는 장면은 없다. 하갈에게 묻는 장면도 없다." },
@@ -26,7 +26,7 @@
     { "type": "narration", "act": "argue", "who": ["sarah", "abraham"], "text": "제안한 사람은 사래였다. 그러나 일이 틀어지면, 제안한 사람보다 들어준 사람이 먼저 원망을 듣는다. 그건 그때나 지금이나 같다." },
     { "type": "line", "who": "abraham", "act": "turn", "text": "“그대의 여종은 그대 손에 있소. 그대 보기에 좋은 대로 하시오.”" },
     { "type": "narration", "act": "step-back", "who": "hagar", "text": "그 말로 아브람은 손을 뗐다. 사래는 하갈을 학대했다. 기록은 어떻게 했는지 말하지 않는다. 하갈이 도망쳤다는 것만 말한다." },
-    { "type": "narration", "exit": ["sarah", "abraham"], "act": "travel", "from": "mamre", "to": "beer-lahai-roi", "via": ["beersheba"], "text": "그녀는 남쪽으로 걸었다. 술로 가는 길, 애굽으로 가는 길. 아이를 밴 몸으로, 고향 쪽으로." },
+    { "type": "narration", "exit": ["sarah", "abraham"], "act": "travel", "from": "mamre", "to": "beer-lahai-roi", "via": ["beersheba"], "text": "그녀는 남쪽으로 걸었다. 술로 가는 길, 이집트로 가는 길. 아이를 밴 몸으로, 고향 쪽으로." },
     { "bg": "wilderness-dusk", "fx": ["fade", "dust"], "act": "walk-in", "who": "hagar" },
     { "type": "narration", "act": "kneel", "who": "hagar", "text": "광야의 샘 곁에서 그녀는 멈췄다. 물은 있었다. 그다음 갈 곳은, 없었다." },
     { "type": "narration", "fx": "glory", "act": "step-back", "who": "hagar", "text": "그때 빛이 내려왔다. 여호와의 사자였다. 성경에 그 이름이 처음 나오는 순간이다. 그 첫 등장이 찾아간 곳은 왕궁이 아니었다. 도망친 외국인 여종의 샘가였다." },

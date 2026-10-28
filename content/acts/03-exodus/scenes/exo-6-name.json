@@ -41,7 +41,7 @@
     { "type": "narration", "act": "crowd-cheer", "text": "형은 아들들 이름을 부를 때 목소리가 커졌다. 아버지들은 대개 그렇다. 그 넷의 이름이 앞으로 다 같은 무게로 남지는 않는다. 그건 아직 먼 이야기다." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "사촌 고라의 이름도 거기 있었다. 엘르아살의 아들 비느하스도. 지금은 그냥 명단 속 이름들이다. 이름은 처음 적힐 때는 다 조용하다. 그 이름이 무엇이 될지는, 나중에 정해진다." },
     { "type": "narration", "act": "embrace", "who": ["aaron", "moses"], "text": "기록은 명단을 덮으며 두 번 말한다. 이스라엘을 이끌어 내라는 명을 받은 자는, 이 아론과 모세. 바로에게 가서 말한 자는, 이 모세와 아론. 형제의 순서는 그렇게, 한 번씩 공평하게 나뉘었다." },
-    { "type": "narration", "bg": "egypt-night", "fx": "fade", "exit": ["aaron"], "acts": [{ "act": "part", "who": "moses" }, { "act": "crowd-away" }], "text": "그리고 기록은 아까 그 자리로 돌아온다. 애굽 땅, 그날 밤." },
+    { "type": "narration", "bg": "egypt-night", "fx": "fade", "exit": ["aaron"], "acts": [{ "act": "part", "who": "moses" }, { "act": "crowd-away" }], "text": "그리고 기록은 아까 그 자리로 돌아온다. 이집트 땅, 그날 밤." },
     { "type": "voice", "text": "나는 여호와라. 내가 네게 이르는 바를, 너는 애굽 왕 바로에게 다 고하라." },
     { "type": "line", "who": "moses", "act": "kneel", "text": "“저는 입이 둔한 자입니다. 바로가 어찌 제 말을 듣겠습니까.”" },
     { "type": "narration", "act": "walk-in", "who": "aaron", "text": "같은 핑계였다. 두 번째였다. 그는 아직 모르고 있었다. 그 핑계에 대한 대답이, 방금 족보 속에서 이름을 부르던 그 목소리라는 것을. 대답은 이미, 그의 옆에 서 있었다." }

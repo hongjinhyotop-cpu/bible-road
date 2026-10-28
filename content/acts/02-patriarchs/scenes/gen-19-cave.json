@@ -13,7 +13,7 @@
   "beats": [
     { "type": "narration", "enter": ["elder", "younger"], "text": "소돔은 연기가 되었다. 뒤를 돌아본 아내는 길가에 남았다. 롯에게 남은 것은 두 딸과, 작은 성 소알이었다." },
     { "type": "narration", "act": "turn", "who": "lot", "text": "그는 소알에서도 잠들지 못했다. 성 하나가 하룻밤에 무너지는 것을 본 사람에게, 성벽은 더 이상 아무것도 막아 주지 않는다." },
-    { "type": "narration", "act": "travel", "to": "zoar", "text": "그래서 그는 산으로 올라갔다. 도망하라던 그 산. 저기까지는 못 가겠다고 사정했던, 바로 그 산이었다." },
+    { "type": "narration", "act": "leave", "who": ["lot", "elder", "younger"], "text": "그래서 그는 산으로 올라갔다. 도망하라던 그 산. 저기까지는 못 가겠다고 사정했던, 바로 그 산이었다." },
     { "bg": "cave-dusk", "fx": ["fade", "dust"], "act": "walk-in", "who": ["lot", "elder", "younger"] },
     { "type": "scripture", "ref": "창 19:30", "gloss": "롯이 소알에 사는 것도 무서워서, 두 딸 데리고 산에 올라가 굴에서 살게 됨. 처음에 ‘산까진 못 가요’ 했던 그 산임(창 19:19)." },
     { "type": "narration", "act": "sleep", "who": "lot", "text": "한때 그는 물 넉넉한 들을 골랐다. 성문에 앉던 사람이었다. 이제 그의 집은 바위 속 어둠이었다. 가장 좋아 보이는 것을 고른 사람이, 가장 아무것도 없는 곳에 앉아 있었다." },

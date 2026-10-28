@@ -45,6 +45,7 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   egypt: at(31.2, 30.05),
   goshen: at(31.8, 30.7),
   shur: at(33.3, 30.6),
+  'shur-way': at(33.3, 30.6),
   paran: at(34.6, 29.9),
   sinai: at(33.97, 28.54),
   // 르비딤: 시내산 가기 직전 진 친 곳 (출 17:1, 19:2). 정확한 위치는 모름 — 전통적으로 와디 페이란 근처로 봄

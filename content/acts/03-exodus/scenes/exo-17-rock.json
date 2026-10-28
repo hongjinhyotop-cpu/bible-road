@@ -22,7 +22,7 @@
     { "type": "narration", "act": "crowd-murmur", "text": "만나로 배를 채운 지 얼마 되지 않은 입이었다. 배가 부르면 사람은 물을 걱정한다. 물이 생기면 또 다른 것을 걱정할 것이다. 걱정에도 순번이 있다." },
     { "type": "line", "who": "moses", "acts": [{ "act": "step-back", "who": "moses" }, { "act": "pray", "who": "moses" }], "text": "“이 백성을 어떻게 하리이까. 조금만 더 있으면, 저를 돌로 치겠습니다.”" },
     { "type": "voice", "fx": "glory", "text": "백성 앞을 지나가라. 장로들을 데리고, 하수를 치던 네 지팡이를 손에 잡고 가라. 내가 호렙산 반석 위에서 너를 대하여 서리니, 너는 반석을 치라." },
-    { "type": "narration", "bg": "mountain", "fx": "fade", "exit": ["grumbler"], "enter": ["elder"], "act": "stand", "who": "moses", "text": "모세는 장로들의 눈앞에서 지팡이를 들었다. 나일강을 피로 바꾼 그 지팡이였다. 이번에 칠 것은 강이 아니라, 바위였다." },
+    { "type": "narration", "bg": "mountain", "fx": "fade", "exit": ["grumbler"], "enter": ["elder"], "act": "stand", "who": "moses", "text": "모세는 장로들의 눈앞에서 지팡이를 들었다. 나일강을 쳤던 그 지팡이였다. 이번에 칠 것은 강이 아니라, 바위였다." },
     { "type": "narration", "fx": ["flash", "shake"], "acts": [{ "act": "step-back", "who": "elder" }, { "act": "crowd-cheer" }], "text": "바위를 쳤다. 물이 나왔다. 마른 돌에서." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "모세는 그곳을 맛사, 또 므리바라 불렀다. ‘시험함’, 그리고 ‘다툼’. 기적이 일어난 자리에 기적 대신 사람들의 잘못을 이름으로 붙였다. 기념비라기보다는, 경고 표지판이었다." },
     { "type": "scripture", "ref": "출 17:7", "gloss": "‘하나님 우리랑 같이 있긴 함? 안 함?’ 하고 하나님 테스트한 곳이라서 이름이 ‘시험·다툼’이 됨. 그날 아침에도 만나 먹은 사람들이 한 질문임." },

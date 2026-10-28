@@ -15,7 +15,7 @@
     { "type": "voice", "fx": "glory", "text": "내가 유다 지파 훌의 손자요 우리의 아들인 브살렐을 지명하여 부르고" },
     { "type": "narration", "act": "look-up", "who": "moses", "text": "이름이 불렸다. 할아버지 이름, 아버지 이름, 지파 이름까지. 하나님은 그 사람을 대충 아시지 않았다." },
     { "type": "narration", "bg": "tent-night", "fx": "fade", "enter": ["bezalel"], "act": "walk-in", "who": "bezalel", "text": "그 시각 산 아래 진 어딘가에, 그 이름의 주인이 있었다. 손에 굳은살이 박인 사내였다. 자기 이름이 산 위에서 불리고 있다는 것을, 그는 아직 몰랐다." },
-    { "type": "scripture", "ref": "출 31:2-3", "gloss": "“브살렐, 내가 콕 집어서 불렀다. 내 영을 꽉 채워서 지혜, 이해력, 지식, 손재주까지 다 준다.” 장인한테 성령 풀옵 장착." },
+    { "type": "scripture", "ref": "출 31:2-3", "gloss": "“브살렐, 내가 콕 집어서 불렀다. 내 영을 꽉 채워서 지혜, 이해력, 지식, 손재주까지 다 준다.” 장인한테 하나님의 영을 가득 채워 주심. 근데 그 결과가 기적이 아니라 손기술이라는 게 포인트." },
     { "type": "narration", "act": "bow-head", "who": "bezalel", "text": "금과 은과 놋을 다루는 일. 보석을 깎아 물리는 일. 나무를 새기는 일. 하나님의 신이 충만하다는 말이 처음으로 콕 집어 붙은 일은, 기도도 예언도 아닌 손일이었다." },
     { "type": "narration", "enter": ["oholiab"], "acts": [{ "act": "walk-in", "who": "oholiab" }, { "act": "face", "who": ["bezalel", "oholiab"] }], "text": "혼자는 아니었다. 단 지파 아히사막의 아들 오홀리압. 그리고 마음이 지혜로운 사람들. 하나님은 그들 모두에게 지혜를 더 주겠다고 하셨다. 이미 있는 재주 위에, 더." },
     { "type": "line", "who": "oholiab", "act": "approach", "to": "bezalel", "text": "“유다 지파 어른이 금을 치고, 단 지파 사람이 실을 짜는 거요?”" },
