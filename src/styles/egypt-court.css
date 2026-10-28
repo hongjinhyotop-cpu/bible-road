@@ -11,6 +11,11 @@
 .actor .ph-flail { color: color-mix(in srgb, var(--sil-ink) 55%, var(--act-accent)); fill: currentColor; }
 .sil .ph-stripe, .sil .ph-gold { stroke: color-mix(in srgb, var(--act-accent) 70%, #e8c070); stroke-width: 1.2; opacity: 0.5; }
 .sil .ph-pleat, .sil .ph-band { stroke: currentColor; stroke-width: 0.5; opacity: 0.3; }
+/* 출애굽의 바로(pharaoh)는 요셉의 바로(pharaoh-joseph)와 다른 사람 — 줄무늬는 청금석, 장식은 붉은 기운 도는 금 */
+.actor[data-id='pharaoh'] .ph-stripe { stroke: color-mix(in srgb, var(--act-accent) 25%, #5a7ac8); opacity: 0.7; }
+.actor[data-id='pharaoh'] .ph-gold { stroke: color-mix(in srgb, var(--act-accent) 30%, #6a8ad0); }
+.actor[data-id='pharaoh'] .crown,
+.actor[data-id='pharaoh'] .ph-flail { fill: color-mix(in srgb, var(--sil-ink) 52%, color-mix(in srgb, var(--act-accent) 55%, #b04a3a)); }
 
 /* ── 보디발의 집 ── */
 .ec-frieze { fill: color-mix(in srgb, var(--act-accent) 45%, #6a9a8a); opacity: 0.4; }
