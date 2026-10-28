@@ -23,6 +23,7 @@ export type BackdropArt =
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'sf-court' | 'sf-ash' | 'sf-outside'
+  | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'

@@ -64,7 +64,6 @@
 .lt__glow { opacity: 0; transition: opacity 1.4s; }
 .lt__label { font-family: 'Noto Serif KR', serif; font-size: 7.4px; letter-spacing: 0.06em; opacity: 0; transition: opacity 1.2s 0.2s; }
 .lt.is-shown .lt__label { opacity: 1; }
-.lt.is-lord .lt__glow { fill: url(#lt-gold); }
 .lt.is-lord.is-shown .lt__glow { opacity: 1; }
 .lt.is-lord .lt__label { fill: #f6dfa4; filter: drop-shadow(0 0 3px rgba(246, 210, 140, 0.8)); }
 .lt.is-lord .lt__stone rect { fill: #f1d48e; }
