@@ -83,7 +83,8 @@ export const PLACE_NAMES = {
   edom: '에돔',
   egypt: '이집트',
   goshen: '고센',
-  shur: '술 광야',
+  shur: '수르 광야', // 출 15:22 (개역한글 표기)
+  'shur-way': '술', // 창 16:7, 20:1, 25:18 "술" — 같은 곳이지만 창세기 개역한글 표기를 따름
   paran: '바란 광야',
   sinai: '시내산',
   rephidim: '르비딤',

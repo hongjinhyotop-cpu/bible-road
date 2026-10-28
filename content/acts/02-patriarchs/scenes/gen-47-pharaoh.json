@@ -8,7 +8,7 @@
   "cast": ["joseph"],
   "outfit": { "joseph": "vizier" },
   "extras": {
-    "egyptian": { "name": "애굽 백성", "base": "man", "hair": "short", "props": ["basket"], "tint": "brown", "height": 0.96 }
+    "egyptian": { "name": "이집트 백성", "base": "man", "hair": "short", "props": ["basket"], "tint": "brown", "height": 0.96 }
   },
   "beats": [
     { "type": "narration", "act": "walk-in", "who": "pharaoh-joseph", "text": "요셉은 바로에게 갔다. 이집트에서 바로 다음가는 사람이, 바로에게 가족 이야기를 하러 갔다. 나라 일보다 어려운 보고였다." },
@@ -26,8 +26,8 @@
     { "type": "scripture", "ref": "창 47:9", "gloss": "야곱: “떠돌이로 산 세월이 130년임. 할아버지·아버지만큼 오래 산 것도 아닌데, 진짜 험하게 살았음.” 왕이 나이 물어봤는데 인생 총평이 나와 버림." },
     { "type": "narration", "act": "bow-head", "who": "jacob", "text": "형을 속였다. 도망쳤다. 외삼촌에게 속았다. 밤새 씨름하다 다리를 절었다. 라헬을 길가에 묻었다. 아들을 잃었다고 이십 년 넘게 울었다. 험악했다. 그는 그 말을 왕 앞에서, 하나도 꾸미지 않았다." },
     { "type": "narration", "act": "bless", "who": "jacob", "text": "그는 한 번 더 바로를 축복하고 그 앞에서 물러났다. 왕에게 나이를 말해 주는 노인은 많다. 자기 세월을 험악했다고 말하는 노인은 드물다." },
-    { "type": "narration", "bg": "pasture", "fx": "fade", "exit": ["pharaoh-joseph"], "acts": [{ "act": "walk-out", "who": "jacob" }, { "act": "crowd" }], "text": "요셉은 바로의 명대로 가족에게 애굽의 좋은 땅, 라암세스를 주었다. 식구 수대로 양식도 대었다. 고센의 장막들 위로 저녁 연기가 올랐다." },
-    { "type": "narration", "bg": "egypt-dusk", "fx": ["fade", "dust"], "act": "crowd-murmur", "text": "그러나 기근은 더 심해졌다. 사방에 먹을 것이 없었다. 애굽 땅도, 가나안 땅도 말라 갔다. 사람들은 은을 들고 요셉에게 왔고, 은은 바로의 궁으로 들어갔다." },
+    { "type": "narration", "bg": "pasture", "fx": "fade", "exit": ["pharaoh-joseph"], "acts": [{ "act": "walk-out", "who": "jacob" }, { "act": "crowd" }], "text": "요셉은 바로의 명대로 가족에게 이집트의 좋은 땅, 라암세스를 주었다. 식구 수대로 양식도 대었다. 고센의 장막들 위로 저녁 연기가 올랐다." },
+    { "type": "narration", "bg": "egypt-dusk", "fx": ["fade", "dust"], "act": "crowd-murmur", "text": "그러나 기근은 더 심해졌다. 사방에 먹을 것이 없었다. 이집트 땅도, 가나안 땅도 말라 갔다. 사람들은 은을 들고 요셉에게 왔고, 은은 바로의 궁으로 들어갔다." },
     { "type": "line", "who": "egyptian", "enter": ["egyptian"], "act": "approach", "to": "joseph", "text": "“돈이 다 떨어졌습니다. 먹을 것을 주십시오. 어찌 주 앞에서 죽겠습니까.”" },
     { "type": "line", "who": "joseph", "act": "face", "to": "egyptian", "text": "“짐승을 가져오너라. 돈이 다했다면, 짐승과 바꾸어 주겠다.”" },
     { "type": "narration", "act": "bow-head", "who": "egyptian", "text": "말과 양 떼와 소 떼와 나귀가 왔다. 그해, 이집트는 짐승 대신 빵을 먹고 버텼다." },
@@ -37,7 +37,7 @@
     { "type": "scripture", "ref": "창 47:24-25", "gloss": "수확의 20%는 세금, 80%는 너희 거. 백성들 반응: “주께서 우리를 살리셨어요.” 땅까지 넘겼는데 고맙다고 함. 그만큼 기근이 지옥이었다는 뜻." },
     { "type": "narration", "act": "stand", "who": "egyptian", "text": "돈이 사라졌고, 짐승이 사라졌고, 땅이 사라졌다. 남은 사람들은 고맙다고 했다. 굶어 본 사람에게 자유는, 빵 다음의 문제다." },
     { "type": "narration", "bg": "pasture-dawn", "fx": "fade", "exit": ["egyptian"], "act": "crowd-cheer", "text": "같은 시절, 고센에서 이스라엘은 땅을 얻었다. 생육했고, 번성했다. 이집트 사람들이 땅을 팔던 그 기근 속에서." },
-    { "type": "narration", "bg": "house-night", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "jacob" }, { "act": "kneel", "who": "jacob" }], "text": "야곱은 애굽 땅에서 십칠 년을 살았다. 백사십칠 세. 죽을 날이 가까워졌다는 것을, 그는 알았다. 노인들은 대개 안다." },
+    { "type": "narration", "bg": "house-night", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "jacob" }, { "act": "kneel", "who": "jacob" }], "text": "야곱은 이집트 땅에서 십칠 년을 살았다. 백사십칠 세. 죽을 날이 가까워졌다는 것을, 그는 알았다. 노인들은 대개 안다." },
     { "type": "line", "who": "jacob", "act": "face", "to": "joseph", "text": "“네가 나를 위한다면, 네 손을 내 환도뼈 아래 넣어라. 나를 애굽에 묻지 마라. 내가 조상들과 함께 눕거든, 나를 메고 올라가 그들의 묘에 묻어 다오.”" },
     { "type": "scripture", "ref": "창 47:29-30", "gloss": "야곱 유언: “나 죽으면 이집트에 묻지 말고 조상들 묘(막벨라)에 묻어 줘. 맹세해.” 요셉: “말씀대로 할게요.” 환도뼈 맹세 = 24장에서 아브라함이 종한테 시켰던 그 초엄숙 맹세." },
     { "type": "line", "who": "joseph", "act": "approach", "to": "jacob", "text": "“아버지 말씀대로 하겠습니다.”" },

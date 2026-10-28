@@ -15,7 +15,7 @@
     { "type": "narration", "act": "look-up", "who": "moses", "text": "모세는 계명을 기다렸다. 그런데 처음 들려온 것은 계명이 아니라 목록이었다." },
     { "type": "voice", "text": "이스라엘 자손에게 명하여 내게 예물을 가져오라 하고 무릇 즐거운 마음으로 내는 자에게서 내게 드리는 것을 너희는 받을찌니라" },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "금과 은과 놋. 청색, 자색, 홍색 실. 가는 베실과 염소 털. 붉게 물들인 숫양 가죽, 조각목, 기름과 향품, 호마노와 보석. 목록은 길었다. 조건은 하나였다. 즐거운 마음." },
-    { "type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["moses"], "enter": ["woman", "man"], "acts": [{ "act": "walk-in", "who": "woman" }, { "act": "walk-in", "who": "man" }, { "act": "crowd" }], "text": "그 무렵 산 아래 진. 백성이 가진 금은 대부분 귀에 매달려 있었다. 애굽을 나오던 밤, 이웃에게서 받아 온 것들이었다." },
+    { "type": "narration", "bg": "tent-dusk", "fx": "fade", "exit": ["moses"], "enter": ["woman", "man"], "acts": [{ "act": "walk-in", "who": "woman" }, { "act": "walk-in", "who": "man" }, { "act": "crowd" }], "text": "그 무렵 산 아래 진. 백성이 가진 금은 대부분 귀에 매달려 있었다. 이집트를 나오던 밤, 이웃에게서 받아 온 것들이었다." },
     { "type": "narration", "act": "look-up", "who": "woman", "text": "그들은 아직 그 목록을 몰랐다. 산을 올려다보며, 모세가 언제 내려오나 그것만 궁금해했다." },
     { "type": "narration", "act": "crowd-murmur", "text": "금은 가만히 있지 않는다. 언젠가 무엇이 된다. 무엇이 될지는 대개, 누가 먼저 달라고 하느냐에 달려 있다." },
     { "type": "narration", "bg": "mountain", "fx": "fade", "exit": ["woman", "man"], "enter": ["moses"], "acts": [{ "act": "crowd-away" }, { "act": "pray", "who": "moses" }], "text": "다시 구름 속. 목록 끝에, 이유가 붙었다." },
