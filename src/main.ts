@@ -30,6 +30,7 @@ import './styles/covenant.css';
 import './styles/mamre.css';
 import './styles/calf.css';
 import './styles/ordination.css';
+import './styles/strangefire.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';
 

@@ -22,6 +22,7 @@ export type BackdropArt =
   | 'sin-camp' | 'sin-glory' | 'sin-quail' | 'sin-dew' | 'sin-manna' | 'sin-melt'
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
+  | 'sf-court' | 'sf-ash' | 'sf-outside'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -142,6 +143,8 @@ export const FX = [
   'tablets-break', // 돌판 깨짐: 떠 있는 증거판 두 돌판(item tablets, 없으면 세움)에 금이 그어지고 여덟 조각으로 갈라져 아래로 떨어짐 (약 3초, 출 32:19)
   // ── 하늘에서 내린 불 (레 8–9, fx/ordination.ts) ──
   'fire-fall', // 여호와 앞에서 나온 불: 성막 쪽이 밝아지고 금빛 불줄기가 제단(ord-* 배경)으로 내리꽂혀 번쩍, 불티가 솟고 무대가 금빛으로 물듦 (약 9초, 레 9:24). 배경 ord-blaze와 같이
+  // ── 다른 불 (레 10, fx/strangefire.ts) ──
+  'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'kites', // 솔개 서너 마리가 하늘을 돌다 쪼갠 고기(배경 covenant-*) 쪽으로 내리꽂혔다가 쫓겨 흩어짐 (약 8초, 창 15:11)
   'torch-pass', // 연기 나는 풀무와 타는 횃불이 쪼갠 고기 사이 길을 따라 지평선에서 보는 쪽으로 지나옴. 드는 사람 없음 (약 12초, 창 15:17)
@@ -441,6 +444,16 @@ export const MOODS: Record<string, Mood> = {
   'ord-altar': { light: true, land: false, art: 'ord-altar', spread: true },
   /** 하늘에서 내린 불: 제단 위에 높은 금빛 불, 구름 기둥 속이 빛나고 뜰 전체가 금빛 (레 9:24). fx fire-fall과 같이 */
   'ord-blaze': { light: true, land: false, art: 'ord-blaze', spread: true },
+
+  // ── 다른 불 (레 10, fx/strangefire.ts) ──
+  /** 성막 뜰: 구름 기둥 아래 성막과 청·자·홍색 문, 문 안의 빛, 세마포 포장, 꺼지지 않는 번제단 불, 물두멍. fx strange-fire는 이 문에서 나온다 */
+  'sf-court': { light: true, land: false, art: 'sf-court', spread: true },
+  /** 같은 뜰, 저녁 (레 10:16-20) */
+  'sf-court-dusk': { light: true, land: false, art: 'sf-court', tone: 'dusk', spread: true },
+  /** 일이 지난 뒤: 회막 문 앞 그을린 땅, 엎어진 향로 둘, 식어 가는 숯과 가는 연기 (레 10:2-3) */
+  'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
+  /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
+  'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
 
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */

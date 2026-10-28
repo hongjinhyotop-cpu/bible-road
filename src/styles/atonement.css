@@ -1,0 +1,106 @@
+/* ── 대속죄일 (레 16, A급 lev-16-atonement, fx/atonement.ts) ──
+   회막 문 앞의 두 염소와 제비, 지성소 안(휘장·향연·고인 빛), 진의 가장자리에서 광야로 멀어지는 염소.
+   아론의 세마포 옷(characters/aaron.ts outfit "linen")도 여기서 밝게 */
+
+/* 아론의 세마포 옷: 장식 없는 흰 세마포. 역광 실루엣 속에서도 하얗게 */
+.actor[data-id='aaron'][data-outfit='linen'] .linen { fill: color-mix(in srgb, #f4efe2 66%, var(--sil-ink)); }
+.actor[data-id='aaron'][data-outfit='linen'] .linen-belt { fill: color-mix(in srgb, #fbf7ec 52%, var(--sil-ink)); }
+
+/* ── 성막 뜰 ── */
+.at-ground { fill: color-mix(in srgb, var(--act-b) 48%, #0a0806); }
+.at-cover { fill: color-mix(in srgb, var(--act-a) 40%, #0a0705); }
+.at-screen { fill: color-mix(in srgb, #2b2f5c 60%, var(--act-b)); opacity: 0.9; }
+.at-pillar { fill: color-mix(in srgb, var(--act-accent) 50%, #3a2a14); opacity: 0.85; }
+.at-thread { fill: none; stroke-width: 1.6; opacity: 0.75; }
+.at-thread--b { stroke: #4d6fb8; }
+.at-thread--p { stroke: #7b4a9a; }
+.at-thread--s { stroke: #b84a3e; }
+.at-linen { fill: color-mix(in srgb, #efe8d6 42%, var(--act-b)); opacity: 0.85; }
+.at-cloud__puff { fill: #f4efe4; opacity: 0.32; transform-box: fill-box; transform-origin: center; animation: at-billow 9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes at-billow { from { transform: translateX(-2px) scale(0.96); opacity: 0.26; } to { transform: translateX(2px) scale(1.06); opacity: 0.4; } }
+.at-rope { fill: none; stroke: color-mix(in srgb, #c9b48a 50%, var(--act-a)); stroke-width: 0.7; }
+
+/* 염소: 숨 쉬듯 아주 조금 들썩인다. 죄를 지면(is-laden) 검게 가라앉고 둘레에 어두운 기운 */
+.at-goat { fill: color-mix(in srgb, var(--act-a) 40%, #0b0907); transform-box: fill-box; transform-origin: 50% 100%; animation: at-breathe 3.4s ease-in-out infinite; animation-delay: calc(var(--d) * -1); transition: fill 2.4s, filter 2.4s; }
+@keyframes at-breathe { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.025); } }
+.at-goat.is-laden { fill: #050405; filter: drop-shadow(0 0 3px rgba(10, 6, 8, 0.9)) drop-shadow(0 0 7px rgba(30, 18, 26, 0.6)); }
+.at-goat.is-walking { animation: none; }
+.at-goat.is-walking .at-leg { transform-box: fill-box; transform-origin: 50% 0; animation: at-step 0.5s ease-in-out infinite alternate; }
+.at-goat.is-walking .at-leg--b { animation-direction: alternate-reverse; }
+@keyframes at-step { from { transform: rotate(-14deg); } to { transform: rotate(14deg); } }
+
+/* ── 지성소 ── */
+.at-dark { fill: color-mix(in srgb, var(--act-a) 14%, #050307); }
+.at-board { stroke: color-mix(in srgb, var(--act-accent) 40%, #2a1e0c); stroke-width: 0.8; opacity: 0.35; }
+.at-floor { fill: #030204; }
+.at-shekinah { fill: url(#bd-halo-g); opacity: 0.9; animation: at-shekinah 8s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; }
+@keyframes at-shekinah { from { opacity: 0.6; transform: scale(0.95); } to { opacity: 1; transform: scale(1.05); } }
+.at-haze { fill: #e9e0cf; opacity: 0.07; animation: at-drift 14s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes at-drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+.at-veil__cloth { fill: color-mix(in srgb, #2b2752 70%, var(--act-a)); }
+.at-veil__fold { fill: none; stroke: #0a0812; stroke-width: 1.4; opacity: 0.5; }
+.at-veil__cherub { fill: none; stroke: color-mix(in srgb, var(--act-accent) 70%, #fff); stroke-width: 0.7; opacity: 0.4; }
+.at-veil .at-thread { stroke-width: 2.2; opacity: 0.6; }
+/* 지성소에서는 법궤(item ark)의 금빛 조명이 유일한 빛 — 무대의 하늘 빛을 낮춘다 */
+.play:has(.backdrop:last-child[data-art='atone-holy']) .play__sky { filter: brightness(0.3); }
+
+/* ── 진의 가장자리 → 광야 ── */
+.at-plain { fill: color-mix(in srgb, var(--act-b) 62%, #1a1008); }
+.at-road { fill: color-mix(in srgb, #d8b98a 30%, var(--act-b)); opacity: 0.7; }
+.at-road__rut { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #120c08); stroke-width: 0.6; opacity: 0.4; }
+.at-scrub { fill: color-mix(in srgb, var(--act-a) 50%, #0b0805); opacity: 0.7; }
+.at-watch { fill: color-mix(in srgb, var(--act-a) 46%, #020205); transform-box: fill-box; transform-origin: 50% 100%; animation: at-breathe 4.2s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+.play[data-tone='dusk'] .at--edge .at-road { opacity: 0.45; }
+
+/* ── 효과 공통 층 ── */
+.fx-atone { position: absolute; left: 0; right: 0; bottom: 4%; height: 94%; z-index: 2; pointer-events: none; transition: opacity 2s; }
+.fx-atone svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.fx-atone.is-out { opacity: 0; }
+
+/* cast-lots: 제비 */
+.lt { opacity: 0; }
+.lt__stone rect { fill: color-mix(in srgb, #d8cdb4 60%, var(--act-a)); }
+.lt__mark { stroke: #2a2018; stroke-width: 0.8; }
+.lt__glow { opacity: 0; transition: opacity 1.4s; }
+.lt__label { font-family: 'Noto Serif KR', serif; font-size: 7.4px; letter-spacing: 0.06em; opacity: 0; transition: opacity 1.2s 0.2s; }
+.lt.is-shown .lt__label { opacity: 1; }
+.lt.is-lord .lt__glow { fill: url(#lt-gold); }
+.lt.is-lord.is-shown .lt__glow { opacity: 1; }
+.lt.is-lord .lt__label { fill: #f6dfa4; filter: drop-shadow(0 0 3px rgba(246, 210, 140, 0.8)); }
+.lt.is-lord .lt__stone rect { fill: #f1d48e; }
+.lt.is-azazel .lt__label { fill: #b9b3aa; }
+.lt.is-azazel .lt__stone rect { fill: #8d877e; }
+.fx-lots .lt.is-lord .lt__glow { fill: rgba(250, 214, 140, 0.25); filter: blur(4px); }
+
+/* incense-cloud: 향연이 피어올라 속죄소를 덮는다 (기구 층 위) */
+.fx-incense { z-index: 3; overflow: hidden; }
+.fx-incense i {
+  position: absolute; left: var(--x); top: var(--y); width: calc(34% * var(--s)); aspect-ratio: 1.6; translate: -50% -50%;
+  border-radius: 50%; background: radial-gradient(closest-side, rgba(246, 240, 228, 0.55), rgba(230, 222, 206, 0.22) 60%, transparent);
+  filter: blur(6px); opacity: 0;
+  animation: at-incense 9s ease-out forwards; animation-delay: var(--d);
+}
+@keyframes at-incense {
+  0% { opacity: 0; transform: translate(0, 180%) scale(0.2); }
+  30% { opacity: 0.85; }
+  60% { opacity: 0.9; transform: translate(calc(var(--dx) * 0.6), 0) scale(1.1); }
+  100% { opacity: 0.75; transform: translate(var(--dx), -10%) scale(1.4); }
+}
+
+/* confess: 모여드는 어두운 티끌 */
+.cn-mote { fill: #0b080a; filter: drop-shadow(0 0 1.4px rgba(0, 0, 0, 0.8)); }
+.cn-sink { fill: rgba(8, 5, 8, 0.6); filter: blur(2px); }
+
+/* scapegoat: 정한 사람과 염소 */
+.fx-scapegoat { z-index: 0; }
+.sg-man { fill: color-mix(in srgb, var(--act-a) 44%, #040306); }
+.sg-man__body { animation: sg-bob 0.5s ease-in-out infinite alternate; }
+@keyframes sg-bob { from { transform: translateY(0); } to { transform: translateY(-0.8px); } }
+.sg-man__foot { animation: sg-foot 0.5s ease-in-out infinite alternate; }
+.sg-man__foot--b { animation-direction: alternate-reverse; }
+@keyframes sg-foot { from { transform: translateY(0); } to { transform: translateY(-2px); } }
+.sg-staff { fill: color-mix(in srgb, var(--act-a) 50%, #1a120a); }
+.sg-rope { fill: none; stroke: color-mix(in srgb, #c9b48a 60%, var(--act-a)); stroke-width: 0.8; }
+.sg-puff { fill: color-mix(in srgb, #d8b98a 40%, var(--act-b)); opacity: 0.5; }
+
+:root[data-reduced-motion='true'] :is(.at-goat, .at-watch, .at-cloud__puff, .at-shekinah, .at-haze, .sg-man__body, .sg-man__foot, .at-goat .at-leg) { animation: none; }

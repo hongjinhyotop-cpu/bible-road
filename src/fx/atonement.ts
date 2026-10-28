@@ -314,7 +314,7 @@ export function playConfess(scene: HTMLElement, rm: boolean): void {
   const hx = CX - 12 + 20 * 1.45;
   const hy = G - 27 * 1.45;
   const darken = () => scene.querySelectorAll('.at-goat[data-goat="live"]').forEach((g) => g.classList.add('is-laden'));
-  const ring = `<circle class="cf-sink" cx="${f(hx)}" cy="${f(hy)}" r="6"/>`;
+  const ring = `<circle class="cn-sink" cx="${f(hx)}" cy="${f(hy)}" r="6"/>`;
   svg.innerHTML = ring;
   if (rm) {
     darken();
@@ -331,7 +331,7 @@ export function playConfess(scene: HTMLElement, rm: boolean): void {
     // 티끌 하나: 먹물이 번진 듯한 작은 조각
     const s = 1 + Math.random() * 1.6;
     c.setAttribute('d', `M${-s} 0 Q0 ${-s * 1.4} ${s} 0 Q0 ${s * 1.2} ${-s} 0 Z`);
-    c.setAttribute('class', 'cf-mote');
+    c.setAttribute('class', 'cn-mote');
     svg.append(c);
     const dur = 2.6 + Math.random() * 1.6;
     const delay = (i / N) * 3.2;
@@ -353,7 +353,7 @@ export function playConfess(scene: HTMLElement, rm: boolean): void {
       onComplete: () => c.remove(),
     });
   }
-  const sink = svg.querySelector('.cf-sink');
+  const sink = svg.querySelector('.cn-sink');
   gsap.fromTo(sink, { opacity: 0, attr: { r: 4 } }, { opacity: 0.9, attr: { r: 12 }, duration: 3.6, delay: 1.2, ease: 'power1.in' });
   gsap.to(sink, { opacity: 0, attr: { r: 3 }, duration: 1.2, delay: 5.4, ease: 'power2.in' });
   setTimeout(darken, 4200);

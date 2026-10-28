@@ -118,6 +118,83 @@ function waves(y0: number, rows: number, gap: number, seed: number): string {
   }).join('');
 }
 
+/** 구름 기둥 (출 13:21; 40:36-38): 땅(성막)에서 하늘 끝까지 서는 흰 기둥. 밤(tone night)에는 불빛으로 바뀐다 (library.css) */
+function cloudPillar(x: number, base: number, w: number, seed: number): string {
+  const r = rng(seed);
+  const puffs = Array.from({ length: 9 }, (_, i) => {
+    const y = base - 14 - i * ((base + 20) / 9);
+    const rw = w * (0.55 + i * 0.07) * (0.85 + r() * 0.3);
+    return `<ellipse class="bd-pillar__puff" style="--d:${(r() * 6).toFixed(2)}s" cx="${(x + (r() - 0.5) * w * 0.4).toFixed(1)}" cy="${y.toFixed(1)}" rx="${rw.toFixed(1)}" ry="${(rw * 0.55).toFixed(1)}"/>`;
+  }).join('');
+  return `<g class="bd-pillar">
+    <ellipse class="bd-pillar__glow" cx="${x}" cy="${base - 60}" rx="${w * 3}" ry="${base * 0.6}"/>
+    <path class="bd-pillar__body" d="M${x - w * 0.4} ${base} C${x - w * 0.5} ${base * 0.6} ${x - w * 0.7} ${base * 0.3} ${x - w} -20 L${x + w} -20 C${x + w * 0.7} ${base * 0.3} ${x + w * 0.5} ${base * 0.6} ${x + w * 0.4} ${base} Z"/>
+    ${puffs}
+  </g>`;
+}
+
+/** 세마포 울타리 한 면 (출 27:9-18): 놋 받침 위 기둥들 + 흰 휘장 띠. (x0,y0)→(x1,y1) 바닥선, 높이 h0→h1 */
+function linenFence(x0: number, y0: number, x1: number, y1: number, h0: number, h1: number, n: number, cls = 'bd-mid'): string {
+  const pt = (t: number) => [x0 + (x1 - x0) * t, y0 + (y1 - y0) * t, h0 + (h1 - h0) * t];
+  const band = `M${x0} ${y0} L${x1} ${y1} L${x1} ${y1 - h1} L${x0} ${y0 - h0} Z`;
+  const posts = Array.from({ length: n + 1 }, (_, i) => {
+    const [x, y, h] = pt(i / n);
+    const pw = Math.max(1.2, h * 0.08);
+    return `<rect x="${(x - pw / 2).toFixed(1)}" y="${(y - h - 2).toFixed(1)}" width="${pw.toFixed(1)}" height="${(h + 2).toFixed(1)}"/>`;
+  }).join('');
+  const caps = Array.from({ length: n + 1 }, (_, i) => {
+    const [x, y, h] = pt(i / n);
+    return `<circle cx="${x.toFixed(1)}" cy="${(y - h - 2).toFixed(1)}" r="${Math.max(0.8, h * 0.06).toFixed(1)}"/>`;
+  }).join('');
+  return `<path class="bd-linen" d="${band}"/><g class="${cls}">${posts}</g><g class="bd-silver">${caps}</g>`;
+}
+
+/** 놋 번제단 (작게, 배경용): 네 뿔 + 숯불 + 연기 */
+function bronzeAltarBg(x: number, ground: number, s: number, seed: number): string {
+  const horn = (dx: number, flip: boolean) => `<path transform="translate(${dx} -22) scale(${flip ? -1 : 1} 1)" d="M-3 0 C-4.5 -4 -3 -8 1 -9 C-0.5 -6 1 -3 3 0 Z"/>`;
+  return `${smoke(x, ground - 24 * s, seed, 7)}
+    <g class="bd-bronze" transform="translate(${x} ${ground}) scale(${s})">
+      ${horn(-18, false)}${horn(18, true)}
+      <rect x="-22" y="-22" width="44" height="22"/>
+      <path class="detail" d="M-22 -10 H22 M-22 -6 H22" fill="none" stroke-width="0.6"/>
+    </g>
+    <ellipse class="bd-ember" cx="${x}" cy="${ground - 22 * s}" rx="${16 * s}" ry="${2.4 * s}"/>`;
+}
+
+/** 성막 정면 (동쪽 문 휘장 + 금 기둥 다섯, 위로 덮개) */
+function tabernacleFront(x: number, ground: number, s: number, cls = 'bd-mid'): string {
+  return `<g transform="translate(${x} ${ground}) scale(${s})">
+    <g class="${cls}"><rect x="-30" y="-54" width="60" height="54"/><path d="M-36 -52 Q0 -62 36 -52 L36 -47 L-36 -47 Z"/></g>
+    <g class="bd-screen">${Array.from({ length: 12 }, (_, i) => `<rect class="bd-thread--${'bpsl'[i % 4]}" x="${(-22 + i * (44 / 12)).toFixed(2)}" y="-46" width="${(44 / 12 + 0.2).toFixed(2)}" height="46"/>`).join('')}</g>
+    <g class="bd-goldpost">${[-22, -11, 0, 11, 22].map((px) => `<rect x="${px - 1}" y="-47" width="2" height="47"/>`).join('')}</g>
+  </g>`;
+}
+
+/** 광야 진의 작은 장막 (지붕 뾰족, 문 틈 불빛) — 줄지어 세울 때 */
+function campTent(x: number, ground: number, s: number, cls: string): string {
+  return `<g class="${cls} bd-tent" transform="translate(${x.toFixed(1)} ${ground}) scale(${s})">
+    <path d="M-12 0 L-9 -7 L0 -11 L9 -7 L12 0 Z"/><path class="bd-tent__door" d="M-1.8 0 L0 -7 L1.8 0 Z"/></g>`;
+}
+
+/** 진의 한 줄: x 범위 안에 고르게(조금씩 흔들려) 세우고, skip 구간은 비운다 */
+function campRow(ground: number, s: number, step: number, cls: string, seed: number, skip: [number, number]): string {
+  const r = rng(seed);
+  let out = '';
+  for (let x = -W * 2 + r() * step; x < W * 3; x += step * (0.8 + r() * 0.4)) {
+    if (x > skip[0] && x < skip[1]) continue;
+    out += campTent(x, ground + (r() - 0.5) * 2, s * (0.85 + r() * 0.3), cls);
+  }
+  return out;
+}
+
+/** 지파 깃발 (민 2:2 "각각 그 기와 그 종족의 기호 곁에 진을 치되"): 장대 + 펄럭이는 천 */
+function banner(x: number, ground: number, h: number, kind: number, cls = 'bd-near'): string {
+  const fw = h * 0.36;
+  const top = ground - h;
+  return `<g><path class="${cls}" d="M${x - 0.8} ${ground} V${top} h1.6 V${ground} Z"/>
+    <path class="bd-flag bd-flag--${kind}" style="--d:${(kind * 0.7).toFixed(1)}s" d="M${x + 0.8} ${top + 1} C${x + fw * 0.4} ${top - 1} ${x + fw * 0.7} ${top + 3} ${x + fw} ${top + 1.5} L${x + fw} ${top + fw * 0.62} C${x + fw * 0.7} ${top + fw * 0.66 + 1.5} ${x + fw * 0.4} ${top + fw * 0.6 - 1.5} ${x + 0.8} ${top + fw * 0.64} Z"/></g>`;
+}
+
 /** 상수리나무 숲 가장자리의 큰 나무들 (양옆) */
 const SIDE_OAKS = () => `
   ${tree(-20, 262, 200, 'bd-near', 301, { lean: 0.25, sway: true })}
@@ -284,6 +361,40 @@ export const PLACE_ART: Record<PlaceArt, () => string> = {
     ${tree(112, 262, 120, 'bd-near', 538, { lean: 0.15, sway: true })}${tree(300, 262, 130, 'bd-near', 539, { lean: -0.15, sway: true })}
     ${tree(-120, 262, 150, 'bd-near', 542, { lean: 0.2, sway: true })}${tree(540, 262, 150, 'bd-near', 543, { lean: -0.2, sway: true })}
     ${stones([170, 250], 256, 'bd-near', 540)}`,
+  // 성막 뜰 (레위기·민수기): 뜰 안 동쪽 문 쪽에서 서쪽을 본다. 가운데 번제단과 연기, 뒤로 물두멍과 성막 정면(청·자·홍 문 휘장),
+  // 그 위로 하늘 끝까지 구름 기둥. 세마포 울타리가 뒤와 양옆을 두르고, 넓은 화면에선 울타리 밖으로 진의 장막들이 이어진다
+  tabernacle: () => `
+    ${mesa(-200, 204, 110, 34, 'bd-far')}${mesa(620, 204, 100, 30, 'bd-far')}${mesa(40, 202, 50, 18, 'bd-far')}${mesa(372, 203, 44, 16, 'bd-far')}
+    ${hills(206, 'bd-far', 601)}
+    ${campRow(204, 0.55, 26, 'bd-mid', 602, [70, 330])}
+    ${cloudPillar(200, 156, 22, 603)}
+    <path class="bd-court" d="M${-W * 2} 262 L${-W * 2} 214 L90 214 L310 214 L${W * 3} 214 L${W * 3} 262 Z"/>
+    ${linenFence(90, 214, 310, 214, 13, 13, 16)}
+    ${tabernacleFront(200, 216, 1)}
+    ${campRow(226, 0.9, 40, 'bd-mid', 604, [-60, 460])}
+    ${linenFence(90, 214, -180, 262, 13, 26, 9)}${linenFence(310, 214, 580, 262, 13, 26, 9)}
+    <g class="bd-bronze"><ellipse cx="246" cy="224" rx="9" ry="2.4"/><path d="M237 224 C238 230 254 230 255 224 Z"/><rect x="244.6" y="228" width="2.8" height="6"/><rect x="240" y="233" width="12" height="2" rx="1"/></g>
+    <ellipse class="bd-water" cx="246" cy="223.6" rx="7" ry="1.4"/>
+    ${bronzeAltarBg(200, 244, 1, 605)}
+    ${stones([118, 286], 254, 'bd-near', 606)}
+    ${banner(-150, 262, 120, 1)}${banner(560, 262, 110, 3)}
+    ${tent(-300, 262, 1.6)}${tent(700, 262, 1.6)}`,
+  // 광야의 진 (민 2): 성막을 가운데 두고 사방으로 늘어선 장막들, 지파 깃발, 하늘 끝까지 구름 기둥, 뒤로 바위산
+  camp: () => `
+    ${mesa(-260, 198, 120, 40, 'bd-far')}${mesa(96, 198, 60, 30, 'bd-far')}${mesa(312, 199, 70, 24, 'bd-far')}${mesa(640, 198, 110, 36, 'bd-far')}
+    <path class="bd-far" d="M${-W * 2} 262 L${-W * 2} 200 C-300 198 0 202 200 200 C400 198 700 202 ${W * 3} 200 L${W * 3} 262 Z"/>
+    ${cloudPillar(200, 192, 12, 611)}
+    <g class="bd-far-court"><rect x="180" y="194" width="40" height="5"/></g>
+    <g class="bd-mid"><rect x="193" y="185" width="16" height="10"/><path d="M190 186 Q201 182 212 186 L212 188 L190 188 Z"/></g>
+    ${campRow(203, 0.42, 20, 'bd-mid', 612, [172, 228])}
+    ${campRow(210, 0.62, 28, 'bd-mid', 613, [150, 250])}
+    ${banner(150, 206, 22, 1, 'bd-mid')}${banner(252, 206, 22, 2, 'bd-mid')}${banner(-40, 206, 24, 3, 'bd-mid')}${banner(440, 206, 24, 4, 'bd-mid')}
+    ${dunes(222, 'bd-mid', 614)}
+    ${campRow(232, 1.05, 42, 'bd-near', 615, [118, 282])}
+    ${banner(96, 236, 44, 2)}${banner(306, 236, 46, 4)}${banner(-160, 234, 50, 1)}${banner(560, 234, 50, 3)}
+    ${tent(40, 256, 1.1)}${tent(372, 256, 1.15)}${tent(-240, 258, 1.4)}${tent(640, 258, 1.4)}
+    ${stones([150, 254, 92, 330], 256, 'bd-near', 616)}
+    ${thorns(126, 256, 14, 'bd-near', 617)}${thorns(280, 256, 16, 'bd-near', 618)}`,
   egypt: () => `
     <g class="bd-far"><path d="M128 212 L168 158 L208 212 Z"/><path d="M196 212 L222 178 L248 212 Z"/><path d="M-120 212 L-90 174 L-60 212 Z"/></g>
     <path class="bd-ridge" d="M168 158 L208 212 M222 178 L248 212"/>

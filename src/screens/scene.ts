@@ -32,6 +32,7 @@ import { playQuail, playStink } from '../fx/manna';
 import { playKites, playTorchPass } from '../fx/covenant';
 import { playTabletsBreak } from '../fx/calf';
 import { playFireFall } from '../fx/ordination';
+import { playStrangeFire } from '../fx/strangefire';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -480,6 +481,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'fire-fall':
         // 하늘에서 내린 불 (fx/ordination.ts): 성막 쪽에서 금빛 불줄기가 제단으로 내리꽂힌다 (레 9:24)
         playFireFall($('.scene'), rm);
+        return;
+      case 'strange-fire':
+        // 다른 불 (fx/strangefire.ts): 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다 (레 10:2)
+        playStrangeFire($('.scene'), rm);
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)
