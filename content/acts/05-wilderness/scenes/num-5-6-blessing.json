@@ -28,7 +28,7 @@
     { "type": "scripture", "ref": "민 5:6-7", "gloss": "사람한테 죄지은 건 하나님한테 대든 거기도 함. 그러면 자백하고, 손해 본 거 전부 갚고, 20% 더 얹어서 피해자한테 돌려줘. ‘미안’ 한마디로 끝 아님. 원금 + 위자료." },
     { "type": "line", "who": "neighbor", "act": "face", "to": "debtor", "text": "“오분의 일은 왜 얹소. 원래 것만 주어도 되는데.”" },
     { "type": "line", "who": "debtor", "act": "bow-head", "text": "“법이 그렇다오. 미안하다는 말에도 무게가 있어야 한다고.”" },
-    { "type": "narration", "act": "part", "who": "debtor", "text": "갚을 사람이 죽고 친족도 없으면, 그 값은 여호와께 드려 제사장에게로 갔다. 받을 사람이 없다고, 갚지 않아도 되는 빚은 없었다." },
+    { "type": "narration", "act": "part", "who": "debtor", "text": "받을 사람이 죽고 친족도 없으면, 그 값은 여호와께 드려 제사장에게로 갔다. 받을 사람이 없다고, 갚지 않아도 되는 빚은 없었다." },
     { "type": "narration", "bg": "tabernacle", "fx": "fade", "exit": ["debtor", "neighbor", "moses"], "act": "walk-in", "who": "aaron", "text": "그리고 이 장에서 가장 무거운 법이 나온다. 기록은 그것을 ‘의심의 법’이라 부른다." },
     { "type": "narration", "acts": [{ "act": "walk-in", "who": "husband" }, { "act": "walk-in", "who": "wife" }], "text": "남편이 아내를 의심한다. 증인도 없고, 드러난 일도 없다. 본문은 두 경우를 나란히 적는다. 아내가 정말 남편에게 죄를 지었을 때. 그리고 아무 일도 없었는데 남편의 마음에 의심이 생겼을 때." },
     { "type": "narration", "act": "step-back", "who": "husband", "text": "남편은 아내를 제사장에게 데려왔다. 그리고 한 걸음 물러섰다. 여기서부터는 그의 손을 떠난 일이었다." },

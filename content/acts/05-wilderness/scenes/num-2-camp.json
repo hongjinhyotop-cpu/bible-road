@@ -30,7 +30,7 @@
     { "type": "narration", "item": null, "bg": "camp-dusk", "act": "walk-in", "who": "elishama", "text": "서쪽, 해 지는 편. 에브라임의 깃발. 족장은 암미훗의 아들 엘리사마. 에브라임, 므낫세, 베냐민. 라헬의 자손들이었다. 십만 팔천 일백. 셋째로 진행한다." },
     { "type": "narration", "act": "look-up", "who": "elishama", "text": "요셉이라는 이름의 깃발은 없었다. 그 자리를 아들 둘이 나누어 채웠다. 이집트에서 늙은 야곱이 손을 엇바꾸어 얹던 날, 동생 에브라임이 형보다 앞에 섰다. 깃발에도 에브라임의 이름이 걸렸다." },
     { "type": "narration", "bg": "camp-night", "fx": "stars", "exit": ["elishama"], "act": "walk-in", "who": "ahiezer", "text": "북쪽. 단의 깃발. 족장은 암미삿대의 아들 아히에셀. 단, 아셀, 납달리. 십오만 칠천 육백. 기를 따라 맨 뒤에서 진행한다." },
-    { "type": "line", "who": "ahiezer", "act": "approach", "to": "moses", "text": "“맨 뒤면, 앞의 오십만이 일으킨 먼지를 다 먹겠군.”" },
+    { "type": "line", "who": "ahiezer", "act": "approach", "to": "moses", "text": "“맨 뒤면, 앞의 사십오만이 일으킨 먼지를 다 먹겠군.”" },
     { "type": "line", "who": "moses", "act": "face", "to": "ahiezer", "text": "“그리고 뒤처진 사람을 다 줍겠지. 맨 뒤가 없으면 행렬은 끝나지 않소.”" },
     { "type": "narration", "act": "bow-head", "who": "ahiezer", "text": "아히에셀은 대답 대신 방패를 고쳐 멨다. 맨 뒤는 아무도 원하지 않는 자리다. 그래서 누군가에게 맡겨져야 하는 자리다." },
     { "type": "narration", "bg": "camp-dawn", "fx": ["fade", "dawn"], "exit": ["ahiezer"], "act": "crowd", "text": "그렇게 사방이 정해졌다. 동에 셋, 남에 셋, 서에 셋, 북에 셋. 가운데 레위인, 그 가운데 회막. 열두 개의 깃발이 바람에 펄럭였다." },
