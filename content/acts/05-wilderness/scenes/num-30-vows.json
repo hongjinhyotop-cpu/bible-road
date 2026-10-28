@@ -1,0 +1,67 @@
+{
+  "id": "num-30-vows",
+  "act": 5,
+  "grade": "B",
+  "title": "입에서 나온 대로",
+  "ref": "민 30",
+  "bg": "camp",
+  "cast": ["moses"],
+  "extras": {
+    "chief": { "name": "지파의 두령", "base": "old-man", "hair": "turban", "beard": "long", "props": ["staff"], "tint": "purple" },
+    "daughter": { "name": "어린 딸", "base": "girl", "hair": "veil", "props": ["jar"], "tint": "blue" },
+    "father": { "name": "아버지", "base": "man", "hair": "hood", "beard": "short", "tint": "brown" },
+    "wife": { "name": "아내", "base": "woman", "hair": "veil", "props": ["basket"], "tint": "red" },
+    "husband": { "name": "남편", "base": "man", "hair": "short", "beard": "short", "tint": "green" },
+    "widow": { "name": "과부", "base": "old-woman", "hair": "veil", "props": ["lamp"], "tint": "gray" }
+  },
+  "beats": [
+    { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "walk-in", "who": "chief" }], "enter": ["chief"], "text": "이번에 모세가 부른 것은 온 회중이 아니었다. 지파의 두령들이었다. 집안을 책임지는 사람들. 약속을 지키게도, 깨게도 할 수 있는 사람들." },
+    { "type": "line", "who": "moses", "act": "face", "to": "chief", "text": "“여호와의 명령이 이러하니라. 사람이 여호와께 서원하였거든, 파약하지 말고 그 입에서 나온 대로 다 행할 것이니라.”" },
+    { "type": "scripture", "ref": "민 30:2", "gloss": "하나님한테 ‘이거 하겠습니다’ 또는 ‘이거 안 하겠습니다’ 약속했으면, 깨지 마. 입에서 나온 그대로 해. 끝." },
+    { "type": "line", "who": "chief", "act": "bow-head", "text": "“그건 저희도 압니다. 말은 쉽게 나오고, 지키기는 어렵지요.”" },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "moses", "to": "chief" }], "text": "서원은 하나님께 무엇을 드리겠다는 약속이었다. 서약은 무엇을 끊겠다는 약속이었다. 금식이나, 어떤 음식이나, 어떤 즐거움이나. 사람은 다급할 때 가장 큰 약속을 한다. 그리고 다급함이 지나가면, 약속만 남는다." },
+    { "type": "line", "who": "moses", "text": "“그런데 여자가 아직 아비 집에 있을 때, 혹은 남편의 집에 있을 때 한 서원은 따로 일러 두라 하신다.”" },
+    { "type": "line", "who": "chief", "act": "look-up", "text": "“따로라 하시면.”" },
+
+    { "bg": "tent", "fx": "fade", "exit": ["moses", "chief"], "enter": ["daughter"], "act": "pray", "who": "daughter", "type": "narration", "text": "어느 장막. 아버지 집에 사는 어린 딸이 무릎을 꿇었다. 아픈 동생을 위해서였을 수도 있고, 그냥 마음이 그랬을 수도 있다. 소녀는 여호와께 무엇인가를 약속했다. 소리 내어." },
+    { "enter": ["father"], "act": "walk-in", "who": "father" },
+    { "type": "narration", "act": "step-back", "who": "father", "text": "아버지가 그 말을 들었다. 장막은 얇고, 집은 작다. 이 법이 묻는 것은 하나였다. 들은 그날, 아버지는 무엇을 하는가." },
+    {
+      "type": "choice",
+      "prompt": "딸의 서원을 들은 그날. 아버지는?",
+      "options": [
+        { "label": "아무 말 하지 않는다", "canon": true },
+        { "label": "그날로 허락하지 않는다", "goto": "b-forbid" }
+      ]
+    },
+    { "type": "narration", "acts": [{ "act": "turn", "who": "father" }], "text": "아버지는 아무 말도 하지 않았다. 그날이 지났다. 아무 말 없음도 대답이었다. 서원은 섰다. 이제 그것은 소녀의 약속이었고, 소녀가 지켜야 했다." },
+    { "type": "scripture", "ref": "민 30:5", "gloss": "근데 아빠가 들은 바로 그날 ‘안 돼’ 하면, 그 서원은 없던 걸로 됨. 그리고 하나님이 딸을 용서하심. 딸이 약속 깬 죄인이 되는 게 아님." },
+    { "type": "narration", "act": "stand", "who": "daughter", "text": "그날을 넘기면 늦었다. 법은 침묵에 날짜를 매겼다. 사람은 대개 나중에 반대한다. 이 법은 나중을 받아주지 않았다." },
+
+    { "bg": "house-dusk", "fx": "fade", "exit": ["daughter", "father"], "enter": ["wife", "husband"], "act": "face", "who": ["wife", "husband"], "type": "narration", "text": "남편의 집도 같았다. 아내가 서원을 하면, 남편이 듣는 날이 있었다. 그날 그가 막으면 서원은 무효였고, 여호와께서 그 여자를 사하셨다. 그날 그가 가만히 있으면, 서원은 섰다." },
+    { "type": "line", "who": "husband", "act": "approach", "to": "wife", "text": "“그 약속, 언제 한 거요.”" },
+    { "type": "line", "who": "wife", "act": "bow-head", "text": "“오늘 아침에요. 당신도 들었잖아요.”" },
+    { "type": "line", "who": "husband", "act": "turn", "text": "“…들었지. 그런데 그땐 아무 말 안 했고.”" },
+    { "type": "narration", "act": "look-up", "who": "wife", "text": "그리고 한 가지가 더 있었다. 남편이 들은 지 얼마 뒤에, 그날이 다 지나서야 무효로 하면? 그러면 죄는 아내에게 가지 않았다. 남편이 그것을 졌다." },
+    { "type": "scripture", "ref": "민 30:15", "gloss": "남편이 듣고 가만있다가 한참 뒤에 ‘그거 무효’ 하면, 아내가 약속 깬 책임은 남편이 다 짐. 아내가 뒤집어쓰는 게 아님." },
+    { "type": "line", "who": "husband", "act": "bow-head", "text": "“그럼 내가 지는 거군. 늦게 말한 값을.”" },
+
+    { "bg": "tent-dusk", "fx": "fade", "exit": ["wife", "husband"], "enter": ["widow"], "act": "walk-in", "who": "widow", "type": "narration", "text": "그리고 과부. 이혼 당한 여자. 그 여자들 위에는 아버지도 남편도 없었다. 법은 짧게 말했다. 그 서원은 지킬 것이니라." },
+    { "type": "scripture", "ref": "민 30:9", "gloss": "과부나 이혼한 여자의 서원은 누가 취소 못 함. 본인이 한 약속 = 본인 책임. 그대로 유효." },
+    { "type": "narration", "act": "pray", "who": "widow", "text": "그녀는 등잔 앞에 앉아 자기 약속을 혼자 지켰다. 누구도 대신 막아 주지 않았고, 누구도 대신 깨지 않았다. 자유는 대개 이렇게 생겼다. 무겁고, 조용하다." },
+
+    { "bg": "camp-dusk", "fx": "fade", "exit": ["widow"], "enter": ["moses", "chief"], "acts": [{ "act": "walk-in", "who": "chief" }, { "act": "crowd-murmur" }], "type": "narration", "text": "두령들은 진으로 돌아가 이 말을 전했다. 남편이 아내에게, 아비가 자기 집에 있는 어린 딸에게. 집 안의 말을 다루는 법이었다." },
+    { "type": "line", "who": "chief", "act": "face", "to": "moses", "text": "“결국 듣는 사람이 책임지라는 말씀이군요. 들었으면, 그날 말하라고.”" },
+    { "type": "line", "who": "moses", "act": "bow-head", "text": "“입을 연 사람도, 귀를 연 사람도. 둘 다.”" },
+    { "type": "narration", "acts": [{ "act": "look-up", "who": "moses" }, { "act": "crowd-away" }], "text": "말은 바람처럼 나간다. 그러나 이 백성에게 말은, 나간 뒤에도 하늘에 남았다. 그래서 그들은 말하기 전에 한 번 더 숨을 골라야 했다." }
+  ],
+  "branches": {
+    "b-forbid": [
+      { "type": "line", "who": "father", "act": "approach", "to": "daughter", "text": "“얘야. 그 약속은 하지 마라. 네가 감당할 일이 아니다.”" },
+      { "type": "narration", "act": "bow-head", "who": "daughter", "text": "그러면 서원은 서지 않았다. 소녀는 약속을 깬 사람이 되지 않았다. 기록은 분명히 적는다. 아비가 허락지 아니하였은즉, 여호와께서 사하시리라. 어느 쪽이든, 그날 안에 정해졌다." }
+    ]
+  },
+  "insight": "방금 그거 ‘서원’ 법. 서원 = 하나님한테 거는 약속. ‘이거 드리겠습니다’ 또는 ‘이거 끊겠습니다(금식 같은 거)’. 원칙은 30:2 한 줄임. 입에서 나온 그대로 해라. 남자든 여자든 하나님 앞에서 한 말은 진짜 무게가 있다는 전제에서 시작함.\n\n근데 솔직히 오늘 감각으로 읽으면 불편한 데가 있음. 결혼 안 한 딸은 아버지가, 아내는 남편이 그 서원을 무효로 할 수 있다? 이게 공정하냐고 물으면, 당연히 걸리는 게 정상임. 숨기지 말고 그대로 보자.\n\n맥락을 좀 깔면, 고대 이스라엘은 가부장 사회였음. 집안 재산이랑 생계가 아버지·남편 이름으로 묶여 있었거든. 서원은 대개 돈이나 가축을 바치거나, 오랫동안 뭘 끊는 거라서 집안 살림 전체에 영향을 줌. 알바생이 회사 법카로 ‘제가 쏠게요’ 했는데 사장이 그날 바로 ‘그건 안 됨’ 하는 구조랑 비슷함. 그래서 법이 집안 가장한테 거부권을 준 거라고 보는 해석이 많음.\n\n근데 이 법 안에 보호 장치도 같이 있음. ① 무효로 해도 여자는 ‘약속 깬 죄인’이 안 됨. 하나님이 사하신다고 세 번이나 말함. ② 거부는 ‘들은 그날’만 됨. 가만있다가 나중에 뒤집으면 죄는 남편이 짐(30:15). ③ 과부·이혼한 여자의 서원은 누구도 못 건드림(30:9). 즉 여자의 서원 자체가 가볍다는 게 아니라, 누구 집 살림에 묶여 있느냐가 기준이었다는 거.\n\n그래서 해석이 갈림. 이 법을 당시 기준으로는 여자를 보호하는 쪽으로 한 걸음 나간 법이라고 읽는 관점이 있고, 그래도 결국 남성 중심 구조를 반영한 법이라 오늘날 그대로 적용할 게 아니라고 보는 관점도 있음. 많은 교회·유대 전통이 이 장을 ‘말의 무게’와 ‘듣는 사람의 책임’이라는 원리로 읽고, 가정 안의 위계 규정은 고대 사회 맥락으로 이해함.\n\n근데 이게 왜 중요하냐면, 우리 말이 너무 가벼워서. ‘이번 학기는 진짜 공부함’, ‘다음 주부터 운동함’. 이 장은 말한 사람한테도, 그걸 들은 사람한테도 책임이 있다고 함. 단톡방에서 읽씹하고 나중에 ‘나 반대였는데?’ 하는 거, 이 법에선 안 통함.",
+  "tldr": "하나님 앞에서 한 약속은 입에서 나온 대로 지켜라. 집안에 묶인 딸·아내의 서원은 가장이 ‘들은 그날’ 무효로 할 수 있었는데, 오늘 보면 불편한 그 규정 안에도 여자를 보호하는 장치가 들어 있음.",
+  "bridge": "말의 무게를 정한 뒤, 하나님은 모세에게 마지막 싸움 하나를 남겨 두셨다."
+}
