@@ -15,8 +15,7 @@
   },
   "beats": [
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "호르산 꼭대기에서 아론이 죽었다. 온 회중이 삼십 일 동안 곡했다. 모세는 형을 산에 두고 내려왔다. 형의 옷은 조카 엘르아살이 입고 내려왔다." },
-    { "type": "narration", "act": "crowd", "fx": "dust", "text": "슬픔이 다 마르기도 전에, 남방의 아랏 왕이 쳐들어왔다. 몇 사람이 잡혀갔다. 세상은 누가 상중인지 묻지 않는다." },
-    { "type": "narration", "act": "crowd-bow", "text": "이스라엘은 서원했다. 이번에는 원망이 아니라 서원이었다. 여호와께서 들으셨고, 그들은 이겼다. 그곳 이름을 호르마라 했다. 다 멸하였다는 뜻이다." },
+    { "type": "narration", "act": "crowd", "fx": "dust", "text": "슬픔이 다 마르기도 전에, 남방의 아랏 왕이 쳐들어왔다. 몇 사람이 잡혀갔다. 세상은 누가 상중인지 묻지 않는다. 이스라엘은 서원했다. 이번에는 원망이 아니라 서원이었다. 여호와께서 들으셨고, 그들은 이겼다. 그곳 이름을 호르마라 했다. 다 멸하였다는 뜻이다." },
     { "type": "narration", "act": "travel", "from": "mount-hor", "via": ["edom"], "to": "ezion-geber", "text": "에돔은 길을 내주지 않았다. 그래서 돌아가야 했다. 남쪽으로, 홍해 길로, 에돔 땅을 빙 둘러서. 가나안은 북쪽에 있었다." },
     { "type": "narration", "bg": "bz-road", "act": "walk-in", "who": "grumbler", "text": "가야 할 곳의 반대쪽으로 걷는 일은, 그냥 걷는 것보다 두 배로 지친다. 해는 하얗고, 길은 하얗고, 붉은 산은 끝나지 않았다." },
     { "type": "line", "who": "grumbler", "act": "turn", "text": "“가나안이 어느 쪽이라고 했지.”" },
@@ -34,8 +33,7 @@
     { "type": "narration", "bg": "bz-camp-night", "fx": "fiery-serpents", "act": "step-back", "who": "mother", "text": "그날 밤, 모래가 움직였다." },
     { "type": "narration", "act": "step-back", "who": "grumbler", "text": "여호와께서 불뱀들을 백성 중에 보내셨다. 모래 빛을 한 것들이 장막 사이를 스쳐 갔다. 그것들이 지나간 자리마다, 누군가 소리를 질렀다." },
     { "type": "narration", "act": "fall", "who": "grumbler", "text": "사내가 주저앉았다. 물린 자리가 불처럼 탄다고 했다. 그래서 불뱀이라 불렀을 것이다." },
-    { "acts": [{ "act": "fall", "who": "boy" }, { "act": "kneel", "who": "mother" }] },
-    { "type": "narration", "act": "cry", "who": "mother", "fx": "dark", "text": "이스라엘 백성 중에 죽은 자가 많았다. 본문은 그 숫자를 적지 않는다. 적지 않은 것이, 적은 것보다 무겁다." },
+    { "type": "narration", "acts": [{ "act": "fall", "who": "boy" }, { "act": "cry", "who": "mother" }], "fx": "dark", "text": "이스라엘 백성 중에 죽은 자가 많았다. 본문은 그 숫자를 적지 않는다. 적지 않은 것이, 적은 것보다 무겁다." },
 
     { "type": "narration", "bg": "bz-camp", "fx": "fade", "act": "crowd-bow", "text": "아침이 왔다. 원망하던 입들이 이번에는 같은 사람에게 다른 말을 하러 왔다." },
     { "type": "line", "who": "mother", "acts": [{ "act": "stand", "who": "mother" }, { "act": "approach", "who": "mother", "to": "moses" }], "text": "“우리가 여호와와 당신을 향하여 원망하므로 범죄하였사오니, 여호와께 기도하여 이 뱀들을 우리에게서 떠나게 하소서.”" },
@@ -43,7 +41,7 @@
     { "type": "narration", "act": "pray", "who": "moses", "text": "모세는 기도했다. 몇 번째인지 이제는 셀 수도 없는 기도였다. 어젯밤까지 그를 몰아세우던, 바로 그 입들을 위해서." },
     { "type": "voice", "fx": "glory", "text": "불뱀을 만들어 장대 위에 달라. 물린 자마다 그것을 보면 살리라." },
     { "type": "narration", "act": "look-up", "who": "moses", "text": "뱀을 치워 주신다는 말은 없었다. 백성은 뱀을 떠나게 해 달라고 빌었다. 하나님은 뱀을 하나 더 만들라고 하셨다." },
-    { "type": "narration", "fx": "fire", "act": "kneel", "who": "moses", "text": "모세는 놋을 녹였다. 불 속에서 쇠붙이가 흘렀고, 식으면서 모양이 되었다. 어젯밤 모래 위를 스쳐 가던, 바로 그 모양." },
+    { "type": "narration", "fx": "flash", "act": "kneel", "who": "moses", "text": "모세는 놋을 녹였다. 불 속에서 쇠붙이가 흘렀고, 식으면서 모양이 되었다. 어젯밤 모래 위를 스쳐 가던, 바로 그 모양." },
     { "type": "narration", "bg": "bz-pole", "fx": "fade", "act": "stand", "who": "moses", "text": "장대가 섰다. 진 한가운데, 어느 장막에서 고개를 들어도 보이는 곳에. 놋뱀은 아무 말도 하지 않았다. 높이 달려 있을 뿐이었다." },
     { "type": "narration", "act": "bow-head", "who": "grumbler", "text": "사내는 아직 땅에 있었다. 다리가 타들어 갔다. 장대는 저기 서 있었다. 거기까지 걸어갈 필요는 없었다. 고개만 들면 됐다." },
     { "type": "choice", "prompt": "다리가 타들어 간다. 장대는 저기 서 있다.", "options": [
@@ -54,8 +52,7 @@
     { "type": "narration", "act": "stand", "who": "grumbler", "text": "그리고 살았다. 약도 없었다. 주문도 없었다. 그냥, 쳐다봤다." },
     { "type": "scripture", "ref": "민 21:8-9", "gloss": "하나님: “불뱀 모양 하나 만들어서 장대에 달아. 물린 사람이 그거 쳐다보면 산다.” 모세가 놋으로 뱀 만들어 달았고, 물린 사람이 쳐다보면 진짜 다 살았음." },
     { "type": "narration", "acts": [{ "act": "approach", "who": "mother", "to": "boy" }, { "act": "look-up", "who": "boy" }], "text": "여인이 소년에게 갔다. 아이는 고개를 들 힘이 없었다. 어미가 아이의 턱을 받쳐 들어 올려 주었다." },
-    { "acts": [{ "act": "stand", "who": "boy" }, { "act": "embrace", "who": ["mother", "boy"] }] },
-    { "type": "narration", "act": "crowd-cheer", "text": "진 여기저기서 사람들이 하나둘 일어났다. 쳐다보는 것. 세상에서 가장 쉬운 일이다. 그리고 고개를 떨군 사람에게는, 세상에서 가장 어려운 일이다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "boy" }, { "act": "embrace", "who": ["mother", "boy"] }, { "act": "crowd-cheer" }], "text": "진 여기저기서 사람들이 하나둘 일어났다. 쳐다보는 것. 세상에서 가장 쉬운 일이다. 그리고 고개를 떨군 사람에게는, 세상에서 가장 어려운 일이다." },
 
     { "type": "narration", "bg": "wilderness-dusk", "fx": "fade", "exit": ["mother", "boy"], "act": "travel", "from": "ezion-geber", "via": ["oboth"], "to": "arnon", "text": "그들은 다시 걸었다. 오봇, 이예아바림, 세렛 골짜기, 그리고 아르논 건너편. 모압과 아모리 사이의 경계였다." },
     { "type": "narration", "bg": "well-dusk", "act": "walk-in", "who": "chief", "text": "브엘. 우물이라는 뜻이다. 여호와께서 모세에게 말씀하셨던 곳이다. 백성을 모으라, 내가 그들에게 물을 주리라." },

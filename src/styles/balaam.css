@@ -1,0 +1,101 @@
+/* ── 발람과 나귀 (민 22–24, A급 num-22-24-balaam, fx/balaam.ts) ──
+   배경: 모압 벼랑과 장막 덮인 평지, 새벽 길, 포도원 돌담 사이, 바위 틈, 일곱 단의 산꼭대기, 별이 뜨는 밤.
+   인물: 나귀(characters/donkey.ts — 엎드리면 .dk-lift가 내려앉음, 채찍질하면 .dk-arm이 휘둘림),
+         칼 든 여호와의 사자(characters/angel-sword.ts — 얼굴 없는 빛. unseen이면 옅게 일렁임).
+   효과: bal-strike, eyes-open, clap. */
+
+/* 평지·장막 */
+.bal-plain { fill: color-mix(in srgb, var(--act-b) 70%, var(--act-accent)); opacity: 0.55; }
+.bal-jordan { fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #cfe4ef); stroke-width: 1.2; opacity: 0.45; }
+.bal-tents { fill: color-mix(in srgb, var(--act-a) 55%, #120c0a); opacity: 0.85; }
+.bal-lamp { fill: #ffcf7a; filter: drop-shadow(0 0 1.5px #ffae4a); animation: bal-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bal-flicker { from { opacity: 0.95; } to { opacity: 0.4; } }
+.bal-campglow { fill: color-mix(in srgb, var(--act-accent) 50%, #fff3cf); opacity: 0.16; filter: blur(6px); }
+.bal-flag { fill: color-mix(in srgb, var(--act-accent) 60%, #b0482e); stroke: color-mix(in srgb, var(--act-a) 55%, #120c0a); stroke-width: 0.6; }
+.bal-holy { fill: color-mix(in srgb, var(--act-accent) 70%, #fff); opacity: 0.8; }
+.bal-pillar { fill: color-mix(in srgb, var(--act-accent) 20%, #f4efe2); opacity: 0.35; filter: blur(1.5px); }
+.bal--star .bal-pillar { fill: #ffb45a; opacity: 0.5; filter: blur(2px); }
+
+/* 모압 성벽 */
+.bal-crenel { fill: none; stroke: currentColor; stroke-width: 0; }
+.bal-window { fill: #ffbf6a; opacity: 0.75; filter: drop-shadow(0 0 2px #ff9a3c); }
+
+/* 길·밭 */
+.bal-road { fill: color-mix(in srgb, var(--act-b) 55%, #e9d6b4); opacity: 0.32; }
+.bal-rows { fill: none; stroke: color-mix(in srgb, var(--act-a) 45%, #120c0a); stroke-width: 1.4; opacity: 0.5; }
+.bal-vines { opacity: 0.9; }
+
+/* 포도원 돌담 */
+.bal-courses { fill: none; stroke: color-mix(in srgb, var(--act-accent) 25%, #000); stroke-width: 0.8; opacity: 0.55; }
+.bal-stonewall { filter: drop-shadow(0 -1px 0 color-mix(in srgb, var(--act-accent) 40%, transparent)); }
+
+/* 바위 틈 */
+.bal-gap { fill: color-mix(in srgb, var(--act-accent) 45%, #fff3cf); opacity: 0.22; filter: blur(10px); }
+.bal-crack { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #000); stroke-width: 1; opacity: 0.6; }
+
+/* 일곱 단 */
+.bal-stones { fill: none; stroke: color-mix(in srgb, var(--act-accent) 30%, #000); stroke-width: 0.5; opacity: 0.6; }
+.bal-altarglow { fill: url(#bd-flame-g); opacity: 0.8; mix-blend-mode: screen; animation: bal-flicker 2.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.bal-flame { fill: #f6a24e; opacity: 0.9; mix-blend-mode: screen; transform-box: fill-box; transform-origin: 50% 100%; animation: bal-flame 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes bal-flame { from { transform: scale(1, 1); } to { transform: scale(0.8, 1.25) skewX(6deg); } }
+
+/* 한 별 (민 24:17): 지평선 위에서 천천히 떠오르며 밝아진다 */
+.bal-star { animation: bal-star-rise 9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+@keyframes bal-star-rise { from { opacity: 0; transform: translateY(46px); } 30% { opacity: 0.6; } to { opacity: 1; transform: translateY(0); } }
+.bal-star__halo { fill: url(#bd-halo-g); opacity: 0.9; transform-box: fill-box; transform-origin: center; animation: bal-breathe 5s ease-in-out infinite alternate; }
+.bal-star__ray { fill: #fff6dc; opacity: 0.85; filter: drop-shadow(0 0 3px #ffe7a8); transform-box: fill-box; transform-origin: center; animation: bal-twinkle 4s ease-in-out infinite alternate; }
+.bal-star__core { fill: #fffdf6; filter: drop-shadow(0 0 4px #fff0c0) drop-shadow(0 0 10px #ffd27a); }
+@keyframes bal-breathe { from { transform: scale(0.9); opacity: 0.6; } to { transform: scale(1.12); opacity: 1; } }
+@keyframes bal-twinkle { from { transform: scale(0.85) rotate(0deg); } to { transform: scale(1.1) rotate(8deg); } }
+
+/* ── 나귀 ── */
+.actor[data-id='donkey'] .dk-lift { transition: transform 1.1s cubic-bezier(0.3, 0.7, 0.2, 1); }
+.actor[data-id='donkey'][data-outfit='down'] .dk-lift,
+.actor[data-id='donkey'][data-outfit='free'] .dk-lift { transform: translateY(72px); }
+.actor[data-id='donkey'] .dk-arm { transform-box: view-box; transform-origin: 212px 160px; }
+.actor[data-id='donkey'].is-strike .dk-arm { animation: dk-swing 0.9s cubic-bezier(0.4, 0, 0.2, 1); }
+@keyframes dk-swing { 0% { transform: rotate(0deg); } 35% { transform: rotate(-38deg); } 55% { transform: rotate(34deg); } 100% { transform: rotate(0deg); } }
+.actor[data-id='donkey'].is-strike .actor__art { animation: dk-flinch 0.9s ease-out; }
+@keyframes dk-flinch { 0%, 45% { translate: 0 0; } 55% { translate: 6px -3px; } 65% { translate: -3px 0; } 80% { translate: 2px 0; } 100% { translate: 0 0; } }
+
+.fx-bstrike { position: absolute; z-index: 3; pointer-events: none; width: 0; height: 0; }
+.fx-bstrike i { position: absolute; left: -22px; top: -4px; width: 44px; height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent, #fff7e4, transparent); box-shadow: 0 0 8px #ffe2a0; rotate: -24deg; opacity: 0; animation: bal-lash 0.7s ease-out 0.45s both; }
+.fx-bstrike i + i { top: 6px; left: -16px; width: 32px; animation-delay: 0.52s; }
+@keyframes bal-lash { 0% { opacity: 0; scale: 0.2 1; } 30% { opacity: 1; scale: 1 1; } 100% { opacity: 0; scale: 1.2 1; } }
+
+/* ── 칼 든 여호와의 사자: 얼굴 없는 빛 ── */
+.actor[data-id='angel-sword'] { --sil-ink: color-mix(in srgb, #fff4d6 78%, var(--act-accent)); transition: opacity 1.2s ease, filter 1.2s ease; }
+.actor[data-id='angel-sword'] .actor__rimcolor { flood-color: #fff1c4; flood-opacity: 1; }
+.actor[data-id='angel-sword'] .actor__backlight { opacity: 1; scale: 1.25; }
+.actor[data-id='angel-sword'] .actor__art { filter: drop-shadow(0 0 10px rgba(255, 226, 160, 0.75)) drop-shadow(0 0 28px rgba(255, 200, 110, 0.45)); }
+.actor[data-id='angel-sword'] .as-fold { stroke: color-mix(in srgb, #fff 60%, var(--act-accent)); stroke-width: 1.2; opacity: 0.6; }
+.actor[data-id='angel-sword'] .as-halo { fill: url(#bd-halo-g); opacity: 0.7; }
+.actor[data-id='angel-sword'] .as-blade { fill: #fffdf6; filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px #ffe6a8); animation: as-gleam 3.2s ease-in-out infinite alternate; }
+.actor[data-id='angel-sword'] .as-hilt { fill: color-mix(in srgb, var(--act-accent) 70%, #fff); }
+@keyframes as-gleam { from { opacity: 0.8; } to { opacity: 1; } }
+/* 보이지 않는 동안: 아지랑이처럼 옅게 일렁인다 — 나귀는 보고, 발람은 못 본다 */
+.actor[data-id='angel-sword'][data-outfit='unseen'] { opacity: 0.32; filter: blur(1.2px); animation: as-haze 3.6s ease-in-out infinite alternate; }
+@keyframes as-haze { from { opacity: 0.22; } to { opacity: 0.4; } }
+
+/* ── eyes-open: 흐린 막이 걷히고 칼날을 따라 빛이 그어진다 ── */
+.fx-eyes { position: absolute; inset: 0; z-index: 3; pointer-events: none; --x: 70%; --top: 20%; --len: 30%; }
+.fx-eyes s { position: absolute; inset: 0; backdrop-filter: blur(6px) brightness(0.7); -webkit-backdrop-filter: blur(6px) brightness(0.7); animation: bal-unveil 2.4s cubic-bezier(0.5, 0, 0.2, 1) both; }
+@keyframes bal-unveil { from { opacity: 1; } to { opacity: 0; } }
+.fx-eyes b { position: absolute; left: var(--x); top: var(--top); width: 4px; height: var(--len); translate: -50% 0; background: linear-gradient(to top, transparent, #fffdf6 40%, #fff); box-shadow: 0 0 14px 4px rgba(255, 236, 180, 0.8); transform-origin: 50% 100%; opacity: 0; animation: bal-blade 2.2s ease-out 1s both; }
+@keyframes bal-blade { 0% { opacity: 0; scale: 1 0; } 35% { opacity: 1; scale: 1 1; } 100% { opacity: 0; scale: 1 1; } }
+.fx-eyes u { position: absolute; left: var(--x); top: var(--top); width: 70px; height: 70px; translate: -50% -50%; background: radial-gradient(closest-side, #fff 0%, rgba(255, 236, 180, 0.7) 30%, transparent 70%); opacity: 0; animation: bal-glint 1.6s ease-out 1.6s both; }
+.fx-eyes u::before, .fx-eyes u::after { content: ''; position: absolute; left: 50%; top: 50%; width: 140px; height: 2px; translate: -50% -50%; background: linear-gradient(90deg, transparent, #fff, transparent); }
+.fx-eyes u::after { rotate: 90deg; }
+@keyframes bal-glint { 0% { opacity: 0; scale: 0.3; } 30% { opacity: 1; scale: 1; } 100% { opacity: 0; scale: 1.3; } }
+
+/* ── clap: 발락의 손뼉 ── */
+.fx-clap { position: absolute; z-index: 3; pointer-events: none; width: 0; height: 0; }
+.fx-clap i { position: absolute; left: -20px; top: -20px; width: 40px; height: 40px; border-radius: 50%; border: 2px solid color-mix(in srgb, var(--act-accent) 70%, #fff); opacity: 0; animation: bal-ring 1s ease-out both; }
+.fx-clap i + i { animation-delay: 0.45s; }
+@keyframes bal-ring { 0% { opacity: 0.9; scale: 0.3; } 100% { opacity: 0; scale: 3.2; } }
+.actor[data-id='balak'].is-clap .actor__art { animation: bal-jolt 0.45s ease-out 2; }
+@keyframes bal-jolt { 0%, 100% { translate: 0 0; } 40% { translate: 0 -4px; } }
+
+:root[data-reduced-motion='true'] :is(.bal-lamp, .bal-altarglow, .bal-flame, .bal-star, .bal-star__halo, .bal-star__ray, .as-blade) { animation: none !important; }
+:root[data-reduced-motion='true'] .actor[data-id='angel-sword'][data-outfit='unseen'] { animation: none; }
+:root[data-reduced-motion='true'] .actor[data-id='donkey'] :is(.dk-lift, .dk-arm) { transition: none; animation: none; }

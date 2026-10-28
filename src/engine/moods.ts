@@ -23,6 +23,7 @@ export type BackdropArt =
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'sf-court' | 'sf-ash' | 'sf-outside'
+  | 'bal-moab' | 'bal-road' | 'bal-walls' | 'bal-narrow' | 'bal-baal' | 'bal-pisgah' | 'bal-peor' | 'bal-star'
   | 'kr-door' | 'kr-ash' | 'kr-tents' | 'kr-gone'
   | 'spy-hebron' | 'spy-eshcol' | 'spy-cluster' | 'spy-report' | 'spy-lament'
   | 'mr-kadesh' | 'mr-rock' | 'mr-water' | 'mr-edom' | 'mr-hor' | 'mr-hor-mourn' | 'mr-summit'
@@ -158,6 +159,10 @@ export const FX = [
   'fiery-serpents', // 불뱀: 모래 위를 불빛 같은 줄기들이 구불구불 스쳐 가고 무대 아래가 붉게 어두워짐 (약 10초, 민 21:6). 무는 모습 없음 — fall과 같이
   'serpent-lift', // 놋뱀을 쳐다봄: 장대 위 놋뱀(bz-pole 배경)에서 금빛이 번지고 고리가 퍼짐 (약 9초, 민 21:9). 배경 bz-pole-lit과 같이
   'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
+  // ── 발람과 나귀 (민 22–24, fx/balaam.ts) ──
+  'bal-strike', // 채찍질: 나귀(donkey) 위의 발람이 지팡이를 휘두르고 나귀가 움찔, 맞은 자리에 흰 빗금 (약 1.5초, 민 22:23·25·27)
+  'eyes-open', // 눈이 밝아짐: 무대를 덮은 흐린 막이 걷히고 사자(angel-sword)의 칼날을 따라 빛이 그어지며 번쩍 (약 4초, 민 22:31). angel-sword 옷 seen과 같이
+  'clap', // 손뼉: 발락(balak)의 손에서 짧은 소리의 고리가 두 번 퍼짐 (약 2초, 민 24:10)
   // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
   'earth-open', // 땅이 갈라짐: 장막 셋(배경 korah-tents) 밑의 땅이 벌어져 장막이 가라앉고, 흙먼지, 땅이 다시 합해 아문 금만 남음. 무대가 흔들림 (약 8초, 민 16:31-33). 사람 몸은 안 그림
   'plague-stop', // 염병이 그침: 왼쪽에서 잿빛 그늘이 덮어 오다가 아론(무대 인물) 자리에서 솟은 금빛 향 연기 기둥 앞에서 멈추고 물러남 (약 12초, 민 16:47-48)
@@ -491,6 +496,24 @@ export const MOODS: Record<string, Mood> = {
   'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
   /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
   'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
+
+  // ── 발람과 나귀 (민 22–24, fx/balaam.ts) ──
+  /** 모압 고원 벼랑: 왼쪽 모압 성벽, 발아래 평지를 장막이 덮었다 (민 22:1-5) */
+  'bal-moab': { light: true, land: false, art: 'bal-moab', tone: 'dusk' },
+  /** 새벽 길: 지평선까지 곧은 길, 양옆 밭과 포도나무 (민 22:21-23) */
+  'bal-road': { light: true, land: false, art: 'bal-road', tone: 'clear' },
+  /** 포도원 사이 좁은 길, 좌우 돌담 (민 22:24-25) */
+  'bal-walls': { light: true, land: false, art: 'bal-walls', tone: 'clear' },
+  /** 좌우로 피할 데 없는 바위 틈 (민 22:26-35) */
+  'bal-narrow': { light: true, land: false, art: 'bal-narrow', tone: 'dusk' },
+  /** 바알의 산당: 일곱 단, 발아래 진의 절반 (민 22:41–23:12) */
+  'bal-baal': { light: true, land: false, art: 'bal-baal', tone: 'dusk', spread: true },
+  /** 소빔 들 비스가 꼭대기: 일곱 단, 진의 끝자락만 (민 23:13 "그 끝만 보리니") */
+  'bal-pisgah': { light: true, land: false, art: 'bal-pisgah', spread: true },
+  /** 브올산 꼭대기: 지파대로 진 친 온 이스라엘과 가운데 성막 (민 23:27–24:13) */
+  'bal-peor': { light: true, land: false, art: 'bal-peor', tone: 'clear', spread: true },
+  /** 같은 곳의 밤: 진의 등불 위로 한 별이 떠오른다 (민 24:14-25) */
+  'bal-star': { light: true, land: false, art: 'bal-star', tone: 'night', spread: true },
 
   // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
   /** 회막 문 앞: 성막과 구름 기둥, 향로를 든 이백오십 명이 세 줄로 (손마다 숯불·향 연기, 민 16:17-18). fx strange-fire가 이 문에서 나온다 */

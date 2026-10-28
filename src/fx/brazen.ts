@@ -212,7 +212,7 @@ export function playFierySerpents(scene: HTMLElement, rm: boolean): void {
   const r = rng(Date.now() % 100000);
   const n = rm ? 0 : 11;
   const snakes = Array.from({ length: n }, (_, i) => {
-    const y = 64 + r() * 30; // 무대 아래쪽 (땅)
+    const y = 84 + r() * 12; // 무대 아래쪽 (발치의 땅)
     const amp = 3 + r() * 4;
     const k = 5 + Math.floor(r() * 4);
     // 한 마리 = 넓은 물결 줄 한 가닥. 대시 한 토막(몸)이 줄을 따라 미끄러진다
