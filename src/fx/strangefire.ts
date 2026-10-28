@@ -120,7 +120,7 @@ function fallenCenser(x: number, ground: number, flip: boolean, seed: number): s
   const coals = Array.from({ length: 5 }, (_, i) =>
     `<circle class="sf-coal" style="--d:${f(r() * 3)}s" cx="${f(x + s * (8 + i * 2.6 + r() * 2))}" cy="${f(ground - 0.6 - r() * 0.8)}" r="${f(0.5 + r() * 0.5)}"/>`,
   ).join('');
-  return `<g class="sf-censer">
+  return `<g class="sf-censer" transform="translate(${x} ${ground}) scale(1.7) translate(${-x} ${-ground})">
     <g class="bd-mid" transform="translate(${x} ${ground}) scale(${s} 1) rotate(-14)">
       <path d="M-6 -1 C-6 -6 6 -6 6 -1 C4 1 -4 1 -6 -1 Z"/>
       <path d="M-5 -3 L-17 -4.4 L-17 -3 L-5 -1.6 Z"/>
@@ -158,7 +158,7 @@ export function strangeFireArt(state: StrangeFireState): string {
   if (state === 'outside') return outside();
   return `<g class="sf sf--${state}">
     <path class="bd-far" d="M${-W * 2} ${H} L${-W * 2} 204 C-300 198 -100 206 80 200 C180 197 260 204 400 199 C600 195 800 203 ${W * 3} 200 L${W * 3} ${H} Z"/>
-    ${pillar(CX, 34, 156, 22, 9101)}
+    ${pillar(CX, 60, 156, 12, 9101)}
     <circle class="sf-holy" cx="${CX}" cy="${BASE - 30}" r="70"/>
     ${tabernacle()}
     ${hangings()}
@@ -166,7 +166,7 @@ export function strangeFireArt(state: StrangeFireState): string {
     ${state === 'ash' ? `<ellipse class="sf-scorch" cx="${CX}" cy="242" rx="44" ry="6"/>` : ''}
     ${bronzeAltar(138, YARD, 9103)}
     ${laver(266, YARD + 2)}
-    ${state === 'ash' ? fallenCenser(CX - 18, 243, true, 9105) + fallenCenser(CX + 20, 245, false, 9106) : ''}
+    ${state === 'ash' ? fallenCenser(CX - 22, 244, true, 9105) + fallenCenser(CX + 24, 246, false, 9106) : ''}
     <path class="bd-near sf-near" d="M${-W * 2} ${H} L${-W * 2} 250 C-300 246 0 254 200 250 C400 246 700 254 ${W * 3} 248 L${W * 3} ${H} Z"/>
   </g>`;
 }

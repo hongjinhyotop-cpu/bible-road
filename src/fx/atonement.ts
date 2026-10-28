@@ -197,9 +197,10 @@ function watcher(x: number, ground: number, h: number, kind: 'man' | 'woman' | '
   const body = kind === 'woman'
     ? `<path d="M${f(-w * 0.42)} ${f(top - head * 1.6)} Q0 ${f(top - head * 3.2)} ${f(w * 0.42)} ${f(top - head * 1.6)} L${f(w * 0.62)} 0 L${f(-w * 0.62)} 0 Z"/>`
     : `<path d="M${f(-w * 0.5)} ${f(top)} Q0 ${f(top - head * 0.5)} ${f(w * 0.5)} ${f(top)} L${f(w * 0.6)} 0 L${f(-w * 0.6)} 0 Z"/>`;
-  return `<g class="at-watch" style="--d:${f(d)}s" transform="translate(${f(x)} ${f(ground)})">
+  // 위치는 바깥 g의 transform 속성, 숨쉬기(CSS transform)는 안쪽 g — 둘이 겹치면 CSS가 속성을 덮어쓴다
+  return `<g transform="translate(${f(x)} ${f(ground)})"><g class="at-watch" style="--d:${f(d)}s">
     <circle cx="0" cy="${f(top - head * 0.9)}" r="${f(head)}"/>${body}
-  </g>`;
+  </g></g>`;
 }
 
 function edge(): string {
