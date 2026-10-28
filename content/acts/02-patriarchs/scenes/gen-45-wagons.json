@@ -10,7 +10,7 @@
   "beats": [
     { "type": "narration", "text": "이제 형제들은 알았다. 곡식을 팔던 이집트 총리가, 이십여 년 전 그들이 판 동생이라는 것을. 그는 울었고, 그들을 안았고, 형제들은 그제야 그와 말을 나누었다." },
     { "type": "narration", "act": "embrace", "who": ["joseph", "benjamin"], "text": "울음소리는 방 밖으로 새어 나갔다. 이집트 사람들이 들었다. 그리고 바로의 궁까지 들렸다. 높은 사람의 울음은 소문이 빠르다. 웃음보다 빠르다." },
-    { "bg": "palace", "fx": "glory", "enter": ["pharaoh"], "acts": [{ "act": "part", "who": "joseph" }, { "act": "crowd" }] },
+    { "bg": "palace", "enter": ["pharaoh"], "acts": [{ "act": "part", "who": "joseph" }, { "act": "crowd" }] },
     { "type": "narration", "act": "crowd-cheer", "text": "요셉의 형들이 왔다는 소문에 바로와 신하들은 기뻐했다. 이집트를 굶주림에서 건진 사람에게 가족이 있었다. 사람들은 은인의 사연을 좋아한다. 사연이 해피엔딩일 때는 더욱." },
     { "type": "line", "who": "pharaoh", "act": "approach", "to": "joseph", "text": "“네 형들에게 일러라. 양식을 싣고 가나안으로 가서, 아버지와 가족을 이끌고 내게로 오라고. 이집트의 좋은 땅을 주겠다. 이 나라의 기름진 것을 먹게 하겠다.”" },
     { "type": "line", "who": "pharaoh", "act": "bless", "text": "“이집트에서 수레를 가져가라. 아이들과 아내들을 태우고, 아버지를 모셔 오라. 세간은 아까워하지 마라. 온 이집트의 좋은 것이 너희 것이다.”" },

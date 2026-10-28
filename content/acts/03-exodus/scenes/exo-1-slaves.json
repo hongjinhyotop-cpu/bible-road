@@ -47,7 +47,7 @@
     { "type": "line", "who": "pharaoh", "bg": "palace", "fx": "fade", "enter": ["pharaoh"], "act": "approach", "to": "shiphrah", "text": "“너희가 어찌하여 이같이 하여, 남자를 살렸느냐.”" },
     { "type": "line", "who": "shiphrah", "act": "bow-head", "text": "“히브리 여인은 애굽 여인과 같지 아니하고 건장하여, 저희가 이르기 전에 벌써 해산하였더이다.”" },
     { "type": "line", "who": "puah", "text": "“저희가 문을 열면, 아기가 이미 울고 있습니다.”" },
-    { "type": "narration", "act": "turn", "who": "pharaoh", "text": "왕은 더 묻지 않았다. 신의 아들이라 불리는 왕이, 늙은 산파 둘의 대답 앞에서 할 말을 찾지 못했다. 세상에서 가장 큰 권력이, 가끔은 가장 작은 문 앞에서 멈춘다." },
+    { "type": "narration", "act": "turn", "who": "pharaoh", "text": "왕은 더 묻지 않았다. 신의 아들이라 불리는 왕이, 산파 둘의 대답 앞에서 할 말을 찾지 못했다. 세상에서 가장 큰 권력이, 가끔은 가장 작은 문 앞에서 멈춘다." },
     { "type": "narration", "fx": "dawn", "acts": [{ "act": "look-up", "who": "shiphrah" }, { "act": "look-up", "who": "puah" }], "text": "하나님이 산파들에게 은혜를 베푸셨다. 그들이 하나님을 경외했으므로, 그들의 집을 세우셨다. 남의 집 아이를 지킨 사람들에게, 자기 집이 주어졌다." },
     { "type": "narration", "exit": ["shiphrah", "puah"], "act": "face", "who": "pharaoh", "text": "백성은 또 불어났다. 왕은 마지막 방법을 꺼냈다. 이번에는 숨기지 않았다. 온 백성에게 명했다." },
     { "type": "line", "who": "pharaoh", "act": "look-up", "text": "“아들이 나거든, 하수에 던지라. 딸이거든 살려 두라.”" },

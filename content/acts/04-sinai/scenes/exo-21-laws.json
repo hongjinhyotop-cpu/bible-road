@@ -48,7 +48,7 @@
     { "type": "line", "who": "judge", "act": "approach", "to": "maid", "text": "“눈 대신에 저 여자를 놓아 주게. 오늘부로.”" },
     { "type": "scripture", "ref": "출 21:26-27", "gloss": "주인이 종의 눈 하나, 이 하나만 상하게 해도 그 종은 바로 자유. 종도 몸이 있는 사람이라는 선언임." },
     { "acts": [{ "act": "stand", "who": "maid" }, { "act": "walk-out", "who": "maid" }, { "act": "bow-head", "who": "master" }] },
-    { "type": "narration", "text": "상전은 이빨 하나 값으로 일꾼 하나를 잃었다. 그날 밤부터 그는 매를 드는 손이 느려졌다. 법이 사람을 착하게 만들지는 못한다. 다만 손을 느리게는 만든다." },
+    { "type": "narration", "text": "상전은 눈 하나 값으로 일꾼 하나를 잃었다. 그날 밤부터 그는 매를 드는 손이 느려졌다. 법이 사람을 착하게 만들지는 못한다. 다만 손을 느리게는 만든다." },
     { "type": "narration", "bg": "pasture", "fx": "fade", "exit": ["master"], "enter": ["owner"], "act": "walk-in", "who": "owner", "text": "마지막은 소 이야기였다. 소는 들이받는다. 그건 소의 잘못이 아니다. 문제는 사람이다." },
     { "type": "line", "who": "judge", "act": "face", "to": "owner", "text": "“지난달에도 그 소가 사람을 받았다고 이웃들이 일러 주지 않았나.”" },
     { "type": "line", "who": "owner", "act": "step-back", "text": "“한 번은 실수지요. 소도 기분 나쁜 날이 있지 않겠습니까.”" },

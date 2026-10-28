@@ -23,7 +23,7 @@
     { "acts": [{ "act": "walk-in", "who": "farmer" }, { "act": "step-back", "who": "thief" }], "enter": ["farmer"] },
     { "type": "narration", "act": "face", "who": ["farmer", "thief"], "text": "법은 밤의 도둑과 낮의 도둑을 다르게 봤다. 어둠 속에서 벽을 뚫고 들어온 자를 막다가 죽였다면 피 흘린 죄가 없다. 그러나 해가 뜬 뒤라면 이야기가 다르다. 해가 뜨면, 도둑도 사람으로 보이기 때문이다." },
     { "type": "narration", "bg": "pasture-dawn", "fx": "fade", "enter": ["judge"], "act": "walk-in", "who": "judge", "text": "아침, 재판장 앞이었다. 양은 이미 잡아먹은 뒤였다." },
-    { "type": "line", "who": "judge", "act": "face", "to": "thief", "text": "“양 하나에 양 넷. 소였다면 다섯이었을 걸세. 양이 살아서 네 손에 있었다면 갑절이면 됐고.”" },
+    { "type": "line", "who": "judge", "act": "face", "to": "thief", "text": "“양 하나에 양 넷. 소였다면 다섯이었을 걸세. 양이 살아서 자네 손에 있었다면 갑절이면 됐고.”" },
     { "type": "line", "who": "thief", "act": "bow-head", "text": "“넷이라니요. 한 마리 먹었는데 네 마리를 갚으라니요.”" },
     { "type": "line", "who": "judge", "text": "“먹어 버렸으니 넷이지. 잡거나 팔아 버린 건 돌이킬 마음이 없었다는 뜻이니까. 갚을 게 없으면 자네 몸을 팔아서라도 갚게.”" },
     { "type": "scripture", "ref": "출 22:1", "gloss": "소 훔쳐서 잡거나 팔면 다섯 배, 양이면 네 배로 물어내라는 거. 감옥 대신 피해자한테 확실하게 돌려주는 시스템임." },
@@ -49,7 +49,7 @@
       ]
     },
     { "type": "line", "who": "lender", "act": "approach", "to": "poor", "text": "“가져가게. 해 떨어지기 전에. 내일 아침에 다시 맡기든가.”" },
-    { "type": "scripture", "ref": "출 22:26-27", "gloss": "이웃 옷 잡혔으면 해 지기 전에 돌려줘. 그거 하나로 덮고 자는데 뭐 입고 자냐. 그가 울면 내가 듣는다. 나 자비로운 신이거든." },
+    { "type": "scripture", "ref": "출 22:26-27", "gloss": "이웃 옷을 담보로 잡았으면 해 지기 전에 돌려줘. 그거 하나로 덮고 자는데 뭐 입고 자냐. 그가 울면 내가 듣는다. 나 자비로운 신이거든." },
     { "type": "narration", "acts": [{ "act": "stand", "who": "poor" }, { "act": "bow-head", "who": "poor" }], "pose": { "poor": "neutral" }, "text": "남자는 겉옷을 받아 들었다. 이자를 받지 말라는 말도 있었다. 가난한 자에게 빚쟁이처럼 굴지 말라는 말도. 담보는 잡되, 사람은 잡지 말라는 것이었다." },
     { "type": "narration", "bg": "mountain-night", "fx": ["fade", "stars"], "exit": ["lender", "poor"], "enter": ["moses"], "act": "look-up", "who": "moses", "text": "법은 계속 이어졌다. 무당을 살려 두지 말 것. 다른 신에게 희생을 드리지 말 것. 재판장을 욕하지 말 것. 첫 열매와 맏아들을 늦지 않게 드릴 것." },
     { "type": "narration", "act": "bow-head", "who": "moses", "text": "그리고 마지막 줄. 너희는 내게 거룩한 사람이 되라. 거룩함은 멀리 있지 않았다. 해 지기 전의 겉옷 한 벌만큼 가까이 있었다." }

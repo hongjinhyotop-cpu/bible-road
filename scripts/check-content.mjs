@@ -6,7 +6,7 @@
 //  - 에피소드: 선택지 canon 하나, goto 대상, 인물 파일(또는 extras), 본문 구절 1개 이상, mood·bg 이름, fx 이름,
 //    face 방향, outfit 옷 이름, 성막 기구(item) 이름, 동작(act) 이름·대상, 여정 지도 장소, extras 키트 이름,
 //    해설·한 줄 요약, 품질 기준(본문 카드 2~4개 + 한 줄 번역, 동작·배경 변화, 글만 이어지는 구간) — 퀴즈는 없음
-//  - B급: 선택지 최대 1개, 품질 기준은 오류로(A급은 주의), 새 인물 파일 없이(키트 extras·기존 인물만) — CLAUDE.md 6번
+//  - B급: 선택지 최대 1개, 품질 기준은 오류로(A급은 주의), 한 번 나오는 조연은 키트 extras(반복 인물은 키트 인물 파일 OK) — CLAUDE.md 6번
 //  - 도감(data/characters.json): 인물 파일, first·verse 구절, scene, unlocks 인물이 도감에 있는지
 // 마지막에 막마다 몇 장이 콘텐츠로 덮였는지 보여 준다.
 import { readFileSync, readdirSync, existsSync } from 'node:fs';

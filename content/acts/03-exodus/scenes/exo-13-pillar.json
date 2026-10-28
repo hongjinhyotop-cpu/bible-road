@@ -28,7 +28,7 @@
     { "type": "scripture", "ref": "출 13:8", "gloss": "애들이 물어보면 ‘조상님들 얘기’ 말고 ‘하나님이 나한테 해 주신 일’이라고 대답하라는 거임. 몇백 년 뒤에 태어나도 1인칭으로." },
     { "type": "narration", "act": "bless", "who": "father", "text": "‘우리 조상을 위하여’가 아니었다. ‘나를 위하여’였다. 기억이 이어지면 이야기가 되고, 이야기가 이어지면 백성이 된다. 아이는 납작한 떡을 씹으며, 가 본 적 없는 이집트에서 나왔다." },
     { "type": "narration", "act": "stand", "who": "father", "text": "나귀의 첫새끼는 어린 양으로 대신하라. 아들 가운데 맏이는 값을 치르고 물러 오라. 아이가 또 왜냐고 물으면, 대답은 다시 그 밤으로 돌아간다." },
-    { "type": "narration", "bg": "road", "fx": "fade", "exit": ["father", "son"], "act": "travel", "from": "goshen", "to": "shur", "text": "바로가 백성을 보냈다. 가나안으로 가는 가장 가까운 길은 바닷가를 따라 블레셋 땅을 지나는 길이었다. 하나님은 그 길로 가지 않으셨다." },
+    { "type": "narration", "bg": "road", "fx": "fade", "exit": ["father", "son"], "act": "travel", "from": "goshen", "to": "red-sea", "text": "바로가 백성을 보냈다. 가나안으로 가는 가장 가까운 길은 바닷가를 따라 블레셋 땅을 지나는 길이었다. 하나님은 그 길로 가지 않으셨다." },
     { "type": "scripture", "ref": "출 13:17-18", "gloss": "블레셋 길이 지름길이긴 한데, 가면 바로 전쟁임. 노예 출신들이 칼 부딪히는 거 보면 ‘아 그냥 이집트 갈래’ 할까 봐 일부러 홍해 쪽 광야로 돌려서 데려가심." },
     { "type": "line", "who": "aaron", "enter": ["aaron"], "act": "face", "to": "moses", "text": "“지름길을 두고 광야로 간다고?”" },
     { "type": "line", "who": "moses", "text": "“전쟁을 보면, 이 백성은 이집트로 돌아간다고 하셨소.”" },
