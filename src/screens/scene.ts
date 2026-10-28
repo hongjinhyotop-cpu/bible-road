@@ -39,6 +39,7 @@ import { playEarthOpen, playPlagueStop } from '../fx/korah';
 import { playGrasshopper } from '../fx/spies';
 import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
+import { playAmen, playEagle, playLandShow, playPassOn, playShema } from '../fx/deuteronomy';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -56,7 +57,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -85,6 +86,7 @@ export function sceneScreen({ id }: Params): Screen {
       <div class="scene__water scene__water--back" aria-hidden="true"></div>
       <div class="scene__water scene__water--front" aria-hidden="true"></div>
       <div class="scene__stage"></div>
+      <div class="scene__memory" aria-hidden="true"><span class="scene__memory-tag"></span></div>
       <p class="play__voice" aria-live="polite"></p>
     </div>
     <div class="dock" aria-live="polite"></div>
@@ -353,11 +355,21 @@ export function sceneScreen({ id }: Params): Screen {
     actors.forEach((a) => a.perform(st.act));
   }
 
+  let shownMood: string | undefined;
   /** 화면 전환: 까맣게 닫힘(true) / 열림(false) */
   /** 잠깐 깔리는 효과 층(fx-*: 불·영광·재앙·불뱀 …)을 바로 걷는다.
    *  각 층은 제 타이머(5~12초)로 사라지는데, 그 사이 화면 전환(fade)이 오면 다음 장면까지 남았다 */
   function clearFx() {
     el.querySelectorAll('.scene > [class^="fx-"], .scene > [class*=" fx-"]').forEach((n) => n.remove());
+  }
+  /** 배경만 바뀔 때(fade 없이): 앞 배경의 재앙 효과(개구리·이·파리·재·우박·메뚜기)가 새 배경에 10초씩 남지 않게 짧게 흐려지며 걷는다.
+   *  불·영광·별 같은 다른 효과는 배경이 바뀌어도 이어지는 연출이 있어서(사다리의 별, 메추라기 …) 그대로 둔다 */
+  function clearPlagues() {
+    el.querySelectorAll<HTMLElement>('.scene > .fx-plague').forEach((n) => {
+      if (reducedMotion()) return n.remove();
+      n.classList.add('is-out'); // plagues.css: 1.6초 동안 흐려짐
+      setTimeout(() => n.remove(), 1600);
+    });
   }
 
   function fadeScreen(close: boolean): Promise<unknown> {
@@ -402,9 +414,24 @@ export function sceneScreen({ id }: Params): Screen {
     tweens.push(gsap.to(fi, { v: on ? 1 : 0.3, duration: reducedMotion() ? 0.3 : 3, ease: 'power1.inOut', onUpdate: () => setFieldIntensity(fi.v) }));
   }
 
+  /** 회상(recall) / 앞날(foresee) 필터: 신명기처럼 말하는 사람의 기억·예고를 보여 줄 때. present로 끝남 (fade로는 안 끝남) */
+  function setMemory(kind: 'past' | 'future' | null) {
+    const tag = el.querySelector<HTMLElement>('.scene__memory-tag');
+    if (kind) {
+      el.dataset.memory = kind;
+      if (tag) tag.textContent = kind === 'past' ? '기억' : '그날이 오면';
+    } else delete el.dataset.memory;
+  }
+
   function playFx(fx: SceneFx) {
     const rm = reducedMotion();
     switch (fx) {
+      case 'recall':
+        return setMemory('past');
+      case 'foresee':
+        return setMemory('future');
+      case 'present':
+        return setMemory(null);
       case 'dawn':
         return setLight(true);
       case 'dark':
@@ -558,6 +585,26 @@ export function sceneScreen({ id }: Params): Screen {
         // 놋뱀 (fx/brazen.ts): 장대 위 놋뱀에서 금빛이 번지고 고리가 퍼진다 (민 21:9)
         playSerpentLift($('.scene'), rm);
         return;
+      case 'shema':
+        // 신명기 (fx/deuteronomy.ts): "들으라"가 떠오르고 소리의 고리가 퍼진다 (신 6:4)
+        playShema($('.scene'), rm);
+        return;
+      case 'pass-on':
+        // 신명기: 금빛 티끌이 한 사람에게서 다음 사람에게 (신 6:7)
+        playPassOn($('.scene'), rm);
+        return;
+      case 'amen':
+        // 신명기: 백성 쪽에서 "아멘"이 물결처럼 (신 27:15-26)
+        playAmen($('.scene'), rm);
+        return;
+      case 'eagle':
+        // 신명기: 독수리가 떨어지는 새끼를 날개로 받아 올린다 (신 32:11)
+        playEagle($('.scene'), rm);
+        return;
+      case 'land-show':
+        // 신명기: 느보산에서 땅이 차례로 밝아진다 (신 34:1-3)
+        playLandShow($('.scene'));
+        return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)
         playKites($('.scene'), rm);
@@ -683,6 +730,7 @@ export function sceneScreen({ id }: Params): Screen {
     }
     stage.actors.forEach((a) => a.setDim(true));
     setItem(el, items, null);
+    setMemory(null);
     const known = progress.get().characters;
     const fresh = (scene.unlocks?.characters ?? []).filter((c) => !known[c]);
     const chapters = await chaptersDoneWith('scene', scene.id).catch(() => []);
@@ -727,6 +775,9 @@ export function sceneScreen({ id }: Params): Screen {
   /** 분위기: 하늘 밝기·언덕·배경 그림·색조. 장면 중간에 바뀌면 배경이 천천히 겹쳐 바뀐다 */
   function applyMood(name: string | undefined, animate: boolean) {
     const m = moodOf(name);
+    // 배경이 다른 곳으로 바뀌면 앞 배경에 깔린 재앙 효과는 걷는다 (이 beat의 새 효과는 이 뒤에 깔림)
+    if (animate && name !== shownMood) clearPlagues();
+    shownMood = name;
     if (animate) {
       if ((el.dataset.light === '1') !== m.light) setLight(m.light);
     } else {
@@ -794,6 +845,7 @@ export function sceneScreen({ id }: Params): Screen {
     voice.hidden = true;
     gsap.set($('.play__bar span'), { scaleX: 0 });
     applyMood(scene.bg ?? scene.mood ?? ACT_BG[scene.act], false);
+    setMemory(null);
     setCrowd(crowd, null);
     setItem(el, items, null, true);
     travel?.el.remove();

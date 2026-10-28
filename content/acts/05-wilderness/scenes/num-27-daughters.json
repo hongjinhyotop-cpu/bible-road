@@ -31,7 +31,7 @@
     },
     { "type": "narration", "act": "pray", "who": "moses", "text": "모세는 판결하지 않았다. 그 사연을 들고 여호와 앞으로 갔다. 사십 년을 재판한 사람이, 이번에는 모른다고 했다." },
     { "type": "voice", "fx": "glory", "text": "슬로브핫 딸들의 말이 옳으니 너는 반드시 그들의 아비의 형제 중에서 그들에게 기업을 주어 얻게 하되 그 아비의 기업으로 그들에게 돌릴찌니라" },
-    { "type": "scripture", "ref": "민 27:7", "gloss": "슬로브핫 딸들 말이 맞음. 아빠 형제들 사이에서 걔네한테 땅 줘. 아빠 몫 그대로 딸들한테." },
+    { "type": "scripture", "ref": "민 27:7", "gloss": "“슬로브핫 딸들의 말이 옳다. 너는 반드시 그들의 아버지 형제들 가운데서 그들에게 기업을 주어 얻게 하되, 아버지의 기업을 그들에게 돌려주라.” 아버지의 몫이 그대로 딸들에게 간다." },
     { "type": "narration", "acts": [{ "act": "embrace", "who": ["mahlah", "tirzah"] }, { "act": "cry", "who": "hoglah" }], "text": "자매들은 서로를 붙잡았다. 이긴 사람의 얼굴은, 대개 우는 사람의 얼굴과 잘 구별되지 않는다." },
     { "type": "narration", "act": "stand", "who": "moses", "text": "판결은 한 집안의 일로 끝나지 않았다. 아들이 없으면 딸에게. 딸도 없으면 형제에게. 형제도 없으면 아버지의 형제에게. 그도 없으면 가장 가까운 친족에게. 다섯 여자의 질문이, 온 이스라엘의 법이 되었다." },
     { "type": "narration", "bg": "mountain-dusk", "fx": "fade", "exit": ["mahlah", "noa", "hoglah", "milcah", "tirzah"], "act": "look-up", "who": "moses", "text": "다른 날. 여호와께서 모세에게 산에 오르라 하셨다. 아바림 산이었다." },

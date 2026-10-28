@@ -2,7 +2,7 @@
 // 작은 불빛(일행)이 그 길을 따라 움직이고, 장소 이름이 하나씩 떠오른다. 다음 beat로 넘어가면 접힌다.
 // 지도 좌표: 경도 29°~49°E → x 0~400, 위도 38°N~25°N → y 0~260 (1° = 20). 대략의 위치만 맞춘 그림 지도.
 import gsap from 'gsap';
-import { PLACE_NAMES, type PlaceName } from '../engine/actions';
+import { PLACE_NAMES, PLACE_NOTES, type PlaceName } from '../engine/actions';
 import { reducedMotion } from '../engine/settings';
 
 const at = (lon: number, lat: number): [number, number] => [(lon - 29) * 20, (38 - lat) * 20];
@@ -71,6 +71,7 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   'sin-desert': at(33.2, 29.0),
   // 애굽 강: 가나안 남서쪽 끝 와디 엘아리시로 보는 해석이 많음 (창 15:18, 민 34:5). 나일로 보는 해석도 있음
   'brook-egypt': at(33.8, 31.12),
+  'brook-egypt-num': at(33.8, 31.12),
   // 유브라데: 그 큰 강. 가나안에서 가장 가까운 북쪽 굽이 (갈그미스 근처)
   euphrates: at(38.35, 36.7),
   hazeroth: at(34.4, 28.95),
@@ -196,7 +197,7 @@ export function showTravel(host: HTMLElement, spec: TravelSpec, current?: Travel
         return `<g class="travel__stop${last ? ' is-last' : ''}" style="--i:${i}">
           <circle class="travel__dot" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(last ? 2.6 : 1.8) * k}"/>
           ${last ? `<circle class="travel__ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${6 * k}"/>` : ''}
-          ${labelled.has(i) ? `<text class="travel__name" x="${(x + 5 * k).toFixed(1)}" y="${(y - 4 * k).toFixed(1)}" style="font-size:${(9 * k).toFixed(2)}px">${PLACE_NAMES[p]}</text>` : ''}
+          ${labelled.has(i) ? `<text class="travel__name" x="${(x + 5 * k).toFixed(1)}" y="${(y - 4 * k).toFixed(1)}" style="font-size:${(9 * k).toFixed(2)}px">${PLACE_NAMES[p]}</text>${PLACE_NOTES[p] ? `<text class="travel__note" x="${(x + 5 * k).toFixed(1)}" y="${(y + 5 * k).toFixed(1)}" style="font-size:${(6 * k).toFixed(2)}px">${PLACE_NOTES[p]}</text>` : ''}` : ''}
         </g>`;
       }).join('')}
       ${d ? `<circle class="travel__walker" r="${2.2 * k}"><animateMotion dur="${rm ? '0.01s' : '2.6s'}" fill="freeze" path="${d}" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.45 0 0.3 1"/></circle>` : ''}

@@ -100,7 +100,8 @@ export const PLACE_NAMES = {
   'red-sea': '홍해',
   elim: '엘림',
   'sin-desert': '신 광야',
-  'brook-egypt': '애굽 강',
+  'brook-egypt': '애굽 강', // 창 15:18
+  'brook-egypt-num': '애굽 시내', // 민 34:5 (같은 곳, 책별 개역한글 표기)
   euphrates: '유브라데',
   // ── 광야 40년 (민수기·신명기) ──
   hazeroth: '하세롯',
@@ -121,3 +122,9 @@ export const PLACE_NAMES = {
   jordan: '요단',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
+
+/** 여정 지도 이름표 아래 작은 설명 (이름만으로는 어딘지 알기 어려운 곳) */
+export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
+  'brook-egypt': '이집트 국경 쪽 개울',
+  'brook-egypt-num': '이집트 국경 쪽 개울',
+};

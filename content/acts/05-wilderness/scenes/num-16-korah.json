@@ -60,7 +60,7 @@
     { "type": "narration", "enter": ["aaron"], "outfit": { "aaron": "censer" }, "act": "walk-in", "who": "aaron", "text": "아론이 달려왔다. 여든을 넘긴 대제사장이, 향로를 들고, 자기를 원망하던 사람들 한가운데로. 어제 고라가 든 것과 같은 놋 그릇이었다." },
     { "type": "narration", "fx": "plague-stop", "act": "look-up", "who": "aaron", "text": "그는 죽은 자와 산 자 사이에 섰다." },
     { "type": "scripture", "ref": "민 16:47-48", "gloss": "아론이 모세 말대로 향로 들고 사람들 한가운데로 뛰어감. 염병이 벌써 시작돼 있었음. 백성 위해 속죄하고, 죽은 사람들과 산 사람들 사이에 딱 섰더니 거기서 염병이 멈춤." },
-    { "type": "narration", "enter": ["moses"], "acts": [{ "act": "bow-head", "who": "aaron" }, { "act": "approach", "who": "aaron", "to": "moses" }], "fx": "stars", "text": "염병이 그쳤다. 아론은 회막 문 모세에게로 돌아왔다. 이틀 사이에 향로를 든 사람이 둘 있었다. 하나는 하나님께 더 가까이 가려고 들었고, 하나는 사람들 쪽으로 달려가려고 들었다. 그릇은, 같은 놋이었다." }
+    { "type": "narration", "enter": ["moses"], "acts": [{ "act": "bow-head", "who": "aaron" }, { "act": "approach", "who": "aaron", "to": "moses" }], "fx": "stars", "text": "염병이 그쳤다. 기록은 숫자 하나를 남긴다. 고라의 일로 죽은 자 외에, 만 사천칠백. 아론은 회막 문 모세에게로 돌아왔다. 이틀 사이에 향로를 든 사람이 둘 있었다. 하나는 하나님께 더 가까이 가려고 들었고, 하나는 사람들 쪽으로 달려가려고 들었다. 그릇은, 같은 놋이었다." }
   ],
   "branches": {
     "b-retort": [

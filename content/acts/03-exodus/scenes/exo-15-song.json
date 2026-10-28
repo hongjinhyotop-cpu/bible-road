@@ -39,7 +39,7 @@
     { "type": "narration", "fx": "flash", "acts": [{ "act": "stand", "who": "moses" }, { "act": "crowd-cheer" }], "text": "모세가 그 나무를 물에 던졌다. 물이 달아졌다." },
     { "type": "line", "who": "grumbler", "act": "bow-head", "text": "“…달군.”" },
     { "type": "voice", "fx": "glory", "text": "너희가 나 여호와의 말을 듣고, 내 보기에 옳은 일을 하고, 내 계명에 귀를 기울이면, 애굽 사람에게 내린 모든 질병의 하나도 너희에게 내리지 아니하리라." },
-    { "type": "scripture", "ref": "출 15:26", "gloss": "내 말 잘 들으면 이집트가 맞은 그 병들 너희한텐 안 옴. 왜냐면 ‘나는 너희를 치료하는 여호와’니까. 하나님이 자기를 의사라고 소개하심." },
+    { "type": "scripture", "ref": "출 15:26", "gloss": "“너희가 너희 하나님 나 여호와의 말을 잘 듣고, 내가 보기에 옳은 일을 하고, 내 계명에 귀를 기울이고, 내 모든 규례를 지키면, 내가 이집트 사람에게 내린 어떤 질병도 너희에게 내리지 않겠다. 나는 너희를 치료하는 여호와다.” 하나님이 자기를 치료하시는 분으로 소개하신 말씀이다." },
     { "type": "narration", "acts": [{ "act": "crowd-bow" }, { "act": "walk-out", "who": "grumbler" }], "text": "거기서 하나님은 그들에게 법도와 율례를 정하시고, 그들을 시험하셨다. 쓴 물은 첫 시험지였다. 점수는, 썩 좋지 않았다." },
     { "type": "narration", "bg": "well-dawn", "fx": "fade", "enter": ["miriam", "aaron"], "acts": [{ "act": "crowd-cheer" }, { "act": "look-up", "who": "miriam" }], "text": "엘림. 물샘이 열둘, 종려나무가 일흔 그루. 기록은 굳이 그 수를 셌다. 목마른 사람은 샘을 센다." },
     { "type": "narration", "act": "face", "who": ["moses", "aaron"], "text": "그들은 그 물 곁에 장막을 쳤다." },

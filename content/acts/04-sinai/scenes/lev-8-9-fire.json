@@ -35,7 +35,7 @@
     ] },
     { "type": "narration", "bg": "ord-court-night", "fx": "fade", "exit": ["moses"], "acts": [{ "act": "kneel", "who": "aaron" }, { "act": "kneel", "who": ["nadab", "abihu"] }], "text": "첫째 날 밤. 진의 불이 하나씩 꺼졌다. 회막 문 앞의 불은 꺼지지 않았다. 그 앞에 아론과 아들들이 앉아 있었다." },
     { "type": "narration", "fx": "stars", "acts": [{ "act": "pray", "who": "aaron" }, { "act": "sleep", "who": "abihu" }], "text": "둘째 날, 셋째 날. 같은 제사, 같은 고기, 같은 떡. 아무 일도 일어나지 않았다. 거룩한 일의 대부분은, 아무 일도 일어나지 않는 시간을 견디는 일이다." },
-    { "type": "scripture", "ref": "레 8:35", "gloss": "7일 밤낮 회막 문 앞에서 대기하면서 맡기신 거 지켜라. 그래야 안 죽음. 거룩한 분 바로 옆에서 산다는 게 장난이 아니라는 거." },
+    { "type": "scripture", "ref": "레 8:35", "gloss": "“너희는 칠 일 낮밤을 회막 문에 머물며 여호와의 부탁을 지켜라. 그러면 죽음을 면할 것이다. 내가 이렇게 명령을 받았다.” 거룩한 분 곁에서 산다는 것이 가볍지 않다는 말씀이다." },
     { "type": "narration", "bg": "ord-court-dawn", "fx": ["fade", "dawn"], "exit": ["nadab", "abihu"], "enter": ["moses", "elder"], "acts": [{ "act": "walk-in", "who": ["moses", "elder"] }, { "act": "stand", "who": "aaron" }, { "act": "crowd" }], "text": "여덟째 날 아침. 칠 일이 끝났다. 모세가 아론과 아들들과 이스라엘 장로들을 불렀다. 송아지와 숫양과 염소와 어린 양과 수소, 기름 섞은 소제물이 회막 앞으로 왔다. 온 회중이 나아와 여호와 앞에 섰다." },
     { "type": "line", "who": "moses", "acts": [{ "act": "crowd-murmur" }, { "act": "look-up", "who": "elder" }], "text": "“이는 여호와께서 너희에게 하라고 명하신 것이니 여호와의 영광이 너희에게 나타나리라.”" },
     { "type": "line", "who": "moses", "act": "face", "to": "aaron", "text": "“너는 단에 나아가 네 속죄제와 네 번제를 드려서 너를 위하여, 백성을 위하여 속하고… 무릇 여호와의 명대로 하라.”" },

@@ -98,6 +98,11 @@ for (const folder of readdirSync(actsDir).sort()) {
     if (actJson.title !== act.title) warn(`${folder}/act.json`, `title "${actJson.title}"이 acts.ts의 "${act.title}"와 다름`);
     if (actJson.mechanic) warn(`${folder}/act.json`, 'mechanic은 이제 안 씀 (막별 게임 방식은 없어졌음) — 지워도 됨');
     if (actJson.keyVerse) try { parseRef(actJson.keyVerse); } catch (e) { err(`${folder}/act.json`, `keyVerse ${e.message}`); }
+    if (actJson.milestone != null) {
+      const m = actJson.milestone;
+      if (!m.title || !m.scroll || !Array.isArray(m.books) || !m.books.every((b) => b.name && b.chapters > 0) || !(m.done > 0) || !(m.total >= m.done)) err(`${folder}/act.json`, 'milestone 형식: { title, scroll, books: [{name, chapters}], done, total, lines? }');
+      else if (m.books.reduce((a, b) => a + b.chapters, 0) !== m.done) err(`${folder}/act.json`, `milestone 책 장 수 합(${m.books.reduce((a, b) => a + b.chapters, 0)})이 done(${m.done})과 다름`);
+    }
     if (actJson.finale != null && !(Array.isArray(actJson.finale) && actJson.finale.every((l) => typeof l === 'string' && l))) err(`${folder}/act.json`, 'finale은 문장(문자열) 목록이어야 함');
   }
 
