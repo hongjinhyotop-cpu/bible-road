@@ -30,6 +30,7 @@ export type BackdropArt =
   | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
   | 'bz-road' | 'bz-camp' | 'bz-pole' | 'bz-pole-lit'
   | 'dt-door' | 'dt-door-lit' | 'dt-twin' | 'dt-twin-bless' | 'dt-twin-curse' | 'dt-song' | 'dt-nebo-path' | 'dt-nebo-view' | 'dt-nebo-empty'
+  | 'js-jericho' | 'js-jericho-cord' | 'js-jericho-fallen' | 'js-jericho-ruin' | 'js-roof' | 'js-window-rope' | 'js-window-cord' | 'js-jordan-flood' | 'js-jordan-dry' | 'js-gilgal' | 'js-ai' | 'js-tent-dig' | 'js-achor' | 'js-gibeon' | 'js-gibeon-storm' | 'js-gibeon-sun' | 'js-shechem' | 'js-shechem-stone'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -176,6 +177,11 @@ export const FX = [
   // ── 반석을 두 번 치다 (민 20, fx/meribah.ts) ──
   'strike-twice', // 반석(배경 mr-rock)의 틈에 두 번 내리치는 섬광과 금(두 번째가 더 큼), 이어 틈에서 물보라가 솟음 (약 7초, 민 20:11). 다음 beat에 배경 mr-water
   'mantle', // 옷이 옮겨 감: 금빛 티끌이 아론에게서 떠올라 둥글게 넘어가 엘르아살에게 내려앉음 (약 6초, 민 20:28). outfit 갈아입기와 같이
+  // ── 여호수아 (수 6 · 7 · 10, fx/joshua.ts) ──
+  'march', // 여리고 둘레를 도는 행렬: 무장한 자 → 나팔 든 제사장 일곱 → 궤 → 후군이 성벽 아래를 지나감 (약 9초, 수 6:8-14. 배경 js-jericho*)
+  'shout', // 일곱 나팔의 소리 고리 + 백성의 큰 외침 "와" (약 5초, 수 6:20). 배경 js-jericho-fallen·fx shake와 같이
+  'lots', // 제비가 좁혀짐: 지파 → 유다의 족속 → 세라 족속 → 삽디의 집 → 아간 (약 12초, 수 7:16-18)
+  'sun-stand', // 해와 달이 머묾: 해 둘레·달 둘레에 금빛 고리가 그어지고 햇살이 멈춘 채 무대에 금빛이 오래 머묾 (약 10초, 수 10:12-13. 배경 js-gibeon-sun)
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
   'pass-on', // 금빛 티끌이 왼쪽 인물의 가슴에서 떠올라 오른쪽 인물에게 내려앉음 (약 5초, 신 6:7 "네 자녀에게 부지런히 가르치며")
@@ -606,6 +612,53 @@ export const MOODS: Record<string, Mood> = {
   'bz-pole-dawn': { light: true, land: false, art: 'bz-pole', tone: 'clear', spread: true },
   /** 같은 장대, 놋뱀이 금빛으로 빛나고 빛살이 돈다 (민 21:9). fx serpent-lift와 같이 */
   'bz-pole-lit': { light: true, land: false, art: 'bz-pole-lit', tone: 'dusk', spread: true },
+
+  // ── 여호수아 (수 2 · 3–4 · 6 · 7 · 10 · 24, fx/joshua.ts) ──
+  /** 종려나무 평지에서 본 여리고: 둔덕 위 성벽·망대·성문, 성벽에 붙은 라합의 집(창에 불빛), 서쪽 산지 (수 2:15, 6:1) */
+  'js-jericho': { light: true, land: false, art: 'js-jericho', spread: true },
+  'js-jericho-dusk': { light: true, land: false, art: 'js-jericho', tone: 'dusk', spread: true },
+  'js-jericho-dawn': { light: true, land: false, art: 'js-jericho', tone: 'clear', spread: true },
+  /** 같은 성, 라합의 창에서 붉은 줄이 성벽을 따라 늘어짐 (수 2:21, 6:22) */
+  'js-jericho-cord': { light: true, land: false, art: 'js-jericho-cord', spread: true },
+  'js-jericho-cord-dawn': { light: true, land: false, art: 'js-jericho-cord', tone: 'clear', spread: true },
+  /** 성벽이 무너져 내림: 돌이 굴러떨어지고 흙먼지, 붉은 줄이 걸린 라합의 집 한 칸만 서 있다 (수 6:20-22) */
+  'js-jericho-fallen': { light: true, land: false, art: 'js-jericho-fallen', tone: 'clear', spread: true },
+  /** 불탄 뒤: 낮은 돌무더기와 연기 기둥 (수 6:24-26) */
+  'js-jericho-ruin': { light: true, land: false, art: 'js-jericho-ruin', tone: 'dusk', spread: true },
+  /** 밤, 라합의 집 지붕: 벌여 놓은 삼대 단, 낮은 난간, 아래 성읍 불빛, 성벽 너머 요단 평지와 달 (수 2:6-8) */
+  'js-roof': { light: true, land: false, art: 'js-roof', tone: 'night' },
+  /** 밤, 성벽 바깥에서 올려다본 라합의 창: 줄을 타고 두 사람이 내려감 (수 2:15) */
+  'js-window-rope': { light: true, land: false, art: 'js-window-rope', tone: 'night', spread: true },
+  /** 같은 창에 붉은 줄이 매여 바람에 흔들림 (수 2:21) */
+  'js-window-cord': { light: true, land: false, art: 'js-window-cord', tone: 'night', spread: true },
+  'js-window-cord-dawn': { light: true, land: false, art: 'js-window-cord', tone: 'clear', spread: true },
+  /** 보리 거둘 때 언덕에 넘친 요단: 넓게 부푼 흙탕물, 잠긴 갈대, 물가에 멈춘 궤와 제사장 (수 3:15) */
+  'js-jordan-flood': { light: true, land: false, art: 'js-jordan-flood', spread: true },
+  'js-jordan-flood-dawn': { light: true, land: false, art: 'js-jordan-flood', tone: 'clear', spread: true },
+  /** 물이 빠져 마른 요단 바닥: 아래쪽 물은 끊겨 흘러가고 멀리 위쪽(아담 읍)에 물이 쌓여 섬, 강 가운데 궤, 건너는 백성 (수 3:16-17) */
+  'js-jordan-dry': { light: true, land: false, art: 'js-jordan-dry', tone: 'clear', spread: true },
+  /** 길갈의 진: 장막·종려나무, 가운데 열두 돌이 하나씩 세워짐 (수 4:19-20) */
+  'js-gilgal': { light: true, land: false, art: 'js-gilgal', spread: true },
+  'js-gilgal-dusk': { light: true, land: false, art: 'js-gilgal', tone: 'dusk', spread: true },
+  /** 언덕 위 아이 성과 비탈길, 멀리 벧엘 (수 7:2-5, 8장) */
+  'js-ai': { light: true, land: false, art: 'js-ai' },
+  'js-ai-dusk': { light: true, land: false, art: 'js-ai', tone: 'dusk' },
+  /** 아간의 장막: 파헤친 땅에서 외투·은·금덩이가 드러나 빛남 (수 7:21-22) */
+  'js-tent-dig': { light: true, land: false, art: 'js-tent-dig', tone: 'dusk', spread: true },
+  /** 아골 골짜기: 메마른 골짜기 가운데 큰 돌무더기 (수 7:26) */
+  'js-achor': { light: true, land: false, art: 'js-achor', tone: 'dusk', spread: true },
+  /** 기브온 언덕과 서쪽으로 내려가는 벧호론 비탈, 아얄론 골짜기 (수 10:9-10) */
+  'js-gibeon': { light: true, land: false, art: 'js-gibeon', tone: 'clear' },
+  'js-gibeon-night': { light: true, land: false, art: 'js-gibeon', tone: 'night' },
+  /** 같은 곳, 비탈 위 먹구름 (수 10:11). fx hail·thunder와 같이 */
+  'js-gibeon-storm': { light: true, land: false, art: 'js-gibeon-storm', tone: 'storm' },
+  /** 기브온 위의 해, 아얄론 골짜기 위의 달 (수 10:12-13). fx sun-stand와 같이 */
+  'js-gibeon-sun': { light: true, land: false, art: 'js-gibeon-sun', tone: 'clear' },
+  /** 세겜: 큰 상수리나무와 그 아래 큰 돌, 뒤로 그리심·에발, 비탈에 모인 백성 (수 24:1, 26) */
+  'js-shechem': { light: true, land: false, art: 'js-shechem', spread: true },
+  'js-shechem-dusk': { light: true, land: false, art: 'js-shechem', tone: 'dusk', spread: true },
+  /** 같은 곳, 돌이 금빛으로 밝아짐 — 증거의 돌 (수 24:27) */
+  'js-shechem-stone': { light: true, land: false, art: 'js-shechem-stone', tone: 'dusk', spread: true },
 
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   /** 장막 밖 넓은 밤하늘: 별이 처음엔 몇 개, 시간이 갈수록 셀 수 없이 켜지고 은하수가 떠오른다 (창 15:5). 낮은 언덕과 장막 */

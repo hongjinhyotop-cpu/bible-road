@@ -1,0 +1,138 @@
+/* ── 여호수아 A급 (수 2 · 3–4 · 6 · 7 · 10 · 24, fx/joshua.ts) ──
+   여리고 성벽과 라합의 붉은 줄, 마른 요단과 열두 돌, 아간의 장막과 아골 골짜기, 기브온의 해, 세겜의 돌.
+   효과: march · shout · lots · sun-stand */
+
+.js-folk rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); opacity: 0.85; animation: js-sway 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.js-folk--priest rect { fill: color-mix(in srgb, #f1e6cc 55%, var(--act-b)); opacity: 0.75; }
+@keyframes js-sway { from { translate: 0 0; } to { translate: 0 -0.4px; } }
+.js-stars circle { fill: #fff6e0; opacity: 0.6; animation: js-twinkle 4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes js-twinkle { from { opacity: 0.25; } to { opacity: 0.85; } }
+.js-window { fill: #ffcf80; opacity: 0.7; animation: js-twinkle 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.js-ark { fill: #e8c27a; filter: drop-shadow(0 0 1.6px rgba(255, 210, 130, 0.9)); }
+.js-ark__pole { stroke: #c9a056; stroke-width: 0.8; fill: none; }
+.js-trail { fill: none; stroke: color-mix(in srgb, #f0dcb4 50%, var(--act-b)); stroke-width: 1.4; stroke-dasharray: 3 3; opacity: 0.45; }
+.js-place { font-family: var(--story-font); font-size: 7px; letter-spacing: 0.2em; fill: color-mix(in srgb, var(--ivory) 60%, transparent); }
+.js-jordan-glint { fill: none; stroke: color-mix(in srgb, #a8d0dc 60%, var(--act-b)); stroke-width: 1.2; opacity: 0.5; }
+
+/* ── 여리고 ── */
+.js-plain { opacity: 0.7; }
+.js-gate { fill: color-mix(in srgb, #1a120a 80%, #000); }
+.js-rahab__win { fill: color-mix(in srgb, #2a1a0c 80%, #000); }
+.js-rahab__win.is-lit { fill: #ffcf80; filter: drop-shadow(0 0 2px rgba(255, 200, 110, 0.9)); }
+.js-cord { fill: none; stroke: #d0352a; stroke-width: 1.5; stroke-linecap: round; filter: drop-shadow(0 0 1.4px rgba(230, 60, 40, 0.8)); stroke-dasharray: 1; stroke-dashoffset: 1; animation: js-draw 2.4s ease-out 0.6s forwards; }
+.js--fallen .js-cord { stroke-dashoffset: 0; animation: none; }
+.js-cord--sway { transform-box: fill-box; transform-origin: top; animation: js-draw 1.6s ease-out 0.4s forwards, js-cordsway 3s ease-in-out 2s infinite alternate; }
+@keyframes js-draw { to { stroke-dashoffset: 0; } }
+@keyframes js-cordsway { from { rotate: -4deg; } to { rotate: 4deg; } }
+.js-rubble ellipse { transform-box: fill-box; transform-origin: center; animation: js-tumble 1.4s cubic-bezier(0.5, 0, 0.8, 0.6) calc(var(--i) * 0.07s) both; }
+@keyframes js-tumble { from { translate: 0 -36px; opacity: 0.4; } 70% { opacity: 1; } to { translate: 0 0; } }
+.js--ruin .js-rubble ellipse { animation: none; fill: color-mix(in srgb, #2a2420 40%, var(--bd)); }
+.js-dust circle { fill: color-mix(in srgb, #d8c2a0 50%, var(--act-b)); opacity: 0; filter: blur(5px); animation: js-dust 5s ease-out calc(0.6s + var(--i) * 0.1s) forwards; }
+@keyframes js-dust { 0% { opacity: 0; scale: 0.4; } 25% { opacity: 0.7; } 100% { opacity: 0; scale: 1.8; translate: 0 -16px; } }
+/* 행렬 (fx march): 성벽 아래를 왼쪽에서 오른쪽으로 */
+.js-march { transform: translate(-160px, 238px); opacity: 0; }
+.js--jericho.is-marching .js-march { animation: js-march 9s linear forwards; }
+@keyframes js-march { 0% { transform: translate(-160px, 238px); opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { transform: translate(440px, 238px); opacity: 0; } }
+.js-horn { fill: none; stroke: #e8c27a; stroke-width: 0.7; stroke-linecap: round; }
+
+/* ── 라합의 지붕 · 창 ── */
+.js-moon { fill: #f6edd6; filter: drop-shadow(0 0 6px rgba(255, 244, 220, 0.6)); opacity: 0.9; }
+.js-flax { fill: none; stroke: color-mix(in srgb, #c9b07a 40%, var(--bd)); stroke-width: 0.8; stroke-linecap: round; }
+.js-bigwin { fill: #ffcf80; filter: drop-shadow(0 0 4px rgba(255, 200, 110, 0.8)); animation: js-flicker 2.6s ease-in-out infinite alternate; }
+@keyframes js-flicker { from { opacity: 0.8; } to { opacity: 1; } }
+.js-rope { fill: none; stroke: color-mix(in srgb, #c9b07a 60%, #3a2a1a); stroke-width: 1; }
+.js-climber { fill: color-mix(in srgb, var(--act-a) 30%, #05040a); opacity: 0; animation: js-climb 5s ease-in-out var(--d) forwards; }
+@keyframes js-climb { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 1; } 85% { opacity: 1; translate: 0 98px; } 100% { opacity: 0; translate: 0 100px; } }
+
+/* ── 요단 ── */
+.js-water { fill: color-mix(in srgb, #7fa6b8 60%, var(--act-b)); opacity: 0.9; filter: drop-shadow(0 -1px 2px rgba(190, 225, 240, 0.35)); }
+.js-current { fill: none; stroke: #e8f4f8; stroke-width: 1.2; opacity: 0.6; animation: js-flow 3.4s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes js-flow { from { translate: -20px 0; opacity: 0; } 30% { opacity: 0.5; } to { translate: 40px 0; opacity: 0; } }
+.js-bed { fill: color-mix(in srgb, #8a7456 45%, var(--act-b)); opacity: 0.9; }
+.js-pebble { fill: color-mix(in srgb, #c8b898 40%, var(--act-b)); opacity: 0.6; }
+/* 물이 아래쪽(왼쪽)으로 빠져나가며 끊긴다 */
+.js-water--drain { animation: js-drain 4.4s ease-in 0.2s forwards; transform-box: fill-box; transform-origin: left; }
+@keyframes js-drain { to { scale: 0 1; opacity: 0; translate: -60px 0; } }
+.js-heap path { fill: color-mix(in srgb, #8fbccc 65%, var(--act-b)); opacity: 0; transform-box: fill-box; transform-origin: bottom; animation: js-heap 4s ease-out 0.8s forwards; }
+.js-heap .js-heap__edge { fill: none; stroke: #eef6f4; stroke-width: 0.8; }
+@keyframes js-heap { from { opacity: 0; scale: 1 0.1; } to { opacity: 0.95; scale: 1 1; } }
+.js-ark-halo { fill: url(#bd-halo-g); animation: js-flicker 3s ease-in-out infinite alternate; }
+.js--dry > .js-folk { opacity: 0; animation: js-in 1.6s ease-out 3.6s forwards; }
+@keyframes js-in { to { opacity: 1; } }
+
+/* ── 길갈의 열두 돌 ── */
+.js-stone { opacity: 0; transform-box: fill-box; transform-origin: bottom; animation: js-stone 0.8s cubic-bezier(0.2, 0.7, 0.3, 1) calc(0.6s + var(--i) * 0.35s) forwards; }
+@keyframes js-stone { from { opacity: 0; scale: 1 0.2; } to { opacity: 1; scale: 1 1; } }
+.js-stones-halo { opacity: 0; animation: js-in 2s ease-out 4.8s forwards; }
+
+/* ── 아간 · 아골 ── */
+.js-tentdoor { fill: color-mix(in srgb, #1a120a 80%, #000); }
+.js-mantle { fill: #a0503a; opacity: 0.9; }
+.js-silver ellipse { fill: #dfe4ea; filter: drop-shadow(0 0 1.4px rgba(230, 240, 255, 0.9)); animation: js-glint 2.4s ease-in-out infinite alternate; }
+.js-goldbar { fill: #f0c860; filter: drop-shadow(0 0 2px rgba(255, 210, 120, 0.9)); animation: js-glint 2s ease-in-out infinite alternate; }
+@keyframes js-glint { from { opacity: 0.6; } to { opacity: 1; } }
+.js-dig-halo { opacity: 0.6; }
+.js-valley { fill: color-mix(in srgb, #5c5048 16%, var(--bd)); }
+
+/* ── 기브온의 해와 달 ── */
+.js-sun { fill: #fff3cf; filter: drop-shadow(0 0 8px rgba(255, 230, 160, 1)); }
+.js-sun-halo { fill: url(#bd-halo-g); opacity: 0.9; }
+.js-sun-rays path { stroke: #ffe8b0; stroke-width: 1.2; stroke-linecap: round; opacity: 0.6; transform-box: view-box; transform-origin: 132px 64px; animation: js-rays 20s linear infinite; }
+@keyframes js-rays { to { rotate: 360deg; } }
+.js-sun-ring, .js-moon-ring { fill: none; stroke: #ffe2a0; stroke-width: 0.7; opacity: 0; }
+.js-moon2 { fill: #f2ecd8; opacity: 0.75; filter: drop-shadow(0 0 4px rgba(240, 236, 216, 0.6)); }
+/* 머문다 (fx sun-stand): 햇살이 멈추고 해와 달에 고리가 그어져 머문다 */
+.js--gibeon.is-held .js-sun-rays path { animation-play-state: paused; opacity: 0.9; transition: opacity 2s; }
+.js--gibeon.is-held .js-sun-ring { animation: js-hold 2.4s ease-out 0.4s forwards; }
+.js--gibeon.is-held .js-moon-ring { animation: js-hold 2.4s ease-out 1.4s forwards; }
+.js--gibeon.is-held .js-sun-halo { animation: js-glow 6s ease-in-out 0.4s infinite alternate; }
+@keyframes js-hold { from { opacity: 0; r: 40; } to { opacity: 0.85; r: 20; } }
+@keyframes js-glow { from { opacity: 0.9; } to { opacity: 1; scale: 1.15; } }
+.js-sun-halo { transform-box: fill-box; transform-origin: center; }
+.js-storm path { fill: color-mix(in srgb, #1c1c26 80%, var(--act-b)); opacity: 0.85; filter: blur(2px); animation: js-cloud 9s ease-in-out infinite alternate; }
+@keyframes js-cloud { from { translate: -4px 0; } to { translate: 4px 1px; } }
+
+/* ── 세겜 ── */
+.js-gerizim { fill: color-mix(in srgb, #5f7a4a 18%, var(--bd)); }
+.js-ebal { fill: color-mix(in srgb, #5c5048 16%, var(--bd)); }
+.js-stone-halo { opacity: 0; animation: js-in 2.4s ease-out 0.4s forwards; }
+.js-stone-edge { fill: none; stroke: #ffe2a0; stroke-width: 0.9; filter: drop-shadow(0 0 2px rgba(255, 210, 130, 0.9)); stroke-dasharray: 20; stroke-dashoffset: 20; animation: js-edge 1.6s ease-out 0.8s forwards; }
+@keyframes js-edge { to { stroke-dashoffset: 0; } }
+
+/* ── 효과 shout (수 6:20) ── */
+.fx-shout { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-shout.is-out { opacity: 0; }
+.fx-shout i { position: absolute; left: var(--x); top: 62%; width: 30px; height: 30px; translate: -50% -50%; border-radius: 50%; border: 1.5px solid rgba(255, 220, 150, 0.7); box-shadow: 0 0 10px rgba(255, 200, 110, 0.5); opacity: 0; animation: js-ring 2.2s cubic-bezier(0.2, 0.6, 0.3, 1) var(--d) both; }
+@keyframes js-ring { 0% { opacity: 0; scale: 0.3; } 15% { opacity: 0.9; } 100% { opacity: 0; scale: 12; } }
+.fx-shout b { position: absolute; left: var(--x); top: var(--y); font-family: var(--story-font); font-weight: 700; font-size: calc(var(--s) * 1.5rem); color: #fff0d0; text-shadow: 0 0 10px rgba(255, 200, 110, 0.8); opacity: 0; animation: js-cry 1.8s ease-out var(--d) both; }
+@keyframes js-cry { 0% { opacity: 0; scale: 0.6; } 25% { opacity: 1; scale: 1.1; } 100% { opacity: 0; scale: 1.5; translate: 0 -30px; } }
+
+/* ── 효과 lots (수 7:16-18) ── 단계마다 돌 제비가 늘어섰다가 하나만 남는다 */
+.fx-lots { position: absolute; left: 0; right: 0; top: 8%; height: 46%; z-index: 3; pointer-events: none; transition: opacity 1.4s ease-in; }
+.fx-lots.is-out { opacity: 0; }
+.fx-lots__stage { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; opacity: 0; animation: js-stage 3s ease-in-out calc(var(--k) * 3s) both; }
+.fx-lots__stage:last-child { animation: js-stage-last 4s ease-out calc(var(--k) * 3s) both; }
+@keyframes js-stage { 0% { opacity: 0; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes js-stage-last { 0% { opacity: 0; } 12% { opacity: 1; } 100% { opacity: 1; } }
+.fx-lots__label { margin: 0; font-family: var(--talk-font, sans-serif); font-size: 0.78rem; letter-spacing: 0.12em; color: color-mix(in srgb, var(--ivory) 70%, transparent); }
+.fx-lots__row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; max-width: 86%; }
+.fx-lots__row span { width: 14px; height: 18px; border-radius: 6px 6px 4px 4px; background: color-mix(in srgb, #d8ccb0 60%, var(--act-b)); box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25); opacity: 0; animation: js-lot 2.6s ease-out calc(var(--k) * 3s + var(--i) * 0.05s) both; }
+.fx-lots__row span.is-hit { animation-name: js-lot-hit; }
+@keyframes js-lot { 0% { opacity: 0; translate: 0 6px; } 20% { opacity: 1; translate: 0 0; } 55% { opacity: 1; } 75% { opacity: 0.12; } 100% { opacity: 0.12; } }
+@keyframes js-lot-hit { 0% { opacity: 0; translate: 0 6px; } 20% { opacity: 1; translate: 0 0; } 55% { opacity: 1; background: color-mix(in srgb, #d8ccb0 60%, var(--act-b)); } 75%, 100% { opacity: 1; background: #ffe2a0; box-shadow: 0 0 12px rgba(255, 210, 130, 0.9); translate: 0 -6px; } }
+.fx-lots__pick { margin: 0; font-family: var(--story-font); font-size: 1.15rem; letter-spacing: 0.2em; color: #fff3d6; text-shadow: 0 0 12px rgba(255, 200, 110, 0.8); opacity: 0; animation: js-pick 1s ease-out calc(var(--k) * 3s + 1.9s) both; }
+.fx-lots__pick.is-last { font-size: 1.5rem; color: #ffd0b8; text-shadow: 0 0 14px rgba(200, 80, 50, 0.8); }
+.fx-lots__stage:last-child .fx-lots__row span.is-hit { animation-name: js-lot-last; }
+@keyframes js-lot-last { 0% { opacity: 0; translate: 0 6px; } 20% { opacity: 1; translate: 0 0; } 55% { opacity: 1; } 75%, 100% { opacity: 1; background: #e08a6a; box-shadow: 0 0 12px rgba(200, 80, 50, 0.9); translate: 0 -6px; } }
+@keyframes js-pick { from { opacity: 0; translate: 0 6px; filter: blur(4px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+.fx-lots.is-rm .fx-lots__stage { animation-duration: 1s; animation-delay: calc(var(--k) * 1s); }
+.fx-lots.is-rm .fx-lots__row span, .fx-lots.is-rm .fx-lots__pick { animation-duration: 0.6s; animation-delay: calc(var(--k) * 1s + 0.3s); }
+
+/* ── 효과 sun-stand (수 10:12-13) ── 무대 위로 멈춘 금빛 */
+.fx-sunstand { position: absolute; inset: 0; z-index: 2; pointer-events: none; transition: opacity 2.4s ease-in; }
+.fx-sunstand.is-out { opacity: 0; }
+.fx-sunstand i { position: absolute; inset: 0; background: radial-gradient(70% 55% at 32% 18%, rgba(255, 226, 150, 0.32), transparent 70%); mix-blend-mode: screen; opacity: 0; animation: js-in 2.4s ease-out 0.4s forwards; }
+
+:root[data-reduced-motion='true'] :is(.js-folk rect, .js-stars circle, .js-window, .js-bigwin, .js-current, .js-ark-halo, .js-silver ellipse, .js-goldbar, .js-sun-rays path, .js-storm path) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.js-cord, .js-rubble ellipse, .js-dust circle, .js-climber, .js-water--drain, .js-heap path, .js-stone, .js-stones-halo, .js-stone-halo, .js-stone-edge, .js--dry > .js-folk) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+:root[data-reduced-motion='true'] .js--jericho.is-marching .js-march { animation-duration: 2s; }

@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { PLACE_NAMES, PLACE_NOTES, type PlaceName } from '../engine/actions';
 import { reducedMotion } from '../engine/settings';
 
-const at = (lon: number, lat: number): [number, number] => [(lon - 29) * 20, (38 - lat) * 20];
+export const at = (lon: number, lat: number): [number, number] => [(lon - 29) * 20, (38 - lat) * 20];
 
 export const PLACE_XY: Record<PlaceName, [number, number]> = {
   ur: at(46.1, 30.96),
@@ -90,11 +90,31 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   pisgah: at(35.73, 31.77),
   nebo: at(35.73, 31.77),
   jordan: at(35.55, 31.9),
+  // 여호수아: 대략의 위치 (막게다·립나·에글론·딤낫 세라는 위치가 확실하지 않음 — 많이 쓰는 추정지)
+  gilgal: at(35.48, 31.86),
+  'adam-city': at(35.55, 32.1),
+  gibeon: at(35.18, 31.85),
+  'beth-horon': at(35.1, 31.88),
+  aijalon: at(35.0, 31.84),
+  azekah: at(34.94, 31.7),
+  makkedah: at(34.95, 31.62),
+  libnah: at(34.87, 31.67),
+  lachish: at(34.85, 31.56),
+  eglon: at(34.75, 31.5),
+  debir: at(34.95, 31.4),
+  hazor: at(35.57, 33.02),
+  merom: at(35.45, 33.0),
+  sidon: at(35.37, 33.56),
+  shiloh: at(35.29, 32.06),
+  'timnath-serah': at(35.1, 32.02),
+  achor: at(35.42, 31.78),
+  ebal: at(35.27, 32.23),
+  gerizim: at(35.27, 32.2),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */
 let base = '';
-function mapArt(): string {
+export function mapArt(): string {
   if (base) return base;
   const sea = [at(29, 36.4), at(31, 36.6), at(33, 36.2), at(34.6, 36.8), at(36.1, 36.6), at(35.8, 35.6), at(35.9, 35.0), at(35.5, 34.1), at(35.1, 33.1), at(34.95, 32.6), at(34.6, 31.8), at(34.25, 31.3), at(33.2, 31.15), at(32.3, 31.25), at(31.6, 31.55), at(30.6, 31.45), at(29.6, 31.15), at(29, 31.0)];
   // 바다는 지도 왼쪽 끝 너머(-300)까지 이어 그린다 (넓은 화면에서 끝이 보이지 않게)

@@ -8,6 +8,7 @@ import { loadContent } from './content';
 
 import type { SceneFx } from './moods';
 import type { ItemValue } from './items';
+import type { AllotName } from './tribes';
 
 /** 장면 연출 효과 — 목록은 engine/moods.ts의 FX */
 export type { SceneFx };
@@ -34,6 +35,8 @@ interface BeatBase {
   fx?: SceneFx | SceneFx[];
   /** 성막 기구 (engine/items.ts): 무대 가운데 금빛 조명 속에 하나 띄운다. null / "none" = 걷기 */
   item?: ItemValue;
+  /** 땅 분배 지도 (fx/allot.ts): 지파 이름 하나 또는 여럿을 지도에 칠한다. 다음 beat에 없으면 접힘 (수 13–21) */
+  allot?: AllotName | AllotName[];
   /** 동작 라이브러리 (engine/actions.ts). 예: "kneel". 누가 = who (line이면 말하는 사람) */
   act?: ActionName;
   /** 동작하는 사람 (한 명 또는 여럿). line beat에서는 말하는 사람 */

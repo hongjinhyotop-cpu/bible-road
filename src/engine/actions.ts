@@ -120,6 +120,26 @@ export const PLACE_NAMES = {
   pisgah: '비스가',
   nebo: '느보산',
   jordan: '요단',
+  // ── 정복 (여호수아) ──
+  gilgal: '길갈',
+  'adam-city': '아담 읍',
+  gibeon: '기브온',
+  'beth-horon': '벧호론',
+  aijalon: '아얄론 골짜기',
+  azekah: '아세가',
+  makkedah: '막게다',
+  libnah: '립나',
+  lachish: '라기스',
+  eglon: '에글론',
+  debir: '드빌',
+  hazor: '하솔',
+  merom: '메롬 물가',
+  sidon: '시돈',
+  shiloh: '실로',
+  'timnath-serah': '딤낫 세라',
+  achor: '아골 골짜기',
+  ebal: '에발산',
+  gerizim: '그리심산',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -127,4 +147,8 @@ export type PlaceName = keyof typeof PLACE_NAMES;
 export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   'brook-egypt': '이집트 국경 쪽 개울',
   'brook-egypt-num': '이집트 국경 쪽 개울',
+  'adam-city': '물이 쌓여 선 곳',
+  'beth-horon': '내리막 비탈길',
+  shiloh: '회막을 세운 곳',
+  'timnath-serah': '여호수아의 성읍',
 };

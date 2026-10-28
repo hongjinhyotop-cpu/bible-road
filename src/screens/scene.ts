@@ -16,6 +16,7 @@ import { ACT_BG, moodOf } from '../engine/moods';
 import { ACTIONS } from '../engine/actions';
 import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
 import { showTravel, type TravelMap } from '../fx/travel';
+import { showAllot, type AllotMap } from '../fx/allot';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
 import type { CharacterDef } from '../characters';
@@ -40,6 +41,7 @@ import { playGrasshopper } from '../fx/spies';
 import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
 import { playAmen, playEagle, playLandShow, playPassOn, playShema } from '../fx/deuteronomy';
+import { playLots as playJoshLots, playMarch, playShout, playSunStand } from '../fx/joshua';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -120,6 +122,8 @@ export function sceneScreen({ id }: Params): Screen {
   $('.scene__stage').after(items);
   /** 펼쳐 둔 여정 지도 (동작 travel) */
   let travel: TravelMap | null = null;
+  /** 펼쳐 둔 땅 분배 지도 (beat 필드 allot) */
+  let allotMap: AllotMap | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
 
@@ -197,7 +201,7 @@ export function sceneScreen({ id }: Params): Screen {
           return;
         }
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
-        await hold(Math.max(beat.item ? 2.4 : 0.4, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
+        await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
         if (!alive) return;
       }
     } catch (err) {
@@ -277,6 +281,15 @@ export function sceneScreen({ id }: Params): Screen {
     if (!trip && travel) {
       void travel.hide();
       travel = null;
+    }
+    // 땅 분배 지도: 이번 beat에 allot이 있으면 칠하고, 없으면 접는다
+    if (beat.allot) {
+      travel?.el.remove();
+      travel = null;
+      allotMap = showAllot($('.scene'), [beat.allot].flat(), allotMap);
+    } else if (allotMap) {
+      void allotMap.hide();
+      allotMap = null;
     }
     for (const who of beat.exit ?? []) void (isB() ? stage.walkOut(who) : stage.remove(who));
     await addInOrder(beat.enter ?? []);
@@ -605,6 +618,22 @@ export function sceneScreen({ id }: Params): Screen {
         // 신명기: 느보산에서 땅이 차례로 밝아진다 (신 34:1-3)
         playLandShow($('.scene'));
         return;
+      case 'march':
+        // 여호수아 (fx/joshua.ts): 여리고 성벽 아래로 행렬이 지나간다 (수 6:8-14)
+        playMarch($('.scene'));
+        return;
+      case 'shout':
+        // 여호수아: 일곱 나팔과 큰 외침 (수 6:20)
+        playShout($('.scene'), rm);
+        return;
+      case 'lots':
+        // 여호수아: 제비가 지파에서 한 사람까지 좁혀진다 (수 7:16-18)
+        playJoshLots($('.scene'), rm);
+        return;
+      case 'sun-stand':
+        // 여호수아: 해와 달이 머문다 (수 10:12-13)
+        playSunStand($('.scene'), rm);
+        return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)
         playKites($('.scene'), rm);
@@ -728,6 +757,10 @@ export function sceneScreen({ id }: Params): Screen {
       void travel.hide();
       travel = null;
     }
+    if (allotMap) {
+      void allotMap.hide();
+      allotMap = null;
+    }
     stage.actors.forEach((a) => a.setDim(true));
     setItem(el, items, null);
     setMemory(null);
@@ -850,6 +883,8 @@ export function sceneScreen({ id }: Params): Screen {
     setItem(el, items, null, true);
     travel?.el.remove();
     travel = null;
+    allotMap?.el.remove();
+    allotMap = null;
     gsap.set($('.play__fade'), { opacity: 0 });
     setMode('loading');
     cursor = new SceneCursor(scene);
