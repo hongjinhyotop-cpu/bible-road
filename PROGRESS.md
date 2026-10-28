@@ -8,7 +8,7 @@
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
 | 현재 단계 | **열네 번째 채팅: AUDIT 결정 반영 → 신명기 34장(A급 4 + B급 19) → 5막 피날레 + 모세오경 완주 → 신명기 검수.** **1막~5막 완성 = 모세오경 187장 / 1,189장 (약 16%).** 에피소드 161개 |
-| 다음 세션 할 일 | ⚠️ **먼저: 이번 채팅 커밋 2~3개가 push 안 됨** (아래 열네 번째 채팅 "push 막힘") → 그다음 6막 정복과 사사 (여호수아) |
+| 다음 세션 할 일 | **6막 정복과 사사** (여호수아 → 사사기 → 룻기). 먼저 AUDIT "신명기 검수"의 "먼저 정할 것" 4개를 사용자와 정하기 |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
 | 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) · 열한 번째 채팅(검수): [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 등 |
@@ -408,9 +408,9 @@
 
 > 사용자 요청: 묻지 말고 끝까지, 단계마다 커밋·push·main 머지. B급 에피소드와 검수 도우미는 Sonnet, A급과 피날레는 Claude가 직접. 신명기 검수까지 하고 멈춤.
 
-### ⚠️ push 막힘 (다음 세션에서 먼저 확인)
-- 이 세션은 bible-road 저장소에 **쓰기 권한 없이** 시작됨 → `git push`가 git 프록시에서 403 ("not in this session's authorized repository set"). 저장소를 붙이는 요청(add_repo)도 자동 거절됨. 그래서 **커밋은 컨테이너 안 브랜치 `claude/deut-audit`에만 있고 PR·머지·배포는 못 함.**
-- 해결: 사용자가 이 채팅에서 저장소 연결을 허락하면 Claude가 다시 붙여서 push → PR → 머지. 이 컨테이너가 사라지기 전에 해야 함 (커밋이 컨테이너 안에만 있음). 다음 세션은 bible-road를 저장소로 선택해서 시작할 것.
+### push 막힘 → 해결
+- 세션이 저장소 쓰기 권한 없이 시작돼서 push가 403으로 막혔음 → 사용자가 저장소 연결을 허락 → push, [#40](https://github.com/hongjinhyotop-cpu/bible-road/pull/40) 머지, 배포 성공.
+- 다음 세션은 bible-road를 저장소로 골라서 시작할 것.
 
 ### 1단계 AUDIT 결정 반영 (커밋 `afa3721`)
 - 민 31 해설: 31:35(남자를 알지 못한 여자 3만 2천)·31:40(여호와께 드린 32명, 엘르아살에게 31:41) 담담하게 + "읽기 불편한 본문이고 해석이 갈림", 신 21:10-14 같이 읽는 학자들
