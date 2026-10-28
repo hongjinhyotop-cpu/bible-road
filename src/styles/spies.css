@@ -1,0 +1,100 @@
+/* ── 우리는 메뚜기 같으니 (민 13–14, A급 num-13-14-spies, fx/spies.ts) ──
+   헤브론의 성과 아낙 자손, 에스골 골짜기의 포도원, 막대기에 꿴 포도송이를 메고 오는 두 사람,
+   가데스 진에 내려놓은 송이, 밤새 울음의 고리가 퍼지는 진.
+   효과 grasshopper: 거인들이 커지고 무대 위 사람들이 작아진다 (민 13:33). */
+
+.spy-far2 { opacity: 0.75; }
+
+/* 헤브론: 큰 돌 성벽의 줄눈, 어두운 성문 */
+.spy-blocks { fill: none; stroke: color-mix(in srgb, var(--act-accent) 22%, #000); stroke-width: 0.6; opacity: 0.55; }
+.spy-gate { fill: #050304; opacity: 0.7; }
+.spy-folk { opacity: 0.9; }
+
+/* 아낙 자손: 아주 천천히 숨 쉰다. fx grasshopper가 켜지면 하늘을 덮을 만큼 커진다 */
+.spy-giant { transform-box: view-box; transition: scale 2.6s cubic-bezier(0.3, 0, 0.2, 1), filter 2.6s; }
+.spy-giant__body { animation: spy-breathe 6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes spy-breathe { from { transform: scale(1, 1); } to { transform: scale(1.01, 1.025); } }
+.spy-giant__shade { fill: #000; opacity: 0.35; filter: blur(1.5px); }
+.scene.is-grasshopper .spy-giant { scale: 1.9; filter: brightness(0.55); }
+.scene.is-grasshopper .spy-giant:nth-child(3) { scale: 2.2; }
+
+/* 포도원: 송이, 석류, 무화과 */
+.spy-bunch { fill: color-mix(in srgb, var(--act-accent) 20%, #4a2450); opacity: 0.85; }
+.spy-pom circle, .spy-pom path { fill: color-mix(in srgb, #b8402e 70%, var(--act-b)); }
+.spy-fig { fill: color-mix(in srgb, #6a4a2a 60%, var(--act-b)); }
+
+/* 거대한 포도송이: 보랏빛 알갱이가 하나씩 숨 쉬듯 빛나고, 빛 한 줄기가 쓸고 지나간다 */
+.spy-berry {
+  fill: color-mix(in srgb, #5a2a6a 72%, var(--act-accent));
+  stroke: color-mix(in srgb, var(--act-accent) 55%, #2a1030); stroke-width: 0.35;
+  animation: spy-berry 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1);
+}
+@keyframes spy-berry { from { fill-opacity: 0.85; } to { fill-opacity: 1; } }
+.spy-cluster { filter: drop-shadow(0 0 3px color-mix(in srgb, var(--act-accent) 50%, transparent)); }
+.spy-stem { fill: none; stroke: #2a1a10; stroke-width: 1.2; }
+.spy-leaf { fill: color-mix(in srgb, #4d6a2a 60%, var(--act-b)); opacity: 0.9; }
+.spy-glint {
+  fill: none; stroke: #fff2d0; stroke-width: 1.4; stroke-linecap: round; opacity: 0;
+  filter: blur(0.6px); animation: spy-glint 5s ease-in-out 2s infinite;
+}
+@keyframes spy-glint { 0%, 70% { opacity: 0; } 80% { opacity: 0.6; } 100% { opacity: 0; } }
+.spy-pole { fill: none; stroke: color-mix(in srgb, var(--act-a) 50%, #2a1a0c); stroke-width: 2.2; stroke-linecap: round; }
+
+/* 메고 오는 두 사람: 왼쪽 멀리서 걸어 들어와 가운데 멈춘다 (약 7초) */
+.spy-carry__walk { animation: spy-walkin 7s cubic-bezier(0.25, 0.1, 0.25, 1) both; }
+@keyframes spy-walkin { from { translate: -260px 4px; } to { translate: 0 0; } }
+.spy-man { animation: spy-bob 0.55s ease-in-out 13 alternate; }
+.spy-man--front { animation-delay: 0.27s; }
+@keyframes spy-bob { from { translate: 0 0; } to { translate: 0 -0.8px; } }
+.spy-man__leg { animation: spy-step 0.55s ease-in-out 13 alternate; }
+.spy-man__leg--a { rotate: 14deg; animation-name: spy-step-a; }
+.spy-man__leg--b { rotate: -14deg; animation-name: spy-step-b; }
+@keyframes spy-step-a { from { rotate: 16deg; } to { rotate: -16deg; } }
+@keyframes spy-step-b { from { rotate: -16deg; } to { rotate: 16deg; } }
+.spy--cluster .spy-man__leg--a, .spy--cluster .spy-man__leg--b { animation-fill-mode: forwards; }
+.spy-sway { animation: spy-sway 1.1s ease-in-out 6 alternate, spy-sway-rest 5s ease-in-out 7s infinite alternate; }
+@keyframes spy-sway { from { rotate: -4deg; } to { rotate: 4deg; } }
+@keyframes spy-sway-rest { from { rotate: -1deg; } to { rotate: 1deg; } }
+
+/* 가데스 진에 내려놓은 송이: 뒤로 따뜻한 빛 */
+.spy-display__glow { fill: url(#bd-halo-g); opacity: 0.55; }
+
+/* 밤새 우는 진: 장막 문마다 등불, 울음의 고리가 퍼져 오른다 */
+.spy-ltent .bd-tent__door { opacity: 0.7; }
+.spy-wail {
+  fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #e8dcc6); stroke-width: 0.7; opacity: 0;
+  transform-box: fill-box; transform-origin: center;
+  animation: spy-wail 7s ease-out infinite; animation-delay: calc(var(--d) * -1);
+}
+@keyframes spy-wail { 0% { opacity: 0; transform: translateY(0) scale(0.3); } 15% { opacity: 0.4; } 100% { opacity: 0; transform: translateY(-26px) scale(2.4); } }
+.spy-hunch { opacity: 0.95; }
+
+/* ── 효과 grasshopper ── */
+/* 무대 위 사람들이 작아진다 (scale만 써서 gsap transform과 겹치지 않게) */
+.scene .stage .actor { transition: scale 2.2s cubic-bezier(0.3, 0, 0.2, 1), filter 2.2s; }
+.scene.is-grasshopper .stage .actor { scale: 0.48; transform-origin: 50% 100%; filter: brightness(0.7); }
+.fx-hopper { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s; }
+.fx-hopper.is-out { opacity: 0; }
+/* 하늘이 거인의 그림자에 덮인다 */
+.fx-hopper s {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(5, 3, 6, 0.55) 0%, rgba(5, 3, 6, 0.25) 45%, transparent 75%);
+  opacity: 0; animation: spy-shadow 2.4s ease-out 0.3s both;
+}
+@keyframes spy-shadow { to { opacity: 1; } }
+/* 발치의 메뚜기: 폴짝, 폴짝 */
+.fx-hopper i {
+  position: absolute; left: var(--x); bottom: 30%; width: 18px; height: 9px; opacity: 0;
+  scale: var(--dir) 1;
+  animation: spy-hop 1.1s cubic-bezier(0.3, 0, 0.4, 1) var(--d) 4 both;
+}
+.fx-hopper svg { width: 100%; height: 100%; fill: color-mix(in srgb, var(--act-a) 40%, #0a0608); stroke: color-mix(in srgb, var(--act-a) 40%, #0a0608); stroke-width: 1; }
+@keyframes spy-hop {
+  0% { opacity: 0.85; translate: 0 0; }
+  45% { translate: calc(var(--dir) * 14px) -16px; }
+  100% { opacity: 0.85; translate: calc(var(--dir) * 28px) 0; }
+}
+
+:root[data-reduced-motion='true'] :is(.spy-giant__body, .spy-berry, .spy-glint, .spy-carry__walk, .spy-man, .spy-man__leg, .spy-sway, .spy-wail) { animation: none !important; }
+:root[data-reduced-motion='true'] .spy-wail { opacity: 0.2; }
+:root[data-reduced-motion='true'] .fx-hopper i { display: none; }
