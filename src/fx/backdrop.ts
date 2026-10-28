@@ -22,6 +22,7 @@ import { calfArt } from './calf';
 import { atoneArt } from './atonement';
 import { ordinationArt } from './ordination';
 import { strangeFireArt } from './strangefire';
+import { brazenArt } from './brazen';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -514,6 +515,11 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'sf-court': () => strangeFireArt('court'),
   'sf-ash': () => strangeFireArt('ash'),
   'sf-outside': () => strangeFireArt('outside'),
+  // 놋뱀 (민 21, fx/brazen.ts)
+  'bz-road': () => brazenArt('road'),
+  'bz-camp': () => brazenArt('camp'),
+  'bz-pole': () => brazenArt('pole'),
+  'bz-pole-lit': () => brazenArt('pole-lit'),
   // 별을 세어 보라 (창 15, fx/covenant.ts)
   'cov-count': () => covenantArt('count'),
   'cov-pieces': () => covenantArt('pieces'),

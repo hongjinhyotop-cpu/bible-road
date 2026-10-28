@@ -1,0 +1,55 @@
+{
+  "id": "num-8-lamps",
+  "act": 5,
+  "grade": "B",
+  "title": "등잔과 레위인 봉헌",
+  "ref": "민 8",
+  "bg": "tabernacle-dusk",
+  "cast": ["moses", "aaron"],
+  "outfit": { "aaron": "priest" },
+  "extras": {
+    "levite": { "name": "레위인", "base": "youth", "hair": "bald", "beard": "none", "tint": "white" },
+    "elder": { "name": "이스라엘 장로", "base": "old-man", "hair": "hood", "beard": "gray", "tint": "brown", "props": ["staff"] },
+    "veteran": { "name": "오십 세 된 레위인", "base": "old-man", "hair": "turban", "beard": "gray", "tint": "white", "props": ["staff"] }
+  },
+  "beats": [
+    { "type": "narration", "act": "look-up", "who": "moses", "text": "해가 기울고 있었다. 성막 뜰에 그림자가 길어졌다. 회막 안의 목소리가 처음 꺼낸 말은 거창하지 않았다. 불에 관한 말이었다." },
+    { "type": "voice", "fx": "glory", "text": "아론에게 고하여 이르라\n등을 켤 때에는 일곱 등잔을 등대 앞으로 비취게 할찌니라" },
+    { "type": "line", "who": "moses", "act": "approach", "to": "aaron", "text": "“일곱 등잔을, 등대 앞으로 비추게 하랍니다.”" },
+    { "type": "line", "who": "aaron", "act": "face", "to": "moses", "text": "“불은 켜는 것보다, 어디를 비추느냐가 문제라는 말이로구나.”" },
+    { "type": "line", "who": "moses", "text": "“등대가 자기를 비추면, 등대만 보이겠지요.”" },
+    { "type": "narration", "bg": "tabernacle-night", "item": "lampstand", "fx": "fire", "act": "kneel", "who": "aaron", "text": "아론은 그대로 했다. 일곱 불이 켜졌다. 불빛은 등대 자신이 아니라 그 앞을 비추었다. 여호와께서 모세에게 명하심과 같았더라." },
+    { "type": "narration", "act": "look-up", "who": "moses", "text": "등대는 금 한 덩이를 쳐서 만든 것이었다. 밑판에서 꽃까지, 이음매 없이. 산에서 모세가 본 그 모양대로." },
+    { "type": "scripture", "ref": "민 8:2-3", "gloss": "등잔 일곱 개를 등대 ‘앞쪽’으로 비추게 켜라. 아론이 그대로 함. 조명의 목적 = 자기 자랑 말고 앞을 밝히는 거." },
+
+    { "item": null, "bg": "camp-dawn", "fx": ["fade", "dawn"], "act": "crowd", "type": "narration", "text": "등불 이야기는 세 절로 끝났다. 그다음은 사람 이야기였다. 불보다 다루기 어려운 것." },
+    { "type": "voice", "fx": "glory", "text": "이스라엘 자손 중에서 레위인을 취하여 정결케 하라" },
+    { "type": "narration", "enter": ["levite"], "act": "walk-in", "who": "levite", "text": "레위 지파의 남자들이 나왔다. 속죄의 물이 그들에게 뿌려졌다." },
+    { "type": "narration", "act": "bow-head", "who": "levite", "text": "그들은 온몸의 털을 삭도로 밀었다. 옷을 빨았다. 머리카락은 아무것도 아니다. 그러나 사람은 대개, 아무것도 아닌 것부터 내려놓으면서 시작한다." },
+    { "type": "narration", "act": "stand", "who": "levite", "text": "그리고 수송아지 둘. 하나는 번제로, 하나는 속죄제로. 기름 섞은 고운 가루를 곁들여." },
+
+    { "bg": "tabernacle-dawn", "fx": "fade", "exit": ["moses"], "acts": [{ "act": "crowd" }, { "act": "walk-in", "who": "elder" }], "type": "narration", "text": "회막 앞. 레위인들이 섰고, 그 뒤로 이스라엘 온 회중이 모였다. 모세가 회중을 불러 모은 것이었다." },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "elder", "to": "levite" }, { "act": "bless", "who": "elder" }], "text": "이스라엘 자손이 레위인들에게 손을 얹었다. 손을 얹는다는 것은, 이 사람이 나를 대신한다는 뜻이었다. 그 손에는 무게가 있었다. 열한 지파의 무게." },
+    { "type": "narration", "exit": ["elder"], "pose": { "levite": "lift" }, "acts": [{ "act": "approach", "who": "levite", "to": "aaron" }, { "act": "bless", "who": "aaron" }], "text": "그리고 아론이 레위인들을 여호와 앞에 드렸다. 요제로. 흔들어 바치는 제물처럼. 이번에 흔들어 바쳐진 것은 고기가 아니라 사람이었다." },
+    { "type": "scripture", "ref": "민 8:10-11", "gloss": "온 이스라엘이 레위인 머리에 손 얹고, 아론이 레위인을 ‘흔드는 제물(요제)’로 하나님께 드림. 사람이 통째로 봉헌 예물이 된 거." },
+    { "type": "narration", "item": "sin-offering", "pose": { "levite": "neutral" }, "act": "kneel", "who": "levite", "text": "레위인들은 수송아지 머리에 손을 얹었다. 하나는 속죄제로 드려졌다." },
+    { "type": "narration", "item": "burnt", "fx": "fire", "act": "bow-head", "who": "aaron", "text": "하나는 번제로 드려졌다. 연기가 곧게 올라갔다. 레위인을 위하여 속죄하였더라." },
+
+    { "item": null, "enter": ["moses"], "act": "walk-in", "who": "moses", "type": "voice", "fx": "glory", "text": "그들은 이스라엘 자손 중에서 내게 온전히 드린바 된 자라\n이스라엘 자손 중 일절 초태생 곧 모든 처음 난 자의 대신으로 내가 그들을 취하였나니" },
+    { "type": "narration", "fx": "dark", "act": "bow-head", "who": "moses", "text": "처음 난 자. 모세는 그 말이 무엇을 가리키는지 알았다. 이집트의 그 밤. 집집마다 울음이 터지던 밤. 피 바른 문 안의 맏아들들은 살았다. 그날부터 그들은 하나님의 것이었다." },
+    { "type": "narration", "fx": "dawn", "act": "look-up", "who": "levite", "text": "이제 레위인이 그 자리에 섰다. 온 이스라엘의 맏아들 대신. 대신 서는 사람은 원래 자기 몫이 아닌 무게를 진다. 그래서 대신 서는 일은 늘 거룩하다." },
+    { "type": "scripture", "ref": "민 8:19", "gloss": "레위인을 아론한테 ‘선물’로 줘서 백성 대신 회막 일 하게 함. 백성이 성소에 함부로 다가갔다가 재앙 맞는 일 없게. 레위인 = 거룩한 곳과 백성 사이 완충지대." },
+    { "type": "narration", "act": "leave", "who": "levite", "text": "그 뒤에야 레위인들이 회막에 들어갔다. 아론과 그 아들들 앞에서 일하러." },
+
+    { "bg": "tabernacle", "fx": "fade", "enter": ["veteran"], "act": "walk-in", "who": "veteran", "type": "voice", "text": "레위인은 이같이 할찌니 곧 이십 오세 이상으로는 회막에 들어와서 봉사하여 일할 것이요\n오십세부터는 그 일을 쉬어 봉사하지 아니할 것이나" },
+    { "type": "narration", "act": "walk-in", "who": "levite", "text": "스물다섯에 들어와서, 쉰에 멈춘다. 레위인의 일은 널판을 메고 기둥을 나르는 일이었다. 젊은 등이 필요한 일이었다." },
+    { "type": "line", "who": "veteran", "act": "approach", "to": "levite", "text": "“짐은 이제 네가 들어라. 나는 문을 지키마.”" },
+    { "type": "line", "who": "levite", "act": "face", "to": "veteran", "text": "“쉬시라는데, 문은 왜 지키십니까.”" },
+    { "type": "line", "who": "veteran", "act": "bless", "text": "“쉬라고 하셨지, 떠나라고 하시진 않았다.”" },
+    { "type": "scripture", "ref": "민 8:25-26", "gloss": "50세부터는 무거운 일 은퇴. 근데 회막에서 형제들 곁에서 ‘지키는 직무’는 계속함. 현역 은퇴, 선배 직은 유지." },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "aaron" }, { "act": "look-up", "who": "moses" }], "text": "불은 앞을 비추었고, 사람은 남을 대신해 섰고, 늙은 사람은 짐을 내려놓고도 자리를 지켰다. 성막은 금과 나무로 지어졌지만, 그것을 움직이는 것은 처음부터 사람이었다." }
+  ],
+  "insight": "8장은 두 파트임. 앞은 등잔 세 절, 뒤는 레위인 봉헌식.\n\n먼저 등잔. ‘일곱 등잔을 등대 앞으로 비취게 하라.’ 등대는 성소 안 남쪽에 있고 맞은편에 진설병 상이 있음(출 40:24). 불을 등대 자기 쪽 말고 ‘앞’으로, 그러니까 성소 안을 밝히게 켜라는 거. 조명은 자기 얼굴 비추라고 있는 게 아님. 인스타 링라이트랑은 용도가 다름 ㅋㅋ\n\n다음은 레위인. 핵심 단어가 ‘대신’임. 이집트에서 마지막 재앙 때 이스라엘 맏아들은 살았고, 그래서 그때부터 처음 난 자는 다 하나님 것이 됨(출 13장). 근데 집집마다 맏아들을 성막 일에 다 빼 갈 순 없으니까, 레위 지파가 온 이스라엘 맏아들 ‘대타’로 들어간 거. 백성이 손을 얹는 건 ‘이 사람이 우리 대표로 간다’는 서명 같은 거임.\n\n‘요제(흔드는 제물)’는 원래 제사장이 제물을 하나님 앞에서 흔들어(또는 들어 올려) 바치는 방식인데, 사람을 요제로 드렸다는 게 실제로 어떤 동작이었는지는 본문에 안 나옴. 레위인들이 앞뒤로 걸어 나왔다는 설명도 있고, 그냥 ‘통째로 바쳐졌다’는 상징적 표현으로 보는 관점도 있음. 여러 해석이 있음.\n\n그리고 나이. 4장에선 30세부터라고 했는데 여기선 25세부터임. 5년은 수습 기간이었다는 유대 전통의 설명도 있고, 맡은 일의 종류가 달랐다는 설명도 있음. 이것도 해석이 갈림.\n\n50세 은퇴 규정 은근 좋음. 무거운 널판 나르는 건 그만하고, 대신 회막에서 형제들 곁을 지킴. 축구 선수가 은퇴하고 코치로 남는 느낌. 현역 몸싸움은 끝났어도 그 사람 자리는 없어지지 않음.\n\n근데 이게 왜 중요하냐면, 이 장 전체가 ‘누군가를 위해 서는 것’ 얘기거든. 불은 앞을 비추고, 레위인은 남의 자리에 서고, 은퇴한 사람은 후배 곁을 지킴. 신약에서는 이 ‘대신 선다’는 생각이 예수님 이야기로 이어진다고 읽는 관점이 많음.",
+  "tldr": "등잔은 자기 말고 앞을 비추고, 레위인은 온 이스라엘 맏아들 대신 하나님께 통째로 드려졌음. 25세 입대, 50세 전역 후엔 선배로 곁을 지킴.",
+  "bridge": "기록은 다시 시간을 조금 되감는다. 이집트를 떠난 지 꼭 한 해. 그 밤을 다시 지킬 날이 다가오고 있었다."
+}

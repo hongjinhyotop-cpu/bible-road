@@ -34,6 +34,7 @@ import { playTabletsBreak } from '../fx/calf';
 import { playConfess, playIncense, playLots, playScapegoat } from '../fx/atonement';
 import { playFireFall } from '../fx/ordination';
 import { playStrangeFire } from '../fx/strangefire';
+import { playFierySerpents, playSerpentLift } from '../fx/brazen';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -502,6 +503,14 @@ export function sceneScreen({ id }: Params): Screen {
       case 'strange-fire':
         // 다른 불 (fx/strangefire.ts): 회막 문에서 흰 불이 앞으로 터져 나와 무대를 덮고 걷힌다 (레 10:2)
         playStrangeFire($('.scene'), rm);
+        return;
+      case 'fiery-serpents':
+        // 놋뱀 (fx/brazen.ts): 모래 위를 불빛 같은 줄기들이 스쳐 간다 (민 21:6)
+        playFierySerpents($('.scene'), rm);
+        return;
+      case 'serpent-lift':
+        // 놋뱀 (fx/brazen.ts): 장대 위 놋뱀에서 금빛이 번지고 고리가 퍼진다 (민 21:9)
+        playSerpentLift($('.scene'), rm);
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)

@@ -7,8 +7,8 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **열한 번째 채팅: 창 1–50·출 1–40 검수 끝** (`AUDIT-2026-10-28.md`). 그 전 열 번째 채팅(밤샘): 퀴즈 삭제, 품질 기준. **1막·2막·3막 완성** (창 1–50, 출 1–18 전부), **4막은 출 19–40 완성**(레위기 27장 남음). 에피소드 91개 |
-| 다음 세션 할 일 | **4막 레위기**(B급 27장 + A급 레 10·16) → 4막 피날레. 그다음 5막 광야(민수기·신명기). 아래 "다음 할 일" |
+| 현재 단계 | **열두 번째 채팅: 검수 남은 것 처리 → 레위기 27장 완성(4막 끝) → 레위기 검수 → 민수기 B급 21개 + A급 1개(놋뱀).** 1막~4막 완성 (창 1–50, 출 1–40, 레 1–27), 5막 29 / 70장. 에피소드 134개 |
+| 다음 세션 할 일 | **민수기 A급 4개** (아래 "남은 일") → 신명기 → 5막 피날레 |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
 | 지금까지 머지된 PR | [#1](https://github.com/hongjinhyotop-cpu/bible-road/pull/1) Phase 0 전체 · [#2](https://github.com/hongjinhyotop-cpu/bible-road/pull/2) 머지 규칙 · [#3](https://github.com/hongjinhyotop-cpu/bible-road/pull/3) 기록 정리 · [#4](https://github.com/hongjinhyotop-cpu/bible-road/pull/4) 장면 재생기 · [#5](https://github.com/hongjinhyotop-cpu/bible-road/pull/5) 읽기 구간 화면 · [#6](https://github.com/hongjinhyotop-cpu/bible-road/pull/6) 콘텐츠 로더 · [#7](https://github.com/hongjinhyotop-cpu/bible-road/pull/7) Phase 1-1 에덴 · [#8](https://github.com/hongjinhyotop-cpu/bible-road/pull/8) Phase 1-2 가인과 아벨 · [#9](https://github.com/hongjinhyotop-cpu/bible-road/pull/9) Phase 1-3 노아 · [#10](https://github.com/hongjinhyotop-cpu/bible-road/pull/10) 창 10·11 + 2막 읽기(다른 채팅) · Phase 1-4 바벨탑·피날레·도감 PR(여덟 번째 채팅) · [#12](https://github.com/hongjinhyotop-cpu/bible-road/pull/12) 방향 전환 · 열 번째 채팅: #13 ~ #28 (아래) · 열한 번째 채팅(검수): [#29](https://github.com/hongjinhyotop-cpu/bible-road/pull/29) [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 등 |
@@ -361,17 +361,48 @@
 - [#30](https://github.com/hongjinhyotop-cpu/bible-road/pull/30) 바로 구분: `pharaoh-joseph.ts`(같은 그림, 금빛 — 창 12·40·41·45·47·50, 도감 카드는 gen-41) / `pharaoh`(출애굽, 청금석 줄무늬·붉은 장식). 색은 `styles/egypt-court.css`의 `.actor[data-id='pharaoh']`. 해설 한 줄(exo-1, gen-41)
 - [#31](https://github.com/hongjinhyotop-cpu/bible-road/pull/31) 엔진: 장면 맨 위 `outfit` = 그 장면 내내 기본 옷 (중간에 들어오는 인물도). 창 42–50 B급 9개에 요셉 `vizier`. `prostrate` = 무릎 꿇고 몸 전체를 낮게 웅크리며 앞으로 숙임, `sleep` = 뒤로 누움 (`actor.ts tilt()`, `stand`로 되돌림)
 
+## 열두 번째 채팅 (2026-10-28): 검수 남은 것 → 레위기 → 레위기 검수 → 민수기
+
+> 사용자 요청: 묻지 말고 끝까지, 단계마다 커밋·push·main 머지, 무거운 건 도우미로.
+
+- [x] **1단계 검수 남은 것** — [#33](https://github.com/hongjinhyotop-cpu/bible-road/pull/33)
+  - A급 9개 해설 끝 "한 줄 요약:" 문단 삭제 (tldr 카드만)
+  - **표기 규칙 (CLAUDE.md 7-6):** 이야기·해설 = "이집트", 원문 인용 = "애굽" (약 100곳 바꿈). 창 12 해설에 "애굽 = 이집트". 지명은 개역한글 표기 (여정 지도 `shur` = 수르 광야, 새 `shur-way` = 술)
+  - 창 12 바로 = `pharaoh-abram` (공작석 초록·은빛, 바로 세 번째 버전)
+  - AUDIT "안 고친 것" 30여 개 반영 (해석 단정 빼기, 시간대 배경, 동작 보강) — `AUDIT-2026-10-28.md` "2차 반영"
+  - `prostrate`: 숙이는 만큼 몸을 뒤로 물림 → 마주 보고 엎드려도 머리 안 겹침 (`actor.ts tilt(..., recede)`)
+- [x] **2단계 레위기 27장** — [#34](https://github.com/hongjinhyotop-cpu/bible-road/pull/34) · 4막 49 / 49장, **4막 피날레 문장**
+  - A급: `lev-8-9-fire` 하늘에서 내린 불(`fx/ordination.ts`, 효과 `fire-fall`) · `lev-10-strange-fire` 다른 불(`fx/strangefire.ts`, 효과 `strange-fire`, 나답·아비후 손그림 + 향로 옷 `censer`) · `lev-16-atonement` 대속죄일(`fx/atonement.ts`, 효과 `cast-lots` `incense-cloud` `confess` `scapegoat`, 아론 `linen` 옷)
+  - B급 17개: 레 1, 2–3, 4–5, 6–7, 11, 12–13, 14–15, 17, 18, 19, 20, 21–22, 23, 24, 25, 26, 27
+  - 성막 기구(item)에 제사 7종: `burnt` `grain` `peace` `sin-offering` `guilt` `feasts` `jubilee`
+  - 라이브러리 배경 새로: `tabernacle`(성막 뜰, 가운데 번제단·구름 기둥) · `camp`(광야의 진, 지파 깃발)
+  - 인물 파일: 나답·아비후(손그림), 엘르아살·이다말(키트), 도감 4명
+- [x] **3단계 레위기 검수** — [#35](https://github.com/hongjinhyotop-cpu/bible-road/pull/35) · 새 도우미 4명이 대조, 약 25곳 수정, 애매한 건 `AUDIT-2026-10-28.md` "레위기 검수"에. 수위·조롱 문제 없음
+  - 같이: 여호수아·갈렙 인물 파일(키트), 여호수아 도감(출 17), 광야 지명 16개(하세롯·호르산·모압 평지·느보산 …)
+- [~] **4단계 민수기 (5막)** — `content/acts/05-wilderness/PLAN.md` (A급 5 + B급 21). 사용자 요청으로 중간에 멈춤 (토큰 절약)
+  - [x] **B급 21개 전부** (민 1, 2, 3–4, 5–6, 7, 8, 9, 10, 11, 12, 15, 17, 18–19, 25, 26, 27, 28–29, 30, 31, 32, 33, 34–36)
+  - [x] A급 `num-21-serpent` 놋뱀 (`fx/brazen.ts`, 배경 bz-road/bz-camp/bz-pole/bz-pole-lit, 효과 `fiery-serpents` `serpent-lift`)
+  - 인물 파일(키트): 여호수아·갈렙·비느하스·나손. 여호수아 도감(출 17). 갈렙·비느하스 도감 카드는 아직 없음
+  - 여정 지도 광야 지명 16개 (하세롯·다베라·기브롯핫다아와·신 광야(Zin)·호르산·에시온게벨·오봇·아르논·헤스본·바산·모압·모압 평지·싯딤·비스가·느보산·요단)
+
+### ⏸ 남은 일 (민수기 A급 4개 — 미완성이라 main에서 뺐음)
+- `num-13-14-spies` 우리는 메뚜기 같으니 (민 13–14) · `num-16-korah` 땅이 입을 열어 (민 16) · `num-20-rock` 반석을 두 번 치다 (민 20) · `num-22-24-balaam` 발람과 나귀 (민 22–24)
+- 도우미들이 반쯤 만든 것(장면 JSON 초안, 전용 그림 `fx/spies.ts` `fx/korah.ts` `fx/meribah.ts` `fx/balaam.ts` + css, 인물 korah·balaam·balak·donkey·angel-sword, 엘르아살 대제사장 옷, 아론 향로 옷)은 **커밋 `331e9d6`에 보관**돼 있음. 이어 할 때: `git checkout 331e9d6 -- <파일들>`로 되살린 뒤 moods.ts·backdrop.ts·main.ts·scene.ts 등록 줄(그 커밋의 diff 참고)과 도감(caleb·korah·balaam·balak)을 다시 넣고, 브리프(PLAN.md A급 표)대로 마무리·폰 확인
+- 그 4개가 들어가면: 갈렙 도감 카드(num-13-14), 비느하스 도감 카드(num-25 unlocks)
+- 여정 지도: 민 34:5 "애굽 시내"는 지금 `brook-egypt` 이름표 "애굽 강"(창 15:18)과 같은 키 → 책별 표기 규칙(CLAUDE.md 7-6)대로 나눌지
+- 엔진: `fire` 같은 효과가 `fade` 화면 전환 뒤에도 몇 초 남음 (놋뱀 도우미가 발견, 그 장면은 flash로 피함) → 전환 때 끄기
+- 민수기 검수(새 도우미 대조)는 아직 안 함
+
 ## 다음 할 일
 
-### 1. 4막 마무리 ← 다음 세션
-- **레위기 27장**: B급(제사 규례는 성막 기구 연출 `item`과 아론 `priest` 옷으로) + A급 후보 레 10(나답·아비후의 다른 불), 레 16(속죄일·아사셀 염소). 그다음 4막 피날레 문장(`04-sinai/act.json finale`)
-- 그다음 5막 광야(민수기·신명기): 막마다 ① PLAN.md ② B급 도우미 ③ A급 ④ 피날레
+### 1. 5막 광야 ← 다음 세션
+- 민수기에서 안 끝난 것 (위 열두 번째 채팅 4단계) → 신명기 34장 PLAN.md·B급·A급 → 5막 피날레(`05-wilderness/act.json finale`)
 
 ### 2. 다듬기 (오늘 밤 나온 것)
-- **검수에서 애매해서 남긴 것** → `AUDIT-2026-10-28.md` (해설 안 "한 줄 요약:" 중복, 이집트/애굽 표기, 수르/술 광야 이름표, 장면별 작은 연출 제안들). 사용자와 정한 뒤 고치기
+- **레위기 검수에서 애매해서 남긴 것** → `AUDIT-2026-10-28.md` 맨 아래 "레위기 검수" (사용자와 정한 뒤 고치기). 창·출 쪽 애매한 것은 열두 번째 채팅에서 반영함
 - 키트 인물 아직 임시 그림: 유다·르우벤·베냐민·미리암·롯의 딸들 등
 - 재앙 효과(우박 등)는 10초간 남아서 빨리 탭하면 다음 장면까지 이어짐 → 배경이 바뀌면 끄기
-- 엔진 동작 `kneel`(여자 키트는 티가 잘 안 남). `sleep`·`prostrate`는 열한 번째 채팅에서 몸 전체를 눕히고/웅크리는 방식으로 고침. 두 사람이 마주 보고 동시에 엎드리면 머리가 가까이 겹쳐 보임
+- 엔진 동작 `kneel`(여자 키트는 티가 잘 안 남). `sleep`·`prostrate`는 열한 번째 채팅에서 몸 전체를 눕히고/웅크리는 방식으로 고침. (마주 엎드림 머리 겹침은 열두 번째 채팅에서 고침)
 - 무대에 5~6명이면 폰에서 인물이 작음 (창 33, 창 19 동틀 녘)
 - 출애굽 여정 지도가 짧은 거리라 크게 확대돼 흐릿함 (엔진 최소 확대 범위 130)
 
