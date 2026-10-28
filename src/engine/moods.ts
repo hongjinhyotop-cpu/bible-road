@@ -23,6 +23,7 @@ export type BackdropArt =
   | 'calf-camp' | 'calf-forge' | 'calf-idol' | 'calf-feast' | 'calf-view' | 'calf-burn' | 'calf-ash'
   | 'ord-court' | 'ord-altar' | 'ord-blaze'
   | 'sf-court' | 'sf-ash' | 'sf-outside'
+  | 'kr-door' | 'kr-ash' | 'kr-tents' | 'kr-gone'
   | 'spy-hebron' | 'spy-eshcol' | 'spy-cluster' | 'spy-report' | 'spy-lament'
   | 'mr-kadesh' | 'mr-rock' | 'mr-water' | 'mr-edom' | 'mr-hor' | 'mr-hor-mourn' | 'mr-summit'
   | 'atone-lots' | 'atone-live' | 'atone-gone' | 'atone-holy' | 'atone-edge'
@@ -157,6 +158,9 @@ export const FX = [
   'fiery-serpents', // 불뱀: 모래 위를 불빛 같은 줄기들이 구불구불 스쳐 가고 무대 아래가 붉게 어두워짐 (약 10초, 민 21:6). 무는 모습 없음 — fall과 같이
   'serpent-lift', // 놋뱀을 쳐다봄: 장대 위 놋뱀(bz-pole 배경)에서 금빛이 번지고 고리가 퍼짐 (약 9초, 민 21:9). 배경 bz-pole-lit과 같이
   'strange-fire', // 심판의 불: 회막 문(sf-* 배경)에서 흰 불이 앞으로 곧게 터져 나와 무대를 덮고, 불티만 남기고 걷힘 (약 7초, 레 10:2). 쓰러짐(fall)과 같이, 몸이 타는 모습은 없음
+  // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
+  'earth-open', // 땅이 갈라짐: 장막 셋(배경 korah-tents) 밑의 땅이 벌어져 장막이 가라앉고, 흙먼지, 땅이 다시 합해 아문 금만 남음. 무대가 흔들림 (약 8초, 민 16:31-33). 사람 몸은 안 그림
+  'plague-stop', // 염병이 그침: 왼쪽에서 잿빛 그늘이 덮어 오다가 아론(무대 인물) 자리에서 솟은 금빛 향 연기 기둥 앞에서 멈추고 물러남 (약 12초, 민 16:47-48)
   // ── 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts) ──
   'grasshopper', // 메뚜기 같으니: 헤브론의 거인(배경 spy-hebron)이 하늘을 덮을 만큼 커지고 무대 위 사람들은 작아짐, 발치에 메뚜기 몇 마리 (약 9초, 민 13:33)
   // ── 반석을 두 번 치다 (민 20, fx/meribah.ts) ──
@@ -487,6 +491,16 @@ export const MOODS: Record<string, Mood> = {
   'sf-ash': { light: true, land: false, art: 'sf-ash', tone: 'dusk', spread: true },
   /** 진 밖: 지평선의 진과 작은 구름 기둥, 빈 땅, 지는 해 (레 10:4-5) */
   'sf-outside': { light: true, land: false, art: 'sf-outside', tone: 'dusk' },
+
+  // ── 땅이 입을 열어 (민 16, fx/korah.ts) ──
+  /** 회막 문 앞: 성막과 구름 기둥, 향로를 든 이백오십 명이 세 줄로 (손마다 숯불·향 연기, 민 16:17-18). fx strange-fire가 이 문에서 나온다 */
+  'korah-door': { light: true, land: false, art: 'kr-door', spread: true },
+  /** 불이 지나간 뒤: 사람 그림자 없이 엎어진 향로들만 식어 간다, 그을린 뜰 (민 16:35-37) */
+  'korah-ash': { light: true, land: false, art: 'kr-ash', tone: 'dusk', spread: true },
+  /** 고라·다단·아비람의 장막 셋, 둘레의 진은 멀리 물러섬, 잿빛 하늘 (민 16:24-27). fx earth-open과 같이 */
+  'korah-tents': { light: true, land: false, art: 'kr-tents', tone: 'storm' },
+  /** 같은 자리, 장막이 없고 땅에 아문 금 한 줄 (민 16:33) */
+  'korah-gone': { light: true, land: false, art: 'kr-gone', tone: 'storm' },
 
   // ── 우리는 메뚜기 같으니 (민 13–14, fx/spies.ts) ──
   /** 헤브론: 언덕 위 큰 돌 성벽과 성문, 그 앞에 선 아낙 자손 셋(성문 곁 보통 사람과 견줌). fx grasshopper가 이들을 키운다 (민 13:22, 28) */
