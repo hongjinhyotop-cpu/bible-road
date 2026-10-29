@@ -17,6 +17,7 @@ import { FX, MOODS } from '../src/engine/moods.ts';
 import { ACTIONS, PLACE_NAMES } from '../src/engine/actions.ts';
 import { ITEMS } from '../src/engine/items.ts';
 import { TRIBES, ALLOT_SPECIAL } from '../src/engine/tribes.ts';
+import { CYCLE_STAGES, ROUNDS } from '../src/engine/cycle.ts';
 import { BASES, BEARDS, HAIRS, PROPS, TINTS } from '../src/characters/_kit.ts';
 
 const root = new URL('..', import.meta.url).pathname;
@@ -177,6 +178,8 @@ function checkScene(s, where) {
   const checkMood = (m) => m != null && !MOODS[m] && (B ? err : warn)(where, `배경 "${m}"가 src/engine/moods.ts에 없음 (기본 무대로 보임)`);
   checkMood(s.mood);
   checkMood(s.bg);
+  if (s.decay != null && !(Number.isInteger(s.decay) && s.decay >= 0 && s.decay <= ROUNDS + 1)) err(where, `decay는 0~${ROUNDS + 1}`);
+  if (s.theme != null && s.theme !== 'harvest') err(where, `theme "${s.theme}"는 없음 (harvest)`);
   // 퀴즈는 없앰 (2026-10-28). 끝 구성 = 해설 → 한 줄 요약 → 다음 버튼
   if ('quiz' in s) err(where, '퀴즈(quiz)는 없어졌음 — 지우기 (끝 구성: 해설 → 한 줄 요약 → 다음)');
   if (!s.insight) err(where, '해설(insight)이 없음');
@@ -190,7 +193,7 @@ function checkScene(s, where) {
   if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
-  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot;
+  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot || b.cycle || b.sound;
   const motion = main.filter(moves).length;
   const changes = main.filter(scenery).length;
   let still = 0;
@@ -213,7 +216,16 @@ function checkScene(s, where) {
   checkOutfit(s.outfit);
   for (const b of all) {
     if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
-    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot) warn(where, 'type도 act도 없는 빈 beat');
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot && !b.cycle && !b.sound) warn(where, 'type도 act도 없는 빈 beat');
+    if (b.cycle != null) {
+      const c = b.cycle;
+      if (typeof c !== 'object' || Array.isArray(c)) err(where, 'cycle은 { round, judge, at?, skip?, broken? } 형식');
+      else {
+        if (!c.broken && !(Number.isInteger(c.round) && c.round >= 1 && c.round <= ROUNDS)) err(where, `cycle.round는 1~${ROUNDS} (사사 순서) — 삿 17–21은 { "broken": true }`);
+        for (const st of [c.at, ...(c.skip ?? [])].filter((x) => x != null)) if (!CYCLE_STAGES.includes(st)) err(where, `cycle 마디 "${st}"는 ${CYCLE_STAGES.join('/')} 중 하나`);
+      }
+    }
+    if (b.sound != null && typeof b.sound !== 'string') err(where, 'sound는 짧은 글자(문자열)');
     checkMood(b.mood);
     checkMood(b.bg);
     checkOutfit(b.outfit);

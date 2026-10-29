@@ -10,15 +10,6 @@
     "eleazar"
   ],
   "extras": {
-    "othniel": {
-      "name": "옷니엘",
-      "base": "soldier",
-      "hair": "short",
-      "props": [
-        "sword"
-      ],
-      "tint": "brown"
-    },
     "achsah": {
       "name": "악사",
       "base": "woman",

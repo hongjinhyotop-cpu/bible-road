@@ -9,6 +9,7 @@ import { loadContent } from './content';
 import type { SceneFx } from './moods';
 import type { ItemValue } from './items';
 import type { AllotName } from './tribes';
+import type { CycleSpec } from './cycle';
 
 /** 장면 연출 효과 — 목록은 engine/moods.ts의 FX */
 export type { SceneFx };
@@ -37,6 +38,10 @@ interface BeatBase {
   item?: ItemValue;
   /** 땅 분배 지도 (fx/allot.ts): 지파 이름 하나 또는 여럿을 지도에 칠한다. 다음 beat에 없으면 접힘 (수 13–21) */
   allot?: AllotName | AllotName[];
+  /** 사사기의 순환 고리 (fx/cycle.ts): { round, judge, at?, skip?, broken? }. 다음 beat에 없으면 왼쪽 위로 작게 물러나 남는다 */
+  cycle?: CycleSpec;
+  /** 소리 글자: 무대 가운데 희미하게 떠올랐다 스러진다. 암전(fx blackout)과 같이 — 보여 주지 않는 장면을 소리로만 */
+  sound?: string;
   /** 동작 라이브러리 (engine/actions.ts). 예: "kneel". 누가 = who (line이면 말하는 사람) */
   act?: ActionName;
   /** 동작하는 사람 (한 명 또는 여럿). line beat에서는 말하는 사람 */
@@ -135,6 +140,10 @@ export interface Scene {
   names?: Record<string, string>;
   /** 처음부터 무대에 서 있는 인물 */
   cast?: string[];
+  /** 무너져 가는 무대 (사사기): 0~13. 높을수록 가장자리부터 어둡고 빛이 바램. cycle의 바퀴가 더 높으면 그만큼 */
+  decay?: number;
+  /** 막 색 대신 쓰는 색조: "harvest" = 룻기의 밝은 추수 빛 */
+  theme?: 'harvest';
   /** 처음부터 입고 있는 옷 { "adam": "skins" } */
   outfit?: Record<string, string>;
   beats: Beat[];
