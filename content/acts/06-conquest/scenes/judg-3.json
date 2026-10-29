@@ -8,51 +8,416 @@
   "decay": 2,
   "cast": [],
   "extras": {
-    "israelite": { "name": "이스라엘 청년", "base": "youth", "hair": "short", "tint": "green" },
-    "bride": { "name": "가나안 여자", "base": "woman", "hair": "loose", "tint": "red" },
-    "oppressor": { "name": "구산 리사다임", "base": "king", "hair": "crown", "beard": "long", "tint": "gray", "props": ["scepter"] },
-    "ehud": { "name": "에훗", "base": "man", "hair": "tied", "beard": "short", "tint": "brown", "props": ["cloak"] },
-    "bearer": { "name": "공물을 멘 사람", "base": "man", "hair": "hood", "tint": "gray", "props": ["bundle"] },
-    "eglon": { "name": "에글론", "base": "king", "hair": "crown", "beard": "short", "tint": "purple", "props": ["scepter"], "height": 1.1 },
-    "servant": { "name": "에글론의 신하", "base": "soldier", "hair": "helmet", "tint": "purple", "props": ["spear"] },
-    "ehud-horn": { "name": "에훗", "base": "man", "hair": "tied", "beard": "short", "tint": "brown", "props": ["horn"] },
-    "shamgar": { "name": "삼갈", "base": "man", "hair": "shaggy", "beard": "short", "tint": "gray", "props": ["staff"] }
+    "israelite": {
+      "name": "이스라엘 청년",
+      "base": "youth",
+      "hair": "short",
+      "tint": "green"
+    },
+    "bride": {
+      "name": "가나안 여자",
+      "base": "woman",
+      "hair": "loose",
+      "tint": "red"
+    },
+    "oppressor": {
+      "name": "구산 리사다임",
+      "base": "king",
+      "hair": "crown",
+      "beard": "long",
+      "tint": "gray",
+      "props": [
+        "scepter"
+      ]
+    },
+    "ehud": {
+      "name": "에훗",
+      "base": "man",
+      "hair": "tied",
+      "beard": "short",
+      "tint": "brown",
+      "props": [
+        "cloak"
+      ]
+    },
+    "bearer": {
+      "name": "공물을 멘 사람",
+      "base": "man",
+      "hair": "hood",
+      "tint": "gray",
+      "props": [
+        "bundle"
+      ]
+    },
+    "eglon": {
+      "name": "에글론",
+      "base": "king",
+      "hair": "crown",
+      "beard": "short",
+      "tint": "purple",
+      "props": [
+        "scepter"
+      ],
+      "height": 1.1
+    },
+    "servant": {
+      "name": "에글론의 신하",
+      "base": "soldier",
+      "hair": "helmet",
+      "tint": "purple",
+      "props": [
+        "spear"
+      ]
+    },
+    "ehud-horn": {
+      "name": "에훗",
+      "base": "man",
+      "hair": "tied",
+      "beard": "short",
+      "tint": "brown",
+      "props": [
+        "horn"
+      ]
+    },
+    "shamgar": {
+      "name": "삼갈",
+      "base": "man",
+      "hair": "shaggy",
+      "beard": "short",
+      "tint": "gray",
+      "props": [
+        "staff"
+      ]
+    }
   },
   "beats": [
-    { "type": "narration", "enter": ["israelite", "bride"], "act": "walk-in", "who": ["israelite", "bride"], "text": "여호와께서는 몇 민족을 남겨 두셨다. 전쟁을 겪어 보지 못한 세대에게 싸우는 법을 가르치시려는 것이었다. 블레셋의 다섯 방백, 가나안 사람, 시돈 사람, 레바논 산의 히위 사람. 그리고 이스라엘은 그 이웃에게서 무엇을 배웠을까." },
-    { "type": "narration", "act": "face", "who": ["israelite", "bride"], "text": "그들은 이웃의 딸을 아내로 맞았다. 자기 딸을 이웃의 아들에게 주었다. 문제는 결혼이 아니라 그다음 문장이었다. 그들의 신들을 섬겼더라." },
-    { "type": "scripture", "ref": "삿 3:5-6", "gloss": "이스라엘 자손은 가나안 사람, 헷 사람, 아모리 사람 등 여러 민족 사이에 살면서 그들의 딸을 아내로 맞고 자기 딸을 그들의 아들에게 주고 그들의 신들을 섬겼다. 같이 사는 게 같이 섬기는 걸로 번진 과정." },
-    { "type": "narration", "bg": "altar", "fx": "dark", "act": "prostrate", "who": ["israelite", "bride"], "text": "그들은 여호와를 잊고 바알들과 아세라들을 섬겼다. 잊는다는 것은 부정하는 것보다 조용하다. 아무도 선언하지 않았는데 어느 날 이름이 빠져 있다." },
-    { "cycle": { "round": 1, "judge": "옷니엘" }, "type": "narration", "bg": "wilderness-dusk", "exit": ["israelite", "bride"], "enter": ["oppressor"], "act": "walk-in", "who": "oppressor", "text": "여호와께서 진노하사 이스라엘을 메소보다미아 왕 구산 리사다임의 손에 넘기셨다. 이스라엘은 그를 여덟 해 동안 섬겼다. 이름부터 이상하게 긴 왕이었다. 이스라엘이 그 이름을 외우는 데 걸린 시간만큼 괴로웠을 것이다." },
-    { "type": "narration", "bg": "mountain-dawn", "fx": ["fade", "glory"], "exit": ["oppressor"], "enter": ["othniel"], "act": "walk-in", "who": "othniel", "text": "이스라엘이 부르짖자 여호와께서 구원자를 세우셨다. 갈렙의 아우 그나스의 아들 옷니엘이었다. 아까 샘물을 구해 달라던 악사의 남편이다. 이 책의 구원자는 아주 평범한 인연에서 나온다." },
-    { "type": "scripture", "ref": "삿 3:9-10", "gloss": "이스라엘이 여호와께 부르짖자, 여호와께서 그들을 구원할 사람을 세우셨다. 갈렙의 아우 그나스의 아들 옷니엘이다. 여호와의 영이 그에게 임하셨고, 그는 사사가 되어 싸움에 나가 메소보다미아 왕을 이겼다." },
-    { "type": "narration", "bg": "pasture", "act": "bless", "who": "othniel", "text": "그 땅이 태평한 지 사십 년. 그나스의 아들 옷니엘이 죽었다. 사십 년이라는 숫자는 한 세대가 자랄 만한 시간이다. 한 세대가 자랄 만한 시간이 지나자, 다시 한 세대가 필요해졌다." },
-    { "type": "narration", "act": "sleep", "who": "othniel", "exit": ["othniel"], "text": "옷니엘의 퇴장은 조용했다. 이름 옆에 흠이 적히지 않은 사사는 이 책에서 드물다. 그는 그 드문 쪽이었다." },
-    { "cycle": { "round": 2, "judge": "에훗", "at": "sin" }, "type": "narration", "bg": "altar", "enter": ["israelite"], "act": "prostrate", "who": "israelite", "text": "이스라엘 자손이 또 여호와의 목전에 악을 행했다. ‘또’라는 단어가 책에 들어왔다. 한 번이 아니었다는 뜻이다." },
-    { "cycle": { "round": 2, "judge": "에훗", "at": "oppress" }, "type": "narration", "bg": "js-jericho-ruin", "fx": "fade", "exit": ["israelite"], "enter": ["eglon"], "act": "walk-in", "who": "eglon", "text": "여호와께서 모압 왕 에글론을 강하게 하셨다. 그는 암몬과 아말렉을 모아 와서 종려나무 성읍을 점령했다. 그 성은 여리고였다. 여호수아가 무너뜨리고 저주한 땅에 모압 왕이 자리를 잡았다. 이스라엘은 그를 십팔 년 동안 섬겼다." },
-    { "cycle": { "round": 2, "judge": "에훗", "at": "cry" }, "type": "narration", "act": "bow-head", "who": "eglon", "enter": ["israelite"], "text": "이스라엘 자손이 여호와께 부르짖었다." },
-    { "cycle": { "round": 2, "judge": "에훗", "at": "save" }, "type": "narration", "exit": ["israelite"], "enter": ["ehud", "bearer"], "act": "walk-in", "who": ["ehud", "bearer"], "text": "여호와께서 구원자를 세우셨다. 베냐민 사람 게라의 아들 에훗, 왼손잡이였다. 오른손잡이의 세상에서 왼손은 흔히 약점으로 여겨졌다. 하나님은 자주, 사람들이 별로 신경 쓰지 않는 쪽 손을 쓰신다." },
-    { "type": "scripture", "ref": "삿 3:15", "gloss": "이스라엘이 여호와께 부르짖자 여호와께서 구원자를 세우셨다. 베냐민 사람 게라의 아들 왼손잡이 에훗이다. 이스라엘은 그를 통해 모압 왕 에글론에게 공물을 보냈다." },
-    { "type": "narration", "bg": "palace", "fx": "fade", "act": "approach", "who": "ehud", "to": "eglon", "text": "에훗은 공물을 가지고 왕에게 나아갔다. 에글론은 아주 살진 사람이었다. 공물을 바치는 일을 마치자 에훗은 공물을 멘 사람들을 돌려보냈다." },
-    { "type": "narration", "exit": ["bearer"], "act": "walk-out", "who": "bearer", "text": "그는 홀로 길갈 근처 돌 뜨는 곳까지 갔다가 되돌아왔다. 한 번 갔다 오는 길이었다. 한 번 돌아서는 사람의 얼굴은 대개 마음을 정한 얼굴이다." },
-    { "type": "line", "who": "ehud", "act": "approach", "to": "eglon", "text": "“왕이여 내가 은밀한 일을 왕에게 고하려 하나이다”" },
-    { "type": "narration", "enter": ["servant"], "act": "walk-out", "who": "servant", "text": "왕이 ‘조용히 하라’ 명하자 모셔 선 자들이 다 물러갔다. 서늘한 다락방에 두 사람만 남았다. 은밀한 말이라는 단어는 사람들을 방에서 내보내는 가장 확실한 열쇠다." },
-    { "type": "line", "who": "ehud", "act": "face", "to": "eglon", "text": "“내가 하나님의 명을 받들어 왕에게 고할 일이 있나이다”" },
-    { "type": "narration", "act": "stand", "who": "eglon", "text": "왕은 하나님이라는 말에 자리에서 일어났다. 그는 일어서는 쪽을 택했다. 그것이 그가 이 장에서 한 마지막 정중한 행동이었다." },
-    { "type": "narration", "fx": "blackout", "sound": "—", "text": "방의 문은 닫혀 있다. 본문은 이 순간을 길게 적었다. 이 이야기는 그것을 옮기지 않는다. 왕은 다시 일어나지 않았다." },
-    { "type": "narration", "act": "walk-out", "who": "ehud", "exit": ["eglon", "ehud"], "text": "에훗은 현관으로 나와 다락문을 닫아 잠갔다. 그리고 천천히 걸어 나갔다." },
-    { "type": "line", "who": "servant", "enter": ["servant"], "act": "walk-in", "bg": "palace-dusk", "text": "“왕이 필연 다락방에서 발을 가리우신다”" },
-    { "type": "narration", "act": "kneel", "who": "servant", "text": "‘발을 가리운다’는 말은 볼일을 보신다는 점잖은 표현이다. 신하들은 예의를 지켰다. 그들은 오래 기다렸다. 예의는 때로 가장 훌륭한 시간 벌이다." },
-    { "type": "narration", "act": "step-back", "who": "servant", "text": "문이 열리지 않았다. 신하들은 열쇠를 가져와 열었다. 그들의 주는 이미 땅에 엎드러져 있었다. 그들이 문 앞에서 기다린 시간만큼 에훗은 멀어져 있었다." },
-    { "type": "narration", "bg": "road-dawn", "fx": "fade", "exit": ["servant"], "enter": ["ehud-horn"], "act": "walk-in", "who": "ehud-horn", "text": "그동안 에훗은 돌 뜨는 곳을 지나 스이라로 달아났다. 그리고 에브라임 산지에 이르러 나팔을 불었다." },
-    { "type": "line", "who": "ehud-horn", "act": "bless", "text": "“나를 따르라 여호와께서 너희 대적 모압 사람을 너희의 손에 붙이셨느니라”" },
-    { "type": "narration", "bg": "river", "act": "crowd", "text": "이스라엘 자손이 산지에서 그를 따라 내려왔다. 그들은 요단 나루를 잡아 한 사람도 건너지 못하게 했다. 본문은 이 일을 짧게 적는다. 모압 사람 약 일만 명, 한 사람도 피하지 못했다." },
-    { "cycle": { "round": 2, "judge": "에훗", "at": "rest" }, "type": "narration", "bg": "pasture-dawn", "fx": "dawn", "act": "crowd-cheer", "exit": ["ehud-horn"], "text": "그날 모압은 이스라엘의 수하에 항복했다. 그 땅이 팔십 년 동안 태평했다. 이 책에서 가장 긴 평화다. 그리고 가장 짧은 줄거리로 설명되는 평화다." },
-    { "cycle": { "round": 3, "judge": "삼갈", "at": "save" }, "type": "narration", "bg": "pasture", "enter": ["shamgar"], "act": "walk-in", "who": "shamgar", "text": "에훗 후에 아낫의 아들 삼갈이 일어났다. 이야기는 이 사람에게 한 절만 주었다." },
-    { "type": "scripture", "ref": "삿 3:31", "gloss": "에훗 뒤에 아낫의 아들 삼갈이 사사가 되었다. 그는 소 모는 막대기로 블레셋 사람 육백 명을 죽였고, 그도 이스라엘을 구원했다. 무기 대신 농사 도구 하나, 딱 한 절짜리 사사." },
-    { "type": "narration", "act": "stand", "who": "shamgar", "text": "무기가 아니라 소 모는 막대기였다. 이스라엘을 구한 도구가 가장 흔한 농기구였다는 것은 이 책의 반복되는 농담 같은 진실이다. 하나님은 구원에 쓸 물건을 잘 고르지 않으신다. 이미 손에 들려 있는 것을 쓰신다." }
+    {
+      "type": "narration",
+      "enter": [
+        "israelite",
+        "bride"
+      ],
+      "act": "walk-in",
+      "who": [
+        "israelite",
+        "bride"
+      ],
+      "text": "여호와께서는 몇 민족을 남겨 두셨다. 전쟁을 겪어 보지 못한 세대에게 싸우는 법을 가르치시려는 것이었다. 블레셋의 다섯 방백, 가나안 사람, 시돈 사람, 레바논 산의 히위 사람. 그리고 이스라엘은 그 이웃에게서 무엇을 배웠을까."
+    },
+    {
+      "type": "narration",
+      "act": "face",
+      "who": [
+        "israelite",
+        "bride"
+      ],
+      "text": "그들은 이웃의 딸을 아내로 맞았다. 자기 딸을 이웃의 아들에게 주었다. 문제는 결혼이 아니라 그다음 문장이었다. 그들의 신들을 섬겼더라."
+    },
+    {
+      "type": "scripture",
+      "ref": "삿 3:5-6",
+      "gloss": "이스라엘 자손은 가나안 사람, 헷 사람, 아모리 사람 등 여러 민족 사이에 살면서 그들의 딸을 아내로 맞고 자기 딸을 그들의 아들에게 주고 그들의 신들을 섬겼다. 같이 사는 게 같이 섬기는 걸로 번진 과정."
+    },
+    {
+      "type": "narration",
+      "bg": "altar",
+      "fx": "dark",
+      "act": "prostrate",
+      "who": [
+        "israelite",
+        "bride"
+      ],
+      "text": "그들은 여호와를 잊고 바알들과 아세라들을 섬겼다. 잊는다는 것은 부정하는 것보다 조용하다. 아무도 선언하지 않았는데 어느 날 이름이 빠져 있다."
+    },
+    {
+      "cycle": {
+        "round": 1,
+        "judge": "옷니엘"
+      },
+      "type": "narration",
+      "bg": "wilderness-dusk",
+      "exit": [
+        "israelite",
+        "bride"
+      ],
+      "enter": [
+        "oppressor"
+      ],
+      "act": "walk-in",
+      "who": "oppressor",
+      "text": "여호와께서 진노하사 이스라엘을 메소보다미아 왕 구산 리사다임의 손에 넘기셨다. 이스라엘은 그를 여덟 해 동안 섬겼다. 이름부터 이상하게 긴 왕이었다. 이스라엘이 그 이름을 외우는 데 걸린 시간만큼 괴로웠을 것이다."
+    },
+    {
+      "type": "narration",
+      "bg": "mountain-dawn",
+      "fx": [
+        "fade",
+        "glory"
+      ],
+      "exit": [
+        "oppressor"
+      ],
+      "enter": [
+        "othniel"
+      ],
+      "act": "walk-in",
+      "who": "othniel",
+      "text": "이스라엘이 부르짖자 여호와께서 구원자를 세우셨다. 갈렙의 아우 그나스의 아들 옷니엘이었다. 아까 샘물을 구해 달라던 악사의 남편이다. 이 책의 구원자는 아주 평범한 인연에서 나온다."
+    },
+    {
+      "type": "scripture",
+      "ref": "삿 3:9-10",
+      "gloss": "이스라엘이 여호와께 부르짖자, 여호와께서 그들을 구원할 사람을 세우셨다. 갈렙의 아우 그나스의 아들 옷니엘이다. 여호와의 영이 그에게 임하셨고, 그는 사사가 되어 싸움에 나가 메소보다미아 왕을 이겼다."
+    },
+    {
+      "type": "narration",
+      "bg": "pasture",
+      "act": "bless",
+      "who": "othniel",
+      "text": "그 땅이 태평한 지 사십 년. 그나스의 아들 옷니엘이 죽었다. 사십 년이라는 숫자는 한 세대가 자랄 만한 시간이다. 한 세대가 자랄 만한 시간이 지나자, 다시 한 세대가 필요해졌다."
+    },
+    {
+      "type": "narration",
+      "act": "sleep",
+      "who": "othniel",
+      "exit": [
+        "othniel"
+      ],
+      "text": "옷니엘의 퇴장은 조용했다. 이름 옆에 흠이 적히지 않은 사사는 이 책에서 드물다. 그는 그 드문 쪽이었다."
+    },
+    {
+      "cycle": {
+        "round": 2,
+        "judge": "에훗",
+        "at": "sin"
+      },
+      "type": "narration",
+      "bg": "altar",
+      "enter": [
+        "israelite"
+      ],
+      "act": "prostrate",
+      "who": "israelite",
+      "text": "이스라엘 자손이 또 여호와의 목전에 악을 행했다. ‘또’라는 단어가 책에 들어왔다. 한 번이 아니었다는 뜻이다."
+    },
+    {
+      "cycle": {
+        "round": 2,
+        "judge": "에훗",
+        "at": "oppress"
+      },
+      "type": "narration",
+      "bg": "js-jericho-ruin",
+      "fx": "fade",
+      "exit": [
+        "israelite"
+      ],
+      "enter": [
+        "eglon"
+      ],
+      "act": "walk-in",
+      "who": "eglon",
+      "text": "여호와께서 모압 왕 에글론을 강하게 하셨다. 그는 암몬과 아말렉을 모아 와서 종려나무 성읍을 점령했다. 그 성은 여리고였다. 여호수아가 무너뜨리고 저주한 땅에 모압 왕이 자리를 잡았다. 이스라엘은 그를 십팔 년 동안 섬겼다."
+    },
+    {
+      "cycle": {
+        "round": 2,
+        "judge": "에훗",
+        "at": "cry"
+      },
+      "type": "narration",
+      "act": "bow-head",
+      "who": "eglon",
+      "enter": [
+        "israelite"
+      ],
+      "text": "이스라엘 자손이 여호와께 부르짖었다."
+    },
+    {
+      "cycle": {
+        "round": 2,
+        "judge": "에훗",
+        "at": "save"
+      },
+      "type": "narration",
+      "exit": [
+        "israelite"
+      ],
+      "enter": [
+        "ehud",
+        "bearer"
+      ],
+      "act": "walk-in",
+      "who": [
+        "ehud",
+        "bearer"
+      ],
+      "text": "여호와께서 구원자를 세우셨다. 베냐민 사람 게라의 아들 에훗, 왼손잡이였다. 오른손잡이의 세상에서 왼손은 흔히 약점으로 여겨졌다. 하나님은 자주, 사람들이 별로 신경 쓰지 않는 쪽 손을 쓰신다."
+    },
+    {
+      "type": "scripture",
+      "ref": "삿 3:15",
+      "gloss": "이스라엘이 여호와께 부르짖자 여호와께서 구원자를 세우셨다. 베냐민 사람 게라의 아들 왼손잡이 에훗이다. 이스라엘은 그를 통해 모압 왕 에글론에게 공물을 보냈다."
+    },
+    {
+      "type": "narration",
+      "bg": "palace",
+      "fx": "fade",
+      "act": "approach",
+      "who": "ehud",
+      "to": "eglon",
+      "text": "에훗은 공물을 가지고 왕에게 나아갔다. 에글론은 아주 살진 사람이었다. 공물을 바치는 일을 마치자 에훗은 공물을 멘 사람들을 돌려보냈다."
+    },
+    {
+      "type": "narration",
+      "exit": [
+        "bearer"
+      ],
+      "act": "walk-out",
+      "who": "bearer",
+      "text": "그는 홀로 길갈 근처 돌 뜨는 곳까지 갔다가 되돌아왔다. 한 번 갔다 오는 길이었다. 한 번 돌아서는 사람의 얼굴은 대개 마음을 정한 얼굴이다."
+    },
+    {
+      "type": "line",
+      "who": "ehud",
+      "act": "approach",
+      "to": "eglon",
+      "text": "“왕이여 내가 은밀한 일을 왕에게 고하려 하나이다”"
+    },
+    {
+      "type": "narration",
+      "enter": [
+        "servant"
+      ],
+      "act": "walk-out",
+      "who": "servant",
+      "text": "왕이 ‘조용히 하라’ 명하자 모셔 선 자들이 다 물러갔다. 서늘한 다락방에 두 사람만 남았다. 은밀한 말이라는 단어는 사람들을 방에서 내보내는 가장 확실한 열쇠다."
+    },
+    {
+      "type": "line",
+      "who": "ehud",
+      "act": "face",
+      "to": "eglon",
+      "text": "“내가 하나님의 명을 받들어 왕에게 고할 일이 있나이다”"
+    },
+    {
+      "type": "narration",
+      "act": "stand",
+      "who": "eglon",
+      "text": "왕은 하나님이라는 말에 자리에서 일어났다. 그는 일어서는 쪽을 택했다. 그것이 그가 이 장에서 한 마지막 정중한 행동이었다."
+    },
+    {
+      "type": "narration",
+      "fx": "blackout",
+      "sound": "—",
+      "text": "방의 문은 닫혀 있다. 본문은 이 순간을 길게 적었다. 이 이야기는 그것을 옮기지 않는다. 왕은 다시 일어나지 않았다."
+    },
+    {
+      "type": "narration",
+      "act": "walk-out",
+      "who": "ehud",
+      "exit": [
+        "eglon",
+        "ehud"
+      ],
+      "text": "에훗은 현관으로 나와 다락문을 닫아 잠갔다. 그리고 천천히 걸어 나갔다."
+    },
+    {
+      "type": "line",
+      "who": "servant",
+      "enter": [
+        "servant"
+      ],
+      "act": "walk-in",
+      "bg": "palace-dusk",
+      "text": "“왕이 필연 다락방에서 발을 가리우신다”"
+    },
+    {
+      "type": "narration",
+      "act": "kneel",
+      "who": "servant",
+      "text": "‘발을 가리운다’는 말은 볼일을 보신다는 점잖은 표현이다. 신하들은 예의를 지켰다. 그들은 오래 기다렸다. 예의는 때로 가장 훌륭한 시간 벌이다."
+    },
+    {
+      "type": "narration",
+      "act": "step-back",
+      "who": "servant",
+      "text": "문이 열리지 않았다. 신하들은 열쇠를 가져와 열었다. 그들의 주는 이미 땅에 엎드러져 있었다. 그들이 문 앞에서 기다린 시간만큼 에훗은 멀어져 있었다."
+    },
+    {
+      "type": "narration",
+      "bg": "road-dawn",
+      "fx": "fade",
+      "exit": [
+        "servant"
+      ],
+      "enter": [
+        "ehud-horn"
+      ],
+      "act": "walk-in",
+      "who": "ehud-horn",
+      "text": "그동안 에훗은 돌 뜨는 곳을 지나 스이라로 달아났다. 그리고 에브라임 산지에 이르러 나팔을 불었다."
+    },
+    {
+      "type": "line",
+      "who": "ehud-horn",
+      "act": "bless",
+      "text": "“나를 따르라 여호와께서 너희 대적 모압 사람을 너희의 손에 붙이셨느니라”"
+    },
+    {
+      "type": "narration",
+      "bg": "river",
+      "act": "crowd",
+      "text": "이스라엘 자손이 산지에서 그를 따라 내려왔다. 그들은 요단 나루를 잡아 한 사람도 건너지 못하게 했다. 본문은 이 일을 짧게 적는다. 모압 사람 약 일만 명, 한 사람도 피하지 못했다."
+    },
+    {
+      "cycle": {
+        "round": 2,
+        "judge": "에훗",
+        "at": "rest"
+      },
+      "type": "narration",
+      "bg": "pasture-dawn",
+      "fx": "dawn",
+      "act": "crowd-cheer",
+      "exit": [
+        "ehud-horn"
+      ],
+      "text": "그날 모압은 이스라엘의 수하에 항복했다. 그 땅이 팔십 년 동안 태평했다. 이 책에서 가장 긴 평화다. 그리고 가장 짧은 줄거리로 설명되는 평화다."
+    },
+    {
+      "cycle": {
+        "round": 3,
+        "judge": "삼갈",
+        "at": "save"
+      },
+      "type": "narration",
+      "bg": "pasture",
+      "enter": [
+        "shamgar"
+      ],
+      "act": "walk-in",
+      "who": "shamgar",
+      "text": "에훗 후에 아낫의 아들 삼갈이 일어났다. 이야기는 이 사람에게 한 절만 주었다."
+    },
+    {
+      "type": "scripture",
+      "ref": "삿 3:31",
+      "gloss": "에훗 뒤에 아낫의 아들 삼갈이 사사가 되었다. 그는 소 모는 막대기로 블레셋 사람 육백 명을 죽였고, 그도 이스라엘을 구원했다. 무기 대신 농사 도구 하나, 딱 한 절짜리 사사."
+    },
+    {
+      "type": "narration",
+      "act": "stand",
+      "who": "shamgar",
+      "text": "무기가 아니라 소 모는 막대기였다. 이스라엘을 구한 도구가 가장 흔한 농기구였다는 것은 이 책의 반복되는 농담 같은 진실이다. 하나님은 구원에 쓸 물건을 잘 고르지 않으신다. 이미 손에 들려 있는 것을 쓰신다."
+    }
   ],
   "insight": "3장은 사사기 첫 번째 ‘고리’ 두 바퀴가 도는 장임. 옷니엘이 한 바퀴, 에훗이 한 바퀴. 화면 왼쪽 위에 작게 남아 있던 고리가 바퀴 번호(I, II)로 올라가는 거 봤을 거임.\n\n먼저 3:1–6. 남겨 둔 이웃 민족이 ‘시험’이라고 했는데, 이스라엘이 한 일은 같이 살다가 결혼하고 결국 그들의 신을 섬기는 것. 처음엔 이웃이었다가 마지막엔 같은 편이 되는 과정이 한 문장 안에 압축돼 있음.\n\n옷니엘은 이 책에서 거의 흠이 없는 사사. 그다음 에훗부터가 재미있음. 에훗은 왼손잡이였는데, 이게 칼을 오른쪽 허벅지에 차고 있어도 몸수색에서 걸리지 않는 이유로 읽는 견해가 많음. 오른손잡이는 왼쪽 허리에 칼을 차니까 경호원들은 왼쪽만 보거든. 다만 ‘왼손잡이’라고 번역된 히브리어가 정확히 어떤 뜻인지(오른손이 불편한 사람이라는 해석도 있음)는 학자마다 갈림.\n\n근데 이 이야기는 불편한 대목을 품고 있음. 에훗이 ‘하나님의 명을 받들어’라고 말하고 왕을 속인 뒤 왕을 죽이는 장면. 본문은 꽤 자세하게 적었는데 우리는 이걸 보여 주지 않고 암전으로 처리했음. 그리고 본문은 에훗의 행동을 평가하는 말을 하지 않고, 결과만 보여 줌(80년 태평). 이걸 오늘날 폭력을 정당화하는 근거로 쓸 수는 없고, 고대 이스라엘이 압제에서 해방되는 이야기로서 읽어야 한다는 게 기본 시선임.\n\n웃음 포인트는 신하들. 문이 잠겼는데 ‘왕이 볼일 보시나 보다’ 하고 기다린 사이에 범인은 멀리 도망감. 3:25의 ‘오래 기다려도’가 이 장의 아이러니임. 예의 바르게 기다린 시간이 가장 큰 구멍이 됐다는 거.\n\n삼갈은 한 절짜리 사사. 소 모는 막대기 하나로 육백 명이라는 이야기인데, 이건 상세 설명이 없어서 사실 우리는 거의 모름. 근데 책이 기록하고 싶었던 건 그의 전과가 아니라 ‘도구가 막대기였다’는 사실 같음. 하나님이 쓰시는 사람은 가진 게 별로 없어 보이는 사람이라는 이 책의 반복 패턴.\n\n근데 이게 왜 중요하냐면, 이 장에서 이스라엘은 다시 한 번 구원받는데 구원받는 이유는 여전히 ‘부르짖어서’야. 그리고 80년의 태평 뒤에 이 고리가 다시 돌아가는데, 다음 바퀴부터는 점점 더 어두워질 거임.",
   "tldr": "이웃과 섞이다 신까지 섞은 이스라엘이 옷니엘과 왼손잡이 에훗(압제 18년→태평 80년), 소 막대기의 삼갈로 구원받으며 사사기의 고리가 두 바퀴 반 돈다.",
-  "bridge": "삼갈이 지나간 자리에는 80년의 평화가 남아 있었다. 평화는 늘 같은 사람에게 오래 맡겨지지 못했다."
+  "bridge": "삼갈이 지나간 자리에는 80년의 평화가 남아 있었다. 평화는 늘 같은 사람에게 오래 맡겨지지 못했다.",
+  "unlocks": {
+    "characters": [
+      "othniel"
+    ]
+  }
 }

@@ -114,6 +114,14 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   bochim: at(35.22, 31.95),
   gilead: at(35.75, 32.2),
   mizpah: at(35.88, 32.4),
+  kedesh: at(35.5, 33.11),
+  tabor: at(35.39, 32.69),
+  ophrah: at(35.3, 32.45),
+  timnah: at(34.91, 31.78),
+  gaza: at(34.46, 31.5),
+  gibeah: at(35.23, 31.82),
+  'jabesh-gilead': at(35.66, 32.4),
+  'mizpah-benjamin': at(35.21, 31.88),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

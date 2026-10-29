@@ -1,0 +1,62 @@
+{
+  "id": "judg-11",
+  "act": 6,
+  "grade": "A",
+  "title": "이름 없는 딸",
+  "ref": "삿 11",
+  "bg": "wilderness-dusk",
+  "decay": 8,
+  "cast": ["jephthah"],
+  "extras": {
+    "elder": { "name": "길르앗 장로", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "blue" },
+    "envoy": { "name": "입다의 사자", "base": "youth", "hair": "short", "props": ["scroll"], "tint": "gray" },
+    "friend1": { "name": "동무", "base": "girl", "hair": "veil", "tint": "white" },
+    "friend2": { "name": "동무", "base": "girl", "hair": "loose", "tint": "white" }
+  },
+  "beats": [
+    { "type": "narration", "act": "bow-head", "who": "jephthah", "text": "길르앗 사람 입다. 큰 용사였고, 기생의 아들이었다. 본문은 이 두 문장을 한 절에 나란히 적는다. 사람들은 대개 두 번째 문장만 기억했다." },
+    { "type": "narration", "act": "turn", "who": "jephthah", "text": "본처의 아들들이 자라자 그를 쫓아냈다. 너는 다른 여인의 자식이니 우리 아버지 집 기업을 잇지 못하리라. 입다는 돕 땅으로 갔다. 잡류가 그에게 모였다. 쫓겨난 사람 곁에는 대개 쫓겨난 사람들이 모인다." },
+    { "type": "narration", "cycle": { "round": 8, "judge": "입다", "skip": ["rest"] }, "text": "그리고 암몬 자손이 이스라엘을 치려 했다. 여덟 번째 바퀴. 이번 바퀴에는 마지막 마디에 불이 들어오지 않는다. 이 장이 끝나면 그 이유를 알게 된다." },
+    { "type": "narration", "enter": ["elder"], "acts": [{ "act": "walk-in", "who": "elder" }, { "act": "approach", "who": "elder", "to": "jephthah" }], "text": "길르앗 장로들이 돕 땅까지 찾아왔다. 그를 내쫓던 집의 어른들이었다." },
+    { "type": "line", "who": "elder", "act": "bow-head", "text": "“우리가 암몬 자손과 싸우려 하나니 당신은 와서 우리의 장관이 되라”" },
+    { "type": "line", "who": "jephthah", "act": "face", "to": "elder", "text": "“너희가 전에 나를 미워하여 내 아버지 집에서 쫓아내지 아니하였느냐 이제 너희가 환난을 당하였다고 어찌하여 내게 왔느냐”" },
+    { "type": "line", "who": "elder", "text": "“이제 우리가 당신을 찾아온 것은 우리와 함께 가서 암몬 자손과 싸우게 하려 함이니 그리하면 우리 길르앗 모든 거민의 머리가 되리라”" },
+    { "type": "line", "who": "jephthah", "act": "approach", "to": "elder", "text": "“…만일 여호와께서 그들을 내게 붙이시면 내가 과연 너희 머리가 되겠느냐”" },
+    { "type": "narration", "act": "bless", "who": "elder", "text": "여호와는 우리 사이의 증인이시니. 장로들은 그렇게 답했다. 입다는 협상할 줄 알았다. 쫓겨나 본 사람은 약속을 글자 하나까지 확인한다. 다시는 문 밖에 서고 싶지 않기 때문이다." },
+    { "type": "narration", "bg": "jg-mizpah", "fx": "fade", "exit": ["elder"], "enter": ["envoy"], "acts": [{ "act": "crowd" }, { "act": "walk-in", "who": "envoy" }], "text": "미스바. 백성이 그를 머리와 장관으로 삼았다. 입다는 자기 말을 다 여호와 앞에 고했다. 그리고 먼저 칼이 아니라 사자를 보냈다." },
+    { "type": "narration", "act": "travel", "from": "mizpah", "to": "arnon", "via": ["heshbon"], "text": "암몬 왕은 땅을 돌려 달라 했다. 아르논에서 얍복까지. 입다의 답장은 길었다. 가데스, 에돔 왕, 모압 왕, 헤스본 왕 시혼. 삼백 년. 그는 모세 시대의 길을 정확히 기억하고 있었다. 쫓겨난 아들이 조상의 이야기를 누구보다 잘 알았다." },
+    { "type": "line", "who": "jephthah", "act": "look-up", "text": "“…원컨대 심판하시는 여호와는 오늘날 이스라엘 자손과 암몬 자손의 사이에 판결하시옵소서”" },
+    { "type": "narration", "act": "walk-out", "who": "envoy", "text": "암몬 왕은 듣지 않았다. 그리고 여호와의 신이 입다에게 임했다. 본문은 그 순서를 분명히 적는다. 신이 먼저 임했다. 서원은 그 다음이었다." },
+    { "type": "narration", "act": "kneel", "who": "jephthah", "fx": "dark", "text": "길르앗과 므낫세를 지나 길르앗 미스베에 이르러, 암몬으로 나아가기 직전. 그는 무릎을 꿇었다." },
+    { "type": "choice", "prompt": "여호와의 신은 이미 그에게 임해 있었다. 입다는 입을 열었다.", "options": [{ "label": "서원한다", "canon": true }, { "label": "아무것도 약속하지 않고 일어선다", "goto": "b-novow" }] },
+    { "type": "scripture", "ref": "삿 11:30-31", "gloss": "입다가 여호와께 서원했다. “주님이 암몬 자손을 제 손에 넘겨주시면, 제가 무사히 돌아올 때 제 집 문에서 나와 저를 맞이하는 그 누구든 여호와께 드리겠습니다. 번제로 드리겠습니다.”" },
+    { "type": "narration", "act": "stand", "who": "jephthah", "text": "누구든지. 그는 그 말을 했다. 하나님은 아무것도 요구하지 않으셨다. 그는 거래를 할 줄 아는 사람이었고, 그날 하나님과도 거래하려 했다." },
+    { "type": "narration", "fx": ["fade", "dust"], "bg": "wilderness", "acts": [{ "act": "crowd" }, { "act": "crowd-cheer" }], "text": "여호와께서 암몬을 그의 손에 붙이셨다. 아로엘에서 민닛까지 이십 성읍, 아벨 그라밈까지. 암몬은 항복했다. 그는 이겼다. 그리고 집으로 돌아갔다." },
+    { "type": "narration", "bg": "jg-mizpah", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "jephthah" }], "text": "미스바. 자기 집. 문이 보였다." },
+    { "enter": ["jephthah-daughter"], "act": "walk-in", "who": "jephthah-daughter" },
+    { "type": "scripture", "ref": "삿 11:34", "gloss": "입다가 미스바 자기 집에 왔을 때, 딸이 소고를 들고 춤추면서 아빠를 맞으러 나왔음. 그 아이는 입다의 하나뿐인 자식이었음. 아들도 딸도 그 아이 말고는 없었음." },
+    { "type": "narration", "act": "step-back", "who": "jephthah", "text": "이긴 사람이 돌아오면 여자들이 소고를 잡고 춤추며 나간다. 미리암이 바닷가에서 그랬다. 딸은 아버지가 이겼다는 소식을 듣고, 누구보다 먼저 문을 열었다." },
+    { "type": "line", "who": "jephthah", "act": "cry", "text": "“슬프다 내 딸이여 너는 나로 참담케 하는 자요 너는 나를 괴롭게 하는 자 중의 하나이로다 내가 여호와를 향하여 입을 열었으니 능히 돌이키지 못하리로다”" },
+    { "type": "narration", "act": "bow-head", "who": "jephthah-daughter", "text": "그는 옷을 찢으며 딸을 탓했다. 네가 나를 괴롭게 한다. 서원은 그가 했다. 이 장면에서 가장 무거운 말이 가장 엉뚱한 사람에게 향했다." },
+    { "type": "line", "who": "jephthah-daughter", "act": "approach", "to": "jephthah", "text": "“나의 아버지여 아버지께서 여호와를 향하여 입을 여셨으니 아버지 입에서 낸 말씀대로 내게 행하소서 …이 일만 내게 허락하사 나를 두 달만 용납하소서 내가 나의 동무들과 함께 산에 올라가서 나의 처녀로 죽음을 인하여 애곡 하겠나이다”" },
+    { "type": "narration", "act": "cry", "who": "jephthah", "text": "딸은 아버지를 탓하지 않았다. 원수를 갚아 주신 여호와를 말했다. 그리고 단 하나를 청했다. 두 달. 울 시간. 이 장에서 가장 어른스러운 사람은 이름이 기록되지 않은 사람이었다." },
+    { "type": "narration", "bg": "jg-mountains", "fx": "fade", "exit": ["jephthah"], "enter": ["friend1", "friend2"], "acts": [{ "act": "walk-in", "who": ["friend1", "friend2"] }, { "act": "embrace", "who": ["jephthah-daughter", "friend1"] }], "text": "그는 동무들과 함께 산에 올라갔다. 두 달 동안." },
+    { "type": "narration", "acts": [{ "act": "part", "who": "jephthah-daughter" }, { "act": "cry", "who": ["friend1", "friend2"] }, { "act": "bow-head", "who": "jephthah-daughter" }], "text": "산 위에서 그들이 무슨 말을 했는지 본문은 적지 않는다. 노래도 남지 않았다. 다만 그들이 울었다는 것만 남았다." },
+    { "bg": "jg-mountains-night", "acts": [{ "act": "leave", "who": "jephthah-daughter" }, { "act": "bow-head", "who": ["friend1", "friend2"] }] },
+    { "type": "narration", "bg": "jg-mizpah-night", "fx": "fade", "exit": ["friend1", "friend2", "jephthah-daughter"], "text": "두 달 만에 그는 아버지에게로 돌아왔다. 그리고 아버지는 서원한 대로 그에게 행했다. 본문은 그 일을 한 문장으로 적는다. 여기서는 그 문장을 넘기지 않고, 그 장면을 그리지도 않는다." },
+    { "type": "scripture", "ref": "삿 11:39-40", "gloss": "두 달 뒤 딸이 아빠한테 돌아왔고, 아빠는 서원한 대로 그 딸에게 행했음. 딸은 남자를 알지 못한 채였음. 그때부터 이스라엘에 관습이 생겨서, 이스라엘 여자들이 해마다 가서 길르앗 사람 입다의 딸을 위해 나흘씩 애곡했음." },
+    { "type": "narration", "fx": "lament", "text": "그의 이름은 기록되지 않았다. 아버지의 이름, 아버지가 친 성읍의 이름, 적국 신의 이름까지 이 장에 다 있는데, 그의 이름만 없다." },
+    { "type": "narration", "act": "crowd", "text": "그러나 이스라엘의 딸들은 그를 잊지 않았다. 해마다 나흘씩. 이름을 부르지 못하는 사람을, 그들은 날짜로 기억했다." },
+    { "type": "narration", "cycle": { "round": 8, "judge": "입다", "at": "save", "skip": ["rest"] }, "text": "고리는 구원의 마디에서 멈췄다. 이번 바퀴에는 태평이 오지 않았다. 대신 산 위에서 우는 소리가 해마다 돌아왔다." }
+  ],
+  "branches": {
+    "b-novow": [
+      { "type": "narration", "act": "stand", "who": "jephthah", "text": "만약 그가 아무것도 약속하지 않고 일어섰다면. 본문은 그런 장면을 적지 않는다. 그는 서원했다." },
+      { "type": "narration", "act": "bow-head", "who": "jephthah", "text": "다만 이것은 본문에 있다. 여호와의 신은 서원보다 먼저 그에게 임했다(11:29). 하나님은 값을 부르지 않으셨다. 값을 부른 것은 그였다." }
+    ]
+  },
+  "insight": "이 장은 드립 없이 갈게. 사사기에서 제일 아픈 장 중 하나임.\n\n입다는 출신 때문에 쫓겨났다가, 급해진 고향 사람들이 다시 데리러 온 사람임(11:1-11). 협상도 잘하고, 암몬 왕한테 보낸 편지(11:15-27)를 보면 출애굽 이후 역사를 정확히 꿰고 있음. 똑똑하고 강한 사람.\n\n근데 순서를 봐야 함. 11:29 ‘여호와의 신이 입다에게 임하시니’ → 그 다음 11:30 서원. 하나님은 이미 함께하셨고, 아무것도 요구하지 않으셨음. 서원은 입다가 먼저 걸었던 거래임. ‘누구든지 내 집 문에서 나오는 자’ — 고대 집 구조상 짐승이 먼저 나올 수도 있다고 생각했을 거라는 해석도 있지만, 사람이 나올 가능성을 몰랐을 리 없다는 해석도 있음. 율법은 사람을 번제로 드리는 걸 분명히 금지함(레 18:21, 신 12:31). 하나님이 원하신 일이 아니었다는 건 분명함.\n\n그럼 실제로 딸은 어떻게 됐냐 — 여기서 해석이 갈림. ① 본문 그대로 번제로 바쳤다는 견해: 사사기가 그만큼 무너진 시대를 고발한다고 읽음. ② 평생 결혼하지 않고 성막에 바쳐진 삶을 살았다는 견해: 딸이 ‘죽음’이 아니라 ‘처녀로 지냄’을 애곡하고(11:37-38), 11:39가 ‘남자를 알지 못하였다’로 끝나는 걸 근거로 듦. 어느 쪽이든 본문이 이 일을 칭찬하지 않는다는 데는 대부분 동의함.\n\n그리고 가장 무게 있는 디테일. 딸의 이름이 없음. 입다, 길르앗, 암몬 왕의 신 그모스, 성읍 이름 스무 개까지 다 나오는데 딸 이름만 없음. 그런데 11:40 — 이스라엘 여자들이 해마다 나흘씩 그를 위해 애곡함. 이름은 안 남았지만 기억은 남았음.\n\n근데 이게 왜 중요하냐면, 고리로 보면 이 바퀴엔 ‘태평’이 안 나옴. 기드온 다음부터 고리가 점점 덜 돌아감. 하나님을 거래 상대로 대하는 신앙, 그 거래의 값을 가장 약한 사람이 치르는 구조 — 사사기가 ‘무너지는 중’이라고 보여 주는 방식임. 히 11:32는 입다를 믿음의 사람 목록에 넣는데, 그건 그의 믿음이 완벽해서가 아니라 하나님이 그런 사람도 쓰셨다는 뜻으로 읽는 게 일반적임.",
+  "tldr": "쫓겨났던 용사 입다가 돌아와 암몬을 이김. 하나님이 요구하지 않은 서원을 걸었고, 그 값을 이름이 기록되지 않은 외동딸이 치름. 이스라엘 딸들은 해마다 나흘씩 그를 위해 울었음.",
+  "bridge": "에브라임 사람들이 모여 요단을 건너왔다. 그들은 또 화가 나 있었다.",
+  "unlocks": { "characters": ["jephthah", "jephthah-daughter"] }
+}

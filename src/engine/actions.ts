@@ -144,6 +144,14 @@ export const PLACE_NAMES = {
   bochim: '보김',
   gilead: '길르앗',
   mizpah: '미스바',
+  kedesh: '게데스',
+  tabor: '다볼산',
+  ophrah: '오브라',
+  timnah: '딤나',
+  gaza: '가사',
+  gibeah: '기브아',
+  'jabesh-gilead': '야베스 길르앗',
+  'mizpah-benjamin': '미스바',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -157,4 +165,6 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   'timnath-serah': '여호수아의 성읍',
   bochim: '우는 자들의 땅',
   mizpah: '길르앗의 진',
+  kedesh: '납달리 게데스',
+  'mizpah-benjamin': '베냐민 땅, 온 회중이 모인 곳',
 };
