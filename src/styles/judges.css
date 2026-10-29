@@ -1,0 +1,179 @@
+/* ── 사사기·룻기 A급 (fx/judges.ts) ──
+   드보라의 종려나무와 기손 강의 병거, 기드온의 포도주 틀·양털·삼백 횃불, 입다의 문, 삼손의 포도원·여우·다곤의 기둥,
+   기브아의 닫힌 문들, 룻기의 보리밭과 성문. 효과: torches · flame-up · foxes · pillars · lament · summons · genealogy */
+
+.jg-door { fill: color-mix(in srgb, #1a120a 85%, #000); }
+.jg-door.is-lit { fill: #ffcf80; filter: drop-shadow(0 0 2px rgba(255, 200, 110, 0.85)); }
+.jg-bigdoor.is-lit { animation: js-flicker 2.6s ease-in-out infinite alternate; }
+.jg-door-halo { opacity: 0.8; }
+.jg-threshold { fill: color-mix(in srgb, #d8c8a8 40%, var(--act-b)); opacity: 0.7; }
+.jg-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; }
+@keyframes jg-flame { from { scale: 1 0.9; opacity: 0.85; } to { scale: 0.92 1.08; opacity: 1; } }
+.jg-lamphalo { opacity: 0.9; animation: js-flicker 3s ease-in-out infinite alternate; }
+
+/* ── 드보라 ── */
+.jg-thepalm { color: color-mix(in srgb, var(--act-b) 30%, #04050b); }
+.jg-seat { opacity: 0.95; }
+.jg-taborhill { fill: color-mix(in srgb, #4f6a48 16%, var(--bd)); }
+.jg-kishon { fill: none; stroke: color-mix(in srgb, #a8c4cc 50%, var(--act-b)); stroke-width: 1.4; opacity: 0.5; }
+.jg-flood { fill: color-mix(in srgb, #6a7f86 55%, var(--act-b)); opacity: 0.9; }
+.jg-chariots .jg-horse, .jg-chariots .jg-cart, .jg-chariots .jg-wheel { fill: color-mix(in srgb, var(--act-a) 50%, #05040a); }
+.jg-chariots .jg-iron { fill: #d9dee6; opacity: 0.4; animation: js-glint 2.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.jg--tabor.is-storm .jg-chariots { animation: jg-sink 6s ease-in 0.5s forwards; }
+@keyframes jg-sink { to { translate: 0 6px; } }
+.jg-tentdoor { fill: color-mix(in srgb, #1a120a 85%, #000); }
+.jg-tentdoor.is-lit { fill: #f0b868; filter: drop-shadow(0 0 3px rgba(255, 190, 100, 0.8)); }
+.jg-tent-halo { animation: js-flicker 3s ease-in-out infinite alternate; }
+.jg-window-sky { fill: color-mix(in srgb, #e0a070 55%, var(--act-b)); }
+.jg-window-hill { fill: color-mix(in srgb, var(--act-b) 50%, #0a0806); }
+.jg-window-road { fill: color-mix(in srgb, #c8a878 40%, var(--act-b)); opacity: 0.8; }
+.jg-lattice { fill: none; stroke: color-mix(in srgb, var(--act-a) 60%, #050404); stroke-width: 2.4; }
+.jg-sill { fill: color-mix(in srgb, var(--act-b) 40%, #050404); }
+.jg-shaft { fill: rgba(255, 200, 140, 0.07); }
+
+/* ── 기드온 ── */
+.jg-rock { fill: color-mix(in srgb, #6a5a48 20%, var(--bd)); }
+.jg-vat { fill: color-mix(in srgb, #0c0806 80%, #000); }
+.jg-chaff { fill: #e8d4a0; opacity: 0; animation: jg-chaff 2.6s ease-out calc(var(--i) * 0.22s) infinite; }
+@keyframes jg-chaff { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.8; } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
+.jg-baal-altar path { opacity: 0.9; }
+.jg--baal:not(.is-torn) .jg-asherah { filter: drop-shadow(0 0 3px rgba(120, 40, 30, 0.6)); }
+.jg-floor { opacity: 0.85; }
+.jg-fleece { fill: color-mix(in srgb, #efe4c8 60%, var(--act-b)); }
+.jg-dew { fill: #e8f6ff; filter: drop-shadow(0 0 1.4px rgba(220, 240, 255, 0.95)); animation: js-glint 2.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.jg--fleece.is-dry .jg-fleece { fill: color-mix(in srgb, #c8b890 50%, var(--act-b)); }
+.jg-moreh { fill: color-mix(in srgb, #5c5048 14%, var(--bd)); }
+.jg-pool { fill: color-mix(in srgb, #8fbccc 55%, var(--act-b)); opacity: 0.85; }
+.jg-drinker, .jg-lapper { fill: color-mix(in srgb, var(--act-a) 45%, #05040a); opacity: 0.85; }
+.jg-lapper { fill: color-mix(in srgb, #f0dcb4 40%, var(--act-b)); opacity: 0.9; }
+.jg-mtent { opacity: 0.95; }
+.jg-campfire { fill: #ffb060; opacity: 0.6; animation: js-twinkle 2.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.jg-torch { fill: #ffd27a; opacity: 0; filter: drop-shadow(0 0 2px rgba(255, 190, 90, 1)); }
+.jg--midian.is-lit .jg-torch { animation: jg-torch 0.5s ease-out calc(0.2s + var(--k, 0) * 0.35s + var(--i) * 0.04s) forwards, jg-wave 1.6s ease-in-out calc(1.6s + var(--i) * 0.1s) infinite alternate; }
+@keyframes jg-torch { from { opacity: 0; r: 0.2; } to { opacity: 1; r: 1.3; } }
+@keyframes jg-wave { from { translate: 0 0; } to { translate: 0 -1.4px; } }
+.jg--midian.is-lit .jg-campfire { animation: jg-scatter 5s ease-in 2.4s forwards; }
+@keyframes jg-scatter { 0% { opacity: 0.6; } 50% { opacity: 1; translate: 6px -2px; } 100% { opacity: 0; translate: -10px 4px; } }
+.jg--midian.is-lit .jg-camp { animation: jg-tremble 0.18s linear 2.4s 18; }
+@keyframes jg-tremble { 0%, 100% { translate: 0 0; } 50% { translate: 0.6px 0; } }
+
+/* ── 입다 ── */
+.jg-mourners rect { fill: color-mix(in srgb, #f0e6d0 40%, var(--act-b)); opacity: 0.7; }
+.jg-ridge2 { fill: color-mix(in srgb, #3c3440 18%, var(--bd)); }
+
+/* ── 삼손 ── */
+.jg-vines circle { opacity: 0.95; }
+.jg-lion, .jg-lion-mane { fill: color-mix(in srgb, #2a1c10 60%, var(--bd)); animation: jg-pounce 1.2s cubic-bezier(0.3, 0, 0.3, 1) 0.4s both; }
+@keyframes jg-pounce { from { translate: 40px 6px; opacity: 0; } to { translate: 0 0; opacity: 1; } }
+.jg-carcass { opacity: 0.8; }
+.jg-bees circle { fill: #f0c860; opacity: 0.85; animation: jg-bee 1.4s ease-in-out calc(var(--i) * -0.17s) infinite alternate; }
+@keyframes jg-bee { from { translate: 0 0; } to { translate: var(--dx) var(--dy); } }
+.jg-grain path { stroke: color-mix(in srgb, #d8b860 50%, var(--act-b)); stroke-width: 1.1; fill: none; opacity: 0.8; }
+.jg-burnt { fill: color-mix(in srgb, #1a1210 80%, #000); opacity: 0.85; }
+.jg-charred { fill: color-mix(in srgb, #140e0c 80%, #000); }
+.jg-crag { fill: color-mix(in srgb, #6a5a48 16%, var(--bd)); }
+.jg-hollow { fill: color-mix(in srgb, #0c0806 85%, #000); }
+.jg-spring { fill: color-mix(in srgb, #9ccfe0 70%, var(--act-b)); filter: drop-shadow(0 0 2px rgba(190, 230, 245, 0.8)); animation: js-flicker 2.2s ease-in-out infinite alternate; }
+.jg-spout { fill: none; stroke: #e8f6ff; stroke-width: 1; opacity: 0; animation: jg-spout 1.6s ease-out calc(var(--i) * 0.25s) infinite; }
+@keyframes jg-spout { 0% { opacity: 0; translate: 0 6px; } 40% { opacity: 0.8; } 100% { opacity: 0; translate: 0 -6px; } }
+.jg-gatedoors rect { fill: color-mix(in srgb, #2a1c10 70%, #000); }
+.jg-bar { stroke: color-mix(in srgb, #8a7456 50%, var(--act-b)); stroke-width: 2.4; }
+.jg-hebronhill { fill: color-mix(in srgb, #6a5a48 14%, var(--bd)); }
+.jg-dawnhalo { opacity: 0.9; }
+.jg-wall { fill: color-mix(in srgb, var(--act-b) 24%, #070606); }
+.jg-nightwin { fill: color-mix(in srgb, #2a2c48 70%, #000); }
+.jg-warp { fill: none; stroke: color-mix(in srgb, #c8b890 40%, var(--act-b)); stroke-width: 0.6; opacity: 0.6; }
+.jg-stonewall rect { fill: color-mix(in srgb, var(--act-b) 22%, #060606); stroke: rgba(0, 0, 0, 0.5); stroke-width: 0.6; }
+.jg-ray { fill: rgba(255, 230, 180, 0.08); }
+.jg-slit { fill: color-mix(in srgb, #f0e0b8 50%, var(--act-b)); opacity: 0.6; }
+.jg-millstone { animation: none; }
+.jg-roofcrowd rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.jg-temple, .jg-midpillars { color: var(--bd); }
+.jg--dagon.is-falling .jg-midpillars .jg-pillar { transform-box: fill-box; transform-origin: bottom; animation: jg-bow 2.4s cubic-bezier(0.5, 0, 0.8, 0.5) 0.2s forwards; }
+.jg--dagon.is-falling .jg-midpillars .jg-pillar:last-of-type { animation-name: jg-bow2; }
+@keyframes jg-bow { to { rotate: -14deg; translate: -4px 10px; opacity: 0.6; } }
+@keyframes jg-bow2 { to { rotate: 14deg; translate: 4px 10px; opacity: 0.6; } }
+.jg--dagon.is-falling .jg-temple, .jg--dagon.is-falling .jg-roofcrowd { animation: jg-collapse 2.6s cubic-bezier(0.6, 0, 0.9, 0.6) 1.2s forwards; }
+@keyframes jg-collapse { to { translate: 0 70px; opacity: 0; } }
+
+/* ── 기브아 · 레위인 ── */
+.jg--gibeah .jg-door:not(.jg-bigdoor) { fill: color-mix(in srgb, #0a0806 90%, #000); }
+.jg--gibeah.is-dawn .jg-bigdoor { fill: color-mix(in srgb, #1a120a 70%, #000); }
+
+/* ── 룻기 (theme harvest와 같이) ── */
+.rt-sun { fill: #fff2c8; filter: drop-shadow(0 0 10px rgba(255, 230, 160, 1)); }
+.rt-sunhalo { opacity: 1; }
+.rt-road { fill: none; stroke: color-mix(in srgb, #f6e2b8 60%, var(--act-b)); stroke-width: 6; stroke-linecap: round; opacity: 0.35; }
+.rt-barley path { fill: none; stroke: color-mix(in srgb, #f0cf7a 70%, var(--act-b)); stroke-width: 0.9; opacity: 0.9; }
+.rt-barley ellipse { fill: color-mix(in srgb, #ffe09a 75%, var(--act-b)); opacity: 0.95; }
+.rt-barley { transform-box: view-box; animation: rt-ripple 6s ease-in-out infinite alternate; }
+@keyframes rt-ripple { from { translate: -0.6px 0; } to { translate: 0.6px 0; } }
+.rt-reapers rect { fill: color-mix(in srgb, var(--act-a) 50%, #1a1006); opacity: 0.8; }
+.rt-sheaf { fill: color-mix(in srgb, #e8c06a 70%, var(--act-b)); }
+.rt-heap { fill: color-mix(in srgb, #d8b060 60%, var(--act-b)); filter: drop-shadow(0 0 3px rgba(255, 210, 140, 0.4)); }
+.rt-floor { opacity: 0.9; }
+.rt-gatelight { fill: color-mix(in srgb, #fff0c8 60%, var(--act-b)); opacity: 0.55; }
+
+/* ── 효과 torches (삿 7:19-21): 항아리 깨지는 소리 고리 ── */
+.fx-torches { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 1.4s ease-in; }
+.fx-torches.is-out { opacity: 0; }
+.fx-torches i { position: absolute; left: var(--x); top: var(--y); width: 16px; height: 16px; translate: -50% -50%; border-radius: 50%; border: 1px solid rgba(255, 220, 160, 0.8); opacity: 0; animation: js-ring 1.4s ease-out var(--d) both; }
+
+/* ── 효과 flame-up (삿 13:20): 불꽃 속으로 빛이 하늘로 ── */
+.fx-flameup { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 1.8s ease-in; }
+.fx-flameup.is-out { opacity: 0; }
+.fx-flameup i { position: absolute; left: 50%; bottom: 14%; width: 46px; height: 60px; translate: -50% 0; border-radius: 50% 50% 40% 40%; background: radial-gradient(closest-side, rgba(255, 236, 190, 0.95), rgba(255, 170, 80, 0.5) 50%, transparent); filter: blur(2px); animation: jg-flame-col 4.6s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both; transform-origin: bottom; }
+@keyframes jg-flame-col { 0% { scale: 0.4 0.4; opacity: 0; } 20% { scale: 1 1.4; opacity: 1; } 100% { scale: 0.5 9; opacity: 0; translate: -50% -120%; } }
+.fx-flameup b { position: absolute; inset: 0; background: radial-gradient(40% 50% at 50% 30%, rgba(255, 230, 170, 0.3), transparent 70%); mix-blend-mode: screen; opacity: 0; animation: js-in 1.6s ease-out 1.2s forwards; }
+.fx-flameup.is-rm i { animation-duration: 1.4s; }
+
+/* ── 효과 foxes (삿 15:4-5) ── */
+.fx-foxes { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-foxes.is-out { opacity: 0; }
+.fx-foxes i { position: absolute; top: var(--y); left: 0; width: calc(18px * var(--s)); height: calc(6px * var(--s)); border-radius: 40% 60% 40% 40%; background: color-mix(in srgb, #1a120a 80%, #000); animation: jg-fox 2.6s linear var(--d) both; scale: var(--dir) 1; }
+.fx-foxes i::after { content: ''; position: absolute; right: 100%; top: -40%; width: 10px; height: 10px; border-radius: 50%; background: radial-gradient(closest-side, #fff0b0, #ff9a40 60%, transparent); filter: blur(1px); box-shadow: -16px 0 12px rgba(255, 140, 60, 0.6); }
+@keyframes jg-fox { from { translate: -40px 0; } to { translate: calc(100vw + 40px) 0; } }
+.fx-foxes i[style*='--dir:-1'] { animation-name: jg-fox-back; }
+@keyframes jg-fox-back { from { translate: calc(100vw + 40px) 0; } to { translate: -40px 0; } }
+.fx-foxes b { position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(0deg, rgba(255, 120, 40, 0.42), rgba(255, 160, 60, 0.12) 60%, transparent); opacity: 0; animation: jg-blaze 5s ease-out 1.6s forwards; mix-blend-mode: screen; }
+@keyframes jg-blaze { 0% { opacity: 0; } 40% { opacity: 1; } 100% { opacity: 0.6; } }
+.fx-foxes.is-rm i { animation-duration: 1s; }
+
+/* ── 효과 pillars (삿 16:29-30): 흙먼지 ── */
+.fx-pillars { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 2s ease-in; }
+.fx-pillars.is-out { opacity: 0; }
+.fx-pillars i { position: absolute; left: var(--x); bottom: 10%; width: calc(80px * var(--s)); height: calc(80px * var(--s)); translate: -50% 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(200, 180, 150, 0.55), transparent); filter: blur(6px); opacity: 0; animation: jg-dust 4s ease-out var(--d) both; }
+@keyframes jg-dust { 0% { opacity: 0; scale: 0.4; } 30% { opacity: 1; } 100% { opacity: 0; scale: 2.2; translate: -50% -30px; } }
+
+/* ── 효과 lament (삿 11:40): 해마다 나흘씩 ── */
+.fx-lament { position: absolute; left: 0; right: 0; top: 10%; z-index: 3; pointer-events: none; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: opacity 2s ease-in; }
+.fx-lament.is-out { opacity: 0; }
+.fx-lament p { margin: 0; display: flex; gap: 10px; opacity: 0; animation: js-in 0.9s ease-out calc(0.6s + var(--y) * 1.1s) forwards; }
+.fx-lament i { width: 5px; height: 5px; border-radius: 50%; background: #ffe2a8; box-shadow: 0 0 8px rgba(255, 210, 140, 0.95); opacity: 0; animation: js-in 0.5s ease-out calc(0.6s + var(--y) * 1.1s + var(--i) * 0.16s) forwards; }
+.fx-lament p:nth-child(n + 4) i { opacity: 0.5; }
+.fx-lament span { margin-top: 10px; font-family: var(--story-font); font-size: 0.85rem; letter-spacing: 0.4em; color: color-mix(in srgb, var(--ivory) 80%, transparent); opacity: 0; animation: js-in 1.6s ease-out 3s forwards; }
+.fx-lament.is-rm p, .fx-lament.is-rm i, .fx-lament.is-rm span { animation-duration: 0.3s; animation-delay: 0.2s; }
+
+/* ── 효과 summons (삿 19:29): 열두 줄기가 사방으로 ── */
+.fx-summons { position: absolute; inset: 0; z-index: 3; pointer-events: none; transition: opacity 1.4s ease-in; }
+.fx-summons.is-out { opacity: 0; }
+.fx-summons i { position: absolute; left: 50%; top: 46%; width: 4px; height: 4px; border-radius: 50%; background: #e8b080; box-shadow: 0 0 8px rgba(220, 120, 80, 0.9), -6px 0 6px rgba(220, 120, 80, 0.4); rotate: var(--a); animation: jg-ray 3.4s cubic-bezier(0.3, 0, 0.4, 1) var(--d) both; }
+@keyframes jg-ray { 0% { opacity: 0; transform: translateX(0); } 15% { opacity: 1; } 100% { opacity: 0; transform: translateX(60vmax); } }
+.fx-summons.is-rm i { animation-duration: 1s; }
+
+/* ── 효과 genealogy (룻 4:18-22) ── */
+.fx-genealogy { position: absolute; left: 0; right: 0; top: 4%; bottom: 8%; z-index: 5; pointer-events: none; display: flex; flex-direction: column; align-items: center; justify-content: center; transition: opacity 2s ease-in; }
+.fx-genealogy.is-out { opacity: 0; }
+.fx-genealogy::before { content: ''; position: absolute; inset: 0; background: radial-gradient(closest-side, rgba(20, 12, 4, 0.55), transparent); }
+.fx-genealogy ol { position: relative; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.fx-genealogy li { display: flex; align-items: baseline; gap: 6px; font-family: var(--story-font); font-size: clamp(0.82rem, 3.4vw, 1rem); letter-spacing: 0.24em; color: #fff4d8; text-shadow: 0 0 8px rgba(255, 210, 140, 0.6); opacity: 0; animation: jg-name 0.9s ease-out calc(0.4s + var(--i) * 0.9s) forwards; }
+.fx-genealogy li + li::before { content: '│'; display: block; position: absolute; margin-top: -1.2em; opacity: 0; }
+.fx-genealogy li small { font-size: 0.72em; letter-spacing: 0.1em; color: #ffd0a0; opacity: 0.9; }
+.fx-genealogy li.is-here b { color: #ffe08a; }
+.fx-genealogy li.is-king { font-size: clamp(1.05rem, 4.6vw, 1.35rem); color: #ffe6a8; text-shadow: 0 0 14px rgba(255, 210, 120, 0.9); }
+@keyframes jg-name { from { opacity: 0; translate: 0 4px; filter: blur(3px); } to { opacity: 1; translate: 0 0; filter: blur(0); } }
+.fx-genealogy__more { position: relative; margin: 14px 0 0; font-family: var(--story-font); font-size: 0.85rem; letter-spacing: 0.22em; color: #cfe6ff; text-shadow: 0 0 10px rgba(180, 220, 255, 0.7); opacity: 0; animation: jg-name 1.6s ease-out 10.2s forwards; }
+.fx-genealogy.is-rm li, .fx-genealogy.is-rm .fx-genealogy__more { animation-duration: 0.3s; animation-delay: 0.2s; }
+
+:root[data-reduced-motion='true'] :is(.jg-flame, .jg-chaff, .jg-dew, .jg-campfire, .jg-bees circle, .jg-spout, .jg-spring, .rt-barley, .jg-bigdoor, .jg-lamphalo, .jg-tent-halo) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.jg-lion, .jg-lion-mane, .jg--midian.is-lit .jg-torch, .jg--dagon.is-falling *) { animation-duration: 0.01s !important; animation-delay: 0s !important; }

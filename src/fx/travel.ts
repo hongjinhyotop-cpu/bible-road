@@ -110,6 +110,10 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   achor: at(35.42, 31.78),
   ebal: at(35.27, 32.23),
   gerizim: at(35.27, 32.2),
+  zorah: at(34.97, 31.76),
+  bochim: at(35.22, 31.95),
+  gilead: at(35.75, 32.2),
+  mizpah: at(35.88, 32.4),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

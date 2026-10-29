@@ -39,7 +39,7 @@ export type JoshArt =
 const f = (n: number) => n.toFixed(1);
 
 /** 부드러운 산줄기 */
-function ridge(pts: [number, number][], cls: string, bottom = H): string {
+export function ridge(pts: [number, number][], cls: string, bottom = H): string {
   let d = `M${pts[0][0]} ${bottom} L${pts[0][0]} ${pts[0][1]}`;
   for (let i = 1; i < pts.length; i++) {
     const [px, py] = pts[i - 1];
@@ -50,7 +50,7 @@ function ridge(pts: [number, number][], cls: string, bottom = H): string {
 }
 
 /** 작은 사람들의 줄 */
-function folk(x0: number, y0: number, x1: number, y1: number, n: number, s: number, seed: number, cls = 'js-folk'): string {
+export function folk(x0: number, y0: number, x1: number, y1: number, n: number, s: number, seed: number, cls = 'js-folk'): string {
   const r = rng(seed);
   return `<g class="${cls}">${Array.from({ length: n }, (_, i) => {
     const t = n === 1 ? 0 : i / (n - 1);
@@ -61,13 +61,13 @@ function folk(x0: number, y0: number, x1: number, y1: number, n: number, s: numb
   }).join('')}</g>`;
 }
 
-function stars(n: number, maxY: number, seed: number): string {
+export function stars(n: number, maxY: number, seed: number): string {
   const r = rng(seed);
   return `<g class="js-stars">${Array.from({ length: n }, () =>
     `<circle style="--d:${f(r() * 5)}s" cx="${f(-W * 2 + r() * W * 5)}" cy="${f(r() * maxY)}" r="${f(0.35 + r() * 0.8)}"/>`).join('')}</g>`;
 }
 
-const ground = (y = 248) => `<path class="bd-near" d="M${-W * 2} ${H} L${-W * 2} ${y} C-100 ${y - 4} 120 ${y + 3} 200 ${y} C300 ${y - 3} 560 ${y + 2} ${W * 3} ${y - 1} L${W * 3} ${H} Z"/>`;
+export const ground = (y = 248) => `<path class="bd-near" d="M${-W * 2} ${H} L${-W * 2} ${y} C-100 ${y - 4} 120 ${y + 3} 200 ${y} C300 ${y - 3} 560 ${y + 2} ${W * 3} ${y - 1} L${W * 3} ${H} Z"/>`;
 
 // ── 여리고 (수 2, 6) ───────────────────────────────
 /** 성벽 한 토막 (윗단에 성가퀴) */

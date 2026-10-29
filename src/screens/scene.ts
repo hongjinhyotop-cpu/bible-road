@@ -43,6 +43,7 @@ import { playMantle, playStrikeTwice } from '../fx/meribah';
 import { playFierySerpents, playSerpentLift } from '../fx/brazen';
 import { playAmen, playEagle, playLandShow, playPassOn, playShema } from '../fx/deuteronomy';
 import { playLots as playJoshLots, playMarch, playShout, playSunStand } from '../fx/joshua';
+import { playFlameUp, playFoxes, playGenealogy, playLament, playPillars, playSummons, playTorches } from '../fx/judges';
 import { playBlind } from '../fx/sodom';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -671,6 +672,34 @@ export function sceneScreen({ id }: Params): Screen {
       case 'sun-stand':
         // 여호수아: 해와 달이 머문다 (수 10:12-13)
         playSunStand($('.scene'), rm);
+        return;
+      case 'torches':
+        // 기드온: 항아리를 깨뜨리고 횃불 (삿 7:19-21) — fx/judges.ts
+        playTorches($('.scene'), rm);
+        return;
+      case 'flame-up':
+        // 삼손: 제단 불꽃 속으로 올라감 (삿 13:20) — fx/judges.ts
+        playFlameUp($('.scene'), rm);
+        return;
+      case 'foxes':
+        // 삼손: 여우와 홰 (삿 15:4-5) — fx/judges.ts
+        playFoxes($('.scene'), rm);
+        return;
+      case 'pillars':
+        // 삼손: 두 기둥 (삿 16:29-30) — fx/judges.ts
+        playPillars($('.scene'), rm);
+        return;
+      case 'lament':
+        // 입다의 딸: 해마다 나흘씩 (삿 11:40) — fx/judges.ts
+        playLament($('.scene'), rm);
+        return;
+      case 'summons':
+        // 레위인: 온 이스라엘에 두루 (삿 19:29) — fx/judges.ts
+        playSummons($('.scene'), rm);
+        return;
+      case 'genealogy':
+        // 룻기: 베레스에서 다윗까지 (룻 4:18-22) — fx/judges.ts
+        playGenealogy($('.scene'), rm);
         return;
       case 'kites':
         // 별을 세어 보라 (fx/covenant.ts): 솔개가 쪼갠 고기 위로 내리꽂혔다 쫓겨 흩어진다 (창 15:11)

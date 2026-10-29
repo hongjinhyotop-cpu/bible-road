@@ -40,6 +40,7 @@ import './styles/brazen.css';
 import './styles/deuteronomy.css';
 import './styles/joshua.css';
 import './styles/cycle.css';
+import './styles/judges.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';
 
