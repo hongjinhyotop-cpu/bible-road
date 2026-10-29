@@ -14,13 +14,13 @@ import {
 export const BASES = ['old-man', 'man', 'youth', 'woman', 'old-woman', 'girl', 'child', 'soldier', 'king', 'priest'] as const;
 export type Base = (typeof BASES)[number];
 
-export const HAIRS = ['hood', 'short', 'tied', 'long', 'bald', 'veil', 'loose', 'helmet', 'crown', 'turban', 'shaggy'] as const;
+export const HAIRS = ['hood', 'short', 'tied', 'long', 'bald', 'veil', 'loose', 'helmet', 'crown', 'turban', 'shaggy', 'locks'] as const;
 export type Hair = (typeof HAIRS)[number];
 
 export const BEARDS = ['none', 'short', 'long', 'gray'] as const;
 export type Beard = (typeof BEARDS)[number];
 
-export const PROPS = ['staff', 'crook', 'jar', 'lamp', 'bundle', 'lamb', 'bow', 'sword', 'spear', 'shield', 'scepter', 'scroll', 'basket', 'sheaf', 'cloak'] as const;
+export const PROPS = ['staff', 'crook', 'jar', 'lamp', 'bundle', 'lamb', 'bow', 'sword', 'spear', 'shield', 'scepter', 'scroll', 'basket', 'sheaf', 'cloak', 'torch', 'horn', 'timbrel'] as const;
 export type Prop = (typeof PROPS)[number];
 
 /** 옷 색. 막 테마색 위에 살짝 섞인다 (실루엣이라 아주 은은하게) */
@@ -83,6 +83,14 @@ const HAIR: Record<Hair, string> = {
     <path d="M76 36 C90 30 112 30 127 34 L126 40 C112 36 90 36 77 42 Z"/>
     <rect class="crown" x="108" y="26" width="10" height="6" rx="1"/>
     <path d="M78 40 C74 50 72 60 74 70 C77 66 80 64 84 64 C82 56 83 48 86 42 Z"/>`,
+  // 일곱 가닥으로 땋아 내린 긴 머리 (나실인 — 머리에 삭도를 대지 않음, 삿 13:5, 16:13)
+  locks: `
+    <path d="M100 12 C85 10 73 21 71 38 C70 50 70 62 72 72 C76 66 80 62 84 60 C83 52 84 45 88 40 C93 34 101 31 111 30 C117 30 121 32 123 34 C120 20 112 12 100 12 Z"/>
+    <path d="M73 44 C66 70 64 104 66 150 L71 150 C70 108 72 76 78 50 Z"/>
+    <path d="M79 52 C74 80 73 112 76 168 L81 167 C79 116 80 86 84 58 Z"/>
+    <path d="M70 40 C60 62 56 96 58 136 L63 136 C62 100 65 70 74 46 Z"/>
+    <path d="M85 60 C82 90 83 120 87 178 L92 177 C88 124 88 94 90 64 Z"/>
+    <path class="detail" d="M68 70 l4 2 M67 90 l4 2 M67 110 l4 2 M76 86 l4 2 M76 108 l4 2 M77 130 l4 2 M60 84 l4 2 M60 108 l4 2 M85 100 l4 2 M86 124 l4 2 M87 148 l4 2" fill="none" stroke-width="1"/>`,
   // 덥수룩한 머리 (에서처럼 털 많은 사람, 창 25:25)
   shaggy: `<path d="M100 10 C84 8 70 18 68 36 C66 50 64 64 60 76 C66 74 68 76 70 80 C68 90 66 100 68 108 C72 102 76 100 80 102 C80 94 82 88 86 84 C82 72 82 60 85 50 C89 40 97 33 110 31 C118 30 123 32 126 36 C125 30 124 26 126 22 C121 22 118 20 117 16 C112 12 106 10 100 10 Z"/>`,
 };
@@ -146,6 +154,12 @@ const PROP: Record<Prop, PropArt> = {
   sheaf: { bent: true, hand: `<path d="M138 170 L134 110 L140 110 L144 170 Z M144 170 L148 112 L154 114 L150 170 Z M132 170 L124 116 L130 114 L138 170 Z"/><ellipse cx="130" cy="108" rx="4" ry="9"/><ellipse cx="140" cy="104" rx="4" ry="10"/><ellipse cx="151" cy="108" rx="4" ry="9"/>` },
   // 등 뒤로 늘어진 겉옷
   cloak: { back: MANTLE },
+  // 치켜든 횃불 (기드온의 삼백 명, 삿 7:20)
+  torch: { bent: true, hand: `<path d="M142 172 L145 112 L151 112 L148 172 Z"/><path class="glint" d="M148 112 C139 104 141 90 147 80 C148 90 157 94 155 104 C154 109 151 112 148 112 Z"/>` },
+  // 손에 늘어뜨려 든 양각 나팔 (삿 3:27, 6:34, 7:18)
+  horn: { hand: `<path d="M120 230 C130 228 140 234 146 246 C150 254 156 258 163 256 L161 265 C150 268 141 262 135 252 C131 245 127 241 120 239 Z"/>` },
+  // 치켜든 소고 (삿 11:34 — 입다의 딸, 출 15:20 미리암)
+  timbrel: { bent: true, hand: `<circle cx="150" cy="140" r="15"/><circle class="detail" cx="150" cy="140" r="10.5" fill="none" stroke-width="1"/><circle class="glint" cx="150" cy="124" r="2"/><circle class="glint" cx="165" cy="140" r="2"/><circle class="glint" cx="150" cy="156" r="2"/><circle class="glint" cx="135" cy="140" r="2"/>` },
 };
 
 // ── 몸틀 ──────────────────────────────────────
@@ -196,7 +210,7 @@ export function person(spec: PersonSpec): CharacterDef {
     art: {
       kind: 'svg',
       viewBox: [200, 420],
-      pivots: { ...PIVOTS, ...(hair === 'veil' || hair === 'loose' ? { hair: [86, 60] as [number, number] } : {}) },
+      pivots: { ...PIVOTS, ...(hair === 'veil' || hair === 'loose' || hair === 'locks' ? { hair: [86, 60] as [number, number] } : {}) },
       markup: figure({
         legs: b.legs,
         torso: b.torso + back + (b.extra ?? ''),

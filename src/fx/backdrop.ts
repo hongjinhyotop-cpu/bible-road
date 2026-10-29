@@ -29,6 +29,7 @@ import { meribahArt } from './meribah';
 import { brazenArt } from './brazen';
 import { deutArt } from './deuteronomy';
 import { joshArt } from './joshua';
+import { judgesArt } from './judges';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -564,6 +565,46 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'dt-nebo-path': () => deutArt('dt-nebo-path'),
   'dt-nebo-view': () => deutArt('dt-nebo-view'),
   'dt-nebo-empty': () => deutArt('dt-nebo-empty'),
+  // 사사기·룻기 (fx/judges.ts)
+  'jg-palm': () => judgesArt('jg-palm'),
+  'jg-tabor': () => judgesArt('jg-tabor'),
+  'jg-kishon': () => judgesArt('jg-kishon'),
+  'jg-tent': () => judgesArt('jg-tent'),
+  'jg-tent-shut': () => judgesArt('jg-tent-shut'),
+  'jg-lattice': () => judgesArt('jg-lattice'),
+  'jg-winepress': () => judgesArt('jg-winepress'),
+  'jg-baal': () => judgesArt('jg-baal'),
+  'jg-baal-torn': () => judgesArt('jg-baal-torn'),
+  'jg-fleece-wet': () => judgesArt('jg-fleece-wet'),
+  'jg-fleece-dry': () => judgesArt('jg-fleece-dry'),
+  'jg-harod': () => judgesArt('jg-harod'),
+  'jg-midian': () => judgesArt('jg-midian'),
+  'jg-mizpah': () => judgesArt('jg-mizpah'),
+  'jg-mountains': () => judgesArt('jg-mountains'),
+  'jg-zorah': () => judgesArt('jg-zorah'),
+  'jg-timnah': () => judgesArt('jg-timnah'),
+  'jg-timnah-lion': () => judgesArt('jg-timnah-lion'),
+  'jg-honey': () => judgesArt('jg-honey'),
+  'jg-fields': () => judgesArt('jg-fields'),
+  'jg-fields-burnt': () => judgesArt('jg-fields-burnt'),
+  'jg-lehi': () => judgesArt('jg-lehi'),
+  'jg-lehi-spring': () => judgesArt('jg-lehi-spring'),
+  'jg-gaza-gate': () => judgesArt('jg-gaza-gate'),
+  'jg-gate-hill': () => judgesArt('jg-gate-hill'),
+  'jg-sorek': () => judgesArt('jg-sorek'),
+  'jg-mill': () => judgesArt('jg-mill'),
+  'jg-dagon': () => judgesArt('jg-dagon'),
+  'jg-dagon-fallen': () => judgesArt('jg-dagon-fallen'),
+  'jg-gibeah': () => judgesArt('jg-gibeah'),
+  'jg-gibeah-dawn': () => judgesArt('jg-gibeah-dawn'),
+  'jg-gibeah-smoke': () => judgesArt('jg-gibeah-smoke'),
+  'jg-rimmon': () => judgesArt('jg-rimmon'),
+  'jg-shiloh': () => judgesArt('jg-shiloh'),
+  'rt-moab-road': () => judgesArt('rt-moab-road'),
+  'rt-bethlehem': () => judgesArt('rt-bethlehem'),
+  'rt-field': () => judgesArt('rt-field'),
+  'rt-threshing': () => judgesArt('rt-threshing'),
+  'rt-gate': () => judgesArt('rt-gate'),
   // 여호수아 (fx/joshua.ts)
   'js-jericho': () => joshArt('js-jericho'),
   'js-jericho-cord': () => joshArt('js-jericho-cord'),

@@ -1,0 +1,126 @@
+/* ── 사사기의 순환 고리 (beat "cycle", fx/cycle.ts) ──
+   죄 → 압제 → 부르짖음 → 구원 → 태평 → 다시 죄. 바퀴(--r 0~1)가 늘수록 금빛 → 잿빛 → 녹슨 붉은빛, 금이 늘어남.
+   크게(is-big) = 무대 가운데, 작게 = 왼쪽 위 작은 문장(紋章)처럼 남음. */
+.cycle {
+  --ink: color-mix(in srgb, color-mix(in srgb, #8b2f22 calc(var(--r, 0) * 100%), #9a958a) calc(min(1, var(--r, 0) * 2) * 100%), #ecca7e);
+  position: absolute; z-index: 6; pointer-events: none;
+  left: 50%; top: 46%; width: min(78vw, 340px); aspect-ratio: 128 / 112;
+  translate: -50% -50%;
+  opacity: 0.78;
+  transition: left 1.2s var(--ease-out), top 1.2s var(--ease-out), width 1.2s var(--ease-out), opacity 1s;
+}
+.cycle:not(.is-big) { left: 12px; top: 10px; width: 92px; translate: 0 0; opacity: 0.62; }
+.cycle.is-out { opacity: 0; }
+.cycle::before {
+  content: ''; position: absolute; inset: -14%; border-radius: 50%; z-index: -1;
+  background: radial-gradient(closest-side, rgba(4, 4, 6, 0.86), rgba(4, 4, 6, 0.55) 62%, transparent);
+  opacity: 0; transition: opacity 1s;
+}
+.cycle.is-big::before { opacity: 1; }
+.cycle__svg { width: 100%; height: 100%; overflow: visible; }
+.cycle__track { fill: none; stroke: var(--ink); stroke-width: 0.9; opacity: 0.45; }
+.cycle__run { fill: none; stroke: var(--ink); stroke-width: 1.6; stroke-linecap: round; stroke-dasharray: 0 100; filter: drop-shadow(0 0 1.6px var(--ink)); opacity: 0.95; }
+.cycle__node .cycle__dot { fill: color-mix(in srgb, var(--ink) 30%, #0a0a0c); stroke: var(--ink); stroke-width: 0.7; transition: fill 0.6s; }
+.cycle__node .cycle__glow { fill: var(--ink); opacity: 0; filter: blur(2.6px); transition: opacity 0.6s; }
+.cycle__label { font-family: var(--story-font); font-size: 6.4px; letter-spacing: 0.12em; fill: color-mix(in srgb, var(--ivory) 70%, var(--ink)); opacity: 0.55; transition: opacity 0.6s; }
+.cycle__node.is-on .cycle__dot { fill: var(--ink); }
+.cycle__node.is-on .cycle__glow { opacity: 0.55; }
+.cycle__node.is-on .cycle__label { opacity: 1; }
+.cycle__num { font-family: 'Cormorant Garamond', serif; font-size: 12px; letter-spacing: 0.16em; fill: var(--ink); opacity: 0.9; }
+.cycle__judge { font-family: var(--story-font); font-size: 7.2px; letter-spacing: 0.24em; fill: var(--ivory); opacity: 0.85; }
+.cycle__again { font-family: var(--story-font); font-size: 5.2px; letter-spacing: 0.3em; fill: var(--ink); opacity: 0; }
+.cycle__arrow { fill: none; stroke: var(--ink); stroke-width: 0.8; stroke-linecap: round; opacity: 0.5; }
+.cycle__crack { fill: none; stroke: #050506; stroke-width: 1.3; stroke-linecap: round; opacity: 0; transition: opacity 1s; }
+.cycle[data-cracks='1'] .cycle__crack:nth-child(-n + 1),
+.cycle[data-cracks='2'] .cycle__crack:nth-child(-n + 2),
+.cycle[data-cracks='3'] .cycle__crack:nth-child(-n + 3),
+.cycle[data-cracks='4'] .cycle__crack:nth-child(-n + 4),
+.cycle[data-cracks='5'] .cycle__crack:nth-child(-n + 5),
+.cycle[data-cracks='6'] .cycle__crack { opacity: 0.9; }
+.cycle__shard { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-linecap: round; opacity: 0; }
+
+/* 한 바퀴 (is-lap): 고리가 그어지며 마디가 차례로 켜지고, 끝에 "다시"가 죄 위에 */
+.cycle.is-lap .cycle__run { animation: cycle-run 4.6s cubic-bezier(0.45, 0.05, 0.4, 1) 0.5s forwards; }
+.cycle.is-lap .cycle__again { animation: cycle-again-text 2.4s ease-out 5.1s forwards; }
+@keyframes cycle-run { from { stroke-dasharray: 0 100; } to { stroke-dasharray: 100 0; } }
+/* 켜짐은 자식에게 직접 (SVG g의 애니메이션은 fill을 못 바꾸므로) */
+.cycle.is-lap .cycle__node:not(.is-skip) .cycle__dot { animation: cycle-dot 0.7s ease-out calc(0.55s + var(--i) * 0.9s) forwards; }
+.cycle.is-lap .cycle__node:not(.is-skip) .cycle__glow { animation: cycle-glow 1.6s ease-out calc(0.55s + var(--i) * 0.9s) forwards; }
+.cycle.is-lap .cycle__node:not(.is-skip) .cycle__label { animation: cycle-label 0.7s ease-out calc(0.55s + var(--i) * 0.9s) forwards; }
+.cycle.is-lap .cycle__node.is-skip .cycle__label { animation: cycle-skiplabel 1s ease-out calc(0.55s + var(--i) * 0.9s) forwards; }
+@keyframes cycle-dot { to { fill: var(--ink); } }
+@keyframes cycle-glow { 0% { opacity: 0; } 30% { opacity: 0.9; } 100% { opacity: 0.4; } }
+@keyframes cycle-label { to { opacity: 1; } }
+@keyframes cycle-skiplabel { 0% { opacity: 0.55; } 40% { opacity: 0.8; } 100% { opacity: 0.18; text-decoration: line-through; } }
+@keyframes cycle-again-text { 0% { opacity: 0; translate: 0 2px; } 30% { opacity: 1; translate: 0 0; } 100% { opacity: 0.7; } }
+.cycle.is-lap .cycle__node[data-s="sin"]:not(.is-skip) .cycle__glow { animation: cycle-glow 1.6s ease-out 0.55s forwards, cycle-pulse 1.8s ease-out 5.1s forwards; }
+@keyframes cycle-pulse { 0% { opacity: 0.4; r: 7; } 40% { opacity: 1; r: 11; } 100% { opacity: 0.5; r: 7; } }
+.cycle:not(.is-lap):not(.is-at):not(.is-breaking) .cycle__run { stroke-dasharray: 100 0; }
+
+/* 마디 하나만 (is-at) */
+.cycle.is-at .cycle__run { stroke-dasharray: 100 0; opacity: 0.35; }
+.cycle.is-at .cycle__node.is-on .cycle__glow { animation: cycle-breathe 2.2s ease-in-out infinite alternate; }
+@keyframes cycle-breathe { from { opacity: 0.35; } to { opacity: 0.85; } }
+
+/* 깨짐 (is-breaking, 삿 17–21): 마디가 하나씩 꺼지고 고리가 조각나 흩어진다 */
+.cycle.is-broken { --ink: #6f2a20; }
+.cycle.is-broken .cycle__track, .cycle.is-broken .cycle__run, .cycle.is-broken .cycle__arrow { opacity: 0; transition: opacity 1.6s; }
+.cycle.is-broken .cycle__shard { opacity: 0.8; translate: var(--dx) var(--dy); rotate: var(--rot); transform-origin: 50px 50px; }
+.cycle.is-breaking .cycle__shard { animation: cycle-shard 3.4s cubic-bezier(0.3, 0, 0.6, 1) calc(1.6s + var(--i) * 0.12s) both; }
+@keyframes cycle-shard { 0% { opacity: 0.9; translate: 0 0; rotate: 0deg; } 100% { opacity: 0.8; translate: var(--dx) var(--dy); rotate: var(--rot); } }
+.cycle.is-broken .cycle__node .cycle__dot { fill: #0a0a0c; stroke: #3c2a26; }
+.cycle.is-broken .cycle__node .cycle__label { opacity: 0.16; }
+.cycle.is-breaking .cycle__node .cycle__dot { animation: cycle-off 0.8s ease-in calc(var(--i) * 0.3s) both; }
+.cycle.is-breaking .cycle__node .cycle__label { animation: cycle-offlabel 0.8s ease-in calc(var(--i) * 0.3s) both; }
+@keyframes cycle-off { from { fill: #9a958a; stroke: #9a958a; } to { fill: #0a0a0c; stroke: #3c2a26; } }
+@keyframes cycle-offlabel { from { opacity: 0.7; } to { opacity: 0.16; } }
+.cycle.is-broken .cycle__crack { opacity: 0; }
+.cycle.is-broken .cycle__judge { fill: color-mix(in srgb, var(--ivory) 70%, #8b2f22); letter-spacing: 0.3em; }
+.cycle.is-breaking .cycle__judge { animation: cycle-label-in 2s ease-out 2.4s both; }
+@keyframes cycle-label-in { from { opacity: 0; } to { opacity: 0.85; } }
+
+.cycle.is-rm, .cycle.is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition-duration: 0.2s !important; }
+
+/* ── 무너져 가는 무대 (data-decay 0~13): 사사기 장이 지날수록 가장자리부터 어두워지고 빛이 바랜다 ── */
+.scene__decay {
+  position: absolute; inset: 0; z-index: 4; pointer-events: none;
+  opacity: var(--decay, 0);
+  background:
+    radial-gradient(ellipse 72% 64% at 50% 46%, transparent 40%, rgba(6, 4, 4, 0.85) 100%),
+    linear-gradient(180deg, rgba(20, 14, 12, 0.35), rgba(6, 4, 4, 0.2));
+  transition: opacity 3s var(--ease-out);
+}
+.play[data-decay] .scene__backdrop { filter: saturate(calc(1 - var(--decay, 0) * 0.55)) brightness(calc(1 - var(--decay, 0) * 0.25)); }
+.play[data-memory][data-decay] .scene__backdrop { filter: none; }
+
+/* ── 암전 (fx blackout) + 소리 (beat "sound") ──
+   보여 주지 않을 장면: 무대가 까맣게 닫히고, 소리 글자만 희미하게 떠올랐다 스러진다 (삿 3:21-22, 4:21, 19:25). */
+.scene__black {
+  position: absolute; inset: 0; z-index: 30; pointer-events: none;
+  background: #030304; opacity: 0;
+  transition: opacity 0.9s var(--ease-in, ease-in);
+}
+.play[data-black='1'] .scene__black { opacity: 1; }
+.scene__sound {
+  position: absolute; left: 50%; top: 44%; z-index: 31; translate: -50% -50%; pointer-events: none; margin: 0;
+  font-family: var(--story-font); font-size: clamp(1.6rem, 7vw, 2.6rem); letter-spacing: 0.4em; white-space: nowrap;
+  color: color-mix(in srgb, var(--ivory) 70%, var(--act-accent)); opacity: 0;
+}
+.scene__sound.is-on { animation: scene-sound 3.6s ease-out 0.5s forwards; }
+@keyframes scene-sound { 0% { opacity: 0; filter: blur(6px); scale: 0.94; } 25% { opacity: 0.85; filter: blur(0); scale: 1; } 100% { opacity: 0.22; filter: blur(1px); scale: 1.03; } }
+:root[data-reduced-motion='true'] .scene__sound.is-on { animation: none; opacity: 0.6; }
+
+/* ── 룻기: 추수의 빛 (장면 "theme": "harvest") — 사사기의 어둠 바로 뒤, 확 밝고 따뜻하게 ── */
+.play[data-theme='harvest'] { --act-a: #3a2a16; --act-b: #a07a3c; --act-accent: #ffe1a0; }
+.play[data-theme='harvest'] .play__sky {
+  background:
+    radial-gradient(85% 60% at 50% 34%, color-mix(in srgb, #ffe6b0 70%, transparent), transparent 78%),
+    linear-gradient(180deg, color-mix(in srgb, #c89a56 80%, transparent), color-mix(in srgb, #6a4a22 70%, #000));
+}
+.play[data-theme='harvest'] .play__halo { opacity: 1; }
+.play[data-theme='harvest'][data-tone='night'] { --act-b: #3a3550; --act-accent: #f6e2b0; }
+.play[data-theme='harvest'][data-tone='night'] .play__sky {
+  background:
+    radial-gradient(80% 55% at 50% 30%, color-mix(in srgb, #4c4670 80%, transparent), transparent 75%),
+    linear-gradient(180deg, color-mix(in srgb, #1c1a2c 85%, transparent), color-mix(in srgb, #14121e 60%, #000));
+}

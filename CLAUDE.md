@@ -152,6 +152,8 @@ PROGRESS.md      ← 진행 기록
   - `"enter"`, `"exit"`, `"pose"`(neutral/slump/lift/tremble), `"face"`({"eve": "left"}), `"outfit"`(인물 파일의 outfits)
   - `"item"`: 성막 기구 하나를 무대 가운데 띄움 (아래 "성막 기구") · `"item": null`(또는 `"none"`)이면 걷힘
   - `"allot"`: 땅 분배 지도 — 가나안 옛 지도에 지파 땅을 칠함. `"judah"` 또는 `["benjamin", "simeon"]`. 다음 beat에도 allot이면 이어 칠하고, 없으면 접힘. 여호수아서 분배 순서상 앞선 지파는 자동으로 옅게 칠해져 있음. 이름: reuben gad manasseh-east judah ephraim manasseh-west benjamin simeon zebulun issachar asher naphtali dan + `levi`(레위 성읍 점) `refuge`(도피성 여섯) `all` (`src/engine/tribes.ts`, 그림 `src/fx/allot.ts`, 2026-10-28)
+  - `"cycle"`: **사사기의 순환 고리** (죄 → 압제 → 부르짖음 → 구원 → 태평 → 다시 죄, `src/fx/cycle.ts`, 2026-10-29). `{ "round": 4, "judge": "드보라" }` = 가운데로 커지며 한 바퀴(약 6초) · `"skip": ["cry", "rest"]` = 그 마디는 이번엔 안 켜짐 · `"at": "cry"` = 그 마디만 밝힘 · `{ "broken": true }` = 고리가 깨짐(삿 17–21). 다음 beat에 없으면 왼쪽 위로 작게 물러나 남음. round(1~12 = 사사 순서: 옷니엘 에훗 삼갈 드보라 기드온 돌라 야일 입다 입산 엘론 압돈 삼손)가 늘수록 고리가 바래고 금 가고 무대가 어두워짐. 마디 이름: sin oppress cry save rest
+  - `"sound": "쿵."`: 소리 글자가 무대 가운데 희미하게 떠올랐다 스러짐. 보통 `"fx": "blackout"`(암전: 무대만 까맣게, 다음 beat에 없으면 열림)과 같이 — **보여 주지 않을 장면(살해·폭력)은 암전과 소리로만**
 
 ### 동작 라이브러리 (`src/engine/actions.ts` — 검사기가 이름·대상을 확인함)
 | 동작 | 뜻 | 누구 |
@@ -199,9 +201,9 @@ PROGRESS.md      ← 진행 기록
 
 ### 인물 키트 (`src/characters/_kit.ts`) — 조연·B급 인물
 - `base`: `old-man` `man` `youth` `woman` `old-woman` `girl` `child` `soldier` `king` `priest`
-- `hair`: `hood` `short` `tied` `long` `bald` `veil` `loose` `helmet` `crown` `turban` `shaggy` (생략하면 base 기본값)
+- `hair`: `hood` `short` `tied` `long` `bald` `veil` `loose` `helmet` `crown` `turban` `shaggy` `locks`(일곱 가닥 땋은 머리, 삼손) (생략하면 base 기본값)
 - `beard`: `none` `short` `long` `gray`
-- `props`(여러 개): `staff` `crook` `jar` `lamp` `bundle` `lamb` `bow` `sword` `spear` `shield` `scepter` `scroll` `basket` `sheaf` `cloak`
+- `props`(여러 개): `staff` `crook` `jar` `lamp` `bundle` `lamb` `bow` `sword` `spear` `shield` `scepter` `scroll` `basket` `sheaf` `cloak` `torch`(횃불) `horn`(양각 나팔) `timbrel`(소고)
 - `tint`(옷 색): `red` `blue` `purple` `green` `gold` `white` `brown` `gray` · `height`(키 비율)
 - 장면 `extras`에 쓰면 그 자리에서 만들어짐. 인물 파일로 만들 때는 `export default person({ id, name, base, ... })` 한 줄 (예: `abraham.ts`).
 
@@ -212,6 +214,7 @@ PROGRESS.md      ← 진행 기록
 
 ### 장면 맨 위 필드 정리
 `id` `act` `grade` `title` `ref` `bg`/`mood` `cast` `outfit`(처음부터 입은 옷) `extras` `names` `beats` `branches` `insight` `tldr` `bridge` `unlocks` (퀴즈 없음)
+- `"decay": 0~13` (사사기): 시작부터 무대가 그만큼 어둡고 바램. 책이 무너져 가는 느낌 — 장이 뒤로 갈수록 높게 (6막 PLAN.md 표). `"theme": "harvest"` (룻기): 막 색 대신 밝은 추수 빛.
 - `"mood": "void"`면 깜깜한 데서 시작. 해설(`insight`)은 빈 줄(`\n\n`)로 문단을 나눈다.
 
 ### 막 정보 (act.json)
@@ -403,6 +406,6 @@ A급·B급 **모든 에피소드**는 아래를 통과해야 한다. 빨리 만�
 - **Phase 2 — 2막 족장들 (창 12–50):** 끝 (2026-10-28). A급 15개 + B급 30개 + 피날레.
 - **Phase 3 — 3막 출애굽 (출 1–18):** 끝 (2026-10-28). A급 6개 + B급 8개 + 피날레.
 - **Phase 4–5 — 4막 시내산·5막 광야:** 끝 (모세오경 187장 완주, 2026-10-28).
-- **Phase 6 — 6막 정복과 사사:** 여호수아 24장 끝 (A급 6 + B급 12, 땅 분배 지도). 사사기·룻기 남음.
+- **Phase 6 — 6막 정복과 사사:** 여호수아 24장 끝 (A급 6 + B급 12, 땅 분배 지도). 사사기·룻기(순환 고리, 2026-10-29 진행).
 - **그다음 — 막 순서대로:** 막마다 ① A급 목록 정하기(성경 전체 약 100개) ② B급 10~20장씩 도우미로 대량 생산 ③ A급 몇 개씩 공들여 만들기 ④ 막 피날레.
 - 인물 도감, 막 피날레는 계속 쌓는다. 소리(Howler.js)는 나중에.

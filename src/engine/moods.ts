@@ -31,6 +31,7 @@ export type BackdropArt =
   | 'bz-road' | 'bz-camp' | 'bz-pole' | 'bz-pole-lit'
   | 'dt-door' | 'dt-door-lit' | 'dt-twin' | 'dt-twin-bless' | 'dt-twin-curse' | 'dt-song' | 'dt-nebo-path' | 'dt-nebo-view' | 'dt-nebo-empty'
   | 'js-jericho' | 'js-jericho-cord' | 'js-jericho-fallen' | 'js-jericho-ruin' | 'js-roof' | 'js-window-rope' | 'js-window-cord' | 'js-jordan-flood' | 'js-jordan-dry' | 'js-gilgal' | 'js-ai' | 'js-tent-dig' | 'js-achor' | 'js-gibeon' | 'js-gibeon-storm' | 'js-gibeon-sun' | 'js-shechem' | 'js-shechem-stone'
+  | 'jg-palm' | 'jg-tabor' | 'jg-kishon' | 'jg-tent' | 'jg-tent-shut' | 'jg-lattice' | 'jg-winepress' | 'jg-baal' | 'jg-baal-torn' | 'jg-fleece-wet' | 'jg-fleece-dry' | 'jg-harod' | 'jg-midian' | 'jg-mizpah' | 'jg-mountains' | 'jg-zorah' | 'jg-timnah' | 'jg-timnah-lion' | 'jg-honey' | 'jg-fields' | 'jg-fields-burnt' | 'jg-lehi' | 'jg-lehi-spring' | 'jg-gaza-gate' | 'jg-gate-hill' | 'jg-sorek' | 'jg-mill' | 'jg-dagon' | 'jg-dagon-fallen' | 'jg-gibeah' | 'jg-gibeah-dawn' | 'jg-gibeah-smoke' | 'jg-rimmon' | 'jg-shiloh' | 'rt-moab-road' | 'rt-bethlehem' | 'rt-field' | 'rt-threshing' | 'rt-gate'
   | 'cov-count' | 'cov-pieces'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
@@ -129,6 +130,7 @@ export const FX = [
   'present', // 회상·앞날 필터를 걷고 지금으로 돌아옴
   'stars', // 하늘에 별이 쏟아지듯 하나씩 켜짐 (창 15:5 "하늘을 우러러 뭇별을 셀 수 있나")
   'dust', // 모래바람이 화면을 가로질러 지나감 (광야·먼 길)
+  'blackout', // 암전: 무대만 까맣게 닫힘 (글 상자는 남음). 다음 beat에 blackout이 없으면 열림. 보여 주지 않을 장면(살해·폭력)을 소리(beat "sound")와 글로만 — 삿 3·4·19
   'fade', // 화면 전환: 까맣게 닫혔다가 열림. 그 사이에 배경·인물이 바뀐다 (시간이 흐름)
   'thunder', // 번개: 번쩍 + 진동
   'rain-start', // 비가 내리기 시작 (rain-stop까지)
@@ -182,6 +184,14 @@ export const FX = [
   'shout', // 일곱 나팔의 소리 고리 + 백성의 큰 외침 "와" (약 5초, 수 6:20). 배경 js-jericho-fallen·fx shake와 같이
   'lots', // 제비가 좁혀짐: 지파 → 유다의 족속 → 세라 족속 → 삽디의 집 → 아간 (약 12초, 수 7:16-18)
   'sun-stand', // 해와 달이 머묾: 해 둘레·달 둘레에 금빛 고리가 그어지고 햇살이 멈춘 채 무대에 금빛이 오래 머묾 (약 10초, 수 10:12-13. 배경 js-gibeon-sun)
+  // ── 사사기·룻기 (fx/judges.ts) ──
+  'torches', // 삼백 명: 진 둘레 세 곳에서 항아리가 깨지는 소리 고리 + 횃불이 차례로 켜지고 진의 불빛이 흔들려 흩어짐 (약 9초, 삿 7:19-21. 배경 jg-midian)
+  'flame-up', // 제단 불꽃 속으로 빛기둥이 하늘로 올라가 사라짐 (약 6초, 삿 13:20)
+  'foxes', // 꼬리에 홰를 단 여우들이 밭을 가로질러 달리고 아래가 불빛으로 물듦 (약 8초, 삿 15:4-5). 다음 beat 배경 jg-fields-burnt
+  'pillars', // 신전 가운데 두 기둥이 휘고 지붕이 무너져 내림 + 흙먼지 (약 6초, 삿 16:29-30. 배경 jg-dagon, shake와 같이). 사람 몸은 안 그림
+  'lament', // 산 위에 작은 불빛 넷, 해마다 한 줄씩 늘어남 + "해마다 나흘씩" (약 11초, 삿 11:40)
+  'summons', // 가운데에서 열두 줄기 불티가 사방 끝으로 흩어져 나감 (약 5초, 삿 19:29) — 소식이 온 땅에 퍼짐
+  'genealogy', // 족보: 베레스 → … → 보아스(+룻) → 오벳 → 이새 → 다윗이 한 줄로 켜지고, 끝에 "… 마태복음 1장 — 예수" (약 16초, 룻 4:18-22)
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
   'pass-on', // 금빛 티끌이 왼쪽 인물의 가슴에서 떠올라 오른쪽 인물에게 내려앉음 (약 5초, 신 6:7 "네 자녀에게 부지런히 가르치며")
@@ -612,6 +622,58 @@ export const MOODS: Record<string, Mood> = {
   'bz-pole-dawn': { light: true, land: false, art: 'bz-pole', tone: 'clear', spread: true },
   /** 같은 장대, 놋뱀이 금빛으로 빛나고 빛살이 돈다 (민 21:9). fx serpent-lift와 같이 */
   'bz-pole-lit': { light: true, land: false, art: 'bz-pole-lit', tone: 'dusk', spread: true },
+
+  // ── 사사기·룻기 A급 (삿 4–5 · 6–7 · 11 · 13–16 · 19–21, 룻 1–4, fx/judges.ts) ──
+  'jg-palm': { light: true, land: false, art: 'jg-palm', spread: true },
+  'jg-palm-dusk': { light: true, land: false, art: 'jg-palm', tone: 'dusk', spread: true },
+  'jg-tabor': { light: true, land: false, art: 'jg-tabor' },
+  'jg-tabor-dawn': { light: true, land: false, art: 'jg-tabor', tone: 'clear' },
+  'jg-kishon': { light: true, land: false, art: 'jg-kishon', tone: 'storm' },
+  'jg-tent': { light: true, land: false, art: 'jg-tent', tone: 'dusk', spread: true },
+  'jg-tent-night': { light: true, land: false, art: 'jg-tent', tone: 'night', spread: true },
+  'jg-tent-shut': { light: true, land: false, art: 'jg-tent-shut', tone: 'night', spread: true },
+  'jg-lattice': { light: true, land: false, art: 'jg-lattice', tone: 'dusk' },
+  'jg-winepress': { light: true, land: false, art: 'jg-winepress', spread: true },
+  'jg-baal': { light: true, land: false, art: 'jg-baal', tone: 'night', spread: true },
+  'jg-baal-torn': { light: true, land: false, art: 'jg-baal-torn', tone: 'clear', spread: true },
+  'jg-fleece-wet': { light: true, land: false, art: 'jg-fleece-wet', tone: 'night', spread: true },
+  'jg-fleece-wet-dawn': { light: true, land: false, art: 'jg-fleece-wet', tone: 'clear', spread: true },
+  'jg-fleece-dry': { light: true, land: false, art: 'jg-fleece-dry', tone: 'clear', spread: true },
+  'jg-harod': { light: true, land: false, art: 'jg-harod', tone: 'clear' },
+  'jg-midian': { light: true, land: false, art: 'jg-midian', tone: 'night' },
+  'jg-mizpah': { light: true, land: false, art: 'jg-mizpah', tone: 'dusk', spread: true },
+  'jg-mizpah-night': { light: true, land: false, art: 'jg-mizpah', tone: 'night', spread: true },
+  'jg-mountains': { light: true, land: false, art: 'jg-mountains', tone: 'dusk' },
+  'jg-mountains-night': { light: true, land: false, art: 'jg-mountains', tone: 'night' },
+  'jg-zorah': { light: true, land: false, art: 'jg-zorah', spread: true },
+  'jg-zorah-dusk': { light: true, land: false, art: 'jg-zorah', tone: 'dusk', spread: true },
+  'jg-timnah': { light: true, land: false, art: 'jg-timnah' },
+  'jg-timnah-lion': { light: true, land: false, art: 'jg-timnah-lion' },
+  'jg-honey': { light: true, land: false, art: 'jg-honey' },
+  'jg-fields': { light: true, land: false, art: 'jg-fields' },
+  'jg-fields-burnt': { light: true, land: false, art: 'jg-fields-burnt', tone: 'dusk' },
+  'jg-lehi': { light: true, land: false, art: 'jg-lehi', spread: true },
+  'jg-lehi-spring': { light: true, land: false, art: 'jg-lehi-spring', tone: 'clear', spread: true },
+  'jg-gaza-gate': { light: true, land: false, art: 'jg-gaza-gate', tone: 'night', spread: true },
+  'jg-gate-hill': { light: true, land: false, art: 'jg-gate-hill', tone: 'clear', spread: true },
+  'jg-sorek': { light: true, land: false, art: 'jg-sorek', tone: 'night' },
+  'jg-mill': { light: true, land: false, art: 'jg-mill' },
+  'jg-dagon': { light: true, land: false, art: 'jg-dagon', tone: 'dusk', spread: true },
+  'jg-dagon-fallen': { light: true, land: false, art: 'jg-dagon-fallen', tone: 'dusk', spread: true },
+  'jg-gibeah': { light: true, land: false, art: 'jg-gibeah', tone: 'night', spread: true },
+  'jg-gibeah-dusk': { light: true, land: false, art: 'jg-gibeah', tone: 'dusk', spread: true },
+  'jg-gibeah-dawn': { light: true, land: false, art: 'jg-gibeah-dawn', tone: 'clear', spread: true },
+  'jg-gibeah-smoke': { light: true, land: false, art: 'jg-gibeah-smoke', tone: 'dusk' },
+  'jg-rimmon': { light: true, land: false, art: 'jg-rimmon' },
+  'jg-shiloh': { light: true, land: false, art: 'jg-shiloh' },
+  'rt-moab-road': { light: true, land: false, art: 'rt-moab-road', tone: 'clear', spread: true },
+  'rt-bethlehem': { light: true, land: false, art: 'rt-bethlehem' },
+  'rt-bethlehem-dusk': { light: true, land: false, art: 'rt-bethlehem', tone: 'dusk' },
+  'rt-field': { light: true, land: false, art: 'rt-field' },
+  'rt-field-dusk': { light: true, land: false, art: 'rt-field', tone: 'dusk' },
+  'rt-threshing': { light: true, land: false, art: 'rt-threshing', tone: 'night', spread: true },
+  'rt-threshing-dawn': { light: true, land: false, art: 'rt-threshing', tone: 'clear', spread: true },
+  'rt-gate': { light: true, land: false, art: 'rt-gate', spread: true },
 
   // ── 여호수아 (수 2 · 3–4 · 6 · 7 · 10 · 24, fx/joshua.ts) ──
   /** 종려나무 평지에서 본 여리고: 둔덕 위 성벽·망대·성문, 성벽에 붙은 라합의 집(창에 불빛), 서쪽 산지 (수 2:15, 6:1) */
