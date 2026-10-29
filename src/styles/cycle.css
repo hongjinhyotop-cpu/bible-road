@@ -13,7 +13,7 @@
 .cycle.is-out { opacity: 0; }
 .cycle::before {
   content: ''; position: absolute; inset: -14%; border-radius: 50%; z-index: -1;
-  background: radial-gradient(closest-side, rgba(4, 4, 6, 0.72), rgba(4, 4, 6, 0.35) 62%, transparent);
+  background: radial-gradient(closest-side, rgba(4, 4, 6, 0.86), rgba(4, 4, 6, 0.55) 62%, transparent);
   opacity: 0; transition: opacity 1s;
 }
 .cycle.is-big::before { opacity: 1; }
