@@ -60,6 +60,9 @@ import { isSheetOpen } from '../ui/sheet';
 
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
+/** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8 };
+
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal']);
 
@@ -209,7 +212,9 @@ export function sceneScreen({ id }: Params): Screen {
         }
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
         const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : 0;
-        await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, beat.sound ? 3 : 0, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
+        // 글 없는 beat의 긴 효과는 끝까지 보여 준다 (다음 beat의 암전·배경 전환에 가리지 않게)
+        const longFx = Math.max(0, ...[beat.fx ?? []].flat().map((f) => FX_HOLD[f] ?? 0));
+        await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
         if (!alive) return;
       }
     } catch (err) {

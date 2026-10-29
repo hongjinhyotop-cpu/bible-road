@@ -309,12 +309,13 @@ function vineRows(y0: number, n: number, seed: number, cls = 'bd-mid'): string {
 function timnahArt(kind: 'road' | 'lion' | 'honey'): string {
   const r = rng(8101);
   const lion = kind === 'lion'
-    ? `<path class="bd-near jg-lion" d="M262 238 C266 228 278 222 292 224 C300 218 312 218 316 226 C322 226 326 232 322 236 C320 240 316 240 314 238 L314 250 L308 250 L306 238 L286 238 L282 250 L276 250 L276 238 C270 240 264 240 262 238 Z M316 226 C318 222 322 220 326 222"/>
-       <path class="bd-near jg-lion-mane" d="M300 218 C292 216 290 228 296 234 C302 238 314 236 316 228 C318 220 308 214 300 218 Z"/>`
+    ? `<g class="jg-lionwrap" transform="translate(-140 -6) scale(1.25) translate(-30 -40)">
+       <path class="bd-near jg-lion" d="M262 238 C266 228 278 222 292 224 C300 218 312 218 316 226 C322 226 326 232 322 236 C320 240 316 240 314 238 L314 250 L308 250 L306 238 L286 238 L282 250 L276 250 L276 238 C270 240 264 240 262 238 Z M316 226 C318 222 322 220 326 222"/>
+       <path class="bd-near jg-lion-mane" d="M300 218 C292 216 290 228 296 234 C302 238 314 236 316 228 C318 220 308 214 300 218 Z"/></g>`
     : '';
   const honey = kind === 'honey'
-    ? `<path class="bd-mid jg-carcass" d="M270 248 C272 242 290 240 304 242 C312 244 314 248 312 250 Z"/>
-       <g class="jg-bees">${Array.from({ length: 14 }, (_, i) => `<circle style="--i:${i}; --dx:${f((r() - 0.5) * 20)}px; --dy:${f((r() - 0.5) * 12)}px" cx="${f(290 + (r() - 0.5) * 20)}" cy="${f(240 - r() * 8)}" r="0.7"/>`).join('')}</g>`
+    ? `<path class="bd-mid jg-carcass" transform="translate(-130 0)" d="M270 248 C272 242 290 240 304 242 C312 244 314 248 312 250 Z"/>
+       <g class="jg-bees">${Array.from({ length: 14 }, (_, i) => `<circle style="--i:${i}; --dx:${f((r() - 0.5) * 20)}px; --dy:${f((r() - 0.5) * 12)}px" cx="${f(160 + (r() - 0.5) * 20)}" cy="${f(240 - r() * 8)}" r="0.7"/>`).join('')}</g>`
     : '';
   return `<g class="jg jg--timnah">
     ${farHills(8102, 162)}
