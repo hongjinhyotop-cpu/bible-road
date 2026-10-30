@@ -301,6 +301,8 @@ export function sceneScreen({ id }: Params): Screen {
     // 암전: 보여 주지 않을 장면은 무대를 까맣게 닫고 소리만 (다음 beat에 blackout이 없으면 열림)
     setBlack(fx.includes('blackout'));
     if (beat.sound) playSound(beat.sound);
+    // 남은 소리 글자는 다음 beat에서 걷힘 (암전 없이 sound만 쓴 경우 끝까지 남던 것)
+    else $('.scene__sound').classList.remove('is-on');
     // 순환 고리: 이번 beat에 cycle이 있으면 가운데로 크게 돌고, 없으면 왼쪽 위로 작게 물러나 남는다
     if (beat.cycle) {
       cycleRing = showCycle($('.scene'), beat.cycle, cycleRing);
