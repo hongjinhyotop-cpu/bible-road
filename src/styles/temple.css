@@ -35,7 +35,9 @@
 .tp-goldwall { fill: color-mix(in srgb, color-mix(in srgb, #8a6424 60%, var(--act-b)) 26%, #050307); }
 .tp-carve { fill: none; stroke: color-mix(in srgb, #e2b75c 50%, var(--act-accent)); stroke-width: 0.8; opacity: 0.32; }
 .tp-panel { stroke: color-mix(in srgb, #e2b75c 30%, #000); opacity: 0.25; }
-.tp-cherub > path:not(.tp-feather), .tp-cherub > ellipse { fill: color-mix(in srgb, color-mix(in srgb, #d6a648 70%, var(--act-accent)) 40%, #0a0608); }
+.tp-cherub > path:not(.tp-feather), .tp-cherub > ellipse { fill: color-mix(in srgb, color-mix(in srgb, #e0b050 76%, var(--act-accent)) 56%, #0a0608); }
+.tp-cherub { filter: drop-shadow(0 0 2.4px rgba(255, 214, 140, 0.75)); }
+.tp-cherub .tp-wing { fill: color-mix(in srgb, color-mix(in srgb, #f0c868 76%, var(--act-accent)) 62%, #0a0608) !important; }
 .tp-feather { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.3; }
 .tp-ark > rect:not(.tp-pole):not(.tp-lid), .tp-ark > path:not(.tp-goldline) { fill: color-mix(in srgb, #e2b75c 62%, #2a1a08); }
 .tp-ark .tp-lid { fill: color-mix(in srgb, #f6e2a8 70%, #2a1a08); }

@@ -139,24 +139,26 @@ function courtArt(cloud: boolean): string {
 function cherub(x: number, dir: 1 | -1): string {
   const s = dir;
   const inner = 200; // 안쪽 날개 끝이 닿는 곳
-  const outer = x - s * 120; // 바깥 날개 끝 (벽)
-  const feathers = (x0: number, x1: number, y: number) =>
-    Array.from({ length: 6 }, (_, i) => {
-      const t = (i + 1) / 7;
+  const outer = x - s * 128; // 바깥 날개 끝 (벽)
+  // 십 규빗 높이 (6:23) — 무대 위 사람보다 훨씬 크다. 머리와 날개는 사람 머리 위로
+  const feathers = (x0: number, x1: number, y0: number, y1: number) =>
+    Array.from({ length: 7 }, (_, i) => {
+      const t = (i + 1) / 8;
       const fx = x0 + (x1 - x0) * t;
-      return `M${f(fx)} ${f(y + 2)} q${f((x1 - x0) * 0.04)} 8 ${f((x1 - x0) * 0.08)} 14`;
+      const fy = y0 + (y1 - y0) * t;
+      return `M${f(fx)} ${f(fy + 4)} q${f((x1 - x0) * 0.03)} 9 ${f((x1 - x0) * 0.06)} 18`;
     }).join(' ');
   return `<g class="tp-cherub">
-    <!-- 바깥 날개 -->
-    <path d="M${f(x - s * 6)} 130 C${f(x - s * 40)} 112 ${f(outer + s * 40)} 100 ${f(outer)} 96 L${f(outer)} 106 C${f(outer + s * 30)} 116 ${f(x - s * 40)} 132 ${f(x - s * 8)} 148 Z"/>
-    <!-- 안쪽 날개 -->
-    <path d="M${f(x + s * 6)} 130 C${f(x + s * 30)} 110 ${f(inner - s * 20)} 102 ${f(inner)} 100 L${f(inner)} 110 C${f(inner - s * 24)} 116 ${f(x + s * 30)} 134 ${f(x + s * 8)} 148 Z"/>
-    <path class="tp-feather" d="${feathers(x - s * 10, outer + s * 6, 108)} ${feathers(x + s * 10, inner - s * 6, 106)}"/>
+    <!-- 바깥 날개: 어깨에서 위로 솟았다가 벽까지 -->
+    <path class="tp-wing" d="M${f(x - s * 6)} 84 C${f(x - s * 30)} 40 ${f(outer + s * 50)} 30 ${f(outer)} 40 L${f(outer)} 58 C${f(outer + s * 40)} 56 ${f(x - s * 34)} 74 ${f(x - s * 10)} 112 Z"/>
+    <!-- 안쪽 날개: 가운데까지, 궤 위를 덮음 -->
+    <path class="tp-wing" d="M${f(x + s * 6)} 84 C${f(x + s * 26)} 42 ${f(inner - s * 26)} 36 ${f(inner)} 44 L${f(inner)} 60 C${f(inner - s * 26)} 58 ${f(x + s * 30)} 76 ${f(x + s * 10)} 112 Z"/>
+    <path class="tp-feather" d="${feathers(x - s * 12, outer + s * 8, 50, 44)} ${feathers(x + s * 12, inner - s * 6, 50, 46)}"/>
     <!-- 몸 -->
-    <path d="M${f(x - 12)} 230 C${f(x - 14)} 196 ${f(x - 10)} 160 ${f(x - 9)} 138 C${f(x - 8)} 128 ${f(x + 8)} 128 ${f(x + 9)} 138 C${f(x + 10)} 160 ${f(x + 14)} 196 ${f(x + 12)} 230 Z"/>
+    <path d="M${f(x - 16)} 236 C${f(x - 18)} 190 ${f(x - 12)} 130 ${f(x - 11)} 92 C${f(x - 10)} 80 ${f(x + 10)} 80 ${f(x + 11)} 92 C${f(x + 12)} 130 ${f(x + 18)} 190 ${f(x + 16)} 236 Z"/>
     <!-- 머리: 가운데를 향해 조금 숙임 -->
-    <ellipse cx="${f(x + s * 3)}" cy="124" rx="7" ry="8"/>
-    <path class="tp-feather" d="M${f(x - 8)} 160 Q${f(x)} 164 ${f(x + 8)} 160 M${f(x - 9)} 190 Q${f(x)} 194 ${f(x + 9)} 190"/>
+    <ellipse cx="${f(x + s * 3)}" cy="72" rx="8" ry="9.5"/>
+    <path class="tp-feather" d="M${f(x - 10)} 120 Q${f(x)} 125 ${f(x + 10)} 120 M${f(x - 12)} 160 Q${f(x)} 165 ${f(x + 12)} 160 M${f(x - 14)} 200 Q${f(x)} 205 ${f(x + 14)} 200"/>
   </g>`;
 }
 
@@ -166,8 +168,8 @@ function holyArt(ark: boolean): string {
   const carve = Array.from({ length: 16 }, (_, i) => {
     const x = -40 + i * 32;
     return i % 2
-      ? `<path d="M${x} 74 L${x} 50 M${x} 54 q-6 -4 -9 -2 M${x} 54 q6 -4 9 -2 M${x} 60 q-6 -3 -8 0 M${x} 60 q6 -3 8 0"/>`
-      : `<circle cx="${x}" cy="60" r="5"/><circle cx="${x}" cy="60" r="2"/>`;
+      ? `<path d="M${x} 176 L${x} 152 M${x} 156 q-6 -4 -9 -2 M${x} 156 q6 -4 9 -2 M${x} 162 q-6 -3 -8 0 M${x} 162 q6 -3 8 0"/>`
+      : `<circle cx="${x}" cy="164" r="5"/><circle cx="${x}" cy="164" r="2"/>`;
   }).join('');
   const motes = Array.from({ length: 14 }, () =>
     `<circle style="--d:${f(r() * 8)}s; --dx:${f((r() - 0.5) * 20)}px" cx="${f(150 + r() * 100)}" cy="${f(150 + r() * 60)}" r="${f(0.5 + r() * 0.9)}"/>`).join('');
