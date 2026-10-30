@@ -163,6 +163,10 @@ export interface Scene {
 // 파일 찾기·목록·순서는 content.ts가 맡는다. 여기서는 형식 검사만.
 export async function loadScene(id: string): Promise<Scene> {
   const scene = await loadContent<Scene>('scene', id);
+  // type 없이(또는 "act") 글(text)만 붙은 beat는 글이 화면에 안 나왔다 → 이야기 서술로 보여 준다 (검사기도 오류로 잡음)
+  for (const b of [...scene.beats, ...Object.values(scene.branches ?? {}).flat()] as Array<{ type?: string; text?: string }>) {
+    if ((!b.type || b.type === 'act') && b.text) b.type = 'narration';
+  }
   validate(scene);
   return scene;
 }

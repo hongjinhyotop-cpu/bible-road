@@ -48,7 +48,7 @@
     { "type": "line", "who": "abiathar-son", "act": "bow-head", "text": "“과연 우리 주 다윗 왕이 솔로몬을 왕으로 삼으셨습니다. 사독과 나단이 기혼에서 기름을 부었고, 무리가 즐거워하며 올라와 성이 진동했습니다. 들으신 소리가 그것입니다. 솔로몬이 이미 왕위에 앉았고, 왕께서는 침상에서 몸을 굽혀 여호와를 찬송하셨습니다.”" },
     { "type": "narration", "acts": [{ "act": "step-back", "who": "adonijah" }, { "act": "crowd-murmur" }], "text": "아름다운 소식이라고 했다. 소식은 아름다웠다. 다만 듣는 사람이 바뀌었을 뿐이다." },
     { "type": "narration", "exit": ["joab", "abiathar-son"], "acts": [{ "act": "crowd-away" }], "text": "아도니야와 함께한 손님들이 다 놀라 일어나 각기 제 길로 갔다. 잔칫상 위의 고기는 아직 따뜻했다. 사람이 식는 속도가 고기보다 빨랐다." },
-    { "bg": "kg-tent", "fx": "fade", "act": "kneel", "who": "adonijah", "text": "아도니야도 솔로몬이 두려워 일어나 갔다. 여호와의 장막 앞 제단. 그는 제단 뿔을 붙잡았다." },
+    { "bg": "kg-tent", "fx": "fade", "act": "kneel", "who": "adonijah", "type": "narration", "text": "아도니야도 솔로몬이 두려워 일어나 갔다. 여호와의 장막 앞 제단. 그는 제단 뿔을 붙잡았다." },
     { "type": "line", "who": "adonijah", "act": "pray", "text": "“솔로몬 왕이 오늘 칼로 자기 종을 죽이지 않겠다고 내게 맹세하기를 원한다.”" },
     { "bg": "palace", "fx": "fade", "enter": ["solomon", "benaiah"], "acts": [{ "act": "walk-in", "who": ["solomon", "benaiah"] }], "type": "narration", "text": "누군가 그 말을 솔로몬에게 전했다. 젊은 왕의 첫 판결이었다." },
     { "type": "scripture", "ref": "왕상 1:52", "gloss": "솔로몬: “착하게 살면 머리카락 하나도 안 떨어진다. 근데 악한 게 보이면 죽는다.” 조건 하나 걸고 살려 줌. 이 조건이 다음 장에서 다시 나옴." },

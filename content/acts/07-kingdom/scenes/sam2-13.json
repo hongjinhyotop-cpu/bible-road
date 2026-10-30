@@ -45,7 +45,7 @@
     { "type": "scripture", "ref": "삼하 13:21", "act": "look-up", "who": "david", "gloss": "다윗 왕은 이 모든 일을 듣고 몹시 화를 냈다." },
     { "type": "narration", "act": "bow-head", "who": "david", "text": "본문은 그가 노했다고 적는다. 그다음에 그가 무엇을 했는지는 적지 않는다. 적힌 것이 없다. 암논을 불렀다는 말도, 다말을 찾아갔다는 말도." },
     { "type": "narration", "enter": ["absalom"], "acts": [{ "act": "walk-in", "who": "absalom" }, { "act": "turn", "who": "absalom" }], "text": "압살롬은 암논에게 좋다 나쁘다 말하지 않았다. 그를 미워했다. 말하지 않는 미움은 오래간다." },
-    { "bg": "pasture", "fx": "fade", "act": "travel", "from": "jerusalem", "to": "baal-hazor", "text": "만 이 년이 지났다. 에브라임 곁 바알하솔에서 압살롬의 양털 깎는 잔치가 열렸다. 압살롬이 왕의 아들들을 모두 청했다. 왕도 청했다." },
+    { "bg": "pasture", "fx": "fade", "act": "travel", "from": "jerusalem", "to": "baal-hazor", "type": "narration", "text": "만 이 년이 지났다. 에브라임 곁 바알하솔에서 압살롬의 양털 깎는 잔치가 열렸다. 압살롬이 왕의 아들들을 모두 청했다. 왕도 청했다." },
     { "type": "line", "who": "absalom", "act": "bow-head", "text": "“청컨대 왕은 신복들을 데리시고 이 종과 함께 가사이다.”" },
     { "type": "line", "who": "david", "act": "bless", "to": "absalom", "text": "“아니라 내 아들아, 우리가 다 갈 것이 없다. 네게 누를 끼칠까 하노라.”" },
     { "type": "line", "who": "absalom", "act": "approach", "to": "david", "text": "“그렇게 아니하시려거든, 청컨대 내 형 암논으로 우리와 함께 가게 하옵소서.”" },
@@ -60,7 +60,7 @@
     { "type": "narration", "act": "prostrate", "who": "david", "text": "그때 요나답이 말했다. 왕자들이 다 죽은 것이 아닙니다. 암논만 죽었을 것입니다. 압살롬의 누이 다말을 욕되게 한 날부터 압살롬이 작정한 일입니다. 그 꾀를 처음 일러 준 사람이, 그 꾀의 끝도 가장 잘 알고 있었다." },
     { "type": "narration", "enter": ["watchman"], "acts": [{ "act": "walk-in", "who": "watchman" }, { "act": "look-up", "who": "watchman" }], "text": "파수하던 소년이 눈을 들어 보았다. 뒷산 언덕길로 여러 사람이 오고 있었다." },
     { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "stand", "who": "david" }, { "act": "cry", "who": "david" }], "text": "왕자들이 들어와 소리 높여 울었다. 왕과 그 모든 신복도 심히 통곡했다." },
-    { "bg": "road-dusk", "fx": "fade", "exit": ["watchman"], "act": "travel", "from": "baal-hazor", "to": "geshur", "text": "압살롬은 도망했다. 그술 왕 암미훌의 아들 달매에게로 갔다. 그의 어머니의 아버지였다. 거기서 삼 년을 지냈다." },
+    { "bg": "road-dusk", "fx": "fade", "exit": ["watchman"], "act": "travel", "from": "baal-hazor", "to": "geshur", "type": "narration", "text": "압살롬은 도망했다. 그술 왕 암미훌의 아들 달매에게로 갔다. 그의 어머니의 아버지였다. 거기서 삼 년을 지냈다." },
     { "type": "narration", "act": "bow-head", "who": "david", "text": "다윗은 날마다 그 아들로 인하여 슬퍼했다." },
     { "type": "narration", "act": "look-up", "who": "david", "text": "암논은 이미 죽었고, 왕은 위로를 받았다. 왕의 마음이 압살롬에게로 향하여 간절했다. 이 장에서, 딸에게로 향한 왕의 마음은 적혀 있지 않다." }
   ],
