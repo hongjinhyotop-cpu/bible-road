@@ -125,7 +125,7 @@ function slopeArt(): string {
   return `<g class="gb gb--slope">
     ${ridge([[-W * 2, 150], [-100, 140], [40, 146], [160, 136], [300, 146], [440, 140], [W * 3, 148]], 'bd-far')}
     <!-- 멀리 골짜기의 연기 -->
-    ${smoke(70, 150, 7302, 4)}${smoke(330, 152, 7303, 4)}
+    ${smoke(70, 150, 7302, 6)}${smoke(150, 146, 7304, 5)}${smoke(330, 152, 7303, 6)}
     <!-- 비탈: 왼쪽 위에서 오른쪽 아래로 -->
     <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 160 C-60 164 60 170 140 182 C220 194 300 210 400 220 C460 226 520 228 ${W * 3} 230 L${W * 3} ${H} Z"/>
     <g class="bd-mid gb-rocks"><path d="M30 178 C40 168 60 168 66 180 Z"/><path d="M330 214 C336 204 352 204 358 216 Z"/></g>
@@ -135,6 +135,11 @@ function slopeArt(): string {
     <!-- 부러진 창들 -->
     <g class="gb-spears">${brokenSpear(118, 204, 26, -24)}${brokenSpear(186, 214, 14, 18)}${brokenSpear(226, 216, 34, -8)}${brokenSpear(304, 226, 20, 30)}${brokenSpear(80, 196, 18, 40)}</g>
     <path class="gb-shaft" d="M140 226 L176 220 M262 234 L290 240"/>
+    <!-- 앞쪽: 크게 — 땅에 꽂혀 부러진 창 둘, 엎어진 방패, 떨어진 투구 -->
+    <g class="gb-spears gb-spears--near">${brokenSpear(170, 252, 58, -16)}${brokenSpear(250, 254, 42, 22)}${brokenSpear(132, 250, 30, 34)}</g>
+    <g class="gb-shields gb-shields--near">${shield(214, 250, 2.2, -5)}${shield(116, 252, 1.6, 8)}</g>
+    <path class="gb-helmet" d="M282 252 C282 242 288 236 296 236 C304 236 310 242 310 252 Z"/>
+    <circle class="bd-halo gb-slopeglow" cx="200" cy="150" r="120"/>
     <!-- 엎어진 방패들 -->
     <g class="gb-shields">${shield(150, 222, 1.2, -6)}${shield(210, 230, 1, 8)}${shield(276, 236, 1.3, -4)}${shield(96, 210, 0.9, 10)}</g>
     <g class="gb-arrows">${arrows}</g>
@@ -145,7 +150,7 @@ function slopeArt(): string {
 // ── 벧산 성벽 ──────────────────────────────────
 function bethshanArt(): string {
   const crows = Array.from({ length: 5 }, (_, i) =>
-    `<g class="gb-crow" style="--i:${i}"><path transform="translate(${200 + 34 + i * 10} ${70 + (i % 2) * 8})" d="M-4 0 Q-2 -2.4 0 0 Q2 -2.4 4 0 Q2 -1 0 0.6 Q-2 -1 -4 0 Z"/></g>`).join('');
+    `<g class="gb-crow" style="--i:${i}"><path transform="translate(${200 + 34 + i * 10} ${70 + (i % 2) * 8})" d="M-7 0 Q-3.5 -4 0 0 Q3.5 -4 7 0 Q3.5 -1.6 0 1 Q-3.5 -1.6 -7 0 Z"/></g>`).join('');
   const courses = Array.from({ length: 6 }, (_, i) => `M${-W * 2} ${150 + i * 14} H${W * 3}`).join(' ');
   const joints = Array.from({ length: 30 }, (_, i) => {
     const row = i % 6;
@@ -201,16 +206,18 @@ function jordanArt(): string {
 function tamariskArt(): string {
   const r = rng(7501);
   // 에셀나무: 굵고 비틀린 줄기, 가는 잎이 깃털처럼 늘어진 덩이
-  const plumes = Array.from({ length: 14 }, () => {
-    const cx = 230 + (r() - 0.5) * 120;
-    const cy = 112 + (r() - 0.5) * 50;
-    const w = 18 + r() * 16;
-    return `<path d="M${f(cx - w)} ${f(cy)} C${f(cx - w * 0.6)} ${f(cy - 14)} ${f(cx + w * 0.6)} ${f(cy - 14)} ${f(cx + w)} ${f(cy)} C${f(cx + w * 0.7)} ${f(cy + 10)} ${f(cx + w * 0.2)} ${f(cy + 18)} ${f(cx)} ${f(cy + 22)} C${f(cx - w * 0.2)} ${f(cy + 18)} ${f(cx - w * 0.7)} ${f(cy + 10)} ${f(cx - w)} ${f(cy)} Z"/>`;
+  // 가는 비늘잎이 늘어진 송이: 작은 타원 덩이 + 아래로 흘러내린 가는 줄
+  const plumes = Array.from({ length: 30 }, () => {
+    const a = r() * Math.PI;
+    const d = Math.sqrt(r());
+    const cx = 234 + Math.cos(a) * 66 * d * (r() < 0.5 ? -1 : 1);
+    const cy = 128 - Math.sin(a) * 40 * d;
+    return `<ellipse cx="${f(cx)}" cy="${f(cy)}" rx="${f(9 + r() * 8)}" ry="${f(4 + r() * 4)}"/>`;
   }).join('');
-  const fronds = Array.from({ length: 22 }, () => {
-    const x = 180 + r() * 110;
-    const y = 120 + r() * 26;
-    return `M${f(x)} ${f(y)} q${f((r() - 0.5) * 4)} 10 ${f((r() - 0.5) * 3)} ${f(16 + r() * 10)}`;
+  const fronds = Array.from({ length: 70 }, () => {
+    const x = 172 + r() * 124;
+    const y = 104 + r() * 40;
+    return `M${f(x)} ${f(y)} q${f((r() - 0.5) * 3)} 8 ${f((r() - 0.5) * 3)} ${f(10 + r() * 16)}`;
   }).join(' ');
   return `<g class="gb gb--tamarisk">
     ${ridge([[-W * 2, 150], [-60, 142], [60, 132], [150, 142], [260, 136], [380, 146], [W * 3, 140]], 'bd-far')}

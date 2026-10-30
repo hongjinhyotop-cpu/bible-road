@@ -49,6 +49,7 @@ import { playLittleRobes } from '../fx/samuel';
 import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
+import { playAccuse, playDance, playLetter } from '../fx/kingship';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -66,7 +67,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body']);
@@ -750,6 +751,18 @@ export function sceneScreen({ id }: Params): Screen {
       case 'topple':
         // 큰 몸이 쓰러짐 (삼상 17:49) — fx/david.ts. 대상 = who → goliath
         playTopple($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'dance':
+        // 법궤 앞에서 춤추다 (삼하 6:14) — fx/kingship.ts. 대상 = who → david
+        playDance($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'letter':
+        // 우리아의 편지 (삼하 11:14) — fx/kingship.ts. 쓰는 사람 = who → david, 받는 사람 = to → uriah
+        playLetter($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'accuse':
+        // 당신이 그 사람이라 (삼하 12:7) — fx/kingship.ts. 대상 = to → (대사 beat가 아니면) who → david
+        playAccuse($('.scene'), beat?.to ?? (beat?.type === 'line' ? undefined : [beat?.who ?? []].flat()[0]), rm);
         return;
       case 'spear-throw':
         // 사울의 창 (삼상 18:11, 19:10, 20:33) — fx/jonathan.ts. 던지는 사람 = who → saul, 상대 = to → david

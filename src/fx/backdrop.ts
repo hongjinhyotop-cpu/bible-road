@@ -34,6 +34,7 @@ import { samuelArt } from './samuel';
 import { gilboaArt } from './gilboa';
 import { saulArt } from './saul';
 import { davidArt } from './david';
+import { kingshipArt } from './kingship';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
@@ -635,6 +636,19 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'jn-engedi': () => jonathanArt('jn-engedi'),
   'jn-cave': () => jonathanArt('jn-cave'),
   'jn-cliff': () => jonathanArt('jn-cliff'),
+  // 7막 다윗 왕 (fx/kingship.ts)
+  'kg-cart': () => kingshipArt('kg-cart'),
+  'kg-threshing': () => kingshipArt('kg-threshing'),
+  'kg-threshing-still': () => kingshipArt('kg-threshing-still'),
+  'kg-obed': () => kingshipArt('kg-obed'),
+  'kg-ascent': () => kingshipArt('kg-ascent'),
+  'kg-window': () => kingshipArt('kg-window'),
+  'kg-tent': () => kingshipArt('kg-tent'),
+  'kg-roof': () => kingshipArt('kg-roof'),
+  'kg-gate': () => kingshipArt('kg-gate'),
+  'kg-rabbah': () => kingshipArt('kg-rabbah'),
+  'kg-parable': () => kingshipArt('kg-parable'),
+  'kg-parable-taken': () => kingshipArt('kg-parable-taken'),
   // 7막 다윗 (fx/david.ts)
   'dv-bethlehem': () => davidArt('dv-bethlehem'),
   'dv-yard': () => davidArt('dv-yard'),

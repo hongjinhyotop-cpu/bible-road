@@ -36,7 +36,7 @@
       "type": "choice",
       "prompt": "여인이 묻는다. 누구를. 사울의 입 안에 이름 하나가 걸려 있다.",
       "options": [
-        { "label": "“사무엘을 불러 올리라.”", "canon": true },
+        { "label": "그 이름을 말한다", "canon": true },
         { "label": "아무도 부르지 않고 돌아선다", "goto": "b-turn" }
       ]
     },
@@ -59,7 +59,7 @@
     { "type": "line", "who": "saul", "act": "bow-head", "text": "“먹지 아니하겠노라.”" },
     { "type": "narration", "enter": ["servant"], "acts": [{ "act": "walk-in", "who": "servant" }, { "act": "kneel", "who": "servant" }], "text": "신하들과 여인이 강권했다. 왕을 위해 목숨을 걸었던 여자와, 왕을 위해 적진 곁을 걸어온 사내들이, 이제 왕에게 밥 한 술을 빌었다." },
     { "type": "narration", "acts": [{ "act": "stand", "who": ["saul", "servant"] }], "text": "사울이 그 말을 들었다. 땅에서 일어나 침상에 앉았다." },
-    { "type": "narration", "fx": "fire", "act": "bow-head", "who": "medium", "text": "여인의 집에 살진 송아지가 있었다. 그녀가 급히 그것을 잡았다. 가루를 뭉쳐 무교병을 만들고 구웠다. 누룩을 넣고 부풀기를 기다릴 시간은 없었다. 그날 밤에는 무엇이든, 기다릴 시간이 없었다." },
+    { "type": "narration", "fx": "fire", "acts": [{ "act": "part", "who": "medium" }, { "act": "bow-head", "who": "medium" }], "text": "여인의 집에 살진 송아지가 있었다. 그녀가 급히 그것을 잡았다. 가루를 뭉쳐 무교병을 만들고 구웠다. 누룩을 넣고 부풀기를 기다릴 시간은 없었다. 그날 밤에는 무엇이든, 기다릴 시간이 없었다." },
     { "type": "scripture", "ref": "삼상 28:24-25", "gloss": "여인은 집에 있던 살진 송아지를 급히 잡고, 가루를 반죽해 누룩 없는 빵을 구워 사울과 신하들 앞에 차렸다. 그들은 먹고 일어나, 그 밤에 떠났다." },
     { "type": "narration", "act": "face", "who": "medium", "to": "saul", "text": "왕이 율법으로 쫓아낸 사람이, 왕의 저녁을 차렸다. 왕은 먹었다. 본문은 그가 고맙다고 말했는지 적지 않는다. 다만 그가 다 먹고 일어났다고만 적는다." },
     { "bg": "road-night", "fx": "fade", "exit": ["medium"], "enter": ["servant2"], "acts": [{ "act": "turn", "who": ["saul", "servant", "servant2"] }] },

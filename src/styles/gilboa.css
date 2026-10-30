@@ -44,6 +44,10 @@
 
 /* ── 길보아 산비탈 (31:1-6) ── */
 .gb-spears, .gb-shaft { fill: color-mix(in srgb, var(--act-a) 26%, #050404); stroke: color-mix(in srgb, var(--act-a) 26%, #050404); }
+.gb-spears--near { fill: color-mix(in srgb, var(--act-a) 34%, #0a0806); }
+.gb-shields--near ellipse { fill: color-mix(in srgb, #7a5a34 34%, #080604); }
+.gb-helmet { fill: color-mix(in srgb, #b0783a 30%, #0a0604); }
+.gb-slopeglow { opacity: 0.35; }
 .gb-shaft { fill: none; stroke-width: 1.6; stroke-linecap: round; }
 .gb-shields ellipse { fill: color-mix(in srgb, #6a4a2a 26%, #060404); }
 .gb-shields .gb-boss { fill: color-mix(in srgb, #b0783a 40%, #0a0604); }
@@ -60,7 +64,7 @@
 .gb-slitwin { fill: #ffbf70; opacity: 0.55; filter: drop-shadow(0 0 2px rgba(255, 190, 110, 0.8)); }
 .gb-pflag { fill: color-mix(in srgb, #9a3a2a 50%, var(--act-b)); transform-box: fill-box; transform-origin: left center; animation: gb-flag 2.6s ease-in-out infinite alternate; }
 /* 까마귀: 성벽 위를 천천히 돈다 */
-.gb-crow { fill: #0a0808; transform-box: view-box; transform-origin: 200px 70px; animation: gb-circle calc(16s + var(--i) * 2.4s) linear infinite; animation-delay: calc(var(--i) * -3.1s); }
+.gb-crow { fill: #050404; transform-box: view-box; transform-origin: 200px 70px; animation: gb-circle calc(16s + var(--i) * 2.4s) linear infinite; animation-delay: calc(var(--i) * -3.1s); }
 .gb-crow path { animation: gb-flap 0.9s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -0.3s); transform-box: fill-box; transform-origin: center; }
 @keyframes gb-circle { from { rotate: 0deg; } to { rotate: 360deg; } }
 @keyframes gb-flap { from { scale: 1 1; } to { scale: 1 -0.5; } }
@@ -77,9 +81,9 @@
 
 /* ── 야베스의 에셀나무 (31:13) ── */
 .gb-tree { fill: color-mix(in srgb, var(--act-a) 28%, #050405); }
-.gb-plumes { opacity: 0.92; animation: gb-sway 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
+.gb-plumes { fill: color-mix(in srgb, #6a7a5a 30%, #0a0b08); opacity: 0.85; filter: blur(0.6px); animation: gb-sway 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
 @keyframes gb-sway { from { rotate: -0.8deg; } to { rotate: 0.8deg; } }
-.gb-fronds { fill: none; stroke: color-mix(in srgb, var(--act-a) 28%, #050405); stroke-width: 0.9; stroke-linecap: round; opacity: 0.8; }
+.gb-fronds { fill: none; stroke: color-mix(in srgb, #7a8a6a 22%, #070806); stroke-width: 0.8; stroke-linecap: round; opacity: 0.8; }
 .gb-cairn path { fill: color-mix(in srgb, var(--act-b) 30%, #0a0808); }
 .gb-cairn ellipse { fill: color-mix(in srgb, #c8bca4 26%, var(--act-b)); opacity: 0.85; }
 .gb-ash { fill: color-mix(in srgb, #8a8a8a 30%, #0a0808); opacity: 0.8; }

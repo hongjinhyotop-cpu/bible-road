@@ -36,6 +36,7 @@ export type BackdropArt =
   | 'sm-road' | 'sm-shiloh' | 'sm-ramah' | 'sm-lamp' | 'sm-lamp-out'
   | 'gb-camp' | 'gb-endor' | 'gb-endor-rise' | 'gb-slope' | 'gb-bethshan' | 'gb-jordan' | 'gb-tamarisk'
   | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
+  | 'kg-cart' | 'kg-threshing' | 'kg-threshing-still' | 'kg-obed' | 'kg-ascent' | 'kg-window' | 'kg-tent' | 'kg-roof' | 'kg-gate' | 'kg-rabbah' | 'kg-parable' | 'kg-parable-taken'
   | 'jn-hall' | 'jn-hall-spear' | 'jn-window' | 'jn-window-rope' | 'jn-bed' | 'jn-feast' | 'jn-field' | 'jn-engedi' | 'jn-cave' | 'jn-cliff'
   | 'sl-hills' | 'sl-ascent' | 'sl-feast' | 'sl-roof' | 'sl-roof-dawn' | 'sl-prophets' | 'sl-mizpah' | 'sl-baggage' | 'sl-kenite' | 'sl-carmel' | 'sl-gilgal' | 'sl-parting'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
@@ -212,6 +213,10 @@ export const FX = [
   'lyre', // 수금 소리: 다윗(없으면 무대 가운데)에게서 금빛 소리 결이 퍼지고 배경(dv-court)의 어두운 기운이 걷힘 (약 7초, 삼상 16:23 — 18:10, 19:9에도)
   'sling', // 물매: 다윗의 머리 위에서 끈이 돌고 돌 하나가 골리앗(없으면 오른쪽 사람) 쪽으로 날아가 닿기 직전 사라짐 (약 2초, 삼상 17:49). 다윗 옷 sling과 같이, 다음 beat에 sound + topple
   'topple', // 큰 몸이 쓰러짐: 대상(who, 없으면 goliath)이 앞으로 엎드러지며 어두워짐 + 흙먼지·흔들림 (약 3초, 삼상 17:49). 실루엣만
+  // ── 7막 다윗 왕 (fx/kingship.ts) ──
+  'dance', // 힘을 다하여 춤춤: 대상(who, 없으면 david)이 뛰놀고, 발밑에서 금빛 고리가 퍼지고 빛 티끌이 흩날려 오름 (약 7초, 삼하 6:14-16). 다윗 옷 ephod와 같이
+  'letter', // 편지: 봉한 두루마리가 쓰는 사람(who, 없으면 david)의 손에서 받는 사람(to, 없으면 uriah)의 손으로 건너가 머묾 (약 7초, 삼하 11:14)
+  'accuse', // "당신이 그 사람이라": 무대가 어두워지고 한 사람(to → who → david)에게만 차고 좁은 빛이 떨어짐 (약 7초, 삼하 12:7)
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
   'pass-on', // 금빛 티끌이 왼쪽 인물의 가슴에서 떠올라 오른쪽 인물에게 내려앉음 (약 5초, 신 6:7 "네 자녀에게 부지런히 가르치며")
@@ -775,7 +780,7 @@ export const MOODS: Record<string, Mood> = {
   'jn-bed': { light: true, land: false, art: 'jn-bed', tone: 'clear' },
   /** 월삭의 왕의 식탁: 벽 곁 왕의 자리, 긴 식탁, 초승달 창, 등잔 빛이 고인 빈자리 (20:24-27) */
   'jn-feast': { light: true, land: false, art: 'jn-feast', tone: 'night', spread: true },
-  /** 기브아 바깥 들: 에셀 바위(왼쪽), 먼 언덕의 성, 오른쪽으로 트인 들 (20:11, 19, 35-42) */
+  /** 기브아 바깥 들: 에셀 바위(오른쪽), 먼 언덕의 성, 트인 들 (20:11, 19, 35-42) */
   'jn-field': { light: true, land: false, art: 'jn-field' },
   'jn-field-dawn': { light: true, land: false, art: 'jn-field', tone: 'clear' },
   'jn-field-dusk': { light: true, land: false, art: 'jn-field', tone: 'dusk' },
@@ -787,6 +792,36 @@ export const MOODS: Record<string, Mood> = {
   /** 굴 밖 벼랑: 등 뒤 굴 입구, 깊은 골짜기, 맞은편 비탈의 사울 군대 (24:8-22) */
   'jn-cliff': { light: true, land: false, art: 'jn-cliff', spread: true },
   'jn-cliff-dusk': { light: true, land: false, art: 'jn-cliff', tone: 'dusk', spread: true },
+
+  // ── 7막 다윗 왕 A급 (삼하 6 · 11–12, fx/kingship.ts) ──
+  /** 산 위 아비나답의 집에서 내려오는 길: 두 소가 끄는 새 수레 위의 궤, 앞뒤로 악기를 든 무리 (삼하 6:3-5) */
+  'kg-cart': { light: true, land: false, art: 'kg-cart', spread: true },
+  /** 나곤의 타작마당: 소들이 뛰어 수레와 궤가 기울어짐, 흙먼지 (6:6) */
+  'kg-threshing': { light: true, land: false, art: 'kg-threshing', spread: true },
+  /** 같은 마당, 모두 멈춤: 멎은 수레, 풀린 소, 바닥의 갈라진 금 (6:8 베레스웃사) */
+  'kg-threshing-still': { light: true, land: false, art: 'kg-threshing-still', tone: 'dusk', spread: true },
+  /** 오벧에돔의 집: 처마 아래 빛나는 궤, 포도 시렁·곡식 단·항아리·어린양 (6:11) */
+  'kg-obed': { light: true, land: false, art: 'kg-obed', spread: true },
+  'kg-obed-dawn': { light: true, land: false, art: 'kg-obed', tone: 'clear', spread: true },
+  /** 다윗 성으로 오르는 길: 산마루 성벽과 열린 문, 장대에 멘 궤와 행렬, 길가의 제사 연기, 망대의 불 켜진 창 (6:12-16) */
+  'kg-ascent': { light: true, land: false, art: 'kg-ascent', tone: 'clear' },
+  /** 성 안 돌벽의 높은 격자창: 등불 앞 여인의 그림자, 아래 골목을 지나는 행렬의 빛 (6:16) */
+  'kg-window': { light: true, land: false, art: 'kg-window', spread: true },
+  /** 다윗이 친 장막: 열린 휘장 안의 궤, 제단 연기, 떡·건포도떡 (6:17-19) */
+  'kg-tent': { light: true, land: false, art: 'kg-tent', tone: 'dusk', spread: true },
+  /** 왕궁 지붕 위: 낮은 난간 너머 겹겹이 펼쳐진 성읍의 지붕과 불빛 (11:2). 사람은 안 그림 */
+  'kg-roof': { light: true, land: false, art: 'kg-roof', tone: 'dusk' },
+  'kg-roof-night': { light: true, land: false, art: 'kg-roof', tone: 'night' },
+  /** 왕궁 문, 밤: 닫힌 큰 문과 횃불, 담 밑에 누운 신복들, 벽에 기대 세운 창과 방패 (11:9, 13) */
+  'kg-gate': { light: true, land: false, art: 'kg-gate', tone: 'night' },
+  'kg-gate-dawn': { light: true, land: false, art: 'kg-gate', tone: 'clear' },
+  /** 암몬의 왕성 랍바: 언덕 위 성벽의 활 쏘는 자들, 물줄기, 이스라엘 진 (11:1, 16-17, 12:26-29). 성 포위 장면에 재사용 */
+  'kg-rabbah': { light: true, land: false, art: 'kg-rabbah', spread: true },
+  'kg-rabbah-dusk': { light: true, land: false, art: 'kg-rabbah', tone: 'dusk', spread: true },
+  /** 나단의 비유(종이 그림책): 부자의 큰 집과 양 떼 | 작은 암양 새끼를 품은 가난한 자 (12:1-3) */
+  'kg-parable': { light: true, land: false, art: 'kg-parable', tone: 'dusk', spread: true },
+  /** 같은 그림, 가난한 자의 품이 비고 부자의 집 앞에 고기 굽는 불 (12:4) */
+  'kg-parable-taken': { light: true, land: false, art: 'kg-parable-taken', tone: 'dusk', spread: true },
 
   // ── 7막 다윗 A급 (삼상 16 · 17, fx/david.ts) ──
   /** 베들레헴 성읍 어귀: 언덕 위 집들, 성문, 성문 앞의 장로들(떨며 맞음), 오르는 길 (삼상 16:4) */

@@ -136,10 +136,10 @@
   40% { translate: 0 var(--lift); animation-timing-function: cubic-bezier(0.4, 0, 0.8, 0.6); }
   100% { translate: 0 var(--drop); }
 }
-.fx-arrows__a { position: absolute; left: -14px; top: -1px; width: 28px; height: 2px; scale: var(--k) 1; opacity: 0;
+.fx-arrows__a { position: absolute; left: -20px; top: -1.5px; width: 40px; height: 3px; scale: var(--k) 1; opacity: 0;
   background: linear-gradient(90deg, #e8dcc0 0 22%, color-mix(in srgb, #b8945e 80%, #000) 22% 100%);
   animation: jn-aa 1.5s linear both; animation-delay: calc(0.3s + var(--i) * 0.9s); box-shadow: 0 0 3px rgba(255, 240, 210, 0.6); }
-.fx-arrows__a::after { content: ''; position: absolute; right: -5px; top: -2.5px; width: 6px; height: 7px; background: #e8ecf4; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.fx-arrows__a::after { content: ''; position: absolute; right: -7px; top: -3.5px; width: 9px; height: 10px; background: #e8ecf4; clip-path: polygon(0 0, 100% 50%, 0 100%); }
 @keyframes jn-aa { 0% { opacity: 1; rotate: calc(-28deg * var(--k)); } 40% { rotate: 0deg; } 92% { opacity: 1; rotate: calc(34deg * var(--k)); } 100% { opacity: 0; rotate: calc(36deg * var(--k)); } }
 /* 시위 소리: 쏘는 손에서 작은 고리 */
 .fx-arrows__twang { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(255, 236, 190, 0.7);
