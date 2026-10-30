@@ -152,6 +152,18 @@ export const PLACE_NAMES = {
   gibeah: '기브아',
   'jabesh-gilead': '야베스 길르앗',
   'mizpah-benjamin': '미스바',
+  'carmel-judah': '갈멜',
+  ramah: '라마',
+  aphek: '아벡',
+  ashdod: '아스돗',
+  gath: '가드',
+  ekron: '에그론',
+  'beth-shemesh': '벧세메스',
+  'kiriath-jearim': '기럇여아림',
+  michmash: '믹마스',
+  geba: '게바',
+  bezek: '베섹',
+  elah: '엘라 골짜기',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -167,4 +179,11 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   mizpah: '길르앗의 진',
   kedesh: '납달리 게데스',
   'mizpah-benjamin': '베냐민 땅, 온 회중이 모인 곳',
+  'carmel-judah': '유다 남쪽 산지, 사울의 기념비',
+  ramah: '라마다임소빔, 사무엘의 고향',
+  aphek: '블레셋의 진',
+  ashdod: '다곤의 신전',
+  'beth-shemesh': '레위인의 성읍',
+  bezek: '사울이 군사를 센 곳',
+  elah: '소고와 아세가 사이',
 };

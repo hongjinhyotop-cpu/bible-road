@@ -30,6 +30,9 @@ import { brazenArt } from './brazen';
 import { deutArt } from './deuteronomy';
 import { joshArt } from './joshua';
 import { judgesArt } from './judges';
+import { samuelArt } from './samuel';
+import { saulArt } from './saul';
+import { davidArt } from './david';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
@@ -605,6 +608,33 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'rt-field': () => judgesArt('rt-field'),
   'rt-threshing': () => judgesArt('rt-threshing'),
   'rt-gate': () => judgesArt('rt-gate'),
+  // 7막 한나와 사무엘 (fx/samuel.ts)
+  'sm-road': () => samuelArt('sm-road'),
+  'sm-shiloh': () => samuelArt('sm-shiloh'),
+  'sm-ramah': () => samuelArt('sm-ramah'),
+  'sm-lamp': () => samuelArt('sm-lamp'),
+  'sm-lamp-out': () => samuelArt('sm-lamp-out'),
+  // 7막 다윗 (fx/david.ts)
+  'dv-bethlehem': () => davidArt('dv-bethlehem'),
+  'dv-yard': () => davidArt('dv-yard'),
+  'dv-field': () => davidArt('dv-field'),
+  'dv-court': () => davidArt('dv-court'),
+  'dv-court-calm': () => davidArt('dv-court-calm'),
+  'dv-elah': () => davidArt('dv-elah'),
+  'dv-brook': () => davidArt('dv-brook'),
+  // 7막 사울 (fx/saul.ts)
+  'sl-hills': () => saulArt('sl-hills'),
+  'sl-ascent': () => saulArt('sl-ascent'),
+  'sl-feast': () => saulArt('sl-feast'),
+  'sl-roof': () => saulArt('sl-roof'),
+  'sl-roof-dawn': () => saulArt('sl-roof-dawn'),
+  'sl-prophets': () => saulArt('sl-prophets'),
+  'sl-mizpah': () => saulArt('sl-mizpah'),
+  'sl-baggage': () => saulArt('sl-baggage'),
+  'sl-kenite': () => saulArt('sl-kenite'),
+  'sl-carmel': () => saulArt('sl-carmel'),
+  'sl-gilgal': () => saulArt('sl-gilgal'),
+  'sl-parting': () => saulArt('sl-parting'),
   // 여호수아 (fx/joshua.ts)
   'js-jericho': () => joshArt('js-jericho'),
   'js-jericho-cord': () => joshArt('js-jericho-cord'),
