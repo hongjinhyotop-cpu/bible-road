@@ -196,9 +196,13 @@ function holyArt(ark: boolean): string {
 }
 
 // ── 예루살렘 앞 산의 산당들 (11:7-8) ──────────────
-/** 산당 하나: 돌단 + 주상 + 목상 장대 + 연기 기둥 */
+/** 산당 하나: 돌단 + 주상 + 목상 장대 + 높이 오르는 연기 기둥 */
 function highPlace(x: number, base: number, s: number, seed: number): string {
+  const r = rng(seed);
+  const top = 18 + r() * 14;
+  const sway = (r() - 0.5) * 30;
   return `<g class="tp-high">
+    <path class="tp-column" style="--d:${f(r() * 4)}s" d="M${f(x - 3 * s)} ${f(base - 12 * s)} C${f(x - 8 * s)} ${f(base - 50)} ${f(x + sway)} ${f(base - 80)} ${f(x + sway * 1.6 - 10)} ${f(top)} L${f(x + sway * 1.6 + 10)} ${f(top)} C${f(x + sway + 12)} ${f(base - 80)} ${f(x + 8 * s)} ${f(base - 50)} ${f(x + 3 * s)} ${f(base - 12 * s)} Z"/>
     <g class="bd-near">
       <rect x="${f(x - 12 * s)}" y="${f(base - 9 * s)}" width="${f(24 * s)}" height="${f(9 * s)}"/>
       <rect x="${f(x - 14 * s)}" y="${f(base - 11 * s)}" width="${f(28 * s)}" height="${f(3 * s)}"/>
@@ -208,38 +212,42 @@ function highPlace(x: number, base: number, s: number, seed: number): string {
     </g>
     <ellipse class="bd-ember tp-hpfire" cx="${f(x)}" cy="${f(base - 11.6 * s)}" rx="${f(9 * s)}" ry="${f(1.6 * s)}"/>
     <circle class="bd-halo tp-hphalo" cx="${f(x)}" cy="${f(base - 14 * s)}" r="${f(26 * s)}"/>
-    <g class="tp-hpsmoke">${smoke(x, base - 16 * s, seed, 7)}</g>
+    <g class="tp-hpsmoke">${smoke(x, base - 16 * s, seed, 5)}</g>
   </g>`;
 }
 
 function heightsArt(): string {
-  const houses = Array.from({ length: 14 }, (_, i) => {
-    const x = 20 + i * 12;
-    const h = 6 + ((i * 5) % 7);
-    return `<rect x="${x}" y="${f(168 - h - Math.sin(i / 2) * 4)}" width="10" height="${f(h + 6)}"/>`;
+  // 건너편 언덕(시온·모리아)의 집들
+  const houses = Array.from({ length: 16 }, (_, i) => {
+    const x = -10 + i * 12;
+    const hill = 132 - Math.sin(Math.min(1, Math.max(0, (x + 10) / 170)) * Math.PI) * 26;
+    const h = 7 + ((i * 5) % 6);
+    return `<rect x="${x}" y="${f(hill - h + 6)}" width="10" height="${f(h + 10)}"/>`;
   }).join('');
   return `<g class="tp tp--heights">
-    ${stars(30, 80, 9001)}
-    ${ridge([[-W * 2, 132], [-80, 124], [40, 130], [160, 120], [280, 128], [W * 3, 124]], 'bd-far')}
-    <!-- 건너편: 성과 성전 (시온 · 모리아) -->
-    <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 176 C-40 168 40 158 110 156 C150 154 180 160 210 170 C240 180 260 190 300 196 L300 ${H} Z"/>
-    <g class="bd-mid tp-city">${houses}
-      <path d="M0 172 L0 158 ${Array.from({ length: 10 }, () => `h8 v-4 h6 v4`).join(' ')} L140 172 Z"/>
-    </g>
+    ${stars(30, 70, 9001)}
+    ${ridge([[-W * 2, 150], [-80, 140], [40, 146], [180, 138], [300, 144], [W * 3, 140]], 'bd-far')}
+    <!-- 건너편: 성과 성전 (위쪽, 사람 머리 위로 보이게) -->
+    <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 150 C-60 140 40 120 110 108 C150 102 180 104 210 118 C240 132 262 150 300 168 L300 ${H} Z"/>
+    <g class="bd-mid tp-city">${houses}</g>
+    <path class="tp-citywall" d="M-20 150 L-20 136 ${Array.from({ length: 13 }, () => 'h8 v-4 h6 v4').join(' ')} L170 150 Z"/>
     <g class="tp-templefar">
-      <circle class="bd-halo tp-farhalo" cx="138" cy="132" r="46"/>
-      <rect class="tp-farstone" x="122" y="118" width="32" height="34"/>
-      <rect class="tp-farporch" x="128" y="124" width="20" height="28"/>
-      <rect class="tp-fargold" x="120" y="116" width="36" height="2.4"/>
-      <rect class="tp-fardoor" x="135" y="138" width="6" height="14"/>
-      <rect class="tp-bronze" x="130" y="128" width="2" height="24"/><rect class="tp-bronze" x="144" y="128" width="2" height="24"/>
+      <circle class="bd-halo tp-farhalo" cx="152" cy="84" r="64"/>
+      <rect class="tp-farstone" x="126" y="60" width="52" height="48"/>
+      <rect class="tp-farstone" x="114" y="80" width="76" height="28"/>
+      <rect class="tp-farporch" x="134" y="68" width="36" height="40"/>
+      <rect class="tp-fargold" x="123" y="57" width="58" height="3.4"/>
+      <rect class="tp-fargold" x="131" y="65" width="42" height="2.4"/>
+      <rect class="tp-fardoor" x="146" y="84" width="12" height="24"/>
+      <rect class="tp-bronze" x="138" y="76" width="3" height="32"/><rect class="tp-bronze" x="163" y="76" width="3" height="32"/>
+      <circle class="tp-bronze" cx="139.5" cy="75" r="2.6"/><circle class="tp-bronze" cx="164.5" cy="75" r="2.6"/>
     </g>
     <!-- 사이의 골짜기 -->
-    <path class="tp-valley" d="M${-W * 2} 200 C40 196 140 196 200 204 C260 212 320 214 ${W * 3} 210 L${W * 3} 222 L${-W * 2} 222 Z"/>
-    <!-- 이쪽: 산마루와 산당들 -->
-    <path class="bd-mid tp-hill" d="M120 ${H} C150 232 190 206 230 190 C260 180 300 176 340 180 C380 184 420 192 ${W * 3} 200 L${W * 3} ${H} Z"/>
-    ${highPlace(236, 190, 1.05, 9002)}${highPlace(286, 180, 1.2, 9003)}${highPlace(338, 184, 0.95, 9004)}
-    <path class="tp-path" d="M150 ${H} C170 240 200 220 230 206 C250 198 270 194 286 190"/>
+    <path class="tp-valley" d="M${-W * 2} 196 C40 190 160 176 230 172 C270 170 320 184 ${W * 3} 196 L${W * 3} 210 L${-W * 2} 210 Z"/>
+    <!-- 이쪽: 산마루와 산당들 — 연기 기둥이 하늘로 -->
+    <path class="bd-mid tp-hill" d="M180 ${H} C200 196 230 160 262 146 C290 134 320 128 350 130 C390 132 430 140 ${W * 3} 150 L${W * 3} ${H} Z"/>
+    ${highPlace(258, 150, 1.05, 9002)}${highPlace(300, 132, 1.2, 9003)}${highPlace(346, 132, 1, 9004)}
+    <path class="tp-path" d="M190 ${H} C206 220 226 190 248 168 C266 152 284 142 300 134"/>
     ${ground(250)}
   </g>`;
 }
@@ -318,7 +326,7 @@ const PRAYERS = ['다툼', '패전', '가뭄', '기근', '이방인', '전쟁', 
 export function playPrayers(scene: HTMLElement, rm: boolean): void {
   const at = markAt(scene, ['.tp-door', '.tp-templefar'], 0.5, 0.5);
   // 무대 가장자리의 일곱 자리 (왼쪽 아래 → 위 → 오른쪽 아래)
-  const spots: [number, number][] = [[0.04, 0.78], [0.06, 0.42], [0.2, 0.1], [0.5, 0.04], [0.8, 0.1], [0.94, 0.42], [0.96, 0.78]];
+  const spots: [number, number][] = [[0.1, 0.74], [0.09, 0.4], [0.22, 0.12], [0.5, 0.06], [0.78, 0.12], [0.91, 0.4], [0.9, 0.74]];
   const order = [0, 6, 2, 4, 1, 5, 3];
   const rays = order.map((k, i) => {
     const [px, py] = spots[k];
@@ -350,8 +358,8 @@ export function playTearTwelve(scene: HTMLElement, from: string | undefined, to:
   const pieces = Array.from({ length: 12 }, (_, i) => {
     const col = i % 4;
     const row = Math.floor(i / 4);
-    const px = (col - 1.5) * 13;
-    const py = (row - 1) * 18;
+    const px = (col - 1.5) * 17;
+    const py = (row - 1) * 23;
     const stay = keep.has(i);
     // 받는 쪽에서 부채꼴로 쌓임
     const k = stay ? 0 : sent++;
