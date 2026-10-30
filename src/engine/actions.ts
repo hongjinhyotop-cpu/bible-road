@@ -183,6 +183,12 @@ export const PLACE_NAMES = {
   rabbah: '랍바',
   'baal-hazor': '바알하솔',
   geshur: '그술',
+  tyre: '두로',
+  rephaim: '르바임 골짜기',
+  lodebar: '로드발',
+  bahurim: '바후림',
+  gezer: '게셀',
+  zobah: '소바',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -224,4 +230,9 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   rabbah: '암몬의 왕성, 물들의 성',
   'baal-hazor': '에브라임 곁, 양털 깎는 곳',
   geshur: '압살롬의 외할아버지 달매의 나라',
+  tyre: '히람 왕의 항구, 백향목',
+  rephaim: '예루살렘 서남쪽 골짜기',
+  lodebar: '요단 동편, 마길의 집',
+  bahurim: '발디엘이 돌아선 곳',
+  zobah: '아람 북쪽의 나라',
 };
