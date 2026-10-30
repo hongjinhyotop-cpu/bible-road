@@ -41,7 +41,7 @@
 | 4 | 시내산과 성막 | 출 19–40, 레위기 | 아카시아 나무, 청색·자색·홍색 실, 금 | mountain |
 | 5 | 광야 40년 | 민수기, 신명기 | 사막 노을, 테라코타, 밤하늘 | wilderness |
 | 6 | 정복과 사사 | 여호수아, 사사기, 룻기 | 누아르 사건 파일, 타자기 | town |
-| 7 | 왕국 | 삼상–왕상 11, 역대기 일부 | 왕실 보라, 청동, 횃불 | palace |
+| 7 | 왕국 | 삼상–왕상 11 (역대기는 나중에 별도 막 — `acts.ts` `later`) | 왕실 보라, 청동, 횃불 | palace |
 | 8 | 지혜와 노래 | 욥, 시편, 잠언, 전도서, 아가 | 미니멀, 여백, 물결 | starfield |
 | 9 | 분열과 예언 | 왕상 12–왕하, 예언서 | 폭풍 하늘, 재, 두루마리 | ruins |
 | 10 | 포로와 귀환 | 에스겔, 다니엘, 에스라, 느헤미야, 에스더 | 바빌론 청색 타일, 돌벽 | palace |
@@ -144,7 +144,7 @@ PROGRESS.md      ← 진행 기록
 
 ### beat 종류 (`src/engine/scene.ts`)
 - `narration` 이야기 서술 · `line` 대사(`"who"` = 말하는 사람, 강조됨) · `voice` 하나님의 목소리(인물 없이 빛나는 글자) · `scripture` 본문 카드(`ref` + `gloss`) · `choice` 선택지
-- **type 없는 beat(또는 `"type": "act"`) = 동작만 하는 beat.** 글 없이 움직이고 잠깐 뒤 저절로 다음으로 넘어간다 (탭하면 바로).
+- **type 없는 beat(또는 `"type": "act"`) = 동작만 하는 beat.** 여기에 `text`를 쓰면 엔진이 narration으로 보여 주지만 검사기 주의 — 글이 있으면 `"type": "narration"`을 적는다. 글 없이 움직이고 잠깐 뒤 저절로 다음으로 넘어간다 (탭하면 바로).
 - 모든 beat에 붙일 수 있는 것:
   - `"act"` + `"who"`(한 명 또는 배열) + `"to"`(상대): 동작 라이브러리. line beat에서는 who 생략 = 말하는 사람이 함. 여러 동작을 동시에: `"acts": [{ "act": "embrace", "who": ["jacob", "esau"] }, { "act": "cry", "who": "esau" }]`
   - `"bg"`(= `"mood"`): 배경 바꾸기 · `"fx"`: 효과 (한 개 또는 배열)
@@ -187,6 +187,7 @@ PROGRESS.md      ← 진행 기록
 - 신명기 A급 효과 (`src/fx/deuteronomy.ts`): `shema`("들으라" 금빛 글자 + 소리 고리) `pass-on`(금빛 티끌이 왼쪽 인물 → 오른쪽 인물: 가르침·전해 줌) `amen`(군중 쪽에서 "아멘"이 떠오름) `eagle`(독수리가 새끼를 받아 올림) `land-show`(배경 `dt-nebo-view`의 땅이 구역별로 밝아짐). 배경 `dt-door`/`dt-door-lit`(문설주) `dt-twin`/`-bless`/`-curse`(그리심·에발) `dt-song`(별밤·반석 벼랑) `dt-nebo-path`/`dt-nebo-view`/`dt-nebo-empty`(느보산).
 - 여호수아 A급 (`src/fx/joshua.ts`, 2026-10-28): 효과 `march`(여리고 성벽 아래 행렬) `shout`(일곱 나팔 + 큰 외침, `shake`와 같이) `lots`(제비가 지파 → 한 사람으로 좁혀짐, 수 7) `sun-stand`(해·달이 머묾, 배경 `js-gibeon-sun`). 배경 `js-jericho`(-dusk/-dawn) `js-jericho-cord` `js-jericho-fallen` `js-jericho-ruin` `js-roof`(라합의 지붕, 밤) `js-window-rope`/`js-window-cord`(성벽의 창) `js-jordan-flood`/`js-jordan-dry`(넘치는·마른 요단) `js-gilgal`(열두 돌) `js-ai` `js-tent-dig`(아간의 장막) `js-achor`(아골 골짜기) `js-gibeon`(-night/-storm/-sun) `js-shechem`/`js-shechem-stone`(세겜 상수리나무와 큰 돌). 성 함락·전쟁 장면에서 재사용 가능.
 - **7막 공통 `anoint`(기름 부음, `src/fx/saul.ts`, 2026-10-30)**: 위에서 기름 뿔이 기울고 금빛 기름 한 줄기가 인물 머리 위로 흘러 빛이 몸을 따라 번짐(약 5초, 탭하면 빨리 감김). 대상 = beat의 `to` → (대사 beat가 아니면) `who` → 무대 가운데 사람. 예: `{ "act": "kneel", "who": "david", "fx": "anoint" }`. 같은 파일: `saul-lots`(미스바의 제비, 삼상 10:20-21), 배경 `sl-hills` `sl-ascent` `sl-feast` `sl-roof`(-dawn) `sl-prophets`(선지자 무리) `sl-mizpah` `sl-baggage` `sl-kenite` `sl-carmel` `sl-gilgal`(양과 소) `sl-parting`(라마·기브아 갈림길).
+- **7막 왕국** (2026-10-30, 다른 막에서도 재사용): `anoint`(기름 부음 — 대상은 to → who → 가운데 사람, 무릎 꿇어도 머리에 맞음) `lyre`(수금, 어두운 기운이 걷힘) `sling` `topple`(큰 몸이 쓰러짐) `spear-throw`(늘 빗나감) `arrows` `hem`(벤 옷자락) `rise`(땅에서 오르는 회색 빛 — 엔돌) `dance` `letter`(봉한 편지 who → to) `accuse`(한 사람에게만 찬 빛 — "당신이 그 사람이라") `stones`(돌·티끌, 아무도 안 맞음) `thousand` `asks` `swaddle`(강보의 아기, to로 옮김) `blade`(칼빛 한 번, 아무도 안 다침) `cloud-glory`(성전을 채우는 구름) `prayers` `tear-twelve`(옷이 열두 조각) `little-robes` `saul-lots`. 배경: `sm-*`(실로·라마) `sl-*`(사울) `dv-*`(베들레헴·엘라) `jn-*`(사울 궁·엔게디 굴) `gb-*`(엔돌·길보아·벳산·밤 요단) `kg-*`(수레·창·지붕·성문·랍바) `ab-*`(성문 길·기드론·감람산·마하나임·상수리나무·다락) `so-*`(기브온·꿈·재판 자리) `tp-*`(성전 뜰·지성소·산당). 인물 옷: david `shepherd`(기본) `fugitive` `king` `old` `armor` `sling` `ephod` `barefoot` · samuel `child` `old` `prophet` · saul `farmer` `king` `broken` · solomon `young` `old`.
 - 재앙 효과 (`src/fx/plagues.ts`, `styles/plagues.css`, 약 10초 뒤 저절로 사라짐. `fade` 전환이나 다른 배경으로 바뀌는 beat에서는 바로 걷힘 — 다른 심판·재앙 장면에서도 재사용): `frogs`(개구리들이 무대 아래를 폴짝폴짝) `gnats`(땅에서 일어난 작은 점 떼 = 이) `flies`(큰 점 무리가 윙윙 = 파리 떼) `ash`(재가 하늘로 흩날렸다 내려앉음 = 독종) `hail`(얼음 줄기 + 불덩이, `thunder`와 같이) `locusts`(메뚜기 떼 구름이 하늘을 덮고 지나감). 오래 남는 재앙은 배경(mood)으로: `nile-blood`(피로 변한 나일) `hail-field`(폭풍 하늘의 보리밭) `darkness`(흑암, 멀리 고센 집에만 불빛).
 - `weep`(큰 울음: 요셉에게서 소리의 고리가 둥글게 퍼져 벽 너머로 — 창 45:2, `src/fx/hall.ts`). 이집트 고관의 홀 배경 `joseph-hall`(열린 큰 문·파피루스 기둥·화로) / `joseph-hall-shut`(모두 물러가고 문이 닫힘) / `joseph-hall-dusk` — 창 41–50의 요셉 궁·바로 궁 장면에서 재사용 가능.
 - A급 전용 연출(방주 새 raven/dove…, 바벨 descend/babble/scatter)도 목록에 있음. 방주·물·비·무지개·탑은 mood로 (`flood.css`, `babel.css`).
@@ -407,6 +408,7 @@ A급·B급 **모든 에피소드**는 아래를 통과해야 한다. 빨리 만�
 - **Phase 2 — 2막 족장들 (창 12–50):** 끝 (2026-10-28). A급 15개 + B급 30개 + 피날레.
 - **Phase 3 — 3막 출애굽 (출 1–18):** 끝 (2026-10-28). A급 6개 + B급 8개 + 피날레.
 - **Phase 4–5 — 4막 시내산·5막 광야:** 끝 (모세오경 187장 완주, 2026-10-28).
-- **Phase 6 — 6막 정복과 사사:** 여호수아 24장 끝 (A급 6 + B급 12, 땅 분배 지도). 사사기·룻기(순환 고리, 2026-10-29 진행).
+- **Phase 6 — 6막 정복과 사사:** 끝 (2026-10-29). 여호수아·사사기(순환 고리)·룻기 49장 + 피날레.
+- **Phase 7 — 7막 왕국:** 끝 (2026-10-30). 삼상·삼하·왕상 1–11 66장, A급 17 + B급 38 + 피날레 + 검수. 역대기는 별도 막으로 나중에.
 - **그다음 — 막 순서대로:** 막마다 ① A급 목록 정하기(성경 전체 약 100개) ② B급 10~20장씩 도우미로 대량 생산 ③ A급 몇 개씩 공들여 만들기 ④ 막 피날레.
 - 인물 도감, 막 피날레는 계속 쌓는다. 소리(Howler.js)는 나중에.
