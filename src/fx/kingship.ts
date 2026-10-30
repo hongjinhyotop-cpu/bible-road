@@ -36,7 +36,7 @@ function ark(x: number, y: number, s: number, poles = false): string {
   return `<g class="kg-ark" transform="translate(${f(x)} ${f(y)}) scale(${s})">
     <rect x="-10" y="-9" width="20" height="9" rx="0.8"/>
     <rect x="-11" y="-10.6" width="22" height="2"/>
-    <path d="M-9 -10.6 C-9 -16 -5 -19 -1 -15 L-2 -10.6 Z M9 -10.6 C9 -16 5 -19 1 -15 L2 -10.6 Z"/>
+    <path d="M-9.4 -10.6 L-9.4 -13.4 C-10.6 -19 -6 -22.4 -0.8 -19.6 C-5 -19.2 -7.2 -16.6 -7.2 -13.4 L-7.2 -10.6 Z M9.4 -10.6 L9.4 -13.4 C10.6 -19 6 -22.4 0.8 -19.6 C5 -19.2 7.2 -16.6 7.2 -13.4 L7.2 -10.6 Z"/><circle cx="-8.3" cy="-14.6" r="1.4"/><circle cx="8.3" cy="-14.6" r="1.4"/>
     <path class="kg-ark__line" d="M-10 -5 H10"/>
     ${poles ? '<path class="kg-pole" d="M-24 -3 H24"/>' : ''}
   </g>`;
@@ -361,20 +361,27 @@ function parableArt(taken: boolean): string {
     ? `<ellipse class="kg-ember" cx="168" cy="236" rx="12" ry="2.4"/><g class="kg-fire"><path d="M162 236 C160 228 166 224 168 216 C171 224 176 228 174 236 Z"/></g>${smoke(168, 210, 9942, 6)}
        <path class="kg-paper" d="M154 214 L182 214" stroke="currentColor" stroke-width="1.6"/>`
     : '';
+  // 그림책 한 장: 폰에서도 인물 머리 위로 보이게, 무대 위쪽 가운데에 액자로 띄운다 (x 104~296, y 18~102)
   return `<g class="kg kg--parable${taken ? ' is-taken' : ''}">
-    <rect class="kg-sheet" x="${-W * 2}" y="0" width="${W * 5}" height="${H}"/>
-    ${ridge([[-W * 2, 150], [-60, 140], [80, 146], [200, 136], [320, 146], [460, 138], [W * 3, 144]], 'kg-paper kg-paper--far')}
-    <!-- 왼쪽: 부자의 큰 집과 양·소 떼 (12:2) -->
-    <g class="kg-paper"><rect x="40" y="150" width="120" height="50"/><rect x="34" y="144" width="132" height="7"/><rect x="66" y="128" width="40" height="18"/></g>
-    <rect class="kg-lamp" x="90" y="166" width="5" height="7"/><rect class="kg-lamp" x="130" y="166" width="5" height="7"/>
-    <path class="kg-fence" d="M20 206 H180 M20 234 H180 M24 200 V240 M60 200 V240 M100 200 V240 M140 200 V240 M176 200 V240"/>
-    ${flock}${oxen}${feast}
-    <!-- 가운데 나누는 금 -->
-    <path class="kg-divide" d="M210 120 V250"/>
-    <!-- 오른쪽: 가난한 자의 작은 집 (12:3) -->
-    <g class="kg-paper"><rect x="300" y="176" width="64" height="30" opacity="0.5"/><path d="M296 178 L332 158 L368 178 Z" opacity="0.5"/></g>
-    ${poor}
-    <path class="kg-paper" d="M${-W * 2} ${H} L${-W * 2} 240 L${W * 3} 240 L${W * 3} ${H} Z"/>
+    <rect class="kg-wall" x="${-W * 2}" y="0" width="${W * 5}" height="${H}"/>
+    <path class="kg-stones" d="M-60 150 H460 M-60 190 H460 M-60 230 H460 M20 150 V190 M120 190 V230 M300 150 V190 M380 190 V230"/>
+    <circle class="bd-halo kg-page-halo" cx="200" cy="60" r="130"/>
+    <g class="kg-page">
+      <rect class="kg-sheet" x="100" y="14" width="200" height="96" rx="2"/>
+      <svg x="100" y="14" width="200" height="96" viewBox="16 116 368 176" preserveAspectRatio="xMidYMid slice" overflow="hidden">
+        ${ridge([[-W, 150], [-60, 140], [80, 146], [200, 136], [320, 146], [460, 138], [W * 2, 144]], 'kg-paper kg-paper--far')}
+        <g class="kg-paper"><rect x="40" y="150" width="120" height="50"/><rect x="34" y="144" width="132" height="7"/><rect x="66" y="128" width="40" height="18"/></g>
+        <rect class="kg-lamp" x="90" y="166" width="5" height="7"/><rect class="kg-lamp" x="130" y="166" width="5" height="7"/>
+        <path class="kg-fence" d="M20 206 H180 M20 234 H180 M24 200 V240 M60 200 V240 M100 200 V240 M140 200 V240 M176 200 V240"/>
+        ${flock}${oxen}${feast}
+        <path class="kg-divide" d="M210 120 V250"/>
+        <g class="kg-paper"><rect x="300" y="176" width="64" height="30" opacity="0.5"/><path d="M296 178 L332 158 L368 178 Z" opacity="0.5"/></g>
+        ${poor}
+        <path class="kg-paper" d="M-40 300 L-40 240 L440 240 L440 300 Z"/>
+      </svg>
+      <rect class="kg-page-frame" x="100" y="14" width="200" height="96" rx="2"/>
+    </g>
+    ${ground(250)}
   </g>`;
 }
 

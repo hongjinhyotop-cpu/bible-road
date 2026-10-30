@@ -160,6 +160,10 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   giloh: at(35.08, 31.58),
   gezer: at(34.92, 31.86),
   zobah: at(36.4, 34.1),
+  helam: at(36.1, 32.75),
+  'abel-beth-maacah': at(35.58, 33.26),
+  zelah: at(35.2, 31.83),
+  tekoa: at(35.22, 31.63),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

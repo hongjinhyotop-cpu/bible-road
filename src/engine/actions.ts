@@ -190,6 +190,10 @@ export const PLACE_NAMES = {
   giloh: '길로',
   gezer: '게셀',
   zobah: '소바',
+  helam: '헬람',
+  'abel-beth-maacah': '벧마아가 아벨',
+  zelah: '셀라',
+  tekoa: '드고아',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -237,4 +241,8 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   bahurim: '발디엘이 돌아선 곳',
   giloh: '아히도벨의 고향',
   zobah: '아람 북쪽의 나라',
+  helam: '요단 건너, 아람이 모인 곳',
+  'abel-beth-maacah': '북쪽 끝, 물어보러 가던 성',
+  zelah: '베냐민 땅, 기스의 묘',
+  tekoa: '베들레헴 남쪽, 슬기 있는 여인',
 };
