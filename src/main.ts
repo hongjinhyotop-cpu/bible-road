@@ -45,6 +45,7 @@ import './styles/samuel.css';
 import './styles/gilboa.css';
 import './styles/saul.css';
 import './styles/david.css';
+import './styles/kingship.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';

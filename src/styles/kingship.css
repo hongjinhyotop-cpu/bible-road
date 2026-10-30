@@ -1,0 +1,151 @@
+/* ── 7막 A급: 다윗 왕 (삼하 6 · 11–12, fx/kingship.ts · characters/david.ts의 ephod) ──
+   인물: 흰 세마포 베 에봇(.dv-linen)
+   배경: 새 수레와 궤, 나곤의 타작마당, 오벧에돔의 집, 다윗 성으로 오르는 길, 창, 다윗이 친 장막,
+         왕궁 지붕, 왕궁 문, 랍바, 나단의 비유(종이 그림책)
+   효과: dance(춤), letter(편지), accuse(당신이 그 사람이라) */
+
+/* ── 인물 ── */
+.actor .dv-linen, .sil .dv-linen { fill: color-mix(in srgb, #ece4d0 44%, var(--sil-ink)); }
+.actor .dv-ephod, .sil .dv-ephod { fill: color-mix(in srgb, #f4eedc 52%, var(--sil-ink)); }
+/* 춤: 뛰놀며 (6:16) — 몸 전체가 뛰어오르고 기울어진다. GSAP transform과 겹치지 않게 개별 속성(translate·rotate)으로 */
+.actor.kg-dancing { animation: kg-dance 1.05s cubic-bezier(0.3, 0, 0.4, 1) infinite; }
+@keyframes kg-dance {
+  0% { translate: 0 0; rotate: 0deg; }
+  22% { translate: -6px -22px; rotate: -5deg; }
+  44% { translate: 0 0; rotate: 0deg; }
+  66% { translate: 6px -16px; rotate: 5deg; }
+  100% { translate: 0 0; rotate: 0deg; }
+}
+:root[data-reduced-motion='true'] .actor.kg-dancing { animation: none; }
+
+/* ── 배경 공통 ── */
+.kg-ark { fill: #e8c27a; filter: drop-shadow(0 0 1.8px rgba(255, 214, 140, 0.95)); }
+.kg-ark__line, .kg-pole { fill: none; stroke: #b88a42; stroke-width: 0.8; }
+.kg-pole { stroke: #c9a056; stroke-width: 1.2; }
+.kg-arkhalo { opacity: 0.9; transform-box: fill-box; transform-origin: center; animation: kg-breathe 5s ease-in-out infinite alternate; }
+.kg-arkhalo.is-dim { opacity: 0.35; animation: none; }
+@keyframes kg-breathe { from { scale: 0.92; } to { scale: 1.08; } }
+.kg-lamp { fill: #ffcf80; opacity: 0.85; filter: drop-shadow(0 0 1.5px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.kg-stones { fill: none; stroke: color-mix(in srgb, var(--act-b) 45%, #000); stroke-width: 0.7; opacity: 0.5; }
+.kg-road { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 3.4; stroke-linecap: round; opacity: 0.45; }
+.kg-ember { fill: #ff9a50; opacity: 0.55; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.kg-door { fill: color-mix(in srgb, #2a1a0c 60%, #000); }
+.kg-wall { fill: color-mix(in srgb, var(--act-b) 26%, #07050a); }
+.kg-folk rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.kg-timbrel { fill: color-mix(in srgb, #e8c27a 50%, var(--act-b)); opacity: 0.8; transform-box: fill-box; transform-origin: center; animation: kg-shake 0.5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes kg-shake { from { translate: 0 -1px; } to { translate: 0 1px; } }
+.kg-harp { fill: none; stroke: color-mix(in srgb, #e8c27a 60%, var(--act-b)); stroke-width: 0.7; }
+.kg-horn { fill: none; stroke: #e8c27a; stroke-width: 0.9; stroke-linecap: round; }
+.kg-wheel { fill: none; stroke: color-mix(in srgb, var(--act-b) 36%, #04050b); stroke-width: 2; }
+.kg-spoke { stroke: color-mix(in srgb, var(--act-b) 36%, #04050b); stroke-width: 1; }
+.kg-sheep { color: color-mix(in srgb, #e8e0cc 40%, var(--act-b)); fill: color-mix(in srgb, #e8e0cc 40%, var(--act-b)); }
+.kg-fire path { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; }
+.kg-gate-open { fill: color-mix(in srgb, #ffe0a0 40%, var(--act-b)); opacity: 0.75; }
+
+/* ── 타작마당 ── */
+.kg-floor { fill: color-mix(in srgb, #c8b490 24%, var(--act-b)); opacity: 0.7; }
+.kg-floor-rim { fill: none; stroke: color-mix(in srgb, var(--act-b) 40%, #000); stroke-width: 1.6; stroke-dasharray: 5 3; opacity: 0.6; }
+.kg-chaff { fill: color-mix(in srgb, #d8c49a 40%, var(--act-b)); opacity: 0.8; }
+.kg-dust ellipse { fill: color-mix(in srgb, #c8b490 50%, transparent); filter: blur(4px); opacity: 0; animation: kg-dust 2.6s ease-out infinite; animation-delay: var(--d); }
+@keyframes kg-dust { 0% { opacity: 0; scale: 0.5; } 30% { opacity: 0.8; } 100% { opacity: 0; scale: 1.8; translate: 0 -14px; } }
+.kg--threshing:not(.kg--still) > g[transform^='translate(206'] { animation: kg-jolt 0.5s ease-in-out infinite alternate; }
+@keyframes kg-jolt { from { translate: 0 0; } to { translate: 1px -1.5px; } }
+.kg-breach { fill: none; stroke: color-mix(in srgb, #050307 80%, var(--act-b)); stroke-width: 1.6; stroke-linejoin: bevel; }
+
+/* ── 오벧에돔의 집 ── */
+.kg-vine { fill: none; stroke: color-mix(in srgb, #6f8a4a 50%, var(--act-b)); stroke-width: 2.4; }
+.kg-grape { fill: color-mix(in srgb, #6e3f8a 50%, var(--act-b)); }
+.kg-sheaf { fill: color-mix(in srgb, #e0c070 46%, var(--act-b)); }
+.kg-oil { fill: #ffd890; opacity: 0.6; }
+
+/* ── 창 ── */
+.kg-win-glow { fill: #ffd890; opacity: 0.8; filter: drop-shadow(0 0 6px rgba(255, 200, 110, 0.7)); animation: js-flicker 3.4s ease-in-out infinite alternate; }
+.kg-watcher { fill: color-mix(in srgb, #05030a 85%, var(--act-b)); }
+.kg-lattice { fill: none; stroke: color-mix(in srgb, #1a120a 80%, var(--act-b)); stroke-width: 2; }
+.kg-win-frame { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 3; }
+.kg-passing { animation: kg-pass 8s linear infinite; }
+@keyframes kg-pass { from { translate: -120px 0; } to { translate: 120px 0; } }
+.kg-mote { fill: #ffe6b0; opacity: 0; animation: kg-mote 4s ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes kg-mote { 0% { opacity: 0; translate: 0 0; } 30% { opacity: 0.9; } 100% { opacity: 0; translate: 0 -40px; } }
+
+/* ── 장막 ── */
+.kg-tent { fill: color-mix(in srgb, #d8c8a8 22%, var(--act-b)); }
+.kg-tent-in { fill: color-mix(in srgb, #ffd890 40%, var(--act-b)); opacity: 0.7; }
+.kg-rope { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 0.7; opacity: 0.6; }
+.kg-bread, .kg-cake { fill: color-mix(in srgb, #d8a860 50%, var(--act-b)); }
+.kg-basket { fill: color-mix(in srgb, #8a6a3a 40%, var(--act-b)); }
+
+/* ── 지붕 ── */
+.kg-star { fill: #fff6dc; animation: js-flicker 2.6s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.kg-far-lamp { opacity: 0.8; }
+.kg-roof-line { stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 1; opacity: 0.5; }
+
+/* ── 왕궁 문 ── */
+.kg-door-seam { stroke: #000; stroke-width: 1; opacity: 0.6; }
+.kg-stud { fill: color-mix(in srgb, #c89a5a 50%, var(--act-b)); opacity: 0.7; }
+.kg-torchhalo { opacity: 0.85; }
+.kg-spearhead { fill: color-mix(in srgb, #b8bcc8 40%, var(--act-b)); }
+
+/* ── 랍바 ── */
+.kg-archers { color: color-mix(in srgb, var(--act-a) 40%, #05040a); fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.kg-water { fill: color-mix(in srgb, #8aa8c8 30%, var(--act-b)); opacity: 0.7; }
+
+/* ── 나단의 비유: 종이 오린 그림책 ── */
+.kg-sheet { fill: color-mix(in srgb, #2a2014 70%, var(--act-b)); }
+.kg-paper { fill: color-mix(in srgb, #e8dcc0 26%, #120c08); color: color-mix(in srgb, #e8dcc0 26%, #120c08); }
+.kg-paper--far { opacity: 0.6; }
+.kg-sheep--rich { color: color-mix(in srgb, #e8dcc0 36%, #120c08); fill: color-mix(in srgb, #e8dcc0 36%, #120c08); }
+.kg-fence { fill: none; stroke: color-mix(in srgb, #e8dcc0 26%, #120c08); stroke-width: 1.2; }
+.kg-divide { stroke: color-mix(in srgb, #e8c27a 40%, transparent); stroke-width: 0.8; stroke-dasharray: 3 4; }
+.kg-lamb { animation: kg-breathe-y 3s ease-in-out infinite alternate; }
+.kg-lamb .kg-sheep { color: #f4ecd8; fill: #f4ecd8; filter: drop-shadow(0 0 2px rgba(255, 236, 200, 0.8)); }
+@keyframes kg-breathe-y { from { translate: 0 0; } to { translate: 0 -0.8px; } }
+.kg-poor.is-bowed path:first-child { transform-box: fill-box; transform-origin: bottom left; rotate: 10deg; }
+.kg-cup { fill: color-mix(in srgb, #e8c27a 40%, #120c08); }
+
+:root[data-reduced-motion='true'] :is(.kg-arkhalo, .kg-timbrel, .kg-dust ellipse, .kg-passing, .kg-mote, .kg-lamb, .kg-fire path, .kg-lamp, .kg-star) { animation: none; }
+:root[data-reduced-motion='true'] .kg--threshing > g { animation: none !important; }
+
+/* ── 효과 dance: 힘을 다하여 춤춤 (6:14) ── */
+.fx-dance { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-dance.is-out { opacity: 0; }
+.fx-dance__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-dance__glow { position: absolute; left: -110px; top: calc(var(--hh) * -0.9); width: 220px; height: calc(var(--hh) * 1.1); border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 228, 170, 0.36), transparent); mix-blend-mode: screen; animation: kg-dglow 7s ease-in-out both; }
+@keyframes kg-dglow { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0.5; } }
+.fx-dance__ring { position: absolute; left: -40px; top: -9px; width: 80px; height: 18px; border-radius: 50%;
+  border: 1.6px solid rgba(255, 220, 150, 0.85); opacity: 0; animation: kg-ring 2.2s ease-out both; animation-delay: calc(var(--i) * 1.05s); }
+@keyframes kg-ring { 0% { opacity: 0; scale: 0.3; } 15% { opacity: 1; } 100% { opacity: 0; scale: 3.4; } }
+.fx-dance__mote { position: absolute; left: var(--o); top: -6px; width: 5px; height: 3px; border-radius: 2px; background: #ffe6b0;
+  box-shadow: 0 0 6px rgba(255, 220, 150, 0.9); opacity: 0; animation: kg-dmote 3.6s ease-out both; animation-delay: calc(0.3s + var(--i) * 0.26s); }
+@keyframes kg-dmote { 0% { opacity: 0; translate: 0 0; rotate: 0deg; } 20% { opacity: 1; } 100% { opacity: 0; translate: calc(var(--o) * 0.9) calc(var(--h) * -1); rotate: 540deg; } }
+.fx-dance.is-rm .fx-dance__glow { animation-duration: 2.2s; }
+
+/* ── 효과 letter: 편지 (11:14) ── */
+.fx-letter { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-letter.is-out { opacity: 0; }
+.fx-letter__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-letter__scroll { position: absolute; left: -15px; top: -6px; width: 30px; height: 12px; border-radius: 6px;
+  background: linear-gradient(180deg, #f2e6c8, #cdb88a); box-shadow: 0 0 8px rgba(255, 230, 180, 0.55);
+  animation: kg-letter 2.6s cubic-bezier(0.45, 0, 0.3, 1) 0.6s both, kg-letter-dim 3s ease-in 3.6s both; }
+.fx-letter__scroll i { position: absolute; left: -3px; top: -1px; width: 6px; height: 14px; border-radius: 3px; background: #b89a60; }
+.fx-letter__scroll b { position: absolute; left: 11px; top: 2px; width: 8px; height: 8px; border-radius: 50%; background: #9a2a22; box-shadow: 0 0 4px rgba(200, 40, 30, 0.8); }
+@keyframes kg-letter {
+  0% { opacity: 0; translate: 0 6px; scale: 0.6; }
+  18% { opacity: 1; translate: 0 0; scale: 1; }
+  100% { opacity: 1; translate: var(--dx) var(--dy); scale: 1; }
+}
+@keyframes kg-letter-dim { to { filter: brightness(0.6); box-shadow: 0 0 0 transparent; } }
+.fx-letter.is-rm .fx-letter__scroll { animation: kg-letter 0.01s both; translate: var(--dx) var(--dy); }
+
+/* ── 효과 accuse: 당신이 그 사람이라 (12:7) ── */
+.fx-accuse { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 2.2s ease-in; }
+.fx-accuse.is-out { opacity: 0; }
+.fx-accuse__dark { position: absolute; inset: 0;
+  background: radial-gradient(circle var(--r) at var(--x) var(--y), transparent 0%, rgba(4, 3, 8, 0.25) 55%, rgba(4, 3, 8, 0.86) 100%);
+  opacity: 0; animation: kg-fade-in 1.4s ease-out 0.2s both; }
+.fx-accuse__beam { position: absolute; left: calc(var(--x) - var(--w) / 2); top: 0; width: var(--w); height: var(--b);
+  background: linear-gradient(180deg, rgba(220, 230, 255, 0.0), rgba(220, 230, 255, 0.22) 60%, rgba(220, 230, 255, 0.05));
+  clip-path: polygon(38% 0, 62% 0, 100% 100%, 0 100%); mix-blend-mode: screen; opacity: 0; animation: kg-fade-in 1.2s ease-out 0.9s both; }
+@keyframes kg-fade-in { from { opacity: 0; } to { opacity: 1; } }
+.fx-accuse.is-rm :is(.fx-accuse__dark, .fx-accuse__beam) { animation-duration: 0.01s; animation-delay: 0s; }

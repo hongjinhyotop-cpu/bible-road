@@ -15,6 +15,8 @@
 //                      허리에서 비스듬히 늘어진 긴 칼(골리앗의 칼, 21:9).
 //  - king            : 왕 (삼하 2–24). 낮은 금관, 다듬은 둥근 수염, 발목까지 오는 긴 옷과 등 뒤로 끌리는 왕의 겉옷,
 //                      앞손에 든 수금 — 시인 왕 (삼하 23:1 "이스라엘의 노래 잘하는 자").
+//  - ephod           : 법궤 앞에서 춤출 때 (삼하 6:14 "베 에봇을 입었더라"). 왕의 관과 겉옷을 벗은 맨머리(둥근 수염),
+//                      무릎까지 오는 흰 세마포 옷 위에 앞을 덮는 베 에봇과 금빛 띠, 앞팔을 머리 위로 들었다.
 //  - old             : 노인 (삼하 24, 왕상 1–2 "나이 많아 늙으니 이불을 덮어도 따뜻하지 아니한지라"). 흰 머리·흰 긴 수염,
 //                      가는 금띠 하나, 등이 둥글게 굽고, 어깨부터 몸을 감싼 두꺼운 이불 같은 겉옷을 앞손으로 여민다.
 import type { CharacterDef } from './index';
@@ -150,6 +152,23 @@ const OLD_WRAP = `
   <path class="detail" d="M74 330 L74 338 M82 331 L82 339 M90 332 L90 340 M98 332 L98 340 M106 332 L106 340 M114 332 L114 340 M122 332 L122 340 M130 331 L130 339 M136 330 L136 338" fill="none" stroke-width="1.1"/>
   <path class="detail" d="M100 86 C108 100 112 120 114 140" fill="none" stroke-width="1.6"/>`;
 
+
+/** 왕이 관을 벗은 맨머리 (삼하 6:14) — KING_HEAD에서 관만 뺐다 */
+const KING_BARE = `
+  <path class="dv-ruddy" d="M101 13 C87 11 76 20 73 34 C71 46 72 58 73 70 C74 78 76 84 80 88 C82 84 84 80 87 76 C84 66 84 54 87 46 C91 37 99 31 110 30 C117 30 122 32 125 35 C123 21 113 13 101 13 Z"/>
+  <circle class="dv-ruddy" cx="74" cy="66" r="4.4"/><circle class="dv-ruddy" cx="77" cy="78" r="4.2"/><circle class="dv-ruddy" cx="82" cy="87" r="3.6"/>
+  <circle class="dv-ruddy" cx="84" cy="20" r="5"/><circle class="dv-ruddy" cx="95" cy="14" r="5.2"/><circle class="dv-ruddy" cx="107" cy="13" r="4.8"/><circle class="dv-ruddy" cx="117" cy="17" r="4.2"/>
+  <path d="M96 55 C103 60 111 63 119 65 L123 68 C127 78 127 90 122 100 C116 106 108 106 102 101 C96 95 93 86 92 76 C91 68 92 61 96 55 Z"/>
+  <path class="detail" d="M104 74 Q110 88 107 100 M114 72 Q120 86 117 102" fill="none" stroke-width="0.7"/>`;
+
+/** 베 에봇 (삼하 6:14): 무릎까지 오는 흰 세마포 옷 + 가슴에서 허벅지까지 앞을 덮는 에봇 + 금빛 띠. 관도 겉옷도 없다 */
+const EPHOD = `
+  ${SHORT_TUNIC.replace('class="tone2"', 'class="dv-linen"')}
+  <path class="dv-linen dv-ephod" d="M86 99 C93 94 107 94 115 100 C119 120 121 146 122 170 C110 176 92 176 80 171 C80 146 82 120 86 99 Z"/>
+  <path class="detail" d="M91 101 L88 170 M109 98 L114 171 M86 120 Q102 124 118 118" fill="none" stroke-width="0.8"/>
+  <path class="crown" d="M79 168 Q100 176 122 169 L122 175 Q100 183 79 174 Z"/>
+  <path class="crown" d="M84 174 L80 206 L85 207 L89 175 Z"/>`;
+
 // ── 앞팔 ────────────────────────────────────────
 /** 목동: 팔꿈치를 굽혀 막대기를 쥔다 */
 const ARM_STICK = ARM_BENT;
@@ -160,6 +179,9 @@ const ARM_SLING = `
   <path d="M94 110 C91 100 98 93 106 94 C113 95 117 101 116 108 C119 94 123 74 127 54 C129 44 131 34 132 26 C133 19 139 16 143 20 C146 24 144 30 142 34 C139 46 135 64 131 82 C127 98 122 112 116 120 C109 126 99 122 96 116 Z"/>
   <path class="dv-cord dv-whirl" d="M139 20 C150 -2 132 -24 110 -18 C92 -12 96 6 139 20" fill="none" stroke-width="1.6"/>
   <ellipse class="dv-cord dv-whirl" cx="106" cy="-15" rx="6" ry="4.4" transform="rotate(-20 106 -15)"/>`;
+/** 춤: 앞팔을 머리 위로 높이 든다 (삼하 6:14, 16 "뛰놀며 춤추는") */
+const ARM_RAISED = `
+  <path d="M94 110 C91 100 98 93 106 94 C113 95 117 101 116 108 C119 94 123 74 127 54 C129 44 131 34 132 26 C133 19 139 16 143 20 C146 24 144 30 142 34 C139 46 135 64 131 82 C127 98 122 112 116 120 C109 126 99 122 96 116 Z"/>`;
 /** 노인: 이불 자락을 가슴께에서 여미는 손 */
 const ARM_CLUTCH = `
   <path d="M93 104 C92 97 98 94 104 95 C110 96 113 101 113 110 C113 126 112 140 113 150 C116 146 120 140 122 134 C124 128 130 126 133 130 C136 134 134 140 130 144 C126 152 120 160 112 166 C104 170 98 166 97 158 C96 142 94 120 93 104 Z"/>
@@ -178,7 +200,7 @@ const SANDALS = `<path class="detail" d="M88 386 L100 382 M88 394 L100 390 M118 
 const david: CharacterDef = {
   id: 'david',
   name: '다윗',
-  traits: '옆모습. 소년 목동(기본): 작은 키, 붉은 기 도는 곱슬머리, 수염 없음, 짧은 튜닉, 손에 막대기, 허리의 물매와 가죽 주머니, 등에 비스듬히 멘 수금. fugitive: 덥수룩한 머리·짧은 수염·거친 겉옷·허리의 긴 칼. king: 낮은 금관·둥근 수염·끌리는 왕의 겉옷·손에 든 수금. old: 흰 머리·흰 수염·굽은 등·이불 같은 겉옷',
+  traits: '옆모습. 소년 목동(기본): 작은 키, 붉은 기 도는 곱슬머리, 수염 없음, 짧은 튜닉, 손에 막대기, 허리의 물매와 가죽 주머니, 등에 비스듬히 멘 수금. fugitive: 덥수룩한 머리·짧은 수염·거친 겉옷·허리의 긴 칼. king: 낮은 금관·둥근 수염·끌리는 왕의 겉옷·손에 든 수금. ephod: 관 없는 맨머리·흰 세마포 베 에봇·든 팔. old: 흰 머리·흰 수염·굽은 등·이불 같은 겉옷',
   faces: 'right',
   height: 0.85,
   tint: '#9a5236',
@@ -199,6 +221,7 @@ const david: CharacterDef = {
       sling: { markup: SHEPHERD_SLING, height: 0.85, parts: { hair: CURLS, legs: LEGS_SLIM + SANDALS, armR: ARM_SLING, armL: BACK_ARM } },
       fugitive: { markup: FUGITIVE, height: 1, parts: { hair: SHAGGY, legs: LEGS_SLIM + SANDALS, armR: ARM_DOWN, armL: BACK_ARM } },
       king: { markup: ROYAL, height: 1.03, parts: { hair: KING_HEAD, legs: LEGS_SLIM, armR: ARM_LYRE, armL: BACK_ARM } },
+      ephod: { markup: EPHOD, height: 1.03, parts: { hair: KING_BARE, legs: LEGS_SLIM + SANDALS, armR: ARM_RAISED, armL: BACK_ARM } },
       old: { markup: OLD_WRAP, height: 0.94, parts: { hair: OLD_HEAD, legs: LEGS_SLIM, armR: ARM_CLUTCH, armL: BACK_ARM } },
     },
     markup: `
