@@ -50,6 +50,7 @@ import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
 import { playAccuse, playDance, playLetter } from '../fx/kingship';
+import { playStones } from '../fx/absalom';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -763,6 +764,10 @@ export function sceneScreen({ id }: Params): Screen {
       case 'accuse':
         // 당신이 그 사람이라 (삼하 12:7) — fx/kingship.ts. 대상 = to → (대사 beat가 아니면) who → david
         playAccuse($('.scene'), beat?.to ?? (beat?.type === 'line' ? undefined : [beat?.who ?? []].flat()[0]), rm);
+        return;
+      case 'stones':
+        // 시므이의 돌과 티끌 (삼하 16:6, 13) — fx/absalom.ts. 던지는 사람 = who → shimei, 상대 = to → david
+        playStones($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
         return;
       case 'spear-throw':
         // 사울의 창 (삼상 18:11, 19:10, 20:33) — fx/jonathan.ts. 던지는 사람 = who → saul, 상대 = to → david

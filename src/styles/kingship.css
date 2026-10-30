@@ -48,7 +48,7 @@
 .kg-chaff { fill: color-mix(in srgb, #d8c49a 40%, var(--act-b)); opacity: 0.8; }
 .kg-dust ellipse { fill: color-mix(in srgb, #c8b490 50%, transparent); filter: blur(4px); opacity: 0; animation: kg-dust 2.6s ease-out infinite; animation-delay: var(--d); }
 @keyframes kg-dust { 0% { opacity: 0; scale: 0.5; } 30% { opacity: 0.8; } 100% { opacity: 0; scale: 1.8; translate: 0 -14px; } }
-.kg--threshing:not(.kg--still) > g[transform^='translate(206'] { animation: kg-jolt 0.5s ease-in-out infinite alternate; }
+.kg--threshing:not(.kg--still) > g[transform^='translate(170'] { animation: kg-jolt 0.5s ease-in-out infinite alternate; }
 @keyframes kg-jolt { from { translate: 0 0; } to { translate: 1px -1.5px; } }
 .kg-breach { fill: none; stroke: color-mix(in srgb, #050307 80%, var(--act-b)); stroke-width: 1.6; stroke-linejoin: bevel; }
 

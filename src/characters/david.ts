@@ -17,6 +17,8 @@
 //                      앞손에 든 수금 — 시인 왕 (삼하 23:1 "이스라엘의 노래 잘하는 자").
 //  - ephod           : 법궤 앞에서 춤출 때 (삼하 6:14 "베 에봇을 입었더라"). 왕의 관과 겉옷을 벗은 맨머리(둥근 수염),
 //                      무릎까지 오는 흰 세마포 옷 위에 앞을 덮는 베 에봇과 금빛 띠, 앞팔을 머리 위로 들었다.
+//  - barefoot        : 압살롬을 피해 감람산을 오를 때 (삼하 15:30 "머리를 가리우고 맨발로 울며"). 관도 왕의 겉옷도 없이,
+//                      거친 겉옷을 머리 위로 덮어 등 뒤로 늘어뜨림, 둥근 수염, 신 끈 없는 맨발.
 //  - old             : 노인 (삼하 24, 왕상 1–2 "나이 많아 늙으니 이불을 덮어도 따뜻하지 아니한지라"). 흰 머리·흰 긴 수염,
 //                      가는 금띠 하나, 등이 둥글게 굽고, 어깨부터 몸을 감싼 두꺼운 이불 같은 겉옷을 앞손으로 여민다.
 import type { CharacterDef } from './index';
@@ -169,6 +171,21 @@ const EPHOD = `
   <path class="crown" d="M79 168 Q100 176 122 169 L122 175 Q100 183 79 174 Z"/>
   <path class="crown" d="M84 174 L80 206 L85 207 L89 175 Z"/>`;
 
+/** 머리를 가리운 왕 (삼하 15:30 "머리를 가리우고 맨발로 울며"): 관을 벗고, 거친 겉옷을 머리 위로 덮어 쓴다. 둥근 수염만 보인다 */
+const MOURN_HEAD = `
+  <path d="M96 55 C103 60 111 63 119 65 L123 68 C127 78 127 90 122 100 C116 106 108 106 102 101 C96 95 93 86 92 76 C91 68 92 61 96 55 Z"/>
+  <path class="detail" d="M104 74 Q110 88 107 100 M114 72 Q120 86 117 102" fill="none" stroke-width="0.7"/>
+  <path class="dv-cloak" d="M103 4 C86 2 71 13 67 32 C63 52 65 74 62 98 C61 110 60 122 62 134 L88 128 C86 112 86 98 88 86 C84 74 83 60 86 50 C90 40 100 35 116 35 C122 35 127 36 130 39 C128 22 118 6 103 4 Z"/>
+  <path class="detail" d="M84 37 Q107 28 130 38 M74 40 Q68 80 70 126" fill="none" stroke-width="1.2"/>`;
+/** 맨발로 오르는 길의 옷: 발목까지 오는 긴 옷 위로, 머리에서 등 뒤로 흘러내린 거친 겉옷. 왕의 겉옷은 없다 */
+const MOURN = `
+  <path class="dv-cloak" d="M88 84 C72 90 62 110 58 142 C53 190 54 250 56 306 C57 330 56 348 53 364 L60 360 L65 368 L71 360 L77 368 L83 360 L88 366 C88 320 90 260 92 206 C93 160 94 120 97 96 Z"/>
+  <path class="detail" d="M70 112 Q62 220 66 352 M82 104 Q76 230 80 356" fill="none" stroke-width="1.1"/>
+  <path class="tone2" d="M84 97 C90 93 96 91 102 92 C108 93 112 96 115 100 C121 105 125 112 125 120 C126 130 122 140 119 150 C117 160 117 170 119 180 C124 210 130 262 134 320 C136 344 138 362 140 378 Q130 383 119 379 Q108 384 97 379 Q87 383 78 378 C77 340 77 296 78 262 C79 230 80 200 83 172 C79 152 77 130 79 116 C80 108 81 102 84 97 Z"/>
+  <path class="rope" d="M80 175 Q100 182 121 176 L121 182 Q100 189 80 181 Z"/>
+  <path class="detail" d="M92 200 Q90 290 92 374 M112 200 Q120 290 130 374" fill="none" stroke-width="0.9"/>
+  <path class="dv-cloak" d="M86 90 C98 86 112 90 120 100 C112 110 104 122 99 136 C95 148 92 160 91 170 L84 172 C82 148 82 124 83 108 C84 100 85 94 86 90 Z"/>`;
+
 // ── 앞팔 ────────────────────────────────────────
 /** 목동: 팔꿈치를 굽혀 막대기를 쥔다 */
 const ARM_STICK = ARM_BENT;
@@ -222,6 +239,7 @@ const david: CharacterDef = {
       fugitive: { markup: FUGITIVE, height: 1, parts: { hair: SHAGGY, legs: LEGS_SLIM + SANDALS, armR: ARM_DOWN, armL: BACK_ARM } },
       king: { markup: ROYAL, height: 1.03, parts: { hair: KING_HEAD, legs: LEGS_SLIM, armR: ARM_LYRE, armL: BACK_ARM } },
       ephod: { markup: EPHOD, height: 1.03, parts: { hair: KING_BARE, legs: LEGS_SLIM + SANDALS, armR: ARM_RAISED, armL: BACK_ARM } },
+      barefoot: { markup: MOURN, height: 1.01, parts: { hair: MOURN_HEAD, legs: LEGS_SLIM, armR: ARM_DOWN, armL: BACK_ARM } },
       old: { markup: OLD_WRAP, height: 0.94, parts: { hair: OLD_HEAD, legs: LEGS_SLIM, armR: ARM_CLUTCH, armL: BACK_ARM } },
     },
     markup: `

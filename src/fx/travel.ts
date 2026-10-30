@@ -157,6 +157,7 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   rephaim: at(35.2, 31.75),
   lodebar: at(35.62, 32.6),
   bahurim: at(35.26, 31.8),
+  giloh: at(35.08, 31.58),
   gezer: at(34.92, 31.86),
   zobah: at(36.4, 34.1),
 };

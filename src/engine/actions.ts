@@ -187,6 +187,7 @@ export const PLACE_NAMES = {
   rephaim: '르바임 골짜기',
   lodebar: '로드발',
   bahurim: '바후림',
+  giloh: '길로',
   gezer: '게셀',
   zobah: '소바',
 } as const;
@@ -234,5 +235,6 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   rephaim: '예루살렘 서남쪽 골짜기',
   lodebar: '요단 동편, 마길의 집',
   bahurim: '발디엘이 돌아선 곳',
+  giloh: '아히도벨의 고향',
   zobah: '아람 북쪽의 나라',
 };

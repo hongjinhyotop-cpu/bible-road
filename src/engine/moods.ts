@@ -36,6 +36,7 @@ export type BackdropArt =
   | 'sm-road' | 'sm-shiloh' | 'sm-ramah' | 'sm-lamp' | 'sm-lamp-out'
   | 'gb-camp' | 'gb-endor' | 'gb-endor-rise' | 'gb-slope' | 'gb-bethshan' | 'gb-jordan' | 'gb-tamarisk'
   | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
+  | 'ab-gate' | 'ab-kidron' | 'ab-olives' | 'ab-bahurim' | 'ab-well' | 'ab-mahanaim' | 'ab-watch' | 'ab-forest' | 'ab-oak' | 'ab-oak-empty' | 'ab-cairn' | 'ab-pillar' | 'ab-chamber'
   | 'kg-cart' | 'kg-threshing' | 'kg-threshing-still' | 'kg-obed' | 'kg-ascent' | 'kg-window' | 'kg-tent' | 'kg-roof' | 'kg-gate' | 'kg-rabbah' | 'kg-parable' | 'kg-parable-taken'
   | 'jn-hall' | 'jn-hall-spear' | 'jn-window' | 'jn-window-rope' | 'jn-bed' | 'jn-feast' | 'jn-field' | 'jn-engedi' | 'jn-cave' | 'jn-cliff'
   | 'sl-hills' | 'sl-ascent' | 'sl-feast' | 'sl-roof' | 'sl-roof-dawn' | 'sl-prophets' | 'sl-mizpah' | 'sl-baggage' | 'sl-kenite' | 'sl-carmel' | 'sl-gilgal' | 'sl-parting'
@@ -216,6 +217,8 @@ export const FX = [
   // ── 7막 다윗 왕 (fx/kingship.ts) ──
   'dance', // 힘을 다하여 춤춤: 대상(who, 없으면 david)이 뛰놀고, 발밑에서 금빛 고리가 퍼지고 빛 티끌이 흩날려 오름 (약 7초, 삼하 6:14-16). 다윗 옷 ephod와 같이
   'letter', // 편지: 봉한 두루마리가 쓰는 사람(who, 없으면 david)의 손에서 받는 사람(to, 없으면 uriah)의 손으로 건너가 머묾 (약 7초, 삼하 11:14)
+  // ── 7막 압살롬의 반역 (fx/absalom.ts) ──
+  'stones', // 돌과 티끌: 던지는 사람(who, 없으면 shimei)에게서 돌이 차례로 상대(to, 없으면 david) 앞에 떨어져 튀고 발밑에서 티끌이 날림. 아무도 맞지 않음 (약 6초, 삼하 16:6, 13)
   'accuse', // "당신이 그 사람이라": 무대가 어두워지고 한 사람(to → who → david)에게만 차고 좁은 빛이 떨어짐 (약 7초, 삼하 12:7)
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
@@ -822,6 +825,37 @@ export const MOODS: Record<string, Mood> = {
   'kg-parable': { light: true, land: false, art: 'kg-parable', tone: 'dusk', spread: true },
   /** 같은 그림, 가난한 자의 품이 비고 부자의 집 앞에 고기 굽는 불 (12:4) */
   'kg-parable-taken': { light: true, land: false, art: 'kg-parable-taken', tone: 'dusk', spread: true },
+
+  // ── 7막 압살롬의 반역 A급 (삼하 15–18, fx/absalom.ts) ──
+  /** 예루살렘 성문 길: 성벽과 성문 망대, 송사하러 온 사람들의 줄, 오른쪽에 병거와 말과 호위 (15:1-6) */
+  'ab-gate': { light: true, land: false, art: 'ab-gate' },
+  'ab-gate-dawn': { light: true, land: false, art: 'ab-gate', tone: 'clear' },
+  /** 기드론 시내: 왼쪽 위 성, 골짜기 바닥의 시내, 시내를 건너 맞은편 비탈로 오르는 사람들 (15:23) */
+  'ab-kidron': { light: true, land: false, art: 'ab-kidron' },
+  /** 감람산 오르막: 오른쪽 위로 오르는 길과 늙은 감람나무, 머리를 가린 채 고개 숙여 오르는 긴 줄 (15:30) */
+  'ab-olives': { light: true, land: false, art: 'ab-olives', tone: 'dusk' },
+  /** 바후림: 낮은 길과 오른쪽 가파른 산비탈·바위, 비탈 위의 작은 길 (16:5-13). 시므이는 오른쪽에. fx stones와 같이 */
+  'ab-bahurim': { light: true, land: false, art: 'ab-bahurim' },
+  'ab-bahurim-dusk': { light: true, land: false, art: 'ab-bahurim', tone: 'dusk' },
+  /** 바후림 집 뜰, 밤: 우물 아구를 덮은 천과 그 위에 넌 찧은 곡식, 집 벽의 등잔 (17:18-19) */
+  'ab-well': { light: true, land: false, art: 'ab-well', tone: 'night', spread: true },
+  /** 마하나임 성문: 두 겹 문, 문루의 작은 창, 바깥 돌계단, 문 앞에 쌓인 침상·자루·질그릇 (17:27-29, 18:4, 24, 33) */
+  'ab-mahanaim': { light: true, land: false, art: 'ab-mahanaim' },
+  'ab-mahanaim-dusk': { light: true, land: false, art: 'ab-mahanaim', tone: 'dusk' },
+  /** 문루 지붕에서 내다본 길: 앞쪽 난간, 지평선까지 이어진 길, 달려오는 작은 두 사람 (18:24-27) */
+  'ab-watch': { light: true, land: false, art: 'ab-watch' },
+  /** 에브라임 수풀: 빽빽하고 뒤엉킨 줄기, 쓰러진 나무와 구덩이, 낮은 연기 (18:6-8). 사람 몸은 없음 */
+  'ab-forest': { light: true, land: false, art: 'ab-forest', tone: 'storm' },
+  /** 큰 상수리나무: 번성한 가지 아래 매달린 작은 그림자(머리털이 걸림), 빠져 달아나는 노새 (18:9) */
+  'ab-oak': { light: true, land: false, art: 'ab-oak', tone: 'storm' },
+  /** 같은 나무, 가지 아래가 비었다 */
+  'ab-oak-empty': { light: true, land: false, art: 'ab-oak-empty', tone: 'dusk' },
+  /** 수풀 가운데 큰 구덩이 위의 심히 큰 돌무더기 (18:17) */
+  'ab-cairn': { light: true, land: false, art: 'ab-cairn', tone: 'dusk' },
+  /** 왕의 골짜기에 홀로 선 비석, 해 질 녘 (18:18) */
+  'ab-pillar': { light: true, land: false, art: 'ab-pillar', tone: 'dusk' },
+  /** 문루의 작은 방: 낮은 돌벽, 계단 구멍과 난간, 작은 창의 저녁빛, 꺼진 등잔 (18:33) */
+  'ab-chamber': { light: true, land: false, art: 'ab-chamber', tone: 'dusk', spread: true },
 
   // ── 7막 다윗 A급 (삼상 16 · 17, fx/david.ts) ──
   /** 베들레헴 성읍 어귀: 언덕 위 집들, 성문, 성문 앞의 장로들(떨며 맞음), 오르는 길 (삼상 16:4) */

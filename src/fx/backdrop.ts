@@ -35,6 +35,7 @@ import { gilboaArt } from './gilboa';
 import { saulArt } from './saul';
 import { davidArt } from './david';
 import { kingshipArt } from './kingship';
+import { absalomArt } from './absalom';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
@@ -649,6 +650,20 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'kg-rabbah': () => kingshipArt('kg-rabbah'),
   'kg-parable': () => kingshipArt('kg-parable'),
   'kg-parable-taken': () => kingshipArt('kg-parable-taken'),
+  // 7막 압살롬의 반역 (fx/absalom.ts)
+  'ab-gate': () => absalomArt('ab-gate'),
+  'ab-kidron': () => absalomArt('ab-kidron'),
+  'ab-olives': () => absalomArt('ab-olives'),
+  'ab-bahurim': () => absalomArt('ab-bahurim'),
+  'ab-well': () => absalomArt('ab-well'),
+  'ab-mahanaim': () => absalomArt('ab-mahanaim'),
+  'ab-watch': () => absalomArt('ab-watch'),
+  'ab-forest': () => absalomArt('ab-forest'),
+  'ab-oak': () => absalomArt('ab-oak'),
+  'ab-oak-empty': () => absalomArt('ab-oak-empty'),
+  'ab-cairn': () => absalomArt('ab-cairn'),
+  'ab-pillar': () => absalomArt('ab-pillar'),
+  'ab-chamber': () => absalomArt('ab-chamber'),
   // 7막 다윗 (fx/david.ts)
   'dv-bethlehem': () => davidArt('dv-bethlehem'),
   'dv-yard': () => davidArt('dv-yard'),
