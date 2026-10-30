@@ -1,0 +1,147 @@
+/* ── 7막 A급: 성전 봉헌 (왕상 8) · 솔로몬의 타락 (왕상 11) — fx/temple.ts ──
+   배경: 성전 뜰(tp-court, 구름 tp-court-cloud), 지성소(tp-holy, 궤 tp-holy-ark), 예루살렘 앞 산의 산당(tp-heights)
+   효과: cloud-glory(구름이 전에 가득함), prayers(이곳을 향하여), tear-twelve(새 옷 열두 조각) */
+
+/* ── 배경 공통 ── */
+.tp-bronze { fill: color-mix(in srgb, color-mix(in srgb, #b8793a 70%, var(--act-accent)) 34%, #0a0608); }
+.tp-horn { fill: none; stroke: color-mix(in srgb, #b8793a 34%, #0a0608); stroke-width: 1; }
+.tp-net, .tp-courses, .tp-panel { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.35; }
+.tp-pom circle { fill: color-mix(in srgb, #c46a4a 40%, #0a0608); }
+.tp-lily { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 70%, var(--act-accent)) 40%, #0a0608); }
+.tp-lilyrim { fill: none; stroke: color-mix(in srgb, #e2b75c 40%, #0a0608); stroke-width: 0.8; }
+.tp-water { fill: none; stroke: color-mix(in srgb, #bfe0f0 60%, var(--act-b)); stroke-width: 1; opacity: 0.6; }
+.tp-cedar { fill: color-mix(in srgb, #7a4a2a 34%, #060406); }
+.tp-stone { --bd: color-mix(in srgb, color-mix(in srgb, #cdb994 30%, var(--act-b)) 40%, #06050a); }
+.tp-porch { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 34%, var(--act-b)) 46%, #06050a); }
+.tp-goldband { fill: color-mix(in srgb, #e2b75c 62%, var(--act-accent)); opacity: 0.85; }
+.tp-goldline { fill: none; stroke: color-mix(in srgb, #e2b75c 60%, var(--act-accent)); stroke-width: 0.9; opacity: 0.6; }
+.tp-slits rect { fill: #05030a; opacity: 0.8; }
+.tp-door { fill: color-mix(in srgb, #ffd98a 70%, var(--act-accent)); filter: drop-shadow(0 0 6px rgba(255, 214, 140, 0.8)); animation: tp-door 6s ease-in-out infinite alternate; }
+@keyframes tp-door { from { opacity: 0.75; } to { opacity: 1; } }
+.tp-doorleaf { fill: color-mix(in srgb, #e2b75c 46%, #0a0608); }
+.tp-doorhalo { opacity: 0.9; }
+.tp-steps rect:nth-child(2) { opacity: 0.85; }
+.tp-altarfire { opacity: 0.75; }
+
+/* 구름 (8:10-11) — 배경에 남아 있는 구름 */
+.tp-cloudmass ellipse, .tp-cloudspill ellipse { fill: color-mix(in srgb, #fff2cc 76%, var(--act-accent)); filter: blur(6px); opacity: 0.5;
+  animation: tp-cloud-breathe 9s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.tp-cloudspill ellipse { opacity: 0.38; filter: blur(5px); }
+@keyframes tp-cloud-breathe { from { translate: -4px 0; opacity: 0.38; } to { translate: 4px -2px; opacity: 0.6; } }
+.tp--court.is-cloud .tp-door { fill: #fff6dc; filter: drop-shadow(0 0 12px rgba(255, 236, 190, 1)); }
+.tp--court.is-cloud .tp-doorhalo { opacity: 1; }
+
+/* 지성소 */
+.tp-goldwall { fill: color-mix(in srgb, color-mix(in srgb, #8a6424 60%, var(--act-b)) 26%, #050307); }
+.tp-carve { fill: none; stroke: color-mix(in srgb, #e2b75c 50%, var(--act-accent)); stroke-width: 0.8; opacity: 0.32; }
+.tp-panel { stroke: color-mix(in srgb, #e2b75c 30%, #000); opacity: 0.25; }
+.tp-cherub > path:not(.tp-feather), .tp-cherub > ellipse { fill: color-mix(in srgb, color-mix(in srgb, #d6a648 70%, var(--act-accent)) 40%, #0a0608); }
+.tp-feather { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.3; }
+.tp-ark > rect:not(.tp-pole):not(.tp-lid), .tp-ark > path:not(.tp-goldline) { fill: color-mix(in srgb, #e2b75c 62%, #2a1a08); }
+.tp-ark .tp-lid { fill: color-mix(in srgb, #f6e2a8 70%, #2a1a08); }
+.tp-ark .tp-pole { fill: color-mix(in srgb, #c89a40 50%, #1a1006); }
+.tp-ark { filter: drop-shadow(0 0 5px rgba(255, 220, 150, 0.6)); }
+.tp-arkhalo { opacity: 0.7; animation: tp-door 7s ease-in-out infinite alternate; }
+.tp--holy.has-ark .tp-arkhalo { opacity: 1; }
+.tp-place { fill: #fff0c8; opacity: 0.12; filter: blur(3px); }
+.tp-motes circle { fill: #fff2cc; opacity: 0; animation: tp-mote 10s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes tp-mote { 0% { opacity: 0; translate: 0 6px; } 40% { opacity: 0.7; } 100% { opacity: 0; translate: var(--dx) -36px; } }
+.tp-floor { fill: color-mix(in srgb, #6a4a1c 22%, #040306); }
+.tp-floorline { fill: none; stroke: color-mix(in srgb, #e2b75c 30%, #000); stroke-width: 0.6; opacity: 0.25; }
+
+/* 예루살렘 앞 산 */
+.tp-farstone { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 30%, var(--act-b)) 44%, #06050a); }
+.tp-farporch { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 34%, var(--act-b)) 54%, #06050a); }
+.tp-fargold { fill: color-mix(in srgb, #e2b75c 62%, var(--act-accent)); }
+.tp-fardoor { fill: color-mix(in srgb, #ffd98a 70%, var(--act-accent)); filter: drop-shadow(0 0 3px rgba(255, 214, 140, 0.9)); }
+.tp-farhalo { opacity: 0.85; }
+.tp-valley { fill: color-mix(in srgb, var(--act-b) 18%, #030206); opacity: 0.85; }
+.tp-path { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 2.4; stroke-linecap: round; opacity: 0.35; }
+.tp-hpfire { opacity: 0.8; }
+.tp-hphalo { opacity: 0.7; }
+.tp-hpsmoke .bd-smoke__puff { fill: color-mix(in srgb, #4a4048 60%, var(--act-b)); }
+
+:root[data-reduced-motion='true'] :is(.tp-door, .tp-cloudmass ellipse, .tp-cloudspill ellipse, .tp-arkhalo, .tp-motes circle) { animation: none; }
+:root[data-reduced-motion='true'] .tp-motes circle { opacity: 0.4; }
+
+/* ── 효과 cloud-glory: 구름이 여호와의 전에 가득함 (8:10-11) ── */
+.fx-cloudglory { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 2.6s ease-in; }
+.fx-cloudglory.is-out { opacity: 0.0; }
+.fx-cloudglory__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-cloudglory__door { position: absolute; left: -60px; top: -80px; width: 120px; height: 140px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 248, 226, 0.95), rgba(255, 226, 160, 0.5) 50%, transparent);
+  mix-blend-mode: screen; animation: tp-cloud-swell 2.4s ease-out both; --dx: 0px; --dy: -10px; --s: 1.6; }
+.fx-cloudglory__at i { position: absolute; left: -50px; top: -34px; width: 100px; height: 68px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 246, 222, 0.85), rgba(250, 226, 170, 0.45) 55%, transparent);
+  filter: blur(3px); opacity: 0; animation: tp-cloud-swell 4.2s cubic-bezier(0.2, 0.6, 0.3, 1) var(--d) both; }
+@keyframes tp-cloud-swell {
+  0% { opacity: 0; translate: 0 0; scale: 0.2; }
+  25% { opacity: 1; }
+  100% { opacity: 0.9; translate: var(--dx) var(--dy); scale: var(--s); }
+}
+.fx-cloudglory__fill { position: absolute; inset: 0; opacity: 0;
+  background: radial-gradient(120% 90% at 50% 62%, rgba(255, 246, 220, 0.85), rgba(246, 218, 156, 0.55) 45%, rgba(240, 200, 120, 0.3));
+  mix-blend-mode: screen; animation: tp-cloud-fill 8.6s ease-in-out 1.2s both; }
+@keyframes tp-cloud-fill {
+  0% { opacity: 0; }
+  55% { opacity: 0.92; }
+  100% { opacity: 0.55; }
+}
+.fx-cloudglory.is-rm .fx-cloudglory__fill { animation: tp-in 1.2s ease-out both; opacity: 0.6; }
+
+/* ── 효과 prayers: 이곳을 향하여 (8:30-50) ── */
+.fx-prayers { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 2s ease-in; }
+.fx-prayers.is-out { opacity: 0; }
+.fx-prayers__ray { position: absolute; left: var(--x); top: var(--y); width: var(--len); height: 0; rotate: var(--ang); transform-origin: 0 0; }
+.fx-prayers__ray b { position: absolute; left: 0; top: -1.5px; width: 100%; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255, 240, 200, 0.05), rgba(255, 236, 190, 0.75) 70%, rgba(255, 250, 230, 0.95));
+  box-shadow: 0 0 8px rgba(255, 220, 150, 0.6); transform-origin: 0 50%;
+  animation: tp-ray 1.6s cubic-bezier(0.5, 0, 0.3, 1) var(--d) both, tp-ray-dim 2s ease-in calc(var(--d) + 3.4s) forwards; }
+@keyframes tp-ray { 0% { scale: 0 1; opacity: 0; } 15% { opacity: 1; } 100% { scale: 1 1; opacity: 1; } }
+@keyframes tp-ray-dim { to { opacity: 0.35; } }
+.fx-prayers__ray span { position: absolute; left: 0; top: 0; translate: -50% -50%; white-space: nowrap;
+  font: 500 12px/1 var(--font-serif, 'Noto Serif KR', serif); letter-spacing: 0.08em; color: #fff3d6;
+  text-shadow: 0 0 6px rgba(255, 210, 140, 0.9), 0 1px 2px rgba(0, 0, 0, 0.8);
+  opacity: 0; animation: tp-word 3.6s ease-out var(--d) both; }
+@keyframes tp-word { 0% { opacity: 0; translate: -50% -30%; } 15% { opacity: 1; translate: -50% -50%; } 70% { opacity: 0.9; } 100% { opacity: 0; translate: -50% -80%; } }
+.fx-prayers__ring { position: absolute; left: calc(var(--x) - 60px); top: calc(var(--y) - 60px); width: 120px; height: 120px; border-radius: 50%;
+  border: 2px solid rgba(255, 236, 190, 0.9); box-shadow: 0 0 14px rgba(255, 220, 150, 0.7); opacity: 0;
+  animation: tp-ring 2.4s ease-out 6.8s both; }
+@keyframes tp-ring { 0% { opacity: 0.95; scale: 0.15; } 100% { opacity: 0; scale: 2.6; } }
+.fx-prayers__glow { position: absolute; left: calc(var(--x) - 80px); top: calc(var(--y) - 80px); width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 244, 214, 0.8), rgba(255, 220, 150, 0.25) 60%, transparent); mix-blend-mode: screen;
+  opacity: 0; animation: tp-glow 7.6s ease-in-out 0.4s both; }
+@keyframes tp-glow { 0% { opacity: 0; scale: 0.4; } 85% { opacity: 1; scale: 1; } 100% { opacity: 0.7; scale: 1.1; } }
+.fx-prayers.is-rm :is(b, span) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+.fx-prayers.is-rm .fx-prayers__ray span { opacity: 0.8; }
+
+/* ── 효과 tear-twelve: 새 옷 열두 조각 (11:30-31) ── */
+.fx-tear { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-tear.is-out { opacity: 0; }
+.fx-tear__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-tear__glow { position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 240, 200, 0.45), transparent); opacity: 0; animation: tp-glow 3s ease-out 0.2s both; }
+.fx-tear__at i { position: absolute; left: calc(var(--px) - 6.5px); top: calc(var(--py) - 9px); width: 13px; height: 18px;
+  background: linear-gradient(170deg, #f4ead2, #d9c9a2); box-shadow: 0 0 4px rgba(255, 236, 190, 0.6);
+  clip-path: polygon(0 4%, 30% 0, 62% 6%, 100% 0, 96% 40%, 100% 72%, 94% 100%, 58% 95%, 24% 100%, 0 96%, 5% 60%, 0 30%);
+  opacity: 0; animation: tp-cloak 1.2s ease-out 0.3s both, tp-rip 0.9s cubic-bezier(0.3, 0, 0.3, 1) 1.9s both; }
+.fx-tear__at i.is-go { animation: tp-cloak 1.2s ease-out 0.3s both, tp-rip 0.9s cubic-bezier(0.3, 0, 0.3, 1) 1.9s both, tp-fly 1.7s cubic-bezier(0.45, 0, 0.25, 1) var(--d) both; }
+.fx-tear__at i.is-stay { animation: tp-cloak 1.2s ease-out 0.3s both, tp-rip 0.9s cubic-bezier(0.3, 0, 0.3, 1) 1.9s both, tp-stay 1.6s ease-in-out 4.6s both; }
+@keyframes tp-cloak { from { opacity: 0; scale: 0.7; } to { opacity: 1; scale: 1; } }
+/* 찢어짐: 조각 사이가 벌어지고 비틀림 */
+@keyframes tp-rip { from { translate: 0 0; rotate: 0deg; } to { translate: calc(var(--px) * 0.28) calc(var(--py) * 0.3); rotate: var(--j); } }
+@keyframes tp-fly {
+  from { translate: calc(var(--px) * 0.28) calc(var(--py) * 0.3); rotate: var(--j); }
+  50% { translate: calc(var(--ex) * 0.5 - var(--px) * 0.5) calc(var(--ey) * 0.5 - var(--py) * 0.5 - 40px); }
+  to { translate: calc(var(--ex) - var(--px)) calc(var(--ey) - var(--py)); rotate: var(--r); }
+}
+@keyframes tp-stay {
+  from { translate: calc(var(--px) * 0.28) calc(var(--py) * 0.3); rotate: var(--j); }
+  to { translate: calc(var(--ex) - var(--px)) calc(var(--ey) - var(--py)); rotate: var(--r); filter: brightness(0.92); }
+}
+.fx-tear__n { position: absolute; left: 0; top: 0; translate: -50% 0; font: 600 15px/1 'Cormorant Garamond', serif; font-style: normal;
+  color: #fff3d6; text-shadow: 0 0 6px rgba(255, 210, 140, 0.9), 0 1px 2px #000; opacity: 0; }
+.fx-tear__n--ten { left: var(--ex); top: var(--ey); animation: tp-in 0.8s ease-out 5.6s both; }
+.fx-tear__n--two { left: 0; top: 50px; animation: tp-in 0.8s ease-out 6.0s both; }
+.fx-tear.is-rm :is(i, em, b) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+@keyframes tp-in { from { opacity: 0; } to { opacity: 1; } }

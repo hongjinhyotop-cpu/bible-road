@@ -48,6 +48,7 @@ import './styles/david.css';
 import './styles/kingship.css';
 import './styles/solomon.css';
 import './styles/absalom.css';
+import './styles/temple.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';
 import './styles/egypt-court.css';

@@ -38,6 +38,7 @@ export type BackdropArt =
   | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
   | 'ab-gate' | 'ab-kidron' | 'ab-olives' | 'ab-bahurim' | 'ab-well' | 'ab-mahanaim' | 'ab-watch' | 'ab-forest' | 'ab-oak' | 'ab-oak-empty' | 'ab-cairn' | 'ab-pillar' | 'ab-chamber'
   | 'so-gibeon' | 'so-dream' | 'so-dream-wake' | 'so-court' | 'so-house' | 'so-house-dawn'
+  | 'tp-court' | 'tp-court-cloud' | 'tp-holy' | 'tp-holy-ark' | 'tp-heights'
   | 'kg-cart' | 'kg-threshing' | 'kg-threshing-still' | 'kg-obed' | 'kg-ascent' | 'kg-window' | 'kg-tent' | 'kg-roof' | 'kg-gate' | 'kg-rabbah' | 'kg-parable' | 'kg-parable-taken'
   | 'jn-hall' | 'jn-hall-spear' | 'jn-window' | 'jn-window-rope' | 'jn-bed' | 'jn-feast' | 'jn-field' | 'jn-engedi' | 'jn-cave' | 'jn-cliff'
   | 'sl-hills' | 'sl-ascent' | 'sl-feast' | 'sl-roof' | 'sl-roof-dawn' | 'sl-prophets' | 'sl-mizpah' | 'sl-baggage' | 'sl-kenite' | 'sl-carmel' | 'sl-gilgal' | 'sl-parting'
@@ -223,6 +224,10 @@ export const FX = [
   'asks', // 듣는 마음: "장수" "부" "원수의 생명"이 떠올랐다 가라앉고, 가운데 "듣는 마음"(לֵב שֹׁמֵעַ)이 금빛으로 켜짐 (약 10초, 왕상 3:9-11)
   'swaddle', // 강보에 싼 아기 하나: to(없으면 who)의 품에 안김. 다른 품에 있었으면 금빛 티끌을 따라 옮겨 감. 인물에 붙어 같이 움직이고 그 인물이 무대에 있는 동안 남음 (왕상 3:20, 27)
   'blade', // 칼이 왕 앞에: 무대가 차갑게 식고 칼 든 사람(who, 없으면 오른쪽 사람)의 칼 높이에서 찬빛이 번득임 (약 5초, 왕상 3:24). 아무도 다치지 않음
+  // ── 7막 성전 봉헌 · 솔로몬의 타락 (fx/temple.ts) ──
+  'cloud-glory', // 구름이 여호와의 전에 가득함: 성전 문(배경 tp-court)에서 금빛 구름 덩이가 차례로 부풀어 나와 무대를 덮고 화면이 금빛으로 차올랐다 가라앉음 (약 9초, 탭하면 빨리 감김, 왕상 8:10-11). glory보다 훨씬 큼. 제사장 물러남은 step-back과 같이, 다음 beat 배경 tp-court-cloud
+  'prayers', // 이곳을 향하여: 무대 사방 끝에서 일곱 줄기 빛이 차례로 성전(배경 tp-court 문 / tp-heights 성전 / 없으면 가운데)으로 모이고 끝마다 "다툼 패전 가뭄 기근 이방인 전쟁 포로"가 떠올랐다 스러짐, 끝에 고리 (약 9초, 왕상 8:30-50)
+  'tear-twelve', // 새 옷 열두 조각: 찢는 사람(who, 없으면 ahijah) 앞에 새 겉옷이 떠올라 열두 조각으로 갈라지고, 열 조각은 받는 사람(to, 없으면 jeroboam)에게 날아가 모이고 두 조각은 남음 (약 8초, 왕상 11:30-31)
   // ── 7막 압살롬의 반역 (fx/absalom.ts) ──
   'stones', // 돌과 티끌: 던지는 사람(who, 없으면 shimei)에게서 돌이 차례로 상대(to, 없으면 david) 앞에 떨어져 튀고 발밑에서 티끌이 날림. 아무도 맞지 않음 (약 6초, 삼하 16:6, 13)
   'accuse', // "당신이 그 사람이라": 무대가 어두워지고 한 사람(to → who → david)에게만 차고 좁은 빛이 떨어짐 (약 7초, 삼하 12:7)
@@ -846,6 +851,22 @@ export const MOODS: Record<string, Mood> = {
   'so-house': { light: true, land: false, art: 'so-house', tone: 'night', spread: true },
   /** 같은 집, 미명: 등잔이 꺼지고 창으로 희뿌연 빛줄기 (3:21) */
   'so-house-dawn': { light: true, land: false, art: 'so-house-dawn', tone: 'clear', spread: true },
+
+  // ── 7막 성전 봉헌 · 솔로몬의 타락 A급 (왕상 8 · 11, fx/temple.ts) ──
+  /** 성전 뜰에서 본 성전 정면: 높은 집과 낭실, 열린 문 안의 금빛, 놋 기둥 둘(야긴·보아스), 안뜰 담, 왼쪽 놋 번제단과 연기, 오른쪽 열두 소 위의 놋 바다 (왕상 6–8). 군중은 crowd로. 성전 장면에 재사용 */
+  'tp-court': { light: true, land: false, art: 'tp-court', spread: true },
+  'tp-court-dusk': { light: true, land: false, art: 'tp-court', tone: 'dusk', spread: true },
+  'tp-court-night': { light: true, land: false, art: 'tp-court', tone: 'night', spread: true },
+  /** 같은 곳, 구름이 여호와의 전에 가득함: 지붕 위와 문에서 금빛 구름이 넘쳐 뜰까지 흐름 (8:10-11). fx cloud-glory 뒤에 */
+  'tp-court-cloud': { light: true, land: false, art: 'tp-court-cloud', tone: 'clear', spread: true },
+  /** 지성소 안: 금 입힌 벽의 새김, 날개를 벽에서 벽까지 편 그룹 둘(안쪽 날개가 가운데서 닿음), 창 없음. 궤 자리는 비었음 (6:19-28) */
+  'tp-holy': { light: true, land: false, art: 'tp-holy', tone: 'night', spread: true },
+  /** 같은 곳, 그룹들의 날개 아래 놓인 궤와 긴 채, 궤 위의 은은한 빛 (8:6-8) */
+  'tp-holy-ark': { light: true, land: false, art: 'tp-holy-ark', tone: 'night', spread: true },
+  /** 예루살렘 앞 산 비탈: 건너편 언덕 위 성과 금빛 성전(왼쪽), 사이 골짜기, 이쪽 산마루의 산당 셋과 연기 기둥 (11:7-8). 성전과 산당이 한 화면에. 우상 산당 장면에 재사용 */
+  'tp-heights': { light: true, land: false, art: 'tp-heights' },
+  'tp-heights-dusk': { light: true, land: false, art: 'tp-heights', tone: 'dusk' },
+  'tp-heights-night': { light: true, land: false, art: 'tp-heights', tone: 'night' },
 
   // ── 7막 압살롬의 반역 A급 (삼하 15–18, fx/absalom.ts) ──
   /** 예루살렘 성문 길: 성벽과 성문 망대, 송사하러 온 사람들의 줄, 오른쪽에 병거와 말과 호위 (15:1-6) */

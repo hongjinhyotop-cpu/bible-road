@@ -37,6 +37,7 @@ import { davidArt } from './david';
 import { kingshipArt } from './kingship';
 import { solomonArt } from './solomon';
 import { absalomArt } from './absalom';
+import { templeArt } from './temple';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
@@ -658,6 +659,12 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'so-court': () => solomonArt('so-court'),
   'so-house': () => solomonArt('so-house'),
   'so-house-dawn': () => solomonArt('so-house-dawn'),
+  // 7막 성전 봉헌 · 솔로몬의 타락 (fx/temple.ts)
+  'tp-court': () => templeArt('tp-court'),
+  'tp-court-cloud': () => templeArt('tp-court-cloud'),
+  'tp-holy': () => templeArt('tp-holy'),
+  'tp-holy-ark': () => templeArt('tp-holy-ark'),
+  'tp-heights': () => templeArt('tp-heights'),
   // 7막 압살롬의 반역 (fx/absalom.ts)
   'ab-gate': () => absalomArt('ab-gate'),
   'ab-kidron': () => absalomArt('ab-kidron'),

@@ -34,7 +34,7 @@
     { "type": "narration", "fx": "dust", "act": "travel", "from": "michmash", "to": "aijalon", "acts": [{ "act": "crowd-cheer" }], "text": "블레셋 사람들이 서로 칼로 동무를 치고 있었다. 블레셋 편에 있던 히브리 사람들이 돌아섰고, 에브라임 산지에 숨었던 이스라엘 사람들도 쏟아져 나왔다. 그날 여호와께서 이스라엘을 구원하셨다. 싸움은 믹마스에서 아얄론까지 이어졌다." },
     { "type": "line", "who": "saul", "act": "bless", "text": "“저녁까지, 내가 내 원수에게 갚을 때까지, 무엇이든 먹는 사람은 저주를 받으리라.”" },
     { "type": "narration", "act": "bow-head", "who": "ahijah", "acts": [{ "act": "crowd-murmur" }], "text": "그날 사울은 백성에게 이렇게 맹세시켰다. 내 원수. 하나님이 이기게 하신 날에, 왕은 그 싸움을 자기 원수 갚는 일로 불렀다. 백성은 아무것도 먹지 못하고 피곤해졌다." },
-    { "bg": "oaks-dusk", "fx": "fade", "exit": ["saul", "ahijah"], "enter": ["jonathan", "soldier"], "acts": [{ "act": "crowd" }] },
+    { "bg": "oaks", "fx": "fade", "exit": ["saul", "ahijah"], "enter": ["jonathan", "soldier"], "acts": [{ "act": "crowd" }] },
     { "type": "narration", "act": "bow-head", "who": "soldier", "acts": [{ "act": "crowd-bow" }], "text": "백성이 수풀에 들어가니, 땅에 꿀이 흐르고 있었다. 아무도 손을 입에 대지 않았다. 맹세가 무서웠다. 배고픈 사람 앞의 꿀은, 아무 말도 하지 않아도 시험이 된다." },
     { "type": "narration", "act": "approach", "who": "jonathan", "to": "soldier", "text": "요나단은 그 맹세를 듣지 못했다. 그때 그는 진에 없었다. 그는 손에 든 지팡이 끝을 내밀어 꿀을 찍고, 손을 입에 댔다. 눈이 밝아졌다." },
     { "type": "scripture", "ref": "삼상 14:27", "gloss": "아빠가 금식 맹세 시킬 때 요나단은 못 들었음(전장에 있었으니까). 그래서 지팡이 끝으로 꿀 찍어 먹음. 바로 눈이 밝아짐 = 기운이 돌아옴." },

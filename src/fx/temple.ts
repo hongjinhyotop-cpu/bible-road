@@ -222,7 +222,7 @@ function heightsArt(): string {
     <!-- 건너편: 성과 성전 (시온 · 모리아) -->
     <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 176 C-40 168 40 158 110 156 C150 154 180 160 210 170 C240 180 260 190 300 196 L300 ${H} Z"/>
     <g class="bd-mid tp-city">${houses}
-      <path d="M0 172 L0 158 ${Array.from({ length: 10 }, (_, i) => `h8 v-4 h6 v4`).join(' ')} L140 172 Z"/>
+      <path d="M0 172 L0 158 ${Array.from({ length: 10 }, () => `h8 v-4 h6 v4`).join(' ')} L140 172 Z"/>
     </g>
     <g class="tp-templefar">
       <circle class="bd-halo tp-farhalo" cx="138" cy="132" r="46"/>
