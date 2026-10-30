@@ -272,8 +272,8 @@ export function playAsks(scene: HTMLElement, rm: boolean): void {
 
 /** swaddle: 강보에 싼 아기 — 한 아이가 to(없으면 who)의 품에 안긴다. 다른 품에 있었으면 옮겨 간다 (왕상 3:20, 27) */
 const BABE = `
-  <g class="so-babe__in">
-    <circle class="so-babe__glow" cx="118" cy="140" r="30"/>
+  <g class="so-babe__in" transform="translate(112 146) scale(1.5) translate(-116 -142)">
+    <circle class="so-babe__glow" cx="118" cy="140" r="34"/>
     <path class="so-babe__cloth" d="M94 150 C90 142 96 132 108 130 C120 128 132 128 138 132 C142 136 140 144 132 148 C120 154 104 156 94 150 Z"/>
     <path class="so-babe__band" d="M104 133 Q102 142 106 152 M116 130 Q114 141 118 152 M127 130 Q126 140 129 149" fill="none"/>
     <circle class="so-babe__face" cx="139" cy="134" r="7.2"/>

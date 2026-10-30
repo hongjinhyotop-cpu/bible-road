@@ -88,7 +88,7 @@
     {"type": "line", "who": "david", "act": "approach", "to": "cushite", "text": "“소년 압살롬이 잘 있느냐.”"},
     {"type": "line", "who": "cushite", "act": "bow-head", "text": "“내 주 왕의 원수와 일어나서 왕을 대적하는 자들은, 다 그 소년과 같이 되기를 원하나이다.”"},
     {"pose": {"david": "tremble"}, "acts": [{"act": "step-back", "who": "david"}], "exit": ["ahimaaz", "cushite"]},
-    {"type": "narration", "bg": "ab-chamber", "fx": "fade", "enter": ["david"], "pose": {"david": "slump"}, "text": "왕의 마음이 심히 아팠다. 그는 성문 위 다락으로 올라갔다."},
+    {"type": "narration", "bg": "ab-chamber", "fx": "fade", "enter": ["david"], "outfit": {"david": "barefoot"}, "pose": {"david": "slump"}, "acts": [{"act": "part", "who": "david"}], "text": "왕의 마음이 심히 아팠다. 그는 성문 위 다락으로 올라갔다."},
     {"type": "scripture", "ref": "삼하 18:33", "gloss": "왕은 마음이 너무 아파 성문 위 다락방으로 올라가 울었다. 올라가면서 말했다. “내 아들 압살롬아, 내 아들, 내 아들 압살롬아. 내가 너 대신 죽었더라면. 압살롬아, 내 아들아, 내 아들아.”"},
     {"acts": [{"act": "kneel", "who": "david"}, {"act": "cry", "who": "david"}]}
   ],
