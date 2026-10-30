@@ -146,6 +146,10 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   ziklag: at(34.73, 31.37),
   jezreel: at(35.33, 32.56),
   besor: at(34.5, 31.28),
+  shunem: at(35.33, 32.61),
+  endor: at(35.39, 32.66),
+  gilboa: at(35.4, 32.47),
+  bethshan: at(35.5, 32.5),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

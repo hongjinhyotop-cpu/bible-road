@@ -46,8 +46,10 @@ import { playLots as playJoshLots, playMarch, playShout, playSunStand } from '..
 import { playFlameUp, playFoxes, playGenealogy, playLament, playPillars, playSummons, playTorches } from '../fx/judges';
 import { playBlind } from '../fx/sodom';
 import { playLittleRobes } from '../fx/samuel';
+import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
+import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
 import { createItemLayer, setItem } from '../fx/tabernacle';
@@ -64,7 +66,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body']);
@@ -729,6 +731,10 @@ export function sceneScreen({ id }: Params): Screen {
         // 미스바의 제비 (fx/saul.ts): 지파 → 가족 → 사울 → …없다 (삼상 10:20-21)
         playSaulLots($('.scene'), rm);
         return;
+      case 'rise':
+        // 엔돌: 땅에서 오르는 희뿌연 빛 (삼상 28:13) — fx/gilboa.ts
+        playRise($('.scene'), rm);
+        return;
       case 'little-robes':
         // 한나: 해마다 지어 온 작은 겉옷 (삼상 2:19) — fx/samuel.ts
         playLittleRobes($('.scene'), rm);
@@ -744,6 +750,18 @@ export function sceneScreen({ id }: Params): Screen {
       case 'topple':
         // 큰 몸이 쓰러짐 (삼상 17:49) — fx/david.ts. 대상 = who → goliath
         playTopple($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'spear-throw':
+        // 사울의 창 (삼상 18:11, 19:10, 20:33) — fx/jonathan.ts. 던지는 사람 = who → saul, 상대 = to → david
+        playSpearThrow($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'arrows':
+        // 요나단의 화살 (삼상 20:20, 36) — fx/jonathan.ts. 쏘는 사람 = who → jonathan
+        playArrows($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'hem':
+        // 벤 옷자락 (삼상 24:4, 11) — fx/jonathan.ts. 대상 = who → david
+        playHem($('.scene'), [beat?.who ?? []].flat()[0], rm);
         return;
       case 'blind':
         // 뒤돌아보지 말라 (fx/sodom.ts): 문 쪽에서 흰빛이 터져 무리의 눈을 어둡게 한다 (창 19:11)

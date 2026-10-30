@@ -176,6 +176,10 @@ export const PLACE_NAMES = {
   ziklag: '시글락',
   jezreel: '이스르엘',
   besor: '브솔 시내',
+  shunem: '수넴',
+  endor: '엔돌',
+  gilboa: '길보아산',
+  bethshan: '벧산',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -210,4 +214,8 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   ziklag: '아기스가 다윗에게 준 성읍',
   jezreel: '이스라엘의 진, 샘 곁',
   besor: '이백 명이 머문 시내',
+  shunem: '블레셋의 진',
+  endor: '신접한 여인의 집',
+  gilboa: '사울의 마지막 진',
+  bethshan: '블레셋이 차지한 성벽',
 };

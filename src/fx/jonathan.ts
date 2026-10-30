@@ -19,7 +19,7 @@
 //  - arrows      : 화살 — 쏘는 사람(who, 없으면 jonathan)에게서 화살 셋이 높이 날아 들 저편으로 떨어진다 (약 5초, 20:20, 36)
 //  - hem         : 옷자락 — 대상(who, 없으면 david)의 앞손 높이에 벤 겉옷 자락 한 조각이 떠오르며 금빛 테가 그어짐 (약 5초, 24:4, 11)
 // 하나님은 그리지 않는다. 피·상처는 그리지 않는다 (창은 늘 빗나간다 — 본문대로).
-import { H, W, rng, smoke, tree } from './backdrop';
+import { H, W, rng, tree } from './backdrop';
 import { folk, ground, ridge, stars } from './joshua';
 
 export type JonathanArt =
@@ -65,10 +65,10 @@ function caveMouth(cx: number, base: number, w: number, h: number, cls = 'jn-mou
 function hallArt(spear: boolean): string {
   const stuck = spear
     ? `<g class="jn-stuck">
-        <path class="jn-crack" d="M170 104 l-7 -6 l-4 -9 M170 104 l8 -5 l6 -9 M170 104 l-2 10 l-6 6 M170 104 l9 6"/>
-        <path class="jn-shaft" d="M170 104 L246 146 L244.4 149 L168.4 107 Z"/>
-        <path class="jn-shaft" d="M243 146 L252 147 L249 155 Z"/>
-        <circle class="bd-halo" cx="170" cy="104" r="16"/>
+        <path class="jn-crack" d="M218 98 l-5 -7 l-2 -8 M218 98 l7 -4 l7 -7 M218 98 l1 9 l-4 7 M218 98 l8 6"/>
+        <circle class="bd-halo" cx="200" cy="88" r="40"/>
+        <path class="jn-shaft" d="M216 98.6 L150 64 L151.4 61.4 L217.4 96 Z"/>
+        <path class="jn-shaft" d="M152 62 L144 58 L146 64 Z"/>
       </g>`
     : '';
   return `<g class="jn jn--hall">
@@ -95,14 +95,14 @@ function hallArt(spear: boolean): string {
 // ── 밤, 다윗의 집 창 ─────────────────────────────
 function windowArt(rope: boolean): string {
   const r = rng(7121);
-  const watchers = [318, 334, 352].map((x, i) => `
+  const watchers = [104, 118, 134].map((x, i) => `
     <g class="jn-watch"><rect x="${x - 2.4}" y="${222 - i * 1.5}" width="5" height="${18 + r() * 3}" rx="2.4"/><circle cx="${x}" cy="${219 - i * 1.5}" r="2.8"/></g>
     <path class="jn-torch" style="--d:${f(i * 0.6)}s" d="M${x + 4} ${214 - i * 1.5} C${x + 2} ${208 - i * 1.5} ${x + 5} ${204 - i * 1.5} ${x + 6} ${199 - i * 1.5} C${x + 8} ${204 - i * 1.5} ${x + 9} ${209 - i * 1.5} ${x + 7} ${214 - i * 1.5} Z"/>
     <circle class="bd-halo jn-torchhalo" cx="${x + 6}" cy="${206 - i * 1.5}" r="20"/>`).join('');
   const line = rope
-    ? `<g class="jn-rope"><path d="M196 104 C194 140 200 176 197 214 C196 230 199 240 198 248" fill="none" stroke-width="2.2"/>
-        <path d="M204 104 C206 140 201 176 204 214 C205 230 202 240 204 248" fill="none" stroke-width="1.4"/>
-        <path d="M197 132 h7 M199 162 h5 M198 192 h6 M199 222 h5" fill="none" stroke-width="1"/></g>`
+    ? `<g class="jn-rope"><path d="M232 104 C230 140 236 176 233 214 C232 230 235 240 234 248" fill="none" stroke-width="2.2"/>
+        <path d="M240 104 C242 140 237 176 240 214 C241 230 238 240 240 248" fill="none" stroke-width="1.4"/>
+        <path d="M233 132 h7 M235 162 h5 M234 192 h6 M235 222 h5" fill="none" stroke-width="1"/></g>`
     : '';
   return `<g class="jn jn--window">
     ${stars(70, 120, 7122)}
@@ -115,12 +115,12 @@ function windowArt(rope: boolean): string {
       <rect x="106" y="44" width="5" height="9"/><rect x="160" y="44" width="5" height="9"/><rect x="235" y="44" width="5" height="9"/><rect x="289" y="44" width="5" height="9"/><rect x="106" y="42" width="188" height="3"/></g>
     ${masonry(110, 290, 80, 248, 24, 7123)}
     <!-- 창 -->
-    <path class="jn-win" d="M186 112 L186 86 C186 78 214 78 214 86 L214 112 Z"/>
-    <circle class="bd-halo jn-winhalo" cx="200" cy="96" r="34"/>
-    <path class="jn-sill" d="M182 112 h36 v4 h-36 Z"/>
+    <path class="jn-win" d="M222 112 L222 86 C222 78 250 78 250 86 L250 112 Z"/>
+    <circle class="bd-halo jn-winhalo" cx="236" cy="96" r="34"/>
+    <path class="jn-sill" d="M218 112 h36 v4 h-36 Z"/>
     ${line}
     <!-- 집 모퉁이 문, 지키는 사자들 -->
-    <path class="jn-door" d="M262 250 L262 210 C262 202 282 202 282 210 L282 250 Z"/>
+    <path class="jn-door" d="M140 250 L140 210 C140 202 160 202 160 210 L160 250 Z"/>
     ${watchers}
     ${ground(250)}
   </g>`;
@@ -332,7 +332,7 @@ export function playSpearThrow(scene: HTMLElement, who: string | undefined, to: 
   const ang = (Math.atan2(dy, dx) * 180) / Math.PI;
   const len = Math.min(150, Math.max(90, from.h * 0.62));
   layerOf(scene, `fx-spear${rm ? ' is-rm' : ''}`,
-    `<div class="fx-spear__at" style="--x:${f(sx)}px; --y:${f(sy)}px; --dx:${f(dx)}px; --dy:${f(dy)}px; --ang:${f(ang)}deg; --len:${f(len)}px">
+    `<div class="fx-spear__at" style="--x:${f(sx)}px; --y:${f(sy)}px; --dx:${f(dx)}px; --dy:${f(dy)}px; --ang:${f(ang)}deg; --len:${f(len)}px; --dist:${f(Math.hypot(dx, dy))}px">
       <b class="fx-spear__streak"></b>
       <i class="fx-spear__shaft"><s></s></i>
     </div>
