@@ -194,6 +194,9 @@ export const PLACE_NAMES = {
   'abel-beth-maacah': '벧마아가 아벨',
   zelah: '셀라',
   tekoa: '드고아',
+  lebanon: '레바논',
+  joppa: '욥바',
+  sheba: '스바',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -245,4 +248,7 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   'abel-beth-maacah': '북쪽 끝, 물어보러 가던 성',
   zelah: '베냐민 땅, 기스의 묘',
   tekoa: '베들레헴 남쪽, 슬기 있는 여인',
+  lebanon: '백향목과 잣나무의 산',
+  joppa: '뗏목을 푸는 항구 (대하 2:16)',
+  sheba: '↓ 아라비아 남쪽 끝(지금의 예멘 쪽), 지도 밖 먼 곳',
 };

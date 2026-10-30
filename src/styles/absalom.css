@@ -70,8 +70,8 @@
 .ab-runner--1 { animation: ab-run1 14s cubic-bezier(0.5, 0, 0.8, 0.6) 0.4s both; }
 .ab-runner--2 { animation: ab-run2 18s cubic-bezier(0.5, 0, 0.8, 0.6) 2.6s both; }
 .ab-runner rect { animation: ab-stride 0.36s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; }
-@keyframes ab-run1 { 0% { opacity: 0; transform: translate(200px, 146px) scale(0.5); } 8% { opacity: 1; } 50% { transform: translate(184px, 190px) scale(1.2); } 100% { opacity: 1; transform: translate(204px, 226px) scale(2.4); } }
-@keyframes ab-run2 { 0% { opacity: 0; transform: translate(200px, 145px) scale(0.4); } 10% { opacity: 1; } 100% { opacity: 1; transform: translate(186px, 196px) scale(1.3); } }
+@keyframes ab-run1 { 0% { opacity: 0; transform: translate(149px, 146px) scale(0.6); } 8% { opacity: 1; } 45% { transform: translate(124px, 182px) scale(1.5); } 100% { opacity: 1; transform: translate(112px, 226px) scale(3); } }
+@keyframes ab-run2 { 0% { opacity: 0; transform: translate(149px, 145px) scale(0.5); } 10% { opacity: 1; } 100% { opacity: 1; transform: translate(128px, 186px) scale(1.7); } }
 @keyframes ab-stride { from { scale: 1 1; } to { scale: 0.9 1.06; } }
 
 /* ── 에브라임 수풀 (18:6-8) ── */
@@ -84,8 +84,9 @@
 /* ── 큰 상수리나무 (18:9) ── */
 .ab-oak { fill: color-mix(in srgb, var(--act-a) 26%, #040304); }
 .ab-oakleaf { fill: color-mix(in srgb, #4a5a3a 30%, #050604); animation: gb-sway 9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
-.ab-hang { fill: #030203; transform-box: view-box; transform-origin: 217px 106px; animation: ab-hang 5s ease-in-out infinite alternate; }
-.ab-hair { fill: none; stroke: #030203; stroke-width: 1.6; stroke-linecap: round; }
+.ab-hang { fill: color-mix(in srgb, var(--act-a) 18%, #050307); opacity: 0.88; transform-box: view-box; transform-origin: 218px 104px; animation: ab-hang 5s ease-in-out infinite alternate; }
+.ab-hairmass { fill: color-mix(in srgb, #3a2414 40%, #050303); }
+.ab-hair { fill: none; stroke: color-mix(in srgb, #5a3a20 40%, #050303); stroke-width: 1.2; stroke-linecap: round; }
 @keyframes ab-hang { from { rotate: -2.5deg; } to { rotate: 2.5deg; } }
 .ab-mule { fill: color-mix(in srgb, var(--act-a) 30%, #050404); transform-box: view-box; animation: ab-mule 5.4s cubic-bezier(0.3, 0, 0.7, 1) 0.8s both; }
 @keyframes ab-mule { 0% { opacity: 1; transform: translate(206px, 236px); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(380px, 238px); } }

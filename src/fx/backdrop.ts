@@ -35,6 +35,7 @@ import { gilboaArt } from './gilboa';
 import { saulArt } from './saul';
 import { davidArt } from './david';
 import { kingshipArt } from './kingship';
+import { solomonArt } from './solomon';
 import { absalomArt } from './absalom';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
@@ -650,6 +651,13 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'kg-rabbah': () => kingshipArt('kg-rabbah'),
   'kg-parable': () => kingshipArt('kg-parable'),
   'kg-parable-taken': () => kingshipArt('kg-parable-taken'),
+  // 7막 솔로몬 (fx/solomon.ts)
+  'so-gibeon': () => solomonArt('so-gibeon'),
+  'so-dream': () => solomonArt('so-dream'),
+  'so-dream-wake': () => solomonArt('so-dream-wake'),
+  'so-court': () => solomonArt('so-court'),
+  'so-house': () => solomonArt('so-house'),
+  'so-house-dawn': () => solomonArt('so-house-dawn'),
   // 7막 압살롬의 반역 (fx/absalom.ts)
   'ab-gate': () => absalomArt('ab-gate'),
   'ab-kidron': () => absalomArt('ab-kidron'),

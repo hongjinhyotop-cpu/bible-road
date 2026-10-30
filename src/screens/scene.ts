@@ -49,6 +49,7 @@ import { playLittleRobes } from '../fx/samuel';
 import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
+import { playAsks, playBlade, playSwaddle, playThousand } from '../fx/solomon';
 import { playAccuse, playDance, playLetter } from '../fx/kingship';
 import { playStones } from '../fx/absalom';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
@@ -768,6 +769,22 @@ export function sceneScreen({ id }: Params): Screen {
       case 'stones':
         // 시므이의 돌과 티끌 (삼하 16:6, 13) — fx/absalom.ts. 던지는 사람 = who → shimei, 상대 = to → david
         playStones($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'thousand':
+        // 일천 번제 (왕상 3:4) — fx/solomon.ts
+        playThousand($('.scene'), rm);
+        return;
+      case 'asks':
+        // 듣는 마음 (왕상 3:9-11) — fx/solomon.ts
+        playAsks($('.scene'), rm);
+        return;
+      case 'swaddle':
+        // 강보에 싼 아기 (왕상 3:20, 27) — fx/solomon.ts. 안는 사람 = to → who, 다른 품에 있었으면 옮겨 감
+        playSwaddle($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'blade':
+        // 칼이 왕 앞에 (왕상 3:24) — fx/solomon.ts. 칼 든 사람 = who → 오른쪽 사람
+        playBlade($('.scene'), [beat?.who ?? []].flat()[0], rm);
         return;
       case 'spear-throw':
         // 사울의 창 (삼상 18:11, 19:10, 20:33) — fx/jonathan.ts. 던지는 사람 = who → saul, 상대 = to → david

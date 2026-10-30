@@ -1,0 +1,129 @@
+/* ── 7막 A급: 솔로몬 (왕상 3, fx/solomon.ts · characters/solomon.ts) ──
+   인물: 금실(.so-gold · .so-thread), 보석(.so-gem), 왕의 옷(.so-robe), 늙은 왕의 두꺼운 겉옷(.so-heavy), 두루마리(.so-scroll)
+   배경: 기브온 산당, 기브온의 밤(꿈), 왕의 재판 자리, 작은 집(밤·미명)
+   효과: thousand(일천 번제), asks(듣는 마음), swaddle(강보에 싼 아기), blade(칼이 왕 앞에) */
+
+/* ── 인물 ── */
+.actor .so-gold, .sil .so-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .so-gem, .sil .so-gem { fill: color-mix(in srgb, #f6e2a8 80%, var(--act-accent)); opacity: 0.85; }
+.actor .so-thread, .sil .so-thread { stroke: color-mix(in srgb, #e2b75c 46%, var(--sil-ink)); opacity: 0.85; }
+.actor .so-robe, .sil .so-robe { fill: color-mix(in srgb, color-mix(in srgb, #7a3f86 60%, #c79a3e) 34%, var(--sil-ink)); }
+.actor .so-mantle, .sil .so-mantle { fill: color-mix(in srgb, color-mix(in srgb, #6a2f78 70%, var(--act-accent)) 30%, var(--sil-ink)); }
+.actor .so-heavy, .sil .so-heavy { fill: color-mix(in srgb, color-mix(in srgb, #5e2a5a 70%, #8a6a3a) 32%, var(--sil-ink)); }
+.actor .so-scroll, .sil .so-scroll { fill: color-mix(in srgb, #ecdcb4 46%, var(--sil-ink)); }
+
+/* ── 배경 공통 ── */
+.so-road { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 3.2; stroke-linecap: round; opacity: 0.45; }
+.so-stones, .so-tentline { fill: none; stroke: color-mix(in srgb, var(--act-b) 45%, #000); stroke-width: 0.7; opacity: 0.55; }
+.so-ember { fill: #ff9a50; opacity: 0.6; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.so-ember--low { opacity: 0.35; }
+.so-flame path { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.so-altarhalo { opacity: 0.85; }
+.so-folk rect { fill: color-mix(in srgb, var(--act-a) 38%, #05040a); }
+
+/* ── 꿈의 빛기둥 (3:5) ── */
+.so-shaft { fill: color-mix(in srgb, #fff2cc 60%, var(--act-accent)); opacity: 0.12; filter: blur(6px); animation: so-shaft 6s ease-in-out infinite alternate; }
+.so-shaft--core { opacity: 0.2; filter: blur(3px); animation-delay: -2s; }
+@keyframes so-shaft { from { opacity: 0.08; } to { opacity: 0.22; } }
+.so-pool { fill: #fff0c8; opacity: 0.22; filter: blur(5px); }
+.so-mote { fill: #fff2cc; opacity: 0; animation: so-mote 9s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes so-mote { 0% { opacity: 0; translate: 0 10px; } 30% { opacity: 0.85; } 70% { opacity: 0.6; } 100% { opacity: 0; translate: var(--dx) -40px; } }
+.so--wake .so-dreamlight { display: none; }
+
+/* ── 재판 자리 ── */
+.so-wall { fill: color-mix(in srgb, var(--act-b) 22%, #060408); }
+.so-beam { fill: color-mix(in srgb, var(--act-a) 30%, #040306); }
+.so-beamline, .so-grain, .so-chain { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #000); stroke-width: 0.8; opacity: 0.7; }
+.so-grain { stroke: color-mix(in srgb, #8a5a30 30%, var(--act-b)); opacity: 0.35; }
+.so-drape { fill: color-mix(in srgb, color-mix(in srgb, #6e2f7a 70%, var(--act-accent)) 30%, #08050c); }
+.so-drapeline { fill: none; stroke: #000; stroke-width: 1; opacity: 0.35; }
+.so-thronehalo { opacity: 0.55; }
+.so-goldline { fill: none; stroke: color-mix(in srgb, #e2b75c 60%, var(--act-accent)); stroke-width: 1.1; opacity: 0.7; }
+.so-goldline-dot { fill: #f6e2a8; opacity: 0.85; }
+.so-lamphalo { opacity: 0.7; }
+.so-tiles { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
+
+/* ── 작은 집 ── */
+.so-mud { fill: color-mix(in srgb, #6a4a30 18%, color-mix(in srgb, var(--act-b) 20%, #070508)); }
+.so-bricks { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.22; }
+.so-window { fill: #05040c; }
+.so--dawn .so-window { fill: color-mix(in srgb, #dfe6f0 55%, var(--act-b)); filter: drop-shadow(0 0 4px rgba(220, 230, 245, 0.7)); }
+.so-winstar { fill: #fff; opacity: 0.8; animation: js-flicker 2.4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.so-dawnbeam { fill: #e6ecf6; opacity: 0.1; filter: blur(5px); }
+.so-niche { fill: #050307; }
+.so-lamphalo--big { opacity: 0.9; }
+.so-mat { fill: color-mix(in srgb, #b89a6a 30%, var(--act-b)); opacity: 0.7; }
+
+:root[data-reduced-motion='true'] :is(.so-flame path, .so-ember, .so-shaft, .so-mote, .so-winstar) { animation: none; }
+:root[data-reduced-motion='true'] .so-mote { opacity: 0.5; }
+
+/* ── 효과 thousand: 일천 번제 (3:4) ── */
+.fx-thousand { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-thousand.is-out { opacity: 0; }
+.fx-thousand > i { position: absolute; left: var(--x); bottom: 40%; width: calc(22px * var(--s)); height: 62%; translate: -50% 0;
+  background: linear-gradient(to top, rgba(214, 200, 176, 0.5), rgba(190, 180, 166, 0.22) 55%, transparent);
+  border-radius: 50% 50% 40% 40%; filter: blur(7px); transform-origin: 50% 100%;
+  opacity: 0; scale: 0.6 0; animation: so-plume 3.6s ease-out both, so-plume-sway 5s ease-in-out infinite alternate;
+  animation-delay: calc(0.3s + var(--i) * 0.17s), calc(var(--i) * -0.3s); }
+@keyframes so-plume { 0% { opacity: 0; scale: 0.6 0; } 30% { opacity: 1; } 100% { opacity: 0.85; scale: 1 1; } }
+@keyframes so-plume-sway { from { translate: -50% 0; } to { translate: calc(-50% + var(--sw)) 0; } }
+.fx-thousand__count { position: absolute; left: 50%; top: 14%; translate: -50% 0; text-align: center; color: #fbe7b4;
+  text-shadow: 0 0 14px rgba(255, 200, 120, 0.8), 0 0 2px rgba(0, 0, 0, 0.8); animation: so-count-in 1s ease-out both; }
+.fx-thousand__count b { display: block; font-family: var(--font-display); font-weight: 500; font-size: clamp(42px, 11vw, 76px); line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: 0.04em; }
+.fx-thousand__count span { display: block; margin-top: 6px; font-family: var(--font-serif); font-size: 15px; letter-spacing: 0.4em; opacity: 0; transition: opacity 1.2s ease-out; }
+.fx-thousand.is-done .fx-thousand__count span, .fx-thousand.is-rm .fx-thousand__count span { opacity: 0.95; }
+@keyframes so-count-in { from { opacity: 0; translate: -50% 8px; } to { opacity: 1; translate: -50% 0; } }
+
+/* ── 효과 asks: 듣는 마음 (3:9-11) ── */
+.fx-asks { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-asks.is-out { opacity: 0; }
+.fx-asks__w { position: absolute; left: var(--x); top: var(--y); translate: -50% 0; white-space: nowrap; font-family: var(--font-serif);
+  font-size: 17px; letter-spacing: 0.2em; color: #e8e0d0; text-shadow: 0 0 10px rgba(220, 210, 190, 0.5);
+  opacity: 0; animation: so-ask-w 5.2s ease-in-out both; animation-delay: calc(var(--i) * 0.55s); }
+.fx-asks__w::after { content: ''; position: absolute; left: -6%; top: 52%; height: 1px; width: 0; background: rgba(232, 224, 208, 0.7);
+  animation: so-ask-strike 0.8s ease-out both; animation-delay: calc(2.4s + var(--i) * 0.4s); }
+@keyframes so-ask-w { 0% { opacity: 0; translate: -50% 10px; } 22% { opacity: 0.75; translate: -50% 0; } 55% { opacity: 0.6; } 100% { opacity: 0; translate: -50% 26px; filter: blur(2px); } }
+@keyframes so-ask-strike { to { width: 112%; } }
+.fx-asks__heart { position: absolute; left: 50%; top: 22%; translate: -50% 0; text-align: center; opacity: 0;
+  animation: so-heart 3s ease-out 3.8s both; }
+.fx-asks__heart b { display: block; font-family: var(--font-serif); font-weight: 600; font-size: clamp(28px, 8vw, 46px); letter-spacing: 0.24em; color: #fbe3a0;
+  text-shadow: 0 0 18px rgba(255, 200, 110, 0.9), 0 0 3px rgba(0, 0, 0, 0.6); }
+.fx-asks__heart small { display: block; margin-top: 8px; font-size: 18px; color: #f2d79a; opacity: 0.7; direction: rtl; }
+.fx-asks__heart::before { content: ''; position: absolute; left: 50%; top: 40%; width: 240px; height: 240px; translate: -50% -50%; border-radius: 50%; z-index: -1;
+  background: radial-gradient(closest-side, rgba(255, 214, 140, 0.4), transparent); }
+@keyframes so-heart { 0% { opacity: 0; scale: 0.9; filter: blur(4px); } 60% { opacity: 1; filter: blur(0); } 100% { opacity: 1; scale: 1; } }
+.fx-asks.is-rm .fx-asks__w { display: none; }
+.fx-asks.is-rm .fx-asks__heart { animation-duration: 0.4s; animation-delay: 0s; }
+
+/* ── 효과 swaddle: 강보에 싼 아기 (3:20, 27) ── */
+.actor .so-babe { transition: opacity 0.8s ease-out; animation: so-babe-in 1.2s ease-out both; }
+.actor .so-babe.is-rm { animation-duration: 0.2s; }
+.actor .so-babe.is-out { opacity: 0; }
+@keyframes so-babe-in { from { opacity: 0; } to { opacity: 1; } }
+.actor .so-babe__cloth { fill: color-mix(in srgb, #f2ead8 60%, var(--sil-ink)); }
+.actor .so-babe__band { stroke: color-mix(in srgb, #b8a888 50%, var(--sil-ink)); stroke-width: 1; }
+.actor .so-babe__face { fill: color-mix(in srgb, #e8c8a8 40%, var(--sil-ink)); }
+.actor .so-babe__glow { fill: #fff2cc; opacity: 0.16; filter: blur(8px); }
+.fx-swaddle { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 0.9s ease-in; }
+.fx-swaddle.is-out { opacity: 0; }
+.fx-swaddle__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-swaddle__at i { position: absolute; left: var(--o); top: var(--o); width: 5px; height: 5px; border-radius: 50%; background: #ffe6b0;
+  box-shadow: 0 0 8px rgba(255, 220, 150, 0.95); opacity: 0; animation: so-swaddle-mote 1.6s cubic-bezier(0.4, 0, 0.3, 1) both; animation-delay: calc(0.2s + var(--i) * 0.06s); }
+@keyframes so-swaddle-mote { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 1; } 50% { translate: calc(var(--dx) * 0.5) calc(var(--dy) * 0.5 - 40px); } 90% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
+
+/* ── 효과 blade: 칼이 왕 앞에 (3:24) ── */
+.fx-blade { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-blade.is-out { opacity: 0; }
+.fx-blade__chill { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 60%, rgba(150, 175, 210, 0.08), rgba(8, 14, 30, 0.5) 75%);
+  mix-blend-mode: multiply; animation: so-chill 1.4s ease-out both; }
+@keyframes so-chill { from { opacity: 0; } to { opacity: 1; } }
+.fx-blade__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-blade__glint { position: absolute; left: calc(var(--w) * -0.6); top: -1px; width: calc(var(--w) * 1.2); height: 2px; rotate: -24deg;
+  background: linear-gradient(90deg, transparent, rgba(230, 240, 255, 0.95) 50%, transparent); box-shadow: 0 0 10px rgba(200, 220, 255, 0.9);
+  opacity: 0; animation: so-glint 1.1s ease-out 0.7s both; }
+@keyframes so-glint { 0% { opacity: 0; clip-path: inset(0 100% 0 0); } 40% { opacity: 1; clip-path: inset(0 0 0 0); } 100% { opacity: 0; clip-path: inset(0 0 0 100%); } }
+.fx-blade__star { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; opacity: 0;
+  background: radial-gradient(closest-side, #fff, rgba(210, 225, 255, 0.6) 40%, transparent);
+  animation: so-star 0.9s ease-out 1.1s both; }
+@keyframes so-star { 0% { opacity: 0; scale: 0.2; } 40% { opacity: 1; scale: 1.6; } 100% { opacity: 0; scale: 0.6; } }
+.fx-blade.is-rm :is(.fx-blade__glint, .fx-blade__star) { display: none; }

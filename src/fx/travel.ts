@@ -164,6 +164,9 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   'abel-beth-maacah': at(35.58, 33.26),
   zelah: at(35.2, 31.83),
   tekoa: at(35.22, 31.63),
+  lebanon: at(35.95, 34.2),
+  joppa: at(34.75, 32.05),
+  sheba: at(38.8, 25.3), // 실제는 훨씬 남쪽(북위 15° 안팎) — 지도 아래 끝에 둠
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

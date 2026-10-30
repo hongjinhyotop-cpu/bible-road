@@ -1,0 +1,74 @@
+{
+  "id": "kgs1-3-judgment",
+  "act": 7,
+  "grade": "A",
+  "title": "칼을 가져오라",
+  "ref": "왕상 3:16-28",
+  "bg": "so-court",
+  "cast": ["solomon"],
+  "extras": {
+    "first": { "name": "한 여인", "base": "woman", "hair": "veil", "tint": "red" },
+    "other": { "name": "다른 여인", "base": "woman", "hair": "loose", "tint": "blue" },
+    "guard": { "name": "칼 든 신하", "base": "soldier", "hair": "helmet", "props": ["sword"], "tint": "gray" }
+  },
+  "beats": [
+    { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "look-up", "who": "solomon" }], "text": "왕의 지혜는 오래 기다리지 않고 시험을 받았다. 시험은 대개 큰 문으로 들어오지 않는다. 이번에는 성읍에서 가장 낮은 골목에서 왔다." },
+    { "type": "narration", "enter": ["first", "other"], "acts": [{ "act": "walk-in", "who": ["first", "other"] }], "text": "두 여인이 왕에게 와서 그 앞에 섰다. 본문은 그들을 창기라고 부르고, 더 설명하지 않는다." },
+    { "type": "narration", "fx": "swaddle", "who": "other", "acts": [{ "act": "crowd-murmur" }], "text": "한 여인의 품에 강보에 싼 아기가 있었다. 그런 여인들이 왕 앞에 설 수 있었다는 것. 어쩌면 그것이 이 이야기의 첫 번째 놀라운 일이었다." },
+    { "type": "line", "who": "first", "act": "bow-head", "text": "“내 주여, 나와 이 여자가 한 집에서 사는데, 내가 저와 함께 집에 있으며 아이를 낳았나이다.”" },
+    { "bg": "so-house", "fx": ["fade", "recall"], "exit": ["solomon"], "acts": [{ "act": "crowd-away" }, { "act": "face", "who": ["first", "other"] }] },
+    { "type": "narration", "fx": "swaddle", "who": "first", "text": "그 여인의 말은 이랬다. 내가 해산한 지 사흘 만에, 이 여자도 해산했다. 우리가 함께 있었고, 우리 둘 외에는 집에 다른 사람이 없었다." },
+    { "type": "narration", "acts": [{ "act": "sleep", "who": "first" }, { "act": "sleep", "who": "other" }], "text": "작은 집이었다. 등잔 하나, 침상 둘, 아기 둘. 밤이 되면 모두 잠들었다." },
+    { "type": "narration", "fx": "dark", "text": "그런데 밤에, 저 여자가 자기 아들 위에 누웠다. 그 아이가 죽었다." },
+    { "type": "narration", "sound": "…", "text": "본문은 그 밤을 한 줄로 적는다. 더 적을 수 있는 말이 없는 밤이 있다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "other" }, { "act": "approach", "who": "other", "to": "first" }], "text": "저 여자가 밤중에 일어났다." },
+    { "type": "narration", "fx": "swaddle", "who": "first", "to": "other", "text": "내가 잠든 사이에, 내 곁에서 내 아들을 가져다가 자기 품에 누이고, 자기의 죽은 아들을 내 품에 뉘었다." },
+    { "type": "narration", "act": "step-back", "who": "other", "text": "그리고 자기 침상으로 돌아가 누웠다. 집에는 다시 숨소리만 남았다. 하나가 모자란 숨소리였다." },
+    { "bg": "so-house-dawn", "fx": "dawn", "acts": [{ "act": "stand", "who": "first" }] },
+    { "type": "narration", "act": "bow-head", "who": "first", "text": "미명에, 아들에게 젖을 먹이려고 일어나 보니, 아이가 죽어 있었다." },
+    { "type": "narration", "act": "cry", "who": "first", "text": "어미가 울었다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "first" }, { "act": "face", "who": "first", "to": "other" }], "text": "그리고 아침이 밝았을 때, 그녀는 자세히 보았다. 내가 낳은 아들이 아니었다. 어미는 어둠 속에서는 속을 수 있다. 아침에는 속지 않는다." },
+    { "bg": "so-court", "fx": ["fade", "present"], "enter": ["solomon"], "acts": [{ "act": "crowd" }] },
+    { "type": "line", "who": "other", "act": "approach", "to": "first", "text": "“아니라. 산 것은 내 아들이요, 죽은 것은 네 아들이라.”" },
+    { "type": "line", "who": "first", "act": "argue", "to": "other", "text": "“아니라. 죽은 것이 네 아들이요, 산 것이 내 아들이라.”" },
+    { "type": "narration", "acts": [{ "act": "argue", "who": ["other", "first"] }, { "act": "crowd-murmur" }], "text": "왕 앞에서, 두 여인이 그렇게 쟁론했다. 증인은 없었다. 집에는 둘뿐이었다. 산 아이는 말을 하지 못했고, 죽은 아이는 더 말을 하지 못했다. 남은 것은 말 두 마디, 똑같은 말 두 마디뿐이었다." },
+    { "type": "line", "who": "solomon", "acts": [{ "act": "part", "who": ["first", "other"] }, { "act": "approach", "who": "solomon", "to": "first" }], "text": "“이는 말하기를 산 것은 내 아들이요 죽은 것은 네 아들이라 하고, 저는 말하기를 아니라 죽은 것이 네 아들이요 산 것이 내 아들이라 하는도다.”" },
+    { "type": "narration", "act": "bow-head", "who": "solomon", "text": "왕은 두 사람의 말을 한 글자도 바꾸지 않고 되풀이했다. 듣는 마음이란, 먼저 정확하게 듣는 마음이었다." },
+    { "type": "choice", "prompt": "증인도 증거도 없다. 왕이라면 무엇으로 가릴까.", "options": [
+      { "label": "칼을 가져오게 한다", "canon": true },
+      { "label": "이웃들을 증인으로 부른다", "goto": "b-witness" },
+      { "label": "아기가 누구를 닮았는지 본다", "goto": "b-face" }
+    ] },
+    { "type": "line", "who": "solomon", "act": "look-up", "text": "“칼을 내게로 가져오라.”" },
+    { "type": "scripture", "ref": "왕상 3:24", "enter": ["guard"], "acts": [{ "act": "walk-in", "who": "guard" }], "gloss": "왕이 또 말했다. “칼을 가져오너라.” 그러자 사람들이 칼을 왕 앞으로 가져왔다." },
+    { "type": "narration", "fx": "blade", "who": "guard", "acts": [{ "act": "approach", "who": "guard", "to": "solomon" }, { "act": "step-back", "who": "first" }], "text": "칼이 왕 앞에 왔다. 궁 안의 모든 소리가 칼날 쪽으로 쏠렸다가, 거기서 멎었다." },
+    { "type": "line", "who": "solomon", "act": "bless", "text": "“산 아들을 둘에 나눠, 반은 이에게 주고 반은 저에게 주라.”" },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "guard", "to": "other" }, { "act": "crowd-murmur" }], "text": "칼 든 사람이 여인들 쪽으로 한 걸음 내디뎠다. 한 걸음이었다. 그 한 걸음이 궁 안에서 가장 긴 거리였다." },
+    { "type": "line", "who": "first", "act": "prostrate", "text": "“청컨대 내 주여, 산 아들을 저에게 주시고, 아무쪼록 죽이지 마옵소서.”" },
+    { "type": "scripture", "ref": "왕상 3:26", "gloss": "그러자 산 아이의 진짜 엄마는 아들이 너무 불쌍해서 가슴이 타는 것 같아, 왕에게 말했다. “내 주여, 제발 산 아이를 저 여자에게 주시고, 절대 죽이지 마십시오.” 그러나 다른 여자는 “내 것도 네 것도 되지 않게 그냥 나누어라” 하고 말했다." },
+    { "type": "narration", "act": "cry", "who": "first", "text": "그 여인은 이기기를 그만두었다. 아이가 살 수만 있다면, 아이를 잃는 쪽에 서기로 했다." },
+    { "type": "line", "who": "other", "act": "turn", "text": "“내 것도 되게 말고 네 것도 되게 말고, 나누게 하라.”" },
+    { "type": "narration", "act": "step-back", "who": "guard", "text": "한 사람은 아이를 원했다. 다른 한 사람은 이기기를 원했다. 칼 앞에 서기 전까지는, 둘이 똑같아 보였다." },
+    { "type": "line", "who": "solomon", "act": "approach", "to": "first", "text": "“산 아들을 저 여인에게 주고, 결코 죽이지 말라. 저가 그 어미니라.”" },
+    { "type": "narration", "fx": "swaddle", "who": "other", "to": "first", "acts": [{ "act": "walk-out", "who": "guard" }, { "act": "stand", "who": "first" }], "text": "칼은 한 번도 휘둘리지 않았다. 처음부터 그것은 아이를 가르는 칼이 아니라, 마음을 가르는 칼이었다." },
+    { "type": "scripture", "ref": "왕상 3:27", "gloss": "왕이 판결했다. “산 아이를 저 여자에게 주어라. 절대 죽이지 마라. 저 여자가 그 아이의 엄마다.”" },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "first" }, { "act": "cry", "who": "first" }], "text": "아이가 어미의 품으로 돌아갔다. 아이는 자기가 무엇에서 살아났는지 모를 것이다. 가장 크게 건짐을 받은 사람이, 대개 그렇다." },
+    { "type": "narration", "act": "leave", "who": "other", "text": "다른 여인에 대해서 본문은 더 말하지 않는다. 그녀도 그 밤에 아이를 잃은 어미였다. 그녀가 빼앗으려던 것이 아이였는지, 빈 품을 채울 무엇이었는지는 아무도 모른다." },
+    { "type": "narration", "fx": "glory", "acts": [{ "act": "crowd-bow" }, { "act": "face", "who": "solomon", "to": "first" }], "text": "온 이스라엘이 왕의 판결을 들었다. 그리고 왕을 두려워했다." },
+    { "type": "scripture", "ref": "왕상 3:28", "gloss": "온 이스라엘이 왕의 판결을 듣고 왕을 두려워했다. 하나님의 지혜가 그 안에 있어서 공정하게 재판하는 것을 보았기 때문이다." },
+    { "type": "narration", "act": "look-up", "who": "solomon", "text": "기브온의 밤에 구한 것이, 아침의 궁에서 쓰였다. 백성이 두려워한 것은 왕의 칼이 아니었다. 칼을 쓰지 않고도 진실을 꺼낼 줄 아는, 왕의 속이었다." }
+  ],
+  "branches": {
+    "b-witness": [
+      { "type": "narration", "text": "왕이 이웃들을 불렀다면. 이웃들은 아기가 둘 태어났다는 것은 알았을 것이다. 그 밤에 무슨 일이 있었는지는 아무도 몰랐다. 집에는 둘뿐이었다." },
+      { "type": "narration", "text": "증인이 없는 곳에서, 왕은 다른 증인을 찾아야 했다. 말하지 못하는 아이 대신, 말을 숨기지 못할 마음을." }
+    ],
+    "b-face": [
+      { "type": "narration", "text": "사흘 차이로 태어난 갓난아이였다. 갓난아이는 대개 누구도 닮지 않았다. 굳이 닮은 데를 찾자면, 그 무렵의 모든 갓난아이를 닮았다." },
+      { "type": "narration", "text": "얼굴은 아무것도 말해 주지 않았다. 말해 줄 것은, 아이를 바라보는 얼굴 쪽이었다." }
+    ]
+  },
+  "insight": "이게 그 유명한 ‘솔로몬의 재판’임. 근데 상황을 잘 보면 진짜 답이 없는 사건이었음. CCTV도 없고, DNA 검사도 없고, 증인도 없음. 집에 둘뿐이었으니까(3:18). 둘이 하는 말도 토씨 하나까지 똑같음. 법정 드라마로 치면 ‘증거 불충분, 기각’ 각임.\n\n솔로몬은 증거를 밖에서 찾지 않고 사람 마음 안에서 꺼냄. ‘칼 가져와. 반반 나눠.’ 이건 진짜 아기를 자르겠다는 게 아니라 엄마의 마음을 시험한 거라고 대부분 읽음(본문이 왕 속마음을 직접 말해 주진 않음). 진짜 엄마는 아이가 살 수만 있다면 아이를 포기함. 가짜는 ‘그냥 나눠’ 함. 이기는 게 목적이었던 사람이랑, 아이가 목적이었던 사람이 칼 앞에서 갈림.\n\n‘마음이 불붙는 것 같아서’(3:26)는 히브리어로 ‘라하밈’이 뜨거워졌다는 표현인데, 이 말은 ‘레헴(태, 자궁)’이랑 뿌리가 같음. 그래서 ‘불쌍히 여김, 긍휼’을 뜻하는 말이 자궁에서 나옴. 엄마가 자기 몸 깊은 데서부터 끓어오르는 그 마음. 구약에서 하나님의 긍휼을 말할 때도 같은 계열의 말을 씀.\n\n그리고 앞 이야기랑 이어서 보면 더 좋음. 기브온에서 솔로몬이 구한 게 ‘듣는 마음’이었잖아. 여기서 솔로몬이 제일 먼저 한 게 두 사람 말을 그대로 되풀이한 거임(3:23). 판단하기 전에 정확하게 들음. 그리고 마지막 절이 ‘하나님의 지혜가 그의 속에 있어’(3:28). 꿈에서 받은 게 진짜였다는 걸 하나님이 이 재판으로 보여 주신 거.\n\n하나 더. 이 사건의 주인공들은 ‘창기’, 사회 맨 밑바닥에 있던 여자들임. 근데 그 사람들이 왕 앞에 직접 와서 송사를 했고, 왕은 그걸 끝까지 들음. 정의가 진짜 정의인지는 제일 약한 사람 사건을 어떻게 다루는지 보면 앎. 근데 이게 왜 중요하냐면, 우리도 단톡방에서 누가 맞냐 싸울 때 말 자체보다 그 사람이 진짜 뭘 원하는지를 보면 답이 보이는 경우가 많음.",
+  "tldr": "한 집에 사는 두 여인이 서로 산 아이가 자기 아들이라고 다투자, 솔로몬은 칼을 가져오게 해 아이를 반으로 나누라고 함. 진짜 엄마는 ‘아이를 저 여자에게 주고 죽이지만 마세요’ 했고, 왕은 그 여인이 엄마라고 판결함. 온 이스라엘이 하나님의 지혜가 왕 안에 있는 걸 보고 두려워함.",
+  "bridge": "듣는 마음을 가진 왕의 나라는 번성했다. 바닷가의 모래처럼."
+}
