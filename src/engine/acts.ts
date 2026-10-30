@@ -6,6 +6,8 @@ export interface Stop {
   book: string;
   from: number;
   to: number;
+  /** 나중에 다른 막으로 옮길 구간 (역대기 — 2026-10-30 사용자 결정: 7막에 섞지 않고 따로 만든다). 막 완료·피날레 판정에서 뺀다 */
+  later?: true;
 }
 
 export interface Act {
@@ -18,7 +20,7 @@ export interface Act {
   stops: Stop[];
 }
 
-const s = (book: string, from: number, to: number): Stop => ({ book, from, to });
+const s = (book: string, from: number, to: number, later?: true): Stop => ({ book, from, to, ...(later ? { later } : {}) });
 
 export const ACTS: Act[] = [
   { no: 1, numeral: 'I', title: '태초', latin: 'In Principio', range: '창 1–11', mood: '깊은 남색 속에 생겨나는 빛',
@@ -34,7 +36,7 @@ export const ACTS: Act[] = [
   { no: 6, numeral: 'VI', title: '정복과 사사', latin: 'Iudices', range: '여호수아, 사사기, 룻기', mood: '누아르 사건 파일',
     stops: [s('JOS', 1, 24), s('JDG', 1, 21), s('RUT', 1, 4)] },
   { no: 7, numeral: 'VII', title: '왕국', latin: 'Regnum', range: '삼상–왕상 11, 역대기 일부', mood: '왕실 보라, 청동, 횃불',
-    stops: [s('1SA', 1, 31), s('2SA', 1, 24), s('1KI', 1, 11), s('1CH', 1, 29), s('2CH', 1, 9)] },
+    stops: [s('1SA', 1, 31), s('2SA', 1, 24), s('1KI', 1, 11), s('1CH', 1, 29, true), s('2CH', 1, 9, true)] },
   { no: 8, numeral: 'VIII', title: '지혜와 노래', latin: 'Sapientia', range: '욥기–아가', mood: '여백과 물결',
     stops: [s('JOB', 1, 42), s('PSA', 1, 150), s('PRO', 1, 31), s('ECC', 1, 12), s('SNG', 1, 8)] },
   { no: 9, numeral: 'IX', title: '분열과 예언', latin: 'Prophetae', range: '왕상 12–왕하, 예언서', mood: '폭풍 하늘, 재, 두루마리',
