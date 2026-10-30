@@ -135,3 +135,5 @@
 .fx-lots--saul .fx-lots__stage:last-child .fx-lots__row span.is-hit { animation-name: js-lot-hit; }
 .fx-lots__none { margin: 0; font-family: var(--story-font); font-size: 0.95rem; letter-spacing: 0.24em; color: color-mix(in srgb, var(--ivory, #f4ecd6) 75%, transparent); opacity: 0; animation: js-pick 1.2s ease-out 8.4s both; }
 .fx-lots--saul.is-rm .fx-lots__none { animation-delay: 2.6s; animation-duration: 0.6s; }
+/* atonement.css가 atone-lots 배경이 아닐 때 .fx-lots를 숨기므로(이름 겹침), 사울의 제비는 따로 보이게 */
+.fx-lots.fx-lots--saul:not(.is-out) { opacity: 1 !important; }

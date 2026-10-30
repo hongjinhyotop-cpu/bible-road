@@ -328,4 +328,6 @@ export function playTopple(scene: HTMLElement, who: string | undefined, rm: bool
       3200, 1400);
   }, 1900);
   setTimeout(() => scene.classList.remove('dv-quake'), 3000);
+  // 소리 글자("쿵.")는 암전 장면처럼 남겨 두지 않고, 쓰러짐이 끝나면 걷는다
+  setTimeout(() => scene.querySelector('.scene__sound')?.classList.remove('is-on'), 4200);
 }

@@ -134,6 +134,18 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   geba: at(35.26, 31.85),
   bezek: at(35.4, 32.37),
   elah: at(34.97, 31.69),
+  nob: at(35.24, 31.79),
+  adullam: at(34.96, 31.65),
+  'mizpah-moab': at(35.72, 31.18),
+  hereth: at(35.03, 31.58),
+  keilah: at(34.99, 31.61),
+  ziph: at(35.14, 31.48),
+  hachilah: at(35.2, 31.46),
+  maon: at(35.11, 31.41),
+  engedi: at(35.39, 31.46),
+  ziklag: at(34.73, 31.37),
+  jezreel: at(35.33, 32.56),
+  besor: at(34.5, 31.28),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */
