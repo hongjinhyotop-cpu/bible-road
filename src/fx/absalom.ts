@@ -417,7 +417,7 @@ export function playStones(scene: HTMLElement, from: string | undefined, to: str
   const dx = (b.x - sx) * 0.72; // 상대 앞에 떨어진다
   const stones = rm ? '' : Array.from({ length: 7 }, (_, i) => {
     const k = ((i * 37) % 11) / 11;
-    return `<i class="fx-stones__stone" style="--i:${i}; --dx:${f(dx + (k - 0.5) * 50)}px; --dy:${f(gy - sy - 4 - k * 8)}px; --s:${f(4 + k * 4)}px"></i>`;
+    return `<i class="fx-stones__stone" style="--i:${i}; --dx:${f(dx + (k - 0.5) * 50)}px; --dy:${f(gy - sy - 4 - k * 8)}px; --s:${f(9 + k * 6)}px"></i>`;
   }).join('');
   const puffs = rm ? '' : Array.from({ length: 6 }, (_, i) =>
     `<b class="fx-stones__puff" style="--i:${i}; --o:${f((((i * 29) % 13) - 6) * 6)}px"></b>`).join('');

@@ -876,7 +876,7 @@ export const MOODS: Record<string, Mood> = {
   /** 왕의 골짜기에 홀로 선 비석, 해 질 녘 (18:18) */
   'ab-pillar': { light: true, land: false, art: 'ab-pillar', tone: 'dusk' },
   /** 문루의 작은 방: 낮은 돌벽, 계단 구멍과 난간, 작은 창의 저녁빛, 꺼진 등잔 (18:33) */
-  'ab-chamber': { light: true, land: false, art: 'ab-chamber', tone: 'dusk', spread: true },
+  'ab-chamber': { light: true, land: false, art: 'ab-chamber', tone: 'dusk' },
 
   // ── 7막 다윗 A급 (삼상 16 · 17, fx/david.ts) ──
   /** 베들레헴 성읍 어귀: 언덕 위 집들, 성문, 성문 앞의 장로들(떨며 맞음), 오르는 길 (삼상 16:4) */
