@@ -31,10 +31,10 @@ export function hasMet(id: string): boolean {
   return !!progress.get().characters[id];
 }
 
-/** 막의 모든 장을 끝냈나 (지도에서 그 막의 별이 전부 켜짐) */
+/** 막의 모든 장을 끝냈나 (지도에서 그 막의 별이 전부 켜짐). later 구간(7막의 역대기)은 빼고 셈 */
 export function actComplete(no: number): boolean {
   const act = ACTS[no - 1];
-  return !!act && act.stops.every((s) => countDone(s.book, s.from, s.to) === s.to - s.from + 1);
+  return !!act && act.stops.every((s) => s.later || countDone(s.book, s.from, s.to) === s.to - s.from + 1);
 }
 
 /** 막을 다 끝냈는데 아직 피날레를 안 봤으면 true → "다음" 버튼이 피날레로 간다 */

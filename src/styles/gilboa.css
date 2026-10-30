@@ -1,0 +1,103 @@
+/* ── 7막 A급: 사울의 마지막 (삼상 28 · 31, fx/gilboa.ts) ──
+   배경: 길보아에서 본 블레셋 진, 엔돌 여인의 집(+ 땅에서 오르는 빛), 길보아 산비탈, 벧산 성벽, 요단 밤길, 야베스의 에셀나무
+   효과: rise(땅에서 오르는 희뿌연 빛 — 잿빛, 차갑게. 신비롭게 꾸미지 않는다) */
+
+/* ── 공통 ── */
+.gb-ember { fill: #ff9a50; opacity: 0.5; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.gb-pole { fill: color-mix(in srgb, var(--act-a) 30%, #050404); }
+
+/* ── 길보아에서 본 블레셋 진 (28:4-5) ── */
+.gb-valley { fill: color-mix(in srgb, var(--act-b) 30%, #06050a); opacity: 0.8; }
+.gb-ptent { fill: color-mix(in srgb, var(--act-a) 22%, #07060a); opacity: 0.85; }
+.gb-fires circle { fill: #ffb060; filter: drop-shadow(0 0 1.6px rgba(255, 170, 90, 0.95)); animation: js-flicker 1.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.gb-campglow { opacity: 0.4; }
+
+/* ── 엔돌 여인의 집 (28:8-25) ── */
+.gb-wall { fill: color-mix(in srgb, var(--act-b) 26%, #0c0907); }
+.gb-doorshut { fill: color-mix(in srgb, #2a1c10 50%, #050303); }
+.gb-doorplank { fill: none; stroke: #000; stroke-width: 0.8; opacity: 0.5; }
+.gb-beam { fill: color-mix(in srgb, #3a2414 40%, #050303); }
+.gb-doorsky { fill: color-mix(in srgb, #1e2238 70%, #000); }
+.gb-doorhill { fill: color-mix(in srgb, var(--act-b) 14%, #030305); }
+.gb-jamb { fill: color-mix(in srgb, #2a1c10 40%, #040303); }
+.gb-niche { fill: color-mix(in srgb, #0c0806 80%, #000); }
+.gb-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; transition: scale 2s ease, opacity 2s ease; }
+.gb-lamphalo { opacity: 0.85; animation: js-flicker 3s ease-in-out infinite alternate; }
+.gb-blanket { fill: color-mix(in srgb, #8a6a4a 30%, var(--act-b)); opacity: 0.7; }
+.gb-ovenmouth { fill: #ff8a3c; opacity: 0.55; filter: blur(0.6px); animation: js-flicker 2.2s ease-in-out infinite alternate; }
+.gb-ovenhalo { opacity: 0.55; }
+.gb-herbs { fill: none; stroke: color-mix(in srgb, #8a7a4a 40%, #050404); stroke-width: 2; stroke-linecap: round; opacity: 0.8; }
+.gb-calf { fill: color-mix(in srgb, #3a2a1c 30%, #040303); opacity: 0.9; }
+.gb-floor { opacity: 1; }
+/* 오르는 빛: 등잔이 낮게 눌리고 화덕이 어두워진다 */
+.gb--endor.is-rise .gb-flame { scale: 0.7 0.55; opacity: 0.6; animation: none; }
+.gb--endor.is-rise .gb-lamphalo, .gb--endor.is-rise .gb-ovenhalo { opacity: 0.25; animation: none; }
+.gb--endor.is-rise .gb-ovenmouth { opacity: 0.2; animation: none; }
+.gb-floorglow { fill: #d8dee8; opacity: 0; filter: blur(4px); animation: gb-in 2.4s ease-out 0.2s forwards; --to: 0.45; }
+.gb-column { fill: #c8d0dc; opacity: 0; filter: blur(9px); animation: gb-in 3s ease-out 0.4s forwards, gb-waver 6s ease-in-out 3.4s infinite alternate; --to: 0.3; transform-box: fill-box; transform-origin: bottom; }
+/* 겉옷을 두른 듯한 흐린 그림자 — 얼굴도 몸도 없다 */
+.gb-shade { fill: #9aa2b0; opacity: 0; filter: blur(5px); animation: gb-in 4s ease-out 1.6s forwards, gb-waver 7s ease-in-out 5.6s infinite alternate; --to: 0.32; transform-box: fill-box; transform-origin: bottom; }
+.gb-motes circle { fill: #dfe4ec; opacity: 0; animation: gb-mote 6s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes gb-in { to { opacity: var(--to); } }
+@keyframes gb-waver { from { scale: 1 1; } to { scale: 1.04 0.98; } }
+@keyframes gb-mote { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.5; } 100% { opacity: 0; translate: var(--o) -140px; } }
+
+/* ── 길보아 산비탈 (31:1-6) ── */
+.gb-spears, .gb-shaft { fill: color-mix(in srgb, var(--act-a) 26%, #050404); stroke: color-mix(in srgb, var(--act-a) 26%, #050404); }
+.gb-shaft { fill: none; stroke-width: 1.6; stroke-linecap: round; }
+.gb-shields ellipse { fill: color-mix(in srgb, #6a4a2a 26%, #060404); }
+.gb-shields .gb-boss { fill: color-mix(in srgb, #b0783a 40%, #0a0604); }
+.gb-arrows path { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #050404); stroke-width: 0.8; }
+.gb-banner { fill: color-mix(in srgb, #3e5f9a 34%, var(--act-b)); opacity: 0.8; transform-box: fill-box; transform-origin: left center; animation: gb-flag 3.4s ease-in-out infinite alternate; }
+@keyframes gb-flag { from { scale: 1 1; } to { scale: 0.86 1.12; } }
+
+/* ── 벧산 성벽 (31:10) ── */
+.gb-citywall { fill: color-mix(in srgb, var(--act-b) 22%, #070506); }
+.gb-crenel { fill: color-mix(in srgb, var(--act-b) 22%, #070506); }
+.gb-courses { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.35; }
+.gb-tower { fill: color-mix(in srgb, var(--act-b) 16%, #050405); }
+.gb-gate { fill: color-mix(in srgb, #1a120a 80%, #000); }
+.gb-slitwin { fill: #ffbf70; opacity: 0.55; filter: drop-shadow(0 0 2px rgba(255, 190, 110, 0.8)); }
+.gb-pflag { fill: color-mix(in srgb, #9a3a2a 50%, var(--act-b)); transform-box: fill-box; transform-origin: left center; animation: gb-flag 2.6s ease-in-out infinite alternate; }
+/* 까마귀: 성벽 위를 천천히 돈다 */
+.gb-crow { fill: #0a0808; transform-box: view-box; transform-origin: 200px 70px; animation: gb-circle calc(16s + var(--i) * 2.4s) linear infinite; animation-delay: calc(var(--i) * -3.1s); }
+.gb-crow path { animation: gb-flap 0.9s ease-in-out infinite alternate; animation-delay: calc(var(--i) * -0.3s); transform-box: fill-box; transform-origin: center; }
+@keyframes gb-circle { from { rotate: 0deg; } to { rotate: 360deg; } }
+@keyframes gb-flap { from { scale: 1 1; } to { scale: 1 -0.5; } }
+
+/* ── 요단 밤길 (31:12) ── */
+.gb-moon { fill: #f4ecd4; opacity: 0.85; filter: drop-shadow(0 0 4px rgba(255, 246, 220, 0.8)); }
+.gb-moonhalo { opacity: 0.4; }
+.gb-river { fill: color-mix(in srgb, #4a6a8a 34%, #06080c); opacity: 0.9; }
+.gb-ripple { fill: none; stroke: #dfe8f4; stroke-width: 0.7; opacity: 0.25; animation: dv-ripple 3.2s ease-in-out infinite alternate; }
+.gb-torches ellipse { fill: #ffc070; filter: drop-shadow(0 0 2.4px rgba(255, 180, 90, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.gb-torchhalo { opacity: 0.55; animation: js-flicker 2s ease-in-out infinite alternate; }
+.gb--jordan .js-folk { animation: gb-walk 18s linear infinite; }
+@keyframes gb-walk { from { translate: -6px 0; } to { translate: 6px 0; } }
+
+/* ── 야베스의 에셀나무 (31:13) ── */
+.gb-tree { fill: color-mix(in srgb, var(--act-a) 28%, #050405); }
+.gb-plumes { opacity: 0.92; animation: gb-sway 7s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
+@keyframes gb-sway { from { rotate: -0.8deg; } to { rotate: 0.8deg; } }
+.gb-fronds { fill: none; stroke: color-mix(in srgb, var(--act-a) 28%, #050405); stroke-width: 0.9; stroke-linecap: round; opacity: 0.8; }
+.gb-cairn path { fill: color-mix(in srgb, var(--act-b) 30%, #0a0808); }
+.gb-cairn ellipse { fill: color-mix(in srgb, #c8bca4 26%, var(--act-b)); opacity: 0.85; }
+.gb-ash { fill: color-mix(in srgb, #8a8a8a 30%, #0a0808); opacity: 0.8; }
+
+:root[data-reduced-motion='true'] :is(.gb-ember, .gb-fires circle, .gb-flame, .gb-lamphalo, .gb-ovenmouth, .gb-banner, .gb-pflag, .gb-crow, .gb-crow path, .gb-ripple, .gb-torches ellipse, .gb-torchhalo, .gb--jordan .js-folk, .gb-plumes, .gb-motes circle) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.gb-floorglow, .gb-column, .gb-shade) { animation-duration: 0.01s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }
+
+/* ── 효과 rise: 땅에서 오르는 희뿌연 빛 (28:13) ── */
+.fx-rise { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-rise.is-out { opacity: 0; }
+.fx-rise__column { position: absolute; left: 50%; bottom: 8%; width: min(30vw, 160px); height: 80%; translate: -50% 0; border-radius: 50% 50% 8% 8% / 30% 30% 4% 4%;
+  background: linear-gradient(to top, rgba(220, 226, 236, 0.45), rgba(200, 208, 222, 0.16) 55%, transparent);
+  filter: blur(14px); transform-origin: bottom; scale: 0.3 0; opacity: 0; animation: gb-fx-col 4.6s cubic-bezier(0.2, 0.7, 0.2, 1) 0.2s forwards; }
+.fx-rise__floor { position: absolute; left: 50%; bottom: 7%; width: min(56vw, 300px); height: 22px; translate: -50% 50%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(225, 230, 240, 0.55), transparent); filter: blur(4px); opacity: 0; animation: gb-fx-floor 3s ease-out forwards; }
+.fx-rise i { position: absolute; left: calc(50% + var(--o)); bottom: 8%; width: var(--s); height: var(--s); border-radius: 50%; background: #e4e8f0; opacity: 0;
+  animation: gb-fx-mote 3.6s ease-out calc(0.3s + var(--d)) forwards; }
+.fx-rise.is-rm .fx-rise__column { animation-duration: 0.6s; }
+@keyframes gb-fx-col { 0% { opacity: 0; scale: 0.3 0; } 40% { opacity: 1; scale: 1 1; } 100% { opacity: 0.6; scale: 0.9 1.05; } }
+@keyframes gb-fx-floor { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0.5; } }
+@keyframes gb-fx-mote { 0% { opacity: 0; translate: 0 0; } 25% { opacity: 0.7; } 100% { opacity: 0; translate: calc(var(--o) * 0.4) -42vh; } }

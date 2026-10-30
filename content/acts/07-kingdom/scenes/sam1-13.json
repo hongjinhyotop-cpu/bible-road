@@ -1,0 +1,55 @@
+{
+  "id": "sam1-13",
+  "act": 7,
+  "grade": "B",
+  "title": "칠 일을 기다리다",
+  "ref": "삼상 13",
+  "bg": "camp",
+  "cast": ["saul"],
+  "outfit": { "samuel": "old" },
+  "extras": {
+    "herald": { "name": "나팔수", "base": "youth", "hair": "short", "props": ["horn"], "tint": "gray" },
+    "smith": { "name": "블레셋 대장장이", "base": "man", "hair": "shaggy", "beard": "short", "tint": "red" },
+    "farmer": { "name": "이스라엘 농부", "base": "man", "hair": "hood", "beard": "short", "props": ["bundle"], "tint": "brown" }
+  },
+  "beats": [
+    { "type": "narration", "act": "look-up", "who": "saul", "text": "사울이 이스라엘을 다스린 지 두 해째였다. 왕이라는 자리는 아직 새것이었다. 새것은 대개, 첫 번째 흠집이 날 때까지만 새것이다." },
+    { "type": "narration", "enter": ["jonathan"], "act": "walk-in", "who": "jonathan", "text": "그는 이스라엘 사람 삼천을 골랐다. 이천은 자기와 함께 믹마스와 벧엘 산지에, 일천은 아들 요나단과 함께 베냐민 기브아에. 나머지는 각자 장막으로 돌려보냈다. 요나단. 이 장에서 처음 나오는 이름이다. 그리고 오래 남을 이름이다." },
+    { "type": "narration", "fx": "dust", "act": "travel", "from": "gibeah", "to": "geba", "text": "요나단이 게바에 있던 블레셋 수비대를 쳤다. 블레셋이 그 소식을 들었다." },
+    { "type": "line", "who": "herald", "enter": ["herald"], "act": "look-up", "acts": [{ "act": "crowd" }], "text": "“히브리 사람들은 들으라!”" },
+    { "type": "narration", "act": "approach", "who": "saul", "to": "herald", "acts": [{ "act": "crowd-murmur" }], "text": "사울이 온 땅에 나팔을 불게 했다. 온 이스라엘이 들은 소식은 이랬다. 사울이 블레셋 수비대를 쳤다. 친 사람은 아들이었고, 소문의 주인은 아버지였다. 공은 대개 나팔을 가진 사람에게 간다." },
+    { "type": "narration", "exit": ["herald"], "act": "travel", "from": "aphek", "to": "michmash", "fx": "dust", "text": "블레셋이 모였다. 병거 삼만, 마병 육천, 백성은 바닷가의 모래 같았다. 그들이 올라와 벧아웬 동편 믹마스에 진을 쳤다." },
+    { "bg": "js-gilgal", "fx": "fade", "exit": ["jonathan"], "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "pose": { "saul": "tremble" } },
+    { "type": "narration", "acts": [{ "act": "crowd-away" }], "text": "이스라엘 사람들은 다급했다. 굴에, 수풀에, 바위틈에, 은밀한 곳에, 웅덩이에 숨었다. 어떤 히브리 사람들은 요단을 건너 갓과 길르앗 땅으로 갔다. 사울은 아직 길갈에 있었다. 그를 따르는 백성은 떨고 있었다." },
+    { "type": "narration", "act": "bow-head", "who": "saul", "text": "사무엘은 이레를 정해 주었다. 이레를 기다리면 그가 와서 번제를 드릴 것이다. 첫째 날. 둘째 날. 그리고 사울은 매일 아침 사람을 세었다. 날이 하나 줄 때마다, 사람도 줄었다." },
+    { "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "crowd-away" }, { "act": "look-up", "who": "saul" }] },
+    { "type": "scripture", "ref": "삼상 13:8", "gloss": "사울이 사무엘이 정한 대로 7일을 기다렸는데 사무엘이 안 옴. 그 사이 군사들은 하나둘 탈영. 기다리는 쪽이 제일 초조한 그 마지막 날." },
+    { "type": "choice", "prompt": "일곱째 날. 사무엘은 오지 않고, 사람들은 흩어진다. 사울은?", "options": [{ "label": "“번제와 화목제물을 이리로 가져오라.”", "canon": true }, { "label": "조금만 더 기다린다", "goto": "b-wait" }] },
+    { "type": "line", "who": "saul", "act": "pray", "fx": "fire", "text": "“번제와 화목제물을 이리로 가져오라.”" },
+    { "type": "narration", "act": "stand", "who": "saul", "text": "그는 번제를 드렸다. 연기가 올라갔다. 그리고 번제를 드리기를 마치자마자, 사무엘이 왔다. 마치자마자. 본문은 그 간격을 일부러 그렇게 짧게 적는다." },
+    { "type": "narration", "enter": ["samuel"], "act": "walk-in", "who": "samuel", "acts": [{ "act": "approach", "who": "saul", "to": "samuel" }], "text": "사울이 나가 그를 맞으며 문안했다. 아무 일 없었다는 듯이. 사람은 가장 큰 일을 저지른 직후에 가장 정중해진다." },
+    { "type": "line", "who": "samuel", "act": "face", "to": "saul", "text": "“왕이 무엇을 하였소.”" },
+    { "type": "line", "who": "saul", "act": "argue", "to": "samuel", "text": "“백성은 제게서 흩어지고, 당신은 정한 날 안에 오지 않고, 블레셋은 믹마스에 모였습니다. 블레셋이 길갈로 내려와 나를 칠 텐데 여호와께 은혜를 구하지도 못했다 싶어서… 부득이하여 번제를 드렸습니다.”" },
+    { "type": "narration", "act": "part", "who": "saul", "text": "이유는 셋이었다. 백성 탓, 사무엘 탓, 블레셋 탓. 그리고 ‘부득이하여’. 변명이 길어질수록, 그 안에 자기 이름은 점점 작아진다." },
+    { "type": "line", "who": "samuel", "act": "turn", "text": "“왕이 망령되이 행하였소. 왕의 하나님 여호와께서 명하신 명령을 지키지 않았소. 그렇게 했더라면 여호와께서 왕의 나라를 이스라엘 위에 영원히 세우셨을 것이오.”" },
+    { "type": "scripture", "ref": "삼상 13:13-14", "gloss": "사무엘: “왕이 어리석게 행동했다. 하나님의 명령을 지키지 않았다. 이제 왕의 나라는 오래가지 못한다. 여호와께서 자기 마음에 맞는 사람을 찾아 그를 백성의 지도자로 세우셨다.”" },
+    { "type": "narration", "act": "leave", "who": "samuel", "text": "사무엘은 일어나 길갈을 떠나 베냐민 기브아로 올라갔다. 마음에 맞는 사람. 그 사람이 누구인지 아직 아무도 몰랐다. 아마 그 사람 자신도 몰랐다. 그는 그 무렵 어딘가에서 양을 치고 있었을 것이다." },
+    { "type": "narration", "act": "travel", "from": "gilgal", "to": "geba", "acts": [{ "act": "crowd" }], "text": "사울이 남은 백성을 세었다. 육백 명쯤이었다. 삼천에서 시작한 왕이었다. 사울과 요나단은 베냐민 게바에 머물고, 블레셋은 골짜기 건너 믹마스에 진을 쳤다." },
+    { "bg": "town-dusk", "fx": "fade", "exit": ["saul"], "enter": ["smith", "farmer"], "acts": [{ "act": "crowd-away" }, { "act": "approach", "who": "farmer", "to": "smith" }] },
+    { "type": "narration", "act": "bow-head", "who": "farmer", "text": "그 무렵 이스라엘 온 땅에는 철공이 없었다. 블레셋 사람들이 말했다. 히브리 사람이 칼이나 창을 만들까 두렵다. 그래서 이스라엘 사람은 보습 하나, 괭이 하나, 도끼 하나를 벼리려 해도 블레셋 사람에게 내려가야 했다." },
+    { "type": "narration", "act": "face", "who": "smith", "to": "farmer", "text": "괭이가 무뎌질 때마다, 삽이 무뎌질 때마다. 적의 대장간 앞에 줄을 서는 나라. 칼을 갈아 줄 사람이 적이라면, 그 나라의 칼은 결국 적이 허락하는 만큼만 날이 선다." },
+    { "type": "scripture", "ref": "삼상 13:22", "gloss": "싸우는 날, 사울이랑 요나단 말고는 군사들 손에 칼이나 창이 하나도 없었음. 블레셋이 철 기술을 독점해서. 600명이 농기구 들고 전쟁 나감." },
+    { "bg": "mountain-dusk", "fx": "fade", "exit": ["smith", "farmer"], "enter": ["jonathan"], "act": "look-up", "who": "jonathan" },
+    { "type": "narration", "act": "face", "who": "jonathan", "text": "블레셋 부대가 나와 믹마스 어귀에 이르렀다. 골짜기 건너편이었다. 사울과 함께한 백성 가운데 칼을 가진 사람은 둘뿐이었다. 그중 하나가, 그 건너편을 오래 바라보고 있었다." }
+  ],
+  "branches": {
+    "b-wait": [
+      { "type": "narration", "act": "bow-head", "who": "saul", "text": "만약 그가 조금만 더 기다렸다면. 본문을 보면, 그 ‘조금’은 한나절도 되지 않았다. 번제를 마치자마자 사무엘이 왔으니까." },
+      { "type": "narration", "text": "그러나 기다림은 끝을 아는 사람에게만 쉽다. 사울은 끝을 몰랐다. 아무도 모른다. 그래서 기다림은 믿음의 다른 이름이다. 사울은 그 이름을 일곱째 날에 내려놓았다." }
+    ]
+  },
+  "insight": "사울의 첫 번째 큰 실수. 사무엘이 ‘7일 기다려라, 내가 가서 제사 드린다’ 했는데(10:8), 7일째에 안 옴. 블레셋은 병거 삼만(사본에 따라 삼천)으로 몰려오고, 군사들은 하나씩 탈영함. 그래서 사울이 직접 번제를 드림. 근데 끝나자마자 사무엘 등장. 타이밍 ㄹㅇ 잔인함.\n\n‘제사 좀 대신 드린 게 그렇게 큰 죄냐?’ 싶을 수 있음. 여기서 문제는 제사 절차 자체보다, 하나님 명령보다 눈앞의 상황(흩어지는 군사들)을 더 믿었다는 거라고 보는 해석이 많음. 사울 변명 들어 보면 백성 탓, 사무엘 탓, 블레셋 탓, 그리고 ‘부득이하여’. 자기 탓은 하나도 없음.\n\n참고로 13:1의 숫자(사울의 나이·다스린 햇수)는 히브리어 사본에서 온전히 안 남아서 번역마다 다르게 채움. 개역한글은 ‘사십세’, ‘이년’으로 적음.\n\n‘마음에 맞는 사람’(13:14)은 다윗을 가리킴. 아직 등장도 안 했는데 예고부터 나옴. 신약에서도 바울이 이 말을 인용함(행 13:22).\n\n철공 이야기도 재밌음. 블레셋이 철 다루는 기술을 독점해서 이스라엘은 농기구 날 하나 세우려고 적국 대장간에 가야 했음. 그래서 전쟁 날 칼이 사울이랑 요나단한테만 있었음. 600명 vs 병거 부대.\n\n근데 이게 왜 중요하냐면, 기다리는 거 진짜 힘듦. 근데 ‘부득이하여’라는 말 나올 때가 대개 제일 위험한 때임.",
+  "tldr": "일곱째 날, 사울은 기다림을 내려놓고 번제를 드렸다. 사무엘은 그 직후에 왔다.",
+  "bridge": "골짜기 건너편을 바라보던 요나단이, 하루는 아버지에게 말하지 않고 길을 나섰다.",
+  "unlocks": { "characters": ["jonathan"] }
+}

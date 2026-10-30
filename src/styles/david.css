@@ -1,0 +1,120 @@
+/* ── 7막 A급: 다윗 (삼상 16 · 17, fx/david.ts · characters/david.ts · characters/goliath.ts) ──
+   인물: 다윗의 붉은 기 도는 머리(.dv-ruddy), 수금(.dv-wood · .dv-string), 가죽(.dv-leather), 물매 끈(.dv-cord),
+         놋(.dv-bronze), 도망자의 겉옷(.dv-cloak), 왕의 겉옷(.dv-royal), 노인의 이불 겉옷(.dv-blanket)
+         골리앗의 놋(.gl-bronze), 비늘 갑옷(.gl-scale), 쇠 창날(.gl-iron)
+   배경: 베들레헴 성읍 어귀, 이새의 집 마당, 들판의 양 떼, 사울의 궁(어두운 기운), 엘라 골짜기, 시냇가의 돌
+   효과: sling(물매가 돌고 돌이 날아감), topple(큰 몸이 앞으로 쓰러짐) */
+
+/* ── 인물 ── */
+.actor .dv-ruddy, .sil .dv-ruddy { color: color-mix(in srgb, #8a3a22 34%, var(--sil-ink)); fill: color-mix(in srgb, #8a3a22 34%, var(--sil-ink)); }
+.actor .dv-wood, .sil .dv-wood { fill: color-mix(in srgb, #b0844a 46%, var(--sil-ink)); }
+.actor .dv-string, .sil .dv-string { stroke: color-mix(in srgb, #f0dca0 70%, var(--act-accent)); opacity: 0.75; }
+.actor .dv-leather, .sil .dv-leather { fill: color-mix(in srgb, #7a4a28 40%, var(--sil-ink)); }
+.actor .dv-cord, .sil .dv-cord { stroke: color-mix(in srgb, #d8c090 52%, var(--sil-ink)); fill: color-mix(in srgb, #d8c090 40%, var(--sil-ink)); }
+.actor path.dv-cord[fill='none'], .sil path.dv-cord[fill='none'] { fill: none; }
+.actor .dv-bronze, .sil .dv-bronze, .actor .gl-bronze, .sil .gl-bronze { fill: color-mix(in srgb, color-mix(in srgb, #b0783a 80%, var(--act-accent)) 46%, var(--sil-ink)); }
+.actor .gl-scale, .sil .gl-scale { fill: color-mix(in srgb, #8a6a3a 32%, var(--sil-ink)); }
+.actor .gl-iron, .sil .gl-iron { fill: color-mix(in srgb, #b8bcc8 40%, var(--sil-ink)); }
+.actor .dv-cloak, .sil .dv-cloak { fill: color-mix(in srgb, #5a4a38 30%, var(--sil-ink)); }
+.actor .dv-royal, .sil .dv-royal { fill: color-mix(in srgb, color-mix(in srgb, #6e2f7a 80%, var(--act-accent)) 40%, var(--sil-ink)); }
+.actor .dv-blanket, .sil .dv-blanket { fill: color-mix(in srgb, #c8bca4 34%, var(--sil-ink)); }
+/* 물매를 돌릴 때 끈의 고리가 손을 축으로 돈다 */
+.actor .dv-whirl { transform-box: view-box; transform-origin: 140px 21px; animation: dv-whirl 0.55s linear infinite; }
+@keyframes dv-whirl { to { transform: rotate(360deg); } }
+:root[data-reduced-motion='true'] .actor .dv-whirl { animation: none; }
+
+/* ── 배경 공통 ── */
+.dv-window { fill: #ffcf80; opacity: 0.85; filter: drop-shadow(0 0 1.5px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.dv-stones { fill: none; stroke: color-mix(in srgb, var(--act-b) 45%, #000); stroke-width: 0.7; opacity: 0.5; }
+.dv-road { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 3.4; stroke-linecap: round; opacity: 0.5; }
+.dv-ember { fill: #ff9a50; opacity: 0.55; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+
+/* ── 베들레헴 성읍 어귀 ── */
+.dv-gate { fill: color-mix(in srgb, #3a2410 55%, #000); }
+.dv-gatehalo { opacity: 0.55; }
+/* 장로들: 떨며 맞음 (16:4) — 아주 작게 흔들린다 */
+.dv-elders rect { animation: dv-tremble 0.22s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -0.1); }
+@keyframes dv-tremble { from { translate: -0.25px 0; } to { translate: 0.25px 0; } }
+
+/* ── 이새의 집 마당 ── */
+.dv-door { fill: color-mix(in srgb, #2a1a0c 60%, #000); }
+.dv-ladder { stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+
+/* ── 사울의 궁 ── */
+.dv-hall { fill: color-mix(in srgb, var(--act-b) 18%, #050307); }
+.dv-slit { fill: color-mix(in srgb, #d8d0e8 30%, var(--act-b)); opacity: 0.45; }
+.dv-spearhead { fill: color-mix(in srgb, #b8bcc8 30%, var(--act-b)); }
+.dv-fire path { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.dv--court:not(.dv--calm) .dv-fire path { opacity: 0.55; scale: 0.7; }
+.dv-firehalo { opacity: 0.6; }
+/* 악신: 인물로 그리지 않는다 — 자리 위에 고여 천천히 뒤척이는 어두운 기운 (16:14) */
+.dv-gloom ellipse { fill: #08040c; opacity: 0.55; filter: blur(6px); transform-box: fill-box; transform-origin: center; animation: dv-gloom 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes dv-gloom { from { translate: -6px 2px; scale: 1; } to { translate: 6px -3px; scale: 1.18 0.9; } }
+.dv-gloom { transition: opacity 4.5s ease-in-out 1s; }
+.dv-gloom.is-lifted { opacity: 0; }
+
+/* ── 엘라 골짜기 ── */
+.dv-ranks rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.dv-spears { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); stroke-width: 0.7; }
+.dv-flag { animation: dv-flag 2.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
+.dv-flag--il { fill: color-mix(in srgb, #3e5f9a 50%, var(--act-b)); }
+.dv-flag--ph { fill: color-mix(in srgb, #9a3a2a 55%, var(--act-b)); }
+@keyframes dv-flag { from { scale: 1 1; } to { scale: 0.88 1.1; } }
+.dv-brook { fill: none; stroke: color-mix(in srgb, #c8d8e8 40%, var(--act-b)); stroke-width: 2.4; stroke-linecap: round; opacity: 0.6; }
+
+/* ── 시냇가 ── */
+.dv-water { fill: color-mix(in srgb, #8aa8c8 30%, var(--act-b)); opacity: 0.7; }
+.dv-ripple { fill: none; stroke: #e8f0ff; stroke-width: 0.8; opacity: 0.25; animation: dv-ripple 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes dv-ripple { from { translate: -4px 0; opacity: 0.1; } to { translate: 4px 0; opacity: 0.4; } }
+.dv-pebbles ellipse { fill: color-mix(in srgb, var(--act-b) 40%, #0a0808); }
+/* 매끄러운 돌 다섯 (17:40): 하나씩 빛난다 */
+.dv-five { fill: color-mix(in srgb, #e8dcc0 55%, var(--act-b)); opacity: 0.35; animation: dv-five 1.2s ease-out both; animation-delay: calc(1.2s + var(--i) * 0.7s); }
+@keyframes dv-five { from { opacity: 0.35; filter: none; } to { opacity: 1; filter: drop-shadow(0 0 2.4px rgba(255, 236, 190, 0.95)); } }
+
+:root[data-reduced-motion='true'] :is(.dv-elders rect, .dv-gloom ellipse, .dv-flag, .dv-ripple, .dv-fire path) { animation: none; }
+:root[data-reduced-motion='true'] .dv-five { animation-duration: 0.01s; animation-delay: 0s; }
+
+/* ── 효과 lyre: 수금 소리 (16:23) ── */
+.fx-lyre { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-lyre.is-out { opacity: 0; }
+.fx-lyre__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-lyre__glow { position: absolute; left: -90px; top: -90px; width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 226, 160, 0.4), transparent); mix-blend-mode: screen; animation: dv-lyre-glow 7s ease-in-out both; }
+@keyframes dv-lyre-glow { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 0.4; } }
+.fx-lyre__wave { position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; border-radius: 50%;
+  border: 1.4px solid rgba(255, 226, 160, 0.7); border-left-color: transparent; border-bottom-color: transparent;
+  rotate: -45deg; opacity: 0; animation: dv-lyre-wave 3.4s ease-out both; animation-delay: calc(var(--i) * 0.9s); }
+@keyframes dv-lyre-wave { 0% { opacity: 0; scale: 0.4; } 20% { opacity: 0.9; } 100% { opacity: 0; scale: 5; } }
+.fx-lyre__mote { position: absolute; left: var(--o); top: 0; width: 4px; height: 4px; border-radius: 50%; background: #ffe6b0;
+  box-shadow: 0 0 6px rgba(255, 220, 150, 0.9); opacity: 0; animation: dv-lyre-mote 4s ease-out both; animation-delay: calc(0.4s + var(--i) * 0.45s); }
+@keyframes dv-lyre-mote { 0% { opacity: 0; translate: 0 0; } 25% { opacity: 1; } 100% { opacity: 0; translate: calc(var(--o) * 0.6) -140px; } }
+.fx-lyre.is-rm .fx-lyre__glow { animation-duration: 2.2s; }
+
+/* ── 효과 sling: 물매 (17:49) ── */
+.fx-sling { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 0.6s ease-in; }
+.fx-sling.is-out { opacity: 0; }
+.fx-sling__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-sling__whirl { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%;
+  border: 1.6px solid rgba(240, 220, 170, 0.75); border-right-color: transparent; border-bottom-color: rgba(240, 220, 170, 0.2);
+  animation: dv-whirl-fx 0.36s linear 4 both, dv-whirl-out 0.3s ease-in 1.3s both; }
+@keyframes dv-whirl-fx { to { rotate: 360deg; } }
+@keyframes dv-whirl-out { to { opacity: 0; scale: 0.4; } }
+.fx-sling__stone { position: absolute; left: -4px; top: -3px; width: 8px; height: 6px; border-radius: 50%; background: #efe6d0;
+  box-shadow: 0 0 6px rgba(255, 240, 210, 0.9); opacity: 0; animation: dv-stone 0.55s cubic-bezier(0.2, 0.6, 0.6, 1) 1.4s both; }
+@keyframes dv-stone { 0% { opacity: 1; translate: 0 0; } 85% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) var(--dy); } }
+.fx-sling__streak { position: absolute; left: 0; top: -1px; height: 2px; width: 0; transform-origin: 0 50%; rotate: var(--ang);
+  background: linear-gradient(90deg, transparent, rgba(255, 240, 210, 0.75)); opacity: 0; animation: dv-streak 0.9s ease-out 1.4s both; }
+@keyframes dv-streak { 0% { opacity: 0.9; width: 0; } 55% { opacity: 0.8; width: var(--len); } 100% { opacity: 0; width: var(--len); } }
+.fx-sling.is-rm .fx-sling__whirl { display: none; }
+.fx-sling.is-rm :is(.fx-sling__stone, .fx-sling__streak) { animation-delay: 0s; }
+
+/* ── 효과 topple: 쓰러짐의 흙먼지와 흔들림 ── */
+.dv-quake { animation: dv-quake 0.7s ease-out; }
+@keyframes dv-quake { 0%, 100% { translate: 0 0; } 15% { translate: 0 5px; } 35% { translate: 0 -3px; } 55% { translate: 0 2px; } 75% { translate: 0 -1px; } }
+.fx-topple { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-topple.is-out { opacity: 0; }
+.fx-topple__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-topple__at i { position: absolute; left: var(--o); top: -14px; width: 46px; height: 26px; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, #c8b490 60%, transparent), transparent); filter: blur(3px);
+  opacity: 0; animation: dv-dust 2.4s ease-out both; animation-delay: calc(var(--i) * 0.04s); }
+@keyframes dv-dust { 0% { opacity: 0; scale: 0.4; } 25% { opacity: 0.9; } 100% { opacity: 0; scale: 2.2; translate: calc(var(--o) * 0.8) -26px; } }

@@ -1,0 +1,139 @@
+/* ── 7막 왕국: 사울 A급 (fx/saul.ts) ──
+   잃은 암나귀의 산지·성읍 비탈·산당 객실·지붕·선지자의 산·미스바·짐 보따리,
+   겐 사람의 길·갈멜의 기념비·길갈의 양과 소·라마와 기브아의 갈림길.
+   효과: anoint(기름 부음, 7막 공통) · saul-lots(미스바의 제비) */
+
+.sl-terrace path { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #05040a); stroke-width: 1.3; opacity: 0.55; }
+.sl-path { fill: none; stroke: color-mix(in srgb, #d8c4a0 45%, var(--act-b)); stroke-width: 3; stroke-linecap: round; opacity: 0.55; }
+.sl-cairn { opacity: 0.95; }
+.sl-road { fill: color-mix(in srgb, #d8c4a0 30%, var(--act-b)); opacity: 0.45; }
+.sl-halter { fill: none; stroke: color-mix(in srgb, #c8a878 55%, var(--act-b)); stroke-width: 1.2; stroke-linecap: round; transform-box: fill-box; transform-origin: top; animation: sl-sway 3.6s ease-in-out infinite alternate; }
+@keyframes sl-sway { from { rotate: -6deg; } to { rotate: 6deg; } }
+.sl-window { fill: #ffcf80; opacity: 0.85; filter: drop-shadow(0 0 1.5px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; }
+.sl-well { opacity: 0.95; }
+.sl-girl { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); animation: sl-walk 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sl-walk { from { translate: 0 0; } to { translate: 0 -0.8px; } }
+
+/* 산당 객실 */
+.sl-wall { fill: color-mix(in srgb, var(--act-b) 55%, #0a0710); }
+.sl-lamp { fill: color-mix(in srgb, var(--act-a) 50%, #05040a); }
+.sl-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); }
+.sl-lamphalo { fill: rgba(255, 200, 120, 0.12); animation: js-flicker 3s ease-in-out infinite alternate; }
+.sl-guest { fill: color-mix(in srgb, var(--act-b) 30%, #05040a); }
+.sl-table { opacity: 0.98; }
+.sl-plate { fill: color-mix(in srgb, #c8a060 50%, var(--act-b)); }
+.sl-portion { fill: #e8b878; filter: drop-shadow(0 0 3px rgba(255, 200, 120, 0.9)); }
+.sl-portion-halo { fill: url(#bd-halo-g); animation: bd-breathe 4s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* 지붕 */
+.sl-moon { fill: #f4ecd6; filter: drop-shadow(0 0 6px rgba(240, 230, 200, 0.7)); }
+.sl-sunrim { fill: #ffd9a0; opacity: 0.9; filter: drop-shadow(0 0 14px rgba(255, 200, 120, 0.9)); }
+.sl-mat { fill: color-mix(in srgb, #c8a878 30%, var(--act-b)); opacity: 0.6; }
+
+/* 선지자의 무리 */
+.sl-prophet { fill: color-mix(in srgb, var(--act-a) 42%, #05040a); color: color-mix(in srgb, var(--act-a) 42%, #05040a); }
+.sl-prophet > * { animation: sl-dance 0.9s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sl-dance { from { translate: 0 0; } to { translate: 0 -1.2px; } }
+.sl-note { fill: #ffe2a0; opacity: 0; animation: sl-note 4s ease-out infinite; animation-delay: var(--d); }
+@keyframes sl-note { 0% { opacity: 0; translate: 0 0; } 25% { opacity: 0.9; } 100% { opacity: 0; translate: var(--x) -40px; } }
+.sl-flag { fill: color-mix(in srgb, #8a3a2a 50%, var(--act-b)); animation: sl-sway 2.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left; }
+.sl-garrison { opacity: 0.9; }
+
+/* 미스바·짐 보따리 */
+.sl-tribes .js-folk rect { opacity: 0.9; }
+.sl-rope { fill: none; stroke: color-mix(in srgb, #c8a878 40%, var(--act-b)); stroke-width: 1; opacity: 0.7; }
+.sl-hider { animation: sl-duck 4.2s ease-in-out infinite; }
+@keyframes sl-duck { 0%, 40% { translate: 0 0; } 55%, 85% { translate: 0 7px; } 100% { translate: 0 0; } }
+.sl-eye { fill: #f0e2c0; opacity: 0.85; }
+
+/* 겐 사람 · 갈멜 · 길갈 · 갈림길 */
+.sl-donkey { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.sl-pole { opacity: 0.8; }
+.sl-sun { fill: #ffe0a0; opacity: 0.8; filter: drop-shadow(0 0 10px rgba(255, 210, 130, 0.8)); }
+.sl-stele-mark { fill: none; stroke: color-mix(in srgb, #e8c88a 55%, var(--act-b)); stroke-width: 1.4; opacity: 0.6; }
+.sl-stele { filter: drop-shadow(0 0 6px rgba(255, 210, 140, 0.25)); }
+.sl-sheep, .sl-ox { fill: color-mix(in srgb, #e8dcc0 35%, var(--act-b)); color: color-mix(in srgb, #e8dcc0 35%, var(--act-b)); }
+.sl-ox { fill: color-mix(in srgb, var(--act-a) 30%, #120c08); color: color-mix(in srgb, var(--act-a) 30%, #120c08); }
+.sl-sheep { animation: sl-graze 2.8s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes sl-graze { from { translate: 0 0; } to { translate: 0.8px 0.4px; } }
+.sl-town-name { font-family: var(--story-font); font-size: 7px; letter-spacing: 0.3em; text-anchor: middle; fill: color-mix(in srgb, var(--ivory, #f4ecd6) 60%, transparent); }
+
+:root[data-reduced-motion='true'] :is(.sl-halter, .sl-girl, .sl-prophet > *, .sl-note, .sl-flag, .sl-hider, .sl-sheep, .sl-window, .sl-lamphalo, .sl-portion-halo) { animation: none !important; }
+
+/* ── 효과 anoint: 기름 부음 (삼상 10:1, 16:13, 삼하 2:4, 5:3, 왕상 1:39) ──
+   5초 한 타임라인: 빛 내려옴 → 뿔이 떠올라 기욺 → 기름 한 줄기 → 머리에 금빛 → 몸을 따라 아래로 번짐 → 잦아듦.
+   긴 키프레임 이름(sl-an-*)은 screens/scene.ts CAMERA 목록에 있어 탭하면 빨리 감긴다. */
+.fx-anoint { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.5s ease-in; }
+.fx-anoint.is-out { opacity: 0; }
+.fx-anoint__at { position: absolute; left: var(--x); top: var(--top); width: 0; height: 0; }
+.fx-anoint__beam {
+  position: absolute; left: -70px; width: 140px; bottom: 0; height: calc(var(--top) + 30px);
+  background: linear-gradient(180deg, rgba(255, 236, 190, 0.32), rgba(255, 220, 150, 0.12) 70%, transparent);
+  filter: blur(14px); mix-blend-mode: screen; opacity: 0; animation: sl-an-beam 5.4s ease-out both;
+}
+@keyframes sl-an-beam { 0% { opacity: 0; } 18% { opacity: 1; } 75% { opacity: 0.8; } 100% { opacity: 0; } }
+.fx-anoint__horn {
+  position: absolute; left: -46px; top: -132px; width: 96px; height: 96px; overflow: visible;
+  fill: #e9cf98; transform-origin: 54px 69.6px;
+  filter: drop-shadow(0 0 8px rgba(255, 220, 150, 0.9)) drop-shadow(0 0 22px rgba(255, 200, 110, 0.5));
+  animation: sl-an-horn 5.4s cubic-bezier(0.45, 0, 0.3, 1) both;
+}
+.fx-anoint__band { stroke: color-mix(in srgb, #7a5a30 70%, #000); }
+.fx-anoint__mouth { fill: #fff0c8; }
+@keyframes sl-an-horn {
+  0% { opacity: 0; translate: 0 -30px; rotate: -28deg; }
+  16% { opacity: 1; translate: 0 0; rotate: -24deg; }
+  32% { rotate: 34deg; }
+  70% { opacity: 1; rotate: 42deg; translate: 0 0; }
+  100% { opacity: 0; rotate: 6deg; translate: 0 -18px; }
+}
+.fx-anoint__stream {
+  position: absolute; left: -2px; top: -64px; width: 4px; height: 70px; border-radius: 2px;
+  background: linear-gradient(180deg, #fff3cf, #ffd27a 60%, rgba(255, 200, 100, 0.4));
+  box-shadow: 0 0 8px rgba(255, 210, 120, 0.9); transform-origin: top; scale: 1 0; opacity: 0;
+  animation: sl-an-stream 5.4s ease-in-out both;
+}
+@keyframes sl-an-stream { 0%, 30% { scale: 1 0; opacity: 0; } 34% { opacity: 1; } 46% { scale: 1 1; opacity: 1; } 72% { scale: 0.5 1; opacity: 0.9; } 84%, 100% { scale: 0.2 1; opacity: 0; } }
+.fx-anoint__drop {
+  position: absolute; left: calc(var(--o) * 0.15 - 2px); top: -56px; width: 4px; height: 6px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: #ffe2a0; box-shadow: 0 0 5px rgba(255, 210, 120, 0.9); opacity: 0;
+  animation: sl-an-drop 0.9s ease-in var(--d) both;
+}
+@keyframes sl-an-drop { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 1; } 100% { opacity: 0; translate: var(--o) 62px; } }
+.fx-anoint__crown {
+  position: absolute; left: -60px; top: -30px; width: 120px; height: 90px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 240, 200, 0.85), rgba(255, 210, 130, 0.35) 50%, transparent);
+  mix-blend-mode: screen; opacity: 0; animation: sl-an-crown 5.4s ease-out both;
+}
+@keyframes sl-an-crown { 0%, 40% { opacity: 0; scale: 0.5; } 52% { opacity: 1; scale: 1; } 80% { opacity: 0.7; scale: 1.15; } 100% { opacity: 0; scale: 1.3; } }
+.fx-anoint__body {
+  position: absolute; left: calc(var(--w) * -0.5 - 30px); width: calc(var(--w) + 60px); top: -10px; height: calc(var(--body) + 10px);
+  background: radial-gradient(ellipse 46% 52% at 50% 34%, rgba(255, 236, 180, 0.62), rgba(255, 210, 130, 0.26) 55%, transparent 100%);
+  filter: blur(8px); mix-blend-mode: screen; transform-origin: 50% 0;
+  scale: 1 0; opacity: 0; animation: sl-an-body 5.4s ease-in-out both;
+}
+@keyframes sl-an-body { 0%, 46% { scale: 1 0.05; opacity: 0; } 50% { opacity: 1; } 78% { scale: 1 1; opacity: 1; } 100% { scale: 1 1; opacity: 0; } }
+.fx-anoint__mote {
+  position: absolute; left: var(--o); top: var(--y); width: calc(var(--s) * 3px); height: calc(var(--s) * 3px); border-radius: 50%;
+  background: #fff0c0; box-shadow: 0 0 6px #ffc76a; opacity: 0; animation: sl-an-mote 2.2s ease-out var(--d) both;
+}
+@keyframes sl-an-mote { 0% { opacity: 0; translate: 0 0; } 30% { opacity: 1; } 100% { opacity: 0; translate: 0 -40px; } }
+/* 인물 자신이 금빛으로 물들었다 돌아온다 */
+.actor.is-anointed .actor__art { animation: sl-an-glow 6.4s ease-in-out both; }
+@keyframes sl-an-glow {
+  0%, 40% { filter: none; }
+  60% { filter: drop-shadow(0 0 6px rgba(255, 220, 150, 0.95)) drop-shadow(0 0 22px rgba(255, 200, 110, 0.6)) brightness(1.25); }
+  100% { filter: drop-shadow(0 0 2px rgba(255, 220, 150, 0.3)); }
+}
+/* 모션 줄이기: 머리 위의 금빛만 잠깐 */
+.fx-anoint.is-rm :is(.fx-anoint__horn, .fx-anoint__stream, .fx-anoint__beam, .fx-anoint__body) { display: none; }
+.fx-anoint.is-rm .fx-anoint__crown { animation: sl-an-rm 2.4s ease-out both; }
+@keyframes sl-an-rm { 0% { opacity: 0; } 40% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ── 효과 saul-lots: 미스바의 제비 (삼상 10:20-21) — 여호수아 fx-lots 틀 + 금빛 끝 + "…그런데 없다" ── */
+.fx-lots--saul .fx-lots__pick.is-last { color: #ffe8b0; text-shadow: 0 0 14px rgba(255, 200, 110, 0.85); }
+.fx-lots--saul .fx-lots__stage:last-child .fx-lots__row span.is-hit { animation-name: js-lot-hit; }
+.fx-lots__none { margin: 0; font-family: var(--story-font); font-size: 0.95rem; letter-spacing: 0.24em; color: color-mix(in srgb, var(--ivory, #f4ecd6) 75%, transparent); opacity: 0; animation: js-pick 1.2s ease-out 8.4s both; }
+.fx-lots--saul.is-rm .fx-lots__none { animation-delay: 2.6s; animation-duration: 0.6s; }
+/* atonement.css가 atone-lots 배경이 아닐 때 .fx-lots를 숨기므로(이름 겹침), 사울의 제비는 따로 보이게 */
+.fx-lots.fx-lots--saul:not(.is-out) { opacity: 1 !important; }

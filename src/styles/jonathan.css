@@ -1,0 +1,163 @@
+/* ── 7막 A급: 요나단의 화살 (삼상 18–20) · 엔게디 굴 (삼상 24) — fx/jonathan.ts ──
+   배경: 사울의 집(벽에 박힌 창), 밤의 창과 줄, 침상의 우상과 염소털, 월삭의 빈자리, 들과 에셀 바위,
+         엔게디 벼랑과 들염소, 굴 안의 역광, 굴 밖 벼랑
+   효과: spear-throw(창이 날아가 벽에 박힘) · arrows(화살 셋) · hem(벤 옷자락) */
+
+/* ── 배경 공통 ── */
+.jn-wall { fill: color-mix(in srgb, var(--act-b) 46%, #0a0610); }
+.jn-stones { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 0.8; opacity: 0.7; }
+.jn-niche { fill: color-mix(in srgb, #1a0e06 70%, #000); }
+.jn-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.jn-lamphalo { opacity: 0.85; }
+.jn-ember { fill: #ff9a50; opacity: 0.55; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.jn-slit { fill: color-mix(in srgb, #d8d0e8 30%, var(--act-b)); opacity: 0.45; }
+.jn-rug { fill: color-mix(in srgb, #6e2f3a 34%, var(--act-b)); opacity: 0.5; }
+
+/* ── 사울의 집: 벽에 박힌 창 (19:10) ── */
+.jn-shaft { fill: color-mix(in srgb, #c8a46e 60%, #120a06); filter: drop-shadow(0 0 1.5px rgba(255, 220, 160, 0.6)); }
+.jn-crack { fill: none; stroke: color-mix(in srgb, #000 70%, var(--act-b)); stroke-width: 0.9; }
+.jn-stuck { animation: jn-in 1.2s ease-out both; }
+@keyframes jn-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── 밤의 창 (19:11-12) ── */
+.jn-moon { fill: #f4ead0; opacity: 0.85; filter: drop-shadow(0 0 6px rgba(255, 240, 200, 0.6)); }
+.jn-house { fill: color-mix(in srgb, var(--act-b) 42%, #08050e); }
+.jn-win { fill: #ffcf80; opacity: 0.9; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; }
+.jn-winhalo { opacity: 0.9; }
+.jn-sill { fill: color-mix(in srgb, var(--act-b) 40%, #000); }
+.jn-door { fill: color-mix(in srgb, #1a0e06 70%, #000); }
+.jn-watch { fill: color-mix(in srgb, var(--act-a) 30%, #030205); }
+.jn-torch { fill: #ffb060; filter: drop-shadow(0 0 3px rgba(255, 170, 90, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 0.9s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.jn-torchhalo { opacity: 0.7; }
+/* 창에서 늘어뜨린 줄: 바람에 아주 조금 흔들린다 */
+.jn-rope { stroke: color-mix(in srgb, #d8c090 52%, var(--act-b)); transform-box: fill-box; transform-origin: top center; animation: jn-rope 3.4s ease-in-out infinite alternate, jn-drop 1.6s ease-out both; }
+@keyframes jn-rope { from { rotate: -0.8deg; } to { rotate: 0.8deg; } }
+@keyframes jn-drop { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* ── 침상 (19:13-16) ── */
+.jn-dawndoor { fill: color-mix(in srgb, #e8dcc0 40%, var(--act-b)); opacity: 0.6; }
+.jn-dawnspill { fill: color-mix(in srgb, #e8dcc0 30%, var(--act-b)); opacity: 0.3; }
+.jn-cover { fill: color-mix(in srgb, #8a7a9a 30%, var(--act-b)); }
+.jn-fold { stroke: color-mix(in srgb, #000 40%, var(--act-b)); stroke-width: 0.8; }
+.jn-goat { fill: color-mix(in srgb, #2a2018 70%, #000); }
+.jn-goathair { fill: none; stroke: color-mix(in srgb, #3a2c20 70%, #000); stroke-width: 0.9; stroke-linecap: round; }
+
+/* ── 월삭의 식탁 (20:24-27) ── */
+.jn-nightwin { fill: color-mix(in srgb, #1a1e3a 60%, #000); }
+.jn-crescent { fill: #f4ead0; filter: drop-shadow(0 0 3px rgba(255, 240, 200, 0.7)); }
+.jn-hang { fill: color-mix(in srgb, #6e2f7a 40%, var(--act-a)); opacity: 0.75; }
+.jn-bread { fill: color-mix(in srgb, #d8b880 50%, var(--act-b)); }
+/* 빈자리: 쿠션만 밝고, 그 위가 비어 있다 */
+.jn-empty { fill: color-mix(in srgb, #dcab50 30%, var(--act-b)); filter: drop-shadow(0 0 4px rgba(255, 210, 140, 0.5)); }
+.jn-emptyhalo { opacity: 0.95; animation: jn-breathe 4.5s ease-in-out infinite alternate; }
+@keyframes jn-breathe { from { opacity: 0.6; } to { opacity: 1; } }
+
+/* ── 들과 에셀 바위 (20:19, 35-41) ── */
+.jn-rock { fill: color-mix(in srgb, var(--act-b) 40%, #070509); }
+.jn-rockline { fill: none; stroke: color-mix(in srgb, #000 60%, var(--act-b)); stroke-width: 0.9; opacity: 0.7; }
+.jn-furrow { fill: none; stroke: color-mix(in srgb, #d8c49a 25%, var(--act-b)); stroke-width: 1; opacity: 0.35; }
+.jn-grass { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); stroke-width: 0.8; transform-box: fill-box; transform-origin: bottom; animation: jn-grass 4s ease-in-out infinite alternate; }
+@keyframes jn-grass { from { skew: -1.5deg 0; } to { skew: 1.5deg 0; } }
+
+/* ── 엔게디 (24:2-3) ── */
+.jn-cliff { fill: color-mix(in srgb, #c8b490 18%, color-mix(in srgb, var(--act-b) 50%, #0a0608)); }
+.jn-ledge { fill: none; stroke: color-mix(in srgb, #e8dcc0 22%, var(--act-b)); stroke-width: 1.1; opacity: 0.45; }
+.jn-ibex { fill: color-mix(in srgb, var(--act-a) 50%, #030205); animation: jn-ibex 5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes jn-ibex { 0%, 70% { translate: 0 0; } 100% { translate: 0 0.6px; } }
+.jn-spring { fill: none; stroke: color-mix(in srgb, #d8e8f8 50%, var(--act-b)); stroke-width: 1.2; opacity: 0.55; stroke-dasharray: 6 5; animation: jn-spring 1.4s linear infinite; }
+.jn-spring--b { stroke-width: 0.7; opacity: 0.35; animation-duration: 1.1s; }
+@keyframes jn-spring { to { stroke-dashoffset: -22; } }
+.jn-mouth { fill: color-mix(in srgb, #000 88%, var(--act-a)); }
+.jn-pen { fill: none; stroke: color-mix(in srgb, #000 50%, var(--act-b)); stroke-width: 0.8; stroke-dasharray: 4 2; }
+.jn-sheep { fill: color-mix(in srgb, #e8dcc0 26%, var(--act-b)); }
+.jn-path { fill: none; stroke: color-mix(in srgb, #d8c49a 35%, var(--act-b)); stroke-width: 3; opacity: 0.4; stroke-linecap: round; }
+
+/* ── 굴 안 (24:3-7): 입구의 역광, 깊은 쪽 어둠 ── */
+.jn-dark { fill: #030204; }
+.jn-outside { fill: color-mix(in srgb, #f4e6c4 60%, var(--act-accent)); }
+.jn-outfar { fill: color-mix(in srgb, #c8a87a 40%, var(--act-b)); opacity: 0.55; }
+.jn-rockwall { fill: color-mix(in srgb, var(--act-a) 40%, #020103); }
+.jn-stal { fill: color-mix(in srgb, var(--act-a) 40%, #020103); }
+.jn-floor { fill: color-mix(in srgb, var(--act-a) 30%, #020103); }
+.jn-beam { fill: color-mix(in srgb, #ffe8b8 60%, transparent); opacity: 0.12; mix-blend-mode: screen; animation: jn-beam 6s ease-in-out infinite alternate; }
+@keyframes jn-beam { from { opacity: 0.09; } to { opacity: 0.16; } }
+.jn-floorlight { fill: #ffe8b8; opacity: 0.18; filter: blur(4px); }
+.jn-men rect { fill: color-mix(in srgb, var(--act-b) 30%, #0a0610); opacity: 0.8; animation: js-sway 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+
+/* ── 굴 밖 벼랑 (24:8-22) ── */
+.jn-gorge { fill: color-mix(in srgb, #000 80%, var(--act-a)); }
+.jn-near { fill: color-mix(in srgb, var(--act-a) 46%, #020205); }
+.jn-army rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+
+:root[data-reduced-motion='true'] :is(.jn-flame, .jn-torch, .jn-rope, .jn-grass, .jn-ibex, .jn-spring, .jn-beam, .jn-emptyhalo, .jn-men rect, .jn-win) { animation: none; }
+
+/* ── 효과 spear-throw: 창이 날아가 박힘 (18:11, 19:10, 20:33) ── */
+.fx-spear { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 0.9s ease-in; }
+.fx-spear.is-out { opacity: 0; }
+.fx-spear__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+/* 창 자루: 끝(창날)이 원점 — 원점에서 출발해 박힐 자리까지 간다 */
+.fx-spear__shaft { position: absolute; left: calc(var(--len) * -1); top: -2px; width: var(--len); height: 4px; rotate: var(--ang); transform-origin: 100% 50%; border-radius: 2px;
+  background: linear-gradient(90deg, color-mix(in srgb, #8a6a40 60%, #1a120a), color-mix(in srgb, #b8945e 70%, #1a120a));
+  opacity: 0; animation: jn-spear-fly 0.32s cubic-bezier(0.3, 0.1, 0.7, 1) 0.6s both, jn-quiver 0.5s ease-out 0.92s forwards; }
+.fx-spear__shaft s { position: absolute; right: -14px; top: -4px; width: 16px; height: 12px; background: #d8dce4;
+  clip-path: polygon(0 0, 100% 50%, 0 100%, 18% 50%); box-shadow: 0 0 4px rgba(230, 236, 255, 0.8); }
+@keyframes jn-spear-fly {
+  0% { opacity: 1; translate: 0 0; }
+  100% { opacity: 1; translate: var(--dx) var(--dy); }
+}
+@keyframes jn-quiver {
+  0% { translate: var(--dx) var(--dy); rotate: var(--ang); }
+  20% { rotate: calc(var(--ang) - 3deg); }
+  40% { rotate: calc(var(--ang) + 2deg); }
+  60% { rotate: calc(var(--ang) - 1deg); }
+  100% { translate: var(--dx) var(--dy); rotate: var(--ang); opacity: 1; }
+}
+.fx-spear__streak { position: absolute; left: 0; top: -1px; height: 2px; width: 0; transform-origin: 0 50%; rotate: var(--ang);
+  background: linear-gradient(90deg, transparent, rgba(255, 240, 210, 0.6)); opacity: 0; animation: jn-streak 0.7s ease-out 0.6s both; }
+@keyframes jn-streak { 0% { opacity: 0.9; width: 0; } 50% { opacity: 0.7; width: var(--dist); } 100% { opacity: 0; } }
+.fx-spear__hit { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-spear__hit::before { content: ''; position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(220, 210, 190, 0.6), transparent); opacity: 0; animation: jn-puff 1.2s ease-out 0.9s both; }
+@keyframes jn-puff { 0% { opacity: 0; scale: 0.3; } 25% { opacity: 1; } 100% { opacity: 0; scale: 1.8; } }
+.jn-thud { animation: jn-thud 0.4s ease-out; }
+@keyframes jn-thud { 0%, 100% { translate: 0 0; } 25% { translate: 2px 0; } 50% { translate: -2px 0; } 75% { translate: 1px 0; } }
+.fx-spear.is-rm :is(.fx-spear__shaft) { animation: jn-spear-fly 0.01s 0s both; }
+.fx-spear.is-rm :is(.fx-spear__streak, .fx-spear__hit) { display: none; }
+
+/* ── 효과 arrows: 화살 셋 (20:20, 36) ── x는 일정하게, y는 올라갔다 떨어지는 두 겹 움직임 */
+.fx-arrows { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1s ease-in; }
+.fx-arrows.is-out { opacity: 0; }
+.fx-arrows__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-arrows__x { position: absolute; left: 0; top: 0; animation: jn-ax 1.5s linear both; animation-delay: calc(0.3s + var(--i) * 0.9s); }
+@keyframes jn-ax { from { translate: 0 0; } to { translate: var(--dx) 0; } }
+.fx-arrows__y { animation: jn-ay 1.5s linear both; animation-delay: calc(0.3s + var(--i) * 0.9s); }
+@keyframes jn-ay {
+  0% { translate: 0 0; animation-timing-function: cubic-bezier(0.3, 0.7, 0.6, 1); }
+  40% { translate: 0 var(--lift); animation-timing-function: cubic-bezier(0.4, 0, 0.8, 0.6); }
+  100% { translate: 0 var(--drop); }
+}
+.fx-arrows__a { position: absolute; left: -14px; top: -1px; width: 28px; height: 2px; scale: var(--k) 1; opacity: 0;
+  background: linear-gradient(90deg, #e8dcc0 0 22%, color-mix(in srgb, #b8945e 80%, #000) 22% 100%);
+  animation: jn-aa 1.5s linear both; animation-delay: calc(0.3s + var(--i) * 0.9s); box-shadow: 0 0 3px rgba(255, 240, 210, 0.6); }
+.fx-arrows__a::after { content: ''; position: absolute; right: -5px; top: -2.5px; width: 6px; height: 7px; background: #e8ecf4; clip-path: polygon(0 0, 100% 50%, 0 100%); }
+@keyframes jn-aa { 0% { opacity: 1; rotate: calc(-28deg * var(--k)); } 40% { rotate: 0deg; } 92% { opacity: 1; rotate: calc(34deg * var(--k)); } 100% { opacity: 0; rotate: calc(36deg * var(--k)); } }
+/* 시위 소리: 쏘는 손에서 작은 고리 */
+.fx-arrows__twang { position: absolute; left: -10px; top: -10px; width: 20px; height: 20px; border-radius: 50%; border: 1px solid rgba(255, 236, 190, 0.7);
+  opacity: 0; animation: jn-twang 0.8s ease-out 0.3s 3 both; animation-delay: 0.3s; }
+@keyframes jn-twang { 0% { opacity: 0.9; scale: 0.4; } 100% { opacity: 0; scale: 2.4; } }
+
+/* ── 효과 hem: 벤 옷자락 (24:4, 11) ── */
+.fx-hem { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-hem.is-out { opacity: 0; }
+.fx-hem__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-hem__glow { position: absolute; left: -60px; top: -60px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 220, 150, 0.45), transparent); mix-blend-mode: screen; opacity: 0; animation: jn-hemglow 5s ease-in-out both; }
+@keyframes jn-hemglow { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0.5; } }
+.fx-hem__cloth { position: absolute; left: -20px; top: -15px; overflow: visible; opacity: 0; animation: jn-hemup 1.6s ease-out 0.3s both, jn-hemsway 2.4s ease-in-out 1.9s infinite alternate; }
+@keyframes jn-hemup { from { opacity: 0; translate: 0 18px; rotate: 8deg; } to { opacity: 1; translate: 0 0; rotate: -4deg; } }
+@keyframes jn-hemsway { from { rotate: -4deg; } to { rotate: 3deg; } }
+.fx-hem__piece { fill: color-mix(in srgb, #6e3f8a 70%, #1a0a24); }
+.fx-hem__band { stroke: #dcab50; stroke-width: 1.6; }
+.fx-hem__edge { stroke: #ffe0a0; stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; filter: drop-shadow(0 0 2px rgba(255, 220, 150, 0.9)); animation: jn-edge 1.4s ease-out 1.2s both; }
+@keyframes jn-edge { to { stroke-dashoffset: 0; } }
+.fx-hem.is-rm :is(.fx-hem__cloth, .fx-hem__edge, .fx-hem__glow) { animation-duration: 0.01s; animation-delay: 0s; animation-iteration-count: 1; }

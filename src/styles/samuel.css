@@ -1,0 +1,77 @@
+/* ── 7막 A급: 한나와 어린 사무엘 (삼상 1–3, fx/samuel.ts · characters/samuel.ts) ──
+   인물: 사무엘의 기름 뿔(.sm-horn), 겉옷 아랫단(.sm-hem), 어린 시절 작은 겉옷(.sm-coat)
+   배경: 실로로 오르는 길, 여호와의 집 앞(문설주·엘리의 의자·솥), 라마의 베틀, 전 안의 등대(밤·새벽)
+   효과: little-robes */
+
+/* ── 인물 ── */
+.actor .sm-horn, .sil .sm-horn { fill: color-mix(in srgb, #e8d6a8 46%, var(--sil-ink)); }
+.actor .sm-hem, .sil .sm-hem { fill: color-mix(in srgb, #3a2a1c 40%, var(--sil-ink)); }
+.actor .sm-coat, .sil .sm-coat { fill: color-mix(in srgb, color-mix(in srgb, #4a6aa8 80%, var(--act-accent)) 42%, var(--sil-ink)); }
+
+/* ── 공통 ── */
+.sm-wall { fill: color-mix(in srgb, var(--act-b) 22%, #070606); }
+.sm-wall2 { fill: color-mix(in srgb, var(--act-b) 14%, #040303); }
+.sm-flame, .sm-lowflame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.sm-lowflame { opacity: 0.8; }
+.sm-lamphalo { opacity: 0.85; animation: js-flicker 3s ease-in-out infinite alternate; }
+.sm-niche { fill: color-mix(in srgb, #0c0806 80%, #000); }
+.sm-nightwin { fill: color-mix(in srgb, #2a2c48 70%, #000); }
+.sm-moon { fill: #f4ecd4; opacity: 0.8; filter: drop-shadow(0 0 3px rgba(255, 246, 220, 0.8)); }
+.sm-shaft { fill: rgba(210, 220, 255, 0.05); }
+
+/* ── 길 ── */
+.sm-terrace { fill: none; stroke: color-mix(in srgb, var(--act-b) 50%, #0a0806); stroke-width: 1.2; opacity: 0.6; }
+.sm-road { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 3.2; stroke-linecap: round; opacity: 0.55; }
+.sm-doorlit { fill: #ffcf80; filter: drop-shadow(0 0 2px rgba(255, 200, 110, 0.85)); animation: js-flicker 2.6s ease-in-out infinite alternate; }
+.sm-househalo { opacity: 0.8; }
+
+/* ── 실로 여호와의 집 앞 ── */
+.sm-stones { fill: none; stroke: color-mix(in srgb, var(--act-b) 50%, #000); stroke-width: 0.7; opacity: 0.5; }
+.sm-doorway { fill: color-mix(in srgb, #3a2410 60%, #000); }
+.sm-curtain { fill: color-mix(in srgb, color-mix(in srgb, #5a3a7a 50%, #8a2a2a) 40%, #0a0606); opacity: 0.95; }
+.sm-post { fill: color-mix(in srgb, var(--act-a) 30%, #040303); }
+.sm-chair { fill: color-mix(in srgb, #6a4a2a 26%, #050404); }
+.sm-innerlamp { fill: color-mix(in srgb, #c8a050 40%, #100a04); }
+.sm-ember { fill: #ff9a50; opacity: 0.55; filter: blur(1px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.sm-steam { fill: none; stroke: #e8e0d0; stroke-width: 1.4; opacity: 0.18; animation: sm-steam 4s ease-in-out infinite alternate; }
+@keyframes sm-steam { from { translate: 0 0; opacity: 0.1; } to { translate: 2px -4px; opacity: 0.26; } }
+
+/* ── 라마의 베틀 ── */
+.sm-loom { opacity: 0.95; }
+.sm-warp { fill: none; stroke: color-mix(in srgb, #e8dcc0 40%, var(--act-b)); stroke-width: 0.6; opacity: 0.55; }
+.sm-cloth { fill: color-mix(in srgb, #4a6aa8 34%, var(--act-b)); opacity: 0.9; }
+.sm-weft { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.3; }
+.sm-peg { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #000); stroke-width: 1; }
+.sm-coat-hung { fill: color-mix(in srgb, #4a6aa8 46%, var(--act-b)); filter: drop-shadow(0 0 4px rgba(255, 210, 140, 0.35)); }
+
+/* ── 여호와의 전 안 ── */
+.sm-veil { fill: color-mix(in srgb, color-mix(in srgb, #3a3a8a 50%, #7a2a5a) 30%, #060408); }
+.sm-veillines { fill: none; stroke: #000; stroke-width: 1; opacity: 0.35; }
+.sm-cherub { fill: color-mix(in srgb, #d8b060 30%, var(--act-b)); opacity: 0.45; }
+.sm-arkglow { opacity: 0.55; animation: sm-breathe 6s ease-in-out infinite alternate; }
+@keyframes sm-breathe { from { opacity: 0.4; } to { opacity: 0.7; } }
+.sm-lampstand { fill: color-mix(in srgb, #d8b060 46%, #0a0804); stroke: color-mix(in srgb, #d8b060 46%, #0a0804); stroke-width: 1.8; }
+.sm-lampstand path:not([d*='h6']) { fill: none; }
+.sm-mat { fill: color-mix(in srgb, #c8b48a 30%, var(--act-b)); opacity: 0.8; }
+.sm-passage { fill: color-mix(in srgb, #1a120a 70%, #000); }
+.sm-door { fill: color-mix(in srgb, #1a120a 85%, #000); }
+.sm-door.is-open { fill: #ffe6b0; filter: drop-shadow(0 0 6px rgba(255, 220, 150, 0.9)); }
+.sm-morning { fill: rgba(255, 228, 170, 0.14); }
+.sm-dawnhalo { opacity: 0.9; }
+.sm-smallhalo { opacity: 0.6; animation: js-flicker 3s ease-in-out infinite alternate; }
+.sm-bed { opacity: 0.95; }
+.sm--lamp.is-dawn .sm-arkglow { opacity: 0.35; animation: none; }
+
+/* ── 효과: 해마다 지어 온 작은 겉옷 (삼상 2:19) ── */
+.fx-robes { position: absolute; inset: 0; z-index: 6; pointer-events: none; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 6%; gap: 8px; transition: opacity 1.6s ease; }
+.fx-robes.is-out { opacity: 0; }
+.fx-robes ol { list-style: none; display: flex; align-items: flex-end; gap: clamp(6px, 2vw, 16px); margin: 0; padding: 14px 18px; border-radius: 14px; background: radial-gradient(closest-side, rgba(10, 8, 6, 0.7), rgba(10, 8, 6, 0.35) 70%, transparent); }
+.fx-robes li { display: flex; flex-direction: column; align-items: center; gap: 4px; opacity: 0; translate: 0 8px; animation: sm-robe-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) calc(0.4s + var(--i) * 1s) forwards; }
+.fx-robes li small { font: 500 11px/1 'Pretendard Variable', Pretendard, sans-serif; color: color-mix(in srgb, #f4ead2 80%, var(--act-accent)); opacity: 0.8; letter-spacing: 0.02em; }
+.fx-robes__coat { fill: color-mix(in srgb, #5a7ab8 60%, var(--act-accent)); filter: drop-shadow(0 0 5px rgba(255, 214, 150, 0.55)); }
+.fx-robes__hem { fill: none; stroke: #f4e2b0; stroke-width: 1.4; opacity: 0.7; }
+.fx-robes p { margin: 0; font: 400 clamp(18px, 4.6vw, 26px)/1 'Noto Serif KR', serif; letter-spacing: 0.3em; color: #f6e6bc; text-shadow: 0 0 14px rgba(255, 210, 140, 0.6); opacity: 0; animation: sm-robe-in 1.4s ease-out 6.2s forwards; }
+.fx-robes.is-rm li, .fx-robes.is-rm p { animation-duration: 0.4s; animation-delay: 0.2s; }
+@keyframes sm-robe-in { to { opacity: 1; translate: 0 0; } }
+
+:root[data-reduced-motion='true'] :is(.sm-flame, .sm-lowflame, .sm-lamphalo, .sm-doorlit, .sm-ember, .sm-steam, .sm-arkglow, .sm-smallhalo) { animation: none !important; }

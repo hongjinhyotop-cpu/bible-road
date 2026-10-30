@@ -33,6 +33,11 @@ export type BackdropArt =
   | 'js-jericho' | 'js-jericho-cord' | 'js-jericho-fallen' | 'js-jericho-ruin' | 'js-roof' | 'js-window-rope' | 'js-window-cord' | 'js-jordan-flood' | 'js-jordan-dry' | 'js-gilgal' | 'js-ai' | 'js-tent-dig' | 'js-achor' | 'js-gibeon' | 'js-gibeon-storm' | 'js-gibeon-sun' | 'js-shechem' | 'js-shechem-stone'
   | 'jg-palm' | 'jg-tabor' | 'jg-kishon' | 'jg-tent' | 'jg-tent-shut' | 'jg-lattice' | 'jg-winepress' | 'jg-baal' | 'jg-baal-torn' | 'jg-fleece-wet' | 'jg-fleece-dry' | 'jg-harod' | 'jg-midian' | 'jg-mizpah' | 'jg-mountains' | 'jg-zorah' | 'jg-timnah' | 'jg-timnah-lion' | 'jg-honey' | 'jg-fields' | 'jg-fields-burnt' | 'jg-lehi' | 'jg-lehi-spring' | 'jg-gaza-gate' | 'jg-gate-hill' | 'jg-sorek' | 'jg-mill' | 'jg-dagon' | 'jg-dagon-fallen' | 'jg-gibeah' | 'jg-gibeah-dawn' | 'jg-gibeah-smoke' | 'jg-rimmon' | 'jg-shiloh' | 'rt-moab-road' | 'rt-bethlehem' | 'rt-field' | 'rt-threshing' | 'rt-gate'
   | 'cov-count' | 'cov-pieces'
+  | 'sm-road' | 'sm-shiloh' | 'sm-ramah' | 'sm-lamp' | 'sm-lamp-out'
+  | 'gb-camp' | 'gb-endor' | 'gb-endor-rise' | 'gb-slope' | 'gb-bethshan' | 'gb-jordan' | 'gb-tamarisk'
+  | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
+  | 'jn-hall' | 'jn-hall-spear' | 'jn-window' | 'jn-window-rope' | 'jn-bed' | 'jn-feast' | 'jn-field' | 'jn-engedi' | 'jn-cave' | 'jn-cliff'
+  | 'sl-hills' | 'sl-ascent' | 'sl-feast' | 'sl-roof' | 'sl-roof-dawn' | 'sl-prophets' | 'sl-mizpah' | 'sl-baggage' | 'sl-kenite' | 'sl-carmel' | 'sl-gilgal' | 'sl-parting'
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
   | 'potiphar' | 'potiphar-cloak' | 'round-prison' | 'dream-cows' | 'dream-cows-lean' | 'dream-ears' | 'dream-ears-thin' | 'pharaoh-court' | 'chariot' | 'granary' | 'granary-famine'
@@ -192,6 +197,21 @@ export const FX = [
   'lament', // 산 위에 작은 불빛 넷, 해마다 한 줄씩 늘어남 + "해마다 나흘씩" (약 11초, 삿 11:40)
   'summons', // 가운데에서 열두 줄기 불티가 사방 끝으로 흩어져 나감 (약 5초, 삿 19:29) — 소식이 온 땅에 퍼짐
   'genealogy', // 족보: 베레스 → … → 보아스(+룻) → 오벳 → 이새 → 다윗이 한 줄로 켜지고, 끝에 "… 마태복음 1장 — 예수" (약 16초, 룻 4:18-22)
+  // ── 7막 왕국 (fx/saul.ts) ──
+  'anoint', // 기름 부음: 위에서 기름 뿔이 기울고 금빛 기름 한 줄기가 인물 머리 위로 흘러내려 빛이 몸을 따라 번짐 (약 5초, 탭하면 빨리 감김). 대상 = beat의 to → (대사 beat가 아니면) who → 무대 가운데 사람. 삼상 10:1, 16:13, 삼하 2:4, 5:3, 왕상 1:39
+  'saul-lots', // 미스바의 제비: 모든 지파 → 베냐민 → 마드리의 가족 → 기스의 아들 사울 → "…그런데 없다" (약 11초, 삼상 10:20-21)
+  // ── 7막 사울의 마지막 (fx/gilboa.ts) ──
+  'rise', // 땅에서 오르는 희뿌연 빛: 바닥 가운데에서 잿빛 티끌이 솟고 빛의 기둥이 부풀었다 가라앉음 (약 6초, 삼상 28:13). 인물로 그리지 않음. 배경 gb-endor-rise와 같이
+  // ── 7막 한나와 사무엘 (fx/samuel.ts) ──
+  'little-robes', // 해마다 지어 온 작은 겉옷: 한 벌씩 조금 더 큰 옷이 줄지어 켜지고 "해마다" (약 9초, 삼상 2:19)
+  // ── 7막 요나단의 화살 · 엔게디 굴 (fx/jonathan.ts) ──
+  'spear-throw', // 창 던짐: 던지는 사람(who, 없으면 saul)의 손에서 창이 상대(to, 없으면 david) 쪽으로 날아가 빗나가 그 너머에 박혀 떨림, 상대는 몸을 낮춰 피함 (약 4초, 삼상 18:11 · 19:10 · 20:33)
+  'arrows', // 화살 셋: 쏘는 사람(who, 없으면 jonathan)에게서 높이 날아 들 저편으로 떨어짐 (약 5초, 삼상 20:20, 36. 배경 jn-field)
+  'hem', // 벤 옷자락: 대상(who, 없으면 david)의 앞손 높이에 겉옷 자락 한 조각이 떠오르며 금빛 테 (약 5초, 삼상 24:4, 11)
+  // ── 7막 다윗 (fx/david.ts) ──
+  'lyre', // 수금 소리: 다윗(없으면 무대 가운데)에게서 금빛 소리 결이 퍼지고 배경(dv-court)의 어두운 기운이 걷힘 (약 7초, 삼상 16:23 — 18:10, 19:9에도)
+  'sling', // 물매: 다윗의 머리 위에서 끈이 돌고 돌 하나가 골리앗(없으면 오른쪽 사람) 쪽으로 날아가 닿기 직전 사라짐 (약 2초, 삼상 17:49). 다윗 옷 sling과 같이, 다음 beat에 sound + topple
+  'topple', // 큰 몸이 쓰러짐: 대상(who, 없으면 goliath)이 앞으로 엎드러지며 어두워짐 + 흙먼지·흔들림 (약 3초, 삼상 17:49). 실루엣만
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
   'pass-on', // 금빛 티끌이 왼쪽 인물의 가슴에서 떠올라 오른쪽 인물에게 내려앉음 (약 5초, 신 6:7 "네 자녀에게 부지런히 가르치며")
@@ -674,6 +694,121 @@ export const MOODS: Record<string, Mood> = {
   'rt-threshing': { light: true, land: false, art: 'rt-threshing', tone: 'night', spread: true },
   'rt-threshing-dawn': { light: true, land: false, art: 'rt-threshing', tone: 'clear', spread: true },
   'rt-gate': { light: true, land: false, art: 'rt-gate', spread: true },
+
+  // ── 7막 사울 A급 (삼상 9–10 · 15, fx/saul.ts) ──
+  /** 에브라임 산지·살리사·사알림을 헤매는 길: 계단밭, 굽은 길, 말뚝에 늘어진 빈 고삐 (삼상 9:3-5) */
+  'sl-hills': { light: true, land: false, art: 'sl-hills' },
+  'sl-hills-dusk': { light: true, land: false, art: 'sl-hills', tone: 'dusk' },
+  /** 숩 땅의 성: 언덕 위 성읍으로 오르는 비탈길, 우물에서 물 길러 나오는 소녀들 (9:11) */
+  'sl-ascent': { light: true, land: false, art: 'sl-ascent', tone: 'dusk', spread: true },
+  /** 산당의 객실: 낮은 상, 손님 서른 명가량, 수석 자리에 놓인 넓적다리 (9:22-24) */
+  'sl-feast': { light: true, land: false, art: 'sl-feast', tone: 'dusk', spread: true },
+  /** 밤, 지붕 위: 난간, 아래 성읍 불빛, 별과 달 (9:25) */
+  'sl-roof': { light: true, land: false, art: 'sl-roof', tone: 'night' },
+  /** 같은 지붕, 동틀 녘 (9:26) */
+  'sl-roof-dawn': { light: true, land: false, art: 'sl-roof-dawn', tone: 'clear' },
+  /** 하나님의 산: 산당에서 내려오는 선지자의 무리(비파·소고·저·수금), 블레셋 영문의 망대 (10:5, 10) */
+  'sl-prophets': { light: true, land: false, art: 'sl-prophets' },
+  /** 미스바 모임: 비탈에 지파대로 모인 백성, 가운데 돌, 양옆에 쌓인 짐 보따리 (10:17-24) */
+  'sl-mizpah': { light: true, land: false, art: 'sl-mizpah', spread: true },
+  /** 짐 보따리 더미 위로 비죽 나온 머리와 어깨 (10:22 "행구 사이에 숨었느니라") */
+  'sl-baggage': { light: true, land: false, art: 'sl-baggage', spread: true },
+  /** 겐 사람이 장막을 걷고 나귀와 함께 떠나는 길 (15:6) */
+  'sl-kenite': { light: true, land: false, art: 'sl-kenite', tone: 'clear' },
+  /** 유다 갈멜: 언덕 위 사울의 기념비 (15:12) */
+  'sl-carmel': { light: true, land: false, art: 'sl-carmel', spread: true },
+  'sl-carmel-dusk': { light: true, land: false, art: 'sl-carmel', tone: 'dusk', spread: true },
+  /** 길갈: 멀리 열두 돌, 돌 단과 연기, 우리마다 가득한 양과 소 (15:12-21) */
+  'sl-gilgal': { light: true, land: false, art: 'sl-gilgal' },
+  'sl-gilgal-dusk': { light: true, land: false, art: 'sl-gilgal', tone: 'dusk' },
+  /** 갈림길: 왼쪽 언덕 위 라마, 오른쪽 언덕 위 기브아 (15:34) */
+  'sl-parting': { light: true, land: false, art: 'sl-parting', tone: 'dusk', spread: true },
+
+  // ── 7막 사울의 마지막 A급 (삼상 28 · 31, fx/gilboa.ts) ──
+  /** 길보아 산 위에서 내려다본 이스르엘 골짜기: 건너편 모레 산 비탈(수넴)에 블레셋 진의 불빛이 셀 수 없이 깔림, 이편 산마루의 작은 장막과 화톳불 (28:4-5) */
+  'gb-camp': { light: true, land: false, art: 'gb-camp', tone: 'night' },
+  'gb-camp-dawn': { light: true, land: false, art: 'gb-camp', tone: 'clear' },
+  /** 엔돌 여인의 집 안, 밤: 낮은 들보, 벽감의 등잔, 오른쪽 흙 화덕(불씨), 왼쪽 낮은 침상, 가운데 뒤로 열린 문과 밤하늘, 구석의 송아지 (28:8, 23-24) */
+  'gb-endor': { light: true, land: false, art: 'gb-endor', tone: 'night', spread: true },
+  /** 같은 집, 가운데 바닥에서 희뿌연 잿빛 기둥이 오르고 그 안에 겉옷을 두른 듯한 흐린 그림자 (28:13-14 — 얼굴·몸 없음). 등잔이 눌리고 화덕이 어두워짐. fx rise와 같이 */
+  'gb-endor-rise': { light: true, land: false, art: 'gb-endor-rise', tone: 'night', spread: true },
+  /** 길보아 산비탈: 꽂힌 채 부러진 창, 엎어진 방패, 박힌 화살, 찢긴 깃발. 사람 몸은 안 그림 (31:1-6). 전쟁이 끝난 자리에 재사용 */
+  'gb-slope': { light: true, land: false, art: 'gb-slope', tone: 'storm' },
+  'gb-slope-dusk': { light: true, land: false, art: 'gb-slope', tone: 'dusk' },
+  /** 벧산 성벽: 높은 성벽과 성문 망대, 블레셋 깃발, 성벽 위를 도는 까마귀. 성벽에 걸린 것은 안 그림 (31:10) */
+  'gb-bethshan': { light: true, land: false, art: 'gb-bethshan', tone: 'dusk' },
+  'gb-bethshan-night': { light: true, land: false, art: 'gb-bethshan', tone: 'night' },
+  /** 요단을 건너는 밤길: 달, 강과 나루, 횃불을 든 작은 사람들의 줄 (31:12 "밤새도록 가서") */
+  'gb-jordan': { light: true, land: false, art: 'gb-jordan', tone: 'night' },
+  /** 야베스의 에셀나무: 늘어진 가는 잎, 나무 아래 새 돌무덤, 사그라진 불의 재와 연기 한 줄, 먼 언덕의 야베스 (31:12-13) */
+  'gb-tamarisk': { light: true, land: false, art: 'gb-tamarisk', tone: 'clear', spread: true },
+  'gb-tamarisk-dusk': { light: true, land: false, art: 'gb-tamarisk', tone: 'dusk', spread: true },
+
+  // ── 7막 한나와 사무엘 A급 (삼상 1–3, fx/samuel.ts) ──
+  /** 실로로 오르는 길: 굽이진 비탈길의 순례자들, 언덕 꼭대기 돌담 안의 여호와의 집 (삼상 1:3, 24) */
+  'sm-road': { light: true, land: false, art: 'sm-road' },
+  'sm-road-dawn': { light: true, land: false, art: 'sm-road', tone: 'clear' },
+  'sm-road-dusk': { light: true, land: false, art: 'sm-road', tone: 'dusk' },
+  /** 실로 여호와의 집 앞: 두 문설주와 휘장 문 안의 등불, 문설주 곁 엘리의 의자, 번제단 연기, 불 위의 큰 솥 (1:9, 2:13-14) */
+  'sm-shiloh': { light: true, land: false, art: 'sm-shiloh', spread: true },
+  'sm-shiloh-dusk': { light: true, land: false, art: 'sm-shiloh', tone: 'dusk', spread: true },
+  'sm-shiloh-night': { light: true, land: false, art: 'sm-shiloh', tone: 'night', spread: true },
+  /** 라마의 집 안, 밤: 벽감의 등잔, 작은 겉옷이 반쯤 짜인 베틀, 못에 걸린 작은 겉옷 (2:19) */
+  'sm-ramah': { light: true, land: false, art: 'sm-ramah', tone: 'night' },
+  'sm-ramah-dusk': { light: true, land: false, art: 'sm-ramah', tone: 'dusk' },
+  /** 여호와의 전 안, 밤: 왼쪽 휘장 너머 궤의 빛·낮게 타는 등대·소년의 자리 | 벽 너머 오른쪽 엘리의 처소 (3:2-3). 사무엘 왼쪽, 엘리 오른쪽 */
+  'sm-lamp': { light: true, land: false, art: 'sm-lamp', tone: 'night', spread: true },
+  /** 같은 곳, 새벽: 등대 불은 꺼져 연기 한 줄, 오른쪽 문이 열려 아침빛 (3:15) */
+  'sm-lamp-out': { light: true, land: false, art: 'sm-lamp-out', tone: 'clear', spread: true },
+
+  // ── 7막 요나단의 화살 · 엔게디 굴 A급 (삼상 18–20 · 24, fx/jonathan.ts) ──
+  /** 사울의 집 안: 돌벽, 벽 곁 높은 자리, 벽감의 등잔, 수금 걸이 (삼상 18:10, 19:9). fx spear-throw와 같이 */
+  'jn-hall': { light: true, land: false, art: 'jn-hall', tone: 'dusk' },
+  'jn-hall-night': { light: true, land: false, art: 'jn-hall', tone: 'night' },
+  /** 같은 방, 벽에 창이 비스듬히 박혀 있고 돌에 금이 감 (19:10) */
+  'jn-hall-spear': { light: true, land: false, art: 'jn-hall-spear', tone: 'night' },
+  /** 밤, 다윗의 집 바깥벽: 높은 창의 등불, 모퉁이 문 앞에 횃불 든 사자들 (19:11) */
+  'jn-window': { light: true, land: false, art: 'jn-window', tone: 'night' },
+  /** 같은 창에서 땅까지 늘어뜨린 줄 (19:12) */
+  'jn-window-rope': { light: true, land: false, art: 'jn-window-rope', tone: 'night' },
+  /** 다윗의 방: 옷을 덮은 침상 위의 사람 모양(우상), 머리맡의 염소털, 문틈 새벽빛 (19:13-16) */
+  'jn-bed': { light: true, land: false, art: 'jn-bed', tone: 'clear' },
+  /** 월삭의 왕의 식탁: 벽 곁 왕의 자리, 긴 식탁, 초승달 창, 등잔 빛이 고인 빈자리 (20:24-27) */
+  'jn-feast': { light: true, land: false, art: 'jn-feast', tone: 'night', spread: true },
+  /** 기브아 바깥 들: 에셀 바위(왼쪽), 먼 언덕의 성, 오른쪽으로 트인 들 (20:11, 19, 35-42) */
+  'jn-field': { light: true, land: false, art: 'jn-field' },
+  'jn-field-dawn': { light: true, land: false, art: 'jn-field', tone: 'clear' },
+  'jn-field-dusk': { light: true, land: false, art: 'jn-field', tone: 'dusk' },
+  /** 엔게디 황무지: 석회암 벼랑의 들염소들, 가는 샘물, 길가 양의 우리, 벼랑 밑 굴 입구 (24:1-3) */
+  'jn-engedi': { light: true, land: false, art: 'jn-engedi', spread: true },
+  'jn-engedi-dusk': { light: true, land: false, art: 'jn-engedi', tone: 'dusk', spread: true },
+  /** 굴 안: 오른쪽 입구의 역광, 바닥에 떨어진 빛, 왼쪽 깊은 어둠의 희미한 사람들 (24:3-7) */
+  'jn-cave': { light: true, land: false, art: 'jn-cave', spread: true },
+  /** 굴 밖 벼랑: 등 뒤 굴 입구, 깊은 골짜기, 맞은편 비탈의 사울 군대 (24:8-22) */
+  'jn-cliff': { light: true, land: false, art: 'jn-cliff', spread: true },
+  'jn-cliff-dusk': { light: true, land: false, art: 'jn-cliff', tone: 'dusk', spread: true },
+
+  // ── 7막 다윗 A급 (삼상 16 · 17, fx/david.ts) ──
+  /** 베들레헴 성읍 어귀: 언덕 위 집들, 성문, 성문 앞의 장로들(떨며 맞음), 오르는 길 (삼상 16:4) */
+  'dv-bethlehem': { light: true, land: false, art: 'dv-bethlehem', spread: true },
+  'dv-bethlehem-dusk': { light: true, land: false, art: 'dv-bethlehem', tone: 'dusk', spread: true },
+  /** 이새의 집 마당: 집 앞면(문·지붕 난간·사다리), 낮은 돌담, 작은 돌 단과 제사 연기, 감람나무 (16:5) */
+  'dv-yard': { light: true, land: false, art: 'dv-yard' },
+  'dv-yard-dusk': { light: true, land: false, art: 'dv-yard', tone: 'dusk' },
+  /** 베들레헴 들: 언덕의 양 떼, 외딴 상수리나무, 먼 언덕 위 성읍 (16:11, 17:15, 20) */
+  'dv-field': { light: true, land: false, art: 'dv-field' },
+  'dv-field-dawn': { light: true, land: false, art: 'dv-field', tone: 'clear' },
+  'dv-field-dusk': { light: true, land: false, art: 'dv-field', tone: 'dusk' },
+  /** 사울의 궁 안: 두 기둥, 높은 등받이 자리와 벽에 기댄 창, 낮은 화로, 자리 위에 고인 어두운 기운 (16:14 — 악신은 인물로 안 그림). fx lyre로 걷힘 */
+  'dv-court': { light: true, land: false, art: 'dv-court', tone: 'night' },
+  /** 같은 궁, 어두운 기운이 걷히고 화로가 밝다 (16:23) */
+  'dv-court-calm': { light: true, land: false, art: 'dv-court-calm', tone: 'dusk' },
+  /** 엘라 골짜기: 왼쪽 산에 이스라엘 진, 오른쪽 산에 블레셋 진(깃발·창 줄), 사이 골짜기와 시내 (17:2-3). 전쟁터 대치 장면에 재사용 */
+  'dv-elah': { light: true, land: false, art: 'dv-elah', spread: true },
+  'dv-elah-dawn': { light: true, land: false, art: 'dv-elah', tone: 'clear', spread: true },
+  'dv-elah-dusk': { light: true, land: false, art: 'dv-elah', tone: 'dusk', spread: true },
+  /** 골짜기 바닥의 시냇가: 물결 사이 매끄러운 돌, 다섯이 하나씩 빛남 (17:40) */
+  'dv-brook': { light: true, land: false, art: 'dv-brook', tone: 'clear', spread: true },
 
   // ── 여호수아 (수 2 · 3–4 · 6 · 7 · 10 · 24, fx/joshua.ts) ──
   /** 종려나무 평지에서 본 여리고: 둔덕 위 성벽·망대·성문, 성벽에 붙은 라합의 집(창에 불빛), 서쪽 산지 (수 2:15, 6:1) */
