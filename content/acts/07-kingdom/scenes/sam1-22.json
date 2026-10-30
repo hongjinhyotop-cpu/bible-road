@@ -20,7 +20,7 @@
     { "type": "narration", "act": "travel", "from": "gath", "to": "adullam", "text": "가드에서 쫓겨난 다윗은 아둘람 굴로 숨었다. 유다 산지의 낮은 언덕, 바위틈에 입을 벌린 어둠. 사람이 숨기에 좋은 곳은 대개 사람이 살기에는 나쁜 곳이다." },
     { "act": "kneel", "who": "david" },
     { "type": "narration", "enter": ["brother"], "act": "walk-in", "who": "brother", "text": "소문은 굴속까지 사람을 데려온다. 그의 형제들과 아버지의 온 집이 듣고 내려왔다. 사울이 다윗을 찾는다면, 다음 차례는 다윗의 가족이었다. 집안이 통째로 도망자가 되었다." },
-    { "type": "narration", "acts": [{ "act": "stand", "who": "david" }, { "act": "embrace", "who": ["david", "brother"] }], "text": "엘라 골짜기에서 막내를 꾸짖던 형들이었다. 교만하다고, 마음이 완악하다고. 이제 그들은 그 막내의 굴로 피난을 왔다. 가족이란, 서로를 가장 잘 못 알아보다가 가장 마지막에 찾아오는 사람들이다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "david" }, { "act": "embrace", "who": ["david", "brother"] }], "text": "엘라 골짜기에서 막내를 교만하다고, 마음이 완악하다고 꾸짖던 맏형도 그 가운데 있었다. 이제 그들은 그 막내의 굴로 피난을 왔다. 가족이란, 서로를 가장 잘 못 알아보다가 가장 마지막에 찾아오는 사람들이다." },
     { "act": "crowd", "enter": ["debtor"], "acts": [{ "act": "part", "who": "david" }, { "act": "walk-in", "who": "debtor" }] },
     { "type": "narration", "acts": [{ "act": "crowd-murmur" }, { "act": "bow-head", "who": "debtor" }], "text": "그리고 사람들이 오기 시작했다. 아무도 부르지 않았는데 왔다. 환난 당한 사람. 빚진 사람. 마음이 원통한 사람. 세상이 받아 주지 않는 사람들이 받아 줄 것 같은 사람을 찾아오는 데에는, 초대장이 필요 없다." },
     { "type": "scripture", "ref": "삼상 22:2", "gloss": "인생 꼬인 사람, 빚에 쫓기는 사람, 억울해서 속 터지는 사람들이 다윗한테 다 모임. 다윗이 그들의 대장이 됨. 약 사백 명. 이스라엘 왕의 첫 군대가 이 멤버였음." },

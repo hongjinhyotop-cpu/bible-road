@@ -46,7 +46,7 @@
     { "type": "narration", "text": "그리고 마지막 그림. 땅 이 끝에서 저 끝까지 흩어진 사람들. 발바닥을 쉴 곳도 없는 나날. 이집트에서 나온 그 길을, 배에 실려 거꾸로 돌아가는 날까지." },
     { "type": "scripture", "ref": "신 28:65-67", "gloss": "“그 민족들 가운데서 너는 평안을 얻지 못하고 발 쉴 곳도 없을 것이다. 밤낮으로 두려워하며 목숨을 확신하지 못하여, 아침에는 ‘저녁이었으면’ 하고 저녁에는 ‘아침이었으면’ 할 것이다.”" },
     { "type": "narration", "act": "cry", "who": "moses", "text": "아침에는 저녁을, 저녁에는 아침을 바라는 사람. 시간이 아무 데로도 데려가 주지 않는 사람. 모세는 그 사람을 이미 본 것처럼 말했다." },
-    { "bg": "plains-night", "fx": ["fade", "present"], "acts": [{ "act": "stand", "who": "moses" }, { "act": "crowd" }], "enter": ["eleazar", "elder"], "text": "모압 평지에 밤이 왔다. 두 산은 아직 요단 너머에 있었다. 아직 아무 일도 일어나지 않았다. 그래서 이 말은 경고였지, 판결이 아니었다." },
+    { "bg": "plains-night", "fx": ["fade", "present"], "acts": [{ "act": "stand", "who": "moses" }, { "act": "crowd" }], "enter": ["eleazar", "elder"], "type": "narration", "text": "모압 평지에 밤이 왔다. 두 산은 아직 요단 너머에 있었다. 아직 아무 일도 일어나지 않았다. 그래서 이 말은 경고였지, 판결이 아니었다." },
     { "type": "line", "who": "elder", "act": "approach", "to": "moses", "text": "“복은 짧고, 저주는 길었습니다.”" },
     { "type": "line", "who": "moses", "act": "face", "to": "elder", "text": "“길을 잃는 길은 많다. 집으로 가는 길은 하나다. 지도는 대개, 틀린 길을 더 자세히 그린다.”" },
     { "type": "narration", "acts": [{ "act": "bow-head", "who": "elder" }, { "act": "look-up", "who": "eleazar" }, { "act": "crowd-bow" }], "fx": "stars", "text": "그 밤, 진 여기저기서 낮게 그 낱말을 되뇌는 사람들이 있었다. 아멘. 그렇게 될 것입니다. 사람은 자기가 어느 산에 서게 될지 모른 채, 두 산 모두에 대답했다." }

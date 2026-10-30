@@ -48,7 +48,7 @@
 .kg-chaff { fill: color-mix(in srgb, #d8c49a 40%, var(--act-b)); opacity: 0.8; }
 .kg-dust ellipse { fill: color-mix(in srgb, #c8b490 50%, transparent); filter: blur(4px); opacity: 0; animation: kg-dust 2.6s ease-out infinite; animation-delay: var(--d); }
 @keyframes kg-dust { 0% { opacity: 0; scale: 0.5; } 30% { opacity: 0.8; } 100% { opacity: 0; scale: 1.8; translate: 0 -14px; } }
-.kg--threshing:not(.kg--still) > g[transform^='translate(206'] { animation: kg-jolt 0.5s ease-in-out infinite alternate; }
+.kg--threshing:not(.kg--still) > g[transform^='translate(170'] { animation: kg-jolt 0.5s ease-in-out infinite alternate; }
 @keyframes kg-jolt { from { translate: 0 0; } to { translate: 1px -1.5px; } }
 .kg-breach { fill: none; stroke: color-mix(in srgb, #050307 80%, var(--act-b)); stroke-width: 1.6; stroke-linejoin: bevel; }
 
@@ -91,14 +91,18 @@
 .kg-water { fill: color-mix(in srgb, #8aa8c8 30%, var(--act-b)); opacity: 0.7; }
 
 /* ── 나단의 비유: 종이 오린 그림책 ── */
-.kg-sheet { fill: color-mix(in srgb, #2a2014 70%, var(--act-b)); }
-.kg-paper { fill: color-mix(in srgb, #e8dcc0 26%, #120c08); color: color-mix(in srgb, #e8dcc0 26%, #120c08); }
+.kg-page-frame { fill: none; stroke: color-mix(in srgb, #e8c27a 60%, var(--act-b)); stroke-width: 1.2; }
+.kg-page-halo { opacity: 0.7; }
+.kg-page { animation: kg-page-in 1.6s ease-out both; }
+@keyframes kg-page-in { from { opacity: 0; translate: 0 6px; } to { opacity: 1; translate: 0 0; } }
+.kg-sheet { fill: color-mix(in srgb, #d8c39a 62%, var(--act-b)); }
+.kg-paper { fill: color-mix(in srgb, #3a2a18 70%, var(--act-b)); color: color-mix(in srgb, #3a2a18 70%, var(--act-b)); }
 .kg-paper--far { opacity: 0.6; }
-.kg-sheep--rich { color: color-mix(in srgb, #e8dcc0 36%, #120c08); fill: color-mix(in srgb, #e8dcc0 36%, #120c08); }
-.kg-fence { fill: none; stroke: color-mix(in srgb, #e8dcc0 26%, #120c08); stroke-width: 1.2; }
-.kg-divide { stroke: color-mix(in srgb, #e8c27a 40%, transparent); stroke-width: 0.8; stroke-dasharray: 3 4; }
+.kg-sheep--rich { color: color-mix(in srgb, #4a3a26 70%, var(--act-b)); fill: color-mix(in srgb, #4a3a26 70%, var(--act-b)); }
+.kg-fence { fill: none; stroke: color-mix(in srgb, #3a2a18 70%, var(--act-b)); stroke-width: 1.4; }
+.kg-divide { stroke: color-mix(in srgb, #3a2a18 50%, transparent); stroke-width: 0.8; stroke-dasharray: 3 4; }
 .kg-lamb { animation: kg-breathe-y 3s ease-in-out infinite alternate; }
-.kg-lamb .kg-sheep { color: #f4ecd8; fill: #f4ecd8; filter: drop-shadow(0 0 2px rgba(255, 236, 200, 0.8)); }
+.kg-lamb .kg-sheep { color: #fffaf0; fill: #fffaf0; filter: drop-shadow(0 0 3px rgba(255, 220, 140, 1)) drop-shadow(0 0 1px #3a2a18); }
 @keyframes kg-breathe-y { from { translate: 0 0; } to { translate: 0 -0.8px; } }
 .kg-poor.is-bowed path:first-child { transform-box: fill-box; transform-origin: bottom left; rotate: 10deg; }
 .kg-cup { fill: color-mix(in srgb, #e8c27a 40%, #120c08); }

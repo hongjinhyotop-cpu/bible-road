@@ -36,7 +36,7 @@ function ark(x: number, y: number, s: number, poles = false): string {
   return `<g class="kg-ark" transform="translate(${f(x)} ${f(y)}) scale(${s})">
     <rect x="-10" y="-9" width="20" height="9" rx="0.8"/>
     <rect x="-11" y="-10.6" width="22" height="2"/>
-    <path d="M-9 -10.6 C-9 -16 -5 -19 -1 -15 L-2 -10.6 Z M9 -10.6 C9 -16 5 -19 1 -15 L2 -10.6 Z"/>
+    <path d="M-9.4 -10.6 L-9.4 -13.4 C-10.6 -19 -6 -22.4 -0.8 -19.6 C-5 -19.2 -7.2 -16.6 -7.2 -13.4 L-7.2 -10.6 Z M9.4 -10.6 L9.4 -13.4 C10.6 -19 6 -22.4 0.8 -19.6 C5 -19.2 7.2 -16.6 7.2 -13.4 L7.2 -10.6 Z"/><circle cx="-8.3" cy="-14.6" r="1.4"/><circle cx="8.3" cy="-14.6" r="1.4"/>
     <path class="kg-ark__line" d="M-10 -5 H10"/>
     ${poles ? '<path class="kg-pole" d="M-24 -3 H24"/>' : ''}
   </g>`;
@@ -108,11 +108,11 @@ function cartArt(): string {
     ${house(76, 128, 22, 15, 'bd-mid', true, 1)}${house(98, 132, 14, 10, 'bd-mid', false)}
     ${tree(56, 132, 30, 'bd-mid', 9811, { sway: true })}${tree(124, 134, 24, 'bd-mid', 9812, { sway: true })}
     <path class="kg-road" d="M104 136 C130 150 140 176 170 196 C200 214 240 226 300 232 C360 238 420 240 ${W * 2} 242"/>
-    ${musicians(118, 214, 176, 226, 9, 1.6, 9813)}
-    ${musicians(286, 230, 380, 236, 10, 1.7, 9815)}
-    <circle class="bd-halo kg-arkhalo" cx="206" cy="212" r="40"/>
-    ${cart(204, 238, 1.5)}
-    ${ox(262, 238, 1.25)}${ox(282, 240, 1.25)}
+    ${musicians(20, 206, 104, 218, 10, 1.7, 9813)}
+    ${musicians(300, 232, 400, 236, 10, 1.7, 9815)}
+    <circle class="bd-halo kg-arkhalo" cx="172" cy="186" r="70"/>
+    ${cart(170, 240, 2.3)}
+    ${ox(258, 240, 1.7)}${ox(288, 242, 1.7)}
     ${tree(-40, 254, 140, 'bd-near', 9817, { sway: true, lean: 0.2 })}${tree(450, 254, 140, 'bd-near', 9818, { sway: true, lean: -0.2 })}
     ${ground(248)}
   </g>`;
@@ -124,7 +124,7 @@ function threshingArt(still: boolean): string {
   const chaff = [[86, 232, 16], [128, 228, 10], [300, 229, 12], [338, 233, 18]].map(([x, y, w]) =>
     `<path class="kg-chaff" d="M${x - w} ${y} C${x - w * 0.6} ${y - w * 0.7} ${x + w * 0.6} ${y - w * 0.7} ${x + w} ${y} Z"/>`).join('');
   const dust = still ? '' : `<g class="kg-dust">${Array.from({ length: 9 }, (_, i) =>
-    `<ellipse style="--d:${f(i * 0.4)}s" cx="${f(170 + r() * 90)}" cy="${f(224 + r() * 12)}" rx="${f(10 + r() * 14)}" ry="${f(5 + r() * 5)}"/>`).join('')}</g>`;
+    `<ellipse style="--d:${f(i * 0.4)}s" cx="${f(130 + r() * 150)}" cy="${f(224 + r() * 12)}" rx="${f(10 + r() * 14)}" ry="${f(5 + r() * 5)}"/>`).join('')}</g>`;
   return `<g class="kg kg--threshing${still ? ' kg--still' : ''}">
     ${ridge([[-W * 2, 150], [-100, 140], [40, 146], [160, 132], [280, 146], [400, 134], [W * 3, 142]], 'bd-far')}
     <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 204 C-80 198 60 196 200 200 C330 196 470 200 ${W * 3} 204 L${W * 3} ${H} Z"/>
@@ -133,10 +133,10 @@ function threshingArt(still: boolean): string {
     <ellipse class="kg-floor-rim" cx="210" cy="236" rx="150" ry="16"/>
     ${chaff}
     <path class="bd-mid" d="M70 232 L60 196 M60 196 L56 192 M60 196 L60 191 M60 196 L64 192" stroke="currentColor" stroke-width="1.4" fill="none"/>
-    ${still ? '<path class="kg-breach" d="M150 240 L170 236 L176 240 L196 234 L204 238 L226 233 L236 238 L262 235"/>' : ''}
-    <circle class="bd-halo kg-arkhalo${still ? ' is-dim' : ''}" cx="208" cy="214" r="${still ? 30 : 40}"/>
-    ${still ? cart(206, 240, 1.5, 0) : cart(206, 240, 1.5, -9)}
-    ${still ? `${ox(300, 242, 1.15)}<g transform="translate(330 242) scale(-1 1) translate(-330 -242)">${ox(330, 242, 1.15)}</g>` : `${ox(266, 240, 1.25, true)}${ox(286, 242, 1.25, true)}`}
+    ${still ? '<path class="kg-breach" d="M96 244 L118 238 L126 243 L150 236 L160 242 L186 235 L198 241 L226 236 L240 242 L262 238"/>' : ''}
+    <circle class="bd-halo kg-arkhalo${still ? ' is-dim' : ''}" cx="172" cy="190" r="${still ? 50 : 70}"/>
+    ${still ? cart(170, 242, 2.3, 0) : cart(170, 242, 2.3, -11)}
+    ${still ? `${ox(270, 244, 1.5)}<g transform="translate(312 244) scale(-1 1) translate(-312 -244)">${ox(312, 244, 1.5)}</g>` : `${ox(256, 240, 1.7, true)}${ox(286, 243, 1.7, true)}`}
     ${dust}
     ${tree(-30, 254, 130, 'bd-near', 9833, { sway: true, lean: 0.2 })}${tree(452, 254, 130, 'bd-near', 9834, { sway: true, lean: -0.2 })}
     ${ground(250)}
@@ -146,13 +146,14 @@ function threshingArt(still: boolean): string {
 // ── 오벧에돔의 집 (6:10-12) ────────────────────────
 function obedArt(): string {
   const grapes = Array.from({ length: 7 }, (_, i) => `<circle class="kg-grape" cx="${f(132 + i * 15)}" cy="${f(150 + (i % 2) * 4)}" r="3"/>`).join('');
-  const sheaves = [[64, 236], [82, 238], [350, 236]].map(([x, y]) =>
+  const sheaves = [[60, 238], [78, 240], [222, 240]].map(([x, y]) =>
     `<path class="kg-sheaf" d="M${x - 6} ${y} L${x - 2} ${y - 22} L${x + 2} ${y - 22} L${x + 6} ${y} Z M${x - 5} ${y - 22} C${x - 8} ${y - 30} ${x + 8} ${y - 30} ${x + 5} ${y - 22} Z"/>`).join('');
-  const jars = [[300, 238], [312, 240]].map(([x, y]) =>
+  const jars = [[86, 244], [234, 246]].map(([x, y]) =>
     `<path class="bd-mid" d="M${x - 6} ${y} C${x - 10} ${y - 8} ${x - 9} ${y - 16} ${x - 4} ${y - 19} L${x - 4} ${y - 22} L${x + 4} ${y - 22} L${x + 4} ${y - 19} C${x + 9} ${y - 16} ${x + 10} ${y - 8} ${x + 6} ${y} Z"/><ellipse class="kg-oil" cx="${x}" cy="${y - 22}" rx="3.6" ry="1"/>`).join('');
   return `<g class="kg kg--obed">
     ${ridge([[-W * 2, 140], [-80, 130], [60, 138], [180, 124], [300, 136], [420, 126], [W * 3, 134]], 'bd-far')}
-    <!-- 집: 돌벽과 문, 지붕 난간 -->
+    <!-- 집: 돌벽과 문, 지붕 난간 (오른쪽) -->
+    <g transform="translate(96 0)">
     <g class="bd-mid"><rect x="110" y="152" width="130" height="94"/><rect x="106" y="146" width="138" height="7"/></g>
     <path class="kg-stones" d="M110 176 H240 M110 200 H240 M110 224 H240 M140 152 V176 M200 152 V176 M126 176 V200 M220 176 V200 M150 200 V224 M210 200 V224"/>
     <path class="kg-door" d="M160 246 L160 196 C160 186 186 186 186 196 L186 246 Z"/>
@@ -161,13 +162,14 @@ function obedArt(): string {
     <path class="bd-mid" d="M120 146 L120 140 L236 140 L236 146" fill="none" stroke="currentColor" stroke-width="2"/>
     <path class="kg-vine" d="M118 142 C140 136 150 150 170 142 C190 134 200 150 220 142 C230 138 236 144 240 142"/>
     ${grapes}
-    <!-- 처마 아래 궤 (6:11) -->
-    <g class="bd-mid"><path d="M248 186 L330 178 L330 182 L250 190 Z"/><rect x="252" y="188" width="3" height="58"/><rect x="324" y="182" width="3" height="64"/></g>
-    <circle class="bd-halo kg-arkhalo" cx="290" cy="226" r="46"/>
-    ${ark(290, 246, 1.6)}
+    </g>
+    <!-- 처마 아래 궤 (6:11): 가운데 왼쪽 -->
+    <g class="bd-mid"><path d="M100 170 L206 162 L206 167 L102 175 Z"/><rect x="104" y="173" width="3.4" height="73"/><rect x="198" y="166" width="3.4" height="80"/></g>
+    <circle class="bd-halo kg-arkhalo" cx="152" cy="214" r="60"/>
+    ${ark(152, 244, 2.4)}
     ${sheaves}${jars}
     ${tree(30, 240, 70, 'bd-mid', 9851, { sway: true, fruit: 7 })}${tree(380, 242, 64, 'bd-mid', 9852, { sway: true, fruit: 6 })}
-    ${sheep(214, 246, 1.2)}${sheep(232, 248, 1, true)}${sheep(96, 248, 1.1, true)}
+    ${sheep(250, 248, 1.2)}${sheep(268, 249, 1, true)}${sheep(40, 248, 1.1, true)}
     ${ground(250)}
   </g>`;
 }
@@ -245,8 +247,8 @@ function tentArt(): string {
     <!-- 장막: 가운데, 앞이 열려 금빛 -->
     <path class="kg-tent" d="M120 236 L136 150 L200 128 L264 150 L280 236 Z"/>
     <path class="kg-tent-in" d="M176 236 L182 164 L200 156 L218 164 L224 236 Z"/>
-    <circle class="bd-halo kg-arkhalo" cx="200" cy="214" r="44"/>
-    ${ark(200, 232, 1.5)}
+    <circle class="bd-halo kg-arkhalo" cx="200" cy="196" r="54"/>
+    ${ark(200, 214, 2.1)}
     <path class="kg-rope" d="M136 150 L96 236 M264 150 L304 236 M200 128 L200 112"/>
     <!-- 왼쪽 제단과 번제·화목제 연기 (6:17) -->
     <g class="bd-mid"><rect x="62" y="210" width="34" height="26"/><rect x="58" y="206" width="42" height="5"/></g>
@@ -359,20 +361,27 @@ function parableArt(taken: boolean): string {
     ? `<ellipse class="kg-ember" cx="168" cy="236" rx="12" ry="2.4"/><g class="kg-fire"><path d="M162 236 C160 228 166 224 168 216 C171 224 176 228 174 236 Z"/></g>${smoke(168, 210, 9942, 6)}
        <path class="kg-paper" d="M154 214 L182 214" stroke="currentColor" stroke-width="1.6"/>`
     : '';
+  // 그림책 한 장: 폰에서도 인물 머리 위로 보이게, 무대 위쪽 가운데에 액자로 띄운다 (x 104~296, y 18~102)
   return `<g class="kg kg--parable${taken ? ' is-taken' : ''}">
-    <rect class="kg-sheet" x="${-W * 2}" y="0" width="${W * 5}" height="${H}"/>
-    ${ridge([[-W * 2, 150], [-60, 140], [80, 146], [200, 136], [320, 146], [460, 138], [W * 3, 144]], 'kg-paper kg-paper--far')}
-    <!-- 왼쪽: 부자의 큰 집과 양·소 떼 (12:2) -->
-    <g class="kg-paper"><rect x="40" y="150" width="120" height="50"/><rect x="34" y="144" width="132" height="7"/><rect x="66" y="128" width="40" height="18"/></g>
-    <rect class="kg-lamp" x="90" y="166" width="5" height="7"/><rect class="kg-lamp" x="130" y="166" width="5" height="7"/>
-    <path class="kg-fence" d="M20 206 H180 M20 234 H180 M24 200 V240 M60 200 V240 M100 200 V240 M140 200 V240 M176 200 V240"/>
-    ${flock}${oxen}${feast}
-    <!-- 가운데 나누는 금 -->
-    <path class="kg-divide" d="M210 120 V250"/>
-    <!-- 오른쪽: 가난한 자의 작은 집 (12:3) -->
-    <g class="kg-paper"><rect x="300" y="176" width="64" height="30" opacity="0.5"/><path d="M296 178 L332 158 L368 178 Z" opacity="0.5"/></g>
-    ${poor}
-    <path class="kg-paper" d="M${-W * 2} ${H} L${-W * 2} 240 L${W * 3} 240 L${W * 3} ${H} Z"/>
+    <rect class="kg-wall" x="${-W * 2}" y="0" width="${W * 5}" height="${H}"/>
+    <path class="kg-stones" d="M-60 150 H460 M-60 190 H460 M-60 230 H460 M20 150 V190 M120 190 V230 M300 150 V190 M380 190 V230"/>
+    <circle class="bd-halo kg-page-halo" cx="200" cy="60" r="130"/>
+    <g class="kg-page">
+      <rect class="kg-sheet" x="100" y="14" width="200" height="96" rx="2"/>
+      <svg x="100" y="14" width="200" height="96" viewBox="16 116 368 176" preserveAspectRatio="xMidYMid slice" overflow="hidden">
+        ${ridge([[-W, 150], [-60, 140], [80, 146], [200, 136], [320, 146], [460, 138], [W * 2, 144]], 'kg-paper kg-paper--far')}
+        <g class="kg-paper"><rect x="40" y="150" width="120" height="50"/><rect x="34" y="144" width="132" height="7"/><rect x="66" y="128" width="40" height="18"/></g>
+        <rect class="kg-lamp" x="90" y="166" width="5" height="7"/><rect class="kg-lamp" x="130" y="166" width="5" height="7"/>
+        <path class="kg-fence" d="M20 206 H180 M20 234 H180 M24 200 V240 M60 200 V240 M100 200 V240 M140 200 V240 M176 200 V240"/>
+        ${flock}${oxen}${feast}
+        <path class="kg-divide" d="M210 120 V250"/>
+        <g class="kg-paper"><rect x="300" y="176" width="64" height="30" opacity="0.5"/><path d="M296 178 L332 158 L368 178 Z" opacity="0.5"/></g>
+        ${poor}
+        <path class="kg-paper" d="M-40 300 L-40 240 L440 240 L440 300 Z"/>
+      </svg>
+      <rect class="kg-page-frame" x="100" y="14" width="200" height="96" rx="2"/>
+    </g>
+    ${ground(250)}
   </g>`;
 }
 

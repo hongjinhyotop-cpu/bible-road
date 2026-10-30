@@ -36,6 +36,9 @@ export type BackdropArt =
   | 'sm-road' | 'sm-shiloh' | 'sm-ramah' | 'sm-lamp' | 'sm-lamp-out'
   | 'gb-camp' | 'gb-endor' | 'gb-endor-rise' | 'gb-slope' | 'gb-bethshan' | 'gb-jordan' | 'gb-tamarisk'
   | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
+  | 'ab-gate' | 'ab-kidron' | 'ab-olives' | 'ab-bahurim' | 'ab-well' | 'ab-mahanaim' | 'ab-watch' | 'ab-forest' | 'ab-oak' | 'ab-oak-empty' | 'ab-cairn' | 'ab-pillar' | 'ab-chamber'
+  | 'so-gibeon' | 'so-dream' | 'so-dream-wake' | 'so-court' | 'so-house' | 'so-house-dawn'
+  | 'tp-court' | 'tp-court-cloud' | 'tp-holy' | 'tp-holy-ark' | 'tp-heights'
   | 'kg-cart' | 'kg-threshing' | 'kg-threshing-still' | 'kg-obed' | 'kg-ascent' | 'kg-window' | 'kg-tent' | 'kg-roof' | 'kg-gate' | 'kg-rabbah' | 'kg-parable' | 'kg-parable-taken'
   | 'jn-hall' | 'jn-hall-spear' | 'jn-window' | 'jn-window-rope' | 'jn-bed' | 'jn-feast' | 'jn-field' | 'jn-engedi' | 'jn-cave' | 'jn-cliff'
   | 'sl-hills' | 'sl-ascent' | 'sl-feast' | 'sl-roof' | 'sl-roof-dawn' | 'sl-prophets' | 'sl-mizpah' | 'sl-baggage' | 'sl-kenite' | 'sl-carmel' | 'sl-gilgal' | 'sl-parting'
@@ -216,6 +219,17 @@ export const FX = [
   // ── 7막 다윗 왕 (fx/kingship.ts) ──
   'dance', // 힘을 다하여 춤춤: 대상(who, 없으면 david)이 뛰놀고, 발밑에서 금빛 고리가 퍼지고 빛 티끌이 흩날려 오름 (약 7초, 삼하 6:14-16). 다윗 옷 ephod와 같이
   'letter', // 편지: 봉한 두루마리가 쓰는 사람(who, 없으면 david)의 손에서 받는 사람(to, 없으면 uriah)의 손으로 건너가 머묾 (약 7초, 삼하 11:14)
+  // ── 7막 솔로몬 (fx/solomon.ts) ──
+  'thousand', // 일천 번제: 연기 기둥이 하나둘 늘어나 하늘을 덮고, 숫자가 1에서 1000까지 차오른 뒤 "일천 번제" (약 9초, 왕상 3:4. 배경 so-gibeon)
+  'asks', // 듣는 마음: "장수" "부" "원수의 생명"이 떠올랐다 가라앉고, 가운데 "듣는 마음"(לֵב שֹׁמֵעַ)이 금빛으로 켜짐 (약 10초, 왕상 3:9-11)
+  'swaddle', // 강보에 싼 아기 하나: to(없으면 who)의 품에 안김. 다른 품에 있었으면 금빛 티끌을 따라 옮겨 감. 인물에 붙어 같이 움직이고 그 인물이 무대에 있는 동안 남음 (왕상 3:20, 27)
+  'blade', // 칼이 왕 앞에: 무대가 차갑게 식고 칼 든 사람(who, 없으면 오른쪽 사람)의 칼 높이에서 찬빛이 번득임 (약 5초, 왕상 3:24). 아무도 다치지 않음
+  // ── 7막 성전 봉헌 · 솔로몬의 타락 (fx/temple.ts) ──
+  'cloud-glory', // 구름이 여호와의 전에 가득함: 성전 문(배경 tp-court)에서 금빛 구름 덩이가 차례로 부풀어 나와 무대를 덮고 화면이 금빛으로 차올랐다 가라앉음 (약 9초, 탭하면 빨리 감김, 왕상 8:10-11). glory보다 훨씬 큼. 제사장 물러남은 step-back과 같이, 다음 beat 배경 tp-court-cloud
+  'prayers', // 이곳을 향하여: 무대 사방 끝에서 일곱 줄기 빛이 차례로 성전(배경 tp-court 문 / tp-heights 성전 / 없으면 가운데)으로 모이고 끝마다 "다툼 패전 가뭄 기근 이방인 전쟁 포로"가 떠올랐다 스러짐, 끝에 고리 (약 9초, 왕상 8:30-50)
+  'tear-twelve', // 새 옷 열두 조각: 찢는 사람(who, 없으면 ahijah) 앞에 새 겉옷이 떠올라 열두 조각으로 갈라지고, 열 조각은 받는 사람(to, 없으면 jeroboam)에게 날아가 모이고 두 조각은 남음 (약 8초, 왕상 11:30-31)
+  // ── 7막 압살롬의 반역 (fx/absalom.ts) ──
+  'stones', // 돌과 티끌: 던지는 사람(who, 없으면 shimei)에게서 돌이 차례로 상대(to, 없으면 david) 앞에 떨어져 튀고 발밑에서 티끌이 날림. 아무도 맞지 않음 (약 6초, 삼하 16:6, 13)
   'accuse', // "당신이 그 사람이라": 무대가 어두워지고 한 사람(to → who → david)에게만 차고 좁은 빛이 떨어짐 (약 7초, 삼하 12:7)
   // ── 별을 세어 보라 (창 15, fx/covenant.ts) ──
   'shema', // 쉐마: 무대 위에 "들으라"(희미한 שְׁמַע)가 금빛으로 떠오르고 소리의 고리가 백성 쪽으로 퍼짐 (약 8초, 신 6:4)
@@ -822,6 +836,68 @@ export const MOODS: Record<string, Mood> = {
   'kg-parable': { light: true, land: false, art: 'kg-parable', tone: 'dusk', spread: true },
   /** 같은 그림, 가난한 자의 품이 비고 부자의 집 앞에 고기 굽는 불 (12:4) */
   'kg-parable-taken': { light: true, land: false, art: 'kg-parable-taken', tone: 'dusk', spread: true },
+
+  // ── 7막 솔로몬 A급 (왕상 3, fx/solomon.ts) ──
+  /** 기브온 산당: 언덕 꼭대기의 세 층 큰 돌 단과 불, 연기 기둥들, 단 옆의 작은 장막, 비탈을 오르는 사람들과 제물 짐승 (왕상 3:4). 산당·큰 제사 장면에 재사용 */
+  'so-gibeon': { light: true, land: false, art: 'so-gibeon', spread: true },
+  'so-gibeon-dusk': { light: true, land: false, art: 'so-gibeon', tone: 'dusk', spread: true },
+  /** 기브온의 밤, 꿈: 별, 멀리 단의 불씨, 진의 장막들, 하늘에서 무대 가운데로 내려오는 부드러운 빛기둥과 빛 티끌 (3:5). 하나님은 그리지 않음 */
+  'so-dream': { light: true, land: false, art: 'so-dream', tone: 'night' },
+  /** 같은 곳, 새벽: 빛기둥이 걷히고 단의 연기만 가늘게 (3:15 "깨어 보니 꿈이더라") */
+  'so-dream-wake': { light: true, land: false, art: 'so-dream-wake', tone: 'clear' },
+  /** 왕의 재판 자리: 백향목 기둥 사이 세 층 단 위의 높은 보좌, 매단 등잔, 양옆의 신하들 (3:16-28 · 7:7). 왕의 궁 실내에 재사용 */
+  'so-court': { light: true, land: false, art: 'so-court', tone: 'dusk', spread: true },
+  /** 작은 집 안, 밤: 흙벽, 별 보이는 작은 창, 벽감의 등잔, 양쪽 낮은 침상 둘 (3:17-20). 가난한 집 실내에 재사용 */
+  'so-house': { light: true, land: false, art: 'so-house', tone: 'night', spread: true },
+  /** 같은 집, 미명: 등잔이 꺼지고 창으로 희뿌연 빛줄기 (3:21) */
+  'so-house-dawn': { light: true, land: false, art: 'so-house-dawn', tone: 'clear', spread: true },
+
+  // ── 7막 성전 봉헌 · 솔로몬의 타락 A급 (왕상 8 · 11, fx/temple.ts) ──
+  /** 성전 뜰에서 본 성전 정면: 높은 집과 낭실, 열린 문 안의 금빛, 놋 기둥 둘(야긴·보아스), 안뜰 담, 왼쪽 놋 번제단과 연기, 오른쪽 열두 소 위의 놋 바다 (왕상 6–8). 군중은 crowd로. 성전 장면에 재사용 */
+  'tp-court': { light: true, land: false, art: 'tp-court', spread: true },
+  'tp-court-dusk': { light: true, land: false, art: 'tp-court', tone: 'dusk', spread: true },
+  'tp-court-night': { light: true, land: false, art: 'tp-court', tone: 'night', spread: true },
+  /** 같은 곳, 구름이 여호와의 전에 가득함: 지붕 위와 문에서 금빛 구름이 넘쳐 뜰까지 흐름 (8:10-11). fx cloud-glory 뒤에 */
+  'tp-court-cloud': { light: true, land: false, art: 'tp-court-cloud', tone: 'clear', spread: true },
+  /** 지성소 안: 금 입힌 벽의 새김, 날개를 벽에서 벽까지 편 그룹 둘(안쪽 날개가 가운데서 닿음), 창 없음. 궤 자리는 비었음 (6:19-28) */
+  'tp-holy': { light: true, land: false, art: 'tp-holy', tone: 'night', spread: true },
+  /** 같은 곳, 그룹들의 날개 아래 놓인 궤와 긴 채, 궤 위의 은은한 빛 (8:6-8) */
+  'tp-holy-ark': { light: true, land: false, art: 'tp-holy-ark', tone: 'night', spread: true },
+  /** 예루살렘 앞 산 비탈: 건너편 언덕 위 성과 금빛 성전(왼쪽), 사이 골짜기, 이쪽 산마루의 산당 셋과 연기 기둥 (11:7-8). 성전과 산당이 한 화면에. 우상 산당 장면에 재사용 */
+  'tp-heights': { light: true, land: false, art: 'tp-heights' },
+  'tp-heights-dusk': { light: true, land: false, art: 'tp-heights', tone: 'dusk' },
+  'tp-heights-night': { light: true, land: false, art: 'tp-heights', tone: 'night' },
+
+  // ── 7막 압살롬의 반역 A급 (삼하 15–18, fx/absalom.ts) ──
+  /** 예루살렘 성문 길: 성벽과 성문 망대, 송사하러 온 사람들의 줄, 오른쪽에 병거와 말과 호위 (15:1-6) */
+  'ab-gate': { light: true, land: false, art: 'ab-gate' },
+  'ab-gate-dawn': { light: true, land: false, art: 'ab-gate', tone: 'clear' },
+  /** 기드론 시내: 왼쪽 위 성, 골짜기 바닥의 시내, 시내를 건너 맞은편 비탈로 오르는 사람들 (15:23) */
+  'ab-kidron': { light: true, land: false, art: 'ab-kidron' },
+  /** 감람산 오르막: 오른쪽 위로 오르는 길과 늙은 감람나무, 머리를 가린 채 고개 숙여 오르는 긴 줄 (15:30) */
+  'ab-olives': { light: true, land: false, art: 'ab-olives', tone: 'dusk' },
+  /** 바후림: 낮은 길과 오른쪽 가파른 산비탈·바위, 비탈 위의 작은 길 (16:5-13). 시므이는 오른쪽에. fx stones와 같이 */
+  'ab-bahurim': { light: true, land: false, art: 'ab-bahurim' },
+  'ab-bahurim-dusk': { light: true, land: false, art: 'ab-bahurim', tone: 'dusk' },
+  /** 바후림 집 뜰, 밤: 우물 아구를 덮은 천과 그 위에 넌 찧은 곡식, 집 벽의 등잔 (17:18-19) */
+  'ab-well': { light: true, land: false, art: 'ab-well', tone: 'night', spread: true },
+  /** 마하나임 성문: 두 겹 문, 문루의 작은 창, 바깥 돌계단, 문 앞에 쌓인 침상·자루·질그릇 (17:27-29, 18:4, 24, 33) */
+  'ab-mahanaim': { light: true, land: false, art: 'ab-mahanaim' },
+  'ab-mahanaim-dusk': { light: true, land: false, art: 'ab-mahanaim', tone: 'dusk' },
+  /** 문루 지붕에서 내다본 길: 앞쪽 난간, 지평선까지 이어진 길, 달려오는 작은 두 사람 (18:24-27) */
+  'ab-watch': { light: true, land: false, art: 'ab-watch' },
+  /** 에브라임 수풀: 빽빽하고 뒤엉킨 줄기, 쓰러진 나무와 구덩이, 낮은 연기 (18:6-8). 사람 몸은 없음 */
+  'ab-forest': { light: true, land: false, art: 'ab-forest', tone: 'storm' },
+  /** 큰 상수리나무: 번성한 가지 아래 매달린 작은 그림자(머리털이 걸림), 빠져 달아나는 노새 (18:9) */
+  'ab-oak': { light: true, land: false, art: 'ab-oak', tone: 'storm' },
+  /** 같은 나무, 가지 아래가 비었다 */
+  'ab-oak-empty': { light: true, land: false, art: 'ab-oak-empty', tone: 'dusk' },
+  /** 수풀 가운데 큰 구덩이 위의 심히 큰 돌무더기 (18:17) */
+  'ab-cairn': { light: true, land: false, art: 'ab-cairn', tone: 'dusk' },
+  /** 왕의 골짜기에 홀로 선 비석, 해 질 녘 (18:18) */
+  'ab-pillar': { light: true, land: false, art: 'ab-pillar', tone: 'dusk' },
+  /** 문루의 작은 방: 낮은 돌벽, 계단 구멍과 난간, 작은 창의 저녁빛, 꺼진 등잔 (18:33) */
+  'ab-chamber': { light: true, land: false, art: 'ab-chamber', tone: 'dusk' },
 
   // ── 7막 다윗 A급 (삼상 16 · 17, fx/david.ts) ──
   /** 베들레헴 성읍 어귀: 언덕 위 집들, 성문, 성문 앞의 장로들(떨며 맞음), 오르는 길 (삼상 16:4) */

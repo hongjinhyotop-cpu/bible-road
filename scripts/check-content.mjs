@@ -254,6 +254,7 @@ function checkScene(s, where) {
       if (dir !== 'left' && dir !== 'right') err(where, `face "${c}": "${dir}"는 left/right만 됨`);
     }
     for (const c of [...(b.enter ?? []), ...(b.exit ?? []), ...Object.keys(b.pose ?? {}), ...Object.keys(b.names ?? {}), ...(b.who ? [b.who].flat() : [])]) people.add(c);
+    if ((!b.type || b.type === 'act') && b.text) warn(where, 'type 없는 beat에 text가 있음 → 엔진이 narration으로 보여 주지만 "type": "narration"을 적어 줄 것 (동작만 하는 beat는 글 없이)');
     if (b.type === 'scripture') try { parseRef(b.ref); } catch (e) { err(where, `scripture ${e.message}`); }
     if (b.type === 'choice') {
       if (b.options.filter((o) => o.canon).length !== 1) err(where, `선택지에 canon이 정확히 하나여야 함: "${b.prompt}"`);

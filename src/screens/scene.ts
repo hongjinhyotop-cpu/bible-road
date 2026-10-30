@@ -49,7 +49,10 @@ import { playLittleRobes } from '../fx/samuel';
 import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
+import { playAsks, playBlade, playSwaddle, playThousand } from '../fx/solomon';
 import { playAccuse, playDance, playLetter } from '../fx/kingship';
+import { playStones } from '../fx/absalom';
+import { playCloudGlory, playPrayers, playTearTwelve } from '../fx/temple';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -67,10 +70,10 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -763,6 +766,38 @@ export function sceneScreen({ id }: Params): Screen {
       case 'accuse':
         // 당신이 그 사람이라 (삼하 12:7) — fx/kingship.ts. 대상 = to → (대사 beat가 아니면) who → david
         playAccuse($('.scene'), beat?.to ?? (beat?.type === 'line' ? undefined : [beat?.who ?? []].flat()[0]), rm);
+        return;
+      case 'stones':
+        // 시므이의 돌과 티끌 (삼하 16:6, 13) — fx/absalom.ts. 던지는 사람 = who → shimei, 상대 = to → david
+        playStones($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'cloud-glory':
+        // 구름이 여호와의 전에 가득함 (왕상 8:10-11) — fx/temple.ts
+        playCloudGlory($('.scene'), rm);
+        return;
+      case 'prayers':
+        // 이곳을 향하여 기도하거든 (왕상 8:30-50) — fx/temple.ts
+        playPrayers($('.scene'), rm);
+        return;
+      case 'tear-twelve':
+        // 새 옷 열두 조각 (왕상 11:30-31) — fx/temple.ts. 찢는 사람 = who → ahijah, 받는 사람 = to → jeroboam
+        playTearTwelve($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'thousand':
+        // 일천 번제 (왕상 3:4) — fx/solomon.ts
+        playThousand($('.scene'), rm);
+        return;
+      case 'asks':
+        // 듣는 마음 (왕상 3:9-11) — fx/solomon.ts
+        playAsks($('.scene'), rm);
+        return;
+      case 'swaddle':
+        // 강보에 싼 아기 (왕상 3:20, 27) — fx/solomon.ts. 안는 사람 = to → who, 다른 품에 있었으면 옮겨 감
+        playSwaddle($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'blade':
+        // 칼이 왕 앞에 (왕상 3:24) — fx/solomon.ts. 칼 든 사람 = who → 오른쪽 사람
+        playBlade($('.scene'), [beat?.who ?? []].flat()[0], rm);
         return;
       case 'spear-throw':
         // 사울의 창 (삼상 18:11, 19:10, 20:33) — fx/jonathan.ts. 던지는 사람 = who → saul, 상대 = to → david

@@ -187,8 +187,16 @@ export const PLACE_NAMES = {
   rephaim: '르바임 골짜기',
   lodebar: '로드발',
   bahurim: '바후림',
+  giloh: '길로',
   gezer: '게셀',
   zobah: '소바',
+  helam: '헬람',
+  'abel-beth-maacah': '벧마아가 아벨',
+  zelah: '셀라',
+  tekoa: '드고아',
+  lebanon: '레바논',
+  joppa: '욥바',
+  sheba: '스바',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -234,5 +242,13 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   rephaim: '예루살렘 서남쪽 골짜기',
   lodebar: '요단 동편, 마길의 집',
   bahurim: '발디엘이 돌아선 곳',
+  giloh: '아히도벨의 고향',
   zobah: '아람 북쪽의 나라',
+  helam: '요단 건너, 아람이 모인 곳',
+  'abel-beth-maacah': '북쪽 끝, 물어보러 가던 성',
+  zelah: '베냐민 땅, 기스의 묘',
+  tekoa: '베들레헴 남쪽, 슬기 있는 여인',
+  lebanon: '백향목과 잣나무의 산',
+  joppa: '뗏목을 푸는 항구 (대하 2:16)',
+  sheba: '↓ 아라비아 남쪽 끝(지금의 예멘 쪽), 지도 밖 먼 곳',
 };

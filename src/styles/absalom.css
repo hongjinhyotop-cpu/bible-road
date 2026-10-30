@@ -1,0 +1,138 @@
+/* ── 7막 A급: 압살롬의 반역 (삼하 15–18, fx/absalom.ts) ──
+   배경: 예루살렘 성문 길, 기드론 시내, 감람산 오르막(머리를 가린 행렬), 바후림 산비탈, 바후림 집 뜰의 우물,
+         마하나임 성문, 문루에서 본 길(달려오는 두 사람), 에브라임 수풀, 큰 상수리나무, 돌무더기, 압살롬의 기념비, 문루의 작은 방
+   효과: stones(시므이의 돌과 티끌 — 아무도 맞지 않는다) */
+
+/* ── 공통 ── */
+.ab-wall { fill: color-mix(in srgb, var(--act-b) 26%, #0a0708); }
+.ab-courses { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
+.ab-tower { fill: color-mix(in srgb, var(--act-b) 18%, #060405); }
+.ab-gateway { fill: color-mix(in srgb, #140c06 85%, #000); }
+.ab-gatelight { fill: #ffd9a0; opacity: 0.14; filter: blur(3px); }
+.ab-slit { fill: #ffbf70; opacity: 0.5; filter: drop-shadow(0 0 2px rgba(255, 190, 110, 0.8)); }
+.ab-road { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 5; stroke-linecap: round; opacity: 0.35; }
+.ab-road--slope { stroke-width: 6; opacity: 0.3; }
+.ab-niche { fill: color-mix(in srgb, #0c0806 80%, #000); }
+.ab-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; }
+.ab-lamphalo { opacity: 0.7; animation: js-flicker 3s ease-in-out infinite alternate; }
+
+/* ── 성문 길 (15:1-6) ── */
+.ab-chariot { fill: color-mix(in srgb, var(--act-a) 34%, #050304); }
+.ab-wheel { fill: none; stroke: color-mix(in srgb, var(--act-a) 34%, #050304); stroke-width: 1.6; }
+.ab-spokes { fill: none; stroke: color-mix(in srgb, var(--act-a) 34%, #050304); stroke-width: 0.8; }
+.ab-guards rect { fill: color-mix(in srgb, #6e3f8a 30%, #06040a); }
+
+/* ── 기드론 (15:23) ── */
+.ab-winlights rect { fill: #ffc070; opacity: 0.6; animation: js-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ab-brook { fill: color-mix(in srgb, #4a6a8a 34%, #06080c); opacity: 0.9; }
+.ab-ripple { fill: none; stroke: #dfe8f4; stroke-width: 0.7; opacity: 0.3; animation: dv-ripple 3.2s ease-in-out infinite alternate; }
+.ab--kidron .js-folk { animation: ab-drift 30s linear infinite alternate; }
+
+/* ── 감람산 오르막 (15:30) ── */
+.ab-farcity { opacity: 0.55; }
+.ab-crest { opacity: 0.45; }
+.ab-olive__trunk { fill: color-mix(in srgb, var(--act-a) 28%, #050404); }
+.ab-olive__leaf { fill: color-mix(in srgb, #7a8a6a 26%, #0a0b08); opacity: 0.92; animation: gb-sway 8s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
+.ab-mourners path { fill: color-mix(in srgb, var(--act-a) 30%, #06040a); opacity: 0.9; transform-box: fill-box; transform-origin: bottom center; animation: ab-bow 4.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ab-climb { animation: ab-climb 36s linear infinite alternate; }
+@keyframes ab-bow { from { rotate: 0deg; } to { rotate: 4deg; } }
+@keyframes ab-climb { from { translate: -8px 4px; } to { translate: 8px -4px; } }
+@keyframes ab-drift { from { translate: -5px 0; } to { translate: 5px 0; } }
+
+/* ── 바후림 (16:5-13) ── */
+.ab-slope { fill: color-mix(in srgb, var(--act-b) 30%, #08060a); }
+.ab-rocks ellipse { fill: color-mix(in srgb, #c8bca4 22%, var(--act-b)); opacity: 0.55; }
+.ab-path { fill: none; stroke: color-mix(in srgb, #d8c49a 34%, var(--act-b)); stroke-width: 2; stroke-dasharray: 4 3; opacity: 0.4; }
+.ab-scrub { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #050404); stroke-width: 1.2; stroke-linecap: round; }
+.ab-dusthaze { opacity: 0.3; }
+
+/* ── 바후림 집 뜰의 우물 (17:18-19) ── */
+.ab-yardwall { fill: color-mix(in srgb, var(--act-b) 22%, #070506); }
+.ab-house { opacity: 1; }
+.ab-door { fill: color-mix(in srgb, #140c06 80%, #000); }
+.ab-wellrim { fill: color-mix(in srgb, var(--act-b) 34%, #0a0808); }
+.ab-cover { fill: color-mix(in srgb, #8a7a5a 36%, var(--act-b)); }
+.ab-grain circle { fill: #e8d6a0; opacity: 0.7; }
+.ab-sheaf { fill: none; stroke: color-mix(in srgb, #d8c070 30%, #060504); stroke-width: 1.4; stroke-linecap: round; }
+
+/* ── 마하나임 성문 (17:27-29, 18) ── */
+.ab-chamberwin { fill: #ffc878; opacity: 0.55; filter: drop-shadow(0 0 3px rgba(255, 196, 120, 0.8)); }
+.ab-gateway--inner { opacity: 0.85; }
+.ab-stair { fill: color-mix(in srgb, var(--act-b) 30%, #0a0708); stroke: #000; stroke-width: 0.5; stroke-opacity: 0.4; }
+.ab-stairwall { fill: color-mix(in srgb, var(--act-b) 16%, #050405); }
+.ab-sack { fill: color-mix(in srgb, #b89a6a 26%, var(--act-b)); }
+.ab-jar { fill: color-mix(in srgb, #9a5a3a 30%, #080504); }
+
+/* ── 문루에서 본 길 (18:24-27) ── */
+.ab-plainroad { fill: color-mix(in srgb, #d8c49a 22%, var(--act-b)); opacity: 0.5; }
+.ab-fieldpath { fill: none; stroke: color-mix(in srgb, #d8c49a 26%, var(--act-b)); stroke-width: 1.2; stroke-dasharray: 3 3; opacity: 0.5; }
+.ab-runner { fill: #050304; transform-box: view-box; }
+.ab-runner--1 { animation: ab-run1 14s cubic-bezier(0.5, 0, 0.8, 0.6) 0.4s both; }
+.ab-runner--2 { animation: ab-run2 18s cubic-bezier(0.5, 0, 0.8, 0.6) 2.6s both; }
+.ab-runner rect { animation: ab-stride 0.36s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; }
+@keyframes ab-run1 { 0% { opacity: 0; transform: translate(149px, 146px) scale(0.6); } 8% { opacity: 1; } 45% { transform: translate(124px, 182px) scale(1.5); } 100% { opacity: 1; transform: translate(112px, 226px) scale(3); } }
+@keyframes ab-run2 { 0% { opacity: 0; transform: translate(149px, 145px) scale(0.5); } 10% { opacity: 1; } 100% { opacity: 1; transform: translate(128px, 186px) scale(1.7); } }
+@keyframes ab-stride { from { scale: 1 1; } to { scale: 0.9 1.06; } }
+
+/* ── 에브라임 수풀 (18:6-8) ── */
+.ab-trunks { fill: color-mix(in srgb, var(--act-a) 24%, #040304); opacity: 0.95; }
+.ab-boughs { fill: none; stroke: color-mix(in srgb, var(--act-a) 24%, #040304); stroke-width: 3; stroke-linecap: round; }
+.ab-fallen { fill: color-mix(in srgb, var(--act-a) 30%, #050404); }
+.ab-pit { fill: #020102; opacity: 0.85; }
+.ab-thicket { fill: none; stroke: color-mix(in srgb, var(--act-a) 30%, #040304); stroke-width: 1.6; }
+
+/* ── 큰 상수리나무 (18:9) ── */
+.ab-oak { fill: color-mix(in srgb, var(--act-a) 26%, #040304); }
+.ab-oakleaf { fill: color-mix(in srgb, #4a5a3a 30%, #050604); animation: gb-sway 9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom center; }
+.ab-hang { fill: color-mix(in srgb, var(--act-a) 18%, #050307); opacity: 0.88; transform-box: view-box; transform-origin: 218px 104px; animation: ab-hang 5s ease-in-out infinite alternate; }
+.ab-hairmass { fill: color-mix(in srgb, #3a2414 40%, #050303); }
+.ab-hair { fill: none; stroke: color-mix(in srgb, #5a3a20 40%, #050303); stroke-width: 1.2; stroke-linecap: round; }
+@keyframes ab-hang { from { rotate: -2.5deg; } to { rotate: 2.5deg; } }
+.ab-mule { fill: color-mix(in srgb, var(--act-a) 30%, #050404); transform-box: view-box; animation: ab-mule 5.4s cubic-bezier(0.3, 0, 0.7, 1) 0.8s both; }
+@keyframes ab-mule { 0% { opacity: 1; transform: translate(206px, 236px); } 80% { opacity: 1; } 100% { opacity: 0; transform: translate(380px, 238px); } }
+
+/* ── 돌무더기 (18:17) ── */
+.ab-heap { fill: color-mix(in srgb, var(--act-b) 26%, #070506); }
+.ab-heapstones ellipse { fill: color-mix(in srgb, #c8bca4 24%, var(--act-b)); stroke: #000; stroke-width: 0.5; stroke-opacity: 0.4; }
+
+/* ── 압살롬의 기념비 (18:18) ── */
+.ab-pillarhalo { opacity: 0.55; }
+.ab-stele { fill: color-mix(in srgb, var(--act-b) 20%, #060405); }
+.ab-stele-edge { fill: none; stroke: color-mix(in srgb, var(--act-accent) 50%, #fff); stroke-width: 0.8; opacity: 0.5; }
+.ab-stele-base { fill: color-mix(in srgb, var(--act-b) 14%, #040304); }
+
+/* ── 문루의 작은 방 (18:33) — 가장 조용한 방 ── */
+.ab-roomwall { fill: color-mix(in srgb, var(--act-b) 20%, #0a0807); }
+.ab-beam { fill: color-mix(in srgb, #3a2414 40%, #050303); }
+.ab-window { fill: color-mix(in srgb, #e8a868 46%, #2a1c22); }
+.ab-windowsill { fill: color-mix(in srgb, var(--act-b) 30%, #0a0807); }
+.ab-shaft { fill: #ffd7a0; opacity: 0.09; filter: blur(4px); }
+.ab-motes circle { fill: #ffe4c0; opacity: 0; animation: ab-mote 9s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes ab-mote { 0% { opacity: 0; translate: 0 0; } 30% { opacity: 0.45; } 100% { opacity: 0; translate: 6px 18px; } }
+.ab-floor { opacity: 1; }
+.ab-stairhole { fill: #020101; }
+.ab-steps { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #0a0807); stroke-width: 1.2; opacity: 0.6; }
+.ab-rail { fill: none; stroke: color-mix(in srgb, #3a2414 50%, #050303); stroke-width: 2.4; stroke-linecap: round; }
+
+:root[data-reduced-motion='true'] :is(.ab-flame, .ab-lamphalo, .ab-winlights rect, .ab-ripple, .ab--kidron .js-folk, .ab-olive__leaf, .ab-mourners path, .ab-climb, .ab-runner rect, .ab-oakleaf, .ab-hang, .ab-motes circle) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.ab-runner--1, .ab-runner--2, .ab-mule) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+
+/* ── 효과 stones: 돌과 티끌 (16:6, 13) ── */
+.fx-stones { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.2s ease-in; }
+.fx-stones.is-out { opacity: 0; }
+.fx-stones__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-stones__stone { position: absolute; left: calc(var(--s) / -2); top: calc(var(--s) / -2); width: var(--s); height: calc(var(--s) * 0.8); border-radius: 46% 54% 40% 60%;
+  background: color-mix(in srgb, #d8ccb0 62%, #2a2420); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, 0.35), 0 0 6px rgba(255, 232, 196, 0.35); opacity: 0;
+  animation: ab-throw 1.3s cubic-bezier(0.3, 0, 0.6, 1) calc(0.2s + var(--i) * 0.62s) both; }
+@keyframes ab-throw {
+  0% { opacity: 0; translate: 0 0; rotate: 0deg; }
+  8% { opacity: 1; }
+  45% { translate: calc(var(--dx) * 0.5) calc(var(--dy) * 0.3 - 70px); }
+  82% { opacity: 1; translate: var(--dx) var(--dy); rotate: 300deg; }
+  100% { opacity: 0; translate: calc(var(--dx) - 10px) calc(var(--dy) - 5px); rotate: 380deg; }
+}
+.fx-stones__puff { position: absolute; left: calc(var(--o) - 24px); top: calc(var(--gy) - 24px); width: 48px; height: 30px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(224, 206, 170, 0.75), transparent); filter: blur(2px); opacity: 0;
+  animation: ab-puff 2.6s ease-out calc(var(--i) * 0.7s) both; }
+@keyframes ab-puff { 0% { opacity: 0; scale: 0.4; translate: 0 0; } 25% { opacity: 1; } 100% { opacity: 0; scale: 2.4; translate: calc(var(--o) * -1.2) -40px; } }
+.fx-stones.is-rm .fx-stones__at { display: none; }
