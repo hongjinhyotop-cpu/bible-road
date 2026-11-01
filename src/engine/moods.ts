@@ -755,8 +755,8 @@ export const MOODS: Record<string, Mood> = {
   'gb-slope': { light: true, land: false, art: 'gb-slope', tone: 'storm' },
   'gb-slope-dusk': { light: true, land: false, art: 'gb-slope', tone: 'dusk' },
   /** 벧산 성벽: 높은 성벽과 성문 망대, 블레셋 깃발, 성벽 위를 도는 까마귀. 성벽에 걸린 것은 안 그림 (31:10) */
-  'gb-bethshan': { light: true, land: false, art: 'gb-bethshan', tone: 'dusk' },
-  'gb-bethshan-night': { light: true, land: false, art: 'gb-bethshan', tone: 'night' },
+  'gb-bethshan': { light: true, land: false, art: 'gb-bethshan', tone: 'dusk', spread: true },
+  'gb-bethshan-night': { light: true, land: false, art: 'gb-bethshan', tone: 'night', spread: true },
   /** 요단을 건너는 밤길: 달, 강과 나루, 횃불을 든 작은 사람들의 줄 (31:12 "밤새도록 가서") */
   'gb-jordan': { light: true, land: false, art: 'gb-jordan', tone: 'night' },
   /** 야베스의 에셀나무: 늘어진 가는 잎, 나무 아래 새 돌무덤, 사그라진 불의 재와 연기 한 줄, 먼 언덕의 야베스 (31:12-13) */

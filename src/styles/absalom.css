@@ -3,6 +3,14 @@
          마하나임 성문, 문루에서 본 길(달려오는 두 사람), 에브라임 수풀, 큰 상수리나무, 돌무더기, 압살롬의 기념비, 문루의 작은 방
    효과: stones(시므이의 돌과 티끌 — 아무도 맞지 않는다) */
 
+/* ── 인물: 압살롬 (characters/absalom.ts, 2026-11-01) — 머리털이 핵심 (삼하 14:26, 18:9) ── */
+.actor .ab-mane, .sil .ab-mane { fill: color-mix(in srgb, #6a4424 30%, var(--sil-ink)); }
+.actor .ab-sheen, .sil .ab-sheen { stroke: color-mix(in srgb, #d8b07a 70%, var(--act-accent)); stroke-width: 1; stroke-linecap: round; opacity: 0.26; }
+.actor .ab-gold, .sil .ab-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .ab-gem, .sil .ab-gem { fill: color-mix(in srgb, #f6e2a8 80%, var(--act-accent)); opacity: 0.85; }
+.actor .ab-robe, .sil .ab-robe { fill: color-mix(in srgb, #7a3f86 30%, var(--sil-ink)); }
+.actor .ab-cloak, .sil .ab-cloak { fill: color-mix(in srgb, #4e2a5e 26%, var(--sil-ink)); }
+
 /* ── 공통 ── */
 .ab-wall { fill: color-mix(in srgb, var(--act-b) 26%, #0a0708); }
 .ab-courses { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
@@ -66,7 +74,6 @@
 /* ── 문루에서 본 길 (18:24-27) ── */
 .ab-plainroad { fill: color-mix(in srgb, #d8c49a 22%, var(--act-b)); opacity: 0.5; }
 .ab-fieldpath { fill: none; stroke: color-mix(in srgb, #d8c49a 26%, var(--act-b)); stroke-width: 1.2; stroke-dasharray: 3 3; opacity: 0.5; }
-.ab-runner { fill: #050304; transform-box: view-box; }
 .ab-runner--1 { animation: ab-run1 14s cubic-bezier(0.5, 0, 0.8, 0.6) 0.4s both; }
 .ab-runner--2 { animation: ab-run2 18s cubic-bezier(0.5, 0, 0.8, 0.6) 2.6s both; }
 .ab-runner rect { animation: ab-stride 0.36s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; }

@@ -71,7 +71,10 @@
 }
 .play[data-tone='night'] .play__night { opacity: 1; }
 .play[data-tone='night'] .play__halo { opacity: 0.18; }
-.play[data-tone='night'] .scene__backdrop { filter: brightness(0.5) saturate(0.7); }
+.play[data-tone='night'] .scene__backdrop { filter: brightness(0.58) saturate(0.72); }
+/* 7막·9막 전용 배경은 밤이어도 등불·횃불이 있는 곳이 많아 덜 어둡게 (2026-11-01: 엔돌 집·지성소·길보아가 너무 어둡다) */
+.play[data-tone='night'] .scene__backdrop:has(> .backdrop:last-child:is([data-art^='sm-'], [data-art^='sl-'], [data-art^='dv-'], [data-art^='jn-'], [data-art^='gb-'], [data-art^='kg-'], [data-art^='ab-'], [data-art^='so-'], [data-art^='tp-'], [data-art^='dk-'])) { filter: brightness(0.74) saturate(0.85); }
+.play[data-tone='storm'] .scene__backdrop:has(> .backdrop:last-child:is([data-art^='gb-'], [data-art^='dk-'])) { filter: brightness(0.75) saturate(0.6); }
 .play[data-tone='night'] :is(.bd-tent__door, .bd-window, .bd-firelight, .bd-lampflame) { opacity: 0.85; }
 .play[data-tone='night'] .bd-star { opacity: 1; }
 
