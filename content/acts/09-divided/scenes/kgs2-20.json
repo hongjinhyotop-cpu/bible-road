@@ -41,7 +41,7 @@
     { "type": "scripture", "ref": "왕하 20:17-18", "bg": "jd-exile-road", "fx": ["fade", "foresee"], "acts": [{ "act": "crowd" }, { "act": "bow-head", "who": "isaiah" }], "gloss": "때가 온다. 네 궁에 있는 모든 것과 네 조상들이 오늘까지 쌓아 둔 것이 다 바벨론으로 옮겨지고 하나도 남지 않을 것이다. 네 몸에서 날 아들들 가운데서도 사로잡혀 가서 바벨론 왕궁의 환관이 될 자가 있을 것이다." },
     { "type": "narration", "bg": "palace", "fx": ["fade", "present"], "acts": [{ "act": "crowd-away" }, { "act": "bow-head", "who": "hezekiah" }], "text": "보여 준 것은 모두, 가져갈 것의 목록이 되었다." },
     { "type": "scripture", "ref": "왕하 20:19", "act": "look-up", "who": "hezekiah", "gloss": "히스기야가 이사야에게 “전해 주신 여호와의 말씀이 선합니다” 하고, 또 “내가 사는 동안에는 평화와 안정이 있겠다면, 그게 좋은 것 아니겠습니까” 함." },
-    { "type": "narration", "act": "face", "who": "isaiah", "to": "hezekiah", "text": "이 대답을 두고 사람들은 오래 다투었다. 심판을 겸손히 받아들인 말인지, 내 대에만 아니면 된다는 말인지. 본문은 왕의 표정을 적지 않았다. 다만 ‘네 몸에서 날 아들’이라는 말을, 그는 분명히 들었다." },
+    { "type": "narration", "act": "face", "who": "isaiah", "to": "hezekiah", "text": "이 대답을 두고 사람들은 오래 다투었다. 심판을 겸손히 받아들인 말인지, 내 대에만 아니면 된다는 말인지. 본문은 왕의 표정을 적지 않았다. 다만 ‘왕의 몸에서 날 아들’이라는 말을, 그는 분명히 들었다." },
     { "type": "narration", "bg": "jd-wall-conduit", "fx": "fade", "exit": ["isaiah"], "acts": [{ "act": "walk-out", "who": "isaiah" }, { "act": "look-up", "who": "hezekiah" }], "text": "히스기야는 못과 수도를 만들어, 물을 성 안으로 끌어들였다. 바위 밑으로. 성이 에워싸여도 마르지 않을 물이었다. 앞날을 걱정하는 왕이 할 수 있는 일이, 그래도 있었다." },
     { "type": "narration", "exit": ["hezekiah"], "act": "leave", "who": "hezekiah", "text": "히스기야가 그 열조와 함께 잤다. 그 아들 므낫세가 대신하여 왕이 되었다. 열다섯 해를 더 받은 왕이었다. 그 열다섯 해 사이에, 그 아들이 태어났다." }
   ],
