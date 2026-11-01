@@ -1,0 +1,72 @@
+{
+  "id": "kgs1-19-whisper",
+  "act": 9,
+  "grade": "A",
+  "title": "세미한 소리",
+  "ref": "왕상 19",
+  "bg": "el-chamber-night",
+  "cast": ["ahab", "jezebel"],
+  "outfit": { "elisha": "plow" },
+  "extras": {
+    "messenger-jz": { "name": "이세벨의 사자", "base": "youth", "hair": "short", "props": ["scroll"], "tint": "red" },
+    "servant-el": { "name": "사환", "base": "youth", "hair": "short", "tint": "brown" }
+  },
+  "beats": [
+    { "type": "narration", "face": { "ahab": "right", "jezebel": "left" }, "acts": [{ "act": "face", "who": ["ahab", "jezebel"] }, { "act": "bow-head", "who": "ahab" }], "text": "아합이 엘리야가 행한 모든 일과, 그가 모든 선지자를 칼로 죽인 것을 이세벨에게 고했다. 불 이야기도 했을 것이다. 비 이야기도. 이세벨이 들은 것은 그중 한 문장뿐이었다." },
+    { "type": "line", "who": "jezebel", "enter": ["messenger-jz"], "face": { "messenger-jz": "left" }, "acts": [{ "act": "walk-in", "who": "messenger-jz" }, { "act": "approach", "who": "jezebel", "to": "messenger-jz" }], "text": "“내가 내일 이맘때에는 정녕 네 생명으로 저 사람들 중 한 사람의 생명 같게 하리라. 아니하면 신들이 내게 벌 위에 벌을 내림이 마땅하니라 — 그렇게 전하라.”" },
+    { "bg": "road-night", "fx": "fade", "exit": ["ahab", "jezebel"], "enter": ["elijah"], "face": { "elijah": "right", "messenger-jz": "left" }, "acts": [{ "act": "approach", "who": "messenger-jz", "to": "elijah" }] },
+    { "type": "narration", "exit": ["messenger-jz"], "acts": [{ "act": "walk-out", "who": "messenger-jz" }, { "act": "step-back", "who": "elijah" }], "pose": { "elijah": "tremble" }, "text": "어제 하늘에서 불을 내리게 한 사람이었다. 오늘은 여자 한 사람이 보낸 말에 일어나 달아났다. 사람은 대개 가장 큰 싸움을 이긴 다음 날, 가장 약하다." },
+    { "type": "narration", "bg": "wilderness-dusk", "fx": "fade", "enter": ["servant-el"], "pose": { "elijah": "neutral" }, "face": { "servant-el": "left" }, "acts": [{ "act": "travel", "from": "jezreel-9", "to": "beersheba" }, { "act": "walk-in", "who": "servant-el" }], "text": "그가 그 생명을 위해 도망하여 유다에 속한 브엘세바에 이르렀다. 이세벨의 손이 닿지 않는 남쪽 끝이었다. 거기 사환을 머물게 하고, 혼자 광야로 들어가 하룻길을 갔다." },
+    { "acts": [{ "act": "face", "who": "elijah", "to": "servant-el" }, { "act": "leave", "who": "elijah" }], "exit": ["elijah"] },
+    { "bg": "el-broom", "fx": "fade", "exit": ["servant-el"], "enter": ["elijah"], "face": { "elijah": "right" }, "acts": [{ "act": "walk-in", "who": "elijah" }, { "act": "kneel", "who": "elijah" }] },
+    { "type": "scripture", "ref": "왕상 19:4", "act": "bow-head", "who": "elijah", "pose": { "elijah": "slump" }, "gloss": "엘리야가 로뎀나무 아래 앉아서 죽게 해 달라고 함: “여호와여, 이제 충분해요. 제 목숨 가져가세요. 저는 조상들보다 나을 게 없어요.”" },
+    { "type": "narration", "bg": "el-broom-night", "act": "sleep", "who": "elijah", "text": "그가 로뎀나무 아래 누워 잠들었다. 죽기를 구하던 사람은 그 기도를 다 마치기도 전에 잠이 들었다. 몸은 대개 마음보다 정직하다. 이 사람은 지쳐 있었다." },
+    { "type": "narration", "fx": "angel-touch", "who": "elijah", "text": "누군가 그를 어루만졌다. 천사였다. “일어나서 먹으라.”" },
+    { "type": "narration", "bg": "el-broom-bread", "pose": { "elijah": "neutral" }, "acts": [{ "act": "stand", "who": "elijah" }, { "act": "kneel", "who": "elijah" }], "text": "본즉 머리맡에 숯불에 구운 떡과 물 한 병이 있었다. 하나님은 그에게 설교하지 않았다. 떡을 구워 주었다. 그가 먹고 마시고, 다시 누웠다." },
+    { "act": "sleep", "who": "elijah" },
+    { "type": "narration", "fx": "angel-touch", "who": "elijah", "bg": "el-broom-bread-dawn", "text": "여호와의 사자가 또다시 와서 어루만졌다. “일어나서 먹으라. 네가 길을 이기지 못할까 하노라.” 이번에는 이유도 함께 왔다. 갈 길이 남아 있다는 것." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "elijah" }, { "act": "travel", "from": "beersheba", "to": "horeb" }, { "act": "leave", "who": "elijah" }], "exit": ["elijah"], "text": "그가 일어나 먹고 마시고, 그 먹은 힘으로 사십 주 사십 야를 걸어 하나님의 산 호렙에 이르렀다. 모세가 떨기나무 불꽃을 보던 산이었다. 모세가 사십 주야를 머물던 산이었다. 도망치던 사람이, 처음 시작된 자리로 가고 있었다." },
+    { "type": "narration", "bg": "el-horeb", "fx": "fade", "enter": ["elijah"], "face": { "elijah": "right" }, "acts": [{ "act": "walk-in", "who": "elijah" }, { "act": "kneel", "who": "elijah" }], "text": "엘리야가 그곳 굴에 들어가 거기서 밤을 지냈다." },
+    { "type": "voice", "text": "엘리야야, 네가 어찌하여 여기 있느냐." },
+    { "type": "line", "who": "elijah", "act": "look-up", "text": "“내가 만군의 하나님 여호와를 위하여 열심이 특심하오니, 이는 이스라엘 자손이 주의 언약을 버리고 주의 단을 헐며 칼로 주의 선지자들을 죽였음이오며, 오직 나만 남았거늘, 저희가 내 생명을 찾아 취하려 하나이다.”" },
+    { "type": "voice", "act": "stand", "who": "elijah", "text": "너는 나가서 여호와의 앞에서 산에 섰으라." },
+    { "type": "narration", "bg": "el-horeb-storm", "fx": "great-wind", "acts": [{ "act": "step-back", "who": "elijah" }], "pose": { "elijah": "tremble" }, "text": "여호와께서 지나가셨다. 여호와의 앞에 크고 강한 바람이 산을 가르고 바위를 부수었다. 바람 가운데 여호와께서 계시지 아니했다." },
+    { "type": "narration", "fx": "earthquake", "acts": [{ "act": "kneel", "who": "elijah" }], "text": "바람 후에 지진이 있었다. 지진 가운데도 여호와께서 계시지 아니했다." },
+    { "type": "narration", "fx": "mount-fire", "acts": [{ "act": "bow-head", "who": "elijah" }], "text": "지진 후에 불이 있었다. 불 가운데도 여호와께서 계시지 아니했다. 갈멜산에서는 불로 대답하신 분이었다." },
+    { "bg": "el-horeb", "fx": "still-voice", "pose": { "elijah": "neutral" }, "acts": [{ "act": "look-up", "who": "elijah" }] },
+    { "type": "scripture", "ref": "왕상 19:12", "gloss": "불 속에도 여호와는 안 계셨음. 그리고 불이 지나간 뒤에, 아주 가늘고 고요한 소리가 있었음. (‘세미하다’ = 아주 가늘고 작다)" },
+    { "type": "narration", "outfit": { "elijah": "veiled" }, "acts": [{ "act": "stand", "who": "elijah" }, { "act": "bow-head", "who": "elijah" }], "text": "엘리야가 듣고 겉옷으로 얼굴을 가리고 나가 굴 어귀에 섰다. 바람에도, 지진에도, 불에도 그는 얼굴을 가리지 않았다. 그 작은 소리 앞에서 가렸다." },
+    { "type": "voice", "text": "엘리야야, 네가 어찌하여 여기 있느냐." },
+    { "type": "line", "who": "elijah", "act": "bow-head", "text": "“내가 만군의 하나님 여호와를 위하여 열심이 특심하오니, 이는 이스라엘 자손이 주의 언약을 버리고 주의 단을 헐며 칼로 주의 선지자들을 죽였음이오며, 오직 나만 남았거늘, 저희가 내 생명을 찾아 취하려 하나이다.”" },
+    { "type": "narration", "act": "kneel", "who": "elijah", "text": "같은 질문에 같은 대답이었다. 한 글자도 다르지 않았다. 바람과 지진과 불과 그 작은 소리를 다 지나왔는데도. 사람은 그렇게 쉽게 바뀌지 않는다. 하나님은 그를 꾸짖지 않으셨다. 일을 주셨다." },
+    { "type": "voice", "text": "너는 네 길을 돌이켜 광야로 말미암아 다메섹에 가서 하사엘에게 기름을 부어 아람 왕이 되게 하고, 님시의 아들 예후에게 기름을 부어 이스라엘 왕이 되게 하고, 아벨므흘라 사밧의 아들 엘리사에게 기름을 부어 너를 대신하여 선지자가 되게 하라." },
+    { "type": "scripture", "ref": "왕상 19:18", "bg": "el-horeb-dawn", "outfit": { "elijah": "mantle" }, "act": "look-up", "who": "elijah", "gloss": "“그러나 내가 이스라엘 가운데 칠천 명을 남겨 두겠다. 모두 바알에게 무릎 꿇지 않고, 바알에게 입 맞추지 않은 사람들이다.”" },
+    { "type": "narration", "act": "stand", "who": "elijah", "text": "오직 나만 남았거늘. 엘리야는 두 번 그렇게 말했다. 칠천. 하나님은 숫자로 대답하셨다. 혼자라고 느끼는 사람은 대개 혼자가 아니다. 다른 사람들이 조용할 뿐이다." },
+    { "type": "narration", "bg": "el-plow", "fx": "fade", "enter": ["elisha"], "face": { "elijah": "right", "elisha": "left" }, "acts": [{ "act": "travel", "from": "horeb", "to": "abel-meholah" }, { "act": "walk-in", "who": "elisha" }], "text": "엘리야가 거기서 떠나 사밧의 아들 엘리사를 만났다. 엘리사는 열두 겨리 소를 앞세우고 밭을 갈고 있었다. 자기는 열둘째 겨리와 함께 있었다. 맨 뒤였다. 소 스물네 마리를 부리는 집 아들이, 맨 뒤에서 흙을 밟고 있었다." },
+    { "fx": "mantle-throw", "who": "elijah", "to": "elisha", "outfit": { "elijah": "bare" }, "acts": [{ "act": "approach", "who": "elijah", "to": "elisha" }] },
+    { "type": "scripture", "ref": "왕상 19:19", "outfit": { "elisha": "plow-mantle" }, "acts": [{ "act": "look-up", "who": "elisha" }, { "act": "turn", "who": "elijah" }], "gloss": "엘리야가 엘리사를 만났는데, 소 열두 겨리 앞세우고 밭 갈다가 열두 번째 겨리랑 같이 있었음. 엘리야가 그리로 건너가서 자기 겉옷을 그 위에 던짐." },
+    {
+      "type": "choice",
+      "prompt": "어깨 위에 낯선 겉옷이 걸쳐졌다. 엘리야는 벌써 걸어가고 있다. 엘리사는—",
+      "options": [
+        { "label": "소를 두고 달려간다", "canon": true },
+        { "label": "쟁기를 계속 잡는다", "goto": "b-plow" }
+      ]
+    },
+    { "type": "line", "who": "elisha", "acts": [{ "act": "approach", "who": "elisha", "to": "elijah" }], "text": "“청컨대 나로 내 부모와 입맞추게 하소서. 그리한 후에 내가 당신을 따르리이다.”" },
+    { "type": "line", "who": "elijah", "act": "face", "to": "elisha", "text": "“돌아가라. 내가 네게 어떻게 행하였느냐.”" },
+    { "type": "narration", "act": "bow-head", "who": "elisha", "text": "이상한 대답이었다. 가라는 것인지, 오라는 것인지. 엘리사는 그 말을 이렇게 들었던 것 같다. 겉옷은 이미 던져졌다. 나머지는 네 몫이다." },
+    { "type": "narration", "bg": "el-plow-fire", "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "bless", "who": "elisha" }], "text": "엘리사가 돌아가 소 한 겨리를 잡고, 소의 기구를 불살라 그 고기를 삶아 백성에게 주어 먹게 했다. 쟁기를 땔감으로 쓰는 사람은 밭으로 돌아올 생각이 없는 사람이다." },
+    { "type": "narration", "face": { "elijah": "right", "elisha": "right" }, "acts": [{ "act": "crowd-away" }, { "act": "leave", "who": "elijah" }, { "act": "leave", "who": "elisha" }], "exit": ["elijah", "elisha"], "text": "그리고 일어나 엘리야를 좇으며 수종 들었다. 오직 나만 남았다던 사람의 뒤에, 이제 한 사람이 걷고 있었다." }
+  ],
+  "branches": {
+    "b-plow": [
+      { "type": "narration", "act": "bow-head", "who": "elisha", "text": "만약 그가 쟁기를 계속 잡았다면. 겉옷은 어깨에서 미끄러져 고랑에 떨어졌을 것이다. 엘리야는 돌아보지 않았을 것이다. 그는 던지는 사람이지, 줍는 사람이 아니었다." },
+      { "type": "narration", "act": "look-up", "who": "elisha", "text": "엘리사는 쟁기를 놓았다." }
+    ]
+  },
+  "insight": "방금 그거 뭐였냐면, 갈멜산 대승리 바로 다음 장임. 근데 분위기 180도 바뀜. 불 내리고 450명 이긴 엘리야가, 이세벨 협박 문자 하나에 남쪽 끝 브엘세바까지 튀고, 나무 밑에서 ‘이제 그만 죽여 주세요’ 함. 번아웃 정확히 그거임. 큰 시험 끝난 다음 날, 큰 프로젝트 끝난 다음 날 오히려 확 무너지는 거.\n\n여기서 하나님 대응이 진짜 좋음. 혼내지 않음. 신학 강의도 안 함. 일단 재우고, 숯불에 떡 구워서 먹이고, 또 재우고, 또 먹임. ‘갈 길이 멀어서 그래’(19:7). 지친 사람한테 제일 먼저 필요한 건 정답이 아니라 잠이랑 밥이라는 걸 성경이 보여 줌.\n\n그다음 40일 걸어서 호렙산(= 시내산). 모세가 불타는 떨기나무 보고, 40일 머물고, 십계명 받은 그 산. 엘리야가 거기서 들은 첫 질문: ‘엘리야야, 너 왜 여기 있니?’\n\n바람 → 지진 → 불. 이건 시내산에서 하나님이 나타나실 때 나온 것들이랑 비슷함(출 19). 근데 본문이 세 번이나 ‘거기 안 계셨다’고 함. 그다음 ‘세미한 소리’. 원어는 ‘콜 드마마 닥카’, 직역하면 대충 ‘가늘고 고요한 소리’ 또는 ‘얇은 침묵의 소리’. 번역이 다 다를 만큼 묘한 표현임. 해석도 여러 가지. ① 하나님은 큰 기적에만 계신 게 아니라 조용한 데서도 말씀하신다. ② 갈멜산처럼 불로 다 쓸어버리길 바라던 엘리야한테, 하나님의 방식은 그게 다가 아니라고 보여 주신 거. ③ 그냥 하나님의 임재 자체가 사람이 다 설명 못 할 만큼 신비하다는 거. 어느 쪽이든 엘리야는 그 작은 소리 앞에서 겉옷으로 얼굴을 가림.\n\n웃픈 포인트: 같은 질문 두 번, 대답도 토씨 하나 안 틀리고 똑같음(19:10, 14). 엄청난 체험을 해도 사람 마음은 그 자리에서 안 바뀜. 그래서 하나님은 설득 대신 미션을 줌. 하사엘, 예후, 엘리사한테 기름 부어라. 그리고 ‘나만 남았다’는 말에 ‘칠천 명 남겨 둠’으로 팩트 체크해 주심. 참고로 하사엘이랑 예후 건은 나중에 엘리사 시대에 이뤄짐(왕하 8, 9).\n\n엘리사 콜링도 개멋있음. 소 열두 겨리 = 24마리. 꽤 잘사는 집. 근데 본인은 맨 뒤 열두 번째 겨리에서 같이 밭 감. 겉옷 던지는 건 ‘네가 내 뒤를 이을 사람’이라는 표시로 보는 게 일반적. ‘돌아가라 내가 너한테 뭘 했냐’(19:20)는 해석이 갈림. 가서 인사하고 와도 된다는 허락인지, 따를지 말지는 네가 정하라는 건지. 엘리사의 대답은 행동이었음. 소 잡고, 쟁기 태워서 그걸로 고기 삶아 동네에 다 돌림. 돌아갈 다리를 불태운 거임. 배수진.\n\n근데 이게 왜 중요하냐면. 엘리야 같은 사람도 무너짐. 그리고 무너진 사람한테 하나님이 처음 준 건 꾸중이 아니라 떡이었고, 마지막에 준 건 동료였음. ‘나만 남았다’ 싶을 때, 생각보다 조용한 칠천 명이 있음.",
+  "tldr": "갈멜산 승리 다음 날 이세벨 협박에 도망친 엘리야가 로뎀나무 아래서 죽기를 구하자, 하나님은 먼저 재우고 먹이셨음. 호렙산에서 바람·지진·불이 아니라 ‘세미한 소리’로 오셔서, ‘너만 남은 게 아니라 칠천 명 있다’ 하시고 새 일을 맡기심. 엘리야가 밭 갈던 엘리사에게 겉옷을 던지고, 엘리사는 쟁기를 태우고 따라감.",
+  "bridge": "한편 북쪽에서는, 아람 왕 벤하닷이 왕 서른둘과 말과 병거를 거느리고 올라와 사마리아를 에워쌌다.",
+  "unlocks": { "characters": ["elisha"] }
+}

@@ -37,6 +37,8 @@ export type BackdropArt =
   | 'gb-camp' | 'gb-endor' | 'gb-endor-rise' | 'gb-slope' | 'gb-bethshan' | 'gb-jordan' | 'gb-tamarisk'
   | 'dv-bethlehem' | 'dv-yard' | 'dv-field' | 'dv-court' | 'dv-court-calm' | 'dv-elah' | 'dv-brook'
   | 'ab-gate' | 'ab-kidron' | 'ab-olives' | 'ab-bahurim' | 'ab-well' | 'ab-mahanaim' | 'ab-watch' | 'ab-forest' | 'ab-oak' | 'ab-oak-empty' | 'ab-cairn' | 'ab-pillar' | 'ab-chamber'
+  | 'es-bethel' | 'es-jericho' | 'es-jordan' | 'es-jordan-parted' | 'es-beyond' | 'es-spring' | 'es-spring-sweet' | 'es-damascus' | 'es-door' | 'es-jordan-naaman' | 'es-samaria' | 'es-samaria-siege' | 'es-samaria-fallen' | 'es-exile-road' | 'es-calves' | 'es-high-places'
+  | 'el-shechem' | 'el-bethel-calf' | 'el-drought' | 'el-carmel' | 'el-carmel-altar' | 'el-carmel-wet' | 'el-carmel-burnt' | 'el-summit' | 'el-broom' | 'el-broom-bread' | 'el-horeb' | 'el-plow' | 'el-plow-fire' | 'el-vineyard' | 'el-chamber' | 'el-gate' | 'el-gate-empty'
   | 'so-gibeon' | 'so-dream' | 'so-dream-wake' | 'so-court' | 'so-house' | 'so-house-dawn'
   | 'tp-court' | 'tp-court-cloud' | 'tp-holy' | 'tp-holy-ark' | 'tp-heights'
   | 'kg-cart' | 'kg-threshing' | 'kg-threshing-still' | 'kg-obed' | 'kg-ascent' | 'kg-window' | 'kg-tent' | 'kg-roof' | 'kg-gate' | 'kg-rabbah' | 'kg-parable' | 'kg-parable-taken'
@@ -45,6 +47,7 @@ export type BackdropArt =
   | 'mamre' | 'mamre-meal' | 'mamre-door' | 'mamre-laugh' | 'mamre-start' | 'sodom-view'
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
   | 'potiphar' | 'potiphar-cloak' | 'round-prison' | 'dream-cows' | 'dream-cows-lean' | 'dream-ears' | 'dream-ears-thin' | 'pharaoh-court' | 'chariot' | 'granary' | 'granary-famine'
+  | 'jd-nehushtan' | 'jd-nehushtan-broken' | 'jd-lachish' | 'jd-wall-conduit' | 'jd-camp' | 'jd-camp-still' | 'jd-repair' | 'jd-scroll-room' | 'jd-kidron-fire' | 'jd-bethel' | 'jd-megiddo' | 'jd-siege' | 'jd-breach' | 'jd-temple-burning' | 'jd-temple-ash' | 'jd-exile-road' | 'jd-babylon-court'
   | PlaceArt;
 
 /**
@@ -243,6 +246,33 @@ export const FX = [
   'blind', // 눈을 어둡게 함: 문 쪽에서 흰빛이 터져 화면을 덮었다가 천천히 걷힘 (약 5초, 창 19:11)
   // ── 요셉의 애굽 (창 39·41, fx/egypt-court.ts) ──
   'signet', // 인장 반지와 금사슬: 요셉의 손과 목에서 차례로 금빛이 반짝임 (약 4초, 창 41:42)
+  // ── 9막 엘리사 · 북이스라엘의 끝 (왕하 2 · 5 · 17, fx/elisha.ts) ──
+  'mantle-strike', // 겉옷으로 물을 침: 치는 사람(who, 없으면 elijah → 가운데 사람)의 손에서 말린 겉옷이 내리쳐지고 물보라 고리, 배경 es-jordan의 강이 양쪽으로 물러나 쌓이며 마른 바닥이 드러남 (약 5초, 왕하 2:8, 14). 다음 beat 배경 es-jordan-parted
+  'chariot-fire', // 불 수레와 불 말들: 하늘이 붉어지고 불 말 둘과 수레가 두 사람 사이를 가르고 지나감 → 회리바람이 대상(who, 없으면 elijah)을 감아 올려 인물이 하늘로 작아지며 빛 속에 사라짐 (약 10초, 왕하 2:11). 다음 beat에서 exit
+  'mantle-fall', // 겉옷이 떨어짐: 하늘에서 겉옷 한 벌이 너울너울 내려와 받는 사람(to → who → elisha) 발치에 떨어짐 (약 5초, 왕하 2:13)
+  'salt', // 샘에 소금을 던짐: 던지는 사람(who, 없으면 elisha)의 손에서 흰 알갱이가 무대 아래 가운데로 흩어지고 물결 고리, 배경 es-spring의 물이 맑아지고 열매가 맺힘 (약 6초, 왕하 2:21)
+  'seven-dips', // 요단에 일곱 번: 앞에 물 띠가 차오르고 대상(who, 없으면 naaman)이 일곱 번 잠겼다 나옴, 위에 숫자 1…7, 마지막에 따뜻한 빛 (약 13초, 왕하 5:14). 다음 beat에 naaman 옷 healed
+  'samaria-falls', // 성이 무너짐: 배경 es-samaria-siege의 성벽 토막이 차례로 무너지고 상아궁 기둥이 기울고 연기 기둥·흙먼지·재 (약 7초, 왕하 17:6). shake와 같이, 다음 beat 배경 es-samaria-fallen
+  'warnings', // 각 선지자와 각 선견자: 하늘에 보낸 선지자들의 이름(아히야 … 호세아)이 등불처럼 하나씩 켜졌다가 "듣지 아니하고" 하나씩 꺼짐 (약 12초, 왕하 17:13-14)
+  // ── 9막 엘리야 (왕상 12 · 18 · 19 · 21, fx/elijah.ts) ──
+  'rift', // 나라가 갈라짐: 무대 한가운데로 위에서 아래로 금이 그어지고 왼쪽은 찬 청회색·오른쪽은 금빛, "열 지파 · 여로보암 | 유다 · 르호보암" (약 5초, 왕상 12:16-20). 바로 뒤에 kings
+  'no-answer', // 응답 없음: 해가 아침 → 낮 → 저녁으로 하늘을 가로지르고 "바알이여 응답하소서"가 거듭 떠올라 흩어짐, 끝에 "……" (약 9초, 왕상 18:26-29)
+  'carmel-fire', // 여호와의 불: 하늘에서 흰 불기둥이 단(배경 el-carmel-wet 표지)에 내리꽂히고 불길이 삼킨 뒤 도랑에서 김 (약 7초, 왕상 18:38). 다음 beat 배경 el-carmel-burnt
+  'small-cloud', // 손만한 작은 구름: 수평선(배경 el-summit)에서 작은 구름이 오르고 하늘 가득 구름이 부풀어 어두워짐 (약 9초, 왕상 18:44-45). 다음 beat에 rain-start
+  'great-wind', // 크고 강한 바람: 가로로 찢는 바람결, 날리는 돌 조각, 인물이 흔들림 (약 5초, 왕상 19:11)
+  'earthquake', // 지진: 무대가 크게 세 번 흔들리고 땅에 금, 흙먼지 (약 4.5초, 왕상 19:11)
+  'mount-fire', // 산의 불: 인물 뒤 비탈을 따라 불길이 번져 지나감 (약 5초, 왕상 19:12)
+  'still-voice', // 세미한 소리: 모든 것이 잦아들어 어두워지고 가는 빛 한 줄 + 아주 작은 글자 "세미한 소리" (약 8초, 왕상 19:12). 하나님은 그리지 않음
+  'angel-touch', // 어루만짐: 누운 사람(who, 없으면 elijah) 위로 따뜻한 빛이 내려와 머묾 (약 4.5초, 왕상 19:5, 7). 천사는 그리지 않음
+  'mantle-throw', // 겉옷을 던짐: who(없으면 elijah)의 어깨에서 겉옷이 날아 to(없으면 elisha)의 어깨에 내려앉음 (약 4초, 왕상 19:19). 다음 beat에 elisha 옷 plow-mantle
+  // ── 9막 유다의 마지막 백 년 (왕하 18–19 · 22–23 · 25, fx/judah.ts) ──
+  'letter-spread', // 편지를 펴 놓음: 히스기야(who)의 손에서 두루마리가 무대 가운데 바닥으로 내려가 펼쳐지고 글줄이 비친 뒤 그 자리에서 가는 빛 한 줄기가 위로 오름 (약 8초, 왕하 19:14)
+  'camp-silence', // 그 밤: 배경 jd-camp의 모닥불이 가장자리부터 하나씩 꺼지고 찬 은빛 바람이 진을 한 번 쓸고 지나감. 사람은 안 그림 (약 9초, 왕하 19:35). 다음 beat 배경 jd-camp-still
+  'scroll-found', // 율법책: 무대 위에 두루마리가 떠올라 펼쳐지고 글줄이 한 줄씩 금빛으로 켜짐 (약 9초, 왕하 22:8-11 · 23:2)
+  'burn-idols', // 우상 기구를 불사름: 가운데 목상·주상·해 바퀴·작은 신상들의 그림자가 붉게 달아올라 재로 무너지고 불티가 날아오름, 가루 더미만 남음 (약 8초, 왕하 18:4 · 23:4-15)
+  'temple-fire', // 성전이 불탐: 아래에서 붉은빛이 차오르고 불티가 끝없이 날아오르며 연기가 무대를 덮음. 사람은 안 그림 (약 11초, 왕하 25:9. 배경 jd-temple-burning)
+  'pillars-fall', // 놋 기둥이 쓰러짐: 가운데 놋 기둥 둘(이름표 야긴·보아스)이 바깥으로 기울어 넘어지고 석류가 흩어지며 흙먼지 (약 7초, 왕하 25:13, 17 — 왕상 7:21)
+  'small-lamp', // 작은 불빛: 두 왕국 판이 펴져 있으면(같은 beat에 "kings": { "show": true }) 무너진 남유다 칸에 작은 등불 하나가 켜져 에피소드 끝까지 남음(작은 표에도 불씨). 판이 없으면 무대 아래 가운데 (약 6초, 왕하 25:27-30)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -867,6 +897,139 @@ export const MOODS: Record<string, Mood> = {
   'tp-heights': { light: true, land: false, art: 'tp-heights' },
   'tp-heights-dusk': { light: true, land: false, art: 'tp-heights', tone: 'dusk' },
   'tp-heights-night': { light: true, land: false, art: 'tp-heights', tone: 'night' },
+  // ── 9막 엘리사 · 북이스라엘의 끝 A급 (왕하 2 · 5 · 17, fx/elisha.ts) ──
+  /** 언덕 꼭대기 벧엘 성읍, 오르는 굽은 길, 성 곁 산당의 금송아지 빛, 오른쪽 앞의 빽빽한 수풀 (왕하 2:2-3, 23-24) */
+  'es-bethel': { light: true, land: false, art: 'es-bethel' },
+  'es-bethel-dusk': { light: true, land: false, art: 'es-bethel', tone: 'dusk' },
+  /** 종려나무 사이 둔덕 위의 여리고, 요단 평지, 멀리 모압 산 (2:4-5, 15-18) */
+  'es-jericho': { light: true, land: false, art: 'es-jericho' },
+  'es-jericho-dusk': { light: true, land: false, art: 'es-jericho', tone: 'dusk' },
+  /** 요단 가: 가로질러 흐르는 강과 갈대, 왼쪽 둔덕 위에 멀리 서서 바라보는 생도 오십 인 (2:7). fx mantle-strike로 갈라짐 */
+  'es-jordan': { light: true, land: false, art: 'es-jordan', spread: true },
+  'es-jordan-dusk': { light: true, land: false, art: 'es-jordan', tone: 'dusk', spread: true },
+  /** 같은 강, 물이 양쪽으로 물러나 쌓이고 가운데 마른 바닥 (2:8, 14) */
+  'es-jordan-parted': { light: true, land: false, art: 'es-jordan-parted', spread: true },
+  'es-jordan-parted-dusk': { light: true, land: false, art: 'es-jordan-parted', tone: 'dusk', spread: true },
+  /** 요단 건너편 동쪽 평지: 낮은 언덕, 넓은 하늘, 하늘 가운데 천천히 도는 구름 소용돌이 (2:9-12). storm이면 소용돌이가 짙고 빠름 */
+  'es-beyond': { light: true, land: false, art: 'es-beyond' },
+  'es-beyond-dusk': { light: true, land: false, art: 'es-beyond', tone: 'dusk' },
+  'es-beyond-storm': { light: true, land: false, art: 'es-beyond', tone: 'storm' },
+  /** 여리고의 샘: 바위 틈의 샘과 못, 잿빛 물, 열매가 떨어진 나무들 (2:19). fx salt로 고쳐짐 */
+  'es-spring': { light: true, land: false, art: 'es-spring', spread: true },
+  /** 같은 샘, 맑은 물이 반짝이고 열매·새싹 (2:21-22) */
+  'es-spring-sweet': { light: true, land: false, art: 'es-spring-sweet', tone: 'clear', spread: true },
+  /** 다메섹: 흰 눈 덮인 헐몬, 성과 림몬의 신당, 미루나무, 앞으로 흐르는 맑은 두 강 아마나·바르발 (5:1, 12, 18) */
+  'es-damascus': { light: true, land: false, art: 'es-damascus' },
+  'es-damascus-dusk': { light: true, land: false, art: 'es-damascus', tone: 'dusk' },
+  /** 사마리아의 엘리사의 집: 작은 흙벽돌 집과 닫힌 문, 그 앞에 선 나아만의 병거와 말들 (5:9) */
+  'es-door': { light: true, land: false, art: 'es-door' },
+  'es-door-dusk': { light: true, land: false, art: 'es-door', tone: 'dusk' },
+  /** 요단 물속: 무대 앞쪽이 온통 흙빛 강물, 건너편 빽빽한 요단 수풀과 갈대 (5:14). fx seven-dips와 같이 */
+  'es-jordan-naaman': { light: true, land: false, art: 'es-jordan-naaman' },
+  'es-jordan-naaman-dawn': { light: true, land: false, art: 'es-jordan-naaman', tone: 'clear' },
+  /** 사마리아 산 위의 성: 둘레 성벽과 망대, 꼭대기 상아궁 기둥 (왕상 16:24, 22:39 — 왕하 17:1) */
+  'es-samaria': { light: true, land: false, art: 'es-samaria' },
+  'es-samaria-dusk': { light: true, land: false, art: 'es-samaria', tone: 'dusk' },
+  /** 같은 성, 산 아래 앗수르 진(장막·깃발·화톳불)과 성벽에 걸친 토성·성 치는 틀 (17:5). fx samaria-falls */
+  'es-samaria-siege': { light: true, land: false, art: 'es-samaria-siege', tone: 'dusk' },
+  'es-samaria-siege-night': { light: true, land: false, art: 'es-samaria-siege', tone: 'night' },
+  /** 무너진 성벽, 부러진 기둥, 연기 기둥과 불티 (17:6). 성 함락 뒤 장면에 재사용 */
+  'es-samaria-fallen': { light: true, land: false, art: 'es-samaria-fallen', tone: 'storm' },
+  'es-samaria-fallen-dusk': { light: true, land: false, art: 'es-samaria-fallen', tone: 'dusk' },
+  /** 사로잡혀 가는 길: 지평선 쪽으로 끝없이 걸어가는 사람들의 줄과 창 든 호송병, 낮은 해 (17:6, 23). 포로 행렬에 재사용 */
+  'es-exile-road': { light: true, land: false, art: 'es-exile-road', tone: 'dusk' },
+  /** 벧엘 산당의 금송아지: 돌 단 위 금빛 송아지와 향 연기, 먼 북쪽 산마루의 또 하나(단) (17:16, 21 — 왕상 12:28-29) */
+  'es-calves': { light: true, land: false, art: 'es-calves', tone: 'dusk', spread: true },
+  /** 산마다 산당: 언덕 꼭대기마다 작은 단과 연기, 푸른 나무 아래 목상과 주상 (17:9-11, 29-33). 산당 장면에 재사용 */
+  'es-high-places': { light: true, land: false, art: 'es-high-places' },
+  'es-high-places-dusk': { light: true, land: false, art: 'es-high-places', tone: 'dusk' },
+  // ── 9막 유다의 마지막 백 년 A급 (왕하 18–19 · 22–23 · 25, fx/judah.ts) ──
+  /** 성전 뜰 한쪽, 장대에 감긴 놋뱀과 그 앞의 향단·연기 (왕하 18:4 — 민 21:9) */
+  'jd-nehushtan': { light: true, land: false, art: 'jd-nehushtan', spread: true },
+  /** 같은 곳, 장대가 꺾이고 놋뱀이 조각나 땅에 (느후스단) */
+  'jd-nehushtan-broken': { light: true, land: false, art: 'jd-nehushtan-broken', tone: 'dusk', spread: true },
+  /** 언덕 위 라기스, 성벽까지 올라간 토성, 앞쪽 앗수르 진 (18:14, 17) */
+  'jd-lachish': { light: true, land: false, art: 'jd-lachish' },
+  'jd-lachish-dusk': { light: true, land: false, art: 'jd-lachish', tone: 'dusk' },
+  /** 윗못 수도 곁 세탁자의 밭 큰 길: 위로 성벽과 그 위에 앉은 백성, 못·수도·널린 흰 천 (18:17, 26-28) */
+  'jd-wall-conduit': { light: true, land: false, art: 'jd-wall-conduit' },
+  /** 예루살렘을 멀리 두고 들판을 메운 앗수르 진, 장막마다 모닥불 (19:35 "이 밤에"). fx camp-silence와 같이 */
+  'jd-camp-night': { light: true, land: false, art: 'jd-camp', tone: 'night' },
+  'jd-camp-dusk': { light: true, land: false, art: 'jd-camp', tone: 'dusk' },
+  /** 같은 진의 아침: 불은 다 꺼지고 가는 연기, 기운 깃대. 사람은 안 그림 (19:35 "아침에") */
+  'jd-camp-still': { light: true, land: false, art: 'jd-camp-still', tone: 'clear' },
+  /** 비계를 두른 성전 정면, 재목과 다듬은 돌, 일꾼들 (22:5-6) */
+  'jd-repair': { light: true, land: false, art: 'jd-repair' },
+  /** 성전 안 어두운 곳간, 높은 창의 빛줄기와 먼지 (22:8) */
+  'jd-scroll-room': { light: true, land: false, art: 'jd-scroll-room', spread: true },
+  /** 예루살렘 바깥 기드론 골짜기, 태우는 더미들과 연기 기둥 (23:4, 6, 12) */
+  'jd-kidron-fire': { light: true, land: false, art: 'jd-kidron-fire', tone: 'dusk' },
+  'jd-kidron-fire-night': { light: true, land: false, art: 'jd-kidron-fire', tone: 'night' },
+  /** 벧엘 제단(뿔 넷, 금 간 단)과 연기, 산비탈 묘실들과 작은 비석 (23:15-18 — 왕상 13) */
+  'jd-bethel': { light: true, land: false, art: 'jd-bethel', spread: true },
+  'jd-bethel-dusk': { light: true, land: false, art: 'jd-bethel', tone: 'dusk', spread: true },
+  /** 므깃도 언덕과 평지, 지평선의 병거 먼지 (23:29) */
+  'jd-megiddo': { light: true, land: false, art: 'jd-megiddo', tone: 'dusk' },
+  /** 토성에 에워싸인 예루살렘, 갈대아 진 (25:1-3) */
+  'jd-siege': { light: true, land: false, art: 'jd-siege', tone: 'dusk' },
+  'jd-siege-night': { light: true, land: false, art: 'jd-siege', tone: 'night' },
+  /** 두 성벽 사이 왕의 동산 곁문 길, 바깥 성벽의 구멍 (25:4, 밤) */
+  'jd-breach-night': { light: true, land: false, art: 'jd-breach', tone: 'night' },
+  /** 불타는 성전과 집들, 붉은 하늘과 검은 연기 (25:9). fx temple-fire와 같이 */
+  'jd-temple-burning': { light: true, land: false, art: 'jd-temple-burning', tone: 'storm', spread: true },
+  /** 불탄 뒤: 지붕이 내려앉은 검은 벽, 기둥 밑동, 날리는 재 (25:9-10) */
+  'jd-temple-ash': { light: true, land: false, art: 'jd-temple-ash', tone: 'storm', spread: true },
+  'jd-temple-ash-dawn': { light: true, land: false, art: 'jd-temple-ash', tone: 'clear', spread: true },
+  /** 지평선까지 사로잡혀 가는 행렬, 뒤로 연기 오르는 성 (25:11) */
+  'jd-exile-road': { light: true, land: false, art: 'jd-exile-road', tone: 'dusk' },
+  /** 바벨론 왕궁: 푸른 유약 벽돌, 사자 띠, 높은 문, 가운데 긴 상과 등잔 (25:27-30) */
+  'jd-babylon-court': { light: true, land: false, art: 'jd-babylon-court', spread: true },
+
+  // ── 9막 엘리야 A급 (왕상 12 · 18 · 19 · 21, fx/elijah.ts) ──
+  /** 세겜: 에발산·그리심산 사이 골짜기, 가운데 돌 단, 양쪽에 모인 무리 (왕상 12:1) */
+  'el-shechem': { light: true, land: false, art: 'el-shechem', spread: true },
+  'el-shechem-dusk': { light: true, land: false, art: 'el-shechem', tone: 'dusk', spread: true },
+  /** 벧엘의 산당: 받침 위 금송아지, 단의 불과 연기, 엎드린 무리 (왕상 12:28-33, 13장) */
+  'el-bethel-calf': { light: true, land: false, art: 'el-bethel-calf', tone: 'dusk', spread: true },
+  'el-bethel-calf-night': { light: true, land: false, art: 'el-bethel-calf', tone: 'night', spread: true },
+  /** 삼 년 가뭄: 갈라진 땅, 마른 시내, 잎 없는 나무, 흰 해 (왕상 18:2-6) */
+  'el-drought': { light: true, land: false, art: 'el-drought', tone: 'clear' },
+  /** 갈멜산 마루: 왼쪽 바다·바알의 단, 가운데 무너진 여호와의 단 (18:19-29) */
+  'el-carmel': { light: true, land: false, art: 'el-carmel', spread: true },
+  'el-carmel-dusk': { light: true, land: false, art: 'el-carmel', tone: 'dusk', spread: true },
+  /** 가운데 다시 쌓은 열두 돌 단 + 번제물 + 마른 도랑 (18:30-33). 저녁 */
+  'el-carmel-altar': { light: true, land: false, art: 'el-carmel-altar', tone: 'dusk', spread: true },
+  /** 물 열두 통: 젖은 돌, 가득 찬 도랑 (18:34-35). fx carmel-fire는 이 단에 떨어짐 */
+  'el-carmel-wet': { light: true, land: false, art: 'el-carmel-wet', tone: 'dusk', spread: true },
+  /** 불이 지나간 자리: 단도 돌도 흙도 없이 검게 패임, 마른 도랑, 가는 연기 (18:38) */
+  'el-carmel-burnt': { light: true, land: false, art: 'el-carmel-burnt', tone: 'dusk', spread: true },
+  /** 갈멜산 꼭대기 벼랑과 바다 수평선 (18:42-44). fx small-cloud */
+  'el-summit': { light: true, land: false, art: 'el-summit', tone: 'clear' },
+  'el-summit-storm': { light: true, land: false, art: 'el-summit', tone: 'storm' },
+  /** 광야의 로뎀나무 (19:4) */
+  'el-broom': { light: true, land: false, art: 'el-broom', tone: 'dusk', spread: true },
+  'el-broom-night': { light: true, land: false, art: 'el-broom', tone: 'night', spread: true },
+  /** 머리맡의 숯불에 구운 떡과 물 한 병 (19:6) */
+  'el-broom-bread': { light: true, land: false, art: 'el-broom-bread', tone: 'night', spread: true },
+  'el-broom-bread-dawn': { light: true, land: false, art: 'el-broom-bread', tone: 'clear', spread: true },
+  /** 호렙산 굴 어귀 (19:9-13) */
+  'el-horeb': { light: true, land: false, art: 'el-horeb', tone: 'night', spread: true },
+  'el-horeb-storm': { light: true, land: false, art: 'el-horeb', tone: 'storm', spread: true },
+  'el-horeb-dawn': { light: true, land: false, art: 'el-horeb', tone: 'clear', spread: true },
+  /** 아벨므흘라의 밭: 열두 겨리 소 (19:19) */
+  'el-plow': { light: true, land: false, art: 'el-plow' },
+  /** 같은 밭: 소의 기구를 태우는 불과 솥, 둘러앉은 사람들 (19:21) */
+  'el-plow-fire': { light: true, land: false, art: 'el-plow-fire', tone: 'dusk', spread: true },
+  /** 나봇의 포도원: 포도나무 줄·망대·돌담, 오른쪽에 아합의 궁 담 (왕상 21:1-2, 16-29) */
+  'el-vineyard': { light: true, land: false, art: 'el-vineyard' },
+  'el-vineyard-dusk': { light: true, land: false, art: 'el-vineyard', tone: 'dusk' },
+  /** 이스르엘 궁 침실: 상아 박은 침상, 포도원이 보이는 격자창, 등잔 (21:4-7, 19:1-2) */
+  'el-chamber': { light: true, land: false, art: 'el-chamber', tone: 'dusk' },
+  'el-chamber-night': { light: true, land: false, art: 'el-chamber', tone: 'night' },
+  /** 이스르엘 성문 광장: 장로들의 자리, 가운데 높은 자리 (21:9-13) */
+  'el-gate': { light: true, land: false, art: 'el-gate', spread: true },
+  /** 같은 곳, 해 질 녘: 빈 높은 자리, 돌 몇 개 (21:13-14) */
+  'el-gate-empty': { light: true, land: false, art: 'el-gate-empty', tone: 'dusk', spread: true },
 
   // ── 7막 압살롬의 반역 A급 (삼하 15–18, fx/absalom.ts) ──
   /** 예루살렘 성문 길: 성벽과 성문 망대, 송사하러 온 사람들의 줄, 오른쪽에 병거와 말과 호위 (15:1-6) */

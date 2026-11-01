@@ -31,6 +31,7 @@ export function peopleScreen({ id }: Params): Screen {
       <button class="icon-btn" data-settings aria-label="설정">${icons.settings}</button>
     </header>
     <div class="people__scroll">
+      <button class="btn people__kings" data-kings>9막 왕 카드 모음 <span class="ui">북이스라엘 · 남유다 39명</span></button>
       <div class="people__body"></div>
       <p class="people__foot ui">이야기를 따라가면 카드가 하나씩 채워짐</p>
     </div>`;
@@ -106,6 +107,7 @@ export function peopleScreen({ id }: Params): Screen {
       setFieldMode('stars');
       $('[data-back]').addEventListener('click', () => go('/map'));
       $('[data-settings]').addEventListener('click', () => openSettings());
+      $('[data-kings]').addEventListener('click', (ev) => go('/kings', { x: ev.clientX, y: ev.clientY }));
       void build().then(() => {
         // #/people/adam 으로 들어오면 그 카드를 바로 연다 (막 피날레의 카드에서)
         const e = id ? codexEntry(id) : undefined;

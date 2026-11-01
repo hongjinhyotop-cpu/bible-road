@@ -13,6 +13,8 @@ export interface Progress {
   finales: Record<string, true>;
   /** 지도에서 점등 연출을 이미 보여 준 별 ("GEN:1-11") */
   litStops: Record<string, true>;
+  /** 9막 왕 카드: 본 왕 id (fx/kingdoms.ts → 모음 화면 #/kings) */
+  kings?: Record<string, true>;
   /** 마지막으로 머문 곳 (이어하기). "map", "scene/gen-1-light", "finale/1" */
   last: string | null;
   startedAt: number | null;
@@ -81,4 +83,15 @@ export function markFinale(act: number): void {
 export function markLit(keys: string[]): void {
   if (!keys.length) return;
   progress.set({ litStops: { ...progress.get().litStops, ...Object.fromEntries(keys.map((k) => [k, true as const])) } });
+}
+
+/** 9막 두 왕국 판에 나온 왕들을 왕 카드 모음에 기록한다 */
+export function meetKings(ids: string[]): void {
+  const have = progress.get().kings ?? {};
+  if (ids.every((id) => have[id])) return;
+  progress.set({ kings: { ...have, ...Object.fromEntries(ids.map((id) => [id, true as const])) } });
+}
+
+export function kingMet(id: string): boolean {
+  return !!progress.get().kings?.[id];
 }

@@ -18,6 +18,7 @@ import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
 import { showTravel, type TravelMap } from '../fx/travel';
 import { showAllot, type AllotMap } from '../fx/allot';
 import { showCycle, ROUNDS, type CycleRing } from '../fx/cycle';
+import { showKings, type KingsBoard } from '../fx/kingdoms';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
 import type { CharacterDef } from '../characters';
@@ -49,10 +50,13 @@ import { playLittleRobes } from '../fx/samuel';
 import { playRise } from '../fx/gilboa';
 import { playAnoint, playSaulLots } from '../fx/saul';
 import { playLyre, playSling, playTopple } from '../fx/david';
+import { playAngelTouch, playCarmelFire, playEarthquake, playGreatWind, playMantleThrow, playMountFire, playNoAnswer, playRift, playSmallCloud, playStillVoice } from '../fx/elijah';
 import { playAsks, playBlade, playSwaddle, playThousand } from '../fx/solomon';
 import { playAccuse, playDance, playLetter } from '../fx/kingship';
 import { playStones } from '../fx/absalom';
+import { playChariotFire, playMantleFall, playMantleStrike, playSalt, playSamariaFalls, playSevenDips, playWarnings } from '../fx/elisha';
 import { playCloudGlory, playPrayers, playTearTwelve } from '../fx/temple';
+import { playBurnIdols, playCampSilence, playLetterSpread, playPillarsFall, playScrollFound, playSmallLamp, playTempleFire } from '../fx/judah';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -70,10 +74,10 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6, 'mantle-strike': 4.4, 'chariot-fire': 9.6, 'mantle-fall': 4.6, salt: 5, 'seven-dips': 13, 'samaria-falls': 6, warnings: 11.5, 'letter-spread': 7, 'camp-silence': 7.5, 'scroll-found': 6, 'burn-idols': 6.5, 'temple-fire': 6, 'pillars-fall': 5.6, 'small-lamp': 4.5, rift: 4.4, 'no-answer': 8.4, 'carmel-fire': 6.2, 'small-cloud': 8, 'great-wind': 4.2, earthquake: 3.8, 'mount-fire': 4.2, 'still-voice': 7, 'angel-touch': 3.8, 'mantle-throw': 3.4 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill', 'el-sun-arc', 'el-cloud-swell']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -143,6 +147,8 @@ export function sceneScreen({ id }: Params): Screen {
   let allotMap: AllotMap | null = null;
   /** 사사기의 순환 고리 (beat 필드 cycle) */
   let cycleRing: CycleRing | null = null;
+  /** 9막 두 왕국 판 (beat 필드 kings) */
+  let kingsBoard: KingsBoard | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
 
@@ -220,7 +226,7 @@ export function sceneScreen({ id }: Params): Screen {
           return;
         }
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
-        const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : 0;
+        const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : beat.kings ? (typeof beat.kings === 'object' && !Array.isArray(beat.kings) && beat.kings.fall ? 6 : 3.4) : 0;
         // 글 없는 beat의 긴 효과는 끝까지 보여 준다 (다음 beat의 암전·배경 전환에 가리지 않게)
         const longFx = Math.max(0, ...[beat.fx ?? []].flat().map((f) => FX_HOLD[f] ?? 0));
         await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
@@ -314,6 +320,9 @@ export function sceneScreen({ id }: Params): Screen {
       cycleRing = showCycle($('.scene'), beat.cycle, cycleRing);
       setDecay(Math.max(Number(cycleRing.el.dataset.round), Number(el.dataset.decay ?? 0)));
     } else cycleRing?.big(false);
+    // 두 왕국 판: 이번 beat에 kings가 있으면 크게 펴고 왕 카드를 쌓는다. 없으면 왼쪽 위 작은 표로
+    if (beat.kings) kingsBoard = showKings($('.scene'), beat.kings, kingsBoard);
+    else kingsBoard?.big(false);
     // 땅 분배 지도: 이번 beat에 allot이 있으면 칠하고, 없으면 접는다
     if (beat.allot) {
       travel?.el.remove();
@@ -779,6 +788,63 @@ export function sceneScreen({ id }: Params): Screen {
         // 이곳을 향하여 기도하거든 (왕상 8:30-50) — fx/temple.ts
         playPrayers($('.scene'), rm);
         return;
+      case 'letter-spread':
+        // 편지를 여호와 앞에 펴 놓음 (왕하 19:14) — fx/judah.ts. 펴는 사람 = who → hezekiah
+        playLetterSpread($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'camp-silence':
+        // 그 밤, 진의 불이 하나씩 꺼짐 (왕하 19:35) — fx/judah.ts
+        playCampSilence($('.scene'), rm);
+        return;
+      case 'scroll-found':
+        // 율법책 (왕하 22:8-11) — fx/judah.ts
+        playScrollFound($('.scene'), rm);
+        return;
+      case 'burn-idols':
+        // 우상 기구를 불사름 (왕하 18:4 · 23:4-15) — fx/judah.ts
+        playBurnIdols($('.scene'), rm);
+        return;
+      case 'temple-fire':
+        // 성전이 불탐 (왕하 25:9) — fx/judah.ts
+        playTempleFire($('.scene'), rm);
+        return;
+      case 'pillars-fall':
+        // 놋 기둥이 쓰러짐 (왕하 25:13, 17) — fx/judah.ts
+        playPillarsFall($('.scene'), rm);
+        return;
+      case 'small-lamp':
+        // 작은 불빛 (왕하 25:27-30) — fx/judah.ts. 두 왕국 판의 남유다 칸에 등불
+        playSmallLamp($('.scene'), rm);
+        return;
+      // ── 9막 엘리사 · 북이스라엘의 끝 (fx/elisha.ts) ──
+      case 'mantle-strike':
+        // 겉옷으로 물을 침 (왕하 2:8, 14). 치는 사람 = who → elijah
+        playMantleStrike($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'chariot-fire':
+        // 불 수레와 회리바람 (왕하 2:11). 올라가는 사람 = who → elijah
+        playChariotFire($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'mantle-fall':
+        // 떨어진 겉옷 (왕하 2:13). 받는 사람 = to → who → elisha
+        playMantleFall($('.scene'), beat?.to ?? [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'salt':
+        // 샘에 소금 (왕하 2:21). 던지는 사람 = who → elisha
+        playSalt($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'seven-dips':
+        // 요단에 일곱 번 (왕하 5:14). 대상 = who → naaman
+        playSevenDips($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'samaria-falls':
+        // 사마리아가 무너짐 (왕하 17:6)
+        playSamariaFalls($('.scene'), rm);
+        return;
+      case 'warnings':
+        // 각 선지자와 각 선견자 (왕하 17:13-14)
+        playWarnings($('.scene'), rm);
+        return;
       case 'tear-twelve':
         // 새 옷 열두 조각 (왕상 11:30-31) — fx/temple.ts. 찢는 사람 = who → ahijah, 받는 사람 = to → jeroboam
         playTearTwelve($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
@@ -810,6 +876,47 @@ export function sceneScreen({ id }: Params): Screen {
       case 'hem':
         // 벤 옷자락 (삼상 24:4, 11) — fx/jonathan.ts. 대상 = who → david
         playHem($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      // ── 9막 엘리야 (fx/elijah.ts) ──
+      case 'rift':
+        // 나라가 둘로 (왕상 12:16-20)
+        playRift($('.scene'), rm);
+        return;
+      case 'no-answer':
+        // 바알이여 응답하소서 — 아침부터 저녁까지 (왕상 18:26-29)
+        playNoAnswer($('.scene'), rm);
+        return;
+      case 'carmel-fire':
+        // 여호와의 불 (왕상 18:38)
+        playCarmelFire($('.scene'), rm);
+        return;
+      case 'small-cloud':
+        // 손만한 작은 구름 (왕상 18:44-45)
+        playSmallCloud($('.scene'), rm);
+        return;
+      case 'great-wind':
+        // 크고 강한 바람 (왕상 19:11)
+        playGreatWind($('.scene'), rm);
+        return;
+      case 'earthquake':
+        // 지진 (왕상 19:11)
+        playEarthquake($('.scene'), rm);
+        return;
+      case 'mount-fire':
+        // 불 (왕상 19:12)
+        playMountFire($('.scene'), rm);
+        return;
+      case 'still-voice':
+        // 세미한 소리 (왕상 19:12)
+        playStillVoice($('.scene'), rm);
+        return;
+      case 'angel-touch':
+        // 어루만짐 (왕상 19:5, 7). 대상 = who → elijah
+        playAngelTouch($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'mantle-throw':
+        // 겉옷을 던짐 (왕상 19:19). 던지는 사람 = who → elijah, 받는 사람 = to → elisha
+        playMantleThrow($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
         return;
       case 'blind':
         // 뒤돌아보지 말라 (fx/sodom.ts): 문 쪽에서 흰빛이 터져 무리의 눈을 어둡게 한다 (창 19:11)
@@ -933,6 +1040,7 @@ export function sceneScreen({ id }: Params): Screen {
     stage.actors.forEach((a) => a.setDim(true));
     setBlack(false);
     cycleRing?.big(false);
+    kingsBoard?.big(false);
     setItem(el, items, null);
     setMemory(null);
     const known = progress.get().characters;
@@ -1058,6 +1166,8 @@ export function sceneScreen({ id }: Params): Screen {
     allotMap = null;
     cycleRing?.el.remove();
     cycleRing = null;
+    kingsBoard?.el.remove();
+    kingsBoard = null;
     setBlack(false);
     $('.scene__sound').classList.remove('is-on');
     setDecay(scene.decay ?? 0);

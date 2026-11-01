@@ -1,0 +1,41 @@
+{
+  "id": "kgs2-24",
+  "act": 9,
+  "grade": "B",
+  "title": "첫 번째 사로잡힘",
+  "ref": "왕하 24",
+  "bg": "palace-dusk",
+  "cast": ["jehoiakim-k"],
+  "extras": {
+    "jehoiakim-k": { "name": "여호야김", "base": "king", "hair": "crown", "beard": "short", "tint": "gray" },
+    "nehushta": { "name": "왕의 모친 느후스다", "base": "old-woman", "hair": "veil", "tint": "purple" }
+  },
+  "beats": [
+    { "type": "narration", "act": "travel", "from": "babylon", "via": ["euphrates"], "to": "jerusalem", "text": "여호야김 시대에, 바벨론 왕 느부갓네살이 올라왔다. 앗수르가 지나간 자리에 새 이름이 들어섰다. 큰 나라는 이름만 바뀐다. 작은 나라의 처지는 바뀌지 않는다." },
+    { "enter": ["nebuchadnezzar"], "face": { "nebuchadnezzar": "left", "jehoiakim-k": "right" }, "acts": [{ "act": "walk-in", "who": "nebuchadnezzar" }, { "act": "step-back", "who": "jehoiakim-k" }] },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "jehoiakim-k" }, { "act": "turn", "who": "jehoiakim-k" }], "text": "여호야김이 삼 년을 섬겼다. 그리고 돌이켜 배반했다. 이집트 왕이 세운 왕이었다. 작은 나라의 왕이 고를 수 있는 것은 많지 않았다. 어느 큰 나라 쪽에 설지. 그는 세 번째 해에, 다시 골랐다." },
+    { "type": "narration", "bg": "ruins-dusk", "fx": ["fade", "dust"], "exit": ["nebuchadnezzar"], "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }, { "act": "step-back", "who": "jehoiakim-k" }], "text": "갈대아의 부대와 아람의 부대와 모압의 부대와 암몬 자손의 부대가 왔다. 사방에서. 본문은 누가 그들을 보냈는지를 먼저 적는다. 여호와께서 그 종 선지자들로 하신 말씀과 같이." },
+    { "type": "scripture", "ref": "왕하 24:3-4", "act": "bow-head", "who": "jehoiakim-k", "gloss": "이 일은 하나님이 명하신 거였음. 므낫세가 지은 모든 죄, 특히 죄 없는 사람들 피를 예루살렘에 가득 흘린 것 때문에 유다를 쫓아내려 하심. 그 피는 하나님이 용서하려 하지 않으셨음." },
+    { "type": "narration", "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "jehoiakim-k" }], "text": "므낫세는 죽은 지 오래였다. 그가 흘린 피는 아직 마르지 않았다. 어떤 죄는 지은 사람보다 오래 산다." },
+    { "type": "narration", "act": "travel", "from": "euphrates", "to": "egypt", "text": "애굽 왕은 다시는 그 나라에서 나오지 못했다. 바벨론 왕이 애굽 하수에서부터 유브라데 하수까지, 애굽 왕에게 속한 땅을 다 취했기 때문이다. 므깃도에서 요시야를 쓰러뜨린 그 바로였다. 이제 그도 자기 땅에 갇혔다." },
+    { "type": "narration", "bg": "palace-night", "fx": "fade", "kings": ["jehoiachin"], "exit": ["jehoiakim-k"], "enter": ["jehoiachin"], "face": { "jehoiachin": "right" }, "act": "walk-in", "who": "jehoiachin", "text": "여호야김이 그 열조와 함께 잤다. 그 아들 여호야긴이 열여덟 살에 왕이 되어 예루살렘에서 석 달을 다스렸다. 그 모친의 이름은 느후스다. 그 부친의 모든 행위를 본받아 악을 행했다. 석 달은 무엇을 하기에도 짧은 시간이다. 본문은 그래도 적는다." },
+    { "type": "narration", "bg": "jd-siege", "fx": ["fade", "shake"], "enter": ["nebuchadnezzar"], "face": { "nebuchadnezzar": "left" }, "acts": [{ "act": "crowd" }, { "act": "walk-in", "who": "nebuchadnezzar" }, { "act": "step-back", "who": "jehoiachin" }], "text": "그 때에 바벨론 왕 느부갓네살의 신복들이 예루살렘에 올라와서 그 성을 에워쌌다. 에워쌀 때에, 바벨론 왕도 그 성에 이르렀다." },
+    { "type": "narration", "enter": ["nehushta"], "face": { "nehushta": "right" }, "acts": [{ "act": "walk-in", "who": "nehushta" }, { "act": "approach", "who": "jehoiachin", "to": "nebuchadnezzar" }], "text": "유다 왕 여호야긴이 성 밖으로 나갔다. 그 모친과 신복과 방백들과 내시들과 함께. 성문을 여는 데에는, 석 달이면 충분했다." },
+    { "type": "scripture", "ref": "왕하 24:12", "acts": [{ "act": "prostrate", "who": "jehoiachin" }, { "act": "bow-head", "who": "nehushta" }], "gloss": "여호야긴이 엄마, 신하들, 대신들, 내시들까지 다 데리고 바벨론 왕에게 나가 항복함. 바벨론 왕이 그를 붙잡음. 느부갓네살 즉위 팔 년째의 일." },
+    { "type": "narration", "act": "bless", "who": "nebuchadnezzar", "text": "열여덟 살 왕은 싸우지 않았다. 걸어 나갔다. 그것이 비겁이었는지 지혜였는지, 본문은 판단하지 않는다. 다만 그는 살아서 나갔고, 이 책의 마지막 장에 다시 나온다." },
+    { "type": "narration", "bg": "tp-court-dusk", "fx": ["fade", "shake"], "sound": "쨍—", "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "text": "느부갓네살이 여호와의 전의 모든 보물과 왕궁 보물을 집어냈다. 이스라엘 왕 솔로몬이 만든 여호와의 전의 금 기명을 다 훼파했다. 여호와의 말씀과 같이 되었더라. 히스기야가 바벨론 사자들에게 하나도 빼놓지 않고 보여 주었던, 그 곳간이었다." },
+    { "type": "narration", "bg": "jd-exile-road", "fx": "fade", "acts": [{ "act": "travel", "from": "jerusalem", "via": ["damascus"], "to": "babylon" }, { "act": "crowd" }], "text": "그리고 사람을 데려갔다." },
+    { "type": "scripture", "ref": "왕하 24:14", "act": "bow-head", "who": "jehoiachin", "gloss": "예루살렘의 백성, 대신들, 용사들까지 합쳐 만 명에, 기술자와 대장장이까지 싹 다 끌고 감. 그 땅에 남은 건 가난한 사람들뿐." },
+    { "type": "narration", "exit": ["jehoiachin", "nehushta"], "acts": [{ "act": "leave", "who": "jehoiachin" }, { "act": "leave", "who": "nehushta" }, { "act": "crowd-away" }], "text": "여호야긴이 바벨론으로 사로잡혀 갔다. 왕의 모친과 왕의 아내들과 내시와 나라에 권세 있는 자들도. 용사 칠천. 공장과 대장장이 일천. 숫자를 세는 것은, 남은 사람들의 몫이었다." },
+    { "type": "narration", "act": "turn", "who": "nebuchadnezzar", "text": "대장장이까지 데려간 까닭을 본문은 적지 않는다. 짐작은 어렵지 않다. 칼을 벼릴 사람이 없는 성은, 다시 칼을 들기 어렵다. 이긴 나라는 대개 그 정도 셈은 한다." },
+    { "type": "narration", "bg": "palace-dusk", "fx": "fade", "enter": ["zedekiah"], "face": { "zedekiah": "right" }, "names": { "zedekiah": "맛다니야" }, "acts": [{ "act": "walk-in", "who": "zedekiah" }, { "act": "kneel", "who": "zedekiah" }], "text": "바벨론 왕이 여호야긴의 아자비 맛다니야를 불렀다. 요시야의 아들이었다." },
+    { "type": "narration", "kings": ["zedekiah"], "names": { "zedekiah": "시드기야" }, "acts": [{ "act": "bless", "who": "nebuchadnezzar" }, { "act": "look-up", "who": "zedekiah" }], "text": "그리고 그를 대신하여 왕을 삼고, 그 이름을 고쳐 시드기야라 했다. ‘여호와의 의’라는 뜻이다. 그 이름을 바벨론 왕이 붙여 주었다. 바로가 엘리아김을 여호야김으로 바꿨던 것처럼. 이름을 고쳐 주는 쪽이 주인이다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "zedekiah" }, { "act": "walk-out", "who": "nebuchadnezzar" }], "exit": ["nebuchadnezzar"], "text": "시드기야가 스물한 살에 왕이 되어 예루살렘에서 십일 년을 다스렸다. 그 모친은 립나 예레먀의 딸 하무달. 여호야김의 모든 행위를 본받아 여호와 보시기에 악을 행했다." },
+    { "type": "scripture", "ref": "왕하 24:20", "fx": "thunder", "act": "turn", "who": "zedekiah", "gloss": "하나님의 진노가 예루살렘과 유다를 결국 그 앞에서 쫓아내실 때까지 이르렀음. 그리고 시드기야가 바벨론 왕을 배반함." },
+    { "type": "narration", "act": "bow-head", "who": "zedekiah", "text": "이 장의 마지막 줄이다. 시드기야가 바벨론 왕을 배반하니라. 다음 장은, 그 한 줄의 값이다." }
+  ],
+  "insight": "이번 화는 바벨론에 끌려가는 ‘1차 포로’ 이야기. 큰 그림부터: 앗수르가 지고(니느웨 함락 주전 612년), 바벨론이 새 최강국이 됨. 24:7에 나오는 ‘이집트 왕이 다시 못 나왔다’는 건 주전 605년 갈그미스 전투에서 바벨론이 이집트를 박살 낸 결과로 보는 게 일반적임. 요시야를 므깃도에서 죽인 바로 느고가 그 이집트 왕.\n\n유다가 바벨론에 끌려간 건 한 번이 아니라 크게 세 번임.\n1차 (주전 605년쯤, 여호야김 때) — 다니엘과 친구들이 이때 끌려간 걸로 봄(단 1:1-6).\n2차 (주전 597년, 이번 화) — 여호야긴 왕, 왕족, 귀족, 군인, 기술자 만 명. 에스겔 선지자도 이때 끌려감(겔 1:2).\n3차 (주전 586년, 다음 화) — 예루살렘과 성전이 불탐.\n에스겔·다니엘 이야기는 나중에 에스겔서·다니엘서에서 자세히. 그리고 이 시기 예루살렘에 남아서 ‘바벨론한테 항복하는 게 사는 길’이라고 외치다 매국노 소리 들은 선지자가 예레미야임. 예레미야 이야기는 나중에 예레미야서에서 자세히.\n\n24:3-4가 이 장의 핵심. 바벨론이 쳐들어온 이유를 본문은 국제 정세가 아니라 ‘므낫세의 죄, 특히 무죄한 자의 피’라고 말함. 요시야가 그렇게 개혁했는데도. ‘아들이 아빠 죄 때문에 벌받냐’는 질문이 당연히 나오는데, 에스겔 18장은 ‘각 사람은 자기 죄로 죽는다’고 함. 해석은 여러 갈래임. 므낫세 이후 백성 전체가 그 길에서 실제로 돌이키지 않았다(요시야 개혁이 겉으로만 끝났다)는 관점, 공동체가 쌓은 죄가 한 세대에서 터진다는 관점 등. 열왕기는 ‘하나님이 갑자기 화내신 게 아니라 수십 년 경고하셨다’는 쪽에 무게를 둠.\n\n바벨론 쪽 기록도 남아 있음. ‘바벨론 연대기’라는 점토판에 느부갓네살이 ‘유다의 성을 치고 왕을 잡고, 자기 마음에 드는 왕을 세웠다’고 적혀 있음. 딱 이 장 내용. 날짜까지 나와서 주전 597년 3월쯤으로 계산함.\n\n기술자·대장장이까지 데려간 건 무기 못 만들게 하려는 것 + 바벨론 건설에 쓰려는 것, 두 가지로 보는 게 일반적. 그리고 바벨론 왕이 시드기야 이름을 직접 바꿔 줌. 이집트 왕이 엘리아김을 여호야김으로 바꾼 것(23:34)처럼, 이름을 바꿔 주는 건 ‘이제 넌 내 거’라는 뜻. 군대로 치면 전입 오자마자 관물대 이름표 새로 붙여 주는 거.\n\n여호야긴은 석 달 왕 하고 끌려갔는데, 열왕기 맨 마지막 장면의 주인공이 됨. 근데 이게 왜 중요하냐면, 다들 끝났다고 생각한 그 사람한테서 이야기가 다시 이어지거든. 그건 다음 화 마지막에.",
+  "tldr": "바벨론 왕 느부갓네살이 올라와 유다를 압박함. 여호야김을 거쳐 여호야긴이 석 달 만에 항복하고, 왕족·귀족·군인·기술자 만 명과 성전 보물이 바벨론으로 끌려감. 바벨론 왕은 여호야긴의 삼촌을 시드기야라 이름 붙여 왕으로 세웠는데, 시드기야도 결국 바벨론을 배반함.",
+  "bridge": "바벨론 왕은, 배반을 잊는 왕이 아니었다.",
+  "unlocks": { "characters": ["jehoiachin", "nebuchadnezzar"] }
+}

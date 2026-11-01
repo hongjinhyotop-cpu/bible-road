@@ -1,0 +1,42 @@
+{
+  "id": "kgs2-21",
+  "act": 9,
+  "grade": "B",
+  "title": "쉰다섯 해",
+  "ref": "왕하 21",
+  "bg": "tp-court",
+  "extras": {
+    "prophet": { "name": "선지자", "base": "old-man", "hair": "hood", "beard": "long", "props": ["staff"], "tint": "brown" },
+    "amon": { "name": "아몬", "base": "king", "hair": "crown", "beard": "none", "tint": "red" },
+    "conspirator": { "name": "아몬의 신복", "base": "soldier", "hair": "helmet", "beard": "short", "props": ["sword"], "tint": "gray" },
+    "young-josiah": { "name": "요시야", "base": "child", "hair": "short", "tint": "white" }
+  },
+  "beats": [
+    { "type": "narration", "kings": ["manasseh"], "enter": ["manasseh-king"], "face": { "manasseh-king": "left" }, "act": "walk-in", "who": "manasseh-king", "text": "므낫세가 위에 나아갈 때에 나이 열둘이었다. 예루살렘에서 오십오 년을 다스렸다. 유다의 어느 왕보다 길었다. 아버지가 하나님께 울며 받아 낸 열다섯 해 사이에 태어난 아들이었다." },
+    { "type": "narration", "act": "look-up", "who": "manasseh-king", "text": "여호와 보시기에 악을 행하여, 여호와께서 이스라엘 자손 앞에서 쫓아내신 이방 사람의 가증한 일을 본받았다. 아버지는 그 조상 다윗을 본받았다. 아들은 다른 것을 본받기로 했다." },
+    { "type": "narration", "bg": "es-high-places", "fx": "fade", "acts": [{ "act": "turn", "who": "manasseh-king" }, { "act": "crowd" }], "text": "그리고 그는 아버지가 헐어 버린 것을, 하나씩 다시 세웠다." },
+    { "type": "scripture", "ref": "왕하 21:3", "acts": [{ "act": "bless", "who": "manasseh-king" }, { "act": "crowd-bow" }], "gloss": "아빠 히스기야가 부순 산당을 다시 세우고, 북쪽 아합처럼 바알 제단 쌓고 아세라 목상 만들고 해·달·별까지 섬김. 아빠가 한 개혁을 정확히 거꾸로 롤백함." },
+    { "type": "narration", "bg": "tp-court-night", "fx": ["fade", "stars"], "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "manasseh-king" }], "text": "여호와께서 ‘내 이름을 예루살렘에 두리라’ 하신 그 전에, 그는 단들을 쌓았다. 여호와의 전 두 마당에, 하늘의 일월 성신을 위한 단들을. 성전 뜰에서 사람들이 고개를 들었다. 성전이 아니라 별을 보려고." },
+    { "type": "narration", "fx": "dark", "act": "bow-head", "who": "manasseh-king", "text": "또 그 아들을 불 가운데로 지나게 했다. 점치며, 사술을 행하며, 신접한 자와 박수를 신임했다. 본문은 목록을 나열할 뿐 하나도 설명하지 않는다. 설명할 필요가 없는 목록도 있다." },
+    { "type": "narration", "fx": "fire", "acts": [{ "act": "bless", "who": "manasseh-king" }, { "act": "crowd" }, { "act": "crowd-bow" }], "text": "그리고 자기가 만든 아로새긴 아세라 목상을, 그 전에 세웠다." },
+    { "type": "narration", "act": "turn", "who": "manasseh-king", "text": "그 전에 대하여 옛적에 하신 말씀이 있었다. 내가 이 전과 예루살렘에 내 이름을 영원히 둘지라. 만일 이스라엘이 나의 모든 명령과 율법을 지켜 행하면, 다시는 그 땅에서 떠나 유리하지 않게 하리라. ‘만일’이 붙은 약속이었다." },
+    { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "text": "이 백성이 듣지 아니하였다. 므낫세의 꾀임을 받고 악을 행한 것이, 여호와께서 이스라엘 자손 앞에서 멸하신 열방보다 더욱 심하였다. 가나안 사람들이 이 땅을 비워 주어야 했던 바로 그 이유를, 이제 그 땅을 받은 사람들이 더 잘하고 있었다." },
+    { "type": "narration", "bg": "tp-court-dusk", "fx": "fade", "enter": ["prophet"], "face": { "prophet": "right" }, "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "prophet" }, { "act": "approach", "who": "prophet", "to": "manasseh-king" }], "text": "여호와께서 그 종 모든 선지자들로 말씀하셨다." },
+    { "type": "line", "who": "prophet", "fx": "thunder", "act": "bless", "text": "“유다 왕 므낫세가 이 가증한 일과 악을 행함이 그 전에 있던 아모리 사람의 행위보다 더욱 심하였고 … 내가 이제 예루살렘과 유다에 재앙을 내리리니, 듣는 자마다 두 귀가 울리리라.”" },
+    { "type": "scripture", "ref": "왕하 21:13", "act": "step-back", "who": "manasseh-king", "gloss": "사마리아를 쟀던 줄과 아합의 집을 달아 보았던 추를 예루살렘에도 대겠다. 사람이 그릇을 씻어 엎어 놓듯이, 내가 예루살렘을 씻어 엎겠다." },
+    { "type": "narration", "exit": ["prophet"], "acts": [{ "act": "walk-out", "who": "prophet" }, { "act": "turn", "who": "manasseh-king" }], "text": "줄과 추. 집 짓는 사람이 벽이 곧은지 재는 도구다. 사마리아는 이미 재어졌다. 그리고 무너졌다. 이제 같은 줄이, 예루살렘 벽에 드리워졌다." },
+    { "type": "scripture", "ref": "왕하 21:16", "fx": "dark", "pose": { "manasseh-king": "neutral" }, "act": "look-up", "who": "manasseh-king", "gloss": "므낫세는 유다를 죄짓게 한 것 말고도, 죄 없는 사람들의 피를 엄청나게 흘려서 예루살렘 이 끝에서 저 끝까지 채웠음." },
+    { "type": "narration", "bg": "ruins-dusk", "fx": "fade", "text": "쉰다섯 해였다." },
+    { "type": "narration", "act": "leave", "who": "manasseh-king", "exit": ["manasseh-king"], "text": "므낫세가 그 열조와 함께 잤다. 그 궁궐 동산, 곧 웃사의 동산에 장사되었다. 본문은 그가 무엇을 지었고 무엇을 범했는지 유다 왕 역대지략에 기록되었다고만 한다. 무엇을 남겼는지는, 다음 몇 장이 말해 준다." },
+    { "type": "narration", "bg": "palace-dusk", "fx": "fade", "kings": ["amon"], "enter": ["amon"], "face": { "amon": "left" }, "act": "walk-in", "who": "amon", "text": "그 아들 아몬이 스물두 살에 왕이 되어 예루살렘에서 이 년을 다스렸다. 그 부친의 행한 모든 길로 행하여, 그 부친이 섬기던 우상을 섬기고, 그 열조의 하나님 여호와를 버렸다. 아버지가 쉰다섯 해 동안 한 일을, 아들은 두 해 동안 그대로 따라 했다." },
+    { "type": "narration", "enter": ["conspirator"], "face": { "conspirator": "right" }, "acts": [{ "act": "walk-in", "who": "conspirator" }, { "act": "approach", "who": "conspirator", "to": "amon" }], "text": "그 신복들이 반역했다." },
+    { "fx": "blackout", "sound": "쿵.", "exit": ["amon", "conspirator"] },
+    { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "text": "신복들이 왕을 궁중에서 죽였다. 그 국민이 아몬 왕을 반역한 사람들을 다 죽였다. 칼은 칼을 불렀다. 그리고 백성은 왕좌에 누군가를 앉혀야 했다." },
+    { "type": "narration", "enter": ["young-josiah"], "face": { "young-josiah": "left" }, "acts": [{ "act": "walk-in", "who": "young-josiah" }, { "act": "crowd-cheer" }, { "act": "look-up", "who": "young-josiah" }], "text": "그들이 아몬의 아들 요시야로 대신하여 왕을 삼았다. 여덟 살이었다. 아이는 아직 아무것도 몰랐다. 할아버지가 남긴 것도, 그 성벽에 드리워진 줄과 추도." },
+    { "type": "narration", "fx": "dawn", "act": "bow-head", "who": "young-josiah", "text": "아몬이 웃사의 동산 자기 묘실에 장사되었다. 그 아들 요시야가 대신하여 왕이 되었다. 쉰일곱 해의 밤 끝에, 아이 하나가 서 있었다." }
+  ],
+  "insight": "이번 화 므낫세는 유다 왕 중 재위 1위(55년)이자 평가 최악. 아빠 히스기야가 ‘전후에 이런 왕 없다’는 칭찬 받은 개혁 왕이었는데, 아들은 그 개혁을 하나하나 정확히 되돌림. 산당 재건, 바알 제단, 아세라, 해·달·별 숭배, 성전 마당에 이방 제단, 아들을 불 가운데로, 점·사술·무당. 그냥 율법이 ‘하지 마’ 한 목록을 체크리스트처럼 다 한 거. 본문은 심지어 ‘하나님이 쫓아내신 가나안 사람들보다 더 악했다’(21:9)고 함. 가나안 사람들이 땅에서 쫓겨난 이유를 이스라엘이 더 세게 반복한 거라, 이건 그냥 경고 신호가 아니라 퇴장 신호임.\n\n근데 이게 왜 중요하냐면, 신앙은 유전이 안 됨. 아빠가 아무리 좋은 왕이어도 아들은 자기가 고름. 반대로 다음 화 요시야는 할아버지 므낫세, 아빠 아몬이 최악인데 혼자 역대급 왕이 됨. 집안 탓도, 집안 덕도 끝까지 안 감.\n\n21:13 ‘줄과 추’ = 건축할 때 벽이 똑바른지 재는 측량 줄과 다림추. 사마리아(북이스라엘)를 잰 그 기준으로 예루살렘도 재겠다는 말. 기준이 남쪽이라고 봐주지 않는다는 거. ‘그릇을 씻어 엎음 같이’는 설거지하고 그릇 엎어 두는 그림. 싹 비운다는 뜻.\n\n21:16 ‘무죄한 자의 피’는 누구 피인지 본문이 자세히 말 안 함. 유대 전승 중에 이사야가 므낫세 때 톱으로 켜져 순교했다는 이야기가 있는데(히 11:37 ‘톱으로 켜는 것’을 여기에 연결하는 해석도 있음), 어디까지나 전승이고 성경 본문엔 없음. 그리고 열왕기는 나중에 유다가 망한 이유를 ‘므낫세의 죄’로 콕 집음(23:26, 24:3-4). 요시야가 그렇게 개혁해도 이 판결은 안 뒤집힘.\n\n근데 반전이 하나 있음. 역대하 33:11-17에는 므낫세가 앗수르에 끌려가서 고난 중에 하나님께 겸손히 기도했고, 하나님이 들으시고 예루살렘으로 돌려보내셨고, 돌아와서 이방 신들을 치웠다는 기록이 있음. 열왕기는 이걸 안 적었고 역대기는 적음. 두 책이 강조점이 다르다고 보는 게 일반적임(열왕기는 ‘왜 나라가 망했나’, 역대기는 ‘돌아오면 받아 주신다’). 그 이야기는 역대기 막에서 자세히.\n\n참고로 예레미야·스바냐는 다음 왕 요시야 때부터 활동함(렘 1:2, 습 1:1). 그건 다음 화에서.",
+  "tldr": "히스기야의 아들 므낫세는 12살에 왕이 되어 55년 동안 아버지의 개혁을 전부 뒤집고, 성전 안에 우상을 세우고 아들을 불 가운데로 지나게 하며 죄 없는 피를 예루살렘에 가득 흘림. 하나님은 사마리아처럼 예루살렘도 심판하시겠다고 선언하심. 아들 아몬은 2년 만에 신하들에게 죽고 여덟 살 요시야가 왕이 됨.",
+  "bridge": "여덟 살 아이가 자라는 동안, 성전 어두운 곳간 어딘가에 두루마리 하나가 잠들어 있었다.",
+  "unlocks": { "characters": ["manasseh-king"] }
+}

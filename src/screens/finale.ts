@@ -3,6 +3,8 @@
 // → 그 막의 핵심 구절 카드(keyVerse) → 이번 막에서 만난 인물 카드가 한 장씩 뒤집히며 놓임
 // → "지도에서 별 켜기" (지도 화면이 그 막의 별을 점등하고 다음 길을 잇는다)
 import gsap from 'gsap';
+import { KINGS } from '../engine/kings';
+import { showKings } from '../fx/kingdoms';
 import type { Params, Screen } from '../engine/router';
 import { go } from '../engine/router';
 import { ACTS } from '../engine/acts';
@@ -119,6 +121,14 @@ export function finaleScreen({ act: actParam }: Params): Screen {
     if (!ref) return showCast();
     const card = await scriptureCard(ref).catch(() => null);
     if (!card || !alive) return;
+    // 9막: 두 왕국의 시간 줄 — 북이 먼저(722), 남이 뒤따라(586) 무너진 흐름을 한눈에 (fx/kingdoms.ts)
+    if (no === 9) {
+      const time = document.createElement('div');
+      time.className = 'kings__time finale__kings';
+      $('.finale__verse').append(time);
+      showKings(time, KINGS.map((k) => k.id), null, { gallery: true }).el.classList.add('kingdoms--static');
+      reveal(time);
+    }
     $('.finale__verse').append(card);
     anim = revealScripture(card);
     reveal(card);

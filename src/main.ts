@@ -40,6 +40,7 @@ import './styles/brazen.css';
 import './styles/deuteronomy.css';
 import './styles/joshua.css';
 import './styles/cycle.css';
+import './styles/kingdoms.css';
 import './styles/judges.css';
 import './styles/samuel.css';
 import './styles/gilboa.css';
@@ -49,8 +50,11 @@ import './styles/kingship.css';
 import './styles/solomon.css';
 import './styles/absalom.css';
 import './styles/temple.css';
+import './styles/elisha.css';
+import './styles/judah.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';
+import './styles/elijah.css';
 import './styles/egypt-court.css';
 
 import { applySettings, settings } from './engine/settings';
@@ -61,6 +65,7 @@ import { mapScreen } from './screens/map';
 import { sceneScreen } from './screens/scene';
 import { finaleScreen } from './screens/finale';
 import { peopleScreen } from './screens/people';
+import { kingsScreen } from './screens/kings';
 import { itemsScreen } from './screens/items';
 import { closeSheet } from './ui/sheet';
 
@@ -81,6 +86,7 @@ route('/scene/:id', sceneScreen);
 route('/finale/:act', finaleScreen);
 route('/people', peopleScreen);
 route('/people/:id', peopleScreen);
+route('/kings', kingsScreen);
 // 숨은 확인용: 성막 기구 라이브러리 미리 보기 (지도에 연결 안 함)
 route('/items', itemsScreen);
 route('/items/:id', itemsScreen);

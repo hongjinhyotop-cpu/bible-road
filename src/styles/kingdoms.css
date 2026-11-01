@@ -1,0 +1,198 @@
+/* ── 9막 두 왕국 판 (beat "kings", fx/kingdoms.ts) ──
+   왼쪽 북이스라엘(찬 청회색) | 금 간 틈 | 오른쪽 남유다(따뜻한 금빛). 왕 카드가 위에서 내려와 쌓이고, 평가가 도장처럼 찍힘.
+   아래 시간 줄: 두 나라 왕들이 같은 시간 축 위의 점. 북쪽 줄은 722에서 끊김.
+   크게(is-big) = 무대를 덮는 판, 작게 = 왼쪽 위 작은 표 */
+.kingdoms, .kings {
+  --north: #9fb3c8;
+  --south: #e6c27a;
+  --evil: #c0573f;
+  --right: #f0cf86;
+}
+.kingdoms {
+  position: absolute; inset: 0; z-index: 6; pointer-events: none;
+}
+.kingdoms::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 45%, rgba(5, 5, 8, 0.95), rgba(5, 5, 8, 0.86) 70%, rgba(5, 5, 8, 0.6));
+  opacity: 0; transition: opacity 0.9s var(--ease-out);
+}
+.kingdoms.is-big::before { opacity: 1; }
+
+/* 판 */
+.kd__board {
+  position: absolute; left: 4%; right: 4%; top: 5%; bottom: 24%;
+  display: grid; grid-template-columns: 1fr 14px 1fr; align-items: stretch;
+  opacity: 0; translate: 0 14px; transition: opacity 0.8s var(--ease-out), translate 0.9s var(--ease-out);
+}
+.kingdoms.is-big .kd__board { opacity: 1; translate: 0 0; }
+.kd__col { position: relative; display: flex; flex-direction: column; align-items: center; min-width: 0; }
+.kd__col[data-k='israel'] { --c: var(--north); }
+.kd__col[data-k='judah'] { --c: var(--south); }
+.kd__head { text-align: center; margin-bottom: 4px; }
+.kd__head b { display: block; font-family: var(--story-font); font-weight: 600; font-size: clamp(15px, 4.2vw, 21px); letter-spacing: 0.14em; color: var(--c); }
+.kd__head small { font-family: var(--ui-font); font-size: 11px; letter-spacing: 0.1em; color: color-mix(in srgb, var(--c) 60%, var(--ivory)); opacity: 0.7; }
+.kd__rift {
+  justify-self: center; width: 2px; height: 100%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--ivory) 40%, transparent) 12%, color-mix(in srgb, var(--ivory) 25%, transparent) 88%, transparent);
+  clip-path: polygon(0 0, 100% 0, 100% 20%, 0 23%, 100% 41%, 0 58%, 100% 62%, 0 80%, 100% 100%, 0 100%);
+  opacity: 0.8;
+}
+
+/* 카드 더미 */
+.kd__stack { position: relative; flex: 1; width: 100%; max-width: 230px; }
+.kd-card {
+  --d: 0;
+  position: absolute; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 12px 10px 10px; border-radius: 6px;
+  background: linear-gradient(170deg, color-mix(in srgb, var(--c) 14%, #16131a), color-mix(in srgb, var(--c) 6%, #0b0a0d));
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.55);
+  translate: 0 calc(var(--d) * -21px); scale: calc(1 - var(--d) * 0.04);
+  opacity: calc(1 - var(--d) * 0.17);
+  transform-origin: 50% 0;
+  transition: translate 0.7s var(--ease-out), scale 0.7s var(--ease-out), opacity 0.7s, filter 1.4s, border-color 1.4s;
+}
+.kd-card:not(.is-top) > :not(.kd-card__name):not(.kd-card__no) { visibility: hidden; }
+.kd-card:not(.is-top) { filter: brightness(0.75); }
+.kd-card:not(.is-top) .kd-card__name { font-size: 13px; translate: 0 -8px; }
+.kd-card:not(.is-top) .kd-card__no { translate: 0 -5px; }
+.kd-card.is-gone { opacity: 0; }
+.kd-card.is-new { animation: kd-drop 0.9s var(--ease-out) both; }
+@keyframes kd-drop { from { translate: 0 -46px; opacity: 0; } }
+.kd-card__no { position: absolute; left: 9px; top: 7px; font-family: 'Cormorant Garamond', serif; font-size: 13px; color: var(--c); opacity: 0.7; }
+.kd-card__name { font-family: var(--story-font); font-weight: 600; font-size: clamp(17px, 4.8vw, 22px); letter-spacing: 0.08em; color: var(--ivory); }
+.kd-card__meta { font-family: var(--ui-font); font-size: 11.5px; color: color-mix(in srgb, var(--c) 55%, var(--ivory)); opacity: 0.85; }
+.kd-card__stamp {
+  display: inline-flex; align-items: center; gap: 5px; margin-top: 4px; padding: 2px 9px 2px 6px; border-radius: 99px;
+  font-family: var(--ui-font); font-size: 11.5px; font-weight: 600; letter-spacing: 0.05em;
+  color: var(--stamp); border: 1px solid color-mix(in srgb, var(--stamp) 60%, transparent);
+  background: color-mix(in srgb, var(--stamp) 12%, transparent);
+}
+.kd-card[data-v='evil'] { --stamp: var(--evil); }
+.kd-card[data-v='right'] { --stamp: var(--right); }
+.kd-card[data-v='mixed'] { --stamp: #d39a6a; }
+.kd-card[data-v='none'] { --stamp: #9a978f; }
+.kd-card__seal { width: 8px; height: 8px; border-radius: 50%; background: var(--stamp); box-shadow: 0 0 6px var(--stamp); }
+.kd-card[data-v='mixed'] .kd-card__seal { background: linear-gradient(90deg, var(--right) 50%, var(--evil) 50%); }
+.kd-card[data-v='none'] .kd-card__seal { background: transparent; border: 1px solid var(--stamp); box-shadow: none; }
+.kd-card.is-new .kd-card__stamp { animation: kd-stamp 0.5s cubic-bezier(0.3, 1.6, 0.6, 1) 0.75s both; }
+@keyframes kd-stamp { from { scale: 1.8; opacity: 0; } }
+.kd-card__quote {
+  font-family: var(--story-font); font-size: 12px; line-height: 1.5; text-align: center; color: var(--ivory); opacity: 0.82;
+  quotes: '“' '”'; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.kd-card__ref { font-family: var(--ui-font); font-size: 10.5px; color: var(--c); opacity: 0.7; }
+.kd-card.is-new .kd-card__quote, .kd-card.is-new .kd-card__ref { animation: kd-fadein 0.6s var(--ease-out) 1.05s both; }
+@keyframes kd-fadein { from { opacity: 0; } }
+
+/* 무너짐 */
+.kd__end {
+  position: absolute; left: 50%; top: 46%; translate: -50% -50%; z-index: 3; margin: 0; text-align: center; white-space: nowrap;
+  opacity: 0; pointer-events: none;
+}
+.kd__end b { display: block; font-family: var(--story-font); font-size: clamp(20px, 6vw, 28px); letter-spacing: 0.4em; color: #e9e2d4; text-shadow: 0 0 14px rgba(0, 0, 0, 0.9); }
+.kd__end span { font-family: var(--ui-font); font-size: 12px; color: #c9c2b4; opacity: 0.85; }
+.kingdoms.fell-israel .kd__col[data-k='israel'],
+.kingdoms.fell-judah .kd__col[data-k='judah'] { --c: #77736d; }
+.kingdoms.fell-israel .kd__col[data-k='israel'] .kd-card,
+.kingdoms.fell-judah .kd__col[data-k='judah'] .kd-card { filter: grayscale(1) brightness(0.55); }
+.kingdoms.fell-israel:not(.was-fallen) .kd__col[data-k='israel'] .kd__stack,
+.kingdoms.fell-judah:not(.was-fallen) .kd__col[data-k='judah'] .kd__stack { animation: kd-sink 3.2s cubic-bezier(0.5, 0, 0.3, 1) 0.4s both; }
+@keyframes kd-sink { 0% { translate: 0 0; rotate: 0deg; } 30% { rotate: -1.2deg; } 100% { translate: 0 18px; rotate: 2.5deg; opacity: 0.55; } }
+.kingdoms.was-fallen .kd__col[data-k='israel'] .kd__stack { translate: 0 18px; rotate: 2.5deg; opacity: 0.55; }
+.kingdoms.fell-israel .kd__col[data-k='israel'] .kd__end,
+.kingdoms.fell-judah .kd__col[data-k='judah'] .kd__end { animation: kd-fadein 1.4s var(--ease-out) 1.6s both; opacity: 1; }
+.kingdoms.was-fallen .kd__col[data-k='israel'] .kd__end { animation: none; opacity: 0.7; }
+/* 무너질 때 재가 흩날림 */
+.kingdoms.fell-israel:not(.was-fallen) .kd__col[data-k='israel']::after,
+.kingdoms.fell-judah .kd__col[data-k='judah']::after {
+  content: ''; position: absolute; inset: 10% 0 0; pointer-events: none;
+  background: radial-gradient(1.5px 1.5px at 20% 30%, #bbb 50%, transparent), radial-gradient(1px 1px at 60% 50%, #ccc 50%, transparent),
+    radial-gradient(1.5px 1.5px at 80% 20%, #aaa 50%, transparent), radial-gradient(1px 1px at 35% 70%, #ddd 50%, transparent),
+    radial-gradient(2px 2px at 70% 80%, #999 50%, transparent), radial-gradient(1px 1px at 45% 15%, #bbb 50%, transparent);
+  animation: kd-ash 5s linear 0.8s both;
+}
+.kingdoms.fell-judah .kd__col[data-k='judah']::after { background-color: transparent; filter: sepia(1) saturate(4) hue-rotate(-20deg); }
+@keyframes kd-ash { from { translate: 0 -20px; opacity: 0; } 20% { opacity: 0.9; } to { translate: 6px 60px; opacity: 0; } }
+
+/* 시간 줄 */
+.kd__time {
+  position: absolute; left: 6%; right: 6%; bottom: 5%; height: 15%; width: 88%;
+  opacity: 0; transition: opacity 0.9s var(--ease-out) 0.2s; overflow: visible;
+}
+.kingdoms.is-big .kd__time { opacity: 1; }
+.kd-row[data-k='israel'] { --c: var(--north); }
+.kd-row[data-k='judah'] { --c: var(--south); }
+.kd-row__ghost { stroke: var(--c); stroke-width: 0.25; stroke-dasharray: 0.8 0.8; opacity: 0.35; }
+.kd-row__run { stroke: var(--c); stroke-width: 0.5; opacity: 0.85; transition: x2 1.4s var(--ease-out); }
+.kd-pip { fill: #0b0a0d; stroke: var(--c); stroke-width: 0.3; opacity: 0.35; transition: opacity 0.6s, fill 0.6s; }
+.kd-pip.is-on { opacity: 1; }
+.kd-pip.is-on[data-v='evil'] { fill: var(--evil); }
+.kd-pip.is-on[data-v='right'] { fill: var(--right); }
+.kd-pip.is-on[data-v='mixed'] { fill: #d39a6a; }
+.kd-pip.is-now { r: 1.8; filter: drop-shadow(0 0 1px var(--c)); }
+.kd-row__end path { stroke: var(--c); stroke-width: 0.4; opacity: 0.45; }
+.kd-row__end text, .kd__era { font-family: var(--ui-font); font-size: 2.3px; fill: var(--c); opacity: 0.55; }
+.kd__era { fill: var(--ivory); opacity: 0.4; }
+.kingdoms.fell-israel .kd-row[data-k='israel'] .kd-row__end path,
+.kingdoms.fell-judah .kd-row[data-k='judah'] .kd-row__end path { stroke: #e9e2d4; opacity: 1; stroke-width: 0.6; }
+.kingdoms.fell-israel .kd-row[data-k='israel'] .kd-row__end text,
+.kingdoms.fell-judah .kd-row[data-k='judah'] .kd-row__end text { opacity: 1; fill: #e9e2d4; }
+.kd-row__name { font-family: var(--story-font); font-size: 2.8px; fill: var(--c); }
+
+/* 작은 표 (판을 접었을 때) */
+.kd__mini {
+  position: absolute; right: 12px; top: 10px; padding: 6px 10px 6px 8px; border-radius: 6px;
+  background: rgba(6, 6, 9, 0.55); border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: var(--ui-font); font-size: 11px; line-height: 1.55; color: var(--ivory);
+  opacity: 0; transition: opacity 0.8s var(--ease-out) 0.3s;
+}
+.kingdoms:not(.is-big) .kd__mini { opacity: 0.78; }
+.kd__mini p { margin: 0; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.kd__mini-k { opacity: 0.6; }
+.kd__mini p[data-k='israel'] .kd__mini-k { color: var(--north); }
+.kd__mini p[data-k='judah'] .kd__mini-k { color: var(--south); }
+.kd__dot { width: 6px; height: 6px; border-radius: 50%; background: #666; }
+.kd__mini p[data-v='evil'] .kd__dot { background: var(--evil); }
+.kd__mini p[data-v='right'] .kd__dot { background: var(--right); }
+.kd__mini p[data-v='mixed'] .kd__dot { background: linear-gradient(90deg, var(--right) 50%, var(--evil) 50%); }
+.kingdoms.fell-israel .kd__mini p[data-k='israel'] { opacity: 0.45; text-decoration: line-through; }
+.kingdoms.fell-judah .kd__mini p[data-k='judah'] { opacity: 0.45; text-decoration: line-through; }
+
+@media (min-width: 768px) {
+  .kd__board { left: 14%; right: 14%; grid-template-columns: 1fr 40px 1fr; }
+  .kd__time { left: 18%; right: 18%; width: 64%; }
+}
+.kingdoms.is-rm *, .kingdoms.is-rm *::after { animation-duration: 0.01s !important; animation-delay: 0s !important; transition-duration: 0.2s !important; }
+.kingdoms.was-fallen.fell-judah .kd__col[data-k='judah'] .kd__stack { translate: 0 18px; rotate: 2.5deg; opacity: 0.55; animation: none; }
+.kingdoms.was-fallen.fell-judah .kd__col[data-k='judah']::after { display: none; }
+
+/* ── 왕 카드 모음 화면 (#/kings, screens/kings.ts) ── */
+.kings { background: radial-gradient(120% 70% at 50% 0%, #1d1820 0%, #0c0a10 60%, var(--void) 100%); }
+.kings__body { width: min(100%, 880px); margin: 0 auto; display: flex; flex-direction: column; gap: 22px; }
+.kings__lead { margin: 0; font-size: 0.92rem; line-height: 1.7; }
+.kv-evil { color: #d9785f; font-weight: 600; }
+.kv-right { color: #f0cf86; font-weight: 600; }
+.kings__time { position: relative; height: 92px; }
+.kingdoms--static { position: absolute; inset: 0; }
+.kingdoms--static::before, .kingdoms--static .kd__board, .kingdoms--static .kd__mini { display: none; }
+.kingdoms--static .kd__time { opacity: 1; left: 4%; right: 4%; width: 92%; bottom: 0; height: 100%; }
+.kings__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.kings__col[data-k='israel'] { --c: #9fb3c8; }
+.kings__col[data-k='judah'] { --c: #e6c27a; }
+.kings__col h2 { margin: 0 0 10px; text-align: center; font-size: 1rem; letter-spacing: 0.16em; color: var(--c); font-weight: 600; }
+.kings__col h2 small { display: block; font-family: var(--ui-font); font-size: 0.68rem; letter-spacing: 0.02em; opacity: 0.65; font-weight: 400; margin-top: 2px; }
+.kings__list { display: flex; flex-direction: column; gap: 10px; }
+.kings__list .kd-card { position: relative; inset: auto; translate: none; scale: none; opacity: 1; --d: 0; }
+.kd-card.is-locked { opacity: 0.4 !important; border-style: dashed; }
+.kd-card__note { font-size: 0.74rem; line-height: 1.55; text-align: center; margin-top: 4px; opacity: 0.9; }
+.kings__twins { padding: 14px 16px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.08); background: rgba(255, 255, 255, 0.025); }
+.kings__twins h2 { margin: 0 0 8px; font-size: 0.95rem; letter-spacing: 0.12em; color: var(--gold); }
+.kings__twins ul { margin: 0; padding-left: 1.1em; font-family: var(--ui-font); font-size: 0.8rem; line-height: 1.9; color: var(--ivory); opacity: 0.88; }
+.kings__twins li span { opacity: 0.5; margin: 0 4px; }
+@media (max-width: 420px) {
+  .kings__list .kd-card { padding-inline: 6px; }
+  .kings__list .kd-card__quote { font-size: 11px; }
+}
+.finale__kings { width: min(92vw, 560px); margin: 0 auto 26px; }
