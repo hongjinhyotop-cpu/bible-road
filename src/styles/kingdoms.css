@@ -2,16 +2,18 @@
    왼쪽 북이스라엘(찬 청회색) | 금 간 틈 | 오른쪽 남유다(따뜻한 금빛). 왕 카드가 위에서 내려와 쌓이고, 평가가 도장처럼 찍힘.
    아래 시간 줄: 두 나라 왕들이 같은 시간 축 위의 점. 북쪽 줄은 722에서 끊김.
    크게(is-big) = 무대를 덮는 판, 작게 = 왼쪽 위 작은 표 */
-.kingdoms {
+.kingdoms, .kings {
   --north: #9fb3c8;
   --south: #e6c27a;
   --evil: #c0573f;
   --right: #f0cf86;
+}
+.kingdoms {
   position: absolute; inset: 0; z-index: 6; pointer-events: none;
 }
 .kingdoms::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 90% 80% at 50% 45%, rgba(5, 5, 8, 0.9), rgba(5, 5, 8, 0.72) 70%, rgba(5, 5, 8, 0.4));
+  background: radial-gradient(ellipse 90% 80% at 50% 45%, rgba(5, 5, 8, 0.95), rgba(5, 5, 8, 0.86) 70%, rgba(5, 5, 8, 0.6));
   opacity: 0; transition: opacity 0.9s var(--ease-out);
 }
 .kingdoms.is-big::before { opacity: 1; }
@@ -141,7 +143,7 @@
 
 /* 작은 표 (판을 접었을 때) */
 .kd__mini {
-  position: absolute; left: 12px; top: 10px; padding: 6px 10px 6px 8px; border-radius: 6px;
+  position: absolute; right: 12px; top: 10px; padding: 6px 10px 6px 8px; border-radius: 6px;
   background: rgba(6, 6, 9, 0.55); border: 1px solid rgba(255, 255, 255, 0.08);
   font-family: var(--ui-font); font-size: 11px; line-height: 1.55; color: var(--ivory);
   opacity: 0; transition: opacity 0.8s var(--ease-out) 0.3s;

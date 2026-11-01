@@ -91,6 +91,7 @@ export function showKings(host: HTMLElement, spec: KingsSpec, current?: KingsBoa
   const { add, fall } = parse(spec);
   const adds = add.map((id) => KING_BY_ID[id]).filter(Boolean);
   // 이번 왕들보다 앞선 왕들은 이미 쌓여 있다: 같은 나라는 목록에서 앞선 왕, 다른 나라는 즉위가 더 이른 왕
+  // (연도는 주전 = 숫자가 클수록 옛날. latest = 이번 왕들 중 가장 늦게 즉위한 해)
   const latest = Math.min(...adds.map((k) => k.year), Infinity);
   const have = new Set((box.dataset.have ?? '').split(' ').filter(Boolean));
   const pre: King[] = [];
@@ -99,7 +100,7 @@ export function showKings(host: HTMLElement, spec: KingsSpec, current?: KingsBoa
     const upto = mine.length ? Math.min(...mine.map((k) => LISTS[kd].indexOf(k))) : -1;
     LISTS[kd].forEach((k, i) => {
       if (opts.gallery || have.has(k.id) || adds.includes(k)) return;
-      if (mine.length ? i < upto : k.year < latest) pre.push(k);
+      if (mine.length ? i < upto : adds.length > 0 && k.year > latest) pre.push(k);
     });
   }
   const putCard = (k: King, fresh: boolean) => {
@@ -111,7 +112,7 @@ export function showKings(host: HTMLElement, spec: KingsSpec, current?: KingsBoa
   for (const k of adds) if (!have.has(k.id)) putCard(k, !opts.gallery);
   box.dataset.have = [...have].join(' ');
   // 북이 무너진 뒤의 장면: 722년 뒤의 유다 왕이 있으면 북쪽은 처음부터 꺼져 있다
-  const judahAfter = [...have].some((id) => KING_BY_ID[id]?.kingdom === 'judah' && KING_BY_ID[id].year > REALM.israel.end.year);
+  const judahAfter = [...have].some((id) => KING_BY_ID[id]?.kingdom === 'judah' && KING_BY_ID[id].year < REALM.israel.end.year);
   if (judahAfter && !box.classList.contains('fell-israel')) box.classList.add('fell-israel', 'was-fallen');
   if (opts.gallery && have.has('zedekiah')) box.classList.add('fell-judah', 'was-fallen');
   if (fall) {
