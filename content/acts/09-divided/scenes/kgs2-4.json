@@ -20,7 +20,7 @@
     {"type": "line", "who": "widow", "act": "kneel", "text": "“이제 채주가 이르러 나의 두 아이를 취하여 그 종을 삼고자 하나이다.”"},
     {"type": "line", "who": "elisha", "act": "approach", "to": "widow", "text": "“내가 너를 위하여 어떻게 하랴. 네 집에 무엇이 있는지 내게 고하라.”"},
     {"type": "line", "who": "widow", "act": "bow-head", "text": "“계집종의 집에 한 병 기름 외에는 아무것도 없나이다.”"},
-    {"type": "line", "who": "elisha", "act": "bless", "text": "“너는 밖에 나가서 모든 이웃에게 그릇을 빌라. 빈 그릇을 빌되 조금 빌지 말고. 그리고 네 두 아들과 함께 들어가서 문을 닫고, 그 모든 그릇에 기름을 부어서 차는 대로 옮겨 놓으라.”"},
+    {"type": "line", "who": "elisha", "act": "bless", "text": "“너는 밖에 나가서 모든 이웃에게 그릇을 빌라. 빈 그릇을 빌되 조금 빌지 말고, 너는 네 두 아들과 함께 들어가서 문을 닫고, 그 모든 그릇에 기름을 부어서 차는 대로 옮겨 놓으라.”"},
     {"type": "narration", "acts": [{"act": "stand", "who": "widow"}, {"act": "walk-out", "who": "widow"}], "exit": ["widow"], "text": "조금 빌지 말라. 이상한 주문이었다. 가진 것이라고는 기름 한 병뿐인 사람에게, 빈 그릇을 많이 모으라니. 이웃들이 무어라 했는지는 적혀 있지 않다."},
     {"bg": "house-dusk", "fx": "fade", "exit": ["elisha"], "enter": ["widow", "son-a", "son-b"], "face": {"widow": "right", "son-a": "left", "son-b": "left"}},
     {"type": "narration", "acts": [{"act": "approach", "who": "son-a", "to": "widow"}, {"act": "bow-head", "who": "widow"}], "text": "문을 닫았다. 아들들이 그릇을 가져왔다. 어머니가 부었다. 한 그릇이 찼다. 다음 그릇도, 그다음도. 병은 작았고 그릇은 계속 찼다. 그날 이 집에서 모자란 것은 기름이 아니었다."},

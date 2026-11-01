@@ -37,7 +37,7 @@ export function kingsScreen(): Screen {
     </header>
     <div class="people__scroll">
       <div class="kings__body">
-        <p class="kings__lead voice-talk">나라가 둘로 갈라진 뒤 (왕상 12) 왕이 39명이나 나옴. 열왕기는 왕마다 딱 한 줄로 성적표를 매김. <b class="kv-evil">여호와 보시기에 악을 행하여</b> 아니면 <b class="kv-right">정직히 행하여</b>. 북쪽은 정직 판정 받은 왕이 한 명도 없음.</p>
+        <p class="kings__lead voice-talk">나라가 둘로 갈라진 뒤 (왕상 12) 왕이 39명이나 나옴. 열왕기는 왕마다 딱 한 줄로 성적표를 매김. <b class="kv-evil">여호와 보시기에 악을 행하여</b> 아니면 <b class="kv-right">정직히 행하여</b>. 북쪽은 ‘정직히 행하여’ 판정을 온전히 받은 왕이 한 명도 없음 (예후도 ‘정직한 일을 행하되’ 뒤에 ‘그러나’가 붙음).</p>
         <div class="kings__time"></div>
         <div class="kings__cols">
           <section class="kings__col" data-k="israel"><h2>${REALM.israel.name}<small>${ISRAEL.length}명 · ${REALM.israel.end.by}에 무너짐 (${REALM.israel.end.ref})</small></h2><div class="kings__list"></div></section>

@@ -29,7 +29,7 @@
     { "type": "line", "who": "ahijah", "pose": { "ahijah": "slump" }, "act": "bow-head", "text": "“너는 일어나 네 집으로 가라. 네 발이 성에 들어갈 때에 그 아이가 죽을찌라.”" },
     { "type": "scripture", "ref": "왕상 14:13", "gloss": "“온 이스라엘이 그를 위해 슬퍼하며 장사할 것이다. 여로보암의 집안에서 무덤에 제대로 묻히는 사람은 이 아이뿐이다. 여로보암 집안에서 이 아이에게만 이스라엘의 하나님 여호와를 향한 선한 마음이 있었기 때문이다.”" },
     { "type": "narration", "pose": { "jeroboam-wife": "neutral" }, "act": "cry", "who": "jeroboam-wife", "text": "선지자는 아이에 대해 한 가지를 더 말했다. 그 집안에서 오직 이 아이만, 여호와를 향하여 선한 뜻을 품었다고. 어머니가 들은 말 가운데 위로가 그것 하나였다. 그리고 그 위로가 가장 아팠다." },
-    { "type": "narration", "bg": "road-dusk", "fx": "fade", "exit": ["ahijah"], "acts": [{ "act": "stand", "who": "jeroboam-wife" }, { "act": "travel", "from": "shiloh", "to": "tirzah" }], "text": "그 길은 하루가 넘게 걸렸을 것이다. 빨리 걸으면 빨리 닿는다. 닿으면 아이가 죽는다. 천천히 걸어도 아이는 아프다. 어느 쪽으로도 걸을 수 없는 길을, 어머니는 걸었다." },
+    { "type": "narration", "bg": "road-dusk", "fx": "fade", "exit": ["ahijah"], "acts": [{ "act": "stand", "who": "jeroboam-wife" }, { "act": "travel", "from": "shiloh", "to": "tirzah" }], "text": "그 길은 하루쯤 걸렸을 것이다. 빨리 걸으면 빨리 닿는다. 닿으면 아이가 죽는다. 천천히 걸어도 아이는 아프다. 어느 쪽으로도 걸을 수 없는 길을, 어머니는 걸었다." },
     { "bg": "town-dusk", "fx": "fade", "act": "walk-in", "who": "jeroboam-wife" },
     { "type": "narration", "fx": "dark", "sound": "……", "acts": [{ "act": "kneel", "who": "jeroboam-wife" }, { "act": "cry", "who": "jeroboam-wife" }], "text": "여로보암의 아내가 디르사로 돌아가서 집 문지방에 이를 때에, 아이가 죽었다." },
     { "type": "narration", "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }], "text": "온 이스라엘이 그를 장사하고, 그를 위하여 슬퍼했다. 선지자 아히야로 하신 말씀과 같이 되었다. 여로보암이 왕이 된 지 이십이 년. 그도 그 열조와 함께 잤고, 그 아들 나답이 대신하여 왕이 되었다. 무덤에 들어간 아들은 왕이 되지 못했다. 왕이 된 아들은 무덤에 들어가지 못할 것이다." },

@@ -5,7 +5,7 @@
 //  - 아래 시간 줄: 두 나라의 왕들이 같은 시간 축(주전 931 → 586)에 점으로 놓인다. 아직 안 온 왕은 희미한 점.
 //    북쪽 줄은 722에서 끊기고, 남쪽 줄만 586까지 이어진다 → 누가 먼저 무너지는지 한눈에.
 //  - { "fall": "israel" } : 북쪽 카드들이 잿빛으로 식고 금이 가며 가라앉음 + "앗수르 · 왕하 17:6". 이후 북쪽 칸은 꺼진 채 남는다
-//  - 다음 beat에 kings가 없으면 판은 왼쪽 위 작은 표(북 · 남 지금 왕)로 물러나 에피소드 내내 남는다.
+//  - 다음 beat에 kings가 없으면 판은 오른쪽 위 작은 표(북 · 남 지금 왕)로 물러나 에피소드 내내 남는다.
 // 처음 본 왕은 저장 (progress.kings) → 왕 카드 모음 화면 #/kings.
 import { reducedMotion } from '../engine/settings';
 import { ISRAEL, JUDAH, KING_BY_ID, REALM, TIME_FROM, TIME_TO, VERDICT_LABEL, type King, type Kingdom, type KingsSpec } from '../engine/kings';
