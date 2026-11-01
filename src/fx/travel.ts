@@ -188,6 +188,8 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   'aram': at(36.29, 33.51),
   'shunem-9': at(35.33, 32.61),
   'jezreel-9': at(35.33, 32.56),
+  gibbethon: at(34.86, 31.89),
+  'aphek-aram': at(35.67, 32.78),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

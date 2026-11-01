@@ -1,0 +1,274 @@
+/* ── 9막 A급: 유다의 마지막 백 년 (왕하 18–19 · 22–23 · 25) — fx/judah.ts · characters/hezekiah.ts · josiah.ts ──
+   인물: 히스기야(.hz-*), 요시야(.js2-*)
+   배경: jd-* (놋뱀·라기스·윗못 수도·앗수르 진·성전 수리·곳간·기드론·벧엘·므깃도·포위·두 성벽 사이·불타는 성전·불탄 뒤·포로의 길·바벨론 왕궁)
+   효과: letter-spread · camp-silence · scroll-found · burn-idols · temple-fire · pillars-fall · small-lamp */
+
+/* ── 인물 ── */
+.actor .hz-robe, .sil .hz-robe { fill: color-mix(in srgb, color-mix(in srgb, #2f4f86 64%, var(--act-accent)) 34%, var(--sil-ink)); }
+.actor .hz-mantle, .sil .hz-mantle { fill: color-mix(in srgb, color-mix(in srgb, #24365e 70%, var(--act-accent)) 28%, var(--sil-ink)); }
+.actor .hz-gold, .sil .hz-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 50%, var(--sil-ink)); }
+.actor .hz-tassel, .sil .hz-tassel { fill: color-mix(in srgb, #6f8fd0 52%, var(--sil-ink)); }
+.actor .hz-sack, .sil .hz-sack { fill: color-mix(in srgb, #5a4a38 40%, var(--sil-ink)); }
+.actor .hz-stitch, .sil .hz-stitch { fill: none; stroke: color-mix(in srgb, #a08a68 42%, var(--sil-ink)); stroke-width: 0.9; stroke-dasharray: 3 3; }
+.actor .hz-ash, .sil .hz-ash { fill: color-mix(in srgb, #b8b2a8 46%, var(--sil-ink)); }
+.actor .hz-scroll, .sil .hz-scroll { fill: color-mix(in srgb, #ecdcb4 44%, var(--sil-ink)); }
+.actor .js2-robe, .sil .js2-robe { fill: color-mix(in srgb, color-mix(in srgb, #8a6a2a 60%, var(--act-accent)) 34%, var(--sil-ink)); }
+.actor .js2-inner, .sil .js2-inner { fill: color-mix(in srgb, #efe6d2 62%, var(--sil-ink)); }
+.actor .js2-gold, .sil .js2-gold { fill: color-mix(in srgb, color-mix(in srgb, #e9c46a 82%, var(--act-accent)) 54%, var(--sil-ink)); }
+.actor .js2-gem, .sil .js2-gem { fill: color-mix(in srgb, #f6e2a8 80%, var(--act-accent)); opacity: 0.85; }
+.actor .js2-tear, .sil .js2-tear { fill: none; stroke: color-mix(in srgb, #f2e8d0 70%, var(--sil-ink)); stroke-width: 1.6; }
+
+/* ── 배경 공통 ── */
+.jd-courses { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.3; }
+.jd-slit { fill: #05030a; opacity: 0.8; }
+.jd-gate { fill: #07050a; opacity: 0.85; }
+.jd-gate--open { fill: color-mix(in srgb, var(--act-accent) 20%, #07050a); }
+.jd-stone { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 30%, var(--act-b)) 40%, #06050a); }
+.jd-porch { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 34%, var(--act-b)) 48%, #06050a); }
+.jd-gold { fill: color-mix(in srgb, #e2b75c 60%, var(--act-accent)); opacity: 0.8; }
+.jd-door { fill: color-mix(in srgb, #ffd98a 64%, var(--act-accent)); filter: drop-shadow(0 0 5px rgba(255, 214, 140, 0.7)); opacity: 0.85; }
+.jd-door--fire { fill: #ff9a48; filter: drop-shadow(0 0 8px rgba(255, 140, 60, 0.95)); animation: jd-flick 1.6s ease-in-out infinite alternate; }
+.jd-bronze { fill: color-mix(in srgb, color-mix(in srgb, #b8793a 70%, var(--act-accent)) 34%, #0a0608); }
+.jd-lily { fill: color-mix(in srgb, #e2b75c 40%, #0a0608); }
+.jd-templehalo { opacity: 0.6; }
+.jd-temple--fire .jd-templehalo { opacity: 1; animation: jd-flick 2.4s ease-in-out infinite alternate; }
+.jd-flames path, .jd-roofflame { fill: #ff8e3c; mix-blend-mode: screen; filter: drop-shadow(0 0 4px rgba(255, 150, 70, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.1s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.jd-winfire { fill: #ffa050; opacity: 0.85; animation: jd-flick 1.3s ease-in-out infinite alternate; }
+@keyframes jd-flick { from { opacity: 0.7; } to { opacity: 1; } }
+.jd-charred { fill: color-mix(in srgb, #1a1412 80%, var(--act-b)); }
+.jd-charline { fill: none; stroke: #000; stroke-width: 1.2; opacity: 0.5; }
+.jd-hole { fill: #020102; opacity: 0.9; }
+.jd-scaffold { fill: none; stroke: color-mix(in srgb, #8a6a40 40%, var(--act-b)); stroke-width: 1.6; opacity: 0.85; }
+.jd-rope { stroke-width: 0.6; }
+.jd-block { fill: color-mix(in srgb, #cdb994 30%, var(--act-b)); stroke: none; }
+.jd-road, .jd-path { fill: none; stroke: color-mix(in srgb, #d8c49a 40%, var(--act-b)); stroke-width: 3; stroke-linecap: round; opacity: 0.4; }
+.jd-standard path { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); stroke-width: 1.6; }
+.jd-standard circle { fill: color-mix(in srgb, #c88a3a 40%, #05040a); }
+.jd-standard .jd-standard__ribbon { stroke-width: 1; }
+.jd-tent { fill: color-mix(in srgb, var(--act-a) 34%, #05040a); }
+.jd-tentpole { stroke: color-mix(in srgb, var(--act-a) 34%, #05040a); stroke-width: 0.8; }
+.jd-fire { fill: #ffb060; }
+.jd-firecore { filter: drop-shadow(0 0 2px rgba(255, 170, 90, 1)); animation: jd-flick 1.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.jd-firehalo { fill: url(#bd-flame-g); opacity: 0.9; animation: jd-flick 2.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.jd-ash { fill: #3a3634; opacity: 0.7; }
+.jd-fargold { fill: color-mix(in srgb, #e2b75c 62%, var(--act-accent)); opacity: 0.8; }
+.jd-ramp { fill: color-mix(in srgb, #6a5a44 30%, var(--act-b)); opacity: 0.85; }
+.jd-rampline { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
+
+/* 놋뱀 */
+.jd-bronzepole rect, .jd-bronzepole path { fill: color-mix(in srgb, #8a6a40 36%, #0a0608); }
+.jd-serpent { fill: none; stroke: color-mix(in srgb, color-mix(in srgb, #c88a44 80%, var(--act-accent)) 52%, #0a0608); stroke-width: 5; stroke-linecap: round; filter: drop-shadow(0 0 2px rgba(255, 190, 110, 0.5)); }
+.jd-serpenthead { fill: color-mix(in srgb, #c88a44 52%, #0a0608); }
+.jd-serpenthalo { opacity: 0.55; }
+.jd--nehushtan.is-broken .jd-serpent { stroke-width: 4; filter: none; }
+
+/* 윗못 수도 */
+.jd-heads g { fill: color-mix(in srgb, var(--act-a) 38%, #05040a); animation: jd-nod 5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes jd-nod { from { translate: 0 0; } to { translate: 0 0.8px; } }
+.jd-pool { fill: color-mix(in srgb, #9ec4d8 30%, var(--act-b)); opacity: 0.55; }
+.jd-pool-glint { fill: none; stroke: #e8f4ff; stroke-width: 0.8; opacity: 0.35; }
+.jd-conduit { fill: none; stroke: color-mix(in srgb, #9ec4d8 34%, var(--act-b)); stroke-width: 3; opacity: 0.6; }
+.jd-conduitline { fill: none; stroke: #000; stroke-width: 1; opacity: 0.3; }
+.jd-line, .jd-post { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); stroke-width: 0.8; }
+.jd-post { stroke-width: 1.8; }
+.jd-cloths rect { fill: #f2ece0; opacity: 0.55; transform-box: fill-box; transform-origin: top; animation: jd-cloth 4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes jd-cloth { from { skew: -3deg 0; } to { skew: 4deg 0; } }
+
+/* 앗수르 진 — camp-silence */
+.jd-silencing .jd-fire { animation: jd-out 1.4s ease-in var(--o, 0s) forwards !important; }
+@keyframes jd-out { 0% { opacity: 1; } 30% { opacity: 1; scale: 1.1; } 100% { opacity: 0; scale: 0.3; } }
+.jd-silencing .jd-fire { transform-box: fill-box; transform-origin: center; }
+.jd--camp.is-still .jd-tent { fill: color-mix(in srgb, var(--act-a) 26%, #0a0a10); }
+.jd-wisps .bd-smoke__puff { fill: color-mix(in srgb, #9a9aa0 50%, var(--act-b)); opacity: 0.35; }
+
+/* 곳간 */
+.jd-roomwall { fill: color-mix(in srgb, color-mix(in srgb, #6a5a44 50%, var(--act-b)) 26%, #050407); }
+.jd-roomcourses { fill: none; stroke: #000; stroke-width: 0.8; opacity: 0.35; }
+.jd-window { fill: #fff2cc; opacity: 0.85; filter: drop-shadow(0 0 6px rgba(255, 236, 190, 0.9)); }
+.jd-shaft { fill: #fff2cc; opacity: 0.1; filter: blur(5px); animation: jd-shaft 7s ease-in-out infinite alternate; }
+@keyframes jd-shaft { from { opacity: 0.07; } to { opacity: 0.17; } }
+.jd-pool-light { fill: #fff0c8; opacity: 0.2; filter: blur(4px); }
+.jd-motes circle { fill: #fff2cc; opacity: 0; animation: jd-mote 10s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes jd-mote { 0% { opacity: 0; translate: 0 6px; } 40% { opacity: 0.7; } 100% { opacity: 0; translate: var(--dx) -34px; } }
+.jd-floor { fill: color-mix(in srgb, var(--act-a) 22%, #030205); }
+
+/* 기드론 */
+.jd-pyrehalo { opacity: 0.9; }
+.jd-pole { fill: none; stroke: color-mix(in srgb, #3a2a1a 60%, #000); stroke-width: 2; }
+.jd-pyre .bd-smoke__puff { fill: color-mix(in srgb, #3a3438 70%, var(--act-b)); }
+.jd-brook { fill: none; stroke: color-mix(in srgb, #9ec4d8 30%, var(--act-b)); stroke-width: 1.4; opacity: 0.35; }
+
+/* 벧엘 */
+.jd-tombs path { fill: #06040a; opacity: 0.8; }
+.jd-marker path { fill: color-mix(in srgb, #d8ccb0 40%, var(--act-b)); }
+.jd-markerhalo { opacity: 0.55; animation: jd-flick 5s ease-in-out infinite alternate; }
+.jd-crack { fill: none; stroke: color-mix(in srgb, #ffb060 50%, #000); stroke-width: 1; opacity: 0.6; }
+.jd-calfbase { fill: color-mix(in srgb, var(--act-a) 34%, #05040a); opacity: 0.8; }
+
+/* 므깃도 */
+.jd-dust ellipse { fill: color-mix(in srgb, #d8b884 40%, var(--act-b)); opacity: 0.3; filter: blur(3px); animation: jd-dust 9s ease-in-out infinite alternate; }
+@keyframes jd-dust { from { translate: 6px 0; } to { translate: -10px -2px; } }
+.jd-chariots { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); animation: jd-dust 9s ease-in-out infinite alternate; }
+
+/* 두 성벽 사이 */
+.jd-breachedge { fill: none; stroke: color-mix(in srgb, var(--act-accent) 40%, #000); stroke-width: 0.8; opacity: 0.5; }
+
+/* 불타는 성전 */
+.jd-redsky { fill: #c0441c; opacity: 0.22; mix-blend-mode: screen; animation: jd-flick 3s ease-in-out infinite alternate; }
+.jd-bigsmoke .bd-smoke__puff { fill: color-mix(in srgb, #2a2224 70%, var(--act-b)); }
+.jd--burning.is-ash .jd-bigsmoke .bd-smoke__puff { fill: color-mix(in srgb, #6a6466 50%, var(--act-b)); opacity: 0.5; }
+.jd-ashfall circle { fill: #c8c2b8; opacity: 0; animation: jd-ashfall 10s linear infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes jd-ashfall { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.6; } 100% { opacity: 0; translate: var(--dx) 140px; } }
+
+/* 포로의 길 */
+.jd-exileroad { fill: color-mix(in srgb, #d8c49a 26%, var(--act-b)); opacity: 0.45; }
+.jd-captive rect, .jd-guard rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.jd-guard path { stroke: color-mix(in srgb, var(--act-a) 40%, #05040a); stroke-width: 0.7; }
+.jd-column { animation: jd-walk 40s linear infinite alternate; }
+@keyframes jd-walk { from { translate: -3px 2px; } to { translate: 6px -4px; } }
+.jd-captive { animation: js-sway 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+
+/* 바벨론 왕궁 */
+.jd-tile { fill: color-mix(in srgb, #1c4c8a 44%, #04050c); }
+.jd-brickline { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.35; }
+.jd-band { fill: color-mix(in srgb, #123a72 50%, #04050c); }
+.jd-lion { fill: color-mix(in srgb, #e2b75c 54%, #2a1a08); opacity: 0.85; }
+.jd-rosettes circle { fill: #f2ece0; opacity: 0.55; }
+.jd-rosettes .jd-rosecore { fill: #e2b75c; opacity: 0.8; }
+.jd-arch { fill: color-mix(in srgb, #0e2c58 60%, #02030a); }
+.jd-archlight { fill: color-mix(in srgb, #ffd98a 30%, #0e2c58); opacity: 0.45; }
+.jd-lampstand { fill: color-mix(in srgb, #b8793a 40%, #0a0608); }
+.jd-lampflame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.jd-table { fill: color-mix(in srgb, #7a4a2a 40%, #060406); }
+
+:root[data-reduced-motion='true'] :is(.jd-flames path, .jd-roofflame, .jd-winfire, .jd-door--fire, .jd-templehalo, .jd-firecore, .jd-firehalo, .jd-heads g, .jd-cloths rect, .jd-shaft, .jd-motes circle, .jd-markerhalo, .jd-dust ellipse, .jd-chariots, .jd-redsky, .jd-ashfall circle, .jd-column, .jd-captive, .jd-lampflame) { animation: none !important; }
+:root[data-reduced-motion='true'] .jd-silencing .jd-fire { animation: none !important; opacity: 0; }
+
+/* ── 효과 공통 ── */
+:is(.fx-spread, .fx-silence, .fx-scroll, .fx-burn, .fx-tfire, .fx-pfall, .fx-lamp) { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+:is(.fx-spread, .fx-silence, .fx-scroll, .fx-burn, .fx-tfire, .fx-pfall, .fx-lamp).is-out { opacity: 0; }
+:is(.fx-spread, .fx-silence, .fx-scroll, .fx-burn, .fx-tfire, .fx-pfall, .fx-lamp).is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+@keyframes jd-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* letter-spread: 편지를 펴 놓음 (19:14) */
+.fx-spread__from { position: absolute; left: var(--x); top: var(--y); }
+.fx-spread__from b { position: absolute; left: -9px; top: -5px; width: 18px; height: 10px; border-radius: 3px;
+  background: linear-gradient(90deg, #8a6a40, #ecdcb4 30%, #ecdcb4 70%, #8a6a40); box-shadow: 0 0 6px rgba(255, 220, 160, 0.6);
+  animation: jd-spread-move 2.2s cubic-bezier(0.5, 0, 0.3, 1) 0.2s both; }
+@keyframes jd-spread-move { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 90% { opacity: 1; translate: var(--tx) var(--ty); } 100% { opacity: 0; translate: var(--tx) var(--ty); } }
+.fx-spread__sheet { position: absolute; left: var(--x); top: var(--y); width: min(46vw, 210px); height: 46px; translate: -50% -50%;
+  transform: perspective(240px) rotateX(58deg); transform-origin: 50% 50%;
+  background: linear-gradient(90deg, #8a6a40 0 4%, #e8d6aa 6% 94%, #8a6a40 96%); border-radius: 3px;
+  box-shadow: 0 0 22px rgba(255, 226, 170, 0.55); opacity: 0; animation: jd-unroll 1.8s cubic-bezier(0.3, 0, 0.2, 1) 2.2s both, jd-in 0.3s 2.2s both; }
+@keyframes jd-unroll { from { clip-path: inset(0 48% 0 48%); } to { clip-path: inset(0 0 0 0); } }
+.fx-spread__sheet span { position: absolute; inset: 6px 12%; display: flex; flex-direction: column; justify-content: space-between; }
+.fx-spread__sheet i { display: block; width: var(--w); height: 3px; margin-inline: auto; opacity: 0;
+  background: repeating-linear-gradient(90deg, #3a2a1a 0 3px, transparent 3px 5px, #3a2a1a 5px 6px, transparent 6px 10px);
+  animation: jd-in 0.6s ease-out calc(3.6s + var(--i) * 0.25s) both; }
+.fx-spread__ray { position: absolute; left: var(--x); top: 0; height: var(--y); width: 26px; translate: -50% 0;
+  background: linear-gradient(to top, rgba(255, 236, 190, 0.7), rgba(255, 236, 190, 0)); filter: blur(5px); mix-blend-mode: screen;
+  transform-origin: bottom; animation: jd-ray 3.4s ease-out 5s both; }
+@keyframes jd-ray { 0% { opacity: 0; scale: 0.3 0; } 40% { opacity: 1; scale: 1 1; } 100% { opacity: 0.55; scale: 0.6 1; } }
+
+/* camp-silence: 그 밤 (19:35) */
+.fx-silence__wind { position: absolute; top: 34%; bottom: 0; left: -40%; width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(210, 225, 255, 0.16), transparent); filter: blur(8px);
+  animation: jd-wind 6.4s ease-in-out 0.6s both; }
+@keyframes jd-wind { from { translate: 0 0; opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } to { translate: 350% 0; opacity: 0; } }
+.fx-silence__dark { position: absolute; inset: 0; background: #02030a; opacity: 0; animation: jd-hush 9s ease-in-out both; }
+@keyframes jd-hush { 0% { opacity: 0; } 70% { opacity: 0.38; } 100% { opacity: 0.45; } }
+
+/* scroll-found: 율법책 (22:8-11) */
+.fx-scroll__glow { position: absolute; left: 50%; top: 34%; width: 340px; height: 200px; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 236, 190, 0.5), transparent); animation: jd-in 1.6s ease-out 0.2s both; }
+.fx-scroll__body { position: absolute; left: 50%; top: 34%; translate: -50% -50%; display: flex; align-items: stretch; height: 118px; animation: jd-rise 1.4s cubic-bezier(0.2, 0, 0.2, 1) both; }
+@keyframes jd-rise { from { opacity: 0; translate: -50% -30%; } to { opacity: 1; translate: -50% -50%; } }
+.fx-scroll__rod { display: block; width: 9px; border-radius: 5px; background: linear-gradient(90deg, #5a3a1a, #a87a44, #5a3a1a); box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); }
+.fx-scroll__sheet { width: min(62vw, 270px); overflow: hidden; padding: 10px 14px; box-sizing: border-box; direction: rtl;
+  background: linear-gradient(180deg, #efe0bc, #e2cf9e); box-shadow: inset 0 0 18px rgba(120, 80, 30, 0.35), 0 0 24px rgba(255, 226, 170, 0.45);
+  display: flex; flex-direction: column; justify-content: space-around; animation: jd-open 1.8s cubic-bezier(0.3, 0, 0.2, 1) 1s both; }
+@keyframes jd-open { from { width: 0; padding-inline: 0; } }
+.fx-scroll__sheet p { margin: 0; font-family: 'Noto Serif KR', serif; font-size: 15px; line-height: 1.2; text-align: center; white-space: nowrap;
+  color: #4a3218; opacity: 0.12; animation: jd-line 1.2s ease-out calc(2.8s + var(--i) * 0.7s) both; }
+@keyframes jd-line { 0% { opacity: 0.12; color: #4a3218; text-shadow: none; } 50% { opacity: 1; color: #a0661a; text-shadow: 0 0 8px rgba(255, 200, 100, 0.9); } 100% { opacity: 0.9; color: #5a3a14; text-shadow: 0 0 4px rgba(255, 210, 130, 0.5); } }
+.fx-scroll__sheet p:first-child { font-size: 17px; }
+
+/* burn-idols: 우상 기구를 불사름 */
+.fx-burn__stage { position: absolute; left: 50%; bottom: 14%; width: min(82vw, 380px); height: 46%; translate: -50% 0; }
+.fx-burn__stage svg { position: absolute; inset: 0 0 6px; width: 100%; height: calc(100% - 6px); overflow: visible; }
+.fx-burn__idol { fill: #1a1210; stroke: #1a1210; transform-box: fill-box; transform-origin: 50% 100%;
+  animation: jd-idol 6.4s ease-in calc(var(--i) * 0.35s) both; }
+@keyframes jd-idol {
+  0% { opacity: 0; translate: 0 8px; }
+  12% { opacity: 1; translate: 0 0; fill: #1a1210; stroke: #1a1210; filter: none; }
+  40% { fill: #a03a14; stroke: #a03a14; filter: drop-shadow(0 0 4px #ff8a3a); }
+  60% { fill: #ff9a48; stroke: #ff9a48; filter: drop-shadow(0 0 8px #ffb060); scale: 1 0.96; }
+  85% { opacity: 0.6; fill: #5a4a44; stroke: #5a4a44; scale: 1.04 0.3; filter: blur(1px); }
+  100% { opacity: 0; scale: 1.1 0.05; fill: #5a4a44; stroke: #5a4a44; }
+}
+.fx-burn__heat { position: absolute; left: 0; right: 0; bottom: 0; height: 80%; border-radius: 50% 50% 0 0;
+  background: radial-gradient(60% 70% at 50% 100%, rgba(255, 130, 50, 0.55), rgba(255, 130, 50, 0) 70%); mix-blend-mode: screen;
+  animation: jd-heat 6.6s ease-in-out 0.8s both; }
+@keyframes jd-heat { 0% { opacity: 0; } 30% { opacity: 1; } 70% { opacity: 0.9; } 100% { opacity: 0.1; } }
+.fx-burn__pile { position: absolute; left: 12%; right: 12%; bottom: 0; height: 9px; border-radius: 50% 50% 0 0;
+  background: linear-gradient(#8a8078, #4a4440); opacity: 0; animation: jd-in 1.6s ease-out 5.4s both; }
+.fx-burn__sparks i { position: absolute; left: var(--x); bottom: 10%; width: 3px; height: 3px; border-radius: 50%; background: #ffc070;
+  box-shadow: 0 0 4px #ff9040; scale: var(--s); opacity: 0; animation: jd-spark 2.8s ease-out var(--d) both; }
+@keyframes jd-spark { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) -160px; } }
+
+/* temple-fire: 성전이 불탐 (25:9) */
+.fx-tfire__glow { position: absolute; inset: 0; background: linear-gradient(to top, rgba(255, 110, 40, 0.5), rgba(160, 40, 20, 0.18) 55%, rgba(0, 0, 0, 0) 85%);
+  mix-blend-mode: screen; animation: jd-tglow 11s ease-in-out both; }
+@keyframes jd-tglow { 0% { opacity: 0; } 18% { opacity: 1; } 30% { opacity: 0.75; } 45% { opacity: 1; } 60% { opacity: 0.8; } 80% { opacity: 1; } 100% { opacity: 0.6; } }
+.fx-tfire__smoke { position: absolute; left: var(--x); bottom: 30%; width: 120px; height: 120px; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(20, 14, 14, 0.6), rgba(20, 14, 14, 0)); filter: blur(6px);
+  animation: jd-tsmoke 9s ease-out var(--d) both; }
+@keyframes jd-tsmoke { 0% { opacity: 0; translate: -50% 0; scale: 0.4; } 25% { opacity: 1; } 100% { opacity: 0; translate: -50% -260px; scale: 2.4; } }
+.fx-tfire__sparks i { position: absolute; left: var(--x); bottom: 0; width: 3px; height: 3px; border-radius: 50%; background: #ffcf80;
+  box-shadow: 0 0 5px #ff8a30; scale: var(--s); opacity: 0; animation: jd-tspark var(--t) ease-out var(--d) infinite; }
+@keyframes jd-tspark { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) -70vh; } }
+
+/* pillars-fall: 놋 기둥이 쓰러짐 */
+.fx-pfall__stage { position: absolute; left: 50%; bottom: 12%; width: min(70vw, 300px); height: 64%; translate: -50% 0; }
+.fx-pfall__p { position: absolute; bottom: 0; width: 22%; height: 100%; transform-origin: 50% 100%; opacity: 0; }
+.fx-pfall__p--l { left: 14%; animation: jd-fall-l 4.6s cubic-bezier(0.55, 0, 0.9, 0.4) 0.2s both; }
+.fx-pfall__p--r { right: 14%; animation: jd-fall-r 4.6s cubic-bezier(0.55, 0, 0.9, 0.4) 0.5s both; }
+.fx-pfall__p svg { width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 0 4px rgba(255, 190, 110, 0.4)); }
+.fx-pfall__p em { position: absolute; left: 50%; top: -6%; translate: -50% 0; font: 500 12px/1 'Noto Serif KR', serif; color: #f2dca8; font-style: normal;
+  opacity: 0; animation: jd-name 2.6s ease-out 0.4s both; white-space: nowrap; }
+@keyframes jd-name { 0% { opacity: 0; } 30% { opacity: 0.9; } 70% { opacity: 0.8; } 100% { opacity: 0; } }
+@keyframes jd-fall-l { 0% { opacity: 0; rotate: 0deg; } 12% { opacity: 1; rotate: 0deg; } 40% { rotate: -4deg; } 100% { opacity: 0.85; rotate: -86deg; translate: -4% 6%; } }
+@keyframes jd-fall-r { 0% { opacity: 0; rotate: 0deg; } 12% { opacity: 1; rotate: 0deg; } 40% { rotate: 4deg; } 100% { opacity: 0.85; rotate: 86deg; translate: 4% 6%; } }
+.fx-pfall__bronze { fill: #8a5a2a; }
+.fx-pfall__lily { fill: #c8944a; }
+.fx-pfall__net { fill: none; stroke: #3a2210; stroke-width: 0.8; }
+.fx-pfall__pom { fill: #b04a34; }
+.fx-pfall__dust { position: absolute; left: -20%; right: -20%; bottom: -6%; height: 34%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(200, 180, 150, 0.55), rgba(200, 180, 150, 0)); filter: blur(4px);
+  opacity: 0; animation: jd-dustup 3.6s ease-out 3.6s both; }
+@keyframes jd-dustup { 0% { opacity: 0; scale: 0.4 0.3; } 30% { opacity: 1; } 100% { opacity: 0; scale: 1.3 1.4; } }
+.fx-pfall__poms i { position: absolute; left: 50%; bottom: 2%; width: 6px; height: 6px; border-radius: 50%; background: #b04a34; opacity: 0;
+  animation: jd-pom 1.8s cubic-bezier(0.2, 0.6, 0.4, 1) var(--d) both; }
+@keyframes jd-pom { 0% { opacity: 0; translate: 0 0; } 10% { opacity: 1; } 50% { translate: calc(var(--dx) * 0.6) -30px; } 100% { opacity: 0.8; translate: var(--dx) 0; } }
+
+/* small-lamp: 작은 불빛 (25:27-30) */
+.jd-lamp { position: absolute; left: 50%; top: 30%; z-index: 4; width: 0; height: 0; pointer-events: none; }
+.fx-lamp .jd-lamp { top: auto; bottom: 30%; }
+.jd-lamp__halo { position: absolute; left: -60px; top: -70px; width: 120px; height: 120px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 220, 150, 0.55), rgba(255, 200, 120, 0.12) 60%, transparent); mix-blend-mode: screen;
+  opacity: 0; animation: jd-in 2.6s ease-out 1.4s both, jd-breathe 4s ease-in-out 4s infinite alternate; }
+@keyframes jd-breathe { from { scale: 0.92; } to { scale: 1.06; } }
+.jd-lamp__clay { position: absolute; left: -11px; top: -2px; width: 22px; height: 8px; border-radius: 0 0 11px 11px / 0 0 8px 8px;
+  background: linear-gradient(#9a6a3a, #5a3a1a); opacity: 0; animation: jd-in 1.2s ease-out 0.8s both; }
+.jd-lamp__flame { position: absolute; left: 3px; top: -13px; width: 7px; height: 12px; border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%;
+  background: radial-gradient(60% 50% at 50% 70%, #fff6d8, #ffc060 60%, #ff9040); box-shadow: 0 0 10px 3px rgba(255, 190, 100, 0.8);
+  transform-origin: 50% 100%; opacity: 0; animation: jd-kindle 1.8s ease-out 1.6s both, jd-flame 1.4s ease-in-out 3.4s infinite alternate; }
+@keyframes jd-kindle { 0% { opacity: 0; scale: 0.1; } 60% { opacity: 1; scale: 1.25; } 100% { opacity: 1; scale: 1; } }
+@keyframes jd-flame { from { scale: 0.92 1; rotate: -3deg; } to { scale: 1.06 1.08; rotate: 3deg; } }
+.jd-lamp small { position: absolute; left: 0; top: 14px; translate: -50% 0; white-space: nowrap; font: 500 10px/1 'Pretendard', sans-serif; letter-spacing: 0.04em;
+  color: #f2dca8; opacity: 0; animation: jd-in 1.6s ease-out 3.2s both; }
+.kingdoms:not(.is-big) .jd-lamp { display: none; }
+.jd-minilamp { display: inline-block; width: 5px; height: 7px; margin-left: 5px; border-radius: 50% 50% 50% 50% / 64% 64% 36% 36%; vertical-align: 0;
+  background: #ffc060; box-shadow: 0 0 6px 2px rgba(255, 190, 100, 0.8); animation: jd-flick 1.6s ease-in-out infinite alternate; }
+.kingdoms.has-lamp .kd__mini p[data-k='judah'] { opacity: 0.8; }
+.jd-lamp.is-rm *, :root[data-reduced-motion='true'] :is(.jd-lamp *, .jd-minilamp) { animation-duration: 0.01s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; }

@@ -1,0 +1,315 @@
+/* ── 9막 A급: 엘리야 (왕상 12 · 18 · 19 · 21, fx/elijah.ts · characters/elijah.ts · ahab.ts · jezebel.ts) ──
+   인물: 엘리야의 털옷(.el-hair-garment)·가죽 띠(.el-leather)·겉옷(.el-mantle), 아합의 자색(.ah-robe)·상아(.ah-ivory)·금(.ah-gold)·굵은 베(.ah-sack),
+         이세벨의 높은 관(.jz-gold)·붉은 옷(.jz-robe)·땋은 머리(.jz-hair)·보석(.jz-gem), 엘리사 밭옷(.es-plow)
+   배경: 세겜, 벧엘 금송아지, 가뭄, 갈멜산(무너진 단 · 열두 돌 단 · 젖은 단 · 불탄 자리), 바다 벼랑, 로뎀나무, 호렙 굴,
+         아벨므흘라 밭, 나봇의 포도원, 침실, 성문 광장
+   효과: rift · no-answer · carmel-fire · small-cloud · great-wind · earthquake · mount-fire · still-voice · angel-touch · mantle-throw */
+
+/* ── 인물 ── */
+.actor .el-hair-garment, .sil .el-hair-garment { fill: color-mix(in srgb, #6a4e30 34%, var(--sil-ink)); }
+.actor .el-fur, .sil .el-fur { stroke: color-mix(in srgb, #b8946a 40%, var(--sil-ink)); fill: none; opacity: 0.7; }
+.actor .el-leather, .sil .el-leather { fill: color-mix(in srgb, #3a2414 50%, var(--sil-ink)); }
+.actor .el-mantle, .sil .el-mantle { fill: color-mix(in srgb, #8a7656 36%, var(--sil-ink)); }
+.actor .el-mantle-edge, .sil .el-mantle-edge { stroke: color-mix(in srgb, #e8d6a8 46%, var(--sil-ink)); fill: none; opacity: 0.75; }
+.actor .el-mane, .sil .el-mane { fill: color-mix(in srgb, #b8b0a0 22%, var(--sil-ink)); }
+.actor .ah-robe, .sil .ah-robe { fill: color-mix(in srgb, color-mix(in srgb, #5e2f6e 80%, var(--act-accent)) 40%, var(--sil-ink)); }
+.actor .ah-ivory, .sil .ah-ivory { fill: color-mix(in srgb, #efe4c8 46%, var(--sil-ink)); }
+.actor .ah-gold, .sil .ah-gold, .actor .jz-gold, .sil .jz-gold { fill: color-mix(in srgb, color-mix(in srgb, #d8a848 80%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .ah-sack, .sil .ah-sack { fill: color-mix(in srgb, #5a5246 36%, var(--sil-ink)); }
+.actor .ah-sackline, .sil .ah-sackline { stroke: color-mix(in srgb, #9a907c 40%, var(--sil-ink)); fill: none; opacity: 0.6; }
+.actor .jz-robe, .sil .jz-robe { fill: color-mix(in srgb, color-mix(in srgb, #8a2a2a 80%, var(--act-accent)) 42%, var(--sil-ink)); }
+.actor .jz-hair, .sil .jz-hair { fill: color-mix(in srgb, #241410 40%, var(--sil-ink)); }
+.actor .jz-gem, .sil .jz-gem { fill: color-mix(in srgb, #4ab0b0 55%, var(--sil-ink)); }
+.actor .jz-seal, .sil .jz-seal { fill: color-mix(in srgb, #c8b48a 48%, var(--sil-ink)); }
+.actor .es-plow, .sil .es-plow { fill: color-mix(in srgb, #7a6a50 30%, var(--sil-ink)); }
+
+/* ── 배경 공통 ── */
+.el-mark { fill: transparent; }
+.el-window { fill: #ffcf80; opacity: 0.85; filter: drop-shadow(0 0 1.5px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.el-rockline { fill: none; stroke: color-mix(in srgb, var(--act-b) 45%, #000); stroke-width: 0.8; opacity: 0.5; }
+.el-green { fill: color-mix(in srgb, #4a6a44 30%, var(--bd)); }
+.el-crowd rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); }
+.el-flames path { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 190, 100, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.el-firehalo { opacity: 0.7; animation: js-flicker 2.4s ease-in-out infinite alternate; }
+.el-stone { stroke: color-mix(in srgb, var(--act-b) 50%, #000); stroke-width: 0.5; }
+.el-weeds { fill: none; stroke: color-mix(in srgb, var(--act-a) 50%, #06060a); stroke-width: 0.8; }
+
+/* ── 벧엘의 금송아지 ── */
+.el-calf path { fill: color-mix(in srgb, #e8b848 70%, var(--act-b)); filter: drop-shadow(0 0 3px rgba(255, 200, 100, 0.7)); }
+.el-calf .el-calf__shine { fill: none; stroke: #fff1c8; stroke-width: 0.9; opacity: 0.7; filter: none; }
+.el-calfhalo { opacity: 0.85; animation: js-flicker 3.6s ease-in-out infinite alternate; }
+.el-bowing path { fill: color-mix(in srgb, var(--act-a) 44%, #05040a); animation: el-bow 3.2s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; animation-delay: calc(var(--d) * -1); }
+@keyframes el-bow { from { scale: 1 1; } to { scale: 1.04 0.86; } }
+
+/* ── 가뭄 ── */
+.el-sun { fill: #fff6dc; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(255, 240, 200, 0.9)); }
+.el-sunhalo { opacity: 0.6; }
+.el-haze { fill: none; stroke: #fff2d0; stroke-width: 8; opacity: 0.08; filter: blur(3px); animation: el-haze 4s ease-in-out infinite alternate; }
+@keyframes el-haze { from { translate: -6px 0; opacity: 0.05; } to { translate: 6px -2px; opacity: 0.14; } }
+.el-wadi { fill: none; stroke: color-mix(in srgb, #d8c49a 30%, var(--act-b)); stroke-width: 6; stroke-linecap: round; opacity: 0.35; }
+.el-dead { opacity: 0.95; }
+.el-tufts { fill: none; stroke: color-mix(in srgb, #b8a070 30%, var(--act-b)); stroke-width: 0.7; opacity: 0.6; }
+.el-cracks { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 0.7; opacity: 0.7; }
+
+/* ── 갈멜산 ── */
+.el-sea { fill: color-mix(in srgb, #6a8ab0 34%, var(--act-b)); opacity: 0.85; }
+.el-glint { fill: none; stroke: #eef4ff; stroke-width: 0.6; opacity: 0.2; animation: el-glint 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes el-glint { from { opacity: 0.08; translate: -3px 0; } to { opacity: 0.45; translate: 3px 0; } }
+.el-horizon { stroke: #f0f4ff; stroke-width: 0.5; opacity: 0.35; }
+.el-baalfolk rect { fill: color-mix(in srgb, #8a3020 40%, var(--act-a)); animation: el-frenzy 0.9s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; animation-delay: calc(var(--d) * -0.3); }
+@keyframes el-frenzy { from { translate: 0 0; } to { translate: 0 -1.4px; } }
+.el-pillar { fill: color-mix(in srgb, var(--act-b) 30%, #080608); }
+.el-trodden { fill: none; stroke: color-mix(in srgb, #d8c49a 30%, var(--act-b)); stroke-width: 2; opacity: 0.35; }
+.el-trench { fill: none; stroke: color-mix(in srgb, var(--act-a) 50%, #030305); stroke-width: 3.4; }
+.el-trench.is-wet { stroke: color-mix(in srgb, #9ac0e0 50%, var(--act-b)); filter: drop-shadow(0 0 1.5px rgba(200, 225, 255, 0.7)); animation: el-wet 2.6s ease-in-out infinite alternate; }
+@keyframes el-wet { from { opacity: 0.75; } to { opacity: 1; } }
+.el-trench.is-dry { stroke: color-mix(in srgb, #1a1210 70%, #000); }
+.el-stone.is-wet { fill: color-mix(in srgb, #8aa4c0 22%, var(--bd)); }
+.el-drip { fill: none; stroke: #cfe4ff; stroke-width: 0.6; opacity: 0.6; stroke-dasharray: 2 3; animation: el-drip 1.2s linear infinite; }
+@keyframes el-drip { to { stroke-dashoffset: -10; } }
+.el-ripple { fill: none; stroke: #e8f2ff; stroke-width: 0.6; opacity: 0.4; animation: el-glint 2.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.el-scorch { fill: #050303; opacity: 0.75; filter: blur(2px); }
+.el-hollow { fill: #000; opacity: 0.6; }
+.el-cinder { fill: #ff9a50; filter: blur(0.4px); animation: js-flicker 1.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.el--carmel.is-burnt .bd-smoke__puff { fill: color-mix(in srgb, #8a8478 60%, var(--act-b)); }
+
+/* ── 로뎀나무 ── */
+.el-dune { fill: none; stroke: color-mix(in srgb, #e0caa0 30%, var(--act-b)); stroke-width: 1; opacity: 0.35; }
+.el-twigs { animation: el-twig 6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+.el-crown { opacity: 0.35; animation: el-twig 6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: 50% 100%; }
+@keyframes el-twig { from { rotate: -0.6deg; } to { rotate: 0.8deg; } }
+.el-shade { fill: #000; opacity: 0.25; filter: blur(2px); }
+.el-hearth { fill: color-mix(in srgb, var(--act-a) 40%, #050404); }
+.el-coal { fill: #ff8a40; filter: drop-shadow(0 0 1.6px rgba(255, 140, 70, 0.95)); animation: js-flicker 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.el-cake { fill: color-mix(in srgb, #e8c88a 55%, var(--act-b)); }
+.el-coalhalo { opacity: 0.7; animation: js-flicker 2s ease-in-out infinite alternate; }
+.el-jar { fill: color-mix(in srgb, #a87048 40%, var(--act-b)); }
+
+/* ── 호렙 ── */
+.el-cave { fill: #020203; }
+.el-cavelip { stroke: color-mix(in srgb, var(--act-b) 40%, #000); stroke-width: 3; }
+
+/* ── 밭 ── */
+.el-field { fill: color-mix(in srgb, #5a4630 22%, var(--bd)); }
+.el-furrow { fill: none; stroke: color-mix(in srgb, var(--act-a) 40%, #040305); stroke-width: 0.9; opacity: 0.55; }
+.el-team { animation: el-plod 2.4s ease-in-out infinite alternate; }
+@keyframes el-plod { from { translate: 0 0; } to { translate: -1.2px 0; } }
+.el-flames--big path { animation-duration: 1.1s; }
+
+/* ── 포도원 ── */
+.el-vines { color: var(--bd); }
+.el-leaf { animation: el-leaf 5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: center; animation-delay: calc(var(--d) * -1); }
+@keyframes el-leaf { from { translate: -0.4px 0; } to { translate: 0.5px -0.3px; } }
+.el-grape { fill: color-mix(in srgb, #5a2a5a 40%, var(--bd)); }
+
+/* ── 침실 ── */
+.el-wall { fill: color-mix(in srgb, var(--act-b) 22%, #060408); }
+.el-beam { fill: none; stroke: color-mix(in srgb, var(--act-b) 30%, #000); stroke-width: 2; }
+.el-winlight { fill: color-mix(in srgb, #f2e2c0 34%, var(--act-b)); opacity: 0.75; }
+.el-lattice { fill: none; stroke: color-mix(in srgb, var(--act-a) 50%, #050307); stroke-width: 1.6; }
+.el-frame { stroke: color-mix(in srgb, var(--act-a) 50%, #050307); stroke-width: 4; }
+.el-beam-light { fill: #fff0d0; opacity: 0.05; filter: blur(4px); }
+.el-ivory { fill: color-mix(in srgb, #efe4c8 40%, var(--act-b)); opacity: 0.8; }
+.el-cushion { fill: color-mix(in srgb, #6e2f7a 30%, var(--act-b)); }
+.el-lampflame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.4s ease-in-out infinite alternate; }
+.el-lamphalo { opacity: 0.7; animation: js-flicker 3s ease-in-out infinite alternate; }
+.el-floor { fill: color-mix(in srgb, var(--act-a) 40%, #030204); }
+
+/* ── 성문 ── */
+.el-gatemouth { fill: color-mix(in srgb, #1a120a 60%, #000); }
+.el-road { fill: none; stroke: color-mix(in srgb, #d8c49a 36%, var(--act-b)); stroke-width: 4; stroke-linecap: round; opacity: 0.35; }
+.el-elders rect { fill: color-mix(in srgb, #d8d0c0 26%, var(--act-a)); }
+.el--gate.is-empty .el-highseat { opacity: 0.85; }
+
+:root[data-reduced-motion='true'] :is(.el-window, .el-flames path, .el-firehalo, .el-calfhalo, .el-bowing path, .el-haze, .el-glint, .el-baalfolk rect, .el-trench.is-wet, .el-drip, .el-ripple, .el-cinder, .el-twigs, .el-crown, .el-coal, .el-coalhalo, .el-team, .el-leaf, .el-lampflame, .el-lamphalo) { animation: none !important; }
+
+/* ── 흔들림 ── */
+.el-quake { animation: el-quake 0.8s ease-out; }
+@keyframes el-quake { 0%, 100% { translate: 0 0; } 15% { translate: 0 5px; } 35% { translate: 0 -3px; } 55% { translate: 0 2px; } 75% { translate: 0 -1px; } }
+.el-quake-big { animation: el-quake-big 0.95s ease-out; }
+@keyframes el-quake-big { 0%, 100% { translate: 0 0; } 10% { translate: -6px 7px; } 22% { translate: 7px -5px; } 36% { translate: -5px 4px; } 50% { translate: 4px -3px; } 66% { translate: -2px 2px; } 82% { translate: 1px -1px; } }
+.el-buffet .scene__stage { animation: el-buffet 0.5s ease-in-out infinite alternate; }
+@keyframes el-buffet { from { translate: 0 0; } to { translate: 3px 0; } }
+:root[data-reduced-motion='true'] :is(.el-quake, .el-quake-big), :root[data-reduced-motion='true'] .el-buffet .scene__stage { animation: none; }
+
+/* ── 효과 rift: 나라가 갈라짐 (왕상 12:16-20) ── */
+.fx-rift { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.2s ease-in; }
+.fx-rift.is-out { opacity: 0; }
+.fx-rift__half { position: absolute; top: 0; bottom: 0; width: 50%; opacity: 0; mix-blend-mode: soft-light; animation: el-rift-half 4s ease-out 1.1s both; }
+.fx-rift__half.is-l { left: 0; background: linear-gradient(90deg, rgba(90, 120, 170, 0.0), rgba(110, 140, 190, 0.85)); --dx: -10px; }
+.fx-rift__half.is-r { right: 0; background: linear-gradient(270deg, rgba(220, 170, 80, 0.0), rgba(240, 190, 90, 0.85)); --dx: 10px; }
+@keyframes el-rift-half { 0% { opacity: 0; translate: 0 0; } 30% { opacity: 1; } 100% { opacity: 0.8; translate: var(--dx) 0; } }
+.fx-rift__svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.fx-rift__crack, .fx-rift__glow { fill: none; vector-effect: non-scaling-stroke; stroke-dasharray: 140; stroke-dashoffset: 140; animation: el-rift-draw 1.3s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards; }
+.fx-rift__crack { stroke: #fff2c8; stroke-width: 2.2; }
+.fx-rift__glow { stroke: rgba(255, 210, 130, 0.7); stroke-width: 10; filter: blur(4px); }
+@keyframes el-rift-draw { to { stroke-dashoffset: 0; } }
+.fx-rift__label { position: absolute; top: 18%; display: flex; flex-direction: column; align-items: center; gap: 0.2em; opacity: 0;
+  font-family: var(--story-font); color: var(--ivory); text-shadow: 0 0 10px rgba(0, 0, 0, 0.8); animation: el-rift-label 1.2s ease-out 1.9s forwards; }
+.fx-rift__label b { font-size: clamp(1.05rem, 4.6vw, 1.6rem); font-weight: 600; letter-spacing: 0.12em; }
+.fx-rift__label small { font-size: 0.8rem; opacity: 0.75; letter-spacing: 0.2em; }
+.fx-rift__label.is-l { left: 25%; translate: -50% 0; color: #d4e0f4; }
+.fx-rift__label.is-r { left: 75%; translate: -50% 0; color: #ffe2a8; }
+@keyframes el-rift-label { from { opacity: 0; filter: blur(5px); } to { opacity: 1; filter: blur(0); } }
+.fx-rift.is-rm :is(.fx-rift__crack, .fx-rift__glow) { animation-duration: 0.01s; animation-delay: 0s; }
+.fx-rift.is-rm :is(.fx-rift__half, .fx-rift__label) { animation-delay: 0s; animation-duration: 0.4s; }
+
+/* ── 효과 no-answer: 응답 없음 (18:26-29) ── */
+.fx-noanswer { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-noanswer.is-out { opacity: 0; }
+.fx-noanswer__sun { position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+  background: radial-gradient(closest-side, #fffaf0, rgba(255, 236, 190, 0.9) 45%, rgba(255, 220, 160, 0) 100%);
+  box-shadow: 0 0 40px 14px rgba(255, 226, 170, 0.35); animation: el-sun-arc 9s ease-in-out both; }
+@keyframes el-sun-arc {
+  0% { translate: 6vw 30vh; opacity: 0; filter: hue-rotate(0deg); }
+  10% { opacity: 1; }
+  50% { translate: calc(50cqw - 17px) 4vh; }
+  85% { translate: calc(94cqw - 34px) 28vh; opacity: 1; filter: sepia(0.6) saturate(2) hue-rotate(-20deg); }
+  100% { translate: calc(96cqw - 34px) 34vh; opacity: 0.6; filter: sepia(0.8) saturate(2.4) hue-rotate(-30deg); }
+}
+.fx-noanswer { container-type: inline-size; }
+.fx-noanswer__call { position: absolute; left: var(--x); top: var(--y); opacity: 0; white-space: nowrap;
+  font-family: var(--story-font); font-size: clamp(0.85rem, 3.6vw, 1.15rem); letter-spacing: 0.18em; color: #ffd6b0;
+  text-shadow: 0 0 8px rgba(120, 30, 10, 0.8); animation: el-call 2.6s ease-out both; animation-delay: calc(var(--i) * 0.85s + 0.3s); }
+@keyframes el-call { 0% { opacity: 0; translate: 0 6px; filter: blur(3px); } 25% { opacity: 0.9; filter: blur(0); } 100% { opacity: 0; translate: 0 -60px; filter: blur(4px); scale: 1.15; } }
+.fx-noanswer__hush { position: absolute; left: 50%; top: 40%; translate: -50% -50%; opacity: 0; font-family: var(--story-font); font-size: 2rem; letter-spacing: 0.4em;
+  color: color-mix(in srgb, var(--ivory) 70%, transparent); animation: el-hush 1.6s ease-out 7.6s both; }
+@keyframes el-hush { from { opacity: 0; } to { opacity: 0.6; } }
+.fx-noanswer.is-rm .fx-noanswer__sun { animation: none; display: none; }
+.fx-noanswer.is-rm .fx-noanswer__hush { animation-delay: 0s; }
+
+/* ── 효과 carmel-fire: 여호와의 불 (18:38) ── */
+.fx-cfire { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-cfire.is-out { opacity: 0; }
+.fx-cfire__flash { position: absolute; inset: 0; background: #fff8e8; opacity: 0; mix-blend-mode: screen; animation: el-cflash 1.6s ease-out 0.45s both; }
+@keyframes el-cflash { 0% { opacity: 0; } 8% { opacity: 0.9; } 100% { opacity: 0; } }
+.fx-cfire__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-cfire__column { position: absolute; left: -38px; bottom: 0; width: 76px; height: 120vh; transform-origin: 50% 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 250, 230, 0.85) 30%, #fff 80%, #fff6d8 100%);
+  filter: blur(6px); mix-blend-mode: screen; scale: 1 0; animation: el-column 2.4s cubic-bezier(0.6, 0, 0.3, 1) both; }
+@keyframes el-column { 0% { scale: 1 0; opacity: 1; } 22% { scale: 1 1; opacity: 1; } 60% { opacity: 0.8; width: 76px; } 100% { scale: 1.8 1; opacity: 0; } }
+.fx-cfire__glow { position: absolute; left: -110px; top: -110px; width: 220px; height: 220px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 230, 170, 0.85), rgba(255, 150, 60, 0.35) 55%, transparent); mix-blend-mode: screen;
+  opacity: 0; animation: el-cglow 6s ease-out 0.5s both; }
+@keyframes el-cglow { 0% { opacity: 0; scale: 0.3; } 15% { opacity: 1; scale: 1.1; } 60% { opacity: 0.8; } 100% { opacity: 0; scale: 1.4; } }
+.fx-cfire__flame { position: absolute; left: calc(var(--o) - 12px); bottom: -6px; width: 24px; height: 70px; border-radius: 50% 50% 40% 40% / 70% 70% 30% 30%;
+  background: linear-gradient(0deg, #ffb050, #ffe9b0 60%, rgba(255, 255, 240, 0.6)); filter: blur(1.4px) drop-shadow(0 0 6px rgba(255, 180, 90, 0.9));
+  transform-origin: 50% 100%; opacity: 0; animation: el-flame 3.6s ease-out both; animation-delay: calc(0.6s + var(--i) * 0.05s); }
+@keyframes el-flame { 0% { opacity: 0; scale: 0.4 0.2; } 14% { opacity: 1; scale: 1.2 1.5; } 30% { scale: 0.9 1.1; } 46% { scale: 1.1 1.3; } 70% { opacity: 0.8; scale: 0.8 0.8; } 100% { opacity: 0; scale: 0.5 0.3; } }
+.fx-cfire__steam { position: absolute; left: calc(var(--o) - 14px); top: 6px; width: 28px; height: 28px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(240, 244, 255, 0.7), transparent); filter: blur(3px); opacity: 0;
+  animation: el-steam 2.8s ease-out both; animation-delay: calc(2.6s + var(--i) * 0.12s); }
+@keyframes el-steam { 0% { opacity: 0; scale: 0.4; } 30% { opacity: 0.9; } 100% { opacity: 0; scale: 2.4; translate: calc(var(--o) * 0.3) -70px; } }
+.fx-cfire__ember { position: absolute; left: var(--o); top: -10px; width: 3px; height: 3px; border-radius: 50%; background: #ffcf80; box-shadow: 0 0 5px rgba(255, 170, 80, 0.95);
+  opacity: 0; animation: el-ember 2.6s ease-out both; animation-delay: calc(1s + var(--i) * 0.16s); }
+@keyframes el-ember { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: 0; translate: calc(var(--o) * 0.8) -120px; } }
+.fx-cfire.is-rm .fx-cfire__column { animation-duration: 0.8s; }
+.fx-cfire.is-rm .fx-cfire__flash { animation-delay: 0s; }
+
+/* ── 효과 small-cloud: 손만한 작은 구름 (18:44-45) ── */
+.fx-cloud { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+.fx-cloud.is-out { opacity: 0; }
+.fx-cloud__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-cloud__hand { position: absolute; left: -12px; top: -8px; width: 24px; height: 10px; border-radius: 50%;
+  background: radial-gradient(closest-side, #f4f2ec, rgba(230, 228, 220, 0.6) 60%, transparent); filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.7));
+  opacity: 0; animation: el-hand 4.4s ease-out both; }
+@keyframes el-hand { 0% { opacity: 0; translate: 0 6px; scale: 0.5; } 30% { opacity: 1; translate: 0 -2px; scale: 1; } 60% { opacity: 1; translate: 0 -8px; scale: 1.1; } 100% { opacity: 0.4; translate: 0 -40px; scale: 4; } }
+.fx-cloud__puff { position: absolute; left: calc(50% + var(--o) * 100%); top: calc(8% + var(--h) * 100%); width: 70%; height: 30%; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(60, 64, 76, 0.9), rgba(40, 44, 56, 0.5) 60%, transparent); filter: blur(10px);
+  opacity: 0; scale: 0.2; animation: el-cloud-swell 5.2s ease-out both; animation-delay: calc(3.4s + var(--i) * 0.22s); }
+@keyframes el-cloud-swell { from { opacity: 0; scale: 0.2; } 60% { opacity: 0.95; } to { opacity: 0.9; scale: 1.4; } }
+.fx-cloud__dark { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 12, 20, 0.85), rgba(10, 12, 20, 0.35) 70%, transparent);
+  opacity: 0; animation: el-dark 5s ease-in 4s both; }
+@keyframes el-dark { from { opacity: 0; } to { opacity: 1; } }
+.fx-cloud.is-rm .fx-cloud__hand { animation-duration: 1.4s; }
+.fx-cloud.is-rm .fx-cloud__dark { animation-delay: 0.6s; animation-duration: 1.4s; }
+
+/* ── 효과 great-wind (19:11) ── */
+.fx-wind { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-wind.is-out { opacity: 0; }
+.fx-wind__streak { position: absolute; left: -60%; top: var(--y); width: var(--l); height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(230, 236, 250, 0.7), transparent); filter: blur(0.6px);
+  animation: el-streak 0.9s linear infinite; animation-delay: calc(var(--i) * -0.17s); }
+@keyframes el-streak { from { translate: 0 0; opacity: 0; } 20% { opacity: 1; } to { translate: 260vw 6px; opacity: 0; } }
+.fx-wind__chip { position: absolute; left: -10px; top: var(--y); width: 7px; height: 5px; background: color-mix(in srgb, var(--act-b) 50%, #222);
+  clip-path: polygon(0 30%, 40% 0, 100% 20%, 80% 100%, 20% 90%); rotate: var(--r);
+  animation: el-chip 1.5s cubic-bezier(0.3, 0, 0.7, 1) both; animation-delay: calc(0.4s + var(--i) * 0.26s); }
+@keyframes el-chip { from { translate: 0 0; rotate: var(--r); } to { translate: 120vw -40px; rotate: calc(var(--r) + 720deg); } }
+.fx-wind.is-rm .fx-wind__streak { animation-duration: 2s; }
+
+/* ── 효과 earthquake (19:11) ── */
+.fx-quake { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+.fx-quake.is-out { opacity: 0; }
+.fx-quake__svg { position: absolute; left: 0; right: 0; bottom: 4%; height: 16%; width: 100%; }
+.fx-quake__crack { fill: none; stroke: #050304; stroke-width: 2.6; vector-effect: non-scaling-stroke; stroke-dasharray: 130; stroke-dashoffset: 130; animation: el-rift-draw 1.4s ease-out 0.2s forwards; filter: drop-shadow(0 0 2px rgba(255, 170, 90, 0.5)); }
+.fx-quake__dust { position: absolute; left: var(--x); bottom: 8%; width: 70px; height: 34px; translate: -50% 0; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, #c8b490 60%, transparent), transparent); filter: blur(4px);
+  opacity: 0; animation: el-qdust 2.6s ease-out both; animation-delay: calc(0.3s + var(--i) * 0.08s); }
+@keyframes el-qdust { 0% { opacity: 0; scale: 0.4; } 25% { opacity: 0.85; } 100% { opacity: 0; scale: 2.2; translate: -50% -30px; } }
+
+/* ── 효과 mount-fire (19:12) — 인물 뒤에 깔림 ── */
+.fx-mfire { position: absolute; inset: 0; pointer-events: none; overflow: hidden; transition: opacity 1.6s ease-in; }
+.fx-mfire.is-out { opacity: 0; }
+.fx-mfire__glow { position: absolute; left: -10%; right: -10%; bottom: 0; height: 60%;
+  background: linear-gradient(0deg, rgba(255, 140, 50, 0.55), rgba(255, 110, 40, 0.18) 60%, transparent); mix-blend-mode: screen;
+  opacity: 0; animation: el-mglow 4.6s ease-in-out both; }
+@keyframes el-mglow { 0% { opacity: 0; translate: -30% 0; } 30% { opacity: 1; } 70% { opacity: 0.9; } 100% { opacity: 0; translate: 30% 0; } }
+.fx-mfire__tongue { position: absolute; left: var(--x); bottom: 10%; width: 4.2%; height: calc(var(--s) * 30%); border-radius: 50% 50% 30% 30% / 85% 85% 15% 15%;
+  background: radial-gradient(ellipse 60% 70% at 50% 85%, rgba(255, 236, 190, 0.95), rgba(255, 150, 60, 0.75) 45%, rgba(255, 90, 30, 0) 100%); filter: blur(4px);
+  transform-origin: 50% 100%; scale: 1 0; opacity: 0; mix-blend-mode: screen;
+  animation: el-tongue 2.4s ease-out both; animation-delay: calc(var(--i) * 0.16s); }
+@keyframes el-tongue { 0% { opacity: 0; scale: 0.6 0.1; } 25% { opacity: 0.9; scale: 1.1 1.15; } 45% { scale: 0.85 0.8; } 65% { opacity: 0.8; scale: 1 1; } 100% { opacity: 0; scale: 0.6 0.3; } }
+
+/* ── 효과 still-voice: 세미한 소리 (19:12) ── */
+.fx-still { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; transition: opacity 2s ease-in; }
+.fx-still.is-out { opacity: 0; }
+.fx-still__hush { position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 46%, rgba(4, 4, 8, 0.45), rgba(2, 2, 4, 0.9)); opacity: 0; animation: el-still-in 2.6s ease-in-out both; }
+@keyframes el-still-in { from { opacity: 0; } to { opacity: 1; } }
+.fx-still__line { position: absolute; left: 50%; top: 44%; width: 0; height: 1px; translate: -50% 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 246, 220, 0.9), transparent); box-shadow: 0 0 6px rgba(255, 240, 200, 0.6);
+  animation: el-still-line 4s ease-out 2.4s both; }
+@keyframes el-still-line { 0% { width: 0; opacity: 0; } 30% { opacity: 1; } 100% { width: 60%; opacity: 0.55; } }
+.fx-still__ring { position: absolute; left: 50%; top: 44%; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%;
+  border: 1px solid rgba(255, 244, 214, 0.5); opacity: 0; animation: el-still-ring 5s ease-out 3s both; }
+@keyframes el-still-ring { 0% { opacity: 0; scale: 0.3; } 25% { opacity: 0.6; } 100% { opacity: 0; scale: 9; } }
+.fx-still__word { position: absolute; left: 50%; top: calc(44% + 18px); translate: -50% 0; display: flex; flex-direction: column; align-items: center; gap: 0.5em;
+  font-family: var(--story-font); font-size: 0.82rem; letter-spacing: 0.6em; color: rgba(255, 244, 222, 0.75); white-space: nowrap;
+  opacity: 0; animation: el-still-word 3s ease-out 3.8s both; }
+.fx-still__word small { font-family: serif; font-size: 0.78rem; letter-spacing: 0.1em; opacity: 0.55; }
+@keyframes el-still-word { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: blur(0); } }
+.fx-still.is-rm .fx-still__hush { animation-duration: 0.6s; }
+.fx-still.is-rm :is(.fx-still__line, .fx-still__word) { animation-delay: 0.4s; animation-duration: 0.8s; }
+.fx-still.is-rm .fx-still__ring { display: none; }
+
+/* ── 효과 angel-touch (19:5, 7) ── */
+.fx-touch { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.5s ease-in; }
+.fx-touch.is-out { opacity: 0; }
+.fx-touch__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-touch__shaft { position: absolute; left: -40px; bottom: 0; width: 80px; height: 100vh; transform-origin: 50% 100%;
+  background: linear-gradient(0deg, rgba(255, 238, 200, 0.55), rgba(255, 238, 200, 0.12) 60%, transparent); filter: blur(8px); mix-blend-mode: screen;
+  opacity: 0; animation: el-shaft 4.2s ease-in-out both; }
+@keyframes el-shaft { 0% { opacity: 0; scale: 0.6 1; } 30% { opacity: 1; scale: 1 1; } 100% { opacity: 0.3; scale: 0.8 1; } }
+.fx-touch__pool { position: absolute; left: -70px; top: -24px; width: 140px; height: 48px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 236, 196, 0.6), transparent); mix-blend-mode: screen; opacity: 0; animation: el-pool 4s ease-out 0.6s both; }
+@keyframes el-pool { 0% { opacity: 0; } 35% { opacity: 1; } 100% { opacity: 0.4; } }
+.fx-touch__ring { position: absolute; left: -16px; top: -6px; width: 32px; height: 12px; border-radius: 50%; border: 1px solid rgba(255, 240, 210, 0.7);
+  opacity: 0; animation: el-tring 2.4s ease-out 1.2s both; }
+@keyframes el-tring { 0% { opacity: 0; scale: 0.4; } 30% { opacity: 0.8; } 100% { opacity: 0; scale: 4; } }
+.fx-touch__mote { position: absolute; left: var(--o); top: -80px; width: 3px; height: 3px; border-radius: 50%; background: #fff2cc; box-shadow: 0 0 5px rgba(255, 236, 190, 0.9);
+  opacity: 0; animation: el-tmote 3s ease-in-out both; animation-delay: calc(0.3s + var(--i) * 0.2s); }
+@keyframes el-tmote { 0% { opacity: 0; translate: 0 0; } 30% { opacity: 1; } 100% { opacity: 0; translate: 0 76px; } }
+
+/* ── 효과 mantle-throw: 겉옷을 던짐 (19:19) ── */
+.fx-mthrow { position: absolute; inset: 0; z-index: 4; pointer-events: none; overflow: hidden; transition: opacity 1s ease-in; }
+.fx-mthrow.is-out { opacity: 0; }
+.fx-mthrow__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; offset-rotate: 0deg; offset-distance: 0%; animation: el-mthrow 1.9s cubic-bezier(0.35, 0, 0.35, 1) 0.3s both; }
+@keyframes el-mthrow { from { offset-distance: 0%; } to { offset-distance: 100%; } }
+.fx-mthrow__cloak { position: absolute; left: -32px; top: -24px; width: 64px; height: 48px; overflow: visible; filter: drop-shadow(0 0 5px rgba(255, 226, 170, 0.6));
+  animation: el-cloak 1.9s ease-in-out 0.3s both; }
+.fx-mthrow__cloak path { fill: color-mix(in srgb, #8a7656 50%, var(--act-b)); }
+.fx-mthrow__cloak .fx-mthrow__fringe { fill: none; stroke: #f0dcae; stroke-width: 1.2; }
+@keyframes el-cloak { 0% { scale: 0.3 0.6; rotate: -30deg; } 40% { scale: 1.2 0.8; rotate: 12deg; } 75% { scale: 1 1.1; rotate: -6deg; } 100% { scale: 0.9 1; rotate: 0deg; } }
+.fx-mthrow__land { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-mthrow__land i { position: absolute; left: -30px; top: -30px; width: 60px; height: 60px; border-radius: 50%; border: 1.4px solid rgba(255, 230, 170, 0.8);
+  opacity: 0; animation: el-tring 1.6s ease-out 2.1s both; }
+.fx-mthrow.is-rm .fx-mthrow__at, .fx-mthrow.is-rm .fx-mthrow__cloak { animation-duration: 0.6s; animation-delay: 0s; }

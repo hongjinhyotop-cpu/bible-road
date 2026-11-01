@@ -195,3 +195,4 @@
   .kings__list .kd-card { padding-inline: 6px; }
   .kings__list .kd-card__quote { font-size: 11px; }
 }
+.finale__kings { width: min(92vw, 560px); margin: 0 auto 26px; }

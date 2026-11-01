@@ -218,6 +218,8 @@ export const PLACE_NAMES = {
   'aram': '아람',
   'shunem-9': '수넴',
   'jezreel-9': '이스르엘',
+  gibbethon: '깁브돈',
+  'aphek-aram': '아벡',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
@@ -293,4 +295,6 @@ export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   'aram': '다메섹이 서울인 나라',
   'shunem-9': '부잣집 여인의 다락방',
   'jezreel-9': '아합의 별궁, 나봇의 포도원',
+  gibbethon: '블레셋 땅, 이스라엘이 진 친 곳',
+  'aphek-aram': '갈릴리 바다 동쪽, 아람이 진 친 성',
 };

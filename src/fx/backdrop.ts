@@ -38,8 +38,11 @@ import { kingshipArt } from './kingship';
 import { solomonArt } from './solomon';
 import { absalomArt } from './absalom';
 import { templeArt } from './temple';
+import { elishaArt } from './elisha';
+import { judahArt } from './judah';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
+import { elijahArt } from './elijah';
 import { potipharArt, roundPrisonArt, dreamCowsArt, dreamEarsArt, courtArt, chariotArt, granaryArt } from './egypt-court';
 
 export const W = 400;
@@ -665,6 +668,41 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'tp-holy': () => templeArt('tp-holy'),
   'tp-holy-ark': () => templeArt('tp-holy-ark'),
   'tp-heights': () => templeArt('tp-heights'),
+  // 9막 엘리사 · 북이스라엘의 끝 (fx/elisha.ts)
+  'es-bethel': () => elishaArt('es-bethel'),
+  'es-jericho': () => elishaArt('es-jericho'),
+  'es-jordan': () => elishaArt('es-jordan'),
+  'es-jordan-parted': () => elishaArt('es-jordan-parted'),
+  'es-beyond': () => elishaArt('es-beyond'),
+  'es-spring': () => elishaArt('es-spring'),
+  'es-spring-sweet': () => elishaArt('es-spring-sweet'),
+  'es-damascus': () => elishaArt('es-damascus'),
+  'es-door': () => elishaArt('es-door'),
+  'es-jordan-naaman': () => elishaArt('es-jordan-naaman'),
+  'es-samaria': () => elishaArt('es-samaria'),
+  'es-samaria-siege': () => elishaArt('es-samaria-siege'),
+  'es-samaria-fallen': () => elishaArt('es-samaria-fallen'),
+  'es-exile-road': () => elishaArt('es-exile-road'),
+  'es-calves': () => elishaArt('es-calves'),
+  'es-high-places': () => elishaArt('es-high-places'),
+  // 9막 유다의 마지막 백 년 (fx/judah.ts)
+  'jd-nehushtan': () => judahArt('jd-nehushtan'),
+  'jd-nehushtan-broken': () => judahArt('jd-nehushtan-broken'),
+  'jd-lachish': () => judahArt('jd-lachish'),
+  'jd-wall-conduit': () => judahArt('jd-wall-conduit'),
+  'jd-camp': () => judahArt('jd-camp'),
+  'jd-camp-still': () => judahArt('jd-camp-still'),
+  'jd-repair': () => judahArt('jd-repair'),
+  'jd-scroll-room': () => judahArt('jd-scroll-room'),
+  'jd-kidron-fire': () => judahArt('jd-kidron-fire'),
+  'jd-bethel': () => judahArt('jd-bethel'),
+  'jd-megiddo': () => judahArt('jd-megiddo'),
+  'jd-siege': () => judahArt('jd-siege'),
+  'jd-breach': () => judahArt('jd-breach'),
+  'jd-temple-burning': () => judahArt('jd-temple-burning'),
+  'jd-temple-ash': () => judahArt('jd-temple-ash'),
+  'jd-exile-road': () => judahArt('jd-exile-road'),
+  'jd-babylon-court': () => judahArt('jd-babylon-court'),
   // 7막 압살롬의 반역 (fx/absalom.ts)
   'ab-gate': () => absalomArt('ab-gate'),
   'ab-kidron': () => absalomArt('ab-kidron'),
@@ -687,6 +725,24 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'dv-court-calm': () => davidArt('dv-court-calm'),
   'dv-elah': () => davidArt('dv-elah'),
   'dv-brook': () => davidArt('dv-brook'),
+  // 9막 엘리야 (fx/elijah.ts)
+  'el-shechem': () => elijahArt('el-shechem'),
+  'el-bethel-calf': () => elijahArt('el-bethel-calf'),
+  'el-drought': () => elijahArt('el-drought'),
+  'el-carmel': () => elijahArt('el-carmel'),
+  'el-carmel-altar': () => elijahArt('el-carmel-altar'),
+  'el-carmel-wet': () => elijahArt('el-carmel-wet'),
+  'el-carmel-burnt': () => elijahArt('el-carmel-burnt'),
+  'el-summit': () => elijahArt('el-summit'),
+  'el-broom': () => elijahArt('el-broom'),
+  'el-broom-bread': () => elijahArt('el-broom-bread'),
+  'el-horeb': () => elijahArt('el-horeb'),
+  'el-plow': () => elijahArt('el-plow'),
+  'el-plow-fire': () => elijahArt('el-plow-fire'),
+  'el-vineyard': () => elijahArt('el-vineyard'),
+  'el-chamber': () => elijahArt('el-chamber'),
+  'el-gate': () => elijahArt('el-gate'),
+  'el-gate-empty': () => elijahArt('el-gate-empty'),
   // 7막 사울 (fx/saul.ts)
   'sl-hills': () => saulArt('sl-hills'),
   'sl-ascent': () => saulArt('sl-ascent'),

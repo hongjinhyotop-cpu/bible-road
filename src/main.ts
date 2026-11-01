@@ -50,8 +50,11 @@ import './styles/kingship.css';
 import './styles/solomon.css';
 import './styles/absalom.css';
 import './styles/temple.css';
+import './styles/elisha.css';
+import './styles/judah.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';
+import './styles/elijah.css';
 import './styles/egypt-court.css';
 
 import { applySettings, settings } from './engine/settings';

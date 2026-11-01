@@ -1,0 +1,276 @@
+/* ── 9막 A급: 엘리사와 북이스라엘의 끝 (왕하 2 · 5 · 17, fx/elisha.ts · characters/elisha.ts · characters/naaman.ts) ──
+   배경: 벧엘·여리고·요단(갈라짐)·요단 건너편·여리고의 샘·다메섹·엘리사의 집 문·나아만의 요단·사마리아(포위·함락)·사로잡혀 가는 길·금송아지·산당
+   효과: mantle-strike · chariot-fire · mantle-fall · salt · seven-dips · samaria-falls · warnings */
+
+/* ── 인물: 엘리사 ── */
+.actor .es-mantle, .sil .es-mantle { fill: color-mix(in srgb, #7a5a3a 34%, var(--sil-ink)); }
+.actor .es-robe, .sil .es-robe { fill: color-mix(in srgb, #6a6050 26%, var(--sil-ink)); }
+.actor .es-hide, .sil .es-hide { fill: color-mix(in srgb, #5a4630 30%, var(--sil-ink)); }
+.actor .es-sash, .sil .es-sash { fill: color-mix(in srgb, #a07a48 40%, var(--sil-ink)); }
+.actor .es-torn, .sil .es-torn { stroke: color-mix(in srgb, #e8dcc0 40%, var(--sil-ink)); }
+/* ── 인물: 나아만 ── */
+.actor .nm-bronze, .sil .nm-bronze { fill: color-mix(in srgb, color-mix(in srgb, #b0783a 80%, var(--act-accent)) 44%, var(--sil-ink)); }
+.actor .nm-scale, .sil .nm-scale { fill: color-mix(in srgb, #8a6a3a 30%, var(--sil-ink)); }
+.actor .nm-cloak, .sil .nm-cloak { fill: color-mix(in srgb, #8a2a2a 36%, var(--sil-ink)); }
+.actor .nm-plume, .sil .nm-plume { fill: color-mix(in srgb, #9a3030 44%, var(--sil-ink)); }
+/* 문둥병 자국: 얼굴·손의 흰 얼룩 (차라앗) — 은은하게 */
+.actor .nm-spot, .sil .nm-spot { fill: color-mix(in srgb, #e8e2d4 52%, var(--sil-ink)); opacity: 0.85; }
+/* 고쳐진 살: 어린아이의 살 같이 (5:14) — 따뜻한 빛 */
+.actor .nm-fresh, .sil .nm-fresh { fill: color-mix(in srgb, #f0c8a0 30%, var(--sil-ink)); }
+.actor[data-outfit='healed'] .actor__body, .actor[data-outfit='healed'] .actor__backlight { filter: drop-shadow(0 0 6px rgba(255, 214, 160, 0.55)); }
+.actor .nm-linen, .sil .nm-linen { fill: color-mix(in srgb, #d8cdb4 30%, var(--sil-ink)); }
+
+/* ── 배경 공통 ── */
+.es-window { fill: #ffcf80; opacity: 0.8; filter: drop-shadow(0 0 1.5px rgba(255, 200, 110, 0.9)); animation: js-flicker 3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.es-gate, .es-door { fill: color-mix(in srgb, #1e140a 75%, #000); }
+.es-door__seam { stroke: color-mix(in srgb, var(--act-a) 30%, #000); stroke-width: 0.8; fill: none; }
+.es-road { fill: none; stroke: color-mix(in srgb, #d8c49a 38%, var(--act-b)); stroke-width: 3.2; stroke-linecap: round; opacity: 0.5; }
+.es-road--long { stroke-width: 5; opacity: 0.35; }
+.es-plain { opacity: 0.72; }
+.es-glint { fill: none; stroke: color-mix(in srgb, #a8d0dc 60%, var(--act-b)); stroke-width: 1.2; opacity: 0.5; }
+.es-ember { fill: #ff9a50; opacity: 0.55; filter: blur(0.8px); animation: js-flicker 1.8s ease-in-out infinite alternate; }
+.es-flow { fill: none; stroke: #eaf4ff; stroke-width: 0.8; opacity: 0.25; animation: es-flow 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes es-flow { from { translate: -5px 0; opacity: 0.08; } to { translate: 5px 0; opacity: 0.4; } }
+.es-thicket .bd-sway { animation-duration: 5.5s; }
+
+/* ── 금송아지 ── */
+.es-calf { fill: #e8c27a; filter: drop-shadow(0 0 2px rgba(255, 210, 130, 0.9)); }
+.es-calf path[fill='none'] { stroke: #e8c27a; }
+.es-calf-halo { fill: url(#bd-halo-g); opacity: 0.9; animation: js-flicker 3.2s ease-in-out infinite alternate; }
+.es-calf-halo--far { opacity: 0.6; }
+.es--calves .es-calf-halo:not(.es-calf-halo--far) { opacity: 1; }
+
+/* ── 요단: 물이 이리저리 갈라짐 (2:8, 14) ── */
+.es-water { fill: color-mix(in srgb, #7fa6b8 58%, var(--act-b)); opacity: 0.92; filter: drop-shadow(0 -1px 2px rgba(190, 225, 240, 0.35)); }
+.es-bed { fill: color-mix(in srgb, #b89a6a 30%, var(--act-b)); }
+.es-bed__line { fill: none; stroke: color-mix(in srgb, #2a2016 60%, var(--act-b)); stroke-width: 0.8; opacity: 0.4; }
+.es-heap { fill: color-mix(in srgb, #a8cad8 62%, var(--act-b)); filter: drop-shadow(0 0 3px rgba(200, 235, 250, 0.6)); transform-box: fill-box; transform-origin: 50% 100%; scale: 1 0; }
+.es-river__l, .es-river__r { transition: translate 2.8s cubic-bezier(0.3, 0, 0.2, 1); }
+.es-heap { transition: scale 2.4s cubic-bezier(0.3, 0, 0.2, 1) 0.4s; }
+.es-flows { transition: opacity 1.2s; }
+:is(.es--parted, .es--jordan.is-parting) .es-river__l { translate: -52px 0; }
+:is(.es--parted, .es--jordan.is-parting) .es-river__r { translate: 52px 0; }
+:is(.es--parted, .es--jordan.is-parting) .es-heap { scale: 1 1; }
+:is(.es--parted, .es--jordan.is-parting) .es-flows { opacity: 0; }
+.es--parted :is(.es-river__l, .es-river__r, .es-heap) { transition: none; }
+.es-fifty rect { fill: color-mix(in srgb, var(--act-a) 32%, #05040a); }
+
+/* ── 요단 건너편: 하늘의 소용돌이 ── */
+.es-swirl ellipse { fill: none; stroke: color-mix(in srgb, #e8e4f0 40%, var(--act-b)); stroke-width: 5; opacity: 0.05; filter: blur(2.4px); transform-box: view-box; transform-origin: 200px 60px;
+  animation: es-swirl 30s linear infinite; animation-delay: calc(var(--i) * -5s); stroke-dasharray: 90 60; }
+@keyframes es-swirl { to { rotate: 360deg; } }
+.play[data-tone='storm'] .es-swirl ellipse { opacity: 0.2; animation-duration: 10s; }
+
+/* ── 여리고의 샘 (2:19-22) ── */
+.es-cleft { fill: none; stroke: color-mix(in srgb, #000 70%, var(--act-b)); stroke-width: 2.2; }
+.es-trickle { fill: none; stroke: color-mix(in srgb, #9aa898 50%, var(--act-b)); stroke-width: 1.4; opacity: 0.7; stroke-dasharray: 3 3; animation: bd-flow 3s linear infinite; }
+.es-pool { fill: color-mix(in srgb, #7c8a70 46%, var(--act-b)); transition: fill 3s ease-out; }
+.es-pool__line { fill: none; stroke: #e8f0ff; stroke-width: 0.7; opacity: 0.2; }
+.es-stream { fill: none; stroke: color-mix(in srgb, #7c8a70 46%, var(--act-b)); stroke-width: 2; opacity: 0.55; transition: stroke 3s ease-out; }
+.es-orchard { transition: filter 3s; filter: saturate(0.4) brightness(0.9); }
+.es-fruit { fill: var(--act-accent); opacity: 0; transition: opacity 2.6s ease-out 1.2s; }
+.es-fallen { fill: color-mix(in srgb, #8a6a3a 50%, var(--act-b)); opacity: 0.8; transition: opacity 2s; }
+.es-sparkle { fill: #fff; opacity: 0; }
+.es-sprout { fill: none; stroke: color-mix(in srgb, #9ac87a 60%, var(--act-b)); stroke-width: 0.9; opacity: 0; transition: opacity 2.4s ease-out 1.8s; }
+:is(.es--sweet, .es--spring.is-healed) .es-pool { fill: color-mix(in srgb, #8ec6dc 60%, var(--act-b)); }
+:is(.es--sweet, .es--spring.is-healed) .es-stream { stroke: color-mix(in srgb, #8ec6dc 60%, var(--act-b)); }
+:is(.es--sweet, .es--spring.is-healed) .es-orchard { filter: none; }
+:is(.es--sweet, .es--spring.is-healed) .es-fruit { opacity: 0.75; animation: bd-twinkle 4.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+:is(.es--sweet, .es--spring.is-healed) .es-fallen { opacity: 0; }
+:is(.es--sweet, .es--spring.is-healed) .es-sprout { opacity: 0.8; }
+:is(.es--sweet, .es--spring.is-healed) .es-sparkle { animation: bd-twinkle 2.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+:is(.es--sweet, .es--spring.is-healed) .es-trickle { stroke: color-mix(in srgb, #c8ecf8 60%, var(--act-b)); }
+.es--sweet :is(.es-pool, .es-stream, .es-orchard, .es-fruit, .es-fallen, .es-sprout) { transition: none; }
+
+/* ── 다메섹 ── */
+.es-snow { fill: color-mix(in srgb, #f4f2ec 70%, var(--act-b)); opacity: 0.85; }
+.es-col { fill: color-mix(in srgb, var(--act-b) 50%, #2a2420); }
+.es-shrine-glow { fill: url(#bd-halo-g); opacity: 0.7; }
+.es-poplar { transform-box: fill-box; transform-origin: 50% 100%; animation: bd-sway 6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.es-clear { fill: color-mix(in srgb, #9ad0e4 62%, var(--act-b)); opacity: 0.9; filter: drop-shadow(0 -1px 2px rgba(210, 240, 255, 0.5)); }
+.es-flow--clear { opacity: 0.4; }
+
+/* ── 엘리사의 집 문 ── */
+.es-housewall { fill: color-mix(in srgb, color-mix(in srgb, #8a7458 40%, var(--act-b)) 46%, #0a0806); }
+.es-bricks { fill: none; stroke: color-mix(in srgb, var(--act-b) 40%, #000); stroke-width: 0.6; opacity: 0.45; }
+.es-pennon { fill: color-mix(in srgb, #9a3a2a 60%, var(--act-b)); animation: dv-flag 2.6s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
+.es-guards rect { fill: color-mix(in srgb, #6a2a24 30%, #05040a); }
+
+/* ── 나아만의 요단 ── */
+.es-mud { fill: color-mix(in srgb, #7a6a48 46%, var(--act-b)); opacity: 0.94; }
+.es-flow--mud { stroke: #f4ead0; opacity: 0.2; }
+
+/* ── 사마리아 ── */
+.es-stone { fill: color-mix(in srgb, color-mix(in srgb, #b8a888 45%, var(--act-b)) 52%, #0a0806); }
+.es-roofs { fill: color-mix(in srgb, color-mix(in srgb, #9a8a70 35%, var(--act-b)) 40%, #0a0806); }
+.es-ivory { fill: color-mix(in srgb, #efe6d0 46%, var(--act-b)); }
+.es-roof { opacity: 0.9; }
+.es-campfire { fill: #ffae60; filter: drop-shadow(0 0 2px rgba(255, 170, 90, 0.95)); animation: js-flicker 1.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.es-host rect { fill: color-mix(in srgb, #5a2a20 30%, #05040a); }
+.es-banner { fill: color-mix(in srgb, #9a3a2a 60%, var(--act-b)); animation: dv-flag 2.4s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: left center; }
+.es-ram { animation: es-ram 2.2s ease-in-out infinite; }
+@keyframes es-ram { 0%, 60%, 100% { translate: 0 0; } 75% { translate: 2px -1px; } }
+.es-embers circle { fill: #ffae60; opacity: 0.7; filter: drop-shadow(0 0 1.5px rgba(255, 160, 80, 0.9)); animation: es-ember-rise 3s ease-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes es-ember-rise { 0% { translate: 0 0; opacity: 0.8; } 100% { translate: 3px -18px; opacity: 0; } }
+.es-rubble ellipse { opacity: 0.85; }
+.es--fallen .bd-smoke__puff, .es-fallsmoke .bd-smoke__puff { fill: color-mix(in srgb, #3a3434 70%, var(--act-b)); }
+/* fx samaria-falls: 성벽 토막이 차례로 무너진다 */
+.es-seg { transform-box: view-box; }
+.es--samaria.is-falling .es-seg { animation: es-crumble 1.8s cubic-bezier(0.5, 0, 0.8, 0.5) calc(0.3s + var(--i) * 0.32s) both; }
+@keyframes es-crumble { 0% { rotate: 0deg; translate: 0 0; opacity: 1; } 30% { rotate: 3deg; } 100% { rotate: 24deg; translate: 4px 18px; opacity: 0; } }
+.es--samaria.is-falling .es-col { transition: rotate 2.4s cubic-bezier(0.5, 0, 0.8, 0.5) 1.6s, opacity 1.6s ease-in 3s; rotate: calc((var(--i) - 2) * 14deg); opacity: 0.35; }
+.es--samaria.is-falling .es-roof { transition: translate 1.8s ease-in 1.4s, opacity 1.4s ease-in 1.6s; translate: 0 22px; opacity: 0; }
+.es-fallsmoke { opacity: 0; transition: opacity 3s ease-in 1.4s; }
+.es--samaria.is-falling .es-fallsmoke { opacity: 1; }
+.es--samaria.is-falling .es-window { animation: none; opacity: 0; transition: opacity 2s 1s; }
+
+/* ── 사로잡혀 가는 길 ── */
+.es-sun { fill: color-mix(in srgb, #ffd2a0 60%, var(--act-b)); opacity: 0.6; filter: blur(1px) drop-shadow(0 0 8px rgba(255, 200, 150, 0.6)); }
+.es-line { animation: es-walk 3.2s linear infinite; }
+@keyframes es-walk { from { translate: 0 0; } to { translate: 18px 0; } }
+.es-walker { fill: color-mix(in srgb, var(--act-a) 30%, #05040a); color: color-mix(in srgb, var(--act-a) 30%, #05040a); }
+.es-walker rect { animation: es-bob 0.8s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes es-bob { from { translate: 0 0; } to { translate: 0 -0.7px; } }
+.es-walker--guard { fill: color-mix(in srgb, #6a2a24 30%, #05040a); color: color-mix(in srgb, #6a2a24 30%, #05040a); }
+.es-dustline ellipse { fill: color-mix(in srgb, #d8c2a0 40%, var(--act-b)); opacity: 0.18; filter: blur(4px); animation: es-dust 6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes es-dust { from { translate: -6px 0; opacity: 0.08; } to { translate: 8px -2px; opacity: 0.26; } }
+
+:root[data-reduced-motion='true'] :is(.es-flow, .es-swirl ellipse, .es-poplar, .es-pennon, .es-banner, .es-ram, .es-embers circle, .es-line, .es-walker rect, .es-dustline ellipse, .es-trickle, .es-campfire, .es-calf-halo, .es-window) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.es-river__l, .es-river__r, .es-heap, .es-pool, .es-stream, .es-fruit, .es-fallen, .es-sprout, .es-orchard) { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+:root[data-reduced-motion='true'] .es--samaria.is-falling .es-seg { animation-duration: 0.01s; animation-delay: 0s; }
+
+/* ── 효과 공통 ── */
+:is(.fx-mstrike, .fx-chariot, .fx-mfall, .fx-salt, .fx-dips, .fx-sfall, .fx-warn) { position: absolute; inset: 0; pointer-events: none; overflow: hidden; transition: opacity 1.2s ease-in; }
+:is(.fx-mstrike, .fx-chariot, .fx-mfall, .fx-salt, .fx-dips, .fx-sfall, .fx-warn).is-out { opacity: 0; }
+
+/* ── mantle-strike: 말아 쥔 겉옷이 물을 친다 ── */
+.fx-mstrike { z-index: 4; }
+.fx-mstrike__at { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-mstrike__roll { position: absolute; left: -4px; top: -40px; width: 8px; height: 40px; border-radius: 4px;
+  background: linear-gradient(180deg, color-mix(in srgb, #7a5a3a 60%, #000), color-mix(in srgb, #a07a48 60%, #000)); transform-origin: 50% 100%;
+  rotate: calc(var(--dir) * -40deg); animation: es-roll 1.1s cubic-bezier(0.6, 0, 0.3, 1) 0.1s both; }
+@keyframes es-roll { 0% { rotate: calc(var(--dir) * -40deg); opacity: 0; } 20% { opacity: 1; } 70% { rotate: calc(var(--dir) * 120deg); } 100% { rotate: calc(var(--dir) * 118deg); opacity: 0; } }
+.fx-mstrike__arc { position: absolute; left: -46px; top: -46px; width: 92px; height: 92px; border-radius: 50%; border: 2px solid transparent;
+  border-top-color: rgba(255, 236, 200, 0.7); rotate: calc(var(--dir) * 30deg); opacity: 0; animation: es-arc 0.8s ease-out 0.55s both; }
+@keyframes es-arc { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; rotate: calc(var(--dir) * 110deg); } }
+.fx-mstrike__splash { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-mstrike__splash i { position: absolute; left: -40px; top: -10px; width: 80px; height: 20px; border-radius: 50%; border: 1.6px solid rgba(220, 240, 255, 0.85);
+  opacity: 0; animation: es-ring 1.8s ease-out both; animation-delay: calc(1s + var(--i) * 0.25s); }
+@keyframes es-ring { 0% { opacity: 0; scale: 0.2; } 20% { opacity: 1; } 100% { opacity: 0; scale: 3.2; } }
+.fx-mstrike__splash b { position: absolute; left: -2px; top: -2px; width: 4px; height: 4px; border-radius: 50%; background: #e8f6ff; box-shadow: 0 0 4px rgba(220, 240, 255, 0.9);
+  rotate: var(--a); opacity: 0; animation: es-spray 1.2s cubic-bezier(0.2, 0.6, 0.4, 1) 1s both; }
+@keyframes es-spray { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 100% { opacity: 0; translate: 46px 0; } }
+.fx-mstrike.is-rm :is(.fx-mstrike__roll, .fx-mstrike__arc, .fx-mstrike__splash b) { display: none; }
+.fx-mstrike.is-rm .fx-mstrike__splash i { animation-delay: 0s; }
+
+/* ── chariot-fire: 불 수레와 불 말들 · 회리바람 (2:11) ── */
+.fx-chariot { z-index: 4; }
+.fx-chariot::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(255, 170, 90, 0.35), transparent 70%);
+  opacity: 0; animation: es-firesky 9s ease-in-out both; mix-blend-mode: screen; }
+@keyframes es-firesky { 0% { opacity: 0; } 15% { opacity: 1; } 45% { opacity: 0.6; } 70% { opacity: 1; } 100% { opacity: 0; } }
+.fx-chariot__run { position: absolute; left: 0; top: var(--y); width: 100%; height: 0; }
+.fx-chariot__team { position: absolute; left: 0; top: -80px; width: 250px; height: 92px; color: #ffcf80;
+  translate: -220px -160px; opacity: 0; animation: es-team 3.4s cubic-bezier(0.35, 0.1, 0.45, 1) 0.4s both; filter: drop-shadow(0 0 6px rgba(255, 170, 80, 0.95)) drop-shadow(0 0 16px rgba(255, 120, 40, 0.6)); }
+@keyframes es-team { 0% { translate: -220px -160px; opacity: 0; } 12% { opacity: 1; } 50% { translate: calc(var(--w) * 0.5 - 95px) 0; } 88% { opacity: 1; } 100% { translate: calc(var(--w) + 40px) -220px; opacity: 0; } }
+.fx-chariot__steed { position: absolute; width: 96px; height: 70px; fill: currentColor; left: calc(130px + var(--k) * 30px); top: calc(var(--k) * 10px);
+  animation: es-gallop 0.34s ease-in-out infinite alternate; }
+@keyframes es-gallop { from { translate: 0 0; rotate: -3deg; } to { translate: 0 -4px; rotate: 3deg; } }
+.fx-chariot__car { position: absolute; left: 34px; top: 22px; width: 92px; height: 70px; fill: currentColor; color: #ffdca0; }
+.fx-chariot__flame { fill: #ffb060; animation: jg-flame 0.5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: bottom; }
+.fx-chariot__trail { position: absolute; left: -160px; top: 30px; width: 220px; height: 22px; border-radius: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255, 150, 60, 0.5), rgba(255, 220, 160, 0.8)); filter: blur(5px); }
+.fx-whirl { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-whirl i { position: absolute; left: -60px; top: calc(var(--h) * -0.15 - var(--i) * var(--h) * 0.16); width: 120px; height: 26px; border-radius: 50%;
+  border: 2px solid rgba(240, 236, 255, 0.7); border-left-color: transparent; border-bottom-color: rgba(240, 236, 255, 0.15);
+  opacity: 0; scale: calc(0.5 + var(--i) * 0.16) 1; animation: es-spin 0.9s linear infinite, es-whirl-in 7s ease-in-out 2.6s both; }
+@keyframes es-spin { to { rotate: 360deg; } }
+@keyframes es-whirl-in { 0% { opacity: 0; translate: 0 0; } 20% { opacity: 0.85; } 75% { opacity: 0.8; translate: 0 calc(var(--h) * -0.6); } 100% { opacity: 0; translate: 0 calc(var(--h) * -1.4); } }
+.fx-whirl__beam { position: absolute; left: -36px; bottom: 0; width: 72px; height: 200vh; background: linear-gradient(0deg, rgba(255, 240, 210, 0.5), rgba(255, 240, 210, 0.05) 60%, transparent);
+  filter: blur(6px); opacity: 0; animation: es-beam 6.4s ease-in-out 3s both; transform-origin: 50% 100%; }
+@keyframes es-beam { 0% { opacity: 0; scale: 0.4 1; } 30% { opacity: 1; scale: 1 1; } 80% { opacity: 0.7; } 100% { opacity: 0; scale: 0.6 1; } }
+.fx-chariot.is-rm :is(.fx-chariot__run, .fx-whirl i) { display: none; }
+.fx-chariot.is-rm::before { animation-duration: 2.4s; }
+.fx-chariot.is-rm .fx-whirl__beam { animation-duration: 2s; animation-delay: 0s; }
+
+/* ── mantle-fall: 하늘에서 떨어지는 겉옷 (2:13) ── */
+.fx-mfall { z-index: 4; }
+.fx-mfall__drop { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-mfall__cloth { position: absolute; left: -46px; top: -34px; width: 92px; height: 60px; fill: color-mix(in srgb, #8a6a42 55%, #1a1410);
+  filter: drop-shadow(0 0 5px rgba(255, 230, 180, 0.65)); animation: es-flutter 4s cubic-bezier(0.3, 0.1, 0.4, 1) both; }
+.fx-mfall__fold { stroke: rgba(255, 236, 200, 0.4); stroke-width: 1; }
+@keyframes es-flutter {
+  0% { translate: 30px -70vh; rotate: -30deg; opacity: 0; scale: 0.7; }
+  10% { opacity: 1; }
+  30% { translate: -26px -48vh; rotate: 18deg; }
+  52% { translate: 22px -26vh; rotate: -14deg; }
+  74% { translate: -10px -8vh; rotate: 8deg; scale: 1; }
+  100% { translate: 0 0; rotate: -4deg; scale: 1 0.55; }
+}
+.fx-mfall.is-rm .fx-mfall__cloth { animation-duration: 0.6s; }
+
+/* ── salt: 샘에 던진 소금 (2:21) ── */
+.fx-salt { z-index: 4; }
+.fx-salt__from { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-salt__from b { position: absolute; left: var(--o); top: 0; width: 3px; height: 3px; border-radius: 1px; background: #fbf8f0; box-shadow: 0 0 3px rgba(255, 255, 255, 0.9);
+  opacity: 0; animation: es-grain 1.5s cubic-bezier(0.3, 0.3, 0.6, 1) both; animation-delay: calc(0.5s + var(--i) * 0.05s); }
+@keyframes es-grain { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 1; } 50% { translate: calc(var(--dx) * 0.5 + var(--o) * 2) calc(var(--dy) * 0.25 - 40px); } 100% { opacity: 0.2; translate: calc(var(--dx) + var(--o) * 3) var(--dy); } }
+.fx-salt__rings { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-salt__rings i { position: absolute; left: -50px; top: -9px; width: 100px; height: 18px; border-radius: 50%; border: 1.4px solid rgba(220, 245, 255, 0.85);
+  opacity: 0; animation: es-ring 2.4s ease-out both; animation-delay: calc(1.9s + var(--i) * 0.45s); }
+.fx-salt__glow { position: absolute; left: -110px; top: -40px; width: 220px; height: 80px; border-radius: 50%; background: radial-gradient(closest-side, rgba(200, 240, 255, 0.45), transparent);
+  mix-blend-mode: screen; opacity: 0; animation: es-glow 4s ease-out 2s both; }
+@keyframes es-glow { 0% { opacity: 0; } 30% { opacity: 1; } 100% { opacity: 0; } }
+.fx-salt.is-rm .fx-salt__from { display: none; }
+.fx-salt.is-rm :is(.fx-salt__rings i, .fx-salt__glow) { animation-delay: 0s; }
+
+/* ── seven-dips: 요단에 일곱 번 (5:14) ── */
+.fx-dips { z-index: 3; }
+.fx-dips__water { position: absolute; left: -5%; right: -5%; top: var(--y); bottom: 0;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 9px, rgba(240, 232, 210, 0.07) 9px 10px),
+    linear-gradient(180deg, rgba(122, 112, 80, 0.72) 0%, rgba(70, 62, 44, 0.9) 22%, rgba(34, 30, 24, 0.96) 100%);
+  opacity: 0; animation: es-water-in 0.6s ease-out both; }
+@keyframes es-water-in { from { opacity: 0; } to { opacity: 1; } }
+.fx-dips__line { position: absolute; left: 0; right: 0; top: -2px; height: 3px; background: linear-gradient(90deg, transparent, rgba(255, 244, 220, 0.6), transparent); animation: es-flow 2s ease-in-out infinite alternate; }
+.fx-dips__count { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-dips__count b { position: absolute; left: -30px; top: -20px; width: 60px; text-align: center; font-family: var(--story-font, serif); font-size: 30px; font-weight: 400; color: #fff2d6;
+  text-shadow: 0 0 10px rgba(255, 220, 160, 0.8); opacity: 0; animation: es-count var(--s) ease-out both; animation-delay: calc(0.6s + var(--i) * var(--s)); }
+.fx-dips__count b:last-child { animation-name: es-count-last; animation-duration: calc(var(--s) + 2.4s); font-size: 38px; }
+@keyframes es-count { 0% { opacity: 0; translate: 0 6px; } 25% { opacity: 1; translate: 0 0; } 75% { opacity: 1; } 100% { opacity: 0; translate: 0 -6px; } }
+@keyframes es-count-last { 0% { opacity: 0; translate: 0 6px; } 15% { opacity: 1; translate: 0 0; } 85% { opacity: 1; } 100% { opacity: 0; } }
+.fx-dips__rings { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-dips__rings i { position: absolute; left: -46px; top: -8px; width: 92px; height: 16px; border-radius: 50%; border: 1.4px solid rgba(240, 236, 220, 0.75);
+  opacity: 0; animation: es-ring 1.6s ease-out both; animation-delay: calc(0.6s + var(--i) * var(--s) + var(--s) * 0.45); }
+.fx-dips__glow { position: absolute; left: var(--x); top: var(--y); width: 0; height: 0; }
+.fx-dips__glow::before { content: ''; position: absolute; left: -130px; top: -170px; width: 260px; height: 340px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 226, 180, 0.6), rgba(255, 210, 160, 0.15) 60%, transparent); mix-blend-mode: screen;
+  opacity: 0; animation: es-glow 3s ease-out var(--t) both; }
+.fx-dips.is-rm .fx-dips__count b { animation-duration: 0.3s; }
+
+/* ── samaria-falls: 흙먼지와 재 (17:6) ── */
+.fx-sfall { z-index: 3; }
+.fx-sfall__dust { position: absolute; left: 50%; top: var(--y); width: 0; height: 0; }
+.fx-sfall__dust i { position: absolute; left: var(--o); top: -30px; width: 90px; height: 60px; border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, #b8a890 55%, transparent), transparent); filter: blur(5px);
+  opacity: 0; animation: dv-dust 4.4s ease-out both; animation-delay: calc(0.6s + var(--i) * 0.25s); }
+.fx-sfall__ash b { position: absolute; left: var(--x); top: -10px; width: 3px; height: 3px; border-radius: 50%; background: rgba(200, 192, 180, 0.7);
+  opacity: 0; animation: es-ash 6s linear both; animation-delay: calc(1.6s + var(--i) * 0.16s); }
+@keyframes es-ash { 0% { opacity: 0; translate: 0 0; } 15% { opacity: 0.8; } 100% { opacity: 0; translate: 30px 70vh; } }
+
+/* ── warnings: 보낸 선지자들의 이름 (17:13-14) ── */
+.fx-warn { z-index: 3; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 12%; gap: 14px; }
+.fx-warn__row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 16px; max-width: min(92%, 640px); }
+.fx-warn__lamp { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.fx-warn__lamp i { width: 8px; height: 8px; border-radius: 50%; background: #ffd890; box-shadow: 0 0 10px 3px rgba(255, 210, 130, 0.7);
+  opacity: 0; animation: es-lamp-on 0.9s ease-out both, es-lamp-off 1.4s ease-in forwards;
+  animation-delay: calc(0.4s + var(--i) * 0.55s), calc(6.6s + (var(--n) - 1 - var(--i)) * 0.5s); }
+.fx-warn__lamp b { font-family: var(--story-font, serif); font-weight: 400; font-size: 14px; letter-spacing: 0.08em; color: #f6e8c8; text-shadow: 0 0 8px rgba(255, 210, 140, 0.6);
+  opacity: 0; animation: es-lamp-on 0.9s ease-out both, es-name-off 1.4s ease-in forwards;
+  animation-delay: calc(0.5s + var(--i) * 0.55s), calc(6.6s + (var(--n) - 1 - var(--i)) * 0.5s); }
+@keyframes es-lamp-on { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@keyframes es-lamp-off { from { opacity: 1; } to { opacity: 0.08; box-shadow: none; background: #6a6460; } }
+@keyframes es-name-off { from { opacity: 1; } to { opacity: 0.22; color: #8a8478; text-shadow: none; } }
+.fx-warn__more { margin: 0; font-family: var(--story-font, serif); font-size: 12px; letter-spacing: 0.06em; color: rgba(246, 232, 200, 0.7);
+  opacity: 0; animation: es-lamp-on 1.2s ease-out 4.6s both, es-name-off 1.6s ease-in 9.6s forwards; }
+.fx-warn.is-rm :is(.fx-warn__lamp i, .fx-warn__lamp b, .fx-warn__more) { animation: es-lamp-on 0.3s ease-out both; }
+.actor .es-shine, .sil .es-shine { stroke: color-mix(in srgb, #fff4dc 30%, var(--sil-ink)); opacity: 0.55; }
