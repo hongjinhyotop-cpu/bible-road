@@ -18,6 +18,7 @@ import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
 import { showTravel, type TravelMap } from '../fx/travel';
 import { showAllot, type AllotMap } from '../fx/allot';
 import { showCycle, ROUNDS, type CycleRing } from '../fx/cycle';
+import { showKings, type KingsBoard } from '../fx/kingdoms';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
 import type { CharacterDef } from '../characters';
@@ -143,6 +144,8 @@ export function sceneScreen({ id }: Params): Screen {
   let allotMap: AllotMap | null = null;
   /** 사사기의 순환 고리 (beat 필드 cycle) */
   let cycleRing: CycleRing | null = null;
+  /** 9막 두 왕국 판 (beat 필드 kings) */
+  let kingsBoard: KingsBoard | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
 
@@ -220,7 +223,7 @@ export function sceneScreen({ id }: Params): Screen {
           return;
         }
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
-        const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : 0;
+        const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : beat.kings ? (typeof beat.kings === 'object' && !Array.isArray(beat.kings) && beat.kings.fall ? 6 : 3.4) : 0;
         // 글 없는 beat의 긴 효과는 끝까지 보여 준다 (다음 beat의 암전·배경 전환에 가리지 않게)
         const longFx = Math.max(0, ...[beat.fx ?? []].flat().map((f) => FX_HOLD[f] ?? 0));
         await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
@@ -314,6 +317,9 @@ export function sceneScreen({ id }: Params): Screen {
       cycleRing = showCycle($('.scene'), beat.cycle, cycleRing);
       setDecay(Math.max(Number(cycleRing.el.dataset.round), Number(el.dataset.decay ?? 0)));
     } else cycleRing?.big(false);
+    // 두 왕국 판: 이번 beat에 kings가 있으면 크게 펴고 왕 카드를 쌓는다. 없으면 왼쪽 위 작은 표로
+    if (beat.kings) kingsBoard = showKings($('.scene'), beat.kings, kingsBoard);
+    else kingsBoard?.big(false);
     // 땅 분배 지도: 이번 beat에 allot이 있으면 칠하고, 없으면 접는다
     if (beat.allot) {
       travel?.el.remove();
@@ -933,6 +939,7 @@ export function sceneScreen({ id }: Params): Screen {
     stage.actors.forEach((a) => a.setDim(true));
     setBlack(false);
     cycleRing?.big(false);
+    kingsBoard?.big(false);
     setItem(el, items, null);
     setMemory(null);
     const known = progress.get().characters;
@@ -1058,6 +1065,8 @@ export function sceneScreen({ id }: Params): Screen {
     allotMap = null;
     cycleRing?.el.remove();
     cycleRing = null;
+    kingsBoard?.el.remove();
+    kingsBoard = null;
     setBlack(false);
     $('.scene__sound').classList.remove('is-on');
     setDecay(scene.decay ?? 0);

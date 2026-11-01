@@ -167,6 +167,27 @@ export const PLACE_XY: Record<PlaceName, [number, number]> = {
   lebanon: at(35.95, 34.2),
   joppa: at(34.75, 32.05),
   sheba: at(38.8, 25.3), // 실제는 훨씬 남쪽(북위 15° 안팎) — 지도 아래 끝에 둠
+  // 9막 (그릿 시내·할라는 위치가 확실하지 않음 — 대략)
+  'tirzah': at(35.38, 32.29),
+  'samaria': at(35.19, 32.28),
+  'penuel': at(35.68, 32.19),
+  'zarephath': at(35.3, 33.45),
+  'cherith': at(35.62, 32.32),
+  'mount-carmel': at(35.05, 32.68),
+  'ramoth-gilead': at(35.98, 32.55),
+  'abel-meholah': at(35.53, 32.38),
+  'horeb': at(33.97, 28.54),
+  'megiddo': at(35.18, 32.58),
+  'riblah': at(36.55, 34.45),
+  'hamath': at(36.75, 35.13),
+  'gozan': at(40.07, 36.84),
+  'halah': at(43.2, 36.6),
+  'media': at(47.5, 34.8),
+  'kir-hareseth': at(35.7, 31.18),
+  'assyria': at(43.15, 36.36),
+  'aram': at(36.29, 33.51),
+  'shunem-9': at(35.33, 32.61),
+  'jezreel-9': at(35.33, 32.56),
 };
 
 /** 지도 그림: 바다·강·지역 이름. 한 번만 만든다 */

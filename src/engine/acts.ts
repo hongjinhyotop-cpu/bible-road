@@ -40,9 +40,10 @@ export const ACTS: Act[] = [
   { no: 8, numeral: 'VIII', title: '지혜와 노래', latin: 'Sapientia', range: '욥기–아가', mood: '여백과 물결',
     stops: [s('JOB', 1, 42), s('PSA', 1, 150), s('PRO', 1, 31), s('ECC', 1, 12), s('SNG', 1, 8)] },
   { no: 9, numeral: 'IX', title: '분열과 예언', latin: 'Prophetae', range: '왕상 12–왕하, 예언서', mood: '폭풍 하늘, 재, 두루마리',
-    stops: [s('1KI', 12, 22), s('2KI', 1, 25), s('2CH', 10, 36), s('ISA', 1, 66), s('JER', 1, 52), s('LAM', 1, 5),
-      s('HOS', 1, 14), s('JOL', 1, 3), s('AMO', 1, 9), s('OBA', 1, 1), s('JON', 1, 4), s('MIC', 1, 7),
-      s('NAM', 1, 3), s('HAB', 1, 3), s('ZEP', 1, 3), s('HAG', 1, 2), s('ZEC', 1, 14), s('MAL', 1, 4)] },
+    // 2026-11-01 사용자 결정: 이번엔 열왕기 이야기(왕상 12–왕하 25)만. 예언서는 나중에 성경 순서대로 따로, 역대하는 역대기 막으로 → later
+    stops: [s('1KI', 12, 22), s('2KI', 1, 25), s('2CH', 10, 36, true), s('ISA', 1, 66, true), s('JER', 1, 52, true), s('LAM', 1, 5, true),
+      s('HOS', 1, 14, true), s('JOL', 1, 3, true), s('AMO', 1, 9, true), s('OBA', 1, 1, true), s('JON', 1, 4, true), s('MIC', 1, 7, true),
+      s('NAM', 1, 3, true), s('HAB', 1, 3, true), s('ZEP', 1, 3, true), s('HAG', 1, 2, true), s('ZEC', 1, 14, true), s('MAL', 1, 4, true)] },
   { no: 10, numeral: 'X', title: '포로와 귀환', latin: 'Captivitas', range: '에스겔, 다니엘, 에스라, 느헤미야, 에스더', mood: '바빌론 청색 타일, 돌벽',
     stops: [s('EZK', 1, 48), s('DAN', 1, 12), s('EZR', 1, 10), s('NEH', 1, 13), s('EST', 1, 10)] },
   { no: 11, numeral: 'XI', title: '복음서', latin: 'Evangelium', range: '마태–요한', mood: '갈릴리 호수, 올리브',
