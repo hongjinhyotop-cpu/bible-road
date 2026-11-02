@@ -1,0 +1,227 @@
+/* ── 10막 A급: 에스라 (스 1 「고레스의 조서」 · 스 3 「두 소리」) — fx/ezra.ts · characters/cyrus.ts · zerubbabel.ts · jeshua-priest.ts ──
+   인물: 고레스(.cy-*), 스룹바벨(.zr-*), 예수아(.jp-*)
+   배경: ez-* (바벨론 강가 · 고레스의 궁 · 귀환 행렬 · 폐허 예루살렘 · 제단 · 성전 기초 · 둘째 성전)
+   효과: decree · vessels · two-sounds */
+
+/* ── 인물 ── */
+.actor .cy-robe, .sil .cy-robe { fill: color-mix(in srgb, color-mix(in srgb, #6a3a8a 60%, var(--act-accent)) 34%, var(--sil-ink)); }
+.actor .cy-sleeve, .sil .cy-sleeve { fill: color-mix(in srgb, color-mix(in srgb, #4e2a6a 66%, var(--act-accent)) 30%, var(--sil-ink)); }
+.actor .cy-pleat, .sil .cy-pleat { fill: none; stroke: color-mix(in srgb, #000 40%, var(--sil-ink)); stroke-width: 0.9; opacity: 0.7; }
+.actor .cy-gold, .sil .cy-gold { fill: color-mix(in srgb, color-mix(in srgb, #e9c46a 82%, var(--act-accent)) 54%, var(--sil-ink)); }
+.actor .cy-beard, .sil .cy-beard { fill: color-mix(in srgb, #2a1e18 40%, var(--sil-ink)); }
+.actor .cy-curl, .sil .cy-curl { fill: none; stroke: color-mix(in srgb, #8a7058 40%, var(--sil-ink)); stroke-width: 0.8; }
+.actor .cy-ribbon, .sil .cy-ribbon { fill: color-mix(in srgb, #c8b8e0 36%, var(--sil-ink)); }
+.actor .cy-lotus, .sil .cy-lotus { fill: color-mix(in srgb, #f2e2c0 54%, var(--sil-ink)); }
+.actor .zr-robe, .sil .zr-robe { fill: color-mix(in srgb, color-mix(in srgb, #2e5a8a 62%, var(--act-accent)) 32%, var(--sil-ink)); }
+.actor .zr-mantle, .sil .zr-mantle { fill: color-mix(in srgb, color-mix(in srgb, #7a5a2a 60%, var(--act-accent)) 30%, var(--sil-ink)); }
+.actor .zr-wrap, .sil .zr-wrap { fill: color-mix(in srgb, #e2d6bc 34%, var(--sil-ink)); }
+.actor .zr-gold, .sil .zr-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .zr-tassel, .sil .zr-tassel { fill: color-mix(in srgb, #6f8fd0 52%, var(--sil-ink)); }
+.actor .zr-line, .sil .zr-line { fill: none; stroke: color-mix(in srgb, #e8dcc0 62%, var(--sil-ink)); stroke-width: 1; }
+.actor .zr-plumb, .sil .zr-plumb { fill: color-mix(in srgb, #b8b2a8 52%, var(--sil-ink)); }
+.actor .zr-staff, .sil .zr-staff { fill: color-mix(in srgb, #6a4a2a 40%, var(--sil-ink)); }
+.actor .jp-robe, .sil .jp-robe { fill: color-mix(in srgb, color-mix(in srgb, #2a4a9a 66%, var(--act-accent)) 36%, var(--sil-ink)); }
+.actor .jp-ephod, .sil .jp-ephod { fill: color-mix(in srgb, color-mix(in srgb, #9a3a5a 50%, #e2b75c) 40%, var(--sil-ink)); }
+.actor .jp-gold, .sil .jp-gold { fill: color-mix(in srgb, color-mix(in srgb, #ecc868 84%, var(--act-accent)) 58%, var(--sil-ink)); }
+.actor .jp-linen, .sil .jp-linen { fill: color-mix(in srgb, #f0eadc 46%, var(--sil-ink)); }
+.actor .jp-beard, .sil .jp-beard { fill: color-mix(in srgb, #cfc8bc 40%, var(--sil-ink)); }
+.actor .jp-gem, .sil .jp-gem { fill: color-mix(in srgb, #f6e2a8 70%, var(--act-accent)); opacity: 0.9; }
+.actor .jp-gem2, .sil .jp-gem2 { fill: color-mix(in srgb, #9ad0e8 64%, var(--act-accent)); opacity: 0.9; }
+.actor .jp-gem3, .sil .jp-gem3 { fill: color-mix(in srgb, #e88a8a 60%, var(--act-accent)); opacity: 0.9; }
+.actor .jp-silver, .sil .jp-silver { fill: color-mix(in srgb, #e4e8ee 64%, var(--sil-ink)); }
+
+/* ── 배경 공통 ── */
+.ez-courses { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.28; }
+.ez-stair { fill: color-mix(in srgb, var(--act-accent) 18%, var(--act-b)); opacity: 0.3; }
+
+/* 바벨론 강가 */
+.ez-water { fill: color-mix(in srgb, #4a7aa8 30%, var(--act-b)); opacity: 0.6; }
+.ez-glints path { fill: none; stroke: #e8f2ff; stroke-width: 0.8; stroke-linecap: round; opacity: 0; animation: ez-glint 6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes ez-glint { 0%, 100% { opacity: 0; translate: 0 0; } 50% { opacity: 0.55; translate: 6px 0; } }
+.ez-boat { animation: ez-bob 6s ease-in-out infinite alternate; }
+@keyframes ez-bob { from { translate: -3px 0; } to { translate: 4px 0.8px; } }
+.ez-pole { fill: none; stroke: color-mix(in srgb, var(--act-b) 36%, #04050b); stroke-width: 1; }
+.ez-strands path { fill: none; stroke: color-mix(in srgb, var(--act-a) 46%, #020205); stroke-width: 0.9; transform-box: fill-box; transform-origin: top; animation: ez-sway 5s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes ez-sway { from { rotate: -1.6deg; } to { rotate: 2deg; } }
+.ez-lyre { fill: color-mix(in srgb, #b8864a 46%, #0a0608); animation: ez-lyre 5s ease-in-out infinite alternate; transform-box: fill-box; transform-origin: top; }
+.ez-lyre__string { fill: none; stroke: color-mix(in srgb, #e8d4a0 50%, #0a0608); stroke-width: 0.5; }
+@keyframes ez-lyre { from { rotate: -3deg; } to { rotate: 3deg; } }
+
+/* 고레스의 궁 */
+.ez-courtwall { fill: color-mix(in srgb, color-mix(in srgb, #8a7a64 34%, var(--act-b)) 34%, #05050a); }
+.ez-merlons { fill: color-mix(in srgb, color-mix(in srgb, #8a7a64 30%, var(--act-b)) 22%, #04040a); }
+.ez-courtband { fill: color-mix(in srgb, color-mix(in srgb, #a89070 30%, var(--act-b)) 40%, #05050a); }
+.ez-niche { fill: #04040a; opacity: 0.75; }
+.ez-nichecap { fill: color-mix(in srgb, #c8b48c 30%, var(--act-b)); opacity: 0.8; }
+.ez-tribute { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); opacity: 0.8; }
+.ez-rosettes circle { fill: color-mix(in srgb, #e6c47c 60%, var(--act-accent)); opacity: 0.55; }
+.ez-canopy, .ez-fringe { fill: color-mix(in srgb, #6a3a8a 34%, #07050c); }
+.ez-fringe { fill: none; stroke: color-mix(in srgb, #e6c47c 60%, var(--act-accent)); stroke-width: 0.8; opacity: 0.7; }
+.ez-canopypole { fill: none; stroke: color-mix(in srgb, #e6c47c 50%, #07050c); stroke-width: 1.2; }
+.ez-step { fill: color-mix(in srgb, #a89070 30%, var(--act-b)); opacity: 0.9; }
+.ez-throne { fill: color-mix(in srgb, #e6c47c 50%, #1a1008); }
+.ez-daishalo { opacity: 0.5; }
+.ez-colstone { fill: color-mix(in srgb, color-mix(in srgb, #cbb894 40%, var(--act-b)) 46%, #05050a); }
+.ez-flutes { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.35; }
+.ez-bulls { fill: color-mix(in srgb, color-mix(in srgb, #cbb894 46%, var(--act-b)) 52%, #05050a); }
+.ez-horn { fill: none; stroke: color-mix(in srgb, #e6c47c 56%, #1a1008); stroke-width: 1.3; stroke-linecap: round; }
+.ez-beam { fill: color-mix(in srgb, #5a3a20 40%, #05050a); }
+.ez-floor { fill: color-mix(in srgb, var(--act-a) 30%, #030306); }
+.ez-floorline { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.35; }
+.ez-floorlight { fill: #fff0c8; opacity: 0.12; filter: blur(5px); }
+
+/* 귀환 행렬 */
+.ez-road { fill: color-mix(in srgb, #d8c49a 26%, var(--act-b)); opacity: 0.45; }
+.ez-walker rect, .ez-beast path { fill: color-mix(in srgb, var(--act-a) 42%, #05040a); }
+.ez-walker path { fill: none; stroke: color-mix(in srgb, var(--act-a) 42%, #05040a); stroke-width: 0.6; }
+.ez-chest, .ez-pack { fill: color-mix(in srgb, #c8a050 40%, #05040a); }
+.ez-walker, .ez-beast { animation: js-sway 3.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ez-column-walk { animation: ez-walk 50s linear infinite alternate; }
+@keyframes ez-walk { from { translate: -4px 2px; } to { translate: 7px -4px; } }
+.ez-dust ellipse { fill: color-mix(in srgb, #d8b884 40%, var(--act-b)); opacity: 0.22; filter: blur(4px); animation: ez-dust 10s ease-in-out infinite alternate; }
+@keyframes ez-dust { from { translate: 6px 0; } to { translate: -10px -2px; } }
+
+/* 폐허 예루살렘 · 제단 · 기초 · 완공 */
+.ez-char { fill: color-mix(in srgb, #1a1412 78%, var(--act-b)); }
+.ez-scorch { fill: none; stroke: #000; stroke-width: 1.2; opacity: 0.45; }
+.ez-door { fill: color-mix(in srgb, #2a1a10 70%, var(--act-b)); }
+.ez-doorbands { fill: none; stroke: #000; stroke-width: 1; opacity: 0.5; }
+.ez-stump { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 30%, var(--act-b)) 36%, #06050a); }
+.ez-weeds path { fill: none; stroke: color-mix(in srgb, #6a7a4a 34%, var(--act-a)); stroke-width: 0.8; stroke-linecap: round; transform-box: fill-box; transform-origin: bottom; animation: ez-sway 4.4s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ez-altarstone { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 34%, var(--act-b)) 44%, #06050a); stroke: #000; stroke-width: 0.5; stroke-opacity: 0.4; }
+.ez-altarlines { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.2; }
+.ez-altarhalo { opacity: 0.85; animation: ez-flick 2.6s ease-in-out infinite alternate; }
+.ez-flames path { fill: #ff9e48; mix-blend-mode: screen; filter: drop-shadow(0 0 4px rgba(255, 160, 80, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.1s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+@keyframes ez-flick { from { opacity: 0.65; } to { opacity: 1; } }
+.ez-altar .bd-smoke__puff { fill: color-mix(in srgb, #d8d0c4 46%, var(--act-b)); }
+.ez-foundfloor { fill: color-mix(in srgb, #cdb994 18%, var(--act-b)); opacity: 0.45; }
+.ez-foundstone { fill: color-mix(in srgb, color-mix(in srgb, #e2d0a8 40%, var(--act-b)) 56%, #06050a); stroke: #000; stroke-width: 0.4; stroke-opacity: 0.45; }
+.ez-cord { fill: none; stroke: #f2e8d0; stroke-width: 0.5; opacity: 0.55; stroke-dasharray: 2 1.2; }
+.ez-peg { fill: color-mix(in srgb, #8a6a40 50%, #06050a); }
+.ez-foundhalo { opacity: 0.45; }
+.ez-cedar rect { fill: color-mix(in srgb, #8a5a30 40%, #06050a); }
+.ez-cedar .ez-ring { fill: color-mix(in srgb, #d8a868 40%, #06050a); }
+.ez-folk rect { fill: color-mix(in srgb, var(--act-a) 40%, #05040a); animation: js-sway 3.2s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.ez-musician { fill: color-mix(in srgb, var(--act-a) 44%, #05040a); }
+.ez-trumpet { fill: none; stroke: color-mix(in srgb, #e4e8ee 60%, var(--act-accent)); stroke-width: 0.9; }
+.ez-trumpet-bell, .ez-cymbal { fill: color-mix(in srgb, #e6c47c 64%, var(--act-accent)); }
+.ez-cymbal { animation: ez-clash 1.6s ease-in-out infinite; animation-delay: calc(var(--d) * -1); transform-box: fill-box; transform-origin: center; }
+@keyframes ez-clash { 0%, 100% { opacity: 0.7; } 50% { opacity: 1; scale: 1.2; } }
+.ez-t2stone { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 34%, var(--act-b)) 44%, #06050a); }
+.ez-t2porch { fill: color-mix(in srgb, color-mix(in srgb, #cdb994 38%, var(--act-b)) 52%, #06050a); }
+.ez-t2door { fill: color-mix(in srgb, #ffe0a0 50%, var(--act-accent)); opacity: 0.75; filter: drop-shadow(0 0 4px rgba(255, 220, 150, 0.6)); }
+.ez-t2cap { fill: color-mix(in srgb, #cdb994 30%, var(--act-b)); }
+.ez-t2court { fill: color-mix(in srgb, #cdb994 20%, var(--act-b)); opacity: 0.8; }
+.ez-templehalo { opacity: 0.5; }
+
+:root[data-reduced-motion='true'] :is(.ez-glints path, .ez-boat, .ez-strands path, .ez-lyre, .ez-walker, .ez-beast, .ez-column-walk, .ez-dust ellipse, .ez-weeds path, .ez-altarhalo, .ez-flames path, .ez-folk rect, .ez-cymbal) { animation: none !important; }
+
+/* ── 효과 공통 ── */
+:is(.fx-decree, .fx-vessels, .fx-twosounds) { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.8s ease-in; }
+:is(.fx-decree, .fx-vessels, .fx-twosounds).is-out { opacity: 0; }
+:is(.fx-decree, .fx-vessels, .fx-twosounds).is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+@keyframes ez-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* decree: 조서 (스 1:1-4) */
+.fx-decree__glow { position: absolute; left: 50%; top: 30%; width: 380px; height: 220px; translate: -50% -50%; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 232, 180, 0.42), transparent); animation: ez-in 1.4s ease-out 0.1s both; }
+.fx-decree__body { position: absolute; left: 50%; top: 30%; translate: -50% -50%; display: flex; align-items: stretch; height: 132px;
+  animation: ez-drop 1.2s cubic-bezier(0.2, 0, 0.2, 1) both, ez-away 1.4s ease-in 6.4s forwards; }
+@keyframes ez-drop { from { opacity: 0; translate: -50% -80%; } to { opacity: 1; translate: -50% -50%; } }
+@keyframes ez-away { to { opacity: 0; scale: 0.4; } }
+.fx-decree__rod { display: block; width: 10px; border-radius: 5px; background: linear-gradient(90deg, #4a2a10, #b8864a, #4a2a10); box-shadow: 0 0 6px rgba(0, 0, 0, 0.5); position: relative; }
+.fx-decree__rod::before, .fx-decree__rod::after { content: ''; position: absolute; left: -2px; width: 14px; height: 6px; border-radius: 3px; background: #e6c47c; }
+.fx-decree__rod::before { top: -5px; } .fx-decree__rod::after { bottom: -5px; }
+.fx-decree__sheet { position: relative; width: min(66vw, 290px); overflow: hidden; padding: 12px 16px 14px; box-sizing: border-box; direction: rtl;
+  background: linear-gradient(180deg, #f1e3c2, #e0cc9c); box-shadow: inset 0 0 18px rgba(120, 80, 30, 0.35), 0 0 26px rgba(255, 226, 170, 0.5);
+  display: flex; flex-direction: column; justify-content: space-around; animation: ez-open 1.6s cubic-bezier(0.3, 0, 0.2, 1) 0.9s both; }
+@keyframes ez-open { from { width: 0; padding-inline: 0; } }
+.fx-decree__sheet p { margin: 0; font-family: 'Noto Serif KR', serif; font-size: 15px; line-height: 1.25; text-align: center; white-space: nowrap;
+  color: #4a3218; opacity: 0.1; animation: ez-line 1s ease-out calc(2.4s + var(--i) * 0.55s) both; }
+.fx-decree__sheet p:first-child { font-size: 17px; }
+@keyframes ez-line { 0% { opacity: 0.1; } 50% { opacity: 1; color: #8a4a10; text-shadow: 0 0 8px rgba(255, 200, 100, 0.9); } 100% { opacity: 0.92; color: #4a2a10; } }
+.fx-decree__seal { position: absolute; left: 10px; bottom: 8px; width: 40px; height: 40px; border-radius: 50%; direction: ltr;
+  background: radial-gradient(circle at 40% 36%, #c8402a, #7a1a10 70%); box-shadow: 0 0 0 2px rgba(120, 20, 10, 0.4), 0 2px 6px rgba(0, 0, 0, 0.45);
+  display: grid; place-items: center; opacity: 0; animation: ez-stamp 0.5s cubic-bezier(0.5, 0, 0.6, 1.4) 4.8s both; }
+.fx-decree__seal span { font: 600 10px/1 'Noto Serif KR', serif; color: #f6d8b0; letter-spacing: -0.02em; border: 1px solid rgba(246, 216, 176, 0.6); border-radius: 50%; width: 32px; height: 32px; display: grid; place-items: center; }
+@keyframes ez-stamp { 0% { opacity: 0; scale: 2.6; rotate: -18deg; } 70% { opacity: 1; scale: 0.92; rotate: -8deg; } 100% { opacity: 1; scale: 1; rotate: -8deg; } }
+.fx-decree__copies i { position: absolute; left: 50%; top: 30%; width: 22px; height: 10px; margin: -5px -11px; border-radius: 3px; opacity: 0;
+  background: linear-gradient(90deg, #6a4a20, #ecdcb4 30%, #ecdcb4 70%, #6a4a20); box-shadow: 0 0 8px rgba(255, 220, 160, 0.8);
+  animation: ez-copy 2.6s cubic-bezier(0.3, 0, 0.6, 1) calc(6.2s + var(--k) * 0.09s) both; }
+.fx-decree__copies i::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #a8301e; }
+@keyframes ez-copy { 0% { opacity: 0; translate: 0 0; rotate: 0deg; } 12% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; translate: var(--dx) var(--dy); rotate: var(--r); } }
+.fx-decree__cap { position: absolute; left: 0; right: 0; top: calc(30% + 84px); text-align: center; font: italic 500 13px/1.4 'Noto Serif KR', serif;
+  color: #f4e6c4; text-shadow: 0 0 10px rgba(255, 220, 150, 0.8), 0 1px 2px #000; opacity: 0; animation: ez-cap 3.6s ease-in-out 5.6s both; }
+@keyframes ez-cap { 0% { opacity: 0; translate: 0 6px; } 25% { opacity: 1; translate: 0 0; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+/* vessels: 성전 그릇 (스 1:7-11) */
+.fx-vessels__ledger { position: absolute; left: 50%; top: 9%; translate: -50% 0; width: min(78vw, 300px); box-sizing: border-box; padding: 10px 14px 10px;
+  background: linear-gradient(180deg, rgba(242, 228, 196, 0.94), rgba(224, 204, 158, 0.94)); border-radius: 4px; color: #3a2610;
+  box-shadow: 0 0 0 1px rgba(230, 196, 124, 0.7), 0 0 30px rgba(255, 226, 170, 0.35), 0 6px 18px rgba(0, 0, 0, 0.45);
+  animation: ez-unfold 1s cubic-bezier(0.2, 0, 0.2, 1) both; transform-origin: top; }
+@keyframes ez-unfold { from { opacity: 0; scale: 1 0.2; } to { opacity: 1; scale: 1 1; } }
+.fx-vessels__ledger h4 { margin: 0 0 6px; font: 600 11px/1.3 'Pretendard', sans-serif; letter-spacing: 0.04em; color: #7a5420; text-align: center; }
+.fx-vessels__ledger ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+.fx-vessels__ledger li { display: grid; grid-template-columns: 18px 1fr auto; align-items: center; gap: 5px; font: 500 12.5px/1.5 'Noto Serif KR', serif;
+  opacity: 0; animation: ez-row 0.6s ease-out calc(1s + var(--i) * 0.9s) both; }
+.fx-vessels__ledger li svg { width: 18px; height: 18px; }
+.fx-vessels__ledger li.is-gold svg { fill: #c8901e; stroke: #8a5a10; stroke-width: 0.8; }
+.fx-vessels__ledger li.is-silver svg { fill: #b8bcc4; stroke: #6a6e78; stroke-width: 0.8; }
+.fx-vessels__ledger li b { font: 600 13px/1 'Cormorant Garamond', serif; font-size: 15px; color: #5a3a10; }
+@keyframes ez-row { 0% { opacity: 0; translate: -6px 0; } 60% { opacity: 1; text-shadow: 0 0 8px rgba(255, 190, 90, 0.9); } 100% { opacity: 1; translate: 0 0; } }
+.fx-vessels__sum { margin: 7px 0 0; padding-top: 5px; border-top: 1px solid rgba(122, 84, 32, 0.6); display: flex; justify-content: space-between; align-items: baseline;
+  font: 500 12px/1.3 'Noto Serif KR', serif; opacity: 0; animation: ez-row 0.9s ease-out 6.8s both; }
+.fx-vessels__sum b { font: 700 20px/1 'Cormorant Garamond', serif; color: #8a5a10; }
+.fx-vessels__path { position: absolute; left: var(--x); top: var(--y); }
+.fx-vessels__path i { position: absolute; left: -9px; top: -9px; width: 18px; height: 18px; opacity: 0;
+  animation: ez-carry 1.5s cubic-bezier(0.45, 0, 0.4, 1) calc(1.1s + var(--k) * 0.34s) both; }
+.fx-vessels__path i svg { width: 100%; height: 100%; overflow: visible; }
+.fx-vessels__path i.is-gold svg { fill: #f0c048; filter: drop-shadow(0 0 4px rgba(255, 200, 90, 0.95)); }
+.fx-vessels__path i.is-silver svg { fill: #e4e8f0; filter: drop-shadow(0 0 4px rgba(220, 230, 255, 0.9)); }
+@keyframes ez-carry {
+  0% { opacity: 0; translate: 0 0; scale: 0.6; }
+  15% { opacity: 1; }
+  50% { translate: calc(var(--tx) * 0.5) calc(var(--ty) * 0.5 + var(--lift)); scale: 1; }
+  88% { opacity: 1; }
+  100% { opacity: 0; translate: var(--tx) var(--ty); scale: 0.7; }
+}
+.fx-vessels__glow { position: absolute; left: var(--x); top: var(--y); width: 120px; height: 120px; margin: -60px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 220, 140, 0.4), transparent); mix-blend-mode: screen; opacity: 0;
+  animation: ez-in 2s ease-out 1.8s both, ez-flick 1.8s ease-in-out 3.8s infinite alternate; }
+
+/* two-sounds: 두 소리 (스 3:12-13) */
+.fx-twosounds { --ts-joy: 255, 204, 110; --ts-weep: 120, 170, 255; }
+.fx-ts__wash { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(var(--ts-joy), 0.10), transparent 45%, transparent 55%, rgba(var(--ts-weep), 0.12));
+  opacity: 0; animation: ez-wash 12s ease-in-out both; }
+@keyframes ez-wash { 0% { opacity: 0; } 15% { opacity: 1; } 55% { opacity: 1; } 75% { opacity: 0.4; } 100% { opacity: 0.2; } }
+.fx-ts__src { position: absolute; left: var(--x); top: var(--y); }
+.fx-ts__ring { position: absolute; left: 0; top: 0; width: 16px; height: 16px; translate: -50% -50%; border-radius: 50%; opacity: 0; box-sizing: border-box;
+  border: 2px solid rgba(var(--c), 0.85); box-shadow: 0 0 14px rgba(var(--c), 0.5), inset 0 0 12px rgba(var(--c), 0.3);
+  animation: ez-ring 3.4s cubic-bezier(0.15, 0.5, 0.35, 1) calc(0.5s + var(--k) * 0.75s) both; }
+.fx-ts__src--joy { --c: var(--ts-joy); }
+.fx-ts__src--weep { --c: var(--ts-weep); }
+.fx-ts__src--weep .fx-ts__ring { animation-delay: calc(0.85s + var(--k) * 0.75s); animation-duration: 3.8s; }
+@keyframes ez-ring { 0% { opacity: 0; width: 16px; height: 16px; } 12% { opacity: 1; } 100% { opacity: 0; width: 120vmax; height: 120vmax; border-width: 1px; } }
+.fx-ts__src em { position: absolute; left: 0; top: -66px; translate: -50% 0; white-space: nowrap; font: italic 600 13.5px/1.2 'Noto Serif KR', serif;
+  padding: 3px 9px; border-radius: 12px; background: rgba(4, 7, 20, 0.55); box-shadow: 0 0 0 1px rgba(var(--c), 0.35);
+  color: rgb(var(--c)); text-shadow: 0 0 10px rgba(var(--c), 0.9), 0 1px 2px #000; opacity: 0; animation: ez-label 5.4s ease-in-out 0.8s both; }
+@keyframes ez-label { 0% { opacity: 0; translate: -50% 6px; } 18% { opacity: 1; translate: -50% 0; } 70% { opacity: 1; } 100% { opacity: 0; translate: -50% -4px; } }
+.fx-ts__mix { position: absolute; left: var(--x); top: var(--y); }
+.fx-ts__core { position: absolute; left: 0; top: 0; width: 150px; height: 150px; margin: -75px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(var(--ts-joy), 0.5) 45%, rgba(var(--ts-weep), 0.35) 70%, transparent);
+  mix-blend-mode: screen; opacity: 0; animation: ez-core 7.4s ease-in-out 3.6s both; }
+@keyframes ez-core { 0% { opacity: 0; scale: 0.2; } 18% { opacity: 1; scale: 1.4; } 40% { opacity: 0.9; scale: 1; } 100% { opacity: 0; scale: 3; } }
+.fx-ts__far { position: absolute; left: 0; top: 0; width: 30px; height: 30px; translate: -50% -50%; border-radius: 50%; opacity: 0; box-sizing: border-box;
+  border: 3px solid transparent; background: conic-gradient(from calc(var(--k) * 70deg), rgba(var(--ts-joy), 0.95), rgba(255, 255, 255, 0.95), rgba(var(--ts-weep), 0.95), rgba(255, 255, 255, 0.95), rgba(var(--ts-joy), 0.95)) border-box;
+  -webkit-mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0); mask: linear-gradient(#000 0 0) padding-box exclude, linear-gradient(#000 0 0);
+  filter: drop-shadow(0 0 8px rgba(255, 240, 220, 0.85));
+  animation: ez-far 5.4s cubic-bezier(0.12, 0.45, 0.35, 1) calc(4.4s + var(--k) * 0.7s) both, ez-spin 6s linear calc(4.4s + var(--k) * 0.7s) both; }
+@keyframes ez-far { 0% { opacity: 0; width: 30px; height: 30px; } 10% { opacity: 1; } 65% { opacity: 0.75; } 100% { opacity: 0; width: 240vmax; height: 240vmax; } }
+@keyframes ez-spin { from { rotate: 0deg; } to { rotate: 160deg; } }
+.fx-ts__motes s { position: absolute; left: 0; top: 0; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: rgb(var(--c)); box-shadow: 0 0 6px rgba(var(--c), 0.9);
+  opacity: 0; animation: ez-mote 4.4s ease-out calc(5s + var(--d)) both; }
+@keyframes ez-mote { 0% { opacity: 0; transform: rotate(var(--a)) translateX(0); } 15% { opacity: 1; } 100% { opacity: 0; transform: rotate(var(--a)) translateX(var(--dist)); } }
+.fx-ts__cap { position: absolute; left: 0; right: 0; bottom: 47%; margin: 0; text-align: center; font: italic 500 14px/1.4 'Noto Serif KR', serif; letter-spacing: 0.04em;
+  color: #f6eee0; text-shadow: 0 0 12px rgba(255, 240, 210, 0.9), 0 0 2px rgba(120, 170, 255, 0.9), 0 1px 2px #000; opacity: 0; animation: ez-cap 4.6s ease-in-out 6.6s both; }
+.fx-twosounds.is-rm .fx-ts__ring, .fx-twosounds.is-rm .fx-ts__far { display: none; }
+:root[data-reduced-motion='true'] :is(.fx-ts__ring, .fx-ts__far, .fx-ts__motes s, .fx-decree__copies i) { display: none; }

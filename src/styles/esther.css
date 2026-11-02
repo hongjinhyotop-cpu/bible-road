@@ -1,0 +1,307 @@
+/* ── 10막 A급: 에스더 (에 2 · 4 · 6 · 7, B급 1 · 3 · 5 · 8 · 9–10에서도 재사용) — fx/esther.ts ──
+   배경: et-* (수산 궁 홀 · 대궐 문 · 후궁 뜰 · 어전 · 잔치 자리 · 후원 · 하만의 집 · 침전 · 성중 거리)
+   효과: thread · chronicle · chronicle-read · pur · scepter · signet(who/to) · riders
+   ★ 하나님의 이름이 안 나오는 책 — 효과에 금빛 하늘 빛을 쓰지 않는다. 은실·잉크·점토·금속의 반짝임만.
+   인물: 에스더(.etq-*), 모르드개(.etm-*), 하만(.eth-*), 아하수에로(.eta-*) */
+
+/* ── 배경 공통 ── */
+.et-tile { fill: color-mix(in srgb, #1d4f94 46%, #03050c); }
+.et-brick { fill: none; stroke: #000; stroke-width: 0.5; opacity: 0.32; }
+.et-band { fill: color-mix(in srgb, #0f356e 56%, #03050c); }
+.et-bandline { fill: none; stroke: color-mix(in srgb, #e6c47c 60%, #03050c); stroke-width: 1.2; opacity: 0.8; }
+.et-guard { fill: color-mix(in srgb, #d8b462 54%, #1a1206); opacity: 0.85; }
+.et-guard__spear { fill: none; stroke: color-mix(in srgb, #efe0b8 50%, #1a1206); stroke-width: 1; }
+.et-rosettes circle { fill: color-mix(in srgb, #efe6d2 48%, #0a1430); }
+.et-rosettes .et-rosecore { fill: color-mix(in srgb, #e6b048 70%, #0a1430); }
+.et-col { fill: color-mix(in srgb, color-mix(in srgb, #c9b48c 32%, var(--act-b)) 42%, #05050b); }
+.et-col .et-beam { fill: color-mix(in srgb, color-mix(in srgb, #c9b48c 24%, var(--act-b)) 34%, #05050b); }
+.et-col .et-horn { fill: none; stroke: currentColor; stroke: color-mix(in srgb, #c9b48c 34%, #05050b); stroke-width: 1.4; }
+.et-flute { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.35; }
+.et-col--gate { opacity: 0.92; }
+.et-cloth-white { fill: color-mix(in srgb, #f2ece0 52%, #0a1430); }
+.et-cloth-green { fill: color-mix(in srgb, #3f8a5e 50%, #06100a); }
+.et-cloth-blue { fill: color-mix(in srgb, #3d6fc0 52%, #050a1a); }
+.et-swag { transform-box: fill-box; transform-origin: 50% 0; animation: et-sway 7s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+@keyframes et-sway { from { transform: skewX(-1.2deg); } to { transform: skewX(1.2deg); } }
+.et-ring { fill: color-mix(in srgb, #dfe4ea 64%, #10141c); }
+.et-ringhole { fill: #05070c; }
+.et-floor { fill: color-mix(in srgb, var(--act-a) 30%, #040408); }
+.et-floorline { fill: none; stroke: color-mix(in srgb, #e8dcc0 30%, #040408); stroke-width: 0.6; opacity: 0.4; }
+.et-cells path { opacity: 0.38; }
+.et-m-red { fill: #8a3a34; } .et-m-yellow { fill: #b89848; } .et-m-black { fill: #050508; } .et-m-white { fill: #d8d2c4; }
+.et-plaster { fill: color-mix(in srgb, color-mix(in srgb, #d8c8a4 26%, var(--act-b)) 44%, #04050a); }
+.et-beamdark { fill: #05060c; opacity: 0.6; }
+.et-lampstand { fill: color-mix(in srgb, #b8893a 40%, #08060a); }
+.et-lamphalo { opacity: 0.85; }
+.et-flame { fill: #ffd890; filter: drop-shadow(0 0 3px rgba(255, 200, 110, 0.95)); transform-box: fill-box; transform-origin: bottom; animation: jg-flame 1.3s ease-in-out infinite alternate; animation-delay: calc(var(--d, 0s) * -1); }
+.et-cypress { fill: color-mix(in srgb, #1f4a34 40%, #030805); }
+.et-lattice { fill: none; stroke: #03040a; stroke-width: 1.1; opacity: 0.75; }
+
+/* 대궐 문 */
+.et-gatehouse { fill: color-mix(in srgb, color-mix(in srgb, #c9b48c 28%, var(--act-b)) 40%, #05050b); }
+.et-gatehouse .et-gatecap { fill: color-mix(in srgb, #e6c47c 44%, #05050b); }
+.et-passage { fill: #04050b; }
+.et-passage-light { fill: color-mix(in srgb, #ffe2a8 30%, var(--act-b)); opacity: 0.55; }
+.et-bench { fill: color-mix(in srgb, #c9b48c 30%, #06060b); }
+.et-paving { fill: none; stroke: #000; stroke-width: 0.7; opacity: 0.35; }
+
+/* 후궁 뜰 */
+.et-arch { fill: #05060c; opacity: 0.86; }
+.et-courtfloor { fill: color-mix(in srgb, color-mix(in srgb, #d8c8a4 22%, var(--act-a)) 38%, #030305); }
+.et-pool { fill: color-mix(in srgb, #3a7ab8 46%, #050a18); }
+.et-poolshine { fill: none; stroke: #cfe6ff; stroke-width: 0.8; opacity: 0.4; animation: et-shine 4s ease-in-out infinite alternate; }
+@keyframes et-shine { from { opacity: 0.15; } to { opacity: 0.5; } }
+.et-fountain { fill: color-mix(in srgb, #c9b48c 34%, #06060b); }
+.et-jet { fill: none; stroke: #d6ecff; stroke-width: 0.9; opacity: 0.6; }
+.et-pot { fill: color-mix(in srgb, #2a4a2c 40%, #040604); }
+.et-pot path { fill: color-mix(in srgb, #9a5a34 40%, #060403); }
+.et-bloom { fill: #f2b8c4; opacity: 0.75; }
+
+/* 어전 */
+.et-thronehalo { opacity: 0.7; }
+.et-canopy { fill: color-mix(in srgb, #5a2c74 46%, #06040a); }
+.et-canopy-gold, .et-throne-gold, .et-couchgold { fill: color-mix(in srgb, #e6c47c 64%, #100a04); }
+.et-fringe { fill: none; stroke: color-mix(in srgb, #e6c47c 60%, #100a04); stroke-width: 1; }
+.et-canopypost { fill: none; stroke: color-mix(in srgb, #e6c47c 40%, #06060b); stroke-width: 2; }
+.et-dais { fill: color-mix(in srgb, #c9b48c 26%, #06060b); }
+.et-throneseat { fill: color-mix(in srgb, #3a2414 40%, #060404); }
+.et-censer { fill: color-mix(in srgb, #b8893a 40%, #08060a); }
+.et-incense circle { fill: #d8d4cc; opacity: 0; animation: et-incense 5s ease-out infinite; animation-delay: var(--d); }
+.et-incense circle:nth-child(2) { animation-delay: calc(var(--d) + 1.4s); }
+.et-incense circle:nth-child(3) { animation-delay: calc(var(--d) + 2.8s); }
+@keyframes et-incense { 0% { opacity: 0; transform: translateY(6px); } 30% { opacity: 0.32; } 100% { opacity: 0; transform: translateY(-16px); } }
+
+/* 잔치 자리 */
+.et-couch { fill: color-mix(in srgb, #3a2414 40%, #060404); }
+.et-cushion { fill: color-mix(in srgb, #8a2a3a 46%, #080306); }
+.et-cushion2 { fill: color-mix(in srgb, #c89a3a 46%, #080503); }
+.et-table { fill: color-mix(in srgb, #3a2414 46%, #060404); }
+.et-vessel { fill: color-mix(in srgb, #e6c47c 66%, #100a04); filter: drop-shadow(0 0 2px rgba(255, 210, 130, 0.5)); }
+
+/* 후원 */
+.et-pavilion { fill: color-mix(in srgb, #c9b48c 26%, #06060b); }
+.et-channel { fill: color-mix(in srgb, #3a7ab8 44%, #050a18); }
+.et-channelshine { fill: none; stroke: #cfe6ff; stroke-width: 0.8; opacity: 0.35; animation: et-shine 5s ease-in-out infinite alternate; }
+.et-channelrim { fill: none; stroke: color-mix(in srgb, #d8c8a4 34%, #06060b); stroke-width: 1.6; }
+.et-bloomtree { fill: color-mix(in srgb, #2a4a2c 40%, #040604); }
+.et-trunk { fill: color-mix(in srgb, #3a2414 40%, #040303); }
+.et-petal { fill: #f4c4cc; opacity: 0.8; animation: et-petal 6s ease-in infinite; animation-delay: calc(var(--d) * -1); }
+@keyframes et-petal { 0% { transform: translate(0, 0); opacity: 0.8; } 100% { transform: translate(10px, 40px); opacity: 0; } }
+
+/* 하만의 집 */
+.et-pole { fill: color-mix(in srgb, #1a120c 70%, var(--act-a)); opacity: 0.88; }
+.et-housewall { fill: color-mix(in srgb, color-mix(in srgb, #b89870 26%, var(--act-b)) 40%, #05050a); }
+.et-wallline { fill: none; stroke: #000; stroke-width: 0.6; opacity: 0.3; }
+.et-door { fill: #05040a; }
+.et-window { fill: color-mix(in srgb, #ffd890 40%, #05040a); opacity: 0.6; }
+.et-window--night { fill: color-mix(in srgb, #1a2a5a 50%, #02030a); opacity: 1; }
+.et-rug { fill: color-mix(in srgb, #8a2a3a 44%, #070305); }
+.et-rugline { fill: none; stroke: color-mix(in srgb, #e6c47c 50%, #070305); stroke-width: 0.8; }
+.et-brazier { fill: color-mix(in srgb, #4a3424 40%, #050303); }
+.et-brazier path:nth-child(2) { fill: none; stroke: color-mix(in srgb, #4a3424 40%, #050303); stroke-width: 1.6; }
+.et-brazierhalo { opacity: 0.8; }
+.et-coal { fill: #e86a2a; filter: drop-shadow(0 0 3px rgba(255, 120, 40, 0.9)); }
+
+/* 침전 */
+.et-moon { fill: #f4ecd2; filter: drop-shadow(0 0 4px rgba(244, 236, 210, 0.7)); }
+.et-star { fill: #f4ecd2; }
+.et-bed { fill: color-mix(in srgb, #3a2414 40%, #060404); }
+.et-bedcurtain { fill: color-mix(in srgb, #5a2c74 40%, #06040a); }
+.et-shelf { fill: color-mix(in srgb, #3a2414 50%, #050303); }
+.et-scrollbox { fill: color-mix(in srgb, #7a5a34 40%, #060403); }
+.et-scrollend { fill: color-mix(in srgb, #efe0bc 50%, #060403); }
+.et-lectern { fill: color-mix(in srgb, #3a2414 46%, #060404); }
+.et-openscroll { fill: color-mix(in srgb, #efe0bc 60%, #060403); }
+
+/* 성중 거리 */
+.et-roofpeople { fill: color-mix(in srgb, var(--act-b) 40%, #04050b); }
+.et-win { fill: #05040a; opacity: 0.7; }
+.et-house-near { fill: color-mix(in srgb, color-mix(in srgb, #b89870 20%, var(--act-a)) 40%, #030305); }
+.et-banner { transform-box: fill-box; transform-origin: 50% 0; animation: et-sway 3.6s ease-in-out infinite alternate; animation-delay: calc(var(--d) * -1); }
+.et-street { fill: color-mix(in srgb, #d8c8a4 18%, #050508); opacity: 0.5; }
+
+:root[data-reduced-motion='true'] :is(.et-swag, .et-flame, .et-poolshine, .et-channelshine, .et-incense circle, .et-petal, .et-banner) { animation: none !important; }
+
+/* ── 효과 공통 ── */
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders) { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders).is-out { opacity: 0; }
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders).is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition: none !important; }
+
+/* thread: 보이지 않는 손 — 가는 은실 */
+.fx-thread svg { position: absolute; inset: 0; overflow: visible; }
+.fx-thread__line { fill: none; stroke: #eef1f7; stroke-width: 1.15; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0.85;
+  animation: et-thread 4.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+.fx-thread__glow { fill: none; stroke: #c8d4ea; stroke-width: 3.2; stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0.22; filter: blur(1.5px);
+  animation: et-thread 4.6s cubic-bezier(0.4, 0, 0.2, 1) both; }
+@keyframes et-thread {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  8% { opacity: 0.85; }
+  40% { stroke-dashoffset: 0; }
+  62% { stroke-dashoffset: 0; stroke-dasharray: 100; }
+  100% { stroke-dashoffset: 0; stroke-dasharray: 2 6; opacity: 0; }
+}
+.fx-thread__end { fill: #e4e8f0; opacity: 0; animation: et-dot 4.6s ease both; }
+@keyframes et-dot { 0%, 30% { opacity: 0; } 42% { opacity: 0.9; } 70% { opacity: 0.5; } 100% { opacity: 0; } }
+.fx-thread__knot { position: absolute; left: var(--x); top: var(--y); width: 7px; height: 7px; translate: -50% -50%; rotate: 45deg;
+  border: 1px solid rgba(232, 236, 244, 0.9); opacity: 0; animation: et-knot 4.6s ease both; }
+@keyframes et-knot { 0%, 38% { opacity: 0; scale: 2.4; } 50% { opacity: 1; scale: 1; } 58% { opacity: 0.6; scale: 1.15; } 100% { opacity: 0; scale: 0.6; } }
+.fx-thread__fibers i { position: absolute; left: var(--x); top: var(--y); width: 6px; height: 1px; background: rgba(228, 232, 240, 0.7); opacity: 0;
+  animation: et-fiber 2s ease-out calc(2.9s + var(--d)) both; }
+@keyframes et-fiber { 0% { opacity: 0; } 12% { opacity: 0.8; } 100% { opacity: 0; transform: translate(4px, var(--dy)) rotate(70deg); } }
+
+/* chronicle: 궁중 일기 (위아래로 감긴 두루마리) */
+.fx-chr__body { position: absolute; left: 50%; top: 32%; translate: -50% -50%; display: flex; flex-direction: column; align-items: center;
+  animation: et-rise 1.2s cubic-bezier(0.2, 0, 0.2, 1) both; }
+@keyframes et-rise { from { opacity: 0; translate: -50% -38%; } to { opacity: 1; translate: -50% -50%; } }
+.fx-chr__rod { display: block; width: min(80vw, 330px); height: 9px; border-radius: 5px; background: linear-gradient(180deg, #4a3016, #a07444, #4a3016); box-shadow: 0 0 6px rgba(0, 0, 0, 0.55); }
+.fx-chr__sheet { width: min(74vw, 306px); height: 150px; overflow: hidden; padding: 0 14px; box-sizing: border-box;
+  background: linear-gradient(90deg, #dcc898, #ecdcb4 18%, #ecdcb4 82%, #dcc898); box-shadow: inset 0 0 16px rgba(110, 74, 30, 0.4);
+  animation: et-open 1.3s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent); mask-image: linear-gradient(180deg, transparent, #000 16%, #000 84%, transparent); }
+@keyframes et-open { from { height: 0; } }
+.fx-chr__flow { padding-top: 10px; }
+.fx-chr__line { margin: 0; height: 22px; display: flex; align-items: center; gap: 3px; flex-wrap: nowrap; overflow: hidden; }
+.fx-chr__line i { display: block; height: 2px; width: var(--w); background: #5a4024; opacity: 0.55; border-radius: 1px; flex: none; }
+.fx-chr__line i:nth-child(3n) { height: 5px; width: 2px; }
+.fx-chr__key { position: relative; }
+.fx-chr__key .fx-chr__marks { display: flex; gap: 3px; }
+.fx-chr__key em { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-style: normal; white-space: nowrap;
+  font-family: 'Noto Serif KR', serif; font-size: 10.5px; letter-spacing: -0.02em; color: #3a2812; background: linear-gradient(90deg, transparent, #ecdcb4 6%, #ecdcb4 94%, transparent); }
+.fx-chr__reward { justify-content: flex-end; gap: 6px; font-family: 'Noto Serif KR', serif; font-size: 10px; color: #6a5030; }
+.fx-chr__reward span { opacity: 0.7; }
+.fx-chr__reward b { display: inline-block; min-width: 40px; border-bottom: 1px dashed rgba(90, 64, 36, 0.5); text-align: center; font-weight: 500; }
+.fx-chr__cap { margin-top: 6px; font: 500 11px/1 'Pretendard', sans-serif; letter-spacing: 0.08em; color: rgba(236, 226, 200, 0.8); text-shadow: 0 1px 4px #000;
+  animation: et-in 1s ease 1.4s both; }
+@keyframes et-in { from { opacity: 0; } }
+/* write: 한 줄이 왼쪽부터 쓰이고 희미하게 빛났다가, 두루마리가 말림 */
+.fx-chr--write .fx-chr__key .fx-chr__marks { clip-path: inset(0 100% 0 0); animation: et-write 1.6s steps(14) 2.2s forwards; }
+.fx-chr--write .fx-chr__key em { clip-path: inset(0 100% 0 0); animation: et-write 2s steps(24) 2.4s forwards, et-ink 2.4s ease 4.4s both; }
+@keyframes et-write { to { clip-path: inset(0 0 0 0); } }
+@keyframes et-ink { 0% { text-shadow: none; } 40% { text-shadow: 0 0 6px rgba(255, 240, 210, 0.95); color: #1a1006; } 100% { text-shadow: 0 0 2px rgba(255, 240, 210, 0.5); } }
+.fx-chr--write .fx-chr__reward b { animation: et-blank 1.4s ease 5.2s both; }
+@keyframes et-blank { 0% { border-bottom-color: rgba(90, 64, 36, 0.5); } 50% { border-bottom-color: rgba(140, 40, 30, 0.85); } 100% { border-bottom-color: rgba(90, 64, 36, 0.5); } }
+.fx-chr--write .fx-chr__sheet { animation: et-open 1.3s cubic-bezier(0.3, 0, 0.2, 1) 0.6s both, et-close 1.2s cubic-bezier(0.6, 0, 0.8, 1) 6.6s forwards; }
+@keyframes et-close { to { height: 0; } }
+/* read: 줄들이 흘러가다 그 줄에서 멈추고 밝아짐 → 빈 칸에 "없음" */
+.fx-chr--read .fx-chr__flow { animation: et-scrollread 3.8s cubic-bezier(0.1, 0.4, 0.2, 1) 1.4s both; }
+@keyframes et-scrollread { from { transform: translateY(40px); } to { transform: translateY(-134px); } }
+.fx-chr--read .fx-chr__key { animation: et-keyglow 2.4s ease 5.2s both; }
+@keyframes et-keyglow { 0% { background: transparent; } 40% { background: rgba(255, 244, 214, 0.9); box-shadow: 0 0 10px rgba(255, 240, 200, 0.9); } 100% { background: rgba(255, 244, 214, 0.5); box-shadow: 0 0 4px rgba(255, 240, 200, 0.5); } }
+.fx-chr--read .fx-chr__key em { animation: et-ink 2.4s ease 5.2s both; }
+.fx-chr--read .fx-chr__reward b { color: #8a2a1e; opacity: 0; animation: et-none 1.2s ease 6.8s both; }
+@keyframes et-none { from { opacity: 0; letter-spacing: 0.4em; } to { opacity: 1; letter-spacing: 0.1em; } }
+
+/* pur: 제비가 굴러 열두째 달에 */
+.fx-pur__box { position: absolute; left: 50%; top: 30%; translate: -50% -50%; width: min(90vw, 360px); padding: 12px 10px 10px; box-sizing: border-box;
+  background: radial-gradient(closest-side, rgba(8, 10, 22, 0.75), rgba(8, 10, 22, 0.35)); border-radius: 12px; animation: et-rise 1s ease both; }
+.fx-pur__months { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+.fx-pur__months li { display: flex; flex-direction: column; align-items: center; padding: 4px 0; border: 1px solid rgba(214, 196, 150, 0.22); border-radius: 4px;
+  color: rgba(226, 214, 186, 0.45); font-family: 'Noto Serif KR', serif; animation: et-month 0.5s ease var(--t) both; }
+.fx-pur__months li b { font: 400 13px/1 'Cormorant Garamond', serif; }
+.fx-pur__months li span { font-size: 10px; margin-top: 2px; white-space: nowrap; }
+@keyframes et-month { 0% { color: rgba(226, 214, 186, 0.45); background: transparent; } 30% { color: #f0e2bc; background: rgba(176, 120, 70, 0.4); } 100% { color: rgba(226, 214, 186, 0.6); background: transparent; } }
+.fx-pur__months li.is-pick { animation: et-pick 1s ease var(--t) both; }
+@keyframes et-pick { 0% { color: rgba(226, 214, 186, 0.45); } 100% { color: #fff2d0; background: rgba(150, 70, 50, 0.55); border-color: rgba(240, 210, 160, 0.9); box-shadow: 0 0 10px rgba(200, 120, 80, 0.6); } }
+.fx-pur__lane { position: relative; height: 26px; margin-top: 8px; border-bottom: 1px solid rgba(214, 196, 150, 0.25); }
+.fx-pur__die { position: absolute; bottom: 3px; left: 4%; width: 16px; height: 16px; border-radius: 3px; background: linear-gradient(135deg, #b8835a, #7a4a2a);
+  box-shadow: inset -2px -2px 3px rgba(0, 0, 0, 0.4), 0 2px 3px rgba(0, 0, 0, 0.5); animation: et-roll var(--end) cubic-bezier(0.2, 0.5, 0.3, 1) 0.4s both; }
+.fx-pur__die i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: #2a160a; }
+.fx-pur__die i:nth-child(1) { left: 3px; top: 3px; } .fx-pur__die i:nth-child(2) { left: 6.5px; top: 6.5px; } .fx-pur__die i:nth-child(3) { right: 3px; bottom: 3px; }
+@keyframes et-roll { from { left: 4%; rotate: 0deg; } to { left: calc(96% - 16px); rotate: 1080deg; } }
+.fx-pur__cap { margin: 8px 0 0; text-align: center; font: 500 12px/1.3 'Pretendard', sans-serif; color: #f0e2bc; letter-spacing: 0.04em; opacity: 0; animation: et-in 1s ease calc(var(--end) + 0.6s) forwards; }
+@keyframes et-in-f { to { opacity: 1; } }
+.fx-pur__cap { animation-name: et-in-f; }
+
+/* scepter: 금홀 */
+.fx-scepter__rod { position: absolute; left: var(--x); top: var(--y); width: var(--len); height: 5px; translate: 0 -50%; transform-origin: 0 50%;
+  rotate: -80deg; animation: et-scepter 2.4s cubic-bezier(0.3, 0, 0.2, 1) 0.3s forwards; }
+.fx-scepter__rod i { position: absolute; inset: 0; border-radius: 3px; background: linear-gradient(180deg, #fff0c0, #d8a848 45%, #8a6020);
+  box-shadow: 0 0 6px rgba(240, 200, 110, 0.7); clip-path: inset(0 100% 0 0); animation: et-grow 0.8s ease-out 0.2s forwards; }
+.fx-scepter__rod b { position: absolute; right: -7px; top: 50%; width: 13px; height: 13px; translate: 0 -50%; border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #fff6d0, #e0b050 50%, #8a6020); box-shadow: 0 0 8px rgba(255, 220, 140, 0.8); opacity: 0; animation: et-in-f 0.4s ease 0.9s forwards; }
+@keyframes et-grow { to { clip-path: inset(0 0 0 0); } }
+@keyframes et-scepter { to { rotate: var(--ang); } }
+.fx-scepter__touch { position: absolute; left: var(--x); top: var(--y); width: 70px; height: 70px; translate: -50% -50%; border-radius: 50%;
+  border: 1px solid rgba(240, 210, 150, 0.7); opacity: 0; animation: et-touch 1.4s ease-out 2.6s both; }
+@keyframes et-touch { 0% { opacity: 0.9; scale: 0.2; } 100% { opacity: 0; scale: 1.4; } }
+.fx-scepter__cap, .fx-signet__cap { position: absolute; left: var(--x); top: var(--y); translate: -50% 0; font: 500 12px/1 'Pretendard', sans-serif; letter-spacing: 0.1em;
+  color: rgba(240, 226, 190, 0.9); text-shadow: 0 1px 4px #000; opacity: 0; animation: et-in-f 0.8s ease 1.2s forwards; }
+
+/* signet: 왕의 반지 */
+.fx-signet__ring { position: absolute; left: 0; top: 0; width: 16px; height: 16px; translate: -50% -50%;
+  animation: et-ringx 2.4s cubic-bezier(0.45, 0, 0.3, 1) 0.4s both, et-ringy 2.4s cubic-bezier(0.45, 0, 0.3, 1) 0.4s both; }
+@keyframes et-ringx { from { left: var(--x1); } to { left: var(--x2); } }
+@keyframes et-ringy { 0% { top: var(--y1); } 50% { top: calc((var(--y1) + var(--y2)) / 2 + var(--lift)); } 100% { top: var(--y2); } }
+.fx-signet__ring i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid #e2b458; box-shadow: 0 0 8px rgba(255, 210, 120, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5); }
+.fx-signet__ring b { position: absolute; left: 50%; top: -5px; width: 8px; height: 6px; translate: -50% 0; border-radius: 2px; background: linear-gradient(135deg, #6a8ac0, #1a2a5a); box-shadow: 0 0 3px rgba(0, 0, 0, 0.6); }
+
+/* riders: 역졸들이 사방으로 */
+.fx-riders__r { position: absolute; left: 50%; top: var(--y); width: 54px; height: 36px; translate: -50% -50%; scale: calc(var(--s) * var(--dir)) var(--s);
+  opacity: 0; animation: et-ride 3.6s cubic-bezier(0.5, 0, 0.8, 0.6) var(--d) both; }
+.fx-riders__r svg { width: 100%; height: 100%; fill: color-mix(in srgb, var(--act-a) 60%, #020205); animation: et-gallop 0.36s ease-in-out infinite alternate; }
+.fx-riders__tube { fill: color-mix(in srgb, #e6c47c 60%, #2a1a08); }
+@keyframes et-gallop { from { translate: 0 0; rotate: -2deg; } to { translate: 0 -2px; rotate: 2deg; } }
+@keyframes et-ride { 0% { opacity: 0; left: 50%; } 10% { opacity: 1; } 85% { opacity: 1; } 100% { opacity: 0; left: calc(50% + var(--dir) * var(--far)); } }
+.fx-riders__dust { position: absolute; left: 70%; bottom: -4px; width: 40px; height: 12px; border-radius: 50%; background: radial-gradient(closest-side, rgba(200, 180, 140, 0.5), transparent); filter: blur(2px); }
+.fx-riders__cap { position: absolute; left: 50%; top: 40%; translate: -50% 0; font: 500 12px/1 'Pretendard', sans-serif; letter-spacing: 0.1em; color: rgba(240, 226, 190, 0.85);
+  text-shadow: 0 1px 4px #000; opacity: 0; animation: et-in-f 1s ease 0.6s forwards; white-space: nowrap; }
+
+:root[data-reduced-motion='true'] :is(.fx-thread *, .fx-chr *, .fx-pur *, .fx-scepter *, .fx-signet *, .fx-riders *) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+
+/* ── 인물 (characters/esther.ts · mordecai.ts · haman.ts · ahasuerus.ts) — 폰에서도 보이게 밝은 색을 섞음 ── */
+/* 에스더 */
+.actor .etq-hair, .sil .etq-hair { fill: color-mix(in srgb, #241812 40%, var(--sil-ink)); }
+.actor .etq-veil, .sil .etq-veil { fill: color-mix(in srgb, #ece4d2 34%, var(--sil-ink)); }
+.actor .etq-veil--sheer, .sil .etq-veil--sheer { fill: color-mix(in srgb, #e8e0f0 30%, var(--sil-ink)); opacity: 0.72; }
+.actor .etq-band, .sil .etq-band { fill: color-mix(in srgb, #5a7ac0 50%, var(--sil-ink)); }
+.actor .etq-robe, .sil .etq-robe { fill: color-mix(in srgb, color-mix(in srgb, #3d5f9a 80%, var(--act-accent)) 30%, var(--sil-ink)); }
+.actor .etq-sash, .sil .etq-sash { fill: color-mix(in srgb, #d8c8a4 40%, var(--sil-ink)); }
+.actor .etq-hemline, .sil .etq-hemline { stroke: color-mix(in srgb, #d8c8a4 40%, var(--sil-ink)); }
+.actor .etq-royal, .sil .etq-royal { fill: color-mix(in srgb, color-mix(in srgb, #4a3a8a 80%, var(--act-accent)) 34%, var(--sil-ink)); }
+.actor .etq-mantle, .sil .etq-mantle { fill: color-mix(in srgb, #24365e 34%, var(--sil-ink)); }
+.actor .etq-gold, .sil .etq-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 54%, var(--sil-ink)); }
+.actor .etq-gem, .sil .etq-gem { fill: color-mix(in srgb, #7ac0d8 60%, var(--sil-ink)); }
+/* 모르드개 */
+.actor .etm-wrap, .sil .etm-wrap { fill: color-mix(in srgb, #d0c4a8 30%, var(--sil-ink)); }
+.actor .etm-band, .sil .etm-band { fill: color-mix(in srgb, #4a6aa8 44%, var(--sil-ink)); }
+.actor .etm-beard, .sil .etm-beard { fill: color-mix(in srgb, #4a4038 30%, var(--sil-ink)); }
+.actor .etm-gray, .sil .etm-gray { stroke: color-mix(in srgb, #d8d2c8 46%, var(--sil-ink)); }
+.actor .etm-hair, .sil .etm-hair { fill: color-mix(in srgb, #3a3028 30%, var(--sil-ink)); }
+.actor .etm-robe, .sil .etm-robe { fill: color-mix(in srgb, #5a6478 28%, var(--sil-ink)); }
+.actor .etm-mantle, .sil .etm-mantle { fill: color-mix(in srgb, #6a5a44 32%, var(--sil-ink)); }
+.actor .etm-stripe, .sil .etm-stripe { fill: color-mix(in srgb, #4a6aa8 50%, var(--sil-ink)); }
+.actor .etm-tassel, .sil .etm-tassel { stroke: color-mix(in srgb, #6a8ad0 56%, var(--sil-ink)); stroke-width: 1.6; stroke-linecap: round; fill: none; }
+.actor .etm-sash, .sil .etm-sash { fill: color-mix(in srgb, #8a7454 40%, var(--sil-ink)); }
+.actor .etm-inkhorn, .sil .etm-inkhorn { fill: color-mix(in srgb, #c8a870 50%, var(--sil-ink)); }
+.actor .etm-sack, .sil .etm-sack { fill: color-mix(in srgb, #5a4a38 40%, var(--sil-ink)); }
+.actor .etm-stitch, .sil .etm-stitch { fill: none; stroke: color-mix(in srgb, #a08a68 42%, var(--sil-ink)); stroke-width: 0.9; stroke-dasharray: 3 3; }
+.actor .etm-rope, .sil .etm-rope { fill: color-mix(in srgb, #b89a68 45%, var(--sil-ink)); }
+.actor .etm-ash, .sil .etm-ash { fill: color-mix(in srgb, #bcb6ac 50%, var(--sil-ink)); }
+.actor .etm-royal, .sil .etm-royal { fill: color-mix(in srgb, #2f5aa8 40%, var(--sil-ink)); }
+.actor .etm-white, .sil .etm-white { fill: color-mix(in srgb, #f2ece0 50%, var(--sil-ink)); }
+.actor .etm-purple, .sil .etm-purple { fill: color-mix(in srgb, #6a3a8a 40%, var(--sil-ink)); }
+.actor .etm-gold, .sil .etm-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 56%, var(--sil-ink)); }
+.actor .etm-gem, .sil .etm-gem { fill: color-mix(in srgb, #7ac0d8 60%, var(--sil-ink)); }
+/* 하만 */
+.actor .eth-hat, .sil .eth-hat { fill: color-mix(in srgb, #6a1a22 36%, var(--sil-ink)); }
+.actor .eth-hair, .sil .eth-hair { fill: color-mix(in srgb, #1a120e 40%, var(--sil-ink)); }
+.actor .eth-robe, .sil .eth-robe { fill: color-mix(in srgb, color-mix(in srgb, #8a2028 80%, var(--act-accent)) 36%, var(--sil-ink)); }
+.actor .eth-coat, .sil .eth-coat { fill: color-mix(in srgb, #1e1a2a 40%, var(--sil-ink)); }
+.actor .eth-gold, .sil .eth-gold { fill: color-mix(in srgb, color-mix(in srgb, #d8a848 80%, var(--act-accent)) 52%, var(--sil-ink)); }
+.actor .eth-gem, .sil .eth-gem { fill: color-mix(in srgb, #c03a3a 60%, var(--sil-ink)); }
+.actor .eth-trouser, .sil .eth-trouser { fill: color-mix(in srgb, #8a2028 30%, var(--sil-ink)); }
+.actor .eth-sheath, .sil .eth-sheath { fill: color-mix(in srgb, #c8a060 46%, var(--sil-ink)); }
+/* 아하수에로 */
+.actor .eta-gold, .sil .eta-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 56%, var(--sil-ink)); }
+.actor .eta-band, .sil .eta-band { fill: color-mix(in srgb, #2a3a7a 46%, var(--sil-ink)); }
+.actor .eta-gem, .sil .eta-gem { fill: color-mix(in srgb, #f2e2b0 70%, var(--sil-ink)); }
+.actor .eta-hair, .sil .eta-hair { fill: color-mix(in srgb, #1c140e 40%, var(--sil-ink)); }
+.actor .eta-cloth, .sil .eta-cloth { fill: color-mix(in srgb, #ece4d2 26%, var(--sil-ink)); }
+.actor .eta-robe, .sil .eta-robe { fill: color-mix(in srgb, color-mix(in srgb, #5a2c74 80%, var(--act-accent)) 36%, var(--sil-ink)); }
+.actor .eta-dot, .sil .eta-dot { fill: color-mix(in srgb, #e2b75c 60%, var(--sil-ink)); }
+.actor .eta-scepter, .sil .eta-scepter { fill: color-mix(in srgb, #f0c868 70%, var(--sil-ink)); filter: drop-shadow(0 0 2px rgba(255, 210, 120, 0.6)); }
+/* 왕이 타는 말 (characters/royal-horse.ts) */
+.actor .etx-blanket, .sil .etx-blanket { fill: color-mix(in srgb, #2f5aa8 40%, var(--sil-ink)); }
+.actor .etx-gold, .sil .etx-gold { fill: color-mix(in srgb, color-mix(in srgb, #e2b75c 80%, var(--act-accent)) 56%, var(--sil-ink)); }
+.actor .etx-fringe, .sil .etx-fringe { fill: none; stroke: color-mix(in srgb, #e2b75c 56%, var(--sil-ink)); stroke-width: 1.4; }
+.actor .etx-rein, .sil .etx-rein { fill: none; stroke: color-mix(in srgb, #c8a060 50%, var(--sil-ink)); stroke-width: 1.4; }

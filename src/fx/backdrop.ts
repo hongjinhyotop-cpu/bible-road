@@ -40,6 +40,9 @@ import { absalomArt } from './absalom';
 import { templeArt } from './temple';
 import { elishaArt } from './elisha';
 import { judahArt } from './judah';
+import { ezraArt } from './ezra';
+import { estherArt } from './esther';
+import { nehemiahArt } from './nehemiah';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
 import { elijahArt } from './elijah';
@@ -703,6 +706,32 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'jd-temple-ash': () => judahArt('jd-temple-ash'),
   'jd-exile-road': () => judahArt('jd-exile-road'),
   'jd-babylon-court': () => judahArt('jd-babylon-court'),
+  // 10막 에스라 (fx/ezra.ts)
+  'ez-babylon-canal': () => ezraArt('ez-babylon-canal'),
+  'ez-cyrus-court': () => ezraArt('ez-cyrus-court'),
+  'ez-caravan': () => ezraArt('ez-caravan'),
+  'ez-jerusalem-ruin': () => ezraArt('ez-jerusalem-ruin'),
+  'ez-altar': () => ezraArt('ez-altar'),
+  'ez-foundation': () => ezraArt('ez-foundation'),
+  'ez-temple-built': () => ezraArt('ez-temple-built'),
+  // 10막 에스더 (fx/esther.ts)
+  // 10막 느헤미야 (fx/nehemiah.ts)
+  'nh-susa-banquet': () => nehemiahArt('nh-susa-banquet'),
+  'nh-susa-night': () => nehemiahArt('nh-susa-night'),
+  'nh-ruin': () => nehemiahArt('nh-ruin'),
+  'nh-wall-work': () => nehemiahArt('nh-wall-work'),
+  'nh-wall-done': () => nehemiahArt('nh-wall-done'),
+  'nh-water-gate': () => nehemiahArt('nh-water-gate'),
+  'nh-booths': () => nehemiahArt('nh-booths'),
+  'et-susa-hall': () => estherArt('et-susa-hall'),
+  'et-kings-gate': () => estherArt('et-kings-gate'),
+  'et-women-court': () => estherArt('et-women-court'),
+  'et-throne': () => estherArt('et-throne'),
+  'et-banquet': () => estherArt('et-banquet'),
+  'et-garden': () => estherArt('et-garden'),
+  'et-haman-house': () => estherArt('et-haman-house'),
+  'et-bedchamber': () => estherArt('et-bedchamber'),
+  'et-street': () => estherArt('et-street'),
   // 7막 압살롬의 반역 (fx/absalom.ts)
   'ab-gate': () => absalomArt('ab-gate'),
   'ab-kidron': () => absalomArt('ab-kidron'),

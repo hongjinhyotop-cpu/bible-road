@@ -1,0 +1,56 @@
+{
+  "id": "est-4-perish",
+  "act": 10,
+  "grade": "A",
+  "title": "죽으면 죽으리이다",
+  "ref": "에 4",
+  "bg": "et-street-dusk",
+  "cast": ["mordecai"],
+  "outfit": { "esther": "queen" },
+  "extras": {
+    "hathach": { "name": "하닥", "base": "youth", "hair": "turban", "beard": "none", "tint": "gold" },
+    "maid": { "name": "시녀", "base": "girl", "hair": "veil", "props": ["jar"], "tint": "white" }
+  },
+  "beats": [
+    { "type": "narration", "face": { "mordecai": "right" }, "acts": [{ "act": "look-up", "who": "mordecai" }, { "act": "crowd" }, { "act": "crowd-murmur" }], "text": "조서가 수산에 붙었다. 열두째 달 십삼일, 하루 동안. 유다인을 젊은이와 늙은이와 어린아이와 여인을 막론하고. 왕은 하만과 함께 앉아 마셨고, 수산 성은 어지러웠다." },
+    { "type": "narration", "outfit": { "mordecai": "sackcloth" }, "acts": [{ "act": "step-back", "who": "mordecai" }, { "act": "cry", "who": "mordecai" }], "text": "모르드개가 이 모든 일을 알았다. 그가 옷을 찢었다. 굵은 베를 입고 재를 무릅썼다. 성중에 나가 대성통곡했다. 목소리를 낮추지 않았다. 수산 성 한복판에서." },
+    { "type": "narration", "bg": "et-kings-gate-dusk", "fx": "fade", "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "mordecai" }, { "act": "kneel", "who": "mordecai" }], "text": "그는 대궐 문 앞까지 갔다. 거기까지였다. 굵은 베를 입은 자는 대궐 문에 들어가지 못했다. 왕궁은 슬픔이 들어오지 못하게 지어진 곳이었다." },
+    { "type": "narration", "fx": "dust", "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }], "text": "왕의 조명이 이르는 각 도마다 유다인이 크게 애통했다. 금식하며 곡읍하며 부르짖었고, 굵은 베를 입고 재에 누운 자가 무수했다. 백이십칠 도에 같은 소리가 났다. 왕궁에만 들리지 않았다." },
+    { "bg": "et-women-court", "fx": "fade", "exit": ["mordecai"], "enter": ["esther", "maid"], "face": { "esther": "right", "maid": "left" }, "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "maid" }, { "act": "approach", "who": "maid", "to": "esther" }] },
+    { "type": "narration", "acts": [{ "act": "step-back", "who": "esther" }, { "act": "bow-head", "who": "esther" }], "text": "에스더의 시녀와 내시가 나아와 고했다. 왕후가 심히 근심했다. 입을 의복을 모르드개에게 보내어 그 굵은 베를 벗기고자 했다. 모르드개가 받지 않았다. 옷을 바꿔 입힌다고 바뀌는 슬픔이 아니었다." },
+    { "type": "line", "who": "esther", "exit": ["maid"], "enter": ["hathach"], "face": { "hathach": "left" }, "acts": [{ "act": "walk-out", "who": "maid" }, { "act": "walk-in", "who": "hathach" }, { "act": "face", "who": "esther", "to": "hathach" }], "text": "“하닥, 모르드개에게 가라. 이것이 무슨 일이며 무슨 연고인가 알아 오라.”" },
+    { "type": "narration", "bg": "et-kings-gate-dusk", "exit": ["esther"], "enter": ["mordecai"], "face": { "mordecai": "right", "hathach": "left" }, "acts": [{ "act": "approach", "who": "hathach", "to": "mordecai" }, { "act": "stand", "who": "mordecai" }], "text": "하닥이 대궐 문 앞 성중 광장에 있는 모르드개에게 갔다. 왕후의 내시와 굵은 베를 입은 사람이 광장에서 마주 섰다. 문 하나를 사이에 두고 두 세계가 말을 주고받기 시작했다. 그 사이를 오간 것은 한 사람의 발이었다." },
+    { "type": "line", "who": "mordecai", "fx": "letter", "to": "hathach", "acts": [{ "act": "approach", "who": "mordecai", "to": "hathach" }], "text": "“이것이 수산궁에서 내린 조서 초본이다. 하만이 유다인을 멸하려고 왕의 부고에 바치기로 한 은이 얼마인지도 내가 안다. 이것을 왕후께 뵈어라. 그리고 왕에게 나아가서, 그 앞에서 자기 민족을 위하여 간절히 구하라 하라.”" },
+    { "type": "narration", "bg": "et-women-court-dusk", "exit": ["mordecai"], "enter": ["esther"], "face": { "esther": "right", "hathach": "left" }, "acts": [{ "act": "walk-in", "who": "hathach" }, { "act": "bow-head", "who": "hathach" }, { "act": "look-up", "who": "esther" }], "text": "하닥이 돌아와 모르드개의 말을 고했다. 조서 초본이 왕후의 손에 놓였다. 거기에는 날짜가 적혀 있었다. 사람을 죽이는 문서는 대개 정확하다." },
+    { "type": "scripture", "ref": "에 4:11", "acts": [{ "act": "turn", "who": "esther" }], "gloss": "왕한테 부르지도 않았는데 안뜰에 들어가면 남자든 여자든 무조건 사형인 거 다 알잖아. 왕이 금홀을 내밀어 줘야만 살아. 그런데 나는 왕한테 안 불려 간 지가 벌써 삼십 일째야." },
+    { "type": "narration", "acts": [{ "act": "face", "who": "esther", "to": "hathach" }], "text": "삼십 일. 왕후는 그 날수를 세고 있었다. 왕의 마음이 어디 있는지 모르는 사람만이 날수를 센다." },
+    { "type": "narration", "bg": "et-kings-gate-night", "exit": ["esther"], "enter": ["mordecai"], "face": { "mordecai": "right", "hathach": "left" }, "acts": [{ "act": "approach", "who": "hathach", "to": "mordecai" }, { "act": "look-up", "who": "mordecai" }], "text": "하닥이 다시 광장으로 갔다. 에스더의 말을 그대로 전했다. 모르드개가 들었다. 그리고 하닥을 시켜 회답했다." },
+    { "type": "scripture", "ref": "에 4:13-14", "acts": [{ "act": "approach", "who": "mordecai", "to": "hathach" }], "gloss": "왕궁에 있다고 너 혼자 살 수 있을 거라 생각하지 마. 네가 지금 입 다물고 있어도 유다 사람들은 다른 데서 구원받겠지만, 너랑 네 아버지 집은 망할 거야. 네가 왕후가 된 게 바로 이때를 위해서인지 누가 알아?" },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "mordecai" }], "text": "다른 데로 말미암아. 모르드개는 그것이 어디인지 말하지 않았다. 다만 그는 그것이 있다는 것을 의심하지 않았다. 의심한 것은 단 하나, 그 아이가 거기 함께 서 줄지였다." },
+    { "type": "narration", "bg": "et-women-court-night", "fx": "thread", "who": "esther", "to": "hathach", "exit": ["mordecai"], "enter": ["esther"], "face": { "esther": "right", "hathach": "left" }, "acts": [{ "act": "walk-in", "who": "hathach" }, { "act": "bow-head", "who": "esther" }], "text": "하닥이 그 말을 에스더 앞에 내려놓았다. 이 때를 위함이 아닌지. 누가 아느냐." },
+    {
+      "type": "choice",
+      "prompt": "부름 없이 들어가면 죽는다. 삼십 일째 부름이 없다. 조서의 날은 정해져 있다. 에스더는—",
+      "options": [
+        { "label": "왕에게 나아가겠다", "canon": true },
+        { "label": "부름이 올 때까지 기다리겠다", "goto": "b-wait" }
+      ]
+    },
+    { "type": "narration", "acts": [{ "act": "look-up", "who": "esther" }, { "act": "approach", "who": "esther", "to": "hathach" }], "text": "에스더가 고개를 들었다. 시녀들과 내시가 처음 보는 얼굴이었다. 왕후의 얼굴이 아니었다. 대궐 문 앞에서 자란 아이의 얼굴이었다." },
+    { "type": "scripture", "ref": "에 4:16", "acts": [{ "act": "face", "who": "esther", "to": "hathach" }], "gloss": "수산에 있는 유다 사람들 다 모아서 나를 위해 금식해 줘. 사흘 밤낮 먹지도 마시지도 마. 나도 시녀들이랑 똑같이 금식하고, 법을 어기고라도 왕한테 가겠어. 죽으면 죽는 거지." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "esther" }], "text": "죽으면 죽으리이다. 용감한 사람의 말처럼 들리지 않는다. 겁이 난 사람이 겁을 다 세어 본 다음에 하는 말처럼 들린다. 그래서 더 무겁다." },
+    { "type": "narration", "bg": "et-kings-gate-night", "fx": "fade", "exit": ["esther", "hathach"], "enter": ["mordecai"], "face": { "mordecai": "right" }, "acts": [{ "act": "stand", "who": "mordecai" }, { "act": "leave", "who": "mordecai" }], "text": "모르드개가 가서 에스더가 명한 대로 다 행했다. 이 장에서 처음으로, 키운 사람이 키운 아이의 명을 따랐다." },
+    { "type": "narration", "bg": "et-street-night", "acts": [{ "act": "crowd" }, { "act": "crowd-bow" }], "text": "수산의 유다인들이 모였다. 먹지 않았다. 마시지 않았다. 밤이 지나고, 낮이 지나고, 또 밤이 왔다." },
+    { "bg": "et-women-court-night", "fx": "fade", "enter": ["esther", "maid"], "face": { "esther": "right", "maid": "left" }, "acts": [{ "act": "crowd-away" }, { "act": "kneel", "who": "esther" }, { "act": "kneel", "who": "maid" }] },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "esther" }, { "act": "bow-head", "who": "maid" }], "text": "왕궁 깊은 곳에서도 등불 하나가 꺼지지 않았다. 사흘. 본문은 그 사흘 동안 그녀가 무엇을 했는지 더 말하지 않는다. 누구를 향해 금식했는지도. 그 빈칸은, 읽는 사람이 채우라고 남겨 둔 자리처럼 보인다." }
+  ],
+  "branches": {
+    "b-wait": [
+      { "type": "narration", "acts": [{ "act": "bow-head", "who": "esther" }], "text": "만약 그녀가 기다렸다면. 부름은 언젠가 왔을지도 모른다. 조서는 기다려 주지 않았을 것이다. 열두째 달 십삼일은 이미 백이십칠 도로 달려가 있었다." },
+      { "type": "narration", "acts": [{ "act": "look-up", "who": "esther" }], "text": "모르드개의 말이 맞았다. 구원은 다른 데서 왔을지도 모른다. 그러나 그녀는 거기 없었을 것이다. 에스더가 고개를 들었다." }
+    ]
+  },
+  "insight": "방금 그거 뭐였냐면, 3장에서 하만이 ‘유다인 전부 하루에 없애라’는 조서를 받아 냈고, 4장은 그 소식이 터진 날임. 굵은 베 + 재 = 그 시대 사람들이 할 수 있는 제일 큰 슬픔 표현. 근데 굵은 베 입은 사람은 대궐 문 안에 못 들어감(4:2). 그래서 문 안의 에스더랑 문 밖의 모르드개가 직접 못 만나고, 내시 하닥이 왔다 갔다 하면서 말을 전함. 카톡도 없는 시대에 메시지를 사람 발로 실어 나른 거임.\n\n에스더 입장에서 보면 진짜 빡센 상황임. 페르시아 궁정 법은 왕이 안 불렀는데 안뜰에 들어가면 사형. 금홀을 내밀어 줘야 삶(4:11). 근데 왕이 30일째 안 부름. 왕후라고 다 안전한 게 아니라는 거, 1장에서 와스디가 이미 보여 줌.\n\n여기서 모르드개의 말(4:13-14)이 에스더서 전체의 핵심 구절임. 특히 ‘다른 데로 말미암아’. 이 책에 하나님 이름이 한 번도 안 나온다고 했잖아. 그래서 이 말이 에스더서에서 하나님한테 제일 가까이 간 말로 자주 읽힘. 모르드개는 ‘하나님이 구하실 거다’라고 말하지 않음. 그냥 ‘다른 데서’라고만 함. 해석은 갈림. 대부분은 이걸 하나님의 손을 돌려 말한 거라고 보고, 어떤 사람들은 진짜로 다른 사람·다른 세력을 말한 거라고 봄. 확실한 건, 모르드개가 구원 자체는 의심 안 했다는 거. 의심한 건 에스더가 그 자리에 설지였음.\n\n‘이때를 위함이 아닌지 누가 알겠느냐’ — 단정 안 하는 말투인 게 포인트임. ‘너는 이걸 위해 뽑혔다!’가 아니라 ‘혹시 모르잖아’. 근데 그게 더 세게 들어옴. 지금 내가 있는 자리(알바든, 학교든, 군대든)가 혹시 뭔가를 위한 자리일 수도 있다는 거. 아무도 확답은 안 해 줌.\n\n그리고 4:16. 사흘 금식. 본문은 ‘기도’라는 말을 안 씀. 성경의 다른 데서 금식은 거의 늘 기도랑 같이 가서 기도로 읽는 사람이 많지만, 에스더서는 끝까지 그 단어를 안 씀. 그 빈칸이 이 책의 스타일임. ‘죽으면 죽으리이다’는 용감한 선언이라기보다, 무서운 거 다 계산해 보고 그래도 가는 사람의 말에 가까움. 용기는 안 무서운 게 아니라, 무서운데 가는 거임.",
+  "tldr": "하만의 조서로 유다인 몰살 날짜가 정해지자, 모르드개는 굵은 베를 입고 통곡하며 내시 하닥을 통해 에스더에게 왕 앞에 나가 달라고 부탁함. 부름 없이 들어가면 죽는 법 때문에 망설이던 에스더는 ‘이때를 위함인지 누가 아느냐’는 말을 듣고, 사흘 금식 후 ‘죽으면 죽으리이다’ 하고 왕에게 가기로 함.",
+  "bridge": "제삼 일에 에스더가 왕후의 예복을 입고, 왕궁 안뜰 어전을 마주 보고 섰다."
+}
