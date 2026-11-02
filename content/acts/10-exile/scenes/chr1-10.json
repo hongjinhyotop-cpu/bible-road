@@ -38,7 +38,7 @@
     { "type": "narration", "text": "여기까지는 사무엘상 마지막 장과 거의 같다. 그런데 이 두루마리는 이야기를 그냥 끝내지 않는다. 사무엘상이 하지 않은 일을 한다. 두 절을 더 적는다." },
     { "type": "scripture", "ref": "대상 10:13-14", "fx": "dark", "gloss": "사울이 죽은 건 여호와께 죄를 지었기 때문. 여호와의 말씀을 안 지켰고, 신접한 자(무당)한테 가서 물었고, 여호와께는 묻지 않았음. 그래서 여호와께서 그를 죽이시고 나라를 이새의 아들 다윗에게 넘기셨음." },
     { "bg": "ez-jerusalem-ruin-night", "fx": "fade", "enter": ["ezra", "youth"], "face": { "youth": "left", "ezra": "right" }, "acts": [{ "act": "walk-in", "who": "youth" }, { "act": "face", "who": ["ezra", "youth"] }] },
-    { "type": "line", "who": "youth", "act": "approach", "to": "ezra", "text": "“사울 이야기는 이게 다입니까? 사무엘의 책에는 서른 장이 넘게 있는데.”" },
+    { "type": "line", "who": "youth", "act": "approach", "to": "ezra", "text": "“사울 이야기는 이게 다입니까? 사무엘의 책에는 스무 장이 넘게 있는데.”" },
     { "type": "line", "who": "ezra", "act": "bow-head", "text": "“나머지는 거기 다 있네. 우리가 거기서 꼭 가져와야 할 건 하나야. 그가 누구를 찾았는가.”" },
     { "type": "narration", "acts": [{ "act": "look-up", "who": "ezra" }, { "act": "bow-head", "who": "youth" }], "text": "신접한 자에게는 물었다. 여호와께는 묻지 않았다. 사람은 대개 대답을 찾아다닌다. 듣고 싶은 대답을. 이 두루마리는 그것을 ‘묻는다’고 부르지 않는다." },
     { "type": "narration", "act": "bless", "who": "ezra", "text": "그 나라는 이새의 아들에게로 돌아갔다. 왕관이 옮겨 가는 데 장례 한 번이면 충분했다. 이 두루마리에서 다윗은, 다음 줄에 바로 왕이 된다." }
