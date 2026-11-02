@@ -15,9 +15,11 @@ import { ARM_BENT, ARM_DOWN, BACK_ARM, BEARD_SHORT, FACE_MAN, LEGS_SLIM, TORSO_S
 import { PLOW_OUTFITS } from './_elisha-plow.ts';
 
 // ── 머리 (hair 부위): 대머리 + 귀 뒤의 짧은 머리 띠 + 수염 ─────────────
+// 폰(작은 화면)에서도 대머리가 보이게 (2026-11-02): 정수리에 넓은 빛 반사 면 + 굵은 윤곽 빛, 귀 뒤 머리 띠는 더 진하고 두툼하게
 const HEAD = `
-  <path d="M80 40 C77 50 77 60 80 70 C83 74 87 76 90 76 C88 70 87 62 88 56 C86 52 84 46 84 40 Z"/>
-  <path class="es-shine" d="M86 24 C92 18 102 16 110 19" fill="none" stroke-width="1.4" stroke-linecap="round"/>
+  <path class="es-fringe" d="M79 38 C75 50 75 62 79 72 C83 77 88 79 92 78 C89 70 88 62 89 55 C87 50 85 44 85 38 Z"/>
+  <path class="es-dome" d="M82 34 C85 22 96 13 108 14 C117 15 123 20 125 29 C116 25 104 25 94 30 C89 33 85 36 82 34 Z"/>
+  <path class="es-shine" d="M83 28 C89 16 102 11 114 14 C120 16 124 20 126 26" fill="none" stroke-width="2.6" stroke-linecap="round"/>
   ${BEARD_SHORT}`;
 
 // ── 옷 (cloth 부위) ────────────────────────────

@@ -228,7 +228,9 @@ function droughtArt(): string {
     return `M${f(x)} ${f(y)} l${f(6 + r() * 8)} ${f((r() - 0.5) * 4)} l${f(4 + r() * 6)} ${f(2 + r() * 3)} m${f(-6)} ${f(-3)} l${f(2)} ${f(-4)}`;
   }).join(' ');
   return `<g class="el el--drought">
-    <circle class="el-sun" cx="300" cy="44" r="16"/><circle class="bd-halo el-sunhalo" cx="300" cy="44" r="58"/>
+    <circle class="bd-halo el-sunhalo" cx="300" cy="44" r="74"/>
+    <g class="el-rays">${Array.from({ length: 16 }, (_, i) => { const a = (i / 16) * Math.PI * 2; const r1 = 25, r2 = i % 2 ? 40 : 52; return `<path d="M${f(300 + Math.cos(a - 0.07) * r1)} ${f(44 + Math.sin(a - 0.07) * r1)} L${f(300 + Math.cos(a) * r2)} ${f(44 + Math.sin(a) * r2)} L${f(300 + Math.cos(a + 0.07) * r1)} ${f(44 + Math.sin(a + 0.07) * r1)} Z"/>`; }).join('')}</g>
+    <circle class="el-sun" cx="300" cy="44" r="20"/><circle class="el-suncore" cx="300" cy="44" r="12"/>
     ${ridge([[-W * 2, 160], [-200, 150], [-40, 160], [80, 142], [220, 156], [340, 138], [500, 152], [W * 3, 146]], 'bd-far')}
     <path class="el-haze" d="M-200 170 C0 166 200 174 600 168"/>
     <path class="bd-mid" d="M${-W * 2} ${H} L${-W * 2} 200 C-60 196 80 204 160 200 C240 196 340 204 ${W * 3} 198 L${W * 3} ${H} Z"/>

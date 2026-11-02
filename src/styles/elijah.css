@@ -42,8 +42,13 @@
 @keyframes el-bow { from { scale: 1 1; } to { scale: 1.04 0.86; } }
 
 /* ── 가뭄 ── */
-.el-sun { fill: #fff6dc; opacity: 0.9; filter: drop-shadow(0 0 6px rgba(255, 240, 200, 0.9)); }
-.el-sunhalo { opacity: 0.6; }
+.el-sun { fill: #ffd27a; opacity: 0.95; filter: drop-shadow(0 0 10px rgba(255, 196, 90, 0.95)); }
+/* 가뭄의 해: 달처럼 보이지 않게 — 주황빛 몸 + 흰 속 + 뾰족한 햇살이 천천히 돔 + 뜨거운 노란 무리 */
+.el-suncore { fill: #fffbe8; opacity: 0.95; }
+.el-sunhalo { opacity: 0.7; fill: rgba(255, 190, 90, 0.16); }
+.el-rays { fill: #ffc46a; opacity: 0.8; transform-box: view-box; transform-origin: 300px 44px; animation: el-rays 40s linear infinite; }
+@keyframes el-rays { to { rotate: 360deg; } }
+.el--drought .el-wadi, .el--drought .bd-mid { filter: saturate(1.15); }
 .el-haze { fill: none; stroke: #fff2d0; stroke-width: 8; opacity: 0.08; filter: blur(3px); animation: el-haze 4s ease-in-out infinite alternate; }
 @keyframes el-haze { from { translate: -6px 0; opacity: 0.05; } to { translate: 6px -2px; opacity: 0.14; } }
 .el-wadi { fill: none; stroke: color-mix(in srgb, #d8c49a 30%, var(--act-b)); stroke-width: 6; stroke-linecap: round; opacity: 0.35; }
@@ -121,7 +126,7 @@
 .el-elders rect { fill: color-mix(in srgb, #d8d0c0 26%, var(--act-a)); }
 .el--gate.is-empty .el-highseat { opacity: 0.85; }
 
-:root[data-reduced-motion='true'] :is(.el-window, .el-flames path, .el-firehalo, .el-calfhalo, .el-bowing path, .el-haze, .el-glint, .el-baalfolk rect, .el-trench.is-wet, .el-drip, .el-ripple, .el-cinder, .el-twigs, .el-crown, .el-coal, .el-coalhalo, .el-team, .el-leaf, .el-lampflame, .el-lamphalo) { animation: none !important; }
+:root[data-reduced-motion='true'] :is(.el-rays, .el-window, .el-flames path, .el-firehalo, .el-calfhalo, .el-bowing path, .el-haze, .el-glint, .el-baalfolk rect, .el-trench.is-wet, .el-drip, .el-ripple, .el-cinder, .el-twigs, .el-crown, .el-coal, .el-coalhalo, .el-team, .el-leaf, .el-lampflame, .el-lamphalo) { animation: none !important; }
 
 /* ── 흔들림 ── */
 .el-quake { animation: el-quake 0.8s ease-out; }
