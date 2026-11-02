@@ -7,7 +7,7 @@
 | 항목 | 상태 |
 |---|---|
 | 사이트 | https://hongjinhyotop-cpu.github.io/bible-road/ — 2026-10-27 첫 배포 완료 (GitHub Pages 켜짐) |
-| 현재 단계 | **열여덟 번째 채팅: 7막 알려진 문제 → 9막 열왕기 이야기 36장(왕상 12–왕하 25) + 두 왕국 판·왕 카드 + 9막 피날레 → 9막 검수.** **1막~7막 + 9막 열왕기 = 338장 / 1,189장 (약 28%).** 에피소드 281개. 역대기·예언서는 나중에 (9막 지도에 별로만 남음, `later`) |
+| 현재 단계 | **열아홉 번째 채팅: 9막 정리 → 10막 포로와 귀환(스·느·에 33장) → 검수 → 역대기.** (이전: 열여덟 번째 채팅: 7막 알려진 문제 → 9막 열왕기 이야기 36장(왕상 12–왕하 25) + 두 왕국 판·왕 카드 + 9막 피날레 → 9막 검수.** **1막~7막 + 9막 열왕기 = 338장 / 1,189장 (약 28%).** 에피소드 281개. 역대기·예언서는 나중에 (9막 지도에 별로만 남음, `later`) |
 | 다음 세션 할 일 | **8막 지혜와 노래**(욥·시·잠·전·아) 또는 예언서(성경 순서대로) — 사용자와 정하기. 역대기 별도 막. AUDIT "7막"·"9막" 애매한 것 |
 | 머지 | **Claude가 PR 만들고 직접 main에 머지**한다. 사용자에게 버튼 누르라고 하지 않는다 (사용자 허락, CLAUDE.md 10번) |
 | 사용자와 말투 | **반말, 편하게.** 사용자는 개발자가 아니니까 쉬운 말로 설명 |
@@ -531,6 +531,18 @@
 - 여호야긴: "37년 동안 옥에" → "사로잡혀 간 지 37년에 옥에서 풀려남"(25:27), 내내 갇혔는지는 본문이 말 안 함. 서술·해설·요약·도감·왕 카드·피날레
 - 마아가는 그대로
 - 그림: 가뭄 해(el-drought) 주황 몸 + 흰 속 + 천천히 도는 햇살 → 달처럼 안 보임 · 엘리사 대머리 정수리에 넓은 빛 면 + 굵은 윤곽 빛(폰에서 보임) · **이사야 새 그림**(`characters/isaiah.ts`, `styles/isaiah.css`): 두건과 등 뒤 꼬리, 각진 긴 수염, 비스듬히 두른 겉옷과 술, 반쯤 펼친 두루마리. 옷 `robe`(기본)·`sackcloth`
+
+### 2단계 10막 포로와 귀환 — 33 / 33장 (에스겔·다니엘은 `later`), 에피소드 27개 (A 8 · B 19)
+- `content/acts/10-exile/PLAN.md` (페르시아 왕·연대표, 수위 기준, 에피소드 표), `act.json` 피날레 7줄 + keyVerse 느 8:10
+- **10막을 꿰는 연출 ① 다시 세워지는 예루살렘 판 `rebuild`** (`engine/rebuild.ts`, `fx/rebuild.ts`, `styles/rebuild.css`): 불탄 성벽 고리 위로 느 3의 문 열 개 사이 구간이 하나씩 솟고, 성전 터가 폐허 → 제단 → 기초 → 멈춤 → 완공. 작은 표는 오른쪽 위
+- **② 에스더 = 보이지 않는 손**: 하나님 빛 효과·목소리 금지(검사기), 대신 `thread`(은실) `chronicle`/`chronicle-read`(2장에 쓰인 줄이 6장에서 다시 밝아짐) `pur` 등. 해설에서 짚음
+- A급 (도우미 3명): ezr-1-cyrus 고레스의 조서 · ezr-3-foundation 두 소리 · neh-1-2 짧은 기도 · neh-4-sword 한 손엔 일 한 손엔 병기 · neh-8-water-gate 수문 앞의 울음 · est-2-queen 왕후가 된 고아 · est-4-perish 죽으면 죽으리이다 · est-7-haman 하만의 몰락 (+ est-6-sleepless 잠 못 이루는 밤은 B급 형식에 A급 연출)
+- B급 (도우미 3명): ezr-2 · 4 · 5-6 · 7-8 · 9-10 / neh-3 · 5 · 6 · 7 · 9 · 10 · 11-12 · 13 / est-1 · 3 · 5 · 8 · 9-10
+- 전용 그림: `fx/ezra.ts`(ez-) `fx/nehemiah.ts`(nh-) `fx/esther.ts`(et-) — 목록은 CLAUDE.md 6번. 인물 키트 14명(cyrus zerubbabel jeshua-priest ezra nehemiah artaxerxes sanballat tobiah esther mordecai ahasuerus haman haggai zechariah-prophet) 중 다시 그림: cyrus · zerubbabel · jeshua-priest · nehemiah · ezra · esther · mordecai · haman · ahasuerus + `royal-horse`(말 탄 모르드개). 도감 +13
+- 지명 susa 수산 · ecbatana 악메다 · ahava 아하와 강 · persia 바사
+- 수위: 스 9–10(불편함 인정, 해석 셋, 오늘날 근거 아님) · 에 2(성적 뉘앙스 없음) · 에 7·9(암전·숫자, "재산에는 손을 대지 아니하였더라" ×3) · 느 13:25(한 줄)
+- 확인(폰 390px): A급 8편은 도우미가 각자 끝까지, Claude는 est-8(B 대표)·ezr-3. 회상 "기억" 글자와 성벽 작은 표가 겹쳐 작은 표를 오른쪽 위로 옮김
+- 4단계 준비로 족보 가계도 `lineage`(engine/fx/styles lineage) 엔진 연결 + `PLAN-chronicles.md`
 
 ## 다음 할 일
 

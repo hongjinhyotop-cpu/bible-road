@@ -5,7 +5,7 @@
 //  { "wall": 10, "from": 0 }              : 0부터 10까지 한 구간씩 차례로 솟음 (첫 표시에서 애니메이션을 보여 줄 때)
 //  { "at": "water" }                      : 그 문 하나를 밝힘 (느 8 수문 앞 광장)
 //  { "label": "쉰두 날" }                  : 판 아래 한 줄
-// 다음 beat에 rebuild가 없으면 판은 왼쪽 위 작은 표(성전 단계 · 성벽 n/10)로 물러나 에피소드 내내 남는다.
+// 다음 beat에 rebuild가 없으면 판은 오른쪽 위 작은 표(성전 단계 · 성벽 n/10)로 물러나 에피소드 내내 남는다.
 export const TEMPLE_STAGES = ['ruin', 'altar', 'foundation', 'halted', 'built'] as const;
 export type TempleStage = (typeof TEMPLE_STAGES)[number];
 export const TEMPLE_LABEL: Record<TempleStage, string> = {

@@ -1,7 +1,7 @@
 // 10막 — 다시 세워지는 예루살렘 판 (beat 필드 "rebuild", 데이터 engine/rebuild.ts).
 // 위에서 내려다본 옛 지도처럼: 불탄 성벽 고리(점선 잔해) 위로 구간이 하나씩 솟아 굵은 금빛 돌벽이 되고,
 // 가운데(북동쪽) 성전 터는 폐허 → 제단의 불 → 기초 테두리 → (멈춤: 잿빛) → 완공된 집으로 바뀐다.
-// 크게(is-big) = 무대를 덮는 판, 작게 = 왼쪽 위 작은 표.
+// 크게(is-big) = 무대를 덮는 판, 작게 = 오른쪽 위 작은 표 (왼쪽 위는 회상 "기억" 글자 자리).
 import { reducedMotion } from '../engine/settings';
 import { GATES, TEMPLE_LABEL, TEMPLE_STAGES, WALL_MAX, type RebuildSpec, type TempleStage } from '../engine/rebuild';
 
