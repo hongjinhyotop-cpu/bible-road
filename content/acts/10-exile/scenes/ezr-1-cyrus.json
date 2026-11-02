@@ -1,0 +1,71 @@
+{
+  "id": "ezr-1-cyrus",
+  "act": 10,
+  "grade": "A",
+  "title": "고레스의 조서",
+  "ref": "스 1",
+  "bg": "ez-babylon-canal-dusk",
+  "cast": ["elder", "youth"],
+  "extras": {
+    "elder": { "name": "늙은 포로", "base": "old-man", "hair": "hood", "beard": "gray", "props": ["staff"], "tint": "brown" },
+    "youth": { "name": "청년", "base": "youth", "hair": "short", "tint": "blue" },
+    "neighbor": { "name": "이웃", "base": "man", "hair": "turban", "beard": "short", "props": ["bundle"], "tint": "red" },
+    "mithredath": { "name": "고지기 미드르닷", "base": "man", "hair": "turban", "beard": "long", "props": ["scroll"], "tint": "purple" },
+    "sheshbazzar": { "name": "세스바살", "base": "man", "hair": "turban", "beard": "short", "props": ["staff"], "tint": "blue", "height": 1.02 }
+  },
+  "beats": [
+    { "type": "narration", "act": "look-up", "who": "elder", "text": "바벨론의 강가. 버드나무 가지에 누군가 걸어 둔 수금이 바람에 흔들렸다. 다윗의 집 사람 여호야긴이 바벨론 왕의 상에서 저녁을 먹게 된 지도 한참이 지났다. 그 이야기는 이제 노인들이나 하는 옛이야기였다." },
+    { "type": "narration", "act": "bow-head", "who": "elder", "text": "포로 생활이 길어지면 사람은 두 부류로 나뉜다. 돌아갈 날을 세는 사람과, 세기를 그만둔 사람. 대개 둘째가 더 많다. 셈은 희망보다 오래 버티지 못한다." },
+    { "type": "line", "who": "youth", "act": "approach", "to": "elder", "text": "“할아버지는 보셨잖아요. 예루살렘 성전. 정말 그렇게 컸어요?”" },
+    { "type": "line", "who": "elder", "act": "face", "to": "youth", "text": "“컸지. 돌 하나가 네 키만 했다. 그게 불탔다. 나는 그 연기를 보면서 끌려왔다.”" },
+    { "type": "line", "who": "youth", "text": "“그럼 지금은요?”" },
+    { "type": "line", "who": "elder", "act": "turn", "text": "“지금은, 여기 있지.”" },
+    { "bg": "ez-cyrus-court", "fx": "fade", "exit": ["elder", "youth"], "enter": ["cyrus"], "acts": [{ "act": "walk-in", "who": "cyrus" }, { "act": "crowd" }] },
+    { "type": "narration", "act": "crowd-bow", "text": "백 년이 채 안 되는 동안 세상을 흔들던 바벨론이 무너졌다. 무너뜨린 사람은 동쪽에서 온 바사(페르시아) 왕 고레스였다. 큰 성은 생각보다 조용히 주인을 바꾸었다. 큰 성일수록 대개 그렇다." },
+    { "type": "scripture", "ref": "스 1:1", "gloss": "바사 왕 고레스 원년, 여호와께서 예레미야를 통해 하신 말씀을 이루시려고 고레스의 마음을 움직이셨다. 그래서 고레스가 온 나라에 선포하고 조서를 내림." },
+    { "type": "narration", "act": "look-up", "who": "cyrus", "text": "역사를 움직이는 것은 왕이라고, 왕들은 생각한다. 이 문장의 주어는 왕이 아니었다. 고레스는 그 사실을 몰랐을 수도 있다. 문장은 그래도 그렇게 쓰였다." },
+    { "fx": "decree", "acts": [{ "act": "bless", "who": "cyrus" }] },
+    { "type": "line", "who": "cyrus", "act": "bless", "text": "“바사 왕 고레스는 말하노니, 하늘의 신 여호와께서 세상 만국으로 내게 주셨고 나를 명하사 유다 예루살렘에 전을 건축하라 하셨나니.”" },
+    { "type": "scripture", "ref": "스 1:3", "gloss": "“너희 중에 그 백성인 사람은 누구든지 유다 예루살렘으로 올라가서 여호와의 성전을 지어라. 너희 하나님이 함께하시길.” — 정복한 왕이 포로들한테 ‘집에 가라’고 공문을 띄운 거임." },
+    { "type": "narration", "acts": [{ "act": "crowd-murmur" }, { "act": "turn", "who": "cyrus" }], "text": "정복한 민족을 고향으로 돌려보내고 그 신의 집을 다시 짓게 하는 것은, 바사 왕들이 즐겨 쓰던 다스림이었다. 같은 일이 위에서 보면 정치였고, 아래에서 보면 응답이었다." },
+    { "bg": "ez-babylon-canal", "fx": "fade", "exit": ["cyrus"], "enter": ["elder", "youth"], "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }] },
+    { "type": "line", "who": "youth", "act": "approach", "to": "elder", "text": "“올라가래요. 누구든지.”" },
+    { "type": "line", "who": "elder", "act": "bow-head", "text": "“누구든지, 라.” … “끌려올 때는 줄에 묶여 왔다. 갈 때는 걸어서 가라는구나.”" },
+    { "type": "narration", "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "youth" }], "text": "모두가 일어나지는 않았다. 바벨론에서 태어난 사람이 더 많았다. 그들은 집을 지었고, 밭을 일구었고, 자식을 낳고 조상을 묻었다. 예레미야가 편지로 그렇게 살라고 했었다. 너무 잘 따른 것이 문제였다." },
+    { "type": "scripture", "ref": "스 1:5", "gloss": "유다와 베냐민의 족장들, 제사장들, 레위인들, 하나님께 마음이 움직인 모든 사람이 일어나 예루살렘에 올라가 여호와의 성전을 지으려 함." },
+    { "type": "narration", "act": "stand", "who": "elder", "text": "그 마음이 하나님께 감동을 받고. 첫 절에서 왕에게 쓰인 말이, 다섯째 절에서 이름 없는 사람들에게 똑같이 쓰였다. 왕의 마음과 노인의 마음은 같은 손에 있었다." },
+    { "type": "narration", "enter": ["neighbor"], "acts": [{ "act": "walk-in", "who": "neighbor" }, { "act": "approach", "who": "neighbor", "to": "elder" }], "text": "남는 사람들이 가는 사람들의 짐을 채웠다. 은그릇과 황금과 물건과 짐승과 보물. 그 위에 성전에 드릴 예물까지." },
+    { "type": "line", "who": "neighbor", "act": "bless", "text": "“가져가게. 나는 못 가니까. 내 몫까지 올라가게.”" },
+    { "type": "narration", "acts": [{ "act": "embrace", "who": ["elder", "neighbor"] }], "text": "떠나는 사람의 짐을 채워 주는 것. 남는 사람이 할 수 있는, 가장 먼 동행이다." },
+    { "bg": "ez-cyrus-court-dusk", "fx": "fade", "exit": ["elder", "youth", "neighbor"], "enter": ["mithredath", "sheshbazzar"], "acts": [{ "act": "walk-in", "who": "sheshbazzar" }, { "act": "face", "who": "mithredath", "to": "sheshbazzar" }] },
+    { "type": "narration", "act": "bow-head", "who": "sheshbazzar", "text": "고레스가 하나를 더 꺼냈다. 왕궁 창고 깊은 곳, 바벨론 신들의 신당에 놓여 있던 것들. 옛적에 느부갓네살이 예루살렘 성전에서 옮겨 온 그릇들이었다." },
+    { "type": "line", "who": "mithredath", "act": "approach", "to": "sheshbazzar", "text": "“왕의 명이오. 하나씩 세어서 넘기라 하셨소. 유다 목백 세스바살, 받으시오.”" },
+    { "fx": "vessels", "who": "mithredath", "to": "sheshbazzar", "acts": [{ "act": "bow-head", "who": "mithredath" }] },
+    { "type": "scripture", "ref": "스 1:11", "gloss": "금그릇과 은그릇이 모두 오천사백 개. 포로들을 바벨론에서 예루살렘으로 데리고 올라갈 때 세스바살이 이것들을 다 가지고 올라옴." },
+    { "type": "narration", "act": "kneel", "who": "sheshbazzar", "text": "세어서 건넨다는 것은, 돌려받을 주인이 있다는 뜻이다. 반세기 넘게 남의 신 앞 선반에서 먼지를 쓰고 있던 그릇들이, 다시 숫자가 되었다. 숫자가 된다는 것은, 다시 누군가의 것이 된다는 것이다." },
+    { "type": "choice", "prompt": "조서가 내렸다. 너라면?", "options": [
+      { "label": "올라간다. 본 적 없는 고향이라도", "canon": true },
+      { "label": "남는다. 여기서 태어났으니까", "goto": "b-stay" }
+    ] },
+    { "bg": "ez-caravan-dawn", "fx": "fade", "exit": ["mithredath", "sheshbazzar"], "enter": ["zerubbabel", "elder"], "outfit": { "zerubbabel": "travel" }, "acts": [{ "act": "walk-in", "who": "zerubbabel" }] },
+    { "type": "narration", "act": "travel", "from": "babylon", "via": ["euphrates", "hamath", "damascus"], "to": "jerusalem", "text": "길은 강을 따라 북쪽으로 올라갔다가, 사막을 돌아 서쪽으로 꺾여 내려간다. 사람과 나귀와 낙타, 그리고 오천사백 개의 그릇. 몇 달 길이었다." },
+    { "type": "narration", "act": "look-up", "who": "zerubbabel", "text": "행렬 앞쪽에 스알디엘의 아들 스룹바벨이 있었다. 여호야긴의 손자. 바벨론 식탁에서 꺼지지 않던 그 작은 등불이, 지금 길 위에 있었다." },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "elder", "to": "zerubbabel" }, { "act": "face", "who": "zerubbabel", "to": "elder" }], "text": "노인은 걸음이 느렸다. 젊은이들이 그의 짐을 나눠 졌고, 그는 그 대신 길을 가르쳤다. 오십 년 전에 반대로 걸었던 길이었다." },
+    { "type": "line", "who": "elder", "act": "bless", "to": "zerubbabel", "text": "“저 고개를 넘으면 보일 거요. 아니, 보였었지.”" },
+    { "bg": "ez-jerusalem-ruin-dusk", "fx": "fade", "rebuild": { "temple": "ruin", "wall": 0 }, "exit": ["zerubbabel"], "enter": ["youth"], "acts": [{ "act": "part", "who": "elder" }, { "act": "walk-in", "who": "youth" }] },
+    { "type": "narration", "act": "step-back", "who": "youth", "text": "그리고, 예루살렘. 성문은 탄 채로 서 있었다. 성벽은 이가 빠진 늙은이의 입 같았다. 성전이 있던 언덕에는 큰 돌들이 흩어져 있었고, 그 틈으로 잡초가 자랐다." },
+    { "type": "line", "who": "youth", "act": "turn", "text": "“여기예요? 돌 하나가 제 키만 했다던 데가?”" },
+    { "type": "narration", "acts": [{ "act": "kneel", "who": "elder" }, { "act": "cry", "who": "elder" }], "text": "노인은 대답 대신 무릎을 꿇었다. 돌 하나는 정말로 청년의 키만 했다. 다만 서 있지 않고, 누워 있었다." },
+    { "type": "narration", "act": "approach", "who": "youth", "to": "elder", "text": "돌아온다는 것은 떠나기 전으로 돌아가는 일이 아니다. 무너진 것을 제 눈으로 확인하러 가는 일이다. 그들은 그 자리에 짐을 풀었다. 오천사백 개의 그릇과 함께." }
+  ],
+  "branches": {
+    "b-stay": [
+      { "type": "narration", "act": "bow-head", "who": "sheshbazzar", "text": "실제로 그렇게 한 사람이 훨씬 많았다. 그리고 하나님은 남은 사람들도 잊지 않으셨다. 수십 년 뒤 바사의 수산 궁에는 모르드개라는 사람과 에스더라는 고아 소녀가, 또 왕의 술을 맡은 느헤미야라는 사람이 있게 된다." },
+      { "type": "narration", "act": "look-up", "who": "sheshbazzar", "text": "그 이야기는 나중이다. 지금은, 올라가는 사람들의 길이다." }
+    ]
+  },
+  "insight": "9막 마지막 장면 기억남? 바벨론 감옥에서 풀려나 왕의 식탁에 앉은 여호야긴. 거기서 약 20년 뒤, 판이 통째로 바뀜. 주전 539년 바사 = 페르시아의 고레스(키루스 2세)가 바벨론을 먹고, 이듬해(538년쯤) 이 조서를 냄. 이제부터 10막은 이 페르시아 시대 이야기임.\n\n1절 ‘예레미야의 입으로 하신 말씀’은 예레미야 25장·29장의 ‘칠십 년’ 예언을 가리킴. 포로 기간이 차면 돌아오게 하겠다는 약속. 칠십 년을 언제부터 언제까지로 세느냐는 해석이 여러 갈래임(첫 포로 605년부터 귀환까지로 보는 쪽, 성전 파괴 586년부터 성전 완공 516년쯤까지로 보는 쪽 등). 예레미야 이야기는 나중에 예레미야서에서 자세히.\n\n그리고 소름 포인트 하나. 에스라 1:1-3은 역대하 36:22-23이랑 거의 똑같은 문장임. 히브리 성경은 책 순서가 우리 성경이랑 달라서 역대기가 맨 끝에 오는데, 그래서 히브리 성경 전체가 이 조서의 ‘올라갈지어다’로 끝남. 한 권이 끝나는 자리에서 다음 이야기가 시작되는 구조.\n\n고레스가 착해서 그랬냐? 역사적으로 보면 이게 페르시아식 통치 스타일이었음. ‘고레스 원통’(Cyrus Cylinder, 지금 대영박물관)이라는 진흙 원통에 고레스가 정복한 민족들 신상을 제자리로 돌려보내고 사람들을 고향으로 돌려보냈다고 자랑해 놓음. 유다 이야기가 직접 나오진 않지만 같은 정책임. 근데 에스라는 이걸 ‘여호와께서 고레스의 마음을 감동시키셨다’고 씀. 같은 사건을 하나는 정책으로, 하나는 응답으로 본 거. 이사야서엔 고레스 이름이 직접 나오기도 함(사 44:28, 45:1) — 이사야서에서 자세히.\n\n눈여겨볼 단어가 ‘감동’임. 1절에선 왕의 마음을, 5절에선 이름 없는 사람들 마음을 하나님이 움직이심. 근데 이게 왜 중요하냐면, 다 돌아간 게 아니거든. 바벨론에서 태어나 집 사고 자리 잡은 사람이 훨씬 많았음. 돌아간다는 건 안정된 직장 때려치우고 폐허로 이사 가는 거였음. 마음이 움직인 사람만 일어났음.\n\n성전 그릇 숫자(1:9-11)는 본문 그대로 옮겼는데, 9-10절 목록을 더하면 2,499개고 11절 합계는 5,400개라 안 맞음. 목록엔 대표 품목만 적었다는 해석, 필사하면서 숫자가 달라졌다는 해석, 셈법이 달랐다는 해석 등이 있음. 어느 쪽이 맞다고 단정하긴 어려움. 중요한 건 느부갓네살이 털어 간 그릇(왕하 25:13-15)이 하나하나 세어져서 돌아왔다는 거.\n\n그 그릇을 받은 ‘유다 목백 세스바살’은 누구냐. 2장부터 지도자로 나오는 스룹바벨과 같은 사람이라고 보는 해석(바벨론식 이름과 히브리식 이름), 다른 사람이라고 보는 해석(세스바살이 먼저 총독, 스룹바벨이 뒤를 이음)이 다 있음. 오늘은 둘을 따로 세웠는데, 확정된 건 아님. 확실한 건 스룹바벨이 여호야긴의 손자라는 거(대상 3:17-19). 열왕기 마지막의 그 작은 등불이 진짜로 돌아오는 길에 있었다는 거임.",
+  "tldr": "바사(페르시아) 왕 고레스가 ‘누구든지 예루살렘에 올라가 성전을 지으라’는 조서를 내림. 예레미야의 칠십 년 예언이 이뤄진 거. 마음이 움직인 사람들이 일어나고, 남는 이웃들이 짐을 채워 주고, 느부갓네살이 가져갔던 성전 그릇 5,400개가 세어져 세스바살에게 돌아옴. 그리고 폐허가 된 예루살렘으로 첫 귀환.",
+  "bridge": "그 길을 걸은 사람들이 누구였는지, 성경은 한 집안씩 이름을 부른다.",
+  "unlocks": { "characters": ["cyrus", "zerubbabel"] }
+}

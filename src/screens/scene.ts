@@ -18,6 +18,8 @@ import { createCrowd, setCrowd, type CrowdState } from '../fx/crowd';
 import { showTravel, type TravelMap } from '../fx/travel';
 import { showAllot, type AllotMap } from '../fx/allot';
 import { showCycle, ROUNDS, type CycleRing } from '../fx/cycle';
+import { showRebuild, rebuildHold, type RebuildBoard } from '../fx/rebuild';
+import { showLineage, lineageHold, type LineageBoard } from '../fx/lineage';
 import { showKings, type KingsBoard } from '../fx/kingdoms';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
@@ -57,6 +59,9 @@ import { playStones } from '../fx/absalom';
 import { playChariotFire, playMantleFall, playMantleStrike, playSalt, playSamariaFalls, playSevenDips, playWarnings } from '../fx/elisha';
 import { playCloudGlory, playPrayers, playTearTwelve } from '../fx/temple';
 import { playBurnIdols, playCampSilence, playLetterSpread, playPillarsFall, playScrollFound, playSmallLamp, playTempleFire } from '../fx/judah';
+import { playDecree, playTwoSounds, playVessels } from '../fx/ezra';
+import { playArrowPrayer, playNightSurvey, playTorahRead, playTrowelSword, playRallyHorn } from '../fx/nehemiah';
+import { playChronicle, playPur, playRiders, playScepter, playSignet as playKingRing, playThread } from '../fx/esther';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
 import { createTower, scatter, setTowerState } from '../fx/tower';
 import { babble } from '../fx/babble';
@@ -74,10 +79,10 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6, 'mantle-strike': 4.4, 'chariot-fire': 9.6, 'mantle-fall': 4.6, salt: 5, 'seven-dips': 13, 'samaria-falls': 6, warnings: 11.5, 'letter-spread': 7, 'camp-silence': 7.5, 'scroll-found': 6, 'burn-idols': 6.5, 'temple-fire': 6, 'pillars-fall': 5.6, 'small-lamp': 4.5, rift: 4.4, 'no-answer': 8.4, 'carmel-fire': 6.2, 'small-cloud': 8, 'great-wind': 4.2, earthquake: 3.8, 'mount-fire': 4.2, 'still-voice': 7, 'angel-touch': 3.8, 'mantle-throw': 3.4 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6, 'mantle-strike': 4.4, 'chariot-fire': 9.6, 'mantle-fall': 4.6, salt: 5, 'seven-dips': 13, 'samaria-falls': 6, warnings: 11.5, 'letter-spread': 7, 'camp-silence': 7.5, 'scroll-found': 6, 'burn-idols': 6.5, 'temple-fire': 6, 'pillars-fall': 5.6, 'small-lamp': 4.5, rift: 4.4, 'no-answer': 8.4, 'carmel-fire': 6.2, 'small-cloud': 8, 'great-wind': 4.2, earthquake: 3.8, 'mount-fire': 4.2, 'still-voice': 7, 'angel-touch': 3.8, 'mantle-throw': 3.4, decree: 7.6, vessels: 8.6, 'two-sounds': 10.5, 'arrow-prayer': 2.8, 'night-survey': 9.6, 'trowel-sword': 5.5, 'rally-horn': 4.6, 'torah-read': 7.5,thread: 3.6, chronicle: 6.4, 'chronicle-read': 7.6, pur: 6.6, scepter: 3.8, riders: 5 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
-const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill', 'el-sun-arc', 'el-cloud-swell']);
+const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill', 'el-sun-arc', 'el-cloud-swell', 'ez-ring', 'ez-far', 'ez-core', 'ez-carry', 'ez-row', 'ez-copy']);
 
 export function sceneScreen({ id }: Params): Screen {
   const el = document.createElement('section');
@@ -149,6 +154,10 @@ export function sceneScreen({ id }: Params): Screen {
   let cycleRing: CycleRing | null = null;
   /** 9막 두 왕국 판 (beat 필드 kings) */
   let kingsBoard: KingsBoard | null = null;
+  /** 10막 다시 세워지는 예루살렘 판 (beat 필드 rebuild) */
+  let rebuildBoard: RebuildBoard | null = null;
+  /** 족보 가계도 (beat 필드 lineage) */
+  let lineageBoard: LineageBoard | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
 
@@ -228,8 +237,9 @@ export function sceneScreen({ id }: Params): Screen {
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
         const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : beat.kings ? (typeof beat.kings === 'object' && !Array.isArray(beat.kings) && beat.kings.fall ? 6 : 3.4) : 0;
         // 글 없는 beat의 긴 효과는 끝까지 보여 준다 (다음 beat의 암전·배경 전환에 가리지 않게)
+        const rb = beat.rebuild ? rebuildHold(beat.rebuild, rebuildBoard) : beat.lineage ? lineageHold(beat.lineage) : 0;
         const longFx = Math.max(0, ...[beat.fx ?? []].flat().map((f) => FX_HOLD[f] ?? 0));
-        await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
+        await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, rb, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
         if (!alive) return;
       }
     } catch (err) {
@@ -323,6 +333,12 @@ export function sceneScreen({ id }: Params): Screen {
     // 두 왕국 판: 이번 beat에 kings가 있으면 크게 펴고 왕 카드를 쌓는다. 없으면 왼쪽 위 작은 표로
     if (beat.kings) kingsBoard = showKings($('.scene'), beat.kings, kingsBoard);
     else kingsBoard?.big(false);
+    // 다시 세워지는 예루살렘: 이번 beat에 rebuild가 있으면 크게, 없으면 왼쪽 위 작은 표로
+    if (beat.rebuild) rebuildBoard = showRebuild($('.scene'), beat.rebuild, rebuildBoard);
+    else rebuildBoard?.big(false);
+    // 족보 가계도: 이번 beat에 lineage가 있으면 크게(앞 줄기에 이어 붙임), 없으면 왼쪽 위 작은 표로
+    if (beat.lineage) lineageBoard = showLineage($('.scene'), beat.lineage, lineageBoard);
+    else lineageBoard?.big(false);
     // 땅 분배 지도: 이번 beat에 allot이 있으면 칠하고, 없으면 접는다
     if (beat.allot) {
       travel?.el.remove();
@@ -575,7 +591,12 @@ export function sceneScreen({ id }: Params): Screen {
         playEastWind($('.scene'), rm);
         return;
       case 'signet':
-        // 요셉의 애굽 (fx/egypt-court.ts): 인장 반지와 금사슬이 반짝인다 (창 41:42)
+        // beat에 who/to가 있으면: 왕의 반지가 손에서 손으로 (에 3:10 · 8:2, fx/esther.ts. 주는 사람 = who → ahasuerus, 받는 사람 = to)
+        if (beat?.who || beat?.to) {
+          playKingRing($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+          return;
+        }
+        // 없으면 요셉의 애굽 (fx/egypt-court.ts): 인장 반지와 금사슬이 반짝인다 (창 41:42)
         playSignet($('.scene'), rm);
         return;
       case 'weep':
@@ -816,6 +837,65 @@ export function sceneScreen({ id }: Params): Screen {
         // 작은 불빛 (왕하 25:27-30) — fx/judah.ts. 두 왕국 판의 남유다 칸에 등불
         playSmallLamp($('.scene'), rm);
         return;
+      // ── 10막 에스라 (fx/ezra.ts) ──
+      case 'decree':
+        // 고레스의 조서가 펼쳐지고 인장이 찍히고 사본이 온 나라로 (스 1:1-4)
+        playDecree($('.scene'), rm);
+        return;
+      case 'vessels':
+        // 성전 그릇을 세어 줌 (스 1:7-11). 주는 사람 = who, 받는 사람 = to
+        playVessels($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'two-sounds':
+        // 즐거이 부르는 소리와 통곡하는 소리 (스 3:12-13). 환호 쪽 = who, 통곡 쪽 = to (없으면 양 끝)
+        playTwoSounds($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      // ── 10막 느헤미야 (fx/nehemiah.ts) ──
+      case 'arrow-prayer':
+        // 짧은 묵도 (느 2:4). 기도하는 사람 = who → nehemiah
+        playArrowPrayer($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'night-survey':
+        // 밤의 정찰 (느 2:12-15) — 배경 nh-ruin-night의 골짜기 길
+        playNightSurvey($('.scene'), rm);
+        return;
+      case 'trowel-sword':
+        // 한 손엔 일, 한 손엔 병기 (느 4:17)
+        playTrowelSword($('.scene'), rm);
+        return;
+      case 'rally-horn':
+        // 나팔 부는 자 (느 4:18-20). 곁에 선 사람 = who → nehemiah
+        playRallyHorn($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      case 'torah-read':
+        // 말씀을 읽고 뜻을 풀다 (느 8:3-8). 강단 = 배경 nh-water-gate의 낭독대, 없으면 who → ezra
+        playTorahRead($('.scene'), [beat?.who ?? []].flat()[0], rm);
+        return;
+      // ── 10막 에스더 (fx/esther.ts) — 하나님 빛 없이 '맞물림'으로만 ──
+      case 'thread':
+        // 보이지 않는 손: 은실이 who → to를 잇고 흩어짐 (에 2:22 · 6:4 · 7:8 …)
+        playThread($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'chronicle':
+        // 궁중 일기에 기록 (에 2:23)
+        playChronicle($('.scene'), 'write', rm);
+        return;
+      case 'chronicle-read':
+        // 역대 일기를 읽힘 — 2장의 그 줄이 다시 밝아짐 (에 6:1-3)
+        playChronicle($('.scene'), 'read', rm);
+        return;
+      case 'pur':
+        // 제비 부르가 열두째 달에 (에 3:7)
+        playPur($('.scene'), rm);
+        return;
+      case 'scepter':
+        // 금홀 (에 5:2 · 8:4). 왕 = who → ahasuerus, 받는 사람 = to → esther
+        playScepter($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'riders':
+        // 역졸들이 사방으로 (에 3:13-15 · 8:10-14)
+        playRiders($('.scene'), rm);
+        return;
       // ── 9막 엘리사 · 북이스라엘의 끝 (fx/elisha.ts) ──
       case 'mantle-strike':
         // 겉옷으로 물을 침 (왕하 2:8, 14). 치는 사람 = who → elijah
@@ -1041,6 +1121,8 @@ export function sceneScreen({ id }: Params): Screen {
     setBlack(false);
     cycleRing?.big(false);
     kingsBoard?.big(false);
+    rebuildBoard?.big(false);
+    lineageBoard?.big(false);
     setItem(el, items, null);
     setMemory(null);
     const known = progress.get().characters;
@@ -1168,6 +1250,10 @@ export function sceneScreen({ id }: Params): Screen {
     cycleRing = null;
     kingsBoard?.el.remove();
     kingsBoard = null;
+    rebuildBoard?.el.remove();
+    rebuildBoard = null;
+    lineageBoard?.el.remove();
+    lineageBoard = null;
     setBlack(false);
     $('.scene__sound').classList.remove('is-on');
     setDecay(scene.decay ?? 0);

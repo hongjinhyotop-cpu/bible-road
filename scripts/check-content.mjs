@@ -19,6 +19,7 @@ import { ITEMS } from '../src/engine/items.ts';
 import { TRIBES, ALLOT_SPECIAL } from '../src/engine/tribes.ts';
 import { CYCLE_STAGES, ROUNDS } from '../src/engine/cycle.ts';
 import { KING_BY_ID } from '../src/engine/kings.ts';
+import { TEMPLE_STAGES, GATE_IDS, WALL_MAX } from '../src/engine/rebuild.ts';
 import { BASES, BEARDS, HAIRS, PROPS, TINTS } from '../src/characters/_kit.ts';
 
 const root = new URL('..', import.meta.url).pathname;
@@ -194,7 +195,7 @@ function checkScene(s, where) {
   if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
-  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot || b.cycle || b.kings || b.sound;
+  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot || b.cycle || b.kings || b.rebuild || b.lineage || b.sound;
   const motion = main.filter(moves).length;
   const changes = main.filter(scenery).length;
   let still = 0;
@@ -217,7 +218,7 @@ function checkScene(s, where) {
   checkOutfit(s.outfit);
   for (const b of all) {
     if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
-    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot && !b.cycle && !b.kings && !b.sound) warn(where, 'type도 act도 없는 빈 beat');
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot && !b.cycle && !b.kings && !b.rebuild && !b.lineage && !b.sound) warn(where, 'type도 act도 없는 빈 beat');
     if (b.cycle != null) {
       const c = b.cycle;
       if (typeof c !== 'object' || Array.isArray(c)) err(where, 'cycle은 { round, judge, at?, skip?, broken? } 형식');
@@ -233,7 +234,29 @@ function checkScene(s, where) {
       for (const id of ids) if (!KING_BY_ID[id]) err(where, `kings: 왕 "${id}"이 src/engine/kings.ts에 없음`);
       if (obj && k.fall != null && !['israel', 'judah'].includes(k.fall)) err(where, 'kings.fall은 "israel" 또는 "judah"');
       if (obj && !ids.length && !k.fall && !k.show) err(where, 'kings는 왕 id(들) 또는 { add, fall, show }');
-      if (s.act !== 9) warn(where, 'kings(두 왕국 판)는 9막용');
+      if (s.act !== 9 && s.act !== 10) warn(where, 'kings(두 왕국 판)는 9막·10막(역대하)용');
+    }
+    if (b.lineage != null) {
+      const l = b.lineage;
+      if (typeof l !== 'object' || Array.isArray(l)) err(where, 'lineage는 { names, ref?, title?, mark?, branch?, fresh? } 형식');
+      else if (!(Array.isArray(l.names) && l.names.every((n) => typeof n === 'string')) && !l.mark && !l.branch) err(where, 'lineage.names는 이름(문자열) 배열');
+    }
+    if (b.rebuild != null) {
+      const r = b.rebuild;
+      if (typeof r !== 'object' || Array.isArray(r)) err(where, 'rebuild는 { temple?, wall?, from?, at?, label? } 형식');
+      else {
+        if (r.temple != null && !TEMPLE_STAGES.includes(r.temple)) err(where, `rebuild.temple "${r.temple}"는 ${TEMPLE_STAGES.join('/')} 중 하나`);
+        for (const k of ['wall', 'from']) if (r[k] != null && !(Number.isInteger(r[k]) && r[k] >= 0 && r[k] <= WALL_MAX)) err(where, `rebuild.${k}는 0~${WALL_MAX}`);
+        if (r.at != null && !GATE_IDS.includes(r.at)) err(where, `rebuild.at "${r.at}"는 ${GATE_IDS.join('/')} 중 하나`);
+      }
+      if (s.act !== 10) warn(where, 'rebuild(다시 세워지는 예루살렘)는 10막용');
+    }
+    // 에스더서: 하나님의 이름이 한 번도 나오지 않는 책 (2026-11-02 사용자 결정) → 하나님의 빛·목소리 연출 금지. 우연이 겹치는 순간은 미묘한 연출로만
+    if (/^에\s/.test(s.ref ?? '')) {
+      const ESTHER_BANNED = new Set(['glory', 'cloud-glory', 'still-voice', 'carmel-fire', 'mount-fire', 'chariot-fire', 'angel-touch', 'shema', 'prayers', 'anoint', 'small-lamp']);
+      for (const x of [b.fx ?? []].flat()) if (ESTHER_BANNED.has(x)) err(where, `에스더서에서는 하나님의 빛 효과 "${x}"를 쓰지 않음 (하나님 이름이 안 나오는 책 — 보이지 않는 손은 미묘한 연출로)`);
+      if (b.type === 'voice') err(where, '에스더서에서는 하나님의 목소리(voice) beat를 쓰지 않음');
+      for (const st of [b, ...(b.acts ?? [])]) if (st.act === 'pray') warn(where, '에스더서 본문엔 "기도"라는 말이 없음 (4:16은 금식) — pray 대신 kneel·bow-head');
     }
     if (b.sound != null && typeof b.sound !== 'string') err(where, 'sound는 짧은 글자(문자열)');
     checkMood(b.mood);

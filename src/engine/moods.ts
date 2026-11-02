@@ -48,6 +48,9 @@ export type BackdropArt =
   | 'sodom-gate' | 'sodom-gate-grey' | 'lot-house' | 'lot-door' | 'sodom-mob' | 'sodom-plain' | 'sodom-fire' | 'salt-pillar' | 'sodom-smoke'
   | 'potiphar' | 'potiphar-cloak' | 'round-prison' | 'dream-cows' | 'dream-cows-lean' | 'dream-ears' | 'dream-ears-thin' | 'pharaoh-court' | 'chariot' | 'granary' | 'granary-famine'
   | 'jd-nehushtan' | 'jd-nehushtan-broken' | 'jd-lachish' | 'jd-wall-conduit' | 'jd-camp' | 'jd-camp-still' | 'jd-repair' | 'jd-scroll-room' | 'jd-kidron-fire' | 'jd-bethel' | 'jd-megiddo' | 'jd-siege' | 'jd-breach' | 'jd-temple-burning' | 'jd-temple-ash' | 'jd-exile-road' | 'jd-babylon-court'
+  | 'ez-babylon-canal' | 'ez-cyrus-court' | 'ez-caravan' | 'ez-jerusalem-ruin' | 'ez-altar' | 'ez-foundation' | 'ez-temple-built'
+  | 'nh-susa-banquet' | 'nh-susa-night' | 'nh-ruin' | 'nh-wall-work' | 'nh-wall-done' | 'nh-water-gate' | 'nh-booths'
+  | 'et-susa-hall' | 'et-kings-gate' | 'et-women-court' | 'et-throne' | 'et-banquet' | 'et-garden' | 'et-haman-house' | 'et-bedchamber' | 'et-street'
   | PlaceArt;
 
 /**
@@ -245,7 +248,7 @@ export const FX = [
   // ── 뒤돌아보지 말라 (창 19, fx/sodom.ts) ──
   'blind', // 눈을 어둡게 함: 문 쪽에서 흰빛이 터져 화면을 덮었다가 천천히 걷힘 (약 5초, 창 19:11)
   // ── 요셉의 애굽 (창 39·41, fx/egypt-court.ts) ──
-  'signet', // 인장 반지와 금사슬: 요셉의 손과 목에서 차례로 금빛이 반짝임 (약 4초, 창 41:42)
+  'signet', // 인장 반지와 금사슬: 요셉의 손과 목에서 차례로 금빛이 반짝임 (약 4초, 창 41:42). ★ beat에 who/to를 쓰면 에스더의 '왕의 반지': who(→ ahasuerus) 손에서 빼어져 to의 손으로 건너감 (약 3.5초, 에 3:10 · 8:2, fx/esther.ts)
   // ── 9막 엘리사 · 북이스라엘의 끝 (왕하 2 · 5 · 17, fx/elisha.ts) ──
   'mantle-strike', // 겉옷으로 물을 침: 치는 사람(who, 없으면 elijah → 가운데 사람)의 손에서 말린 겉옷이 내리쳐지고 물보라 고리, 배경 es-jordan의 강이 양쪽으로 물러나 쌓이며 마른 바닥이 드러남 (약 5초, 왕하 2:8, 14). 다음 beat 배경 es-jordan-parted
   'chariot-fire', // 불 수레와 불 말들: 하늘이 붉어지고 불 말 둘과 수레가 두 사람 사이를 가르고 지나감 → 회리바람이 대상(who, 없으면 elijah)을 감아 올려 인물이 하늘로 작아지며 빛 속에 사라짐 (약 10초, 왕하 2:11). 다음 beat에서 exit
@@ -273,6 +276,23 @@ export const FX = [
   'temple-fire', // 성전이 불탐: 아래에서 붉은빛이 차오르고 불티가 끝없이 날아오르며 연기가 무대를 덮음. 사람은 안 그림 (약 11초, 왕하 25:9. 배경 jd-temple-burning)
   'pillars-fall', // 놋 기둥이 쓰러짐: 가운데 놋 기둥 둘(이름표 야긴·보아스)이 바깥으로 기울어 넘어지고 석류가 흩어지며 흙먼지 (약 7초, 왕하 25:13, 17 — 왕상 7:21)
   'small-lamp', // 작은 불빛: 두 왕국 판이 펴져 있으면(같은 beat에 "kings": { "show": true }) 무너진 남유다 칸에 작은 등불 하나가 켜져 에피소드 끝까지 남음(작은 표에도 불씨). 판이 없으면 무대 아래 가운데 (약 6초, 왕하 25:27-30)
+  // ── 10막 에스라 (스 1 · 3, fx/ezra.ts) ──
+  'decree', // 조서: 무대 위에 두루마리가 좌우로 펼쳐지고 글줄이 한 줄씩 켜진 뒤 붉은 인장(고레스)이 쾅, 작은 사본들이 사방 가장자리로 날아감 = 온 나라에 공포 (약 9초, 스 1:1-4. 왕의 조서 장면에 재사용)
+  'vessels', // 성전 그릇을 세어 줌: 위에 장부가 펴지고 금반 30 · 은반 1,000 · 칼 29 · 금대접 30 · 은대접 410 · 기타 기명 1,000이 한 줄씩, 그동안 금·은 그릇들이 who → to로 건너감, 끝에 "도합 5,400" (약 10초, 스 1:7-11)
+  'two-sounds', // 두 소리: 왼쪽(who, 없으면 왼쪽 끝)에서 금빛 '즐거이 부르는 소리' 고리, 오른쪽(to, 없으면 오른쪽 끝)에서 푸른 '통곡하는 소리' 고리가 퍼져 가운데서 겹치고, 색이 섞인 큰 고리가 화면 밖 멀리까지 퍼짐 + "분변치 못하였느니라" (약 12초, 스 3:12-13)
+  // ── 10막 느헤미야 (느 1–2 · 4 · 8, fx/nehemiah.ts) ──
+  'arrow-prayer', // 짧은 묵도: 무대의 색이 빠지고 숨쉬기가 멈춘 가운데 who(없으면 nehemiah)의 머리에서 가는 금빛 한 줄기가 위로 올라 사라지고 다시 색이 흘러감 (약 2.8초, 느 2:4)
+  'night-survey', // 밤의 정찰: 배경 nh-ruin-night의 골짜기 길을 따라 등불 하나와 나귀 탄 사람이 무너진 성벽 아래를 비추며 지나가다 돌무더기 앞에서 멈칫하고 돌아감 (약 10초, 느 2:12-15)
+  'trowel-sword', // 한 손엔 일, 한 손엔 병기: 무대 위쪽에 성벽 줄이 서고 그 위 일꾼 실루엣들이 한 손엔 광주리·돌, 한 손엔 창을 잡고 번갈아 돌을 놓음, 창끝이 반짝 (약 10초, 느 4:17)
+  'rally-horn', // 나팔 부는 자: who(없으면 nehemiah) 곁에서 양각 나팔이 들리고 소리 고리가 퍼지며 "뚜우—", 양옆에서 작은 사람들이 그쪽으로 모여듦 (약 6초, 느 4:18-20. 나팔·소집 장면에 재사용)
+  'torah-read', // 말씀을 읽고 뜻을 풀다: 강단(배경 nh-water-gate의 낭독대, 없으면 who → ezra)에서 두루마리가 펴지고 히브리어 글줄이 빛의 띠로 무리 위로 흘러가며 우리말 뜻으로 바뀌고, 아래 무리의 머리가 하나씩 켜짐 (약 9초, 느 8:3-8)
+  // ── 10막 에스더 (에 1–10, fx/esther.ts) — 하나님의 이름이 안 나오는 책: 빛이 아니라 '맞물림'으로만 ──
+  'thread', // 보이지 않는 손: 희미한 은실 한 가닥이 who → to(없으면 무대 위 두 사람)를 잇고 가운데서 한 번 맞물려 반짝인 뒤 끊어지듯 흩어짐 (약 4.5초, 에 2:22 · 4:14 · 6:4 · 7:8 · 9:1)
+  'chronicle', // 궁중 일기에 기록: 두루마리가 펼쳐지고 "빅단과 데레스 … 모르드개가 고발함" 한 줄이 쓰여 희미하게 빛남, 옆의 "베푼 것" 칸은 빈 채로 말림 (약 7초, 에 2:23)
+  'chronicle-read', // 역대 일기를 읽힘: 같은 두루마리의 줄들이 흘러가다 2장의 그 줄에서 멈춰 밝아지고, 빈 칸에 "없음"이 떠오름 (약 8초, 에 6:1-3)
+  'pur', // 제비 부르: 점토 주사위가 구르고 열두 달 이름이 첫째 달부터 켜지다 느려져 열두째 달 아달월에 멈춤 (약 7초, 에 3:7)
+  'scepter', // 금홀: 왕(who → ahasuerus)의 손에서 금홀이 기울어 to(→ esther) 쪽으로 내밀어짐 (약 4.5초, 에 5:2 · 8:4)
+  'riders', // 역졸: 말 탄 역졸들이 조서 통을 메고 무대 가운데서 양쪽으로 달려 나가고 흙먼지 (약 6초, 에 3:13-15 · 8:10-14)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -984,6 +1004,101 @@ export const MOODS: Record<string, Mood> = {
   'jd-exile-road': { light: true, land: false, art: 'jd-exile-road', tone: 'dusk' },
   /** 바벨론 왕궁: 푸른 유약 벽돌, 사자 띠, 높은 문, 가운데 긴 상과 등잔 (25:27-30) */
   'jd-babylon-court': { light: true, land: false, art: 'jd-babylon-court', spread: true },
+
+  // ── 10막 에스라 A급 (스 1 · 3, fx/ezra.ts) — 에스라 B급·느헤미야에서도 재사용 ──
+  /** 바벨론 강가: 운하와 버드나무(가지에 걸린 수금 — 시 137:2), 대추야자, 갈대배, 지평선의 성벽과 계단 탑 */
+  'ez-babylon-canal': { light: true, land: false, art: 'ez-babylon-canal' },
+  'ez-babylon-canal-dusk': { light: true, land: false, art: 'ez-babylon-canal', tone: 'dusk' },
+  'ez-babylon-canal-dawn': { light: true, land: false, art: 'ez-babylon-canal', tone: 'clear' },
+  'ez-babylon-canal-night': { light: true, land: false, art: 'ez-babylon-canal', tone: 'night' },
+  /** 바사(페르시아) 왕궁 큰 홀: 황소 두 마리 기둥머리의 높은 기둥, 계단 성가퀴, 조공 행렬 띠, 멀리 차일 아래 왕좌 단 */
+  'ez-cyrus-court': { light: true, land: false, art: 'ez-cyrus-court' },
+  'ez-cyrus-court-dusk': { light: true, land: false, art: 'ez-cyrus-court', tone: 'dusk' },
+  /** 귀환 행렬: 지평선까지 굽이진 길 위 사람·나귀·낙타(궤짝 실은)의 줄, 오아시스 야자, 흙먼지 */
+  'ez-caravan': { light: true, land: false, art: 'ez-caravan' },
+  'ez-caravan-dusk': { light: true, land: false, art: 'ez-caravan', tone: 'dusk' },
+  'ez-caravan-dawn': { light: true, land: false, art: 'ez-caravan', tone: 'clear' },
+  /** 폐허 예루살렘: 불탄 성문, 이 빠진 성벽, 잡초, 성전 터의 돌무더기와 기둥 밑동, 뒤로 감람산 */
+  'ez-jerusalem-ruin': { light: true, land: false, art: 'ez-jerusalem-ruin' },
+  'ez-jerusalem-ruin-dusk': { light: true, land: false, art: 'ez-jerusalem-ruin', tone: 'dusk' },
+  'ez-jerusalem-ruin-dawn': { light: true, land: false, art: 'ez-jerusalem-ruin', tone: 'clear' },
+  'ez-jerusalem-ruin-night': { light: true, land: false, art: 'ez-jerusalem-ruin', tone: 'night' },
+  /** 폐허 한가운데 다듬지 않은 돌로 다시 쌓은 제단과 불, 곧게 오르는 연기 (스 3:2-3). 조석 번제 → -dawn / -dusk */
+  'ez-altar': { light: true, land: false, art: 'ez-altar', spread: true },
+  'ez-altar-dawn': { light: true, land: false, art: 'ez-altar', tone: 'clear', spread: true },
+  'ez-altar-dusk': { light: true, land: false, art: 'ez-altar', tone: 'dusk', spread: true },
+  'ez-altar-night': { light: true, land: false, art: 'ez-altar', tone: 'night', spread: true },
+  /** 성전 기초: 줄 친 기초석(비스듬히 본 네모), 측량줄과 말뚝, 백향목 더미, 일꾼, 나팔·제금 실루엣, 왼쪽 제단 (스 3:7-10) */
+  'ez-foundation': { light: true, land: false, art: 'ez-foundation', spread: true },
+  'ez-foundation-dawn': { light: true, land: false, art: 'ez-foundation', tone: 'clear', spread: true },
+  'ez-foundation-dusk': { light: true, land: false, art: 'ez-foundation', tone: 'dusk', spread: true },
+  /** 다시 지은 둘째 성전: 수수한 돌집(금·놋 기둥 없음), 앞 제단과 연기, 성벽은 아직 무너진 채 (스 6:15) */
+  'ez-temple-built': { light: true, land: false, art: 'ez-temple-built', spread: true },
+  'ez-temple-built-dawn': { light: true, land: false, art: 'ez-temple-built', tone: 'clear', spread: true },
+  'ez-temple-built-dusk': { light: true, land: false, art: 'ez-temple-built', tone: 'dusk', spread: true },
+  // ── 10막 느헤미야 A급 (느 1–2 · 4 · 8, fx/nehemiah.ts) — 느헤미야 B급에서도 재사용 ──
+  /** 수산 궁, 왕의 식탁: 바사 기둥(두 머리 황소), 청색 유약 벽돌 띠, 휘장, 사자 발 상 위의 금 뿔잔과 잔, 포도주 항아리, 등잔 둘 (느 2:1) */
+  'nh-susa-banquet': { light: true, land: false, art: 'nh-susa-banquet', spread: true },
+  'nh-susa-banquet-dusk': { light: true, land: false, art: 'nh-susa-banquet', tone: 'dusk', spread: true },
+  /** 겨울 궁의 밤 창: 아치 창 너머 달·별·먼 언덕, 창턱의 등잔, 낮은 걸상, 휘장 (느 1:4 "앉아서 울고") */
+  'nh-susa-night': { light: true, land: false, art: 'nh-susa-night', tone: 'night' },
+  /** 무너진 예루살렘 성벽: 끊긴 성벽, 불탄 골짜기 문, 골짜기 길, 길을 막은 돌무더기, 왕의 못 (느 1:3, 2:13-15) */
+  'nh-ruin': { light: true, land: false, art: 'nh-ruin' },
+  'nh-ruin-dusk': { light: true, land: false, art: 'nh-ruin', tone: 'dusk' },
+  /** 같은 곳의 밤, 달빛 (2:12-15). fx night-survey와 같이 */
+  'nh-ruin-night': { light: true, land: false, art: 'nh-ruin', tone: 'night' },
+  /** 성벽 공사장: 계단처럼 낮아지는 벽, 비계·사다리·도르래, 다듬은 돌, 흙무더기와 광주리, 벽 위 일꾼들 (느 3–4) */
+  'nh-wall-work': { light: true, land: false, art: 'nh-wall-work' },
+  'nh-wall-work-dusk': { light: true, land: false, art: 'nh-wall-work', tone: 'dusk' },
+  'nh-wall-work-night': { light: true, land: false, art: 'nh-wall-work', tone: 'night' },
+  'nh-wall-work-dawn': { light: true, land: false, art: 'nh-wall-work', tone: 'clear' },
+  /** 완성된 성벽: 망대 셋, 새 문짝과 빗장을 단 성문, 성벽 위 파수꾼 (느 6:15, 7:1-3) */
+  'nh-wall-done': { light: true, land: false, art: 'nh-wall-done' },
+  'nh-wall-done-dusk': { light: true, land: false, art: 'nh-wall-done', tone: 'dusk' },
+  'nh-wall-done-dawn': { light: true, land: false, art: 'nh-wall-done', tone: 'clear' },
+  /** 수문 앞 광장: 동쪽 성벽과 수문, 높은 나무 강단(낭독대·좌우 열세 사람), 앞쪽 무리의 머리 (느 8:1-8). fx torah-read */
+  'nh-water-gate': { light: true, land: false, art: 'nh-water-gate', spread: true },
+  /** 같은 곳 새벽: 수문 너머로 해 뜨는 빛 (8:3 "새벽부터") */
+  'nh-water-gate-dawn': { light: true, land: false, art: 'nh-water-gate', tone: 'clear', spread: true },
+  /** 초막: 지붕 위·뜰·문 앞의 나뭇가지 초막(종려·감람 가지)과 안의 등불, 뒤로 성벽 (느 8:15-17) */
+  'nh-booths': { light: true, land: false, art: 'nh-booths' },
+  'nh-booths-dusk': { light: true, land: false, art: 'nh-booths', tone: 'dusk' },
+  'nh-booths-night': { light: true, land: false, art: 'nh-booths', tone: 'night' },
+
+  // ── 10막 에스더 A급 (에 2 · 4 · 6 · 7, fx/esther.ts) — 에스더 B급에서도 재사용 ──
+  /** 수산 궁 큰 홀: 푸른 유약 벽돌과 근위병 띠, 황소 머리 기둥, 백색·녹색·청색 휘장과 은 고리, 대리석 바닥 (에 1:5-6) */
+  'et-susa-hall': { light: true, land: false, art: 'et-susa-hall', spread: true },
+  'et-susa-hall-dusk': { light: true, land: false, art: 'et-susa-hall', tone: 'dusk', spread: true },
+  'et-susa-hall-night': { light: true, land: false, art: 'et-susa-hall', tone: 'night', spread: true },
+  /** 왕의 대궐 문: 큰 문루와 높은 통로, 문 곁 돌 걸상, 문 앞 광장 포석, 너머 언덕 위 왕궁 (2:19, 21 · 4:2, 6 · 6:12) */
+  'et-kings-gate': { light: true, land: false, art: 'et-kings-gate' },
+  'et-kings-gate-dusk': { light: true, land: false, art: 'et-kings-gate', tone: 'dusk' },
+  'et-kings-gate-dawn': { light: true, land: false, art: 'et-kings-gate', tone: 'clear' },
+  'et-kings-gate-night': { light: true, land: false, art: 'et-kings-gate', tone: 'night' },
+  /** 후궁 뜰: 아치 회랑과 격자창, 네모 연못과 분수, 측백나무와 화분 (2:3, 8-11) */
+  'et-women-court': { light: true, land: false, art: 'et-women-court', spread: true },
+  'et-women-court-dusk': { light: true, land: false, art: 'et-women-court', tone: 'dusk', spread: true },
+  'et-women-court-night': { light: true, land: false, art: 'et-women-court', tone: 'night', spread: true },
+  /** 어전: 계단 위 단, 높은 등받이 왕좌와 발등상, 술 달린 차양, 양옆 향로대 (4:11 · 5:1-2 · 8:4) */
+  'et-throne': { light: true, land: false, art: 'et-throne', spread: true },
+  /** 잔치 자리: 쿠션 얹은 침상식 걸상 둘, 낮은 상의 금 잔·뿔잔, 등잔대, 휘장 (5:4-8 · 7:1-8) */
+  'et-banquet': { light: true, land: false, art: 'et-banquet', spread: true },
+  'et-banquet-dusk': { light: true, land: false, art: 'et-banquet', tone: 'dusk', spread: true },
+  'et-banquet-night': { light: true, land: false, art: 'et-banquet', tone: 'night', spread: true },
+  /** 왕궁 후원: 가운데 물길, 줄지은 측백나무, 끝의 정자, 꽃나무 (1:5 · 7:7) */
+  'et-garden': { light: true, land: false, art: 'et-garden' },
+  'et-garden-dusk': { light: true, land: false, art: 'et-garden', tone: 'dusk' },
+  /** 하만의 집 뜰: 높은 담과 문, 화로와 깔개, 담 너머 멀리 높은 장대 실루엣(사람 없음) (5:10-14 · 6:12-14 · 7:9) */
+  'et-haman-house': { light: true, land: false, art: 'et-haman-house' },
+  'et-haman-house-dusk': { light: true, land: false, art: 'et-haman-house', tone: 'dusk' },
+  'et-haman-house-night': { light: true, land: false, art: 'et-haman-house', tone: 'night' },
+  /** 왕의 침전 (밤): 차양 친 침상, 등잔대, 역대 일기 두루마리 상자와 낭독대, 초승달 뜬 창 (6:1) */
+  'et-bedchamber-night': { light: true, land: false, art: 'et-bedchamber', tone: 'night', spread: true },
+  'et-bedchamber-dawn': { light: true, land: false, art: 'et-bedchamber', tone: 'clear', spread: true },
+  /** 수산 성중 거리: 평평한 지붕의 집들과 지붕 위 사람들, 걸린 휘장, 언덕 위 성채 (3:15 · 6:9-11 · 8:15) */
+  'et-street': { light: true, land: false, art: 'et-street' },
+  'et-street-dusk': { light: true, land: false, art: 'et-street', tone: 'dusk' },
+  'et-street-night': { light: true, land: false, art: 'et-street', tone: 'night' },
 
   // ── 9막 엘리야 A급 (왕상 12 · 18 · 19 · 21, fx/elijah.ts) ──
   /** 세겜: 에발산·그리심산 사이 골짜기, 가운데 돌 단, 양쪽에 모인 무리 (왕상 12:1) */

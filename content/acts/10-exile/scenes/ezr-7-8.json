@@ -1,0 +1,66 @@
+{
+  "id": "ezr-7-8",
+  "act": 10,
+  "grade": "B",
+  "title": "학사 에스라",
+  "ref": "스 7-8",
+  "bg": "ez-babylon-canal",
+  "cast": ["ezra"],
+  "extras": {
+    "levite": { "name": "레위 사람 세레뱌", "base": "priest", "hair": "turban", "beard": "short", "props": ["bundle"], "tint": "white" },
+    "priest": { "name": "제사장의 두목", "base": "priest", "hair": "turban", "beard": "gray", "props": ["basket"], "tint": "blue" },
+    "meremoth": { "name": "제사장 므레못", "base": "priest", "hair": "turban", "beard": "short", "props": ["scroll"], "tint": "white" }
+  },
+  "beats": [
+    { "type": "narration", "act": "look-up", "who": "ezra", "text": "성전이 선 지 육십 년 가까이 지났다. 이야기는 다시 바벨론에서 시작한다. 돌아가지 않은 사람들 사이에, 한 사람이 있었다." },
+    { "type": "narration", "act": "bow-head", "who": "ezra", "text": "에스라. 스라야의 아들, 아사랴의 손자, 힐기야의 증손 … 그 이름 뒤에는 열여섯 대의 이름이 줄지어 붙어 대제사장 아론에서 끝났다. 어떤 사람은 이름 하나로 소개되고, 어떤 사람은 족보 전체로 소개된다." },
+    { "type": "narration", "act": "bless", "who": "ezra", "text": "그는 모세의 율법에 익숙한 학사였다. 베끼고, 읽고, 다시 베끼는 사람. 바벨론에는 성전이 없었다. 그래서 그 백성은 책을 붙들었다. 책을 붙든 백성에게는 책을 읽어 줄 사람이 필요했다." },
+    { "type": "scripture", "ref": "스 7:10", "gloss": "에스라는 여호와의 율법을 연구하고, 스스로 지키고, 그 율례와 규례를 이스라엘에게 가르치기로 마음을 굳혔음. — 공부 → 실천 → 가르침, 순서가 이거임." },
+    { "type": "narration", "act": "turn", "who": "ezra", "text": "연구하고, 준행하고, 가르친다. 대부분의 사람은 첫째에서 바로 셋째로 건너뛴다. 가운데가 가장 어렵고, 가장 티가 안 나기 때문이다." },
+    { "bg": "nh-susa-banquet", "fx": "fade", "enter": ["artaxerxes"], "acts": [{ "act": "walk-in", "who": "artaxerxes" }, { "act": "kneel", "who": "ezra" }] },
+    { "type": "line", "who": "artaxerxes", "act": "bless", "to": "ezra", "text": "“모든 왕의 왕 아닥사스다는 하늘의 하나님의 율법에 완전한 학사 겸 제사장 에스라에게 조서하노니 … 예루살렘으로 올라갈 뜻이 있는 자는 누구든지 너와 함께 갈찌어다.”" },
+    { "fx": "letter", "who": "artaxerxes", "to": "ezra", "acts": [{ "act": "bow-head", "who": "ezra" }] },
+    { "type": "narration", "act": "look-up", "who": "artaxerxes", "text": "왕의 조서는 길었다. 은금을 가져가라. 제물을 사서 드리라. 모자라면 강 서편 고지기들에게 받으라. 은은 일백 달란트까지, 밀은 일백 고르까지, 포도주와 기름은 일백 밧까지. 그리고 소금은 정수 없이." },
+    { "type": "narration", "act": "stand", "who": "ezra", "text": "왕의 너그러움에도 단위가 있었다. 소금만 예외였다. 제국을 다스리는 사람은 무엇이 귀하고 무엇이 흔한지 정확히 안다." },
+    { "type": "line", "who": "artaxerxes", "act": "turn", "text": "“어찌하여 진노가 왕과 왕자의 나라에 임하게 하랴.”" },
+    { "type": "scripture", "ref": "스 7:27", "gloss": "우리 조상의 하나님 여호와를 찬양하자! 왕의 마음에 예루살렘 여호와의 집을 아름답게 꾸밀 뜻을 넣어 주셨다. — 여기부터 에스라가 ‘나’로 직접 말하기 시작함." },
+    { "type": "narration", "acts": [{ "act": "walk-out", "who": "artaxerxes" }, { "act": "look-up", "who": "ezra" }], "text": "왕은 자기가 너그럽다고 생각했을 것이다. 에스라는 누가 그 마음을 왕에게 두었는지 적었다. 같은 조서가 왕의 서랍에서는 정책이었고, 학사의 일기에서는 찬송이었다." },
+    { "bg": "ez-babylon-canal-dusk", "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "travel", "from": "babylon", "to": "ahava" }] },
+    { "type": "narration", "act": "look-up", "who": "ezra", "text": "아하와로 흐르는 강가에 무리가 모였다. 사흘 동안 장막에 머물며 사람들을 살폈다. 족장들, 제사장들, 백성. 그런데 한 무리가 없었다." },
+    { "type": "line", "who": "ezra", "act": "step-back", "text": "“레위 자손이 하나도 없구나.”" },
+    { "type": "narration", "act": "bow-head", "who": "ezra", "text": "팔십 년 전 첫 귀환 때도 레위 사람은 칠십사 명뿐이었다. 성전에서 일하는 자리는, 바벨론에서 자리를 잡은 사람에게 그다지 당기는 일이 아니었다. 거룩한 일일수록 지원자는 적다." },
+    { "enter": ["levite"], "acts": [{ "act": "walk-in", "who": "levite" }, { "act": "approach", "who": "levite", "to": "ezra" }] },
+    { "type": "narration", "acts": [{ "act": "bless", "who": "ezra" }, { "act": "crowd-cheer" }], "text": "가시뱌의 잇도에게 사람을 보냈다. 하나님의 선한 손이 도우셨다. 명철한 사람 하나와 세레뱌와 그 형제들, 하사뱌와 여사야, 레위 사람이 마흔 명 가까이, 느디님 사람이 이백이십 명. 그 이름이 다 기록되었다." },
+    { "bg": "ez-babylon-canal-night", "acts": [{ "act": "kneel", "who": "ezra" }, { "act": "crowd-bow" }] },
+    { "type": "narration", "act": "pray", "who": "ezra", "text": "그리고 에스라는 강가에서 금식을 선포했다. 그들과 어린것들과 모든 소유를 위해 평탄한 길을 구했다. 실을 짐에는 은 육백오십 달란트가 있었다. 가는 길에는 도적이 있었다." },
+    { "type": "choice", "prompt": "금은을 싣고 넉 달을 걸어야 한다. 너라면?", "options": [
+      { "label": "호위 없이 간다. 금식하고 맡긴다", "canon": true },
+      { "label": "체면은 접고 왕에게 군사를 청한다", "goto": "b-guard" }
+    ] },
+    { "type": "scripture", "ref": "스 8:22", "gloss": "우리가 전에 왕한테 ‘우리 하나님의 손은 그분을 찾는 모든 사람에게 선을 베푸신다’고 말해 놨거든. 그래서 길에서 적을 막아 줄 군대를 달라고 하기가 부끄러웠음." },
+    { "type": "line", "who": "levite", "act": "face", "to": "ezra", "text": "“왕 앞에서 그렇게 말씀하셨다지요. 이제 와서 군사를 청하기는 좀….”" },
+    { "type": "line", "who": "ezra", "act": "look-up", "text": "“그러니 금식하는 것이오. 한 말을 지키려면, 배가 좀 고파야 하오.”" },
+    { "type": "narration", "act": "stand", "who": "ezra", "text": "그들이 금식하며 간구했고, 하나님이 들으셨다. 에스라는 그렇게 짧게 적었다. 확신은 대개 긴 문장을 쓰지 않는다." },
+    { "bg": "ez-babylon-canal-dawn", "fx": "fade", "exit": ["levite"], "enter": ["priest"], "acts": [{ "act": "walk-in", "who": "priest" }, { "act": "approach", "who": "ezra", "to": "priest" }] },
+    { "type": "narration", "act": "bless", "who": "ezra", "text": "제사장의 두목 열둘을 세웠다. 은 육백오십 달란트, 은그릇 일백 달란트, 금 일백 달란트, 금잔 스물, 금같이 빛나는 놋그릇 둘. 에스라는 하나하나 저울에 달아서 그들 손에 넘겼다." },
+    { "type": "line", "who": "ezra", "act": "approach", "to": "priest", "text": "“너희는 여호와께 거룩한 자요 이 기명들도 거룩하니 … 예루살렘 여호와의 전 골방에 이르러 … 달기까지 삼가 지키라.”" },
+    { "type": "narration", "act": "bow-head", "who": "priest", "text": "무게를 달아 맡기는 것은 믿지 못해서가 아니다. 믿는 사람을 지켜 주는 방식이다. 도착해서 다시 달면, 아무도 의심받지 않는다." },
+    { "bg": "ez-caravan-dawn", "fx": "fade", "acts": [{ "act": "walk-in", "who": "priest" }, { "act": "travel", "from": "ahava", "via": ["euphrates"], "to": "jerusalem" }] },
+    { "type": "scripture", "ref": "스 8:31", "gloss": "정월 12일에 아하와 강을 떠나 예루살렘으로 갔는데, 우리 하나님의 손이 우리를 도우셔서 원수와 길에 매복한 자들 손에서 건져 주셨음." },
+    { "type": "narration", "acts": [{ "act": "look-up", "who": "ezra" }, { "act": "approach", "who": "priest", "to": "ezra" }], "text": "정월 초하루에 바벨론을 떠나 오월 초하루에 예루살렘에 닿았다. 넉 달. 매복한 자들이 있었다고 에스라는 적었다. 그리고 그 손에서 건지셨다고 적었다. 위험은 실제였고, 호위병은 없었다." },
+    { "bg": "ez-temple-built-dawn", "fx": "fade", "rebuild": { "temple": "built", "wall": 0 }, "exit": ["priest"], "enter": ["meremoth"], "acts": [{ "act": "walk-in", "who": "meremoth" }, { "act": "crowd" }] },
+    { "type": "narration", "acts": [{ "act": "face", "who": "meremoth", "to": "ezra" }, { "act": "bow-head", "who": "meremoth" }], "text": "사흘을 쉬고 넷째 날, 성전에서 은과 금과 그릇을 다시 달아 제사장 므레못의 손에 넘겼다. 모든 것을 세고 달고, 그 무게를 그 자리에서 책에 적었다. 바벨론의 저울과 예루살렘의 저울이 같은 숫자를 말했다." },
+    { "type": "narration", "acts": [{ "act": "crowd-bow" }, { "act": "kneel", "who": "ezra" }], "text": "돌아온 사람들이 번제를 드렸다. 온 이스라엘을 위한 수송아지 열둘, 숫양 아흔여섯, 어린 양 일흔일곱, 속죄제 숫염소 열둘. 이번에도 열둘이었다." },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "ezra" }, { "act": "look-up", "who": "ezra" }], "text": "성전은 서 있었다. 그러나 그 둘레의 성벽은 여전히 무너진 채였다. 에스라가 가져온 것은 돌이 아니라 책이었다. 무너진 것이 성벽만은 아니라는 것을, 그는 곧 알게 된다." }
+  ],
+  "branches": {
+    "b-guard": [
+      { "type": "narration", "act": "bow-head", "who": "ezra", "text": "그것도 지혜다. 실제로 십삼 년 뒤, 같은 왕 아래서 예루살렘으로 가는 느헤미야는 왕이 보낸 군대 장관과 마병과 함께 간다." },
+      { "type": "narration", "act": "look-up", "who": "ezra", "text": "본문은 둘 중 누구도 꾸짖지 않는다. 다만 에스라는 자기가 왕 앞에서 한 말 때문에, 이번에는 그 길을 고르지 않았다." }
+    ]
+  },
+  "insight": "6장이랑 7장 사이에 약 60년이 붕 뜸. 성전 완공이 516년쯤이고, 에스라가 출발한 아닥사스다 7년은 주전 458년. 그 사이에 뭐가 있었냐면, 에스더 이야기임! 에스더서의 아하수에로(크세르크세스 1세)가 바로 이 아닥사스다의 아버지. 그러니까 연대순으로는 에스라 6장 → 에스더서 → 에스라 7장. 우리 사이트는 성경 책 순서대로 가니까 에스더는 느헤미야 다음에 나옴. 헷갈리면 ‘에스더가 에스라보다 먼저 살았다’만 기억하면 됨.\n\n(참고로 아닥사스다 7년을 다른 왕 때로 보고 연대를 더 늦게 잡는 학자들도 있긴 함. 여기선 가장 일반적인 458년으로 감.)\n\n에스라 소개. 아론의 16대손 제사장이면서 ‘학사’. 학사 = 율법을 베껴 쓰고 연구하고 가르치는 전문가. 성전 없는 바벨론에서 유대인들이 정체성을 지킨 비결이 ‘책’이었는데, 에스라는 그 책의 최고 전문가였음. 7:10이 이 사람 인생 요약: 연구하고 → 준행하고 → 가르친다. 근데 이게 왜 중요하냐면, 우리는 보통 유튜브 하나 보고(연구) 바로 남한테 설명함(가르침). 가운데 ‘내가 해 보기’를 스킵함 ㅋㅋ 에스라는 그 순서를 안 바꿈.\n\n7:12-26 아닥사스다의 조서는 원문이 아람어로 적혀 있음. 제국 공문서 그대로 붙여 놓은 느낌. 지원 규모가 꽤 큼. 성전 일꾼 세금 면제, 에스라한테 재판관 세울 권한까지 줌. 그리고 7:27부터 갑자기 에스라가 ‘나’로 말하기 시작함. 학자들은 이 부분을 ‘에스라의 회고록’이라고 부르기도 함.\n\n하이라이트는 8:21-23 아하와 강가 금식. 아하와는 바벨론 근처 강(운하)으로 보는데 정확한 위치는 모름. 에스라가 왕한테 이미 ‘우리 하나님은 자기를 찾는 사람한테 선을 베푸신다’고 큰소리를 쳐 놓음. 그래 놓고 ‘군인 좀 빌려주세요’ 하기가 쪽팔렸던 거임. 그래서 군대 대신 금식. 짐은 은 650달란트에 금 100달란트(학자마다 환산이 다르지만 대충 수십 톤) — 도적 입장에선 걸어 다니는 금고였음. 비교 포인트로, 13년 뒤 느헤미야는 왕이 붙여 준 군대랑 같이 감(느 2:9). 성경은 둘 다 틀렸다고 안 함. 상황과 고백이 달랐을 뿐.\n\n그리고 8:24-34의 ‘달아서 맡기고, 도착해서 다시 달고, 바로 장부에 적음’. 신앙 깊은 사람이 돈 관리는 제일 투명하게 함. 동아리 회비 영수증 꼬박꼬박 올리는 총무가 제일 믿음 가는 거랑 같음.",
+  "tldr": "성전 완공 후 약 60년(에스더 이야기보다 뒤), 아닥사스다 7년(458)에 율법 학사 에스라가 왕의 조서를 받아 바벨론에서 출발함. 아하와 강가에서 레위 사람을 더 모으고, 왕에게 군대를 청하는 대신 금식하며 하나님께 맡김. 은금을 저울에 달아 제사장들에게 맡기고 넉 달 만에 예루살렘에 도착해 다시 달아 성전에 바침.",
+  "bridge": "예루살렘에 닿은 지 몇 달 뒤, 방백들이 에스라를 찾아와 입을 연다.",
+  "unlocks": { "characters": ["ezra"] }
+}

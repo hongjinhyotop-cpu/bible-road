@@ -1,0 +1,43 @@
+{
+  "id": "est-7-haman",
+  "act": 10,
+  "grade": "A",
+  "title": "하만의 몰락",
+  "ref": "에 7",
+  "bg": "et-banquet",
+  "cast": ["ahasuerus", "esther", "haman"],
+  "outfit": { "esther": "queen" },
+  "extras": {
+    "harbonah": { "name": "하르보나", "base": "man", "hair": "turban", "beard": "none", "tint": "purple" },
+    "guard": { "name": "왕을 모신 자", "base": "soldier", "hair": "helmet", "beard": "short", "props": ["spear"], "tint": "gray" }
+  },
+  "beats": [
+    { "type": "narration", "face": { "ahasuerus": "right", "esther": "left", "haman": "left" }, "acts": [{ "act": "face", "who": "ahasuerus", "to": "esther" }], "text": "왕이 하만과 함께 또 왕후 에스더의 잔치에 나아갔다. 둘째 날이었다. 같은 걸상, 같은 잔. 하만은 오늘 아침 거리에서 외친 문장을 아직 목에 걸고 있었다." },
+    { "type": "line", "who": "ahasuerus", "acts": [{ "act": "approach", "who": "ahasuerus", "to": "esther" }], "text": "“왕후 에스더여, 그대의 소청이 무엇이뇨. 곧 허락하겠노라. 그대의 요구가 무엇이뇨. 곧 나라의 절반이라 할지라도 시행하겠노라.”" },
+    { "type": "narration", "acts": [{ "act": "bow-head", "who": "esther" }], "text": "같은 질문을 세 번째 듣고 있었다. 첫 번째는 안뜰에서, 두 번째는 첫 잔치에서. 에스더는 두 번 미뤘다. 미룬 사이에 왕은 잠을 못 잤고, 하만은 거리를 돌았다. 기다림은 때로 가장 많은 일을 한다." },
+    { "type": "line", "who": "esther", "acts": [{ "act": "look-up", "who": "esther" }, { "act": "approach", "who": "esther", "to": "ahasuerus" }], "text": "“왕이여, 내가 만일 왕의 목전에서 은혜를 입었으며 왕이 선히 여기시거든, 내 소청대로 내 생명을 내게 주시고, 내 요구대로 내 민족을 내게 주소서.”" },
+    { "type": "scripture", "ref": "에 7:4", "acts": [{ "act": "kneel", "who": "esther" }], "gloss": "저랑 제 민족이 팔려서 죽고, 학살당하고, 완전히 없어지게 됐어요. 차라리 종으로 팔렸으면 입 다물고 있었을 거예요. 그런데 이건 그 원수가 왕께 입힐 손해를 갚을 수도 없는 일이에요." },
+    { "type": "narration", "acts": [{ "act": "step-back", "who": "ahasuerus" }], "text": "내 생명. 내 민족. 왕후가 처음으로 ‘민족’이라는 말을 입에 올렸다. 왕궁에 들어온 뒤로 몇 해 동안 고하지 않던 그 말이었다. 숨겨 온 것을 꺼내는 순간, 사람은 더 이상 숨을 곳이 없다." },
+    { "type": "line", "who": "ahasuerus", "act": "approach", "to": "esther", "text": "“감히 이런 일을 심중에 품은 자가 누구며, 그가 어디 있느뇨.”" },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "esther" }, { "act": "turn", "who": "esther" }], "face": { "esther": "right" }, "text": "에스더가 일어섰다. 그리고 돌아섰다. 같은 상에 앉아 같은 잔을 들고 있던 사람 쪽으로." },
+    { "type": "scripture", "ref": "에 7:6", "acts": [{ "act": "approach", "who": "esther", "to": "haman" }, { "act": "step-back", "who": "haman" }], "pose": { "haman": "tremble" }, "gloss": "에스더: “그 원수, 그 적은 바로 이 악한 하만이에요!” 하만이 왕과 왕후 앞에서 벌벌 떪." },
+    { "type": "narration", "fx": "shake", "exit": ["ahasuerus"], "acts": [{ "act": "walk-out", "who": "ahasuerus" }], "text": "왕이 노하여 일어났다. 잔치 자리를 떠났다. 한마디도 하지 않고." },
+    { "type": "narration", "bg": "et-garden-dusk", "fx": "fade", "exit": ["esther", "haman"], "enter": ["ahasuerus"], "face": { "ahasuerus": "right" }, "pose": { "haman": "neutral" }, "acts": [{ "act": "walk-in", "who": "ahasuerus" }, { "act": "bow-head", "who": "ahasuerus" }], "text": "왕궁 후원. 물길이 곧게 흘렀다. 왕은 그 곁을 걸었다. 하만을 높인 것은 자신이었다. 하만에게 반지를 빼어 준 것도, 조서에 인을 치게 한 것도. 화난 왕이 걷는 후원은, 넓을수록 좋다." },
+    { "type": "narration", "bg": "et-banquet-dusk", "fx": "fade", "exit": ["ahasuerus"], "enter": ["esther", "haman"], "face": { "esther": "right", "haman": "left" }, "acts": [{ "act": "approach", "who": "haman", "to": "esther" }, { "act": "kneel", "who": "haman" }], "text": "잔치 자리에 하만이 남았다. 그가 일어서서 왕후 에스더에게 생명을 구했다. 왕이 자기에게 화를 내리기로 결심한 줄 알았기 때문이다. 아각 사람 하만이, 유다 여인에게." },
+    { "type": "narration", "acts": [{ "act": "prostrate", "who": "haman" }, { "act": "step-back", "who": "esther" }], "text": "하만이 에스더가 앉은 걸상 위에 엎드렸다. 엎드리지 않는 사람 하나 때문에 한 민족을 지우려던 사람이었다. 그가 지금 엎드려 있었다." },
+    { "enter": ["ahasuerus"], "fx": "thread", "who": "ahasuerus", "to": "haman", "face": { "ahasuerus": "right" }, "acts": [{ "act": "walk-in", "who": "ahasuerus" }] },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "ahasuerus", "to": "haman" }], "text": "바로 그때 왕이 후원에서 돌아왔다. 한 걸음만 늦었어도, 한 걸음만 빨랐어도 보지 못했을 장면이었다. 왕은 그것을 가장 나쁜 쪽으로 읽었다. 왕후를 욕보이려 하는 줄로. 하만은 살려 달라고 엎드렸고, 그 엎드림이 그의 죄목이 되었다." },
+    { "type": "narration", "enter": ["guard"], "face": { "guard": "left" }, "pose": { "haman": "slump" }, "acts": [{ "act": "walk-in", "who": "guard" }, { "act": "stand", "who": "haman" }, { "act": "bow-head", "who": "haman" }], "text": "그 말이 왕의 입에서 나오자, 무리가 하만의 얼굴을 쌌다. 오늘 아침까지 온 거리가 그의 목소리를 들었다. 이제 그에게는 얼굴도 남지 않았다." },
+    { "type": "line", "who": "harbonah", "enter": ["harbonah"], "face": { "harbonah": "left" }, "acts": [{ "act": "walk-in", "who": "harbonah" }, { "act": "bow-head", "who": "harbonah" }], "text": "“왕을 위하여 충성된 말로 고발한 모르드개를 달고자 하여, 하만이 고가 오십 규빗 되는 나무를 준비하였는데, 이제 그 나무가 하만의 집에 섰나이다.”" },
+    { "bg": "et-haman-house-dusk", "fx": "fade", "exit": ["esther", "haman", "guard", "harbonah"], "face": { "ahasuerus": "right" }, "acts": [{ "act": "look-up", "who": "ahasuerus" }] },
+    { "type": "narration", "text": "충성된 말로 고발한 모르드개. 하르보나는 그 이름 앞에 꾸밈말을 붙였다. 이 궁정에서 바람이 어느 쪽으로 부는지, 내시들은 누구보다 빨리 안다. 멀리 하만의 집 위로 그 나무가 서 있었다. 하만이 하룻밤 사이에 세운 것이었다." },
+    { "type": "line", "who": "ahasuerus", "act": "turn", "text": "“하만을 그 나무에 달라.”" },
+    { "type": "narration", "fx": "blackout", "sound": "—", "exit": ["ahasuerus"], "text": "모르드개를 달고자 한 나무에 하만이 달렸다. 본문은 그 일을 한 줄로 적는다. 여기서도 그 이상은 보이지 않는다." },
+    { "type": "scripture", "ref": "에 7:10", "bg": "et-banquet-dusk", "gloss": "모르드개를 매달려고 세운 그 나무에 하만이 달렸고, 그제야 왕의 화가 가라앉음." },
+    { "type": "narration", "enter": ["esther"], "face": { "esther": "right" }, "acts": [{ "act": "walk-in", "who": "esther" }, { "act": "bow-head", "who": "esther" }], "text": "잔치 자리에 잔이 그대로 있었다. 왕의 노가 그쳤다. 그러나 조서는 그치지 않았다. 열두째 달 십삼일은 아직 백이십칠 도의 벽에 붙어 있었다. 하만은 사라졌지만, 하만이 쓴 문장은 남아 있었다." },
+    { "type": "narration", "acts": [{ "act": "look-up", "who": "esther" }], "text": "에스더가 고개를 들었다. 일은 아직 반밖에 끝나지 않았다. 사람을 끌어내리는 것보다, 사람이 남긴 말을 지우는 것이 더 어렵다." }
+  ],
+  "insight": "방금 그거, 하만 몰락 편. 둘째 잔치에서 에스더가 드디어 입을 염. 포인트는 순서임. 바로 ‘하만이 나쁜 놈이에요!’ 안 함. 먼저 ‘제 생명이랑 제 민족을 살려 주세요’(7:3). 왕 입장에선 ‘누가 감히 내 왕후를?’이 먼저 됨. 그다음에 이름을 꺼냄. 협상 고수의 순서임. 그리고 2장부터 숨겨 온 ‘민족’이라는 말을 여기서 처음 꺼냄. 정체를 숨겼던 사람이 정체를 걸고 말하는 장면.\n\n7:4의 ‘종으로 팔렸으면 잠잠했을 것’은 해석이 좀 갈림. 대충 ‘이 정도로 큰일 아니면 왕을 귀찮게 안 했을 거다’라는 뜻으로 많이 읽고, 뒷부분(대적이 왕의 손해를 보충 못 한다)은 원문이 어려워서 번역마다 조금씩 다름.\n\n왕이 화나서 후원에 나갔다 온 사이, 하만이 살려 달라고 에스더 걸상에 엎드림(그때는 비스듬히 누워서 먹는 침상식 의자였음). 그 순간 딱 왕이 돌아오고, 최악으로 오해함. 6장에서도 그랬지만 이 책은 타이밍이 진짜 미쳤음. 하나님 이름은 끝까지 안 나오는데, 시계만 계속 맞아떨어짐.\n\n그리고 제일 무거운 아이러니. 모르드개 매달려고 50규빗(약 22미터) 높이로 세운 나무에 하만 본인이 달림. 3장에서 모르드개 하나가 안 엎드린다고 민족 전체를 지우려던 사람이, 7장에서 엎드렸다가 끝남. 이 사이트는 처형 장면은 안 보여 줌. 본문도 한 줄로만 적음.\n\n근데 이게 끝이 아님. 하만은 죽었지만 하만이 왕 이름으로 낸 조서는 그대로 살아 있음. 페르시아 법은 왕 인장 찍힌 조서를 못 물림(8:8). 그래서 8장이 필요함. 근데 이게 왜 중요하냐면. 나쁜 사람 하나 치운다고 그 사람이 만든 구조가 같이 사라지진 않음. 회사에서 빌런 퇴사해도 그 사람이 만든 이상한 규칙은 남아 있는 거랑 비슷함. 진짜 일은 그다음부터임.",
+  "tldr": "둘째 잔치에서 에스더가 ‘저와 제 민족이 죽게 됐다’며 하만을 원수로 지목함. 화가 나 후원에 나갔던 왕이 돌아왔을 때 하만이 에스더의 걸상에 엎드려 있었고, 왕은 이를 최악으로 오해함. 하르보나의 말에 따라 하만은 모르드개를 매달려고 세운 나무에 달렸고 왕의 노가 그쳤지만, 하만의 조서는 아직 남아 있었음.",
+  "bridge": "그 날에 아하수에로 왕이 유다인의 대적 하만의 집을 왕후 에스더에게 주었다."
+}

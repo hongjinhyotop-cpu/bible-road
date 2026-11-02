@@ -1,0 +1,78 @@
+/* ── 10막 다시 세워지는 예루살렘 판 (beat "rebuild", fx/rebuild.ts) ──
+   불탄 성벽 고리(점선 잔해) 위로 구간이 하나씩 솟아 금빛 돌벽이 됨. 가운데 성전 터: 폐허 → 제단 → 기초 → 멈춤 → 완공.
+   크게(is-big) = 무대를 덮는 판, 작게 = 왼쪽 위 작은 표 */
+.rebuild { position: absolute; inset: 0; z-index: 6; pointer-events: none; --stone: #e8c987; --ruin: #8a6a58; --tile: #7fa6d8; }
+.rebuild::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 85% 75% at 50% 45%, rgba(6, 6, 10, 0.94), rgba(6, 6, 10, 0.82) 70%, rgba(6, 6, 10, 0.55));
+  opacity: 0; transition: opacity 0.9s var(--ease-out);
+}
+.rebuild.is-big::before { opacity: 1; }
+.rb__map {
+  position: absolute; left: 50%; top: 4%; height: 74%; max-width: 92%; translate: -50% 10px;
+  opacity: 0; transition: opacity 0.8s var(--ease-out), translate 0.9s var(--ease-out);
+  font-family: var(--ui-font); overflow: visible;
+}
+.rebuild.is-big .rb__map { opacity: 1; translate: -50% 0; }
+.rb-valley { fill: none; stroke: color-mix(in srgb, var(--tile) 40%, transparent); stroke-width: 0.6; stroke-dasharray: 1.4 2; }
+.rb-compass { font-size: 3.6px; fill: color-mix(in srgb, var(--ivory) 50%, transparent); letter-spacing: 0.2em; }
+.rb-ruin { fill: none; stroke: var(--ruin); stroke-width: 1.6; stroke-dasharray: 0.8 2.2; stroke-linecap: round; opacity: 0.75; }
+.rb-seg {
+  fill: none; stroke: var(--stone); stroke-width: 3.2; stroke-linecap: round;
+  stroke-dasharray: 100; stroke-dashoffset: 100; opacity: 0;
+  filter: drop-shadow(0 0 1.6px rgba(255, 214, 140, 0.7));
+}
+.rb-seg.is-up { stroke-dashoffset: 0; opacity: 1; }
+.rb-seg.is-rise { animation: rb-rise 0.9s var(--ease-out) both; animation-delay: calc(var(--k) * 0.5s + 0.5s); }
+@keyframes rb-rise {
+  0% { stroke-dashoffset: 100; opacity: 0.2; stroke-width: 1; }
+  60% { stroke-width: 4.4; filter: drop-shadow(0 0 4px rgba(255, 224, 160, 1)); }
+  100% { stroke-dashoffset: 0; opacity: 1; stroke-width: 3.2; }
+}
+.rb-gate__dot { fill: color-mix(in srgb, var(--ruin) 70%, #000); stroke: var(--ruin); stroke-width: 0.4; transition: fill 0.8s, stroke 0.8s; }
+.rb-gate.is-up .rb-gate__dot { fill: var(--stone); stroke: #fff4d8; }
+.rb-gate__glow { fill: rgba(255, 220, 150, 0.35); opacity: 0; transition: opacity 0.8s; }
+.rb-gate.is-at .rb-gate__glow { opacity: 1; animation: rb-pulse 2.2s ease-in-out infinite; }
+@keyframes rb-pulse { 50% { opacity: 0.4; } }
+.rb-gate__name { font-size: 3.5px; fill: color-mix(in srgb, var(--ivory) 70%, transparent); }
+.rb-gate.is-at .rb-gate__name { fill: var(--stone); font-weight: 700; }
+
+/* 성전 터: data-t = 0 ruin · 1 altar · 2 foundation · 3 halted · 4 built */
+.rb-temple > * { opacity: 0; transition: opacity 0.9s var(--ease-out); }
+.rb-rubble { fill: var(--ruin); }
+.rb-altar rect { fill: #b08a60; }
+.rb-flame { fill: #ffb24a; transform-box: fill-box; transform-origin: 50% 100%; animation: rb-flame 1.4s ease-in-out infinite alternate; }
+@keyframes rb-flame { to { scale: 0.85 1.15; } }
+.rb-found { fill: none; stroke: var(--stone); stroke-width: 0.9; stroke-dasharray: 2 1.2; }
+.rb-house path { fill: color-mix(in srgb, var(--stone) 85%, #fff); filter: drop-shadow(0 0 2px rgba(255, 230, 170, 0.9)); }
+.rb-door { fill: #4a3624; }
+.rb-halt { font-size: 3.6px; fill: #b8b0a8; letter-spacing: 0.2em; }
+.rebuild[data-t='0'] .rb-rubble { opacity: 1; }
+.rebuild[data-t='1'] :is(.rb-rubble, .rb-altar) { opacity: 1; }
+.rebuild[data-t='2'] :is(.rb-altar, .rb-found) { opacity: 1; }
+.rebuild[data-t='3'] :is(.rb-altar, .rb-found, .rb-halt) { opacity: 1; }
+.rebuild[data-t='3'] .rb-found { stroke: #8f8a86; }
+.rebuild[data-t='4'] :is(.rb-house) { opacity: 1; }
+
+.rb__info {
+  position: absolute; left: 0; right: 0; bottom: 6%; text-align: center; display: grid; gap: 3px;
+  opacity: 0; transition: opacity 0.8s 0.3s;
+}
+.rebuild.is-big .rb__info { opacity: 1; }
+.rb__count { font-family: var(--story-font); font-weight: 600; font-size: clamp(16px, 4.6vw, 22px); letter-spacing: 0.16em; color: var(--stone); }
+.rb__temple { font-family: var(--ui-font); font-size: 12px; letter-spacing: 0.08em; color: color-mix(in srgb, var(--ivory) 70%, transparent); }
+.rb__label { font-family: var(--story-font); font-style: normal; font-size: 13px; color: color-mix(in srgb, var(--stone) 80%, var(--ivory)); }
+.rb__label:empty { display: none; }
+
+/* 작은 표 (왼쪽 위) */
+.rb__mini {
+  position: absolute; right: 12px; top: 10px; display: grid; gap: 4px; padding: 6px 9px; border-radius: 6px;
+  background: rgba(8, 8, 12, 0.55); border: 1px solid color-mix(in srgb, var(--stone) 30%, transparent);
+  font-family: var(--ui-font); font-size: 10.5px; letter-spacing: 0.04em; color: color-mix(in srgb, var(--ivory) 80%, transparent);
+  opacity: 0; transition: opacity 0.8s 0.4s;
+}
+.rebuild:not(.is-big) .rb__mini { opacity: 1; }
+.rebuild.is-big .rb__mini { transition-delay: 0s; }
+.rb__bar { display: block; width: 92px; height: 3px; border-radius: 2px; background: color-mix(in srgb, var(--ruin) 60%, transparent); overflow: hidden; }
+.rb__bar > i { display: block; height: 100%; background: var(--stone); transition: width 1.2s var(--ease-out); }
+.rebuild.is-rm * { animation: none !important; }

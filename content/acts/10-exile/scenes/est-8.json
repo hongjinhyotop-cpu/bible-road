@@ -1,0 +1,42 @@
+{
+  "id": "est-8",
+  "act": 10,
+  "grade": "B",
+  "title": "뒤집힌 조서",
+  "ref": "에 8",
+  "bg": "et-throne",
+  "cast": ["ahasuerus", "esther"],
+  "outfit": { "esther": "queen", "mordecai": "official" },
+  "extras": {
+    "scribe": { "name": "왕의 서기관", "base": "youth", "hair": "turban", "beard": "none", "props": ["scroll"], "tint": "blue" }
+  },
+  "beats": [
+    { "type": "narration", "face": { "ahasuerus": "right", "esther": "left" }, "acts": [{ "act": "face", "who": ["ahasuerus", "esther"] }, { "act": "bless", "who": "ahasuerus" }], "text": "당일에 아하수에로 왕이 유다인의 대적 하만의 집을 왕후 에스더에게 주었다. 어제까지 오십 규빗 나무가 서 있던 그 집이었다. 집은 주인을 가리지 않는다. 주인이 집을 가릴 뿐이다." },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "esther", "to": "ahasuerus" }, { "act": "bow-head", "who": "esther" }], "text": "에스더가 왕에게 고했다. 모르드개가 자기에게 어떻게 되는 사람인지. 몇 해 동안 고하지 않던 이야기였다. 고아였던 아이와, 그 아이를 딸처럼 키운 사촌 오라비의 이야기." },
+    { "type": "narration", "enter": ["mordecai"], "face": { "mordecai": "left" }, "acts": [{ "act": "walk-in", "who": "mordecai" }, { "act": "prostrate", "who": "mordecai" }], "text": "모르드개가 왕 앞에 나아왔다. 대궐 문에 앉아 있던 사람이, 처음으로 문 안쪽 끝까지 걸어 들어왔다." },
+    { "type": "narration", "fx": "signet", "who": "ahasuerus", "to": "mordecai", "acts": [{ "act": "stand", "who": "mordecai" }, { "act": "approach", "who": "ahasuerus", "to": "mordecai" }], "text": "왕이 하만에게서 거둔 반지를 빼어 모르드개에게 주었다. 같은 반지였다. 얼마 전 한 민족을 지우는 조서에 찍혔던. 반지는 자기가 무엇을 찍는지 모른다. 그것을 끼는 손이 안다." },
+    { "type": "narration", "acts": [{ "act": "face", "who": "esther", "to": "mordecai" }, { "act": "bless", "who": "esther" }], "text": "에스더가 모르드개로 하만의 집을 주관하게 했다. 하만의 집, 하만의 반지, 하만의 자리. 하만이 가졌던 것들이 하나씩 주인을 바꾸었다. 그러나 하만이 쓴 문장 하나는 아직 주인을 바꾸지 않았다." },
+    { "type": "narration", "acts": [{ "act": "turn", "who": "esther" }, { "act": "look-up", "who": "esther" }], "text": "아달월 십삼일. 조서는 여전히 일백이십칠 도의 벽에 붙어 있었다. 하만은 죽었다. 하만의 날짜는 살아 있었다." },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "esther", "to": "ahasuerus" }, { "act": "prostrate", "who": "esther" }, { "act": "cry", "who": "esther" }], "text": "에스더가 다시 왕 앞에서 말했다. 이번에는 잔치도, 예복의 계산도 없었다. 그녀가 왕의 발아래 엎드렸다." },
+    { "type": "scripture", "ref": "에 8:3", "acts": [{ "act": "bow-head", "who": "ahasuerus" }], "gloss": "에스더가 또 왕 앞에서 말하면서 왕 발밑에 엎드려 울며 빌었음. 아각 사람 하만이 유다인을 해치려고 꾸민 그 악한 계획을 없애 달라고." },
+    { "type": "narration", "fx": "scepter", "who": "ahasuerus", "to": "esther", "acts": [{ "act": "stand", "who": "esther" }], "text": "왕이 에스더를 향하여 다시 금홀을 내밀었다. 에스더가 일어나 왕 앞에 섰다. 처음 금홀이 내밀어졌을 때 그녀는 살기 위해 서 있었다. 이번에는 다른 사람들을 살리기 위해 서 있었다." },
+    { "type": "line", "who": "esther", "act": "approach", "to": "ahasuerus", "text": "“조서를 내리사, 하만이 왕의 각 도에 있는 유다인을 멸하려고 꾀하고 쓴 조서를 취소하소서. 내가 어찌 내 민족의 화 당함을 참아 보며, 내 친척의 멸망함을 참아 보리이까.”" },
+    { "type": "line", "who": "ahasuerus", "acts": [{ "act": "face", "who": "ahasuerus", "to": "esther" }, { "act": "face", "who": "mordecai", "to": "ahasuerus" }], "text": "“하만이 유다인을 살해하려 하므로 나무에 달렸고, 내가 그 집으로 에스더에게 주었으니—”" },
+    { "type": "scripture", "ref": "에 8:8", "acts": [{ "act": "bow-head", "who": "ahasuerus" }], "gloss": "“너희가 왕의 이름으로 유다인을 위해 하고 싶은 대로 조서를 쓰고 왕의 반지로 도장 찍어라. 왕의 이름으로 쓰고 왕의 반지로 찍은 조서는 아무도 취소 못 하니까.”" },
+    { "type": "narration", "acts": [{ "act": "turn", "who": "ahasuerus" }, { "act": "look-up", "who": "mordecai" }], "text": "취소할 수 없었다. 왕조차도. 바사와 메대의 법은 한번 기록되면 고칠 수 없었다. 와스디를 폐할 때 왕은 그 법을 자랑으로 여겼다. 이제 그 자랑이 왕의 손을 묶었다. 지울 수 없는 글 위에 할 수 있는 일은 하나였다. 그 위에 다른 글을 쓰는 것." },
+    { "bg": "et-susa-hall", "fx": "fade", "exit": ["ahasuerus", "esther"], "enter": ["scribe"], "face": { "scribe": "left", "mordecai": "right" }, "acts": [{ "act": "walk-in", "who": "scribe" }, { "act": "kneel", "who": "scribe" }] },
+    { "type": "narration", "acts": [{ "act": "approach", "who": "mordecai", "to": "scribe" }, { "act": "bow-head", "who": "scribe" }], "text": "시완월, 곧 삼월 이십삼일. 왕의 서기관들이 다시 소집되었다. 하만의 조서가 쓰인 날로부터 두 달하고 열흘. 이번에는 모르드개가 부르는 대로 받아 적었다. 인도로부터 구스까지 일백이십칠 도로. 각 도의 문자와 각 민족의 방언대로. 그리고 이번에는, 유다인의 문자와 방언대로도." },
+    { "type": "line", "who": "mordecai", "acts": [{ "act": "bless", "who": "mordecai" }], "text": "“왕이 여러 고을에 있는 유다인에게 허락하노니, 저희로 함께 모여 스스로 생명을 보호하게 하라. 아달월 곧 십이월 십삼일 하루 동안에.”" },
+    { "type": "narration", "acts": [{ "act": "stand", "who": "scribe" }, { "act": "look-up", "who": "scribe" }], "text": "같은 날이었다. 아달월 십삼일. 하만의 조서는 그 날을 죽는 날로 정했다. 모르드개의 조서는 그 날을 지키는 날로 정했다. 날짜는 그대로였다. 그 날의 주인이 바뀌었을 뿐이다." },
+    { "type": "narration", "bg": "et-street", "fx": "riders", "exit": ["scribe", "mordecai"], "acts": [{ "act": "crowd" }, { "act": "crowd-murmur" }], "text": "왕의 명이 심히 급했다. 역졸들이 왕궁에서 길러 왕의 일에 쓰는 준마를 타고 빨리 나갔다. 두 달 남짓 전 같은 길로 다른 조서를 싣고 달렸던 말들이었다. 말은 무엇을 싣고 달리는지 묻지 않는다." },
+    { "bg": "et-kings-gate", "fx": "fade", "enter": ["mordecai"], "outfit": { "mordecai": "royal" }, "face": { "mordecai": "right" }, "acts": [{ "act": "crowd-away" }, { "act": "walk-in", "who": "mordecai" }, { "act": "look-up", "who": "mordecai" }] },
+    { "type": "scripture", "ref": "에 8:15", "acts": [{ "act": "crowd" }, { "act": "crowd-cheer" }], "gloss": "모르드개가 청색·흰색 관복에 큰 금관을 쓰고, 자색 고운 베 겉옷을 입고 왕 앞에서 나오니까, 수산 성이 환호하며 기뻐함." },
+    { "type": "narration", "acts": [{ "act": "crowd-cheer" }, { "act": "bow-head", "who": "mordecai" }], "text": "굵은 베와 재를 쓰고 이 성 한복판에서 대성통곡하던 사람이었다. 같은 거리였다. 같은 사람이었다. 옷만 바뀐 것이 아니었다." },
+    { "type": "narration", "bg": "et-street-dusk", "acts": [{ "act": "crowd-murmur" }, { "act": "bless", "who": "mordecai" }], "text": "그 조서가 처음 붙던 날을 수산은 기억하고 있었다. 왕은 하만과 함께 앉아 마셨고, 수산 성은 어지러웠다. 오늘 수산 성은 즐거이 부르며 기뻐했다. 같은 성이 두 번 소리를 냈다. 한 번은 어지럽게, 한 번은 즐겁게. 그 사이에 두 달하고 열흘이 있었다." },
+    { "type": "narration", "bg": "et-street-night", "fx": "stars", "acts": [{ "act": "crowd-cheer" }, { "act": "bless", "who": "mordecai" }], "text": "유다인에게 영광과 즐거움과 기쁨과 존귀함이 있었다. 왕의 조명이 이르는 각 도, 각 읍에서 잔치가 열렸다. 본토 백성 중에 유다인이 되는 자가 많았다. 두려움 때문이었다고 본문은 적는다. 사람들은 바람이 바뀌는 소리를 잘 듣는다." },
+    { "type": "narration", "acts": [{ "act": "crowd-away" }, { "act": "look-up", "who": "mordecai" }], "text": "그러나 잔치는 그 날이 아니었다. 그 날은 아직 오지 않았다. 두 장의 조서가 같은 벽에 나란히 붙어 있었다. 열두째 달 십삼일까지, 아홉 달 가까이 남아 있었다." }
+  ],
+  "insight": "방금 그거 뭐였냐면, 하만은 죽었는데 문제는 그대로인 상황임. 하만이 왕 이름으로 낸 ‘유다인 다 죽여라’ 조서가 아직 살아 있음. 에스더가 이번엔 작전이고 뭐고 없이 왕 발밑에 엎드려 울면서 빎(8:3). 그리고 왕이 금홀을 또 내밂. 5장에선 자기 목숨 걸고 섰던 에스더가, 여기선 민족을 위해 섬.\n\n근데 왕의 대답이 핵심임(8:8). ‘취소는 못 해.’ 페르시아 법은 왕 이름 쓰고 왕 반지 찍은 조서는 왕 본인도 못 물림. 1장에서 와스디 폐위할 때 ‘절대 못 바꾸게 법에 적으세요’ 했던 그 법, 기억나지? 그게 여기서 왕 발목을 잡음. 다니엘 6장 사자 굴 이야기에도 ‘메대와 바사의 고치지 못하는 규례’가 나옴(그건 나중에 다니엘서에서 자세히). 그래서 해결책이 웃김. 못 지우니까 그 위에 새 조서를 하나 더 씀. 패치 못 하는 버그를 덮어 쓰는 핫픽스 같은 거.\n\n새 조서 내용이 ‘같은 날, 유다인이 모여서 스스로 생명을 보호해도 된다’(8:11). 날짜는 하만이 정한 그 아달월 13일 그대로. 공격받을 날이 방어해도 되는 날로 바뀐 거. 원문 8:11엔 적의 처자와 재산까지 언급하는 무거운 표현도 있는데(3:13 하만의 조서 문구를 거의 그대로 뒤집어 쓴 거라고 보는 해석이 많음), 실제로 9장에서 어떻게 했는지는 다음 편에서 보자.\n\n그리고 이 장의 대칭 구조 꼭 봐 둬. 3장: 하만이 반지 받음 → 서기관 소집 → 역졸 출발 → ‘왕은 하만과 마시되 수산 성은 어지럽더라.’ 8장: 모르드개가 반지 받음 → 서기관 소집 → 역졸 출발 → ‘수산 성이 즐거이 부르며 기뻐하고.’ 순서까지 거의 똑같은데 방향만 정반대. 이 책은 이런 ‘뒤집기’로 짜여 있음. 하나님 이름은 끝까지 안 나오는데, 판이 자꾸 뒤집힘.\n\n8:17 ‘유다인 되는 자가 많더라’는 해석이 좀 갈림. 진짜 유다교로 개종했다는 뜻으로 보는 쪽, 무서워서 유다인 편인 척(유다인 행세)했다는 뜻으로 보는 쪽이 있음.",
+  "tldr": "하만의 집은 에스더에게, 왕의 반지는 모르드개에게 넘어감. 에스더가 왕 발 아래 엎드려 울며 하만의 조서를 없애 달라 했지만 페르시아 법상 왕의 조서는 취소할 수 없었고, 대신 같은 날 유다인이 ‘스스로 생명을 보호해도 된다’는 새 조서를 모르드개가 써서 전국에 보냄. 3장 때와 반대로 수산 성은 기뻐했음.",
+  "bridge": "열두째 달, 곧 아달월 십삼일. 왕의 조명을 행하게 된 날이 왔다."
+}
