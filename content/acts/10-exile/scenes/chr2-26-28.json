@@ -17,7 +17,7 @@
     "chief": { "name": "에브라임 두목 아사랴", "base": "man", "hair": "turban", "beard": "long", "props": ["cloak"], "tint": "green" }
   },
   "beats": [
-    { "type": "narration", "kings": ["azariah"], "act": "look-up", "who": "uzziah", "text": "유다 온 백성이 열여섯 살 웃시야를 왕으로 세웠다. 열왕기는 그를 아사랴라고 불렀다. 이름이 둘인 왕이었다. 인생도 둘로 나뉘게 된다." },
+    { "type": "narration", "kings": ["azariah"], "act": "look-up", "who": "uzziah", "text": "유다 온 백성이 열여섯 살 웃시야를 왕으로 세웠다. 열왕기는 그를 주로 아사랴라고 불렀다. 이름이 둘인 왕이었다. 인생도 둘로 나뉘게 된다." },
     { "type": "narration", "act": "bow-head", "who": "uzziah", "text": "하나님의 묵시를 밝히 아는 스가랴가 사는 날에, 그는 하나님을 구했다. 그가 여호와를 구할 동안에는 하나님이 형통케 하셨다. ‘동안에는’. 역대기는 이 말을 자주 쓴다. 대개 좋은 소식이 아니다." },
     { "type": "narration", "bg": "town", "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "crowd-cheer" }, { "act": "bless", "who": "uzziah" }], "text": "블레셋의 성벽을 헐었다. 암몬이 조공을 바쳤다. 이름이 이집트 변방까지 퍼졌다. 예루살렘 성 모퉁이마다 망대를 세웠고, 거친 들에 물웅덩이를 팠다. 그는 농사를 좋아했다. 왕의 기록에 이런 줄이 있는 왕은 드물다." },
     { "type": "narration", "act": "look-up", "who": "uzziah", "text": "군대는 삼십만 칠천오백. 공교한 공장들이 기계를 만들어 망대 위에서 살과 큰 돌을 쏘게 했다. 그 이름이 먼 데까지 퍼졌다. 기이한 도우심을 얻어 강성하여졌다. 문제는, 도우심이 기이할수록 사람은 그것을 자기 솜씨로 착각하기 쉽다는 것이다." },
