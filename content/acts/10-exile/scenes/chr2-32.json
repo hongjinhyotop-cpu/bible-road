@@ -23,7 +23,7 @@
     { "type": "line", "who": "hezekiah", "act": "bless", "text": "“너희는 마음을 강하게 하며 담대히 하고, 앗수르 왕과 그 좇는 온 무리로 인하여 두려워 말며 놀라지 말라. 우리와 함께하는 자가 저와 함께하는 자보다 크니.”" },
     { "type": "scripture", "ref": "대하 32:8", "acts": [{ "act": "crowd-cheer" }, { "act": "look-up", "who": "captain" }], "gloss": "히스기야: “저쪽한테 있는 건 사람 팔뚝 힘뿐이고, 우리 쪽엔 우리 하나님 여호와가 계심. 반드시 우리를 도우시고 대신 싸워 주실 거임.” 백성이 이 말 듣고 안심함." },
     { "bg": "jd-lachish", "fx": "fade", "exit": ["captain"], "enter": ["rabshakeh"], "face": { "rabshakeh": "left", "hezekiah": "right" }, "acts": [{ "act": "walk-in", "who": "rabshakeh" }] },
-    { "type": "line", "who": "rabshakeh", "act": "approach", "to": "hezekiah", "text": "“앗수르 왕 산헤립은 이같이 말하노라. 너희가 예루살렘에 에워싸여 있으면서 무엇을 의뢰하느냐. … 이 히스기야가 여호와의 산당들과 단들을 제하여 버리고, 너희는 다만 한 단 앞에서 경배하라 하지 아니하였느냐.”" },
+    { "type": "line", "who": "rabshakeh", "act": "approach", "to": "hezekiah", "text": "“앗수르 왕 산헤립은 이같이 말하노라. 너희가 예루살렘에 에워싸여 있으면서 무엇을 의뢰하느냐. … 이 히스기야가 여호와의 산당들과 단들을 제하여 버리고, 너희는 다만 한 단 앞에서 경배하고 그 위에 분향하라 하지 아니하였느냐.”" },
     { "type": "narration", "act": "turn", "who": "rabshakeh", "text": "적은 왕의 개혁을 왕의 약점이라고 불렀다. 산당을 헐었으니 너희 신이 화났을 거라고. 남의 신앙을 가장 자신 있게 해설하는 사람은, 대개 그 신앙을 가져 본 적이 없는 사람이다." },
     { "type": "line", "who": "rabshakeh", "act": "argue", "to": "hezekiah", "text": "“나의 열조가 진멸한 열국의 그 모든 신 중에 누가 능히 그 백성을 내 손에서 건져내었기에, 너희 하나님이 능히 너희를 내 손에서 건지겠느냐.”" },
     { "type": "narration", "fx": "letter", "who": "rabshakeh", "to": "hezekiah", "act": "step-back", "text": "산헤립이 편지도 써 보냈다. 신하들은 유다 방언으로 성 위의 백성에게 크게 소리쳤다. 그들은 예루살렘의 하나님을 훼방하기를, 사람의 손으로 지은 세상 신들을 훼방하듯 했다. 손으로 만든 신만 보아 온 사람에게는, 모든 신이 손으로 만든 것처럼 보인다." },
