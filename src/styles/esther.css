@@ -123,9 +123,9 @@
 :root[data-reduced-motion='true'] :is(.et-swag, .et-flame, .et-poolshine, .et-channelshine, .et-incense circle, .et-petal, .et-banner) { animation: none !important; }
 
 /* ── 효과 공통 ── */
-:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders) { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
-:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders).is-out { opacity: 0; }
-:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-signet, .fx-riders).is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition: none !important; }
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-ering, .fx-riders) { position: absolute; inset: 0; z-index: 3; pointer-events: none; overflow: hidden; transition: opacity 1.4s ease-in; }
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-ering, .fx-riders).is-out { opacity: 0; }
+:is(.fx-thread, .fx-chr, .fx-pur, .fx-scepter, .fx-ering, .fx-riders).is-rm * { animation-duration: 0.01s !important; animation-delay: 0s !important; transition: none !important; }
 
 /* thread: 보이지 않는 손 — 가는 은실 */
 .fx-thread svg { position: absolute; inset: 0; overflow: visible; }
@@ -224,16 +224,16 @@
 .fx-scepter__touch { position: absolute; left: var(--x); top: var(--y); width: 70px; height: 70px; translate: -50% -50%; border-radius: 50%;
   border: 1px solid rgba(240, 210, 150, 0.7); opacity: 0; animation: et-touch 1.4s ease-out 2.6s both; }
 @keyframes et-touch { 0% { opacity: 0.9; scale: 0.2; } 100% { opacity: 0; scale: 1.4; } }
-.fx-scepter__cap, .fx-signet__cap { position: absolute; left: var(--x); top: var(--y); translate: -50% 0; font: 500 12px/1 'Pretendard', sans-serif; letter-spacing: 0.1em;
+.fx-scepter__cap, .fx-ering__cap { position: absolute; left: var(--x); top: var(--y); translate: -50% 0; font: 500 12px/1 'Pretendard', sans-serif; letter-spacing: 0.1em;
   color: rgba(240, 226, 190, 0.9); text-shadow: 0 1px 4px #000; opacity: 0; animation: et-in-f 0.8s ease 1.2s forwards; }
 
 /* signet: 왕의 반지 */
-.fx-signet__ring { position: absolute; left: 0; top: 0; width: 16px; height: 16px; translate: -50% -50%;
+.fx-ering__ring { position: absolute; left: 0; top: 0; width: 16px; height: 16px; translate: -50% -50%;
   animation: et-ringx 2.4s cubic-bezier(0.45, 0, 0.3, 1) 0.4s both, et-ringy 2.4s cubic-bezier(0.45, 0, 0.3, 1) 0.4s both; }
 @keyframes et-ringx { from { left: var(--x1); } to { left: var(--x2); } }
 @keyframes et-ringy { 0% { top: var(--y1); } 50% { top: calc((var(--y1) + var(--y2)) / 2 + var(--lift)); } 100% { top: var(--y2); } }
-.fx-signet__ring i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid #e2b458; box-shadow: 0 0 8px rgba(255, 210, 120, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5); }
-.fx-signet__ring b { position: absolute; left: 50%; top: -5px; width: 8px; height: 6px; translate: -50% 0; border-radius: 2px; background: linear-gradient(135deg, #6a8ac0, #1a2a5a); box-shadow: 0 0 3px rgba(0, 0, 0, 0.6); }
+.fx-ering__ring i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid #e2b458; box-shadow: 0 0 8px rgba(255, 210, 120, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5); }
+.fx-ering__ring b { position: absolute; left: 50%; top: -5px; width: 8px; height: 6px; translate: -50% 0; border-radius: 2px; background: linear-gradient(135deg, #6a8ac0, #1a2a5a); box-shadow: 0 0 3px rgba(0, 0, 0, 0.6); }
 
 /* riders: 역졸들이 사방으로 */
 .fx-riders__r { position: absolute; left: 50%; top: var(--y); width: 54px; height: 36px; translate: -50% -50%; scale: calc(var(--s) * var(--dir)) var(--s);
@@ -246,7 +246,7 @@
 .fx-riders__cap { position: absolute; left: 50%; top: 40%; translate: -50% 0; font: 500 12px/1 'Pretendard', sans-serif; letter-spacing: 0.1em; color: rgba(240, 226, 190, 0.85);
   text-shadow: 0 1px 4px #000; opacity: 0; animation: et-in-f 1s ease 0.6s forwards; white-space: nowrap; }
 
-:root[data-reduced-motion='true'] :is(.fx-thread *, .fx-chr *, .fx-pur *, .fx-scepter *, .fx-signet *, .fx-riders *) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
+:root[data-reduced-motion='true'] :is(.fx-thread *, .fx-chr *, .fx-pur *, .fx-scepter *, .fx-ering *, .fx-riders *) { animation-duration: 0.01s !important; animation-delay: 0s !important; }
 
 /* ── 인물 (characters/esther.ts · mordecai.ts · haman.ts · ahasuerus.ts) — 폰에서도 보이게 밝은 색을 섞음 ── */
 /* 에스더 */

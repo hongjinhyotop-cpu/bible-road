@@ -455,9 +455,15 @@ function actorBox(scene: HTMLElement, id: string | undefined) {
   const b = scene.getBoundingClientRect();
   const el = [...scene.querySelectorAll<HTMLElement>('.scene__stage .actor')].find((a) => a.dataset.id === id);
   if (!el) return null;
-  const a = (el.querySelector<SVGElement>('.actor__art') ?? el).getBoundingClientRect();
+  const svg = el.querySelector<SVGSVGElement>('svg.actor__art');
+  const a = (svg ?? el).getBoundingClientRect();
   if (!a.width) return null;
-  return { x: a.left - b.left + a.width / 2, top: a.top - b.top, h: a.height, w: a.width, left: a.left - b.left };
+  // xMidYMax meet: 그림은 상자 아래쪽에 붙어 있다 → 실제 그림 크기로 줄인다
+  const vb = svg?.viewBox?.baseVal;
+  const k = vb && vb.width ? Math.min(a.width / vb.width, a.height / vb.height) : 1;
+  const w = vb && vb.width ? vb.width * k : a.width;
+  const h = vb && vb.width ? vb.height * k : a.height;
+  return { x: a.left - b.left + a.width / 2, top: a.bottom - b.top - h, h, w, left: a.left - b.left + (a.width - w) / 2 };
 }
 
 /** 무대 위 인물 id들 (왼쪽부터) */
@@ -546,7 +552,7 @@ export function playPur(scene: HTMLElement, rm: boolean): void {
   let t = 0.5;
   const cells = MONTHS.map((m, i) => {
     const at = t;
-    t += 0.18 + i * i * 0.012;
+    t += 0.16 + i * i * 0.006;
     return `<li style="--t:${f(rm ? 0 : at)}s"${i === 11 ? ' class="is-pick"' : ''}><b>${i + 1}</b><span>${m}</span></li>`;
   }).join('');
   layerOf(scene, `fx-pur${rm ? ' is-rm' : ''}`,
@@ -583,9 +589,9 @@ export function playSignet(scene: HTMLElement, who: string | undefined, to: stri
   const p1 = handOf(scene, giver, 0.3, centerX(scene, taker, 0.7));
   const p2 = handOf(scene, taker, 0.7, centerX(scene, giver, 0.3));
   const lift = Math.max(40, Math.abs(p2.x - p1.x) * 0.3);
-  layerOf(scene, `fx-signet${rm ? ' is-rm' : ''}`,
-    `<div class="fx-signet__ring" style="--x1:${f(p1.x)}px; --y1:${f(p1.y)}px; --x2:${f(p2.x)}px; --y2:${f(p2.y)}px; --lift:${f(-lift)}px"><i></i><b></b></div>
-     <small class="fx-signet__cap" style="--x:${f((p1.x + p2.x) / 2)}px; --y:${f(Math.min(p1.y, p2.y) - lift - 26)}px">왕의 반지</small>`,
+  layerOf(scene, `fx-ering${rm ? ' is-rm' : ''}`,
+    `<div class="fx-ering__ring" style="--x1:${f(p1.x)}px; --y1:${f(p1.y)}px; --x2:${f(p2.x)}px; --y2:${f(p2.y)}px; --lift:${f(-lift)}px"><i></i><b></b></div>
+     <small class="fx-ering__cap" style="--x:${f((p1.x + p2.x) / 2)}px; --y:${f(Math.min(p1.y, p2.y) - lift - 26)}px">왕의 반지</small>`,
     rm ? 3000 : 5000, 1200);
 }
 

@@ -300,12 +300,12 @@ type JState = 'ruin' | 'altar' | 'foundation' | 'built';
 function jerusalemArt(state: JState): string {
   // 성전 터 위에 얹을 것
   const mountTop = state === 'ruin'
-    ? `${rubble(130, 270, 166, 22, 12, 1401, 'bd-mid')}
+    ? `${rubble(130, 270, 166, 22, 12, 1401, 'ez-rubble')}
        <rect class="ez-stump" x="186" y="138" width="9" height="26"/><rect class="ez-stump" x="214" y="150" width="8" height="14"/>
        <path class="ez-stump" d="M150 166 L156 150 L170 152 L174 166 Z M240 166 L246 154 L258 156 L262 166 Z"/>
        ${weeds(120, 280, 166, 26, 1402)}`
     : state === 'altar'
-      ? `${rubble(120, 160, 166, 8, 11, 1403, 'bd-mid')}${rubble(244, 284, 166, 8, 11, 1404, 'bd-mid')}
+      ? `${rubble(120, 160, 166, 8, 11, 1403, 'ez-rubble')}${rubble(244, 284, 166, 8, 11, 1404, 'ez-rubble')}
          <rect class="ez-stump" x="252" y="146" width="8" height="18"/>
          ${weeds(116, 290, 166, 16, 1405)}`
       : state === 'foundation'
@@ -319,13 +319,13 @@ function jerusalemArt(state: JState): string {
          ${folk(110, 246, 150, 246, 3, 3.4, 1408, 'ez-folk')}`
       : state === 'built'
         ? stoneAltar(200, 238, 0.8, 1409)
-        : `${rubble(70, 340, 244, 12, 9, 1410)}${weeds(40, 360, 246, 24, 1411)}`;
+        : `${rubble(70, 340, 246, 12, 9, 1410, 'ez-rubble')}${weeds(40, 360, 246, 24, 1411)}`;
   return `<g class="ez ez--jerusalem ez--${state}">
     ${farHills()}
     ${templeMount(mountTop)}
     ${state === 'ruin'
-      ? `${brokenWall(-W * 2, 168, 188, 234, 1412)}${brokenWall(226, W * 3, 190, 234, 1413)}${burntGate(197, 236, 0.78)}`
-      : `${brokenWall(-W * 2, 64, 172, 230, 1412)}${brokenWall(336, W * 3, 176, 232, 1413)}`}
+      ? `${brokenWall(-W * 2, 166, 172, 236, 1412, 'ez-wallstone')}${brokenWall(228, W * 3, 176, 236, 1413, 'ez-wallstone')}${burntGate(197, 238, 1)}`
+      : `${brokenWall(-W * 2, 64, 172, 230, 1412, 'ez-wallstone')}${brokenWall(336, W * 3, 176, 232, 1413, 'ez-wallstone')}`}
     ${state === 'ruin' ? '' : rubble(10, 90, 232, 6, 8, 1414, 'bd-mid')}
     ${near}
     ${ground(248)}
