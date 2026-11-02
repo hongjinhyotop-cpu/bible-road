@@ -43,7 +43,7 @@
     { "type": "narration", "act": "stand", "who": "ezra", "text": "그들이 금식하며 간구했고, 하나님이 들으셨다. 에스라는 그렇게 짧게 적었다. 확신은 대개 긴 문장을 쓰지 않는다." },
     { "bg": "ez-babylon-canal-dawn", "fx": "fade", "exit": ["levite"], "enter": ["priest"], "acts": [{ "act": "walk-in", "who": "priest" }, { "act": "approach", "who": "ezra", "to": "priest" }] },
     { "type": "narration", "act": "bless", "who": "ezra", "text": "제사장의 두목 열둘을 세웠다. 은 육백오십 달란트, 은그릇 일백 달란트, 금 일백 달란트, 금잔 스물, 금같이 빛나는 놋그릇 둘. 에스라는 하나하나 저울에 달아서 그들 손에 넘겼다." },
-    { "type": "line", "who": "ezra", "act": "approach", "to": "priest", "text": "“너희는 여호와께 거룩한 자요 이 기명들도 거룩하니 … 예루살렘 여호와의 전 골방에 이르러 … 달기까지 삼가 지키라.”" },
+    { "type": "line", "who": "ezra", "act": "approach", "to": "priest", "text": "“너희는 여호와께 거룩한 자요 이 기명들도 거룩하고 … 예루살렘 여호와의 전 골방에 이르러 … 달기까지 삼가 지키라.”" },
     { "type": "narration", "act": "bow-head", "who": "priest", "text": "무게를 달아 맡기는 것은 믿지 못해서가 아니다. 믿는 사람을 지켜 주는 방식이다. 도착해서 다시 달면, 아무도 의심받지 않는다." },
     { "bg": "ez-caravan-dawn", "fx": "fade", "acts": [{ "act": "walk-in", "who": "priest" }, { "act": "travel", "from": "ahava", "via": ["euphrates"], "to": "jerusalem" }] },
     { "type": "scripture", "ref": "스 8:31", "gloss": "정월 12일에 아하와 강을 떠나 예루살렘으로 갔는데, 우리 하나님의 손이 우리를 도우셔서 원수와 길에 매복한 자들 손에서 건져 주셨음." },

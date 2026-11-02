@@ -13,10 +13,10 @@
   },
   "beats": [
     { "type": "narration", "face": { "ahasuerus": "right", "esther": "left", "haman": "left" }, "acts": [{ "act": "face", "who": "ahasuerus", "to": "esther" }], "text": "왕이 하만과 함께 또 왕후 에스더의 잔치에 나아갔다. 둘째 날이었다. 같은 걸상, 같은 잔. 하만은 오늘 아침 거리에서 외친 문장을 아직 목에 걸고 있었다." },
-    { "type": "line", "who": "ahasuerus", "acts": [{ "act": "approach", "who": "ahasuerus", "to": "esther" }], "text": "“왕후 에스더여, 그대의 소청이 무엇이뇨. 곧 허락하겠노라. 그대의 요구가 무엇이뇨. 곧 나라의 절반이라 할지라도 시행하겠노라.”" },
+    { "type": "line", "who": "ahasuerus", "acts": [{ "act": "approach", "who": "ahasuerus", "to": "esther" }], "text": "“왕후 에스더여, 그대의 소청이 무엇이뇨. 곧 허락하겠노라. 그대의 요구가 무엇이뇨. 곧 나라의 절반이라 할찌라도 시행하겠노라.”" },
     { "type": "narration", "acts": [{ "act": "bow-head", "who": "esther" }], "text": "같은 질문을 세 번째 듣고 있었다. 첫 번째는 안뜰에서, 두 번째는 첫 잔치에서. 에스더는 두 번 미뤘다. 미룬 사이에 왕은 잠을 못 잤고, 하만은 거리를 돌았다. 기다림은 때로 가장 많은 일을 한다." },
     { "type": "line", "who": "esther", "acts": [{ "act": "look-up", "who": "esther" }, { "act": "approach", "who": "esther", "to": "ahasuerus" }], "text": "“왕이여, 내가 만일 왕의 목전에서 은혜를 입었으며 왕이 선히 여기시거든, 내 소청대로 내 생명을 내게 주시고, 내 요구대로 내 민족을 내게 주소서.”" },
-    { "type": "scripture", "ref": "에 7:4", "acts": [{ "act": "kneel", "who": "esther" }], "gloss": "저랑 제 민족이 팔려서 죽고, 학살당하고, 완전히 없어지게 됐어요. 차라리 종으로 팔렸으면 입 다물고 있었을 거예요. 그런데 이건 그 원수가 왕께 입힐 손해를 갚을 수도 없는 일이에요." },
+    { "type": "scripture", "ref": "에 7:4", "acts": [{ "act": "kneel", "who": "esther" }], "gloss": "저랑 제 민족이 팔려서 죽고, 학살당하고, 완전히 없어지게 됐어요. 차라리 종으로 팔렸으면 입 다물고 있었을 거예요. 그래도 그 원수는 왕이 입으실 손해를 메울 수 없었을 거예요." },
     { "type": "narration", "acts": [{ "act": "step-back", "who": "ahasuerus" }], "text": "내 생명. 내 민족. 왕후가 처음으로 ‘민족’이라는 말을 입에 올렸다. 왕궁에 들어온 뒤로 몇 해 동안 고하지 않던 그 말이었다. 숨겨 온 것을 꺼내는 순간, 사람은 더 이상 숨을 곳이 없다." },
     { "type": "line", "who": "ahasuerus", "act": "approach", "to": "esther", "text": "“감히 이런 일을 심중에 품은 자가 누구며, 그가 어디 있느뇨.”" },
     { "type": "narration", "acts": [{ "act": "stand", "who": "esther" }, { "act": "turn", "who": "esther" }], "face": { "esther": "right" }, "text": "에스더가 일어섰다. 그리고 돌아섰다. 같은 상에 앉아 같은 잔을 들고 있던 사람 쪽으로." },

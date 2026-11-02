@@ -22,7 +22,7 @@
     { "type": "scripture", "ref": "스 5:1", "gloss": "선지자 학개와 잇도의 손자 스가랴가 이스라엘 하나님의 이름으로, 유다와 예루살렘에 사는 유다 사람들에게 예언했음." },
     { "type": "narration", "acts": [{ "act": "stand", "who": "zerubbabel" }, { "act": "approach", "who": "zerubbabel", "to": "jeshua-priest" }], "text": "왕의 새 조서는 없었다. 방해가 그친 것도 아니었다. 바뀐 것은 말 몇 마디뿐이었다. 그런데 스룹바벨과 예수아가 일어났다. 사람을 일으키는 것은 대개 형편이 아니라 말이다." },
     { "bg": "ez-foundation-dawn", "fx": "fade", "acts": [{ "act": "crowd" }, { "act": "crowd-cheer" }] },
-    { "type": "narration", "acts": [{ "act": "bless", "who": "haggai" }, { "act": "bless", "who": "zechariah-prophet" }], "text": "큰 돌이 다시 올라갔다. 돌 세 켜, 나무 한 켜. 선지자들은 옆에서 말만 하지 않았다. 본문은 그들이 ‘함께 하여 도왔다’고 적는다." },
+    { "type": "narration", "acts": [{ "act": "bless", "who": "haggai" }, { "act": "bless", "who": "zechariah-prophet" }], "text": "큰 돌이 다시 올라갔다. 돌 세 켜, 나무 한 켜. 선지자들은 옆에서 말만 하지 않았다. 본문은 ‘하나님의 선지자들이 함께 하여 돕더니’라고 적는다." },
     { "exit": ["haggai", "zechariah-prophet"], "enter": ["tattenai"], "acts": [{ "act": "walk-in", "who": "tattenai" }, { "act": "approach", "who": "tattenai", "to": "zerubbabel" }] },
     { "type": "line", "who": "tattenai", "act": "argue", "to": "zerubbabel", "text": "“누가 너희를 명하여 이 전을 건축하고 이 성곽을 마치게 하였느냐.”" },
     { "type": "narration", "act": "look-up", "who": "jeshua-priest", "text": "강 서편 총독 닷드내. 그는 르훔처럼 편지부터 쓰지 않았다. 직접 와서 물었고, 일하는 사람들의 이름을 적었다. 관리 중에는 드물게, 확인부터 하는 사람이었다." },
