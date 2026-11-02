@@ -45,7 +45,8 @@ export const ACTS: Act[] = [
       s('HOS', 1, 14, true), s('JOL', 1, 3, true), s('AMO', 1, 9, true), s('OBA', 1, 1, true), s('JON', 1, 4, true), s('MIC', 1, 7, true),
       s('NAM', 1, 3, true), s('HAB', 1, 3, true), s('ZEP', 1, 3, true), s('HAG', 1, 2, true), s('ZEC', 1, 14, true), s('MAL', 1, 4, true)] },
   { no: 10, numeral: 'X', title: '포로와 귀환', latin: 'Captivitas', range: '에스겔, 다니엘, 에스라, 느헤미야, 에스더', mood: '바빌론 청색 타일, 돌벽',
-    stops: [s('EZK', 1, 48), s('DAN', 1, 12), s('EZR', 1, 10), s('NEH', 1, 13), s('EST', 1, 10)] },
+    // 2026-11-02 사용자 결정: 이번엔 에스라·느헤미야·에스더(33장)만. 에스겔·다니엘은 예언서와 같이 나중에 → later
+    stops: [s('EZK', 1, 48, true), s('DAN', 1, 12, true), s('EZR', 1, 10), s('NEH', 1, 13), s('EST', 1, 10)] },
   { no: 11, numeral: 'XI', title: '복음서', latin: 'Evangelium', range: '마태–요한', mood: '갈릴리 호수, 올리브',
     stops: [s('MAT', 1, 28), s('MRK', 1, 16), s('LUK', 1, 24), s('JHN', 1, 21)] },
   { no: 12, numeral: 'XII', title: '교회의 시작', latin: 'Ecclesia', range: '사도행전', mood: '고지도, 바다, 돛',

@@ -11,6 +11,7 @@ import type { ItemValue } from './items';
 import type { AllotName } from './tribes';
 import type { CycleSpec } from './cycle';
 import type { KingsSpec } from './kings';
+import type { RebuildSpec } from './rebuild';
 
 /** 장면 연출 효과 — 목록은 engine/moods.ts의 FX */
 export type { SceneFx };
@@ -44,6 +45,8 @@ interface BeatBase {
   /** 9막 두 왕국 판 (fx/kingdoms.ts): "ahab" · ["ahab","jehoshaphat"] · { add, fall: "israel"|"judah" } · { show: true }.
    *  다음 beat에 없으면 오른쪽 위 작은 표로 물러나 남는다 */
   kings?: KingsSpec;
+  /** 10막 다시 세워지는 예루살렘 판 (fx/rebuild.ts): { temple?, wall?, from?, at?, label? }. 다음 beat에 없으면 왼쪽 위 작은 표로 */
+  rebuild?: RebuildSpec;
   /** 소리 글자: 무대 가운데 희미하게 떠올랐다 스러진다. 암전(fx blackout)과 같이 — 보여 주지 않는 장면을 소리로만 */
   sound?: string;
   /** 동작 라이브러리 (engine/actions.ts). 예: "kneel". 누가 = who (line이면 말하는 사람) */

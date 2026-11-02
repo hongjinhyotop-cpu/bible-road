@@ -52,6 +52,7 @@ import './styles/absalom.css';
 import './styles/temple.css';
 import './styles/elisha.css';
 import './styles/isaiah.css';
+import './styles/rebuild.css';
 import './styles/judah.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';

@@ -220,12 +220,21 @@ export const PLACE_NAMES = {
   'jezreel-9': '이스르엘',
   gibbethon: '깁브돈',
   'aphek-aram': '아벡',
+  // ── 10막 포로와 귀환 (2026-11-02, 철자는 개역한글 에스라·느헤미야·에스더) ──
+  susa: '수산',
+  ecbatana: '악메다',
+  ahava: '아하와 강',
+  persia: '바사',
 } as const;
 export type PlaceName = keyof typeof PLACE_NAMES;
 
 /** 여정 지도 이름표 아래 작은 설명 (이름만으로는 어딘지 알기 어려운 곳) */
 export const PLACE_NOTES: Partial<Record<PlaceName, string>> = {
   'brook-egypt': '이집트 국경 쪽 개울',
+  susa: '바사 왕의 겨울 궁',
+  ecbatana: '메대의 여름 궁 — 고레스 조서가 나온 곳',
+  ahava: '바벨론 근처로 봄 (정확한 곳 모름)',
+  persia: '바사 = 페르시아',
   'brook-egypt-num': '이집트 국경 쪽 개울',
   'adam-city': '물이 쌓여 선 곳',
   'beth-horon': '내리막 비탈길',
