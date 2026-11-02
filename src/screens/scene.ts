@@ -19,6 +19,7 @@ import { showTravel, type TravelMap } from '../fx/travel';
 import { showAllot, type AllotMap } from '../fx/allot';
 import { showCycle, ROUNDS, type CycleRing } from '../fx/cycle';
 import { showRebuild, rebuildHold, type RebuildBoard } from '../fx/rebuild';
+import { showLineage, lineageHold, type LineageBoard } from '../fx/lineage';
 import { showKings, type KingsBoard } from '../fx/kingdoms';
 import { openPassage } from '../ui/passage';
 import { person } from '../characters/_kit.ts';
@@ -155,6 +156,8 @@ export function sceneScreen({ id }: Params): Screen {
   let kingsBoard: KingsBoard | null = null;
   /** 10막 다시 세워지는 예루살렘 판 (beat 필드 rebuild) */
   let rebuildBoard: RebuildBoard | null = null;
+  /** 족보 가계도 (beat 필드 lineage) */
+  let lineageBoard: LineageBoard | null = null;
   /** 동작만 있는 beat에서 기다리는 중이면, 탭으로 바로 넘긴다 */
   let skipHold: (() => void) | null = null;
 
@@ -234,7 +237,7 @@ export function sceneScreen({ id }: Params): Screen {
         // 동작만 있는 beat: 움직임을 잠깐 보여 주고 저절로 다음으로 (탭하면 바로)
         const ring = beat.cycle ? (beat.cycle.broken ? 5.4 : beat.cycle.at ? 1.8 : 6) : beat.kings ? (typeof beat.kings === 'object' && !Array.isArray(beat.kings) && beat.kings.fall ? 6 : 3.4) : 0;
         // 글 없는 beat의 긴 효과는 끝까지 보여 준다 (다음 beat의 암전·배경 전환에 가리지 않게)
-        const rb = beat.rebuild ? rebuildHold(beat.rebuild, rebuildBoard) : 0;
+        const rb = beat.rebuild ? rebuildHold(beat.rebuild, rebuildBoard) : beat.lineage ? lineageHold(beat.lineage) : 0;
         const longFx = Math.max(0, ...[beat.fx ?? []].flat().map((f) => FX_HOLD[f] ?? 0));
         await hold(Math.max(beat.item ? 2.4 : beat.allot ? 2.8 : 0.4, ring, rb, beat.sound ? 3 : 0, longFx, ...steps(beat).map((st) => ACTIONS[st.act]?.hold ?? 0.8)));
         if (!alive) return;
@@ -333,6 +336,9 @@ export function sceneScreen({ id }: Params): Screen {
     // 다시 세워지는 예루살렘: 이번 beat에 rebuild가 있으면 크게, 없으면 왼쪽 위 작은 표로
     if (beat.rebuild) rebuildBoard = showRebuild($('.scene'), beat.rebuild, rebuildBoard);
     else rebuildBoard?.big(false);
+    // 족보 가계도: 이번 beat에 lineage가 있으면 크게(앞 줄기에 이어 붙임), 없으면 왼쪽 위 작은 표로
+    if (beat.lineage) lineageBoard = showLineage($('.scene'), beat.lineage, lineageBoard);
+    else lineageBoard?.big(false);
     // 땅 분배 지도: 이번 beat에 allot이 있으면 칠하고, 없으면 접는다
     if (beat.allot) {
       travel?.el.remove();
@@ -1116,6 +1122,7 @@ export function sceneScreen({ id }: Params): Screen {
     cycleRing?.big(false);
     kingsBoard?.big(false);
     rebuildBoard?.big(false);
+    lineageBoard?.big(false);
     setItem(el, items, null);
     setMemory(null);
     const known = progress.get().characters;
@@ -1245,6 +1252,8 @@ export function sceneScreen({ id }: Params): Screen {
     kingsBoard = null;
     rebuildBoard?.el.remove();
     rebuildBoard = null;
+    lineageBoard?.el.remove();
+    lineageBoard = null;
     setBlack(false);
     $('.scene__sound').classList.remove('is-on');
     setDecay(scene.decay ?? 0);

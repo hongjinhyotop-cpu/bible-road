@@ -195,7 +195,7 @@ function checkScene(s, where) {
   if (cards.length > 4 && !legacy) (B ? err : warn)(where, `본문 카드(scripture)가 ${cards.length}개 — 핵심만 2~4개 (나머지는 "본문 전체 보기"가 맡음)`);
   for (const c of cards) if (!c.gloss) (B ? err : warn)(where, `본문 카드 ${c.ref}에 한 줄 번역(gloss)이 없음`);
   const moves = (b) => b.act || b.acts || b.enter || b.exit;
-  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot || b.cycle || b.kings || b.rebuild || b.sound;
+  const scenery = (b) => b.bg || b.mood || b.fx || b.item !== undefined || b.allot || b.cycle || b.kings || b.rebuild || b.lineage || b.sound;
   const motion = main.filter(moves).length;
   const changes = main.filter(scenery).length;
   let still = 0;
@@ -218,7 +218,7 @@ function checkScene(s, where) {
   checkOutfit(s.outfit);
   for (const b of all) {
     if (b.type != null && !BEAT_TYPES.has(b.type)) err(where, `beat type "${b.type}"은 없음 (${[...BEAT_TYPES].join('/')})`);
-    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot && !b.cycle && !b.kings && !b.rebuild && !b.sound) warn(where, 'type도 act도 없는 빈 beat');
+    if ((b.type == null || b.type === 'act') && !b.act && !b.acts && !b.enter && !b.exit && !b.fx && !b.mood && !b.bg && b.item === undefined && !b.allot && !b.cycle && !b.kings && !b.rebuild && !b.lineage && !b.sound) warn(where, 'type도 act도 없는 빈 beat');
     if (b.cycle != null) {
       const c = b.cycle;
       if (typeof c !== 'object' || Array.isArray(c)) err(where, 'cycle은 { round, judge, at?, skip?, broken? } 형식');
@@ -234,7 +234,12 @@ function checkScene(s, where) {
       for (const id of ids) if (!KING_BY_ID[id]) err(where, `kings: 왕 "${id}"이 src/engine/kings.ts에 없음`);
       if (obj && k.fall != null && !['israel', 'judah'].includes(k.fall)) err(where, 'kings.fall은 "israel" 또는 "judah"');
       if (obj && !ids.length && !k.fall && !k.show) err(where, 'kings는 왕 id(들) 또는 { add, fall, show }');
-      if (s.act !== 9) warn(where, 'kings(두 왕국 판)는 9막용');
+      if (s.act !== 9 && s.act !== 10) warn(where, 'kings(두 왕국 판)는 9막·10막(역대하)용');
+    }
+    if (b.lineage != null) {
+      const l = b.lineage;
+      if (typeof l !== 'object' || Array.isArray(l)) err(where, 'lineage는 { names, ref?, title?, mark?, branch?, fresh? } 형식');
+      else if (!(Array.isArray(l.names) && l.names.every((n) => typeof n === 'string')) && !l.mark && !l.branch) err(where, 'lineage.names는 이름(문자열) 배열');
     }
     if (b.rebuild != null) {
       const r = b.rebuild;
