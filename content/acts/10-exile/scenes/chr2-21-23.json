@@ -37,7 +37,7 @@
     { "type": "narration", "fx": "blackout", "sound": "…", "text": "아하시야는 사마리아에 숨었다가 잡혀 예후 앞에서 죽었다. 사람들이 말했다. 저는 전심으로 여호와를 구하던 여호사밧의 아들이라. 그래서 묻어 주었다. 할아버지 덕에 무덤을 얻었다." },
     { "type": "narration", "kings": ["athaliah"], "act": "look-up", "who": "athaliah", "pose": { "athaliah": "lift" }, "text": "아달랴가 아들의 죽음을 보았다. 그리고 일어났다. 유다 집의 왕의 씨를, 그녀의 손자들을, 진멸했다." },
     { "bg": "house-night", "fx": ["fade", "swaddle"], "to": "jehoshabeath", "exit": ["athaliah"], "enter": ["jehoshabeath"], "acts": [{ "act": "walk-in", "who": "jehoshabeath" }] },
-    { "type": "scripture", "ref": "대하 22:11", "act": "bow-head", "who": "jehoshabeath", "gloss": "근데 왕의 딸 여호사브앗이, 왕자들 죽임당하는 와중에 아하시야 아들 요아스를 몰래 빼냄. 유모랑 같이 침실에 숨겨서 아달랴가 못 죽이게 함. 이 여자는 여호람 왕의 딸, 아하시야의 누나, 그리고 제사장 여호야다의 아내였음." },
+    { "type": "scripture", "ref": "대하 22:11", "act": "bow-head", "who": "jehoshabeath", "gloss": "근데 왕의 딸 여호사브앗이, 왕자들 죽임당하는 와중에 아하시야 아들 요아스를 몰래 빼냄. 유모랑 같이 침실에 숨겨서 아달랴가 못 죽이게 함. 이 여자는 여호람 왕의 딸, 아하시야의 누이, 그리고 제사장 여호야다의 아내였음." },
     { "type": "narration", "act": "walk-out", "who": "jehoshabeath", "exit": ["jehoshabeath"], "text": "왕의 딸이 제사장에게 시집가 있었다. 그 혼인 하나가 다윗의 등불이 꺼지지 않고 숨을 곳이 되었다. 아기는 하나님의 전에 육 년을 숨어 있었다. 그동안 아달랴가 나라를 다스렸다." },
     { "bg": "tp-court", "fx": "fade", "enter": ["jehoiada", "levite"], "face": { "jehoiada": "right", "levite": "left" }, "acts": [{ "act": "crowd" }, { "act": "walk-in", "who": "levite" }] },
     { "type": "narration", "act": "approach", "who": "levite", "to": "jehoiada", "text": "제 칠 년. 여호야다가 백부장들과 언약을 세웠다. 그들이 유다 온 고을을 다니며 레위 사람과 이스라엘 족장들을 예루살렘으로 모았다. 온 회중이 하나님의 전에서 왕과 언약을 세웠다. 왕은 아직 보이지 않았다." },

@@ -62,7 +62,7 @@
     { "type": "narration", "act": "travel", "from": "tekoa", "to": "jerusalem", "text": "온 유다와 예루살렘 사람이 여호사밧을 앞세우고 즐거이 돌아왔다. 비파와 수금과 나팔을 합주하며, 곧장 여호와의 전으로." },
     { "type": "narration", "fx": "dawn", "acts": [{ "act": "look-up", "who": "jehoshaphat" }, { "act": "crowd-bow" }], "text": "이방 모든 나라가 그 소식을 듣고 하나님을 두려워했다. 여호사밧의 나라가 태평했다. 그 하나님이 사방에서 평강을 주셨기 때문이다." },
     { "type": "narration", "exit": ["singer-a", "singer-b"], "acts": [{ "act": "walk-out", "who": ["singer-a", "singer-b"] }, { "act": "bow-head", "who": "jehoshaphat" }], "text": "그는 아버지 아사의 길로 행하여 여호와 보시기에 정직히 행했다. 그러나 산당은 없애지 않았고, 백성은 아직도 마음을 정하여 열조의 하나님께로 돌아오지 않았다. 노래로 이긴 다음 날에도, 사람의 마음은 노래만큼 빨리 바뀌지 않는다." },
-    { "type": "narration", "bg": "sea-dusk", "fx": "fade", "act": "travel", "from": "jerusalem", "to": "ezion-geber", "text": "그 뒤 여호사밧은 북이스라엘 왕 아하시야와 손을 잡았다. 심히 악을 행하는 자였다. 둘은 다시스로 보낼 배를 에시온게벨에서 함께 지었다." },
+    { "type": "narration", "bg": "sea-dusk", "fx": "fade", "kings": ["ahaziah-israel"], "act": "travel", "from": "jerusalem", "to": "ezion-geber", "text": "그 뒤 여호사밧은 북이스라엘 왕 아하시야와 손을 잡았다. 심히 악을 행하는 자였다. 둘은 다시스로 보낼 배를 에시온게벨에서 함께 지었다." },
     { "type": "line", "who": "eliezer", "enter": ["eliezer"], "acts": [{ "act": "walk-in", "who": "eliezer" }, { "act": "approach", "who": "eliezer", "to": "jehoshaphat" }], "text": "“왕이 아하시야와 교제하는 고로 여호와께서 왕의 지은 것을 파하시리라.”" },
     { "type": "narration", "fx": ["thunder", "shake"], "sound": "콰직—", "acts": [{ "act": "step-back", "who": "jehoshaphat" }, { "act": "walk-out", "who": "eliezer" }], "exit": ["eliezer"], "text": "배가 부서졌다. 다시스로는 가지 못했다." },
     { "type": "narration", "act": "turn", "who": "jehoshaphat", "text": "노래 한 곡으로 큰 무리를 이긴 왕이었다. 친구를 고르는 일에서는, 끝내 이기지 못했다." }
