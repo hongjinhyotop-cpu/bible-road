@@ -397,7 +397,7 @@ function singer(i: number): string {
 export function playPraiseMarch(scene: HTMLElement, rm: boolean): void {
   const r = rng(2021);
   const chars = (t: string, base: number) => [...t].map((ch, i) => `<span style="--c:${base + i}">${ch === ' ' ? '&nbsp;' : ch}</span>`).join('');
-  const singers = Array.from({ length: 9 }, (_, i) => singer(i)).join('');
+  const singers = Array.from({ length: 12 }, (_, i) => singer(i)).join('');
   const waves = rm ? '' : Array.from({ length: 9 }, (_, i) => `<i style="--k:${i}"></i>`).join('');
   const notes = rm ? '' : Array.from({ length: 26 }, () => `<s style="--y:${(r() * 60 - 30).toFixed(0)}px; --d:${(1.2 + r() * 7.5).toFixed(2)}s; --s:${(0.6 + r() * 0.9).toFixed(2)}"></s>`).join('');
   layerOf(scene, `fx-pm${rm ? ' is-rm' : ''}`,
@@ -413,14 +413,27 @@ export function playPraiseMarch(scene: HTMLElement, rm: boolean): void {
 /** ch-unchain: 겸비하여 기도한 사람의 사슬이 풀림 (대하 33:13) */
 export function playUnchain(scene: HTMLElement, who: string | undefined, rm: boolean): void {
   const b = scene.getBoundingClientRect();
-  const a = actorBox(scene, who) ?? actorBox(scene, 'manasseh-king');
-  const x = a ? a.x : b.width / 2;
-  const y = a ? a.top + a.h * 0.55 : b.height * 0.5;
-  const top = a ? a.top : b.height * 0.3;
-  const links = Array.from({ length: 7 }, (_, i) => `<i style="--k:${i}; --fx:${((i - 3) * 9).toFixed(0)}px; --fr:${((i % 2 ? 1 : -1) * (40 + i * 12)).toFixed(0)}deg"></i>`).join('');
-  layerOf(scene, `fx-unchain${rm ? ' is-rm' : ''}`,
-    `<b class="fx-unchain__ray" style="--x:${x.toFixed(0)}px; --h:${(top + (a ? a.h * 0.3 : 80)).toFixed(0)}px"></b>
-     <div class="fx-unchain__chain" style="--x:${x.toFixed(0)}px; --y:${y.toFixed(0)}px">${links}</div>
-     <b class="fx-unchain__glow" style="--x:${x.toFixed(0)}px; --y:${y.toFixed(0)}px"></b>`,
+  const place = () => {
+    const a = actorBox(scene, who) ?? actorBox(scene, 'manasseh-king');
+    return {
+      x: a ? a.x : b.width / 2,
+      y: a ? a.top + a.h * 0.56 : b.height * 0.5,
+      h: a ? a.top + a.h * 0.3 : b.height * 0.4,
+    };
+  };
+  const p = place();
+  const links = Array.from({ length: 7 }, (_, i) => `<i style="--k:${i}; --fx:${((i - 3) * 7).toFixed(0)}px; --fr:${((i % 2 ? 1 : -1) * (40 + i * 12)).toFixed(0)}deg"></i>`).join('');
+  const layer = layerOf(scene, `fx-unchain${rm ? ' is-rm' : ''}`,
+    `<b class="fx-unchain__ray" style="--x:${p.x.toFixed(0)}px; --h:${p.h.toFixed(0)}px"></b>
+     <div class="fx-unchain__chain" style="--x:${p.x.toFixed(0)}px; --y:${p.y.toFixed(0)}px">${links}</div>
+     <b class="fx-unchain__glow" style="--x:${p.x.toFixed(0)}px; --y:${p.y.toFixed(0)}px"></b>`,
     rm ? 2600 : 6000, 1200);
+  // 인물이 일어서는 동작(stand)이 끝난 뒤 손목 자리를 다시 잰다
+  setTimeout(() => {
+    const q = place();
+    for (const el of layer.querySelectorAll<HTMLElement>('.fx-unchain__chain, .fx-unchain__glow, .fx-unchain__ray')) {
+      el.style.setProperty('--x', `${q.x.toFixed(0)}px`);
+      if (!el.classList.contains('fx-unchain__ray')) el.style.setProperty('--y', `${q.y.toFixed(0)}px`);
+    }
+  }, rm ? 0 : 750);
 }
