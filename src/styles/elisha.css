@@ -273,4 +273,6 @@
 .fx-warn__more { margin: 0; font-family: var(--story-font, serif); font-size: 12px; letter-spacing: 0.06em; color: rgba(246, 232, 200, 0.7);
   opacity: 0; animation: es-lamp-on 1.2s ease-out 4.6s both, es-name-off 1.6s ease-in 9.6s forwards; }
 .fx-warn.is-rm :is(.fx-warn__lamp i, .fx-warn__lamp b, .fx-warn__more) { animation: es-lamp-on 0.3s ease-out both; }
-.actor .es-shine, .sil .es-shine { stroke: color-mix(in srgb, #fff4dc 30%, var(--sil-ink)); opacity: 0.55; }
+.actor .es-shine, .sil .es-shine { stroke: color-mix(in srgb, #fff4dc 62%, var(--sil-ink)); opacity: 0.9; }
+.actor .es-dome, .sil .es-dome { fill: color-mix(in srgb, #fff4dc 58%, var(--sil-ink)); opacity: 0.9; }
+.actor .es-fringe, .sil .es-fringe { fill: color-mix(in srgb, #000 35%, var(--sil-ink)); }

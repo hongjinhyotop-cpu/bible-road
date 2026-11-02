@@ -1,0 +1,14 @@
+/* 이사야 (characters/isaiah.ts) — 2026-11-02 공들여 다시 그림. 두건·수염·겉옷 술·두루마리가 폰에서도 보이게 밝은 테두리 색을 섞음 */
+.actor .is-wrap, .sil .is-wrap { fill: color-mix(in srgb, #d8cdb4 30%, var(--sil-ink)); }
+.actor .is-band, .sil .is-band { fill: color-mix(in srgb, #8a6fb0 42%, var(--sil-ink)); }
+.actor .is-beard, .sil .is-beard { fill: color-mix(in srgb, #c8c0b4 34%, var(--sil-ink)); }
+.actor .is-robe, .sil .is-robe { fill: color-mix(in srgb, #6c6280 26%, var(--sil-ink)); }
+.actor .is-hem, .sil .is-hem { fill: color-mix(in srgb, #6a52a0 40%, var(--sil-ink)); }
+.actor .is-mantle, .sil .is-mantle { fill: color-mix(in srgb, #3e4f7a 34%, var(--sil-ink)); }
+.actor .is-trim, .sil .is-trim { stroke: color-mix(in srgb, var(--act-accent) 55%, var(--sil-ink)); }
+.actor .is-tassel, .sil .is-tassel { stroke: color-mix(in srgb, #5a7ac0 55%, var(--sil-ink)); stroke-width: 1.6; stroke-linecap: round; fill: none; }
+.actor .is-scroll, .sil .is-scroll { fill: color-mix(in srgb, #f2e3bf 62%, var(--sil-ink)); }
+.actor .is-script, .sil .is-script { stroke: color-mix(in srgb, #000 30%, var(--sil-ink)); opacity: 0.7; }
+.actor .is-roller, .sil .is-roller { fill: color-mix(in srgb, #8a5a30 45%, var(--sil-ink)); }
+.actor .is-sack, .sil .is-sack { fill: color-mix(in srgb, #5c5040 30%, var(--sil-ink)); }
+.actor .is-rope, .sil .is-rope { stroke: color-mix(in srgb, #b89a68 45%, var(--sil-ink)); }
