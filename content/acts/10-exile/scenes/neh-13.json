@@ -15,7 +15,7 @@
     "child": { "name": "그의 아이", "base": "child", "tint": "green" }
   },
   "beats": [
-    { "type": "narration", "act": "bow-head", "who": "nehemiah", "text": "아닥사스다 삼십이 년. 느헤미야는 수산으로 돌아가 왕 앞에 섰다. 열두 해 동안의 총독 일이 끝났다. 잔을 들던 사람이 성벽을 쌓고, 다시 왕의 곁으로 돌아왔다." },
+    { "type": "narration", "act": "bow-head", "who": "nehemiah", "text": "아닥사스다 삼십이 년. 느헤미야는 왕에게로 돌아가 섰다. 열두 해 동안의 총독 일이 끝났다. 잔을 들던 사람이 성벽을 쌓고, 다시 왕의 곁으로 돌아왔다." },
     { "type": "narration", "act": "face", "who": "artaxerxes", "to": "nehemiah", "text": "왕은 여전히 왕이었고, 잔은 여전히 잔이었다. 달라진 것은 잔을 드는 사람의 눈이었다. 한 번 무너진 성을 본 사람은, 다시는 그것을 잊지 못한다." },
     { "type": "narration", "act": "approach", "who": "nehemiah", "to": "artaxerxes", "text": "본문은 왕이 무슨 말을 했는지 적지 않는다. 다만 며칠 후 그가 말미를 청했고, 다시 예루살렘으로 갔다는 것만 적는다. 얼마나 비워 두었는지도 적지 않는다. 다만 그 사이에 많은 것이 변했다." },
     { "type": "narration", "act": "travel", "from": "susa", "via": ["babylon", "euphrates", "damascus"], "to": "jerusalem", "exit": ["artaxerxes"], "outfit": { "nehemiah": "governor" }, "text": "같은 길을 두 번째로 갔다. 첫 번째에는 무너진 성을 보러 갔다. 이번에는 다 쌓은 성을 보러 갔다. 이번이 더 마음이 무거웠다는 것을, 그는 곧 알게 된다." },
