@@ -31,7 +31,7 @@ export function hasMet(id: string): boolean {
   return !!progress.get().characters[id];
 }
 
-/** 막의 모든 장을 끝냈나 (지도에서 그 막의 별이 전부 켜짐). later 구간(7막의 역대기)은 빼고 셈 */
+/** 막의 모든 장을 끝냈나 (지도에서 그 막의 별이 전부 켜짐). later 구간(예언서·에스겔·다니엘 등 나중에 만들 곳)은 빼고 셈 */
 export function actComplete(no: number): boolean {
   const act = ACTS[no - 1];
   return !!act && act.stops.every((s) => s.later || countDone(s.book, s.from, s.to) === s.to - s.from + 1);

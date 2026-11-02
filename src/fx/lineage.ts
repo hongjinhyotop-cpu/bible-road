@@ -60,6 +60,8 @@ export function showLineage(host: HTMLElement, spec: LineageSpec, current?: Line
   const last = all.at(-1)?.dataset.name ?? '';
   box.querySelector('.lg__mini span')!.textContent = `${box.querySelector('.lg__title')!.textContent || '족보'} · ${last}`;
   box.style.setProperty('--n', String(Math.min(all.length, KEEP)));
+  // 이름이 적으면 판 가운데에, 많으면 아래에 붙여 오래된 이름이 위로 밀려 흐려지게
+  box.classList.toggle('is-few', all.filter((n) => !n.classList.contains('is-gone')).length <= 9);
   const board: LineageBoard = { el: box, big: (on) => box.classList.toggle('is-big', on) };
   board.big(true);
   return board;

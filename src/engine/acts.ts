@@ -6,7 +6,7 @@ export interface Stop {
   book: string;
   from: number;
   to: number;
-  /** 나중에 다른 막으로 옮길 구간 (역대기 — 2026-10-30 사용자 결정: 7막에 섞지 않고 따로 만든다). 막 완료·피날레 판정에서 뺀다 */
+  /** 나중에 다른 막으로 옮길 구간 (예언서·에스겔·다니엘 — 나중에 성경 순서대로). 막 완료·피날레 판정에서 뺀다 */
   later?: true;
 }
 
@@ -35,18 +35,19 @@ export const ACTS: Act[] = [
     stops: [s('NUM', 1, 36), s('DEU', 1, 34)] },
   { no: 6, numeral: 'VI', title: '정복과 사사', latin: 'Iudices', range: '여호수아, 사사기, 룻기', mood: '누아르 사건 파일',
     stops: [s('JOS', 1, 24), s('JDG', 1, 21), s('RUT', 1, 4)] },
-  { no: 7, numeral: 'VII', title: '왕국', latin: 'Regnum', range: '삼상–왕상 11, 역대기 일부', mood: '왕실 보라, 청동, 횃불',
-    stops: [s('1SA', 1, 31), s('2SA', 1, 24), s('1KI', 1, 11), s('1CH', 1, 29, true), s('2CH', 1, 9, true)] },
+  { no: 7, numeral: 'VII', title: '왕국', latin: 'Regnum', range: '삼상–왕상 11', mood: '왕실 보라, 청동, 횃불',
+    stops: [s('1SA', 1, 31), s('2SA', 1, 24), s('1KI', 1, 11)] },
   { no: 8, numeral: 'VIII', title: '지혜와 노래', latin: 'Sapientia', range: '욥기–아가', mood: '여백과 물결',
     stops: [s('JOB', 1, 42), s('PSA', 1, 150), s('PRO', 1, 31), s('ECC', 1, 12), s('SNG', 1, 8)] },
   { no: 9, numeral: 'IX', title: '분열과 예언', latin: 'Prophetae', range: '왕상 12–왕하, 예언서', mood: '폭풍 하늘, 재, 두루마리',
-    // 2026-11-01 사용자 결정: 이번엔 열왕기 이야기(왕상 12–왕하 25)만. 예언서는 나중에 성경 순서대로 따로, 역대하는 역대기 막으로 → later
-    stops: [s('1KI', 12, 22), s('2KI', 1, 25), s('2CH', 10, 36, true), s('ISA', 1, 66, true), s('JER', 1, 52, true), s('LAM', 1, 5, true),
+    // 2026-11-01 사용자 결정: 이번엔 열왕기 이야기(왕상 12–왕하 25)만. 예언서는 나중에 성경 순서대로 따로, 역대하는 10막으로 옮김(2026-11-02)
+    stops: [s('1KI', 12, 22), s('2KI', 1, 25), s('ISA', 1, 66, true), s('JER', 1, 52, true), s('LAM', 1, 5, true),
       s('HOS', 1, 14, true), s('JOL', 1, 3, true), s('AMO', 1, 9, true), s('OBA', 1, 1, true), s('JON', 1, 4, true), s('MIC', 1, 7, true),
       s('NAM', 1, 3, true), s('HAB', 1, 3, true), s('ZEP', 1, 3, true), s('HAG', 1, 2, true), s('ZEC', 1, 14, true), s('MAL', 1, 4, true)] },
-  { no: 10, numeral: 'X', title: '포로와 귀환', latin: 'Captivitas', range: '에스겔, 다니엘, 에스라, 느헤미야, 에스더', mood: '바빌론 청색 타일, 돌벽',
+  { no: 10, numeral: 'X', title: '포로와 귀환', latin: 'Captivitas', range: '역대기, 에스라, 느헤미야, 에스더, 에스겔, 다니엘', mood: '바빌론 청색 타일, 돌벽',
     // 2026-11-02 사용자 결정: 이번엔 에스라·느헤미야·에스더(33장)만. 에스겔·다니엘은 예언서와 같이 나중에 → later
-    stops: [s('EZK', 1, 48, true), s('DAN', 1, 12, true), s('EZR', 1, 10), s('NEH', 1, 13), s('EST', 1, 10)] },
+    // 2026-11-02: 역대기(돌아온 사람들이 다시 쓴 역사 — 대하 36:22-23 = 스 1:1-3)를 7막·9막에서 10막 맨 앞으로 옮김
+    stops: [s('1CH', 1, 29), s('2CH', 1, 36), s('EZK', 1, 48, true), s('DAN', 1, 12, true), s('EZR', 1, 10), s('NEH', 1, 13), s('EST', 1, 10)] },
   { no: 11, numeral: 'XI', title: '복음서', latin: 'Evangelium', range: '마태–요한', mood: '갈릴리 호수, 올리브',
     stops: [s('MAT', 1, 28), s('MRK', 1, 16), s('LUK', 1, 24), s('JHN', 1, 21)] },
   { no: 12, numeral: 'XII', title: '교회의 시작', latin: 'Ecclesia', range: '사도행전', mood: '고지도, 바다, 돛',

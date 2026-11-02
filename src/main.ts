@@ -57,6 +57,7 @@ import './styles/lineage.css';
 import './styles/judah.css';
 import './styles/ezra.css';
 import './styles/esther.css';
+import './styles/chronicles.css';
 import './styles/nehemiah.css';
 import './styles/jonathan.css';
 import './styles/sodom.css';
