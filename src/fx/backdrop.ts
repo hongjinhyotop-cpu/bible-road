@@ -42,6 +42,7 @@ import { elishaArt } from './elisha';
 import { judahArt } from './judah';
 import { ezraArt } from './ezra';
 import { estherArt } from './esther';
+import { chroniclesArt } from './chronicles';
 import { nehemiahArt } from './nehemiah';
 import { jonathanArt } from './jonathan';
 import { sodomArt } from './sodom';
@@ -732,6 +733,12 @@ const ART: Record<Exclude<BackdropArt, keyof typeof PLACE_ART>, () => string> = 
   'et-haman-house': () => estherArt('et-haman-house'),
   'et-bedchamber': () => estherArt('et-bedchamber'),
   'et-street': () => estherArt('et-street'),
+  // 10막 역대기 (fx/chronicles.ts)
+  'ch-temple-site': () => chroniclesArt('ch-temple-site'),
+  'ch-tekoa': () => chroniclesArt('ch-tekoa'),
+  'ch-tekoa-still': () => chroniclesArt('ch-tekoa-still'),
+  'ch-beracah': () => chroniclesArt('ch-beracah'),
+  'ch-chains': () => chroniclesArt('ch-chains'),
   // 7막 압살롬의 반역 (fx/absalom.ts)
   'ab-gate': () => absalomArt('ab-gate'),
   'ab-kidron': () => absalomArt('ab-kidron'),

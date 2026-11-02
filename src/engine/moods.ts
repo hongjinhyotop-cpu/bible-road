@@ -51,6 +51,7 @@ export type BackdropArt =
   | 'ez-babylon-canal' | 'ez-cyrus-court' | 'ez-caravan' | 'ez-jerusalem-ruin' | 'ez-altar' | 'ez-foundation' | 'ez-temple-built'
   | 'nh-susa-banquet' | 'nh-susa-night' | 'nh-ruin' | 'nh-wall-work' | 'nh-wall-done' | 'nh-water-gate' | 'nh-booths'
   | 'et-susa-hall' | 'et-kings-gate' | 'et-women-court' | 'et-throne' | 'et-banquet' | 'et-garden' | 'et-haman-house' | 'et-bedchamber' | 'et-street'
+  | 'ch-temple-site' | 'ch-tekoa' | 'ch-tekoa-still' | 'ch-beracah' | 'ch-chains'
   | PlaceArt;
 
 /**
@@ -293,6 +294,11 @@ export const FX = [
   'pur', // 제비 부르: 점토 주사위가 구르고 열두 달 이름이 첫째 달부터 켜지다 느려져 열두째 달 아달월에 멈춤 (약 7초, 에 3:7)
   'scepter', // 금홀: 왕(who → ahasuerus)의 손에서 금홀이 기울어 to(→ esther) 쪽으로 내밀어짐 (약 4.5초, 에 5:2 · 8:4)
   'riders', // 역졸: 말 탄 역졸들이 조서 통을 메고 무대 가운데서 양쪽으로 달려 나가고 흙먼지 (약 6초, 에 3:13-15 · 8:10-14)
+  // ── 10막 역대기 (대상 28–29 · 대하 20 · 33, fx/chronicles.ts) ──
+  'ch-blueprint', // 성전 식양: 위에서 가는 금빛 한 줄기가 내려오고 두루마리가 펴지며 낭실·성소·지성소(그룹 날개)·골방·뜰·번제단 선이 차례로 그어지고 이름이 켜짐, 끝에 말려 who(→ david)에서 to(→ solomon)에게로 건너감 + "여호와의 손이 내게 임하여 그려" (약 10초, 대상 28:11-19)
+  'ch-offerings', // 즐거이 드림: 위 장부에 금 5,000 달란트·금 다릭 10,000·은 10,000·놋 18,000·철 100,000 달란트·보석이 한 줄씩, 금·은·놋·철 조각이 사방에서 날아와 무대 가운데 더미로 쌓이고 기쁨의 티끌이 오름 (약 10초, 대상 29:6-9. 예물·헌금 장면에 재사용)
+  'ch-praise-march', // 찬양대가 군대 앞에서: 흰 예복의 노래하는 자들 줄이 왼쪽에서 걸어 나오고 금빛 소리 물결이 오른쪽(적진)으로 연달아 밀려가며 "여호와께 감사하세 / 그 자비하심이 영원하도다"가 한 글자씩 켜짐, 오른쪽 잿빛 먼지가 흔들리다 흩어짐 (약 12초, 대하 20:21-22. 찬양 행렬에 재사용)
+  'ch-unchain', // 사슬이 풀림: 높은 곳에서 가는 금빛이 who(→ manasseh-king)에게 내려오고 손목의 쇠사슬 고리가 떨리다 끊어져 떨어짐 (약 5초, 대하 33:13)
 ] as const;
 export type SceneFx = (typeof FX)[number];
 
@@ -1099,6 +1105,27 @@ export const MOODS: Record<string, Mood> = {
   'et-street': { light: true, land: false, art: 'et-street' },
   'et-street-dusk': { light: true, land: false, art: 'et-street', tone: 'dusk' },
   'et-street-night': { light: true, land: false, art: 'et-street', tone: 'night' },
+
+  // ── 10막 역대기 A급 (대상 28–29 · 대하 20 · 33, fx/chronicles.ts) — 역대기 B급에서도 재사용 ──
+  /** 모리아 산 오르난의 타작마당 = 성전 터: 둥근 타작마당, 다윗이 쌓은 작은 단과 연기, 다듬은 돌·백향목 더미·금은 궤짝, 말뚝과 측량줄, 왼쪽 아래 다윗 성 (대상 21:26 · 22:1-5 · 대하 3:1) */
+  'ch-temple-site': { light: true, land: false, art: 'ch-temple-site', spread: true },
+  'ch-temple-site-dusk': { light: true, land: false, art: 'ch-temple-site', tone: 'dusk', spread: true },
+  'ch-temple-site-dawn': { light: true, land: false, art: 'ch-temple-site', tone: 'clear', spread: true },
+  'ch-temple-site-night': { light: true, land: false, art: 'ch-temple-site', tone: 'night', spread: true },
+  /** 드고아 들: 유다 광야의 둥근 언덕, 동쪽 사해 쪽 엷은 띠와 모압 산줄기, 오른쪽 언덕 위 들 망대, 골짜기로 내려가는 길 (대하 20:20, 24). 기본이 새벽 */
+  'ch-tekoa': { light: true, land: false, art: 'ch-tekoa', tone: 'clear' },
+  'ch-tekoa-dawn': { light: true, land: false, art: 'ch-tekoa', tone: 'clear' },
+  'ch-tekoa-dusk': { light: true, land: false, art: 'ch-tekoa', tone: 'dusk' },
+  'ch-tekoa-night': { light: true, land: false, art: 'ch-tekoa', tone: 'night' },
+  /** 같은 들의 골짜기, 일이 끝난 뒤: 버려진 창과 쓰러진 방패, 가라앉는 흙먼지. 사람은 안 그림 (20:24) */
+  'ch-tekoa-still': { light: true, land: false, art: 'ch-tekoa-still' },
+  'ch-tekoa-still-dusk': { light: true, land: false, art: 'ch-tekoa-still', tone: 'dusk' },
+  /** 브라가 골짜기: 양쪽 비탈 사이에 모여 손을 든 무리, 가운데 탈취물 더미, 열린 금빛 하늘 (20:26) */
+  'ch-beracah': { light: true, land: false, art: 'ch-beracah', tone: 'clear' },
+  'ch-beracah-dusk': { light: true, land: false, art: 'ch-beracah', tone: 'dusk' },
+  /** 바벨론의 옥: 벽돌 벽, 높은 창살 창의 한 줄기 빛, 벽의 쇠고리와 늘어진 사슬, 짚과 물 항아리 (대하 33:11-13). 옥·포로 장면에 재사용 */
+  'ch-chains': { light: true, land: false, art: 'ch-chains', tone: 'night', spread: true },
+  'ch-chains-dawn': { light: true, land: false, art: 'ch-chains', tone: 'clear', spread: true },
 
   // ── 9막 엘리야 A급 (왕상 12 · 18 · 19 · 21, fx/elijah.ts) ──
   /** 세겜: 에발산·그리심산 사이 골짜기, 가운데 돌 단, 양쪽에 모인 무리 (왕상 12:1) */

@@ -60,6 +60,7 @@ import { playChariotFire, playMantleFall, playMantleStrike, playSalt, playSamari
 import { playCloudGlory, playPrayers, playTearTwelve } from '../fx/temple';
 import { playBurnIdols, playCampSilence, playLetterSpread, playPillarsFall, playScrollFound, playSmallLamp, playTempleFire } from '../fx/judah';
 import { playDecree, playTwoSounds, playVessels } from '../fx/ezra';
+import { playBlueprint, playOfferings, playPraiseMarch, playUnchain } from '../fx/chronicles';
 import { playArrowPrayer, playNightSurvey, playTorahRead, playTrowelSword, playRallyHorn } from '../fx/nehemiah';
 import { playChronicle, playPur, playRiders, playScepter, playSignet as playKingRing, playThread } from '../fx/esther';
 import { playArrows, playHem, playSpearThrow } from '../fx/jonathan';
@@ -79,7 +80,7 @@ import { isSheetOpen } from '../ui/sheet';
 type Mode = 'loading' | 'intro' | 'tap' | 'choice' | 'end';
 
 /** 글 없이 효과만 있는 beat에서 기다리는 시간 (초) */
-const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6, 'mantle-strike': 4.4, 'chariot-fire': 9.6, 'mantle-fall': 4.6, salt: 5, 'seven-dips': 13, 'samaria-falls': 6, warnings: 11.5, 'letter-spread': 7, 'camp-silence': 7.5, 'scroll-found': 6, 'burn-idols': 6.5, 'temple-fire': 6, 'pillars-fall': 5.6, 'small-lamp': 4.5, rift: 4.4, 'no-answer': 8.4, 'carmel-fire': 6.2, 'small-cloud': 8, 'great-wind': 4.2, earthquake: 3.8, 'mount-fire': 4.2, 'still-voice': 7, 'angel-touch': 3.8, 'mantle-throw': 3.4, decree: 7.6, vessels: 8.6, 'two-sounds': 10.5, 'arrow-prayer': 2.8, 'night-survey': 9.6, 'trowel-sword': 5.5, 'rally-horn': 4.6, 'torah-read': 7.5,thread: 3.6, chronicle: 6.4, 'chronicle-read': 7.6, pur: 6.6, scepter: 3.8, riders: 5 };
+const FX_HOLD: Partial<Record<SceneFx, number>> = { pillars: 4.2, torches: 4.5, foxes: 4.5, 'flame-up': 4, summons: 3.6, lament: 5, genealogy: 8, 'little-robes': 8, anoint: 5.2, 'saul-lots': 10, lyre: 4.5, sling: 2.4, topple: 3, dance: 5, letter: 4, accuse: 4, 'spear-throw': 2.6, arrows: 4.4, hem: 3.6, 'cloud-glory': 6.5, prayers: 7, 'tear-twelve': 6, 'mantle-strike': 4.4, 'chariot-fire': 9.6, 'mantle-fall': 4.6, salt: 5, 'seven-dips': 13, 'samaria-falls': 6, warnings: 11.5, 'letter-spread': 7, 'camp-silence': 7.5, 'scroll-found': 6, 'burn-idols': 6.5, 'temple-fire': 6, 'pillars-fall': 5.6, 'small-lamp': 4.5, rift: 4.4, 'no-answer': 8.4, 'carmel-fire': 6.2, 'small-cloud': 8, 'great-wind': 4.2, earthquake: 3.8, 'mount-fire': 4.2, 'still-voice': 7, 'angel-touch': 3.8, 'mantle-throw': 3.4, decree: 7.6, vessels: 8.6, 'two-sounds': 10.5, 'arrow-prayer': 2.8, 'night-survey': 9.6, 'trowel-sword': 5.5, 'rally-horn': 4.6, 'torah-read': 7.5,thread: 3.6, chronicle: 6.4, 'chronicle-read': 7.6, pur: 6.6, scepter: 3.8, riders: 5, 'ch-blueprint': 9.4, 'ch-offerings': 8.6, 'ch-praise-march': 10, 'ch-unchain': 4 };
 
 /** 탭하면 빨리 감기는 긴 카메라 연출 (CSS 키프레임 이름) */
 const CAMERA = new Set(['ark-pan', 'ark-pullback', 'tower-pullback', 'sea-rise', 'sea-drain', 'sea-fall', 'sea-cover', 'sea-burst', 'dt-reveal', 'sl-an-beam', 'sl-an-horn', 'sl-an-stream', 'sl-an-crown', 'sl-an-body', 'tp-cloud-swell', 'tp-cloud-fill', 'el-sun-arc', 'el-cloud-swell', 'ez-ring', 'ez-far', 'ez-core', 'ez-carry', 'ez-row', 'ez-copy']);
@@ -895,6 +896,23 @@ export function sceneScreen({ id }: Params): Screen {
       case 'riders':
         // 역졸들이 사방으로 (에 3:13-15 · 8:10-14)
         playRiders($('.scene'), rm);
+        return;
+      // ── 10막 역대기 (fx/chronicles.ts) ──
+      case 'ch-blueprint':
+        // 성전 식양 (대상 28:11-19). 주는 사람 = who → david, 받는 사람 = to → solomon
+        playBlueprint($('.scene'), [beat?.who ?? []].flat()[0], beat?.to, rm);
+        return;
+      case 'ch-offerings':
+        // 즐거이 드린 예물이 쌓임 (대상 29:6-9)
+        playOfferings($('.scene'), rm);
+        return;
+      case 'ch-praise-march':
+        // 노래하는 자들이 군대 앞에서 (대하 20:21-22)
+        playPraiseMarch($('.scene'), rm);
+        return;
+      case 'ch-unchain':
+        // 사슬이 풀림 (대하 33:13). 대상 = who → manasseh-king
+        playUnchain($('.scene'), [beat?.who ?? []].flat()[0], rm);
         return;
       // ── 9막 엘리사 · 북이스라엘의 끝 (fx/elisha.ts) ──
       case 'mantle-strike':
